@@ -20,6 +20,7 @@ from .consolidar_aprendizados import salvar_consolidado
 from .grafo_tarefas import GrafoTarefas, NoTarefa
 from .agendador import AgendadorAdaptativo, PlanoExecucao
 from .continuidade import carregar_snapshot, gerar_prompt_retoma, salvar_prompt_retoma, salvar_snapshot
+from .contexto_operacional import ContextoOperacional, construir_contexto, salvar_contexto, salvar_prompt_contexto
 from .interface_chat import InterfaceChat, MensagemChat
 
 
@@ -67,6 +68,18 @@ class Cerebro:
     def contexto_para_chat(self, objetivo: str | None = None, limite: int = 20) -> list[ResultadoBusca]:
         return self.interface_chat.contexto_para_retoma(objetivo=objetivo, limite=limite)
 
+    def contexto_operacional(self, *, objetivo: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> ContextoOperacional:
+        """Retorna o estado operacional que qualquer chat deve conhecer antes de agir."""
+        return construir_contexto(self, objetivo=objetivo, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
+
+    def salvar_contexto_operacional(self, *, objetivo: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None, path: str | Path | None = None) -> dict[str, Any]:
+        destino = path or (self.repo.root / "contexto_operacional.json")
+        return salvar_contexto(self, destino, objetivo=objetivo, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
+
+    def preparar_contexto_para_chat(self, *, objetivo: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None, path: str | Path | None = None) -> str:
+        destino = path or (self.repo.root / "CONTEXTO_PARA_QUALQUER_CHAT.md")
+        return salvar_prompt_contexto(self, destino, objetivo=objetivo, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
+
     def registrar_memoria(self, tipo: str, titulo: str, conteudo: str, *, fonte: str | None = None, contexto: dict[str, Any] | None = None, relacoes: list[dict[str, str]] | None = None, proveniencia: dict[str, Any] | None = None, estado: str = "NOVO", metadata: dict[str, Any] | None = None) -> Registro:
         registro = novo_registro(self.repo, tipo, titulo, conteudo, source=fonte, relations=list(relacoes or []), provenance=dict(proveniencia or {}), state=estado, metadata={"contexto": dict(contexto or {}), **dict(metadata or {})})
         self.repo.salvar(registro)
@@ -112,6 +125,7 @@ class Cerebro:
     def checkpoint(self, *, objetivo_atual: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> dict[str, Any]:
         """Persiste uma fotografia portátil da sessão para continuidade em outro chat."""
         self.salvar_estado()
+        self.salvar_contexto_operacional(objetivo=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
         return salvar_snapshot(self, objetivo_atual=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
 
     def preparar_retoma(self, *, objetivo_atual: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> str:
@@ -201,6 +215,7 @@ class Cerebro:
             except (OSError, ValueError, TypeError, json.JSONDecodeError):
                 aprendizados_consolidados = 0
         continuidade_path = self.repo.root / "continuidade.json"
+        contexto_path = self.repo.root / "contexto_operacional.json"
         return {
             "registros": len(registros),
             "fontes": sum(1 for r in registros if r.kind == "DOCUMENTO"),
@@ -227,4 +242,6 @@ class Cerebro:
             "aprendizados_consolidados": aprendizados_consolidados,
             "continuidade": str(continuidade_path),
             "continuidade_disponivel": continuidade_path.exists(),
+            "contexto_operacional": str(contexto_path),
+            "contexto_operacional_disponivel": contexto_path.exists(),
         }
