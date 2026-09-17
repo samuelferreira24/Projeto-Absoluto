@@ -55,3 +55,24 @@ def test_capacidade_de_recurso_limita_concorrencia():
     )
     plano = o.plano_adaptativo({"cpu"})
     assert len(plano) == 1
+
+
+def test_facade_delega_capacity_de_tempo_ao_scheduler():
+    g = GrafoTarefas()
+    g.adicionar_varias([
+        NoTarefa("a", "A", recursos=("cpu",), valor_estimado=5, tempo_estimado=10),
+        NoTarefa("b", "B", recursos=("gpu",), valor_estimado=4, tempo_estimado=4),
+    ])
+    o = OrquestradorAdaptativo(g)
+    plano = o.plano_adaptativo({"cpu", "gpu"}, capacidade_de_tempo=5)
+    assert [t.id for t in plano] == ["a"]
+
+
+def test_replanejamento_apos_falha_ativa_fallback():
+    g = GrafoTarefas()
+    g.adicionar(NoTarefa("a", "principal", fallbacks=("b",), valor_estimado=10))
+    g.adicionar(NoTarefa("b", "fallback", valor_estimado=5))
+    o = OrquestradorAdaptativo(g)
+    o.plano_adaptativo()
+    proximo = o.replanejar_apos_resultado("a", False, fallback_tarefa_id="b")
+    assert [t.id for t in proximo] == ["b"]
