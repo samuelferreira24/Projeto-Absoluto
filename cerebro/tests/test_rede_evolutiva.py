@@ -45,3 +45,29 @@ def test_rede_rejeita_conexao_para_no_inexistente():
 def test_validacao_detecta_integridade():
     rede = rede_basica()
     assert rede.validar() == []
+
+
+def test_rede_expoe_relacionamentos_sem_impor_ordem():
+    rede = rede_basica()
+    rede.conectar(ArestaRede("pesquisa", "IMPULSIONA", "objetivo"))
+    rede.conectar(ArestaRede("experiencia", "MULTIPLICA_VALOR", "objetivo"))
+
+    assert set(rede.relacionados("objetivo")) == {"pesquisa", "experiencia"}
+    assert set(rede.caminhos_que_impulsionam("objetivo")) == {"pesquisa"}
+
+
+def test_candidatos_sao_sinais_contextuais_e_nao_fila_fixa():
+    rede = rede_basica()
+    candidatos = rede.candidatos_contextuais({"experiencia": 10.0})
+
+    assert candidatos[0][0] == "experiencia"
+    assert {item[0] for item in candidatos} == {"objetivo", "pesquisa", "capacidade", "experiencia"}
+
+
+def test_adicionar_nos_em_lote():
+    rede = RedeEvolutiva()
+    rede.adicionar_nos([
+        NoRede("a", "IDEIA", "A"),
+        NoRede("b", "IDEIA", "B"),
+    ])
+    assert set(rede.nos) == {"a", "b"}
