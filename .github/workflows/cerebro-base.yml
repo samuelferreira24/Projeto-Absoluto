@@ -7,6 +7,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   validar-base:
     runs-on: ubuntu-latest
@@ -14,5 +17,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validar estrutura e contratos
-        run: python tests/test_base_structure.py
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: python -m pip install --upgrade pip jsonschema pytest
+
+      - name: Executar testes
+        run: pytest -q tests/test_base_structure.py
+
+      - name: Registrar retorno
+        if: always()
+        run: |
+          {
+            echo "## Resultado da validação"
+            echo "- Status: ${{ job.status }}"
+            echo "- Commit: ${{ github.sha }}"
+            echo "- Workflow: ${{ github.workflow }}"
+            echo "- Data UTC: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } >> "$GITHUB_STEP_SUMMARY"
