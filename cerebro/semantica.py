@@ -108,6 +108,12 @@ def validar_relacao(relacao: RelacaoSemantica) -> list[str]:
 
 
 def validar_unidades(unidades: list[UnidadeSemantica], relacoes: list[RelacaoSemantica] | None = None) -> list[str]:
+    """Valida o contrato semântico sem confundir referência externa com corrupção.
+
+    `derived_from` pode apontar para uma fonte, documento ou registro que ainda não
+    esteja no lote auditado. Já uma relação semântica explícita exige endpoints
+    presentes no conjunto auditado, porque sua integridade estrutural depende deles.
+    """
     erros: list[str] = []
     ids = [u.id for u in unidades]
     if len(ids) != len(set(ids)):
@@ -115,8 +121,6 @@ def validar_unidades(unidades: list[UnidadeSemantica], relacoes: list[RelacaoSem
     known = set(ids)
     for unidade in unidades:
         erros.extend(f"{unidade.id}: {erro}" for erro in validar_unidade(unidade))
-        missing = [ref for ref in unidade.derived_from if ref not in known]
-        erros.extend(f"{unidade.id}: derived_from inexistente: {ref}" for ref in missing)
     for relacao in relacoes or []:
         erros.extend(f"{relacao.source_id}->{relacao.target_id}: {erro}" for erro in validar_relacao(relacao))
         if relacao.source_id not in known:
