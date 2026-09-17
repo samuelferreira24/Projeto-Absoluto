@@ -62,8 +62,18 @@ class Cerebro:
     def adicionar_no_rede(self, no: NoRede) -> None:
         self.rede.adicionar_no(no)
 
+    def adicionar_nos_rede(self, nos: list[NoRede]) -> None:
+        self.rede.adicionar_nos(nos)
+
     def conectar_rede(self, aresta: ArestaRede) -> None:
         self.rede.conectar(aresta)
+
+    def relacionados_rede(self, no_id: str) -> list[str]:
+        return self.rede.relacionados(no_id)
+
+    def candidatos_rede(self, contexto: dict[str, float] | None = None) -> list[tuple[str, float]]:
+        """Fornece sinais contextuais; não cria uma ordem fixa de execução."""
+        return self.rede.candidatos_contextuais(contexto)
 
     def pontos_de_alavancagem(self, limite: int = 10) -> list[tuple[str, float]]:
         return self.rede.pontos_de_alavancagem(limite)
