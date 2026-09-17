@@ -1,0 +1,9 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+ENV PYTHONUNBUFFERED=1
+ENV PROJETO_ABSOLUTO_WORKER_INTERVALO=60
+
+COPY . /app
+
+CMD ["python", "-m", "cerebro.worker"]
