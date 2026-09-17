@@ -9,7 +9,6 @@ from .despertador import Despertador, PedidoDespertar
 from .estado import EstadoSistema
 from .ingestao import DocumentoEstruturado, extrair, registrar_fonte
 from .nucleo import Registro, RepositorioJSONL, novo_registro
-from .nucleo import Registro, RepositorioJSONL, novo_registro
 from .orquestrador import Missao, Orquestrador
 from .organizacao import FilaOrganizacao
 from .recuperacao import ResultadoBusca, buscar_hibrido, expandir_relacoes
@@ -52,34 +51,10 @@ class Cerebro:
         return registrar_fonte(self.repo, documento)
 
     def capturar_evento(self, evento: EventoCapturado) -> list[Registro]:
-        """Entrada única para eventos provenientes de chats, IAs e plataformas."""
         return self.coletor.capturar(evento)
 
-    def registrar_memoria(
-        self,
-        tipo: str,
-        titulo: str,
-        conteudo: str,
-        *,
-        fonte: str | None = None,
-        contexto: dict[str, Any] | None = None,
-        relacoes: list[dict[str, str]] | None = None,
-        proveniencia: dict[str, Any] | None = None,
-        estado: str = "NOVO",
-        metadata: dict[str, Any] | None = None,
-    ) -> Registro:
-        """Registra conhecimento produzido no próprio processo do Projeto."""
-        registro = novo_registro(
-            self.repo,
-            tipo,
-            titulo,
-            conteudo,
-            source=fonte,
-            relations=list(relacoes or []),
-            provenance=dict(proveniencia or {}),
-            state=estado,
-            metadata={"contexto": dict(contexto or {}), **dict(metadata or {})},
-        )
+    def registrar_memoria(self, tipo: str, titulo: str, conteudo: str, *, fonte: str | None = None, contexto: dict[str, Any] | None = None, relacoes: list[dict[str, str]] | None = None, proveniencia: dict[str, Any] | None = None, estado: str = "NOVO", metadata: dict[str, Any] | None = None) -> Registro:
+        registro = novo_registro(self.repo, tipo, titulo, conteudo, source=fonte, relations=list(relacoes or []), provenance=dict(proveniencia or {}), state=estado, metadata={"contexto": dict(contexto or {}), **dict(metadata or {})})
         self.repo.salvar(registro)
         return registro
 
@@ -105,16 +80,8 @@ class Cerebro:
         return self.grafo_tarefas.lotes_paralelos(recursos)
 
     def consolidar_aprendizados(self, memoria: str | Path = "cerebro/memoria") -> dict[str, Any]:
-        """Torna o aprendizado acumulado + novo uma visão consolidada do Cérebro.
-
-        Os arquivos de origem permanecem intactos; a consolidação é uma camada derivada.
-        """
         memoria = Path(memoria)
-        return salvar_consolidado(
-            memoria / "aprendizados_consolidados_v0_1.json",
-            memoria / "aprendizados.jsonl",
-            memoria / "aprendizados_fundamentais_v0_1.json",
-        )
+        return salvar_consolidado(memoria / "aprendizados_consolidados_v0_1.json", memoria / "aprendizados.jsonl", memoria / "aprendizados_fundamentais_v0_1.json")
 
     def registros(self) -> list[Registro]:
         return list(self.repo._iter_registros())
@@ -171,7 +138,6 @@ class Cerebro:
         return self.despertador.pendentes(missao_id)
 
     def executar_missao(self, missao_id: str, candidatos: Callable, executor: Callable) -> dict[str, Any]:
-        """Executa um ciclo recuperável sem depender da conversa aberta."""
         resultado = self.runtime.executar_ciclo(missao_id, candidatos, executor)
         self.salvar_estado()
         return resultado
