@@ -5,6 +5,9 @@ import pytest
 from cerebro.continuidade import ErroContinuidade, validar_manifesto, validar_ou_erro
 
 
+ROOT = Path(__file__).resolve().parents[2]
+
+
 def manifesto_valido() -> dict:
     return {
         "schema_version": "0.1",
@@ -47,3 +50,8 @@ def test_detecta_campo_essencial_ausente(tmp_path: Path):
     path = escrever_manifesto(tmp_path, data)
     with pytest.raises(ErroContinuidade):
         validar_ou_erro(path, path.parent)
+
+
+def test_manifesto_operacional_real_do_projeto():
+    path = ROOT / "cerebro" / "especificacao" / "MANIFESTO_EXECUCAO_V0_1.json"
+    assert validar_manifesto(path, ROOT) == []
