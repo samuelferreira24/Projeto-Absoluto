@@ -31,3 +31,21 @@ def test_orcamento_impede_excesso():
     grafo.adicionar(NoTarefa("a", "tarefa", prioridade=1))
     plano = AgendadorAdaptativo(grafo).planejar(orcamento=0.5)
     assert plano.tarefas == ()
+
+
+def test_valor_risco_e_custo_alteram_priorizacao():
+    grafo = GrafoTarefas()
+    grafo.adicionar_varias([
+        NoTarefa("segura", "baixo valor", valor_estimado=5, custo_estimado=1, risco=0.0),
+        NoTarefa("arriscada", "alto valor", valor_estimado=20, custo_estimado=1, risco=0.9),
+    ])
+    plano = AgendadorAdaptativo(grafo).planejar(limite=1)
+    assert [t.id for t in plano.tarefas] == ["segura"]
+
+
+def test_historico_preserva_decisao_e_replanejamento():
+    grafo = GrafoTarefas()
+    grafo.adicionar(NoTarefa("a", "tarefa", valor_estimado=3))
+    agendador = AgendadorAdaptativo(grafo)
+    agendador.replanejar()
+    assert any(e["evento"] == "REPLANEJAMENTO" for e in agendador.historico)
