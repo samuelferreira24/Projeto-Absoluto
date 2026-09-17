@@ -1,4 +1,5 @@
 from cerebro.agendador import AgendadorAdaptativo
+from cerebro.grafo_tarefas import AgendadorAdaptativo as _unused  # compatibilidade de importação não utilizada
 from cerebro.grafo_tarefas import GrafoTarefas, NoTarefa, EstadoTarefa
 
 
@@ -41,6 +42,29 @@ def test_valor_risco_e_custo_alteram_priorizacao():
     ])
     plano = AgendadorAdaptativo(grafo).planejar(limite=1)
     assert [t.id for t in plano.tarefas] == ["segura"]
+
+
+def test_prazo_menor_aumenta_urgencia():
+    grafo = GrafoTarefas()
+    grafo.adicionar_varias([
+        NoTarefa("normal", "normal", valor_estimado=10, custo_estimado=1, prazo=10),
+        NoTarefa("urgente", "urgente", valor_estimado=10, custo_estimado=1, prazo=2),
+    ])
+    plano = AgendadorAdaptativo(grafo).planejar(limite=1)
+    assert [t.id for t in plano.tarefas] == ["urgente"]
+
+
+def test_retry_preserva_falha_e_reabre_tarefa():
+    grafo = GrafoTarefas()
+    grafo.adicionar(NoTarefa("a", "tarefa", prioridade=2))
+    agendador = AgendadorAdaptativo(grafo)
+    plano = agendador.planejar()
+    agendador.executar_inicio(plano)
+    agendador.registrar_resultado("a", False, observacao="falha transitória")
+    agendador.retentar_tarefa("a", motivo="recurso recuperado")
+    assert grafo.tarefas["a"].estado == EstadoTarefa.PENDENTE
+    assert any(e["evento"] == "RESULTADO" and e["sucesso"] is False for e in agendador.historico)
+    assert any(e["evento"] == "RETRY" for e in agendador.historico)
 
 
 def test_historico_preserva_decisao_e_replanejamento():
