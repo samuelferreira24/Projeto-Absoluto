@@ -20,6 +20,7 @@ from .consolidar_aprendizados import salvar_consolidado
 from .grafo_tarefas import GrafoTarefas, NoTarefa
 from .agendador import AgendadorAdaptativo, PlanoExecucao
 from .continuidade import carregar_snapshot, gerar_prompt_retoma, salvar_prompt_retoma, salvar_snapshot
+from .interface_chat import InterfaceChat, MensagemChat
 
 
 class Cerebro:
@@ -43,6 +44,7 @@ class Cerebro:
         self.runtime = RuntimeContinuo(self.orquestrador, self.runtime_path)
         self.grafo_tarefas = GrafoTarefas()
         self.agendador = AgendadorAdaptativo(self.grafo_tarefas)
+        self.interface_chat = InterfaceChat(self)
 
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
         return extrair(arquivo)
@@ -55,6 +57,15 @@ class Cerebro:
 
     def capturar_evento(self, evento: EventoCapturado) -> list[Registro]:
         return self.coletor.capturar(evento)
+
+    def capturar_mensagem_chat(self, mensagem: MensagemChat) -> int:
+        return self.interface_chat.capturar_mensagem(mensagem)
+
+    def capturar_conversa_chat(self, mensagens: list[MensagemChat]) -> int:
+        return self.interface_chat.capturar_conversa(mensagens)
+
+    def contexto_para_chat(self, objetivo: str | None = None, limite: int = 20) -> list[ResultadoBusca]:
+        return self.interface_chat.contexto_para_retoma(objetivo=objetivo, limite=limite)
 
     def registrar_memoria(self, tipo: str, titulo: str, conteudo: str, *, fonte: str | None = None, contexto: dict[str, Any] | None = None, relacoes: list[dict[str, str]] | None = None, proveniencia: dict[str, Any] | None = None, estado: str = "NOVO", metadata: dict[str, Any] | None = None) -> Registro:
         registro = novo_registro(self.repo, tipo, titulo, conteudo, source=fonte, relations=list(relacoes or []), provenance=dict(proveniencia or {}), state=estado, metadata={"contexto": dict(contexto or {}), **dict(metadata or {})})
