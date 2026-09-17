@@ -3,7 +3,9 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Callable
 
+from .aprendizado import novo_aprendizado, registrar_aprendizado
 from .grafo_tarefas import EstadoTarefa, GrafoTarefas, NoTarefa
 
 
@@ -31,6 +33,7 @@ class AgendadorAdaptativo:
     def __init__(self, grafo: GrafoTarefas, historico_path: str | Path | None = None) -> None:
         self.grafo = grafo
         self.historico_path = Path(historico_path) if historico_path else None
+        self.aprendizado_path = Path(aprendizado_path) if aprendizado_path else None
         self.historico: list[dict[str, object]] = []
         self.perfis: dict[str, dict[str, float]] = {}
         if self.historico_path:
@@ -45,19 +48,27 @@ class AgendadorAdaptativo:
     ) -> float:
         """Valor marginal ajustado por risco, custo, prazo e experiência observada."""
         perfil = perfil or {}
-        valor = tarefa.valor_estimado if tarefa.valor_estimado > 0 else tarefa.prioridade
-        custo = tarefa.custo_estimado if tarefa.custo_estimado > 0 else 1.0
+        valor = max(0.0, tarefa.valor_estimado if tarefa.valor_estimado > 0 else tarefa.prioridade)
+        oportunidade = max(0.0, tarefa.oportunidade)
+        custo = max(0.1, tarefa.custo_estimado if tarefa.custo_estimado > 0 else 1.0)
         risco = max(0.0, min(1.0, tarefa.risco))
+        incerteza = max(0.0, min(1.0, tarefa.incerteza))
+        confiabilidade_observada = max(0.0, min(1.0, perfil.get("confiabilidade", 1.0)))
+        fator_tempo = max(0.1, perfil.get("fator_tempo", 1.0))
         urgencia = 1.0 / max(1.0, tarefa.prazo) if tarefa.prazo is not None else 1.0
-        confiabilidade_observada = perfil.get("confiabilidade", 1.0)
-        fator_tempo = perfil.get("fator_tempo", 1.0)
+        valor_esperado = (valor + oportunidade) * (1.0 - risco) * (1.0 - incerteza) * confiabilidade_observada
+        comunicacao = 1.0 + max(0.0, tarefa.comunicacao_estimado)
+        if objetivo == "valor":
+            return valor_esperado / comunicacao
         if objetivo == "eficiencia":
-            return (valor * urgencia * (1.0 - risco) * confiabilidade_observada) / (custo * max(0.1, fator_tempo))
+            return valor_esperado * urgencia / (custo * fator_tempo * comunicacao)
         if objetivo == "conclusao":
-            return valor * urgencia * (1.0 - risco) * confiabilidade_observada / max(0.1, fator_tempo)
+            return valor_esperado * urgencia / (fator_tempo * comunicacao)
         if objetivo == "rapidez":
-            return valor * (1.0 - risco) / max(0.1, tarefa.tempo_estimado * fator_tempo)
-        return (valor * urgencia * (1.0 - risco) * confiabilidade_observada) / (custo * max(0.1, fator_tempo))
+            return valor_esperado / (max(0.1, tarefa.tempo_estimado * fator_tempo) * comunicacao)
+        if objetivo == "aprendizado":
+            return (valor_esperado + oportunidade + incerteza) / (custo * comunicacao)
+        return valor_esperado * urgencia / (custo * fator_tempo * comunicacao)
 
     def planejar(
         self,
@@ -66,6 +77,8 @@ class AgendadorAdaptativo:
         orcamento: float | None = None,
         limite: int | None = None,
         objetivo: str = "equilibrio",
+        capacidades_recursos: dict[str, float] | None = None,
+        restricao_satisfaz: Callable[[NoTarefa], bool] | None = None,
     ) -> PlanoExecucao:
         if self.grafo.validar():
             plano = PlanoExecucao((), 0.0, 0.0, 0.0, 0.0, 0.0, "grafo inválido; planejamento bloqueado")
@@ -81,6 +94,7 @@ class AgendadorAdaptativo:
         avaliadas = [
             (tarefa, self.pontuacao(tarefa, self.perfis.get(tarefa.id), objetivo=objetivo))
             for tarefa in prontas
+            if restricao_satisfaz is None or restricao_satisfaz(tarefa)
         ]
         ordenadas = sorted(
             avaliadas,
@@ -91,26 +105,37 @@ class AgendadorAdaptativo:
         custo = valor = risco = prioridade = 0.0
         tempos: list[float] = []
         decisoes: list[dict[str, object]] = []
+        uso_por_recurso: dict[str, float] = {}
+        bloqueios: list[str] = []
 
         for tarefa, score in ordenadas:
             if limite is not None and len(selecionadas) >= limite:
                 break
             recursos = set(tarefa.recursos)
             if recursos & usados:
-                decisoes.append({"tarefa": tarefa.id, "score": score, "aceita": False, "motivo": "conflito_de_recurso"})
-                continue
+                capacidade_ok = all(uso_por_recurso.get(r, 0.0) + 1.0 <= max(0.0, (capacidades_recursos or {}).get(r, 1.0)) for r in recursos & usados)
+                if not capacidade_ok:
+                    decisoes.append({"tarefa": tarefa.id, "score": score, "aceita": False, "motivo": "conflito_de_recurso"})
+                    continue
             custo_tarefa = max(0.0, tarefa.custo_estimado)
             if custo_tarefa == 0.0:
                 custo_tarefa = 1.0 / max(tarefa.prioridade, 0.1)
             if orcamento is not None and custo + custo_tarefa > orcamento:
+                bloqueios.append(f"{tarefa.id}: orçamento")
                 decisoes.append({"tarefa": tarefa.id, "score": score, "aceita": False, "motivo": "orcamento"})
                 continue
             perfil = self.perfis.get(tarefa.id, {})
             tempo_tarefa = max(0.0, tarefa.tempo_estimado) * perfil.get("fator_tempo", 1.0)
+            if tarefa.prazo is not None and tarefa.prazo < tempo_tarefa:
+                bloqueios.append(f"{tarefa.id}: prazo incompatível")
+                decisoes.append({"tarefa": tarefa.id, "score": score, "aceita": False, "motivo": "prazo"})
+                continue
             selecionadas.append(tarefa)
             usados.update(recursos)
+            for recurso in recursos:
+                uso_por_recurso[recurso] = uso_por_recurso.get(recurso, 0.0) + 1.0
             custo += custo_tarefa
-            valor += max(0.0, tarefa.valor_estimado or tarefa.prioridade)
+            valor += max(0.0, tarefa.valor_estimado + tarefa.oportunidade)
             risco += max(0.0, min(1.0, tarefa.risco))
             tempos.append(tempo_tarefa)
             prioridade += tarefa.prioridade
@@ -123,7 +148,9 @@ class AgendadorAdaptativo:
             prioridade,
             risco / len(selecionadas) if selecionadas else 0.0,
             max(tempos, default=0.0),
-            "valor marginal ajustado por risco/custo/prazo + experiência + paralelismo por recursos",
+            "valor esperado ajustado por risco, incerteza, custo, prazo, comunicação e experiência",
+            objetivo,
+            restricoes_bloqueantes=tuple(bloqueios),
         )
         self._registrar_historico(plano, evento="PLANEJAMENTO", decisoes=decisoes)
         return plano
@@ -142,6 +169,11 @@ class AgendadorAdaptativo:
         custo_real: float | None = None,
         tempo_real: float | None = None,
         qualidade: float | None = None,
+        evidencia: str | None = None,
+        contexto: dict[str, object] | None = None,
+        aprendizado: str | None = None,
+        fallback_tarefa_id: str | None = None,
+        reintentar: bool = False,
     ) -> None:
         """Registra o resultado e atualiza um perfil persistível para o próximo planejamento."""
         tarefa = self.grafo.tarefas[tarefa_id]
@@ -162,8 +194,22 @@ class AgendadorAdaptativo:
             "custo_real": custo_real,
             "tempo_real": tempo_real,
             "qualidade": qualidade,
+            "evidencia": evidencia or "",
+            "contexto": dict(contexto or {}),
+            "aprendizado": aprendizado or "",
             "perfil_atualizado": dict(perfil),
+            "fallback": fallback_tarefa_id,
+            "retry": reintentar,
         })
+        if fallback_tarefa_id and not sucesso:
+            if fallback_tarefa_id not in self.grafo.tarefas:
+                raise ValueError(f"fallback inexistente: {fallback_tarefa_id}")
+            self.grafo.marcar(fallback_tarefa_id, EstadoTarefa.PENDENTE)
+            self._adicionar_historico({"evento": "FALLBACK_ATIVADO", "tarefa_origem": tarefa_id, "tarefa_fallback": fallback_tarefa_id, "motivo": observacao or "falha da tarefa principal"})
+        if reintentar and not sucesso:
+            self.grafo.marcar(tarefa_id, EstadoTarefa.PENDENTE)
+            self._adicionar_historico({"evento": "RETRY", "tarefa": tarefa_id, "motivo": observacao or "nova tentativa"})
+        self._registrar_aprendizado(titulo=f"Resultado de orquestração: {tarefa_id}", conteudo=aprendizado or (observacao or ("execução bem-sucedida" if sucesso else "execução falhou")), contexto={"tarefa": tarefa_id, "sucesso": sucesso, **dict(contexto or {})}, evidencias=((evidencia,) if evidencia else ()), tipo="APRENDIZADO" if aprendizado or sucesso else "ERRO")
 
     def retentar_tarefa(self, tarefa_id: str, *, motivo: str = "nova tentativa") -> None:
         """Reabre uma tarefa que falhou sem apagar o registro da falha anterior."""
@@ -183,7 +229,9 @@ class AgendadorAdaptativo:
             "tarefas": [t.id for t in plano.tarefas],
             "motivo": motivo,
             "mudancas": mudancas,
+            "estrategia": plano.estrategia,
         })
+        self._registrar_aprendizado(titulo="Mudança de estratégia de orquestração", conteudo=motivo, contexto={"plano": [t.id for t in plano.tarefas], "mudancas": mudancas}, tipo="DECISAO")
         return plano
 
     def planos_candidatos(
@@ -194,7 +242,7 @@ class AgendadorAdaptativo:
         limite: int | None = None,
     ) -> list[PlanoExecucao]:
         """Gera alternativas antes da seleção final."""
-        estrategias = ("eficiencia", "conclusao", "rapidez", "equilibrio")
+        estrategias = ("valor", "eficiencia", "conclusao", "rapidez", "aprendizado")
         planos = [
             self.planejar(
                 recursos_disponiveis,
@@ -277,7 +325,14 @@ class AgendadorAdaptativo:
             "risco": plano.risco_estimado,
             "tempo": plano.tempo_estimado,
             "motivo": plano.motivo,
+            "estrategia": plano.estrategia,
         }
         if decisoes is not None:
             registro["decisoes"] = decisoes
         self._adicionar_historico(registro)
+
+    def _registrar_aprendizado(self, *, titulo: str, conteudo: str, contexto: dict[str, object], evidencias: tuple[str, ...] = (), tipo: str = "APRENDIZADO") -> None:
+        if not self.aprendizado_path:
+            return
+        aprendizado = novo_aprendizado(tipo, titulo, conteudo, origem="AgendadorAdaptativo", evidencias=evidencias, contexto=tuple(f"{k}={v}" for k, v in sorted(contexto.items())))
+        registrar_aprendizado(aprendizado, self.aprendizado_path)
