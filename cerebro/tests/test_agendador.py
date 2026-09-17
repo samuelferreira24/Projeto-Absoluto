@@ -116,3 +116,22 @@ def test_resultado_preserva_metricas_no_historico():
     assert evento["custo_real"] == 3.5
     assert evento["tempo_real"] == 4.0
     assert evento["qualidade"] == 0.8
+
+
+def test_tempo_do_plano_reflete_paralelismo():
+    grafo = GrafoTarefas()
+    grafo.adicionar_varias([
+        NoTarefa("a", "tarefa a", recursos=("cpu",), prioridade=2, tempo_estimado=10),
+        NoTarefa("b", "tarefa b", recursos=("gpu",), prioridade=2, tempo_estimado=4),
+    ])
+    plano = AgendadorAdaptativo(grafo).planejar({"cpu", "gpu"})
+    assert [t.id for t in plano.tarefas] == ["a", "b"]
+    assert plano.tempo_estimado == 10.0
+
+
+def test_grafo_invalido_bloqueia_planejamento():
+    grafo = GrafoTarefas()
+    grafo.adicionar(NoTarefa("a", "tarefa", depende_de=("ausente",)))
+    plano = AgendadorAdaptativo(grafo).planejar()
+    assert plano.tarefas == ()
+    assert "grafo inválido" in plano.motivo
