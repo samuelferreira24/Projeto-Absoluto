@@ -55,29 +55,43 @@ class AgendadorAdaptativo:
         orcamento: float | None = None,
         limite: int | None = None,
     ) -> PlanoExecucao:
+        if self.grafo.validar():
+            plano = PlanoExecucao((), 0.0, 0.0, 0.0, 0.0, 0.0, "grafo inválido; planejamento bloqueado")
+            self._registrar_historico(plano, evento="PLANEJAMENTO_BLOQUEADO")
+            return plano
+
         prontas = self.grafo.prontas(recursos_disponiveis)
         if not prontas:
             plano = PlanoExecucao((), 0.0, 0.0, 0.0, 0.0, 0.0, "nenhuma tarefa pronta")
             self._registrar_historico(plano, evento="PLANEJAMENTO")
             return plano
 
+        avaliadas = [
+            (tarefa, self.pontuacao(tarefa, self.perfis.get(tarefa.id)))
+            for tarefa in prontas
+        ]
         ordenadas = sorted(
-            prontas,
-            key=lambda t: (-self.pontuacao(t, self.perfis.get(t.id)), -t.prioridade, t.id),
+            avaliadas,
+            key=lambda item: (-item[1], -item[0].prioridade, item[0].id),
         )
         selecionadas: list[NoTarefa] = []
         usados: set[str] = set()
-        custo = valor = risco = tempo = prioridade = 0.0
-        for tarefa in ordenadas:
+        custo = valor = risco = prioridade = 0.0
+        tempos: list[float] = []
+        decisoes: list[dict[str, object]] = []
+
+        for tarefa, score in ordenadas:
             if limite is not None and len(selecionadas) >= limite:
                 break
             recursos = set(tarefa.recursos)
             if recursos & usados:
+                decisoes.append({"tarefa": tarefa.id, "score": score, "aceita": False, "motivo": "conflito_de_recurso"})
                 continue
             custo_tarefa = max(0.0, tarefa.custo_estimado)
             if custo_tarefa == 0.0:
                 custo_tarefa = 1.0 / max(tarefa.prioridade, 0.1)
             if orcamento is not None and custo + custo_tarefa > orcamento:
+                decisoes.append({"tarefa": tarefa.id, "score": score, "aceita": False, "motivo": "orcamento"})
                 continue
             perfil = self.perfis.get(tarefa.id, {})
             tempo_tarefa = max(0.0, tarefa.tempo_estimado) * perfil.get("fator_tempo", 1.0)
@@ -86,8 +100,9 @@ class AgendadorAdaptativo:
             custo += custo_tarefa
             valor += max(0.0, tarefa.valor_estimado or tarefa.prioridade)
             risco += max(0.0, min(1.0, tarefa.risco))
-            tempo += tempo_tarefa
+            tempos.append(tempo_tarefa)
             prioridade += tarefa.prioridade
+            decisoes.append({"tarefa": tarefa.id, "score": score, "aceita": True, "motivo": "selecionada"})
 
         plano = PlanoExecucao(
             tuple(selecionadas),
@@ -95,10 +110,10 @@ class AgendadorAdaptativo:
             valor,
             prioridade,
             risco / len(selecionadas) if selecionadas else 0.0,
-            tempo,
+            max(tempos, default=0.0),
             "valor marginal ajustado por risco/custo/prazo + experiência + paralelismo por recursos",
         )
-        self._registrar_historico(plano, evento="PLANEJAMENTO")
+        self._registrar_historico(plano, evento="PLANEJAMENTO", decisoes=decisoes)
         return plano
 
     def executar_inicio(self, plano: PlanoExecucao) -> None:
@@ -181,8 +196,8 @@ class AgendadorAdaptativo:
         self.historico.append(evento)
         self.salvar_historico()
 
-    def _registrar_historico(self, plano: PlanoExecucao, *, evento: str) -> None:
-        self._adicionar_historico({
+    def _registrar_historico(self, plano: PlanoExecucao, *, evento: str, decisoes: list[dict[str, object]] | None = None) -> None:
+        registro: dict[str, object] = {
             "evento": evento,
             "tarefas": [t.id for t in plano.tarefas],
             "custo": plano.custo_estimado,
@@ -191,4 +206,7 @@ class AgendadorAdaptativo:
             "risco": plano.risco_estimado,
             "tempo": plano.tempo_estimado,
             "motivo": plano.motivo,
-        })
+        }
+        if decisoes is not None:
+            registro["decisoes"] = decisoes
+        self._adicionar_historico(registro)
