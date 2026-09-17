@@ -18,6 +18,7 @@ from .runtime import RuntimeContinuo
 from .semantica import RelacaoSemantica, UnidadeSemantica
 from .consolidar_aprendizados import salvar_consolidado
 from .grafo_tarefas import GrafoTarefas, NoTarefa
+from .agendador import AgendadorAdaptativo, PlanoExecucao
 from .continuidade import carregar_snapshot, gerar_prompt_retoma, salvar_prompt_retoma, salvar_snapshot
 
 
@@ -41,6 +42,7 @@ class Cerebro:
         self.orquestrador = Orquestrador(self.orquestrador_path)
         self.runtime = RuntimeContinuo(self.orquestrador, self.runtime_path)
         self.grafo_tarefas = GrafoTarefas()
+        self.agendador = AgendadorAdaptativo(self.grafo_tarefas)
 
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
         return extrair(arquivo)
@@ -79,6 +81,18 @@ class Cerebro:
 
     def lote_paralelo(self, recursos: set[str] | None = None) -> list[list[NoTarefa]]:
         return self.grafo_tarefas.lotes_paralelos(recursos)
+
+    def planejar_tarefas(self, recursos: set[str] | None = None, *, orcamento: float | None = None, limite: int | None = None) -> PlanoExecucao:
+        return self.agendador.planejar(recursos, orcamento=orcamento, limite=limite)
+
+    def iniciar_plano(self, plano: PlanoExecucao) -> None:
+        self.agendador.executar_inicio(plano)
+
+    def concluir_tarefa(self, tarefa_id: str, sucesso: bool = True) -> None:
+        self.agendador.registrar_resultado(tarefa_id, sucesso)
+
+    def replanejar_tarefas(self, recursos: set[str] | None = None, **kwargs: Any) -> PlanoExecucao:
+        return self.agendador.replanejar(recursos, **kwargs)
 
     def consolidar_aprendizados(self, memoria: str | Path = "cerebro/memoria") -> dict[str, Any]:
         memoria = Path(memoria)
@@ -197,6 +211,8 @@ class Cerebro:
             "tarefas": len(self.grafo_tarefas.tarefas),
             "tarefas_prontas": len(self.tarefas_prontas()),
             "integridade_tarefas": self.validar_tarefas(),
+            "plano_atual": [t.id for t in self.agendador.planejar().tarefas],
+            "historico_planejamento": len(self.agendador.historico),
             "aprendizados_consolidados": aprendizados_consolidados,
             "continuidade": str(continuidade_path),
             "continuidade_disponivel": continuidade_path.exists(),
