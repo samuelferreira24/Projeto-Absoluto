@@ -9,6 +9,7 @@ import json
 import uuid
 
 from .nucleo import Registro, RepositorioJSONL, novo_registro
+from .organizacao import FilaOrganizacao
 
 
 def agora() -> str:
@@ -69,10 +70,11 @@ class ColetorMemoria:
     sem perder o material original.
     """
 
-    def __init__(self, repo: RepositorioJSONL, raw_path: str | Path | None = None) -> None:
+    def __init__(self, repo: RepositorioJSONL, raw_path: str | Path | None = None, fila: FilaOrganizacao | None = None) -> None:
         self.repo = repo
         self.raw_path = Path(raw_path) if raw_path else repo.root / "captura" / "eventos_brutos.jsonl"
         self.raw_path.parent.mkdir(parents=True, exist_ok=True)
+        self.fila = fila or FilaOrganizacao(repo.root / "organizacao.jsonl")
 
     def _ids_capturados(self) -> set[str]:
         if not self.raw_path.exists():
@@ -88,7 +90,7 @@ class ColetorMemoria:
         return ids
 
     def capturar(self, evento: EventoCapturado) -> list[Registro]:
-        """Preserva o bruto e cria memória derivada sem duplicar o mesmo evento."""
+        """Preserva o bruto, cria memória e agenda organização sem duplicar o evento."""
         if evento.idempotency_key in self._ids_capturados():
             return []
 
@@ -118,6 +120,7 @@ class ColetorMemoria:
             },
         )
         self.repo.salvar(registro)
+        self.fila.adicionar(registro)
         return [registro]
 
 
