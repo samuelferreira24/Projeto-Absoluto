@@ -27,8 +27,9 @@ class TestSemanticaCore(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             repo = RepositorioJSONL(tmp)
             a = novo_registro(repo, "PESQUISA", "Memória temporal", "conteúdo geral")
+            repo.salvar(a)
             b = novo_registro(repo, "IDEIA", "Outra", "memória temporal no conteúdo")
-            repo.salvar(a); repo.salvar(b)
+            repo.salvar(b)
             resultados = buscar_hibrido(repo._iter_registros(), "memória temporal")
             self.assertEqual(resultados[0].registro.id, a.id)
 
@@ -36,9 +37,11 @@ class TestSemanticaCore(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             repo = RepositorioJSONL(tmp)
             a = novo_registro(repo, "IDEIA", "A")
+            repo.salvar(a)
             b = novo_registro(repo, "IDEIA", "B")
             a.add_relation("deriva_de", b.id)
-            repo.salvar(a); repo.salvar(b)
+            repo.atualizar(a)
+            repo.salvar(b)
             encontrados = expandir_relacoes(list(repo._iter_registros()), [a.id], profundidade=1)
             self.assertEqual({r.id for r in encontrados}, {a.id, b.id})
 
