@@ -2,10 +2,9 @@ from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
 
-from .ingestao import extrair, registrar_fonte
-from .nucleo import RepositorioJSONL
+from .ingestao import extrair
+from .servico import Cerebro
 
 
 def main() -> int:
@@ -16,9 +15,18 @@ def main() -> int:
     p_ingest.add_argument("arquivo")
     p_ingest.add_argument("--dados", default="cerebro/data")
 
-    p_busca = sub.add_parser("buscar", help="Busca registros")
+    p_busca = sub.add_parser("buscar", help="Busca registros por texto")
     p_busca.add_argument("texto")
+    p_busca.add_argument("--limite", type=int, default=10)
     p_busca.add_argument("--dados", default="cerebro/data")
+
+    p_rel = sub.add_parser("relacionados", help="Expande relações a partir de um registro")
+    p_rel.add_argument("id")
+    p_rel.add_argument("--profundidade", type=int, default=1)
+    p_rel.add_argument("--dados", default="cerebro/data")
+
+    p_diag = sub.add_parser("diagnostico", help="Mostra o estado resumido do acervo")
+    p_diag.add_argument("--dados", default="cerebro/data")
 
     p_inspect = sub.add_parser("inspecionar", help="Extrai sem registrar")
     p_inspect.add_argument("arquivo")
@@ -30,18 +38,26 @@ def main() -> int:
         print(json.dumps(doc.to_dict(), ensure_ascii=False, indent=2))
         return 0 if not doc.erros else 2
 
-    repo = RepositorioJSONL(args.dados)
+    cerebro = Cerebro(args.dados)
     if args.comando == "ingerir":
-        doc = extrair(args.arquivo)
-        if doc.erros:
-            print(json.dumps(doc.to_dict(), ensure_ascii=False, indent=2))
-            return 2
-        reg = registrar_fonte(repo, doc)
+        reg = cerebro.ingerir(args.arquivo)
         print(reg.to_json())
         return 0
 
-    for reg in repo.buscar(args.texto):
-        print(reg.to_json())
+    if args.comando == "buscar":
+        for resultado in cerebro.buscar(args.texto, args.limite):
+            print(json.dumps({"score": resultado.score, "motivos": resultado.motivos, "registro": resultado.registro.to_dict()}, ensure_ascii=False, indent=2))
+        return 0
+
+    if args.comando == "relacionados":
+        for reg in cerebro.relacionados([args.id], args.profundidade):
+            print(reg.to_json())
+        return 0
+
+    if args.comando == "diagnostico":
+        print(json.dumps(cerebro.diagnostico(), ensure_ascii=False, indent=2))
+        return 0
+
     return 0
 
 
