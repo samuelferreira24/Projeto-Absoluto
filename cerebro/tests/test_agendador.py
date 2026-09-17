@@ -1,5 +1,4 @@
 from cerebro.agendador import AgendadorAdaptativo
-from cerebro.grafo_tarefas import AgendadorAdaptativo as _unused  # compatibilidade de importação não utilizada
 from cerebro.grafo_tarefas import GrafoTarefas, NoTarefa, EstadoTarefa
 
 
