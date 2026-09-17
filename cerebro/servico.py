@@ -19,6 +19,7 @@ from .semantica import RelacaoSemantica, UnidadeSemantica
 from .consolidar_aprendizados import salvar_consolidado
 from .grafo_tarefas import GrafoTarefas, NoTarefa
 from .agendador import AgendadorAdaptativo, PlanoExecucao
+from .sinergia import DetectorSinergia, ResultadoCombinacao, SinalSinergia
 from .continuidade import carregar_snapshot, gerar_prompt_retoma, salvar_prompt_retoma, salvar_snapshot
 from .contexto_operacional import ContextoOperacional, construir_contexto, salvar_contexto, salvar_prompt_contexto
 from .interface_chat import InterfaceChat, MensagemChat
@@ -45,6 +46,7 @@ class Cerebro:
         self.runtime = RuntimeContinuo(self.orquestrador, self.runtime_path)
         self.grafo_tarefas = GrafoTarefas()
         self.agendador = AgendadorAdaptativo(self.grafo_tarefas)
+        self.detector_sinergia = DetectorSinergia()
         self.interface_chat = InterfaceChat(self)
 
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
@@ -117,6 +119,15 @@ class Cerebro:
 
     def replanejar_tarefas(self, recursos: set[str] | None = None, **kwargs: Any) -> PlanoExecucao:
         return self.agendador.replanejar(recursos, **kwargs)
+
+    def registrar_resultado_combinacao(self, resultado: ResultadoCombinacao) -> None:
+        self.detector_sinergia.registrar(resultado)
+
+    def detectar_sinergias(self, *, minimo_evidencias: int = 2) -> list[SinalSinergia]:
+        return self.detector_sinergia.detectar(minimo_evidencias=minimo_evidencias)
+
+    def gerar_combinacoes_promissoras(self, capacidades: list[str], *, limite: int = 20) -> list[tuple[str, ...]]:
+        return self.detector_sinergia.combinações_promissoras(capacidades, limite=limite)
 
     def consolidar_aprendizados(self, memoria: str | Path = "cerebro/memoria") -> dict[str, Any]:
         memoria = Path(memoria)
@@ -239,6 +250,7 @@ class Cerebro:
             "integridade_tarefas": self.validar_tarefas(),
             "plano_atual": [t.id for t in self.agendador.planejar().tarefas],
             "historico_planejamento": len(self.agendador.historico),
+            "sinergias_evidenciadas": len(self.detector_sinergia.detectar()),
             "aprendizados_consolidados": aprendizados_consolidados,
             "continuidade": str(continuidade_path),
             "continuidade_disponivel": continuidade_path.exists(),
