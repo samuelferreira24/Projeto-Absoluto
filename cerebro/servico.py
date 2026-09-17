@@ -121,6 +121,9 @@ class Cerebro:
     def relacionados_rede(self, no_id: str) -> list[str]:
         return self.rede.relacionados(no_id)
 
+    def impulso_total(self, no_id: str) -> float:
+        return self.rede.impulso_total(no_id)
+
     def candidatos_rede(self, contexto: dict[str, float] | None = None) -> list[tuple[str, float]]:
         return self.rede.candidatos_contextuais(contexto)
 
