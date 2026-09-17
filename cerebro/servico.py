@@ -10,6 +10,7 @@ from .estado import EstadoSistema
 from .ingestao import DocumentoEstruturado, extrair, registrar_fonte
 from .nucleo import Registro, RepositorioJSONL, novo_registro
 from .orquestrador import Missao, Orquestrador
+from .organizacao import FilaOrganizacao
 from .recuperacao import ResultadoBusca, buscar_hibrido, expandir_relacoes
 from .rastreabilidade import ElementoConstrucao, MapaConstrucao, RelacaoConstrucao
 from .rede_evolutiva import ArestaRede, NoRede, RedeEvolutiva
@@ -28,6 +29,7 @@ class Cerebro:
         self.runtime_path = self.repo.root / "runtime.json"
         self.despertador = Despertador(self.repo.root / "despertar.json")
         self.coletor = ColetorMemoria(self.repo)
+        self.fila_organizacao = FilaOrganizacao(self.repo.root / "organizacao.jsonl")
         self.estado = EstadoSistema()
         if self.estado_path.exists():
             self.estado = EstadoSistema.carregar(self.estado_path)
@@ -166,4 +168,5 @@ class Cerebro:
             "runtime": self.runtime.estado.estado,
             "despertares_pendentes": len(self.despertador.pendentes()),
             "captura_bruta": str(self.coletor.raw_path),
+            "organizacao_pendente": len(self.fila_organizacao.pendentes()),
         }
