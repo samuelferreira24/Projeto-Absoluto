@@ -29,6 +29,11 @@ class NoTarefa:
     risco: float = 0.0
     prazo: float | None = None
     preferencias: tuple[str, ...] = ()
+    restricoes: tuple[str, ...] = ()
+    oportunidade: float = 0.0
+    incerteza: float = 0.0
+    comunicacao_estimado: float = 0.0
+    fallbacks: tuple[str, ...] = ()
 
 
 @dataclass
@@ -50,6 +55,9 @@ class GrafoTarefas:
             for dependencia in tarefa.depende_de:
                 if dependencia not in self.tarefas:
                     erros.append(f"{tarefa.id}: dependência inexistente: {dependencia}")
+            for fallback in tarefa.fallbacks:
+                if fallback not in self.tarefas:
+                    erros.append(f"{tarefa.id}: fallback inexistente: {fallback}")
         if self._tem_ciclo():
             erros.append("grafo contém ciclo de dependências")
         return erros
@@ -98,7 +106,15 @@ class GrafoTarefas:
             risco=tarefa.risco,
             prazo=tarefa.prazo,
             preferencias=tarefa.preferencias,
+            restricoes=tarefa.restricoes,
+            oportunidade=tarefa.oportunidade,
+            incerteza=tarefa.incerteza,
+            comunicacao_estimado=tarefa.comunicacao_estimado,
+            fallbacks=tarefa.fallbacks,
         )
+
+    def dependentes_de(self, tarefa_id: str) -> list[NoTarefa]:
+        return sorted((t for t in self.tarefas.values() if tarefa_id in t.depende_de), key=lambda t: (-t.prioridade, t.id))
 
     def _tem_ciclo(self) -> bool:
         visitados: set[str] = set()
