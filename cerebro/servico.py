@@ -16,6 +16,7 @@ from .rastreabilidade import ElementoConstrucao, MapaConstrucao, RelacaoConstruc
 from .rede_evolutiva import ArestaRede, NoRede, RedeEvolutiva
 from .runtime import RuntimeContinuo
 from .semantica import RelacaoSemantica, UnidadeSemantica
+from .consolidar_aprendizados import salvar_consolidado
 
 
 class Cerebro:
@@ -88,6 +89,18 @@ class Cerebro:
     def registrar_progresso(self, titulo: str, conteudo: str, **kwargs: Any) -> Registro:
         return self.registrar_memoria("PROGRESSO", titulo, conteudo, **kwargs)
 
+    def consolidar_aprendizados(self, memoria: str | Path = "cerebro/memoria") -> dict[str, Any]:
+        """Torna o aprendizado acumulado + novo uma visão consolidada do Cérebro.
+
+        Os arquivos de origem permanecem intactos; a consolidação é uma camada derivada.
+        """
+        memoria = Path(memoria)
+        return salvar_consolidado(
+            memoria / "aprendizados_consolidados_v0_1.json",
+            memoria / "aprendizados.jsonl",
+            memoria / "aprendizados_fundamentais_v0_1.json",
+        )
+
     def registros(self) -> list[Registro]:
         return list(self.repo._iter_registros())
 
@@ -154,6 +167,14 @@ class Cerebro:
 
     def diagnostico(self) -> dict[str, Any]:
         registros = self.registros()
+        consolidado_path = self.repo.root.parent / "memoria" / "aprendizados_consolidados_v0_1.json"
+        aprendizados_consolidados = 0
+        if consolidado_path.exists():
+            try:
+                import json
+                aprendizados_consolidados = int(json.loads(consolidado_path.read_text(encoding="utf-8")).get("quantidade", 0))
+            except (OSError, ValueError, TypeError, json.JSONDecodeError):
+                aprendizados_consolidados = 0
         return {
             "registros": len(registros),
             "fontes": sum(1 for r in registros if r.kind == "DOCUMENTO"),
@@ -172,4 +193,5 @@ class Cerebro:
             "despertares_pendentes": len(self.despertador.pendentes()),
             "captura_bruta": str(self.coletor.raw_path),
             "organizacao_pendente": len(self.fila_organizacao.pendentes()),
+            "aprendizados_consolidados": aprendizados_consolidados,
         }
