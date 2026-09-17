@@ -19,6 +19,7 @@ from .semantica import RelacaoSemantica, UnidadeSemantica
 from .consolidar_aprendizados import salvar_consolidado
 from .grafo_tarefas import GrafoTarefas, NoTarefa
 from .agendador import AgendadorAdaptativo, PlanoExecucao
+from .orquestracao_adaptativa import OrquestradorAdaptativo
 from .sinergia import DetectorSinergia, ResultadoCombinacao, SinalSinergia
 from .continuidade import carregar_snapshot, gerar_prompt_retoma, salvar_prompt_retoma, salvar_snapshot
 from .contexto_operacional import ContextoOperacional, construir_contexto, salvar_contexto, salvar_prompt_contexto
@@ -48,6 +49,7 @@ class Cerebro:
         self.grafo_tarefas = GrafoTarefas()
         self.agendador = AgendadorAdaptativo(self.grafo_tarefas, self.agendador_path)
         self.detector_sinergia = DetectorSinergia()
+        self.orquestrador_adaptativo = OrquestradorAdaptativo(self.grafo_tarefas)
         self.interface_chat = InterfaceChat(self)
 
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
@@ -120,6 +122,17 @@ class Cerebro:
 
     def replanejar_tarefas(self, recursos: set[str] | None = None, **kwargs: Any) -> PlanoExecucao:
         return self.agendador.replanejar(recursos, **kwargs)
+
+    def plano_adaptativo(self, recursos: set[str] | None = None, *, orcamento: float | None = None, capacidade_de_tempo: float | None = None, limite: int | None = None) -> tuple[NoTarefa, ...]:
+        return self.orquestrador_adaptativo.plano_adaptativo(
+            recursos,
+            orcamento=orcamento,
+            capacidade_de_tempo=capacidade_de_tempo,
+            limite=limite,
+        )
+
+    def replanejar_apos_resultado(self, tarefa_id: str, sucesso: bool = True, **kwargs: Any) -> tuple[NoTarefa, ...]:
+        return self.orquestrador_adaptativo.replanejar_apos_resultado(tarefa_id, sucesso, **kwargs)
 
     def registrar_resultado_combinacao(self, resultado: ResultadoCombinacao) -> None:
         self.detector_sinergia.registrar(resultado)
