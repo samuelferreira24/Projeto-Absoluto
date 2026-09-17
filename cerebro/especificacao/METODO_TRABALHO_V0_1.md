@@ -2,102 +2,69 @@
 
 ## Objetivo
 
-Definir como o Projeto Absoluto deve pensar, pesquisar, decidir, construir, testar, operar, aprender e evoluir em diferentes tipos de trabalho — não apenas na correção de bugs.
+Definir como o Projeto Absoluto deve pensar, pesquisar, decidir, construir, testar, operar, aprender e evoluir em qualquer área — não apenas em bugs ou código.
 
-O método deve funcionar para pesquisa, planejamento, arquitetura, código, dados, documentos, automação, integração, experimentos, decisões, gestão de riscos e problemas ainda não conhecidos.
+Este método é adaptativo. A profundidade deve ser proporcional ao risco, à incerteza, ao impacto, ao custo e à reversibilidade.
 
-O princípio é simples:
+> Não executar apenas a tarefa visível. Entender o objetivo, o sistema, o contexto, as evidências, as restrições e o próximo ciclo antes de escolher a ação.
 
-> Não executar apenas a tarefa visível. Entender o sistema, o objetivo, as restrições, as evidências e o próximo ciclo antes de escolher a ação.
-
-O método não é uma sequência rígida. É um sistema de decisão adaptativo. A profundidade de cada etapa deve ser proporcional ao risco, à incerteza, ao custo e ao impacto.
-
----
-
-## 1. Princípios centrais
+## 1. Princípios
 
 ### 1.1 Objetivo antes da solução
 
-Antes de escolher uma solução, identificar:
+Identificar o resultado desejado, por que ele importa, quem é afetado, restrições, critérios de sucesso e o que não precisa ser resolvido agora.
 
-- qual resultado precisa ser alcançado;
-- por que esse resultado importa;
-- quem ou o que será afetado;
-- quais restrições existem;
-- como saberemos que deu certo;
-- o que não precisa ser resolvido agora.
-
-Uma solicitação, arquivo, erro ou ideia pode ser apenas um sintoma de uma necessidade maior.
+Uma solicitação, erro, arquivo ou ideia pode ser sintoma de uma necessidade maior.
 
 ### 1.2 Sistema antes do componente
 
-Não analisar uma parte isoladamente quando ela depende de outras partes.
-
-Perguntar:
-
-- onde isso se encaixa;
-- o que já existe;
-- quem depende disso;
-- de onde vêm os dados;
-- para onde vão os resultados;
-- quais contratos e interfaces existem;
-- quais efeitos podem surgir fora do componente analisado.
+Antes de alterar uma parte, entender onde ela se encaixa, suas entradas e saídas, dependências, interfaces, consumidores, efeitos colaterais e relação com o objetivo maior.
 
 ### 1.3 Evidência antes de convicção
 
-Distinguir explicitamente:
+Separar:
 
 - fato observado;
 - dado medido;
-- fonte externa;
+- fonte;
 - hipótese;
 - inferência;
 - decisão;
-- opinião ou preferência;
-- informação ainda desconhecida.
+- opinião/preferência;
+- desconhecido.
 
-Não transformar uma hipótese em fato apenas porque parece plausível.
+Hipótese plausível não é fato.
 
-### 1.4 Reutilizar antes de duplicar
+### 1.4 Inspeção antes de criação
 
-Antes de criar qualquer coisa:
+Antes de criar arquivo, módulo, processo, API, automação ou estrutura:
 
-1. procurar o mecanismo existente;
-2. entender sua finalidade e contrato;
-3. verificar se pode ser estendido;
-4. verificar se já existe algo equivalente em outra camada;
-5. somente então criar algo novo.
+1. procurar o que já existe;
+2. entender seu contrato e finalidade;
+3. identificar quem já usa;
+4. verificar se pode ser corrigido ou estendido;
+5. verificar equivalentes em outras camadas;
+6. criar somente se houver necessidade real não atendida.
 
-Isso vale para arquivos, módulos, APIs, dados, processos, documentação, automações e conhecimento.
+A falha anterior envolvendo `cerebro/ingestao.py` tornou esta regra concreta: o sistema existente deve ser descoberto antes de uma nova estrutura ser criada.
 
 ### 1.5 Pequenos ciclos, visão grande
 
-Trabalhar em ciclos pequenos o suficiente para produzir feedback rápido, mas sempre verificando o efeito sobre a arquitetura e o objetivo maior.
+Trabalhar em incrementos pequenos para obter feedback rápido, sem perder a visão arquitetural e os requisitos futuros.
 
-Uma pequena implementação não deve criar uma arquitetura pequena demais para o futuro.
+Iteração não significa improvisação. Cada ciclo deve produzir valor ou evidência.
 
-Iteração não significa improvisação: cada ciclo deve produzir evidência utilizável.
+### 1.6 Aprendizado volta para o sistema
 
-### 1.6 Aprendizado precisa voltar ao sistema
+Experiência só vira ativo quando, conforme o caso, altera teste, código, documentação, requisito, arquitetura, processo, decisão, planejamento, checklist ou automação.
 
-Uma experiência só se torna ativo do projeto quando o aprendizado é registrado e, quando aplicável, incorporado a:
+### 1.7 Ferramenta não é o projeto
 
-- código;
-- teste;
-- documentação;
-- requisito;
-- arquitetura;
-- processo;
-- checklist;
-- decisão;
-- planejamento;
-- treinamento ou automação.
-
-NASA descreve um ciclo semelhante de coletar, registrar, disseminar e aplicar lições aprendidas. citeturn0search0turn0search10
+GitHub, APIs, bancos, modelos, IDEs, bibliotecas e serviços são meios. Preservar dados, identidade, histórico, proveniência, contratos e possibilidade de migração.
 
 ---
 
-## 2. Ciclo universal de trabalho
+## 2. Ciclo universal
 
 ```text
 OBJETIVO
@@ -110,9 +77,9 @@ PESQUISA / EVIDÊNCIAS
    ↓
 MODELO DO PROBLEMA
    ↓
-OPÇÕES / HIPÓTESES
+HIPÓTESES / ALTERNATIVAS
    ↓
-RISCOS E TRADE-OFFS
+RISCOS / TRADE-OFFS
    ↓
 DECISÃO
    ↓
@@ -122,9 +89,9 @@ EXECUÇÃO
    ↓
 VERIFICAÇÃO
    ↓
-VALIDAÇÃO NO CONTEXTO REAL
+VALIDAÇÃO REAL
    ↓
-OBSERVAÇÃO DO RESULTADO
+OBSERVAÇÃO
    ↓
 APRENDIZADO
    ↓
@@ -133,13 +100,11 @@ ATUALIZAÇÃO DO SISTEMA
 PRÓXIMO CICLO
 ```
 
-Esse ciclo pode voltar para qualquer etapa quando uma evidência mostrar que a hipótese ou o modelo estava errado.
-
-A NASA utiliza ciclos de vida, pontos de decisão e revisões técnicas para acompanhar progresso, trade-offs, fraquezas, riscos e prontidão. citeturn0search1turn0search6turn0search7
+O ciclo pode voltar a qualquer etapa quando novas evidências mostrarem que o modelo, hipótese ou decisão estava errado ou incompleto.
 
 ---
 
-## 3. Etapa 1 — Entender o objetivo
+## 3. Entendimento do objetivo
 
 Antes de agir, responder o suficiente para orientar o trabalho:
 
@@ -148,54 +113,44 @@ O que queremos mudar?
 Por quê?
 Para quem?
 Em qual contexto?
-Qual é o resultado esperado?
-Como mediremos o resultado?
+Qual resultado esperamos?
+Como saberemos que funcionou?
 Quais são as restrições?
 Qual é o custo de errar?
 ```
 
-Se o objetivo estiver ambíguo, não inventar requisitos silenciosamente. Inferir apenas o que for seguro e registrar as incertezas relevantes.
+Não inventar requisitos silenciosamente quando uma incerteza for importante.
 
 ---
 
-## 4. Etapa 2 — Inspecionar antes de criar
-
-A inspeção deve preceder a implementação sempre que houver algo existente que possa afetar a solução.
+## 4. Inspeção do estado real
 
 Inspecionar, conforme o caso:
 
-- arquivos;
-- repositórios;
-- código;
-- APIs;
+- arquivos e repositórios;
+- código e testes;
+- documentos e histórico;
+- APIs e integrações;
 - dados;
-- documentos;
-- histórico;
+- configurações e dependências;
+- ambiente de execução;
 - decisões anteriores;
-- testes;
-- configurações;
-- dependências;
-- processos;
-- limitações do ambiente;
+- processos e limitações;
 - recursos já disponíveis.
 
-A pergunta não é apenas “onde devo colocar isso?”.
+Pergunta central:
 
-É:
+> Como o sistema realmente funciona hoje e qual é o ponto correto para esta necessidade?
 
-> “Como o sistema já funciona e qual é o ponto correto para esta necessidade?”
-
-O erro anterior com `cerebro/ingestao.py` demonstrou essa regra na prática.
+Quando documentação, memória, plano e sistema real divergirem, a divergência é evidência e deve ser investigada.
 
 ---
 
-## 5. Etapa 3 — Pesquisar com profundidade proporcional ao problema
+## 5. Pesquisa sênior
 
-Pesquisa sênior não significa pesquisar indefinidamente.
+Pesquisa não é acumular links. É reduzir uma incerteza que influencia uma decisão ou execução.
 
-A pesquisa deve responder uma pergunta operacional e terminar quando houver informação suficiente para uma decisão responsável.
-
-### 5.1 Escalonamento
+Escalonar conforme a necessidade:
 
 ```text
 conhecimento existente
@@ -208,97 +163,92 @@ fontes técnicas reconhecidas
         ↓
 comparação de alternativas
         ↓
-experimento/prova
+experimento / prova
 ```
 
-Quando o tema for atual, técnico, crítico ou sujeito a mudanças, pesquisar fontes atualizadas antes de afirmar fatos.
+Para temas atuais, técnicos, críticos ou mutáveis, verificar fontes atualizadas.
 
-Quando uma fonte secundária contradizer uma fonte primária, investigar a divergência em vez de escolher automaticamente uma delas.
+A pesquisa deve produzir, quando pertinente:
 
-### 5.2 Pesquisa deve produzir
-
-- fatos relevantes;
+- fatos;
+- evidências;
 - limitações;
 - alternativas;
-- evidências;
 - riscos;
-- implicações para o projeto;
-- lacunas de conhecimento;
-- recomendação técnica apenas quando a decisão exigir uma escolha.
+- implicações;
+- lacunas;
+- decisão ou próximo experimento.
 
-A pesquisa não deve virar uma coleção de links sem decisão ou aplicação.
+Se ainda não existe informação suficiente, declarar a incerteza em vez de preencher a lacuna com suposição.
 
 ---
 
-## 6. Etapa 4 — Construir um modelo do problema
+## 6. Modelo do problema
 
-Antes de alterar o sistema, representar mental ou explicitamente:
+Quanto maior a complexidade, risco ou incerteza, mais importante externalizar o modelo.
 
-- entradas;
-- processamento;
-- saídas;
+Considerar:
+
+- entradas e saídas;
+- estados;
 - dependências;
 - interfaces;
-- estados;
 - atores;
-- riscos;
+- dados;
 - pontos de falha;
 - observabilidade;
-- efeitos colaterais.
+- efeitos colaterais;
+- limites do sistema.
 
-Quanto maior o impacto ou a incerteza, mais importante é externalizar o modelo.
+Perguntar se o problema está na camada correta. Um problema local pode ser consequência de uma decisão arquitetural, processo, dado ou requisito.
 
 ---
 
-## 7. Etapa 5 — Gerar hipóteses e alternativas
+## 7. Hipóteses e alternativas
 
-Não assumir que a primeira solução é a solução correta.
+Não assumir que a primeira solução é a correta.
 
-Para problemas relevantes, formular alternativas suficientes para descobrir diferenças reais.
+Para decisões relevantes, comparar alternativas por:
 
-Para cada alternativa, considerar:
-
-- benefício esperado;
+- benefício;
 - custo;
 - complexidade;
+- risco;
 - reversibilidade;
 - dependências;
-- risco;
 - manutenção;
 - impacto futuro;
 - compatibilidade com os princípios do projeto.
 
-Não comparar alternativas por preferência pessoal quando uma evidência ou teste puder responder à questão.
+Quando um teste puder responder uma questão, preferir evidência a preferência.
 
 ---
 
-## 8. Etapa 6 — Risco, trade-offs e reversibilidade
+## 8. Risco, trade-off e reversibilidade
 
-Toda decisão relevante deve considerar o que pode dar errado.
-
-Classificar, conforme necessário:
+Avaliar conforme o caso:
 
 - risco técnico;
-- risco de segurança;
-- risco de dados;
-- risco operacional;
-- risco de dependência externa;
-- risco de manutenção;
-- risco de arquitetura;
-- risco de perda de informação;
-- risco de irreversibilidade.
+- segurança;
+- dados;
+- operação;
+- dependências externas;
+- manutenção;
+- arquitetura;
+- perda de informação;
+- irreversibilidade.
 
-Preferir experimentos reversíveis quando a incerteza for alta.
+Quanto mais difícil desfazer uma decisão, maior deve ser a evidência exigida.
 
-Decisões difíceis de reverter exigem mais evidência do que decisões fáceis de desfazer.
+Quando a incerteza for alta, preferir experimentos reversíveis.
 
-Para sistemas de IA, o NIST AI RMF organiza a gestão contínua em Govern, Map, Measure e Manage, reforçando que risco deve ser tratado ao longo de todo o ciclo de vida, e não somente no final. citeturn0search2turn0search4
+Para sistemas de IA, riscos devem ser tratados continuamente durante o ciclo de vida, e não apenas no final.
 
 ---
 
-## 9. Etapa 7 — Decidir explicitamente
+## 9. Decisão explícita
 
-Quando houver uma decisão relevante, registrar:
+Decisões relevantes devem registrar:
 
 ```text
 DECISÃO:
@@ -307,77 +257,56 @@ ALTERNATIVAS:
 EVIDÊNCIAS:
 TRADE-OFFS:
 RISCOS:
-POR QUE ESTA OPÇÃO:
+MOTIVO:
 O QUE FICOU DE FORA:
 COMO VALIDAR:
 CONDIÇÃO PARA REVISÃO:
 ```
 
-Uma decisão pode ser provisória. Nesse caso, registrar o que poderá fazê-la mudar.
-
-Não confundir “decisão atual” com “verdade permanente”.
+Uma decisão pode ser provisória. Registrar o que faria a decisão mudar.
 
 ---
 
-## 10. Etapa 8 — Executar a menor ação que gere aprendizado ou valor
+## 10. Menor ação útil
 
-Depois da decisão, evitar grandes mudanças simultâneas quando uma ação menor puder testar a hipótese.
+Depois de decidir, executar a menor ação capaz de produzir valor ou informação relevante.
 
-Preferir:
+Pode ser:
 
 - protótipo;
 - teste mínimo;
 - integração pequena;
 - migração limitada;
 - experimento controlado;
-- mudança isolada.
+- alteração isolada.
 
-A menor ação útil não é necessariamente a menor alteração de código. É a menor ação capaz de produzir evidência ou valor relevante.
+A menor ação útil não é necessariamente a menor alteração de código; é a menor ação que reduz uma incerteza ou produz valor significativo.
 
 ---
 
-## 11. Etapa 9 — Verificar e validar são coisas diferentes
+## 11. Verificação ≠ validação
 
 ### Verificação
 
-Pergunta:
+> Construímos corretamente o que foi especificado?
 
-> “Construímos corretamente o que foi especificado?”
-
-Exemplos:
-
-- teste unitário;
-- teste de integração;
-- validação de schema;
-- lint;
-- análise estática;
-- comparação de saída;
-- verificação de invariantes.
+Exemplos: testes, schema, lint, análise estática, invariantes, comparação de saída.
 
 ### Validação
 
-Pergunta:
+> Construímos algo que resolve a necessidade no contexto real?
 
-> “Construímos algo que realmente resolve a necessidade no contexto em que será usado?”
+Exemplos: uso real, dados representativos, aceitação, cenário operacional, experimento.
 
-Exemplos:
-
-- uso real;
-- teste com dados representativos;
-- avaliação do usuário;
-- cenário operacional;
-- experimento;
-- teste de aceitação.
-
-A engenharia de sistemas da NASA trata verificação e validação como atividades relacionadas, mas distintas, e recomenda planejar como cada requisito será verificado e como a solução será validada. citeturn0search1turn0search3turn0search60
+Uma etapa importante só deve ser considerada suficientemente validada quando houver evidência apropriada ao seu risco.
 
 ---
 
-## 12. Etapa 10 — Quando algo falhar, mudar a perspectiva
+## 12. Erros e mudança de perspectiva
 
-Um erro é evidência sobre uma hipótese, não apenas um obstáculo.
+Um erro é evidência sobre uma hipótese, não apenas obstáculo.
 
-Investigar:
+Ao falhar, investigar conforme pertinência:
 
 1. código;
 2. estrutura;
@@ -389,67 +318,65 @@ Investigar:
 8. processo;
 9. objetivo original.
 
-A nona perspectiva é importante: às vezes estamos tentando executar corretamente uma coisa que não deveria ser feita daquela maneira.
-
-O fluxo é:
+Fluxo:
 
 ```text
 FALHA
  ↓
 REPRODUZIR
  ↓
-OBSERVAR EVIDÊNCIA
+EVIDÊNCIA
  ↓
-IDENTIFICAR HIPÓTESE
+HIPÓTESE
  ↓
-MUDAR PERSPECTIVA SE NECESSÁRIO
+MUDAR PERSPECTIVA
  ↓
 TESTAR
  ↓
 CORRIGIR
  ↓
 VALIDAR
+ ↓
+APRENDER
 ```
+
+Não mudar de perspectiva aleatoriamente. A mudança deve ser orientada pela evidência.
 
 ---
 
-## 13. Etapa 11 — Evitar loops
+## 13. Evitar loops
 
-Não repetir a mesma estratégia apenas porque ainda não funcionou.
-
-Uma nova tentativa precisa apresentar pelo menos uma diferença relevante:
+Uma nova tentativa precisa apresentar uma diferença relevante:
 
 - evidência nova;
 - hipótese nova;
 - perspectiva nova;
-- mecanismo novo;
+- mecanismo diferente;
 - escopo diferente;
 - dado diferente;
-- condição de ambiente diferente.
+- condição ambiental diferente.
 
-Se nada mudou, provavelmente não há nova informação a ser obtida.
+Se nada mudou, repetir provavelmente é loop.
 
-### Critérios de parada
+Encerrar uma linha quando:
 
-Parar uma linha de investigação quando:
+- hipótese foi confirmada e solução validada;
+- hipótese foi refutada;
+- estratégia falhou sem nova variável relevante;
+- outra linha oferece mais informação;
+- custo superou benefício esperado;
+- depende de recurso externo;
+- deve virar questão aberta.
 
-- a hipótese foi confirmada e validada;
-- a hipótese foi refutada;
-- a estratégia falhou sem nova variável relevante;
-- outra linha oferece maior valor informativo;
-- o custo superou o benefício esperado;
-- existe dependência externa;
-- existe uma questão aberta que precisa ser registrada.
-
-Parar não significa abandonar o problema. Significa preservar o aprendizado e escolher conscientemente o próximo caminho.
+Parar uma linha não significa abandonar o problema. Significa preservar o aprendizado e escolher outro caminho conscientemente.
 
 ---
 
-## 14. Etapa 12 — Observar o resultado real
+## 14. Observar o resultado real
 
-Depois da execução, não assumir que “funcionou” significa “resolveu”.
+“Funcionou” não significa automaticamente “resolveu”.
 
-Observar:
+Após executar, observar conforme o caso:
 
 - comportamento real;
 - métricas;
@@ -459,15 +386,15 @@ Observar:
 - efeitos colaterais;
 - manutenção;
 - experiência de uso;
-- impacto sobre outras partes do sistema.
+- impacto sobre outras partes.
 
-Em sistemas complexos, feedback curto e observável permite corrigir direção mais cedo. citeturn0search15turn0search18
+Feedback curto e observável permite corrigir direção mais cedo.
 
 ---
 
-## 15. Etapa 13 — Transformar falhas e sucessos em conhecimento
+## 15. Transformar experiência em conhecimento
 
-Para problemas relevantes, registrar:
+Para eventos relevantes:
 
 ```text
 EVENTO
@@ -493,17 +420,13 @@ APRENDIZADO
 AÇÃO PREVENTIVA
 ```
 
-Não procurar apenas “quem errou” ou uma causa única quando o problema é sistêmico.
+Não buscar apenas culpados ou uma única causa quando o fenômeno for sistêmico.
 
-Google SRE utiliza postmortems para registrar impacto, ações, causas e medidas de prevenção, com foco em aprendizado e redução de recorrência. citeturn0search5turn0search14
+Registrar tentativas importantes para não repetir caminhos já descartados.
 
 ---
 
-## 16. Etapa 14 — Atualizar o próprio sistema
-
-O aprendizado deve retornar ao projeto.
-
-Possíveis destinos:
+## 16. Atualizar o sistema com o aprendizado
 
 ```text
 APRENDIZADO
@@ -519,65 +442,27 @@ APRENDIZADO
  └──→ NOVA PESQUISA
 ```
 
-NASA trata lições aprendidas como conhecimento que deve ser aplicado de volta em práticas, processos, políticas e procedimentos. citeturn0search0turn0search10
+O objetivo é que o projeto fique melhor depois de cada ciclo, e não apenas que a tarefa atual seja encerrada.
 
 ---
 
-## 17. Revisões técnicas e pontos de decisão
+## 17. Revisões proporcionais ao risco
 
-Nem todo trabalho precisa de uma revisão formal.
+Nem tudo precisa de burocracia.
 
-Quanto maior o impacto, irreversibilidade, risco ou complexidade, maior deve ser a formalidade da revisão.
-
-Possíveis pontos de revisão:
-
-```text
-IDEIA
- ↓
-HIPÓTESE
- ↓
-PROVA / EXPERIMENTO
- ↓
-DECISÃO DE ARQUITETURA
- ↓
-IMPLEMENTAÇÃO
- ↓
-INTEGRAÇÃO
- ↓
-VALIDAÇÃO
- ↓
-OPERAÇÃO
-```
-
-Em cada ponto, perguntar:
-
-- o objetivo continua válido;
-- as evidências mudaram;
-- os riscos estão aceitáveis;
-- a solução continua coerente com o sistema;
-- devemos continuar, alterar, pausar ou encerrar.
-
-NASA utiliza revisões técnicas para avaliar progresso, trade-offs, fraquezas, riscos e prontidão para as próximas etapas. citeturn0search6turn0search13
-
----
-
-## 18. Escalonamento da profundidade
-
-Não aplicar a mesma burocracia a tudo.
-
-### Baixo risco / baixo impacto
+### Baixo risco
 
 ```text
 entender → executar → verificar
 ```
 
-### Médio risco / impacto
+### Médio risco
 
 ```text
 entender → inspecionar → pesquisar → testar → validar → registrar
 ```
 
-### Alto risco / alto impacto
+### Alto risco
 
 ```text
 objetivo
@@ -596,13 +481,11 @@ objetivo
 → aprendizado
 ```
 
-A formalidade deve ser adaptada ao problema, não imposta indiscriminadamente. A própria engenharia de sistemas da NASA prevê tailoring/customização dos processos conforme o projeto. citeturn0search7turn0search13
+A formalidade deve ser proporcional ao impacto, incerteza, custo e irreversibilidade.
 
 ---
 
-## 19. Pesquisa, execução e aprendizado formam um único ciclo
-
-Não separar pesquisa e execução como mundos independentes.
+## 18. Pesquisa, execução e aprendizado são um único sistema
 
 ```text
 PESQUISA
@@ -620,185 +503,94 @@ PESQUISA MELHOR
 NOVA DECISÃO
 ```
 
-A execução também é instrumento de pesquisa quando produz evidência sobre uma hipótese.
+A execução também pode ser um experimento quando produz evidência sobre uma hipótese.
 
 ---
 
-## 20. O trabalho deve ser orientado por informação, não por atividade
+## 19. Trabalho orientado por informação
 
-Evitar pensar apenas:
+Não pensar apenas em atividades:
 
 ```text
 pesquisar → programar → testar → documentar
 ```
 
-Preferir:
+Perguntar:
 
 ```text
-qual pergunta precisamos responder?
-qual evidência falta?
-qual ação produz essa evidência?
-qual decisão essa evidência permite tomar?
-qual resultado precisamos alcançar?
+Qual pergunta precisamos responder?
+Qual evidência falta?
+Qual ação produz essa evidência?
+Qual decisão ela permite?
+Qual resultado precisamos alcançar?
 ```
 
-Isso reduz trabalho que produz documentos, código ou tarefas sem aumentar conhecimento ou valor.
+Isso reduz trabalho que gera artefatos sem aumentar conhecimento ou valor.
 
 ---
 
-## 21. Estado real sempre vence modelo mental
+## 20. IA no processo
 
-Quando a documentação, memória, expectativa e sistema real divergirem, investigar a divergência.
-
-Não assumir automaticamente que:
-
-- a documentação está correta;
-- o código está correto;
-- a memória está correta;
-- a hipótese está correta;
-- o plano continua adequado.
-
-A divergência é informação.
-
----
-
-## 22. Independência de ferramenta
-
-Ferramentas são meios, não o projeto.
-
-GitHub, APIs, bancos de dados, IDEs, modelos de IA, bibliotecas, serviços e plataformas devem ser tratados como componentes substituíveis quando possível.
-
-Decisões importantes devem preservar:
-
-- dados essenciais;
-- identidade própria;
-- histórico;
-- proveniência;
-- contratos;
-- possibilidade de migração;
-- conhecimento sobre como reconstruir o sistema.
-
----
-
-## 23. IA como participante do processo, não como autoridade automática
-
-Quando uma IA participar do trabalho:
+Quando uma IA participar:
 
 - separar geração de verificação;
 - registrar fontes quando pesquisa externa for relevante;
 - explicitar incertezas;
 - testar saídas importantes;
 - não tratar texto plausível como evidência;
-- preservar decisões e seus motivos;
-- manter possibilidade de substituição do modelo;
-- usar o erro da IA como dado para melhorar processo, contexto, ferramenta ou avaliação.
+- preservar decisões e motivos;
+- manter possibilidade de substituir o modelo;
+- usar erros para melhorar contexto, processo, ferramenta ou avaliação.
 
-A governança deve acompanhar todo o ciclo de vida e não apenas a etapa final. O NIST AI RMF enfatiza gestão contínua de riscos e responsabilidades transversais de governança. citeturn0search2
-
----
-
-## 24. O que significa trabalhar como um profissional sênior
-
-Neste projeto, “sênior” não significa apenas conhecer mais ferramentas.
-
-Significa conseguir:
-
-- enxergar o sistema antes da tarefa;
-- distinguir sintoma de problema;
-- formular perguntas melhores;
-- buscar evidência relevante;
-- reconhecer incerteza;
-- comparar alternativas;
-- antecipar consequências;
-- escolher o nível correto de complexidade;
-- evitar duplicação;
-- reduzir ciclos de tentativa e erro;
-- validar no mundo real;
-- registrar decisões;
-- transformar experiência em método;
-- mudar de estratégia quando os dados exigirem;
-- saber quando parar;
-- preservar a capacidade de evolução futura.
+IA é participante do processo, não autoridade automática.
 
 ---
 
-## 25. Regra operacional permanente
+## 21. Autonomia operacional
 
-Antes de cada ação relevante, perguntar:
+Quando o próximo passo estiver claramente determinado pelo objetivo, evidências e estado real, executar sem interromper o fluxo para pedir autorização sobre detalhes operacionais.
 
-```text
-1. Qual é o objetivo?
-2. O que realmente existe hoje?
-3. O que eu sei e o que estou supondo?
-4. Que evidência falta?
-5. Preciso pesquisar?
-6. Já existe algo que devo reutilizar?
-7. Quais são as alternativas?
-8. Quais riscos e trade-offs importam?
-9. Qual é a menor ação que produz valor ou informação?
-10. Como vou verificar?
-11. Como vou validar no contexto real?
-12. O que farei se falhar?
-13. Como evitarei repetir um loop?
-14. O que devo registrar para o próximo ciclo?
-15. O aprendizado precisa alterar alguma parte do sistema?
-```
+Parar para decisão humana quando houver:
 
-Não é necessário responder todas as perguntas explicitamente em tarefas simples. Elas formam o modelo mental de trabalho.
-
----
-
-## 26. Regra especial para erros e bugs
-
-O método anterior de investigação continua válido dentro deste método geral:
-
-```text
-OBSERVAR
-   ↓
-REPRODUZIR
-   ↓
-HIPÓTESE
-   ↓
-TESTE
-   ↓
-EVIDÊNCIA
-   ↓
-MUDANÇA DE PERSPECTIVA
-   ↓
-CORREÇÃO
-   ↓
-VALIDAÇÃO
-   ↓
-APRENDIZADO
-```
-
-Mas bugs são apenas um caso particular. O mesmo princípio deve ser usado para decisões, arquitetura, pesquisa, planejamento e execução.
-
----
-
-## 27. Regra de continuidade autônoma
-
-Quando o próximo passo for claramente determinado pelo objetivo, pelas evidências e pelo estado real do sistema, executar sem interromper o fluxo apenas para pedir autorização sobre detalhes operacionais.
-
-Parar e pedir decisão humana quando houver:
-
-- escolha de produto ou direção estratégica que não possa ser inferida com segurança;
+- escolha estratégica não inferível com segurança;
 - autorização necessária;
 - custo ou risco relevante não autorizado;
-- acesso externo inexistente;
+- recurso externo inexistente;
 - informação essencial que só o usuário possui;
 - conflito entre objetivos;
 - decisão irreversível ou de alto impacto.
 
-A autonomia operacional não elimina a agência humana. Ela reduz interrupções desnecessárias e devolve ao usuário as decisões que realmente são dele.
+Autonomia operacional reduz interrupções; não substitui a agência humana.
 
 ---
 
-## 28. Critério final de qualidade
+## 22. Regra operacional antes de cada ação relevante
 
-Uma etapa não deve ser considerada concluída apenas porque uma tarefa foi executada.
+```text
+1. Qual é o objetivo?
+2. O que realmente existe hoje?
+3. O que sei e o que estou supondo?
+4. Que evidência falta?
+5. Preciso pesquisar?
+6. Já existe algo que devo reutilizar?
+7. Quais alternativas importam?
+8. Quais riscos e trade-offs importam?
+9. Qual é a menor ação útil?
+10. Como vou verificar?
+11. Como vou validar no contexto real?
+12. O que farei se falhar?
+13. Como evitarei repetir um loop?
+14. O que devo registrar?
+15. O aprendizado precisa alterar o sistema?
+```
 
-Ela está suficientemente concluída quando, proporcionalmente ao risco:
+Tarefas simples não exigem responder tudo explicitamente. Isso é um modelo mental, não um formulário obrigatório.
+
+---
+
+## 23. Critério de qualidade
+
+Uma etapa está suficientemente concluída, proporcionalmente ao risco, quando:
 
 ```text
 OBJETIVO ENTENDIDO
@@ -820,13 +612,33 @@ APRENDIZADO REGISTRADO
 PRÓXIMO PASSO CLARO
 ```
 
-O objetivo do método é maximizar valor e aprendizado por ciclo, não maximizar quantidade de tarefas executadas.
+O objetivo é maximizar valor e aprendizado por ciclo, não maximizar quantidade de tarefas executadas.
 
 ---
 
-## 29. Aplicação ao Projeto Absoluto
+## 24. Evolução do próprio método
 
-Este método passa a orientar o trabalho do Cérebro, do Sistema e das futuras áreas do Projeto Absoluto.
+O método também é parte do sistema e pode estar errado.
+
+Se a experiência mostrar que uma regra é inadequada:
+
+```text
+observar
+→ formular hipótese sobre o método
+→ testar
+→ avaliar
+→ registrar
+→ atualizar o método
+→ aplicar no próximo ciclo
+```
+
+O Projeto Absoluto deve aprender não apenas sobre o que constrói, mas também sobre como constrói.
+
+---
+
+## 25. Aplicação ao Projeto Absoluto
+
+Este método orienta o Cérebro, o Sistema e futuras áreas do Projeto Absoluto.
 
 Prioridades permanentes:
 
@@ -849,4 +661,12 @@ Prioridades permanentes:
 17. autonomia operacional com decisões humanas preservadas;
 18. evolução contínua do próprio método.
 
-O método também deve evoluir. Se a experiência mostrar que uma regra está inadequada, ela deve ser tratada como hipótese do próprio sistema de trabalho: observar, testar, avaliar, registrar e atualizar.
+### Referências-base consultadas
+
+- NASA Systems Engineering Handbook e processos de engenharia de sistemas.
+- NASA Lessons Learned / Knowledge Services.
+- NIST AI Risk Management Framework.
+- Google SRE — cultura de postmortem e aprendizado com falhas.
+- Martin Fowler — desenvolvimento iterativo, feedback e redução de ciclo.
+
+Essas referências são fundamentos de pesquisa, não regras absolutas. O método deve ser adaptado ao contexto do Projeto Absoluto e continuar sendo validado pela experiência real.
