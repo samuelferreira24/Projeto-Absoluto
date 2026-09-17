@@ -1,5 +1,5 @@
 from cerebro.grafo_tarefas import GrafoTarefas, NoTarefa
-from cerebro.orquestracao_adaptativa import OrquestradorAdaptativo
+from cerebro.orquestracao_adaptativa import OrquestradorAdaptativo, Recurso
 
 
 def test_plano_respeita_dependencia_recurso_orcamento_e_tempo():
@@ -30,3 +30,28 @@ def test_sinergia_e_registrada_com_baseline_individual():
     assert s is not None
     assert s.ganho_observado == 10
     assert s.confianca == 1
+
+
+def test_tempo_de_lote_paralelo_e_o_maximo_das_duracoes():
+    g = GrafoTarefas()
+    g.adicionar_varias([
+        NoTarefa("a", "A", recursos=("cpu",), valor_estimado=5, tempo_estimado=10),
+        NoTarefa("b", "B", recursos=("gpu",), valor_estimado=5, tempo_estimado=4),
+    ])
+    o = OrquestradorAdaptativo(g)
+    plano = o.plano_adaptativo({"cpu", "gpu"})
+    assert [t.id for t in plano] == ["a", "b"]
+    assert o.decisoes[-1]["tempo"] == 10
+
+def test_capacidade_de_recurso_limita_concorrencia():
+    g = GrafoTarefas()
+    g.adicionar_varias([
+        NoTarefa("a", "A", recursos=("cpu",), valor_estimado=5),
+        NoTarefa("b", "B", recursos=("cpu",), valor_estimado=4),
+    ])
+    o = OrquestradorAdaptativo(
+        g,
+        recursos={"cpu": Recurso("cpu", capacidade=1.0)},
+    )
+    plano = o.plano_adaptativo({"cpu"})
+    assert len(plano) == 1
