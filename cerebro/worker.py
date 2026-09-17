@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import shlex
 import subprocess
 import sys
 from typing import Any
@@ -10,6 +11,10 @@ from .servico import Cerebro
 
 
 def executar_pedidos_pendentes(cerebro: Cerebro, comando: str) -> list[dict[str, Any]]:
+    comando_argv = shlex.split(comando)
+    if not comando_argv:
+        raise ValueError("comando do executor vazio")
+
     resultados: list[dict[str, Any]] = []
     for pedido in cerebro.despertador.pendentes():
         cerebro.despertador.iniciar(pedido.id)
@@ -30,10 +35,9 @@ def executar_pedidos_pendentes(cerebro: Cerebro, comando: str) -> list[dict[str,
                 "caminho": caminho,
             }
             processo = subprocess.run(
-                comando,
+                comando_argv,
                 input=json.dumps(entrada, ensure_ascii=False),
                 text=True,
-                shell=True,
                 capture_output=True,
                 timeout=900,
                 check=False,
