@@ -58,6 +58,7 @@ class ArestaRede:
 class RedeEvolutiva:
     """Rede de caminhos; oferece sinais para decisão sem impor uma fila."""
 
+    schema_version: str = "0.1"
     nos: dict[str, NoRede] = field(default_factory=dict)
     arestas: list[ArestaRede] = field(default_factory=list)
 
@@ -79,26 +80,15 @@ class RedeEvolutiva:
             self.arestas.append(aresta)
 
     def sucessores(self, no_id: str, relacao: str | None = None) -> list[str]:
-        return [
-            a.destino for a in self.arestas
-            if a.origem == no_id and (relacao is None or a.relacao == relacao)
-        ]
+        return [a.destino for a in self.arestas if a.origem == no_id and (relacao is None or a.relacao == relacao)]
 
     def predecessores(self, no_id: str, relacao: str | None = None) -> list[str]:
-        return [
-            a.origem for a in self.arestas
-            if a.destino == no_id and (relacao is None or a.relacao == relacao)
-        ]
+        return [a.origem for a in self.arestas if a.destino == no_id and (relacao is None or a.relacao == relacao)]
 
     def relacionados(self, no_id: str) -> list[str]:
         if no_id not in self.nos:
             raise KeyError(no_id)
-        relacionados = {
-            a.destino if a.origem == no_id else a.origem
-            for a in self.arestas
-            if a.origem == no_id or a.destino == no_id
-        }
-        return sorted(relacionados)
+        return sorted({a.destino if a.origem == no_id else a.origem for a in self.arestas if a.origem == no_id or a.destino == no_id})
 
     def caminhos_que_convergem(self, destino_id: str) -> list[str]:
         return self.predecessores(destino_id, "CONVERGE_COM")
@@ -107,53 +97,29 @@ class RedeEvolutiva:
         return self.predecessores(destino_id, "IMPULSIONA")
 
     def impulso_total(self, no_id: str) -> float:
-        """Sinal local de alavancagem; não representa prioridade obrigatória."""
         if no_id not in self.nos:
             raise KeyError(no_id)
         total = self.nos[no_id].potencial_multiplicador
         for a in self.arestas:
-            if a.destino == no_id and a.relacao in {
-                "IMPULSIONA", "MULTIPLICA", "MULTIPLICA_VALOR", "HABILITA"
-            }:
+            if a.destino == no_id and a.relacao in {"IMPULSIONA", "MULTIPLICA", "MULTIPLICA_VALOR", "HABILITA"}:
                 total += a.peso * self.nos[a.origem].potencial_multiplicador
         return total
 
     def pontos_de_alavancagem(self, limite: int = 10) -> list[tuple[str, float]]:
-        """Retorna sinais de alavancagem para apoiar uma decisão contextual."""
         if limite < 1:
             raise ValueError("limite deve ser >= 1")
-        valores = ((no_id, self.impulso_total(no_id)) for no_id in self.nos)
-        return sorted(valores, key=lambda item: item[1], reverse=True)[:limite]
+        return sorted(((no_id, self.impulso_total(no_id)) for no_id in self.nos), key=lambda item: item[1], reverse=True)[:limite]
 
-    def candidatos_contextuais(
-        self,
-        contexto: dict[str, float] | None = None,
-        estados_ignorados: set[str] | None = None,
-    ) -> list[tuple[str, float]]:
-        """Gera candidatos a partir do estado atual, sem congelar a ordem.
-
-        O valor é um sinal auxiliar. O agente pode escolher outro caminho,
-        pesquisar mais ou descobrir um caminho novo.
-        """
+    def candidatos_contextuais(self, contexto: dict[str, float] | None = None, estados_ignorados: set[str] | None = None) -> list[tuple[str, float]]:
+        """Gera sinais; não cria ordem obrigatória de execução."""
         contexto = contexto or {}
         estados_ignorados = estados_ignorados or {"ABANDONADO", "SUBSTITUIDO"}
 
         def sinal(no_id: str) -> float:
             no = self.nos[no_id]
-            urgencia = float(contexto.get(no_id, 0.0))
-            conexoes = len(self.relacionados(no_id))
-            return (
-                0.40 * no.potencial_multiplicador
-                + 0.25 * urgencia
-                + 0.10 * min(conexoes / 10.0, 1.0)
-                + 0.25 * self.impulso_total(no_id)
-            )
+            return (0.40 * no.potencial_multiplicador + 0.25 * float(contexto.get(no_id, 0.0)) + 0.10 * min(len(self.relacionados(no_id)) / 10.0, 1.0) + 0.25 * self.impulso_total(no_id))
 
-        return sorted(
-            ((no_id, sinal(no_id)) for no_id, no in self.nos.items() if no.estado not in estados_ignorados),
-            key=lambda item: item[1],
-            reverse=True,
-        )
+        return sorted(((no_id, sinal(no_id)) for no_id, no in self.nos.items() if no.estado not in estados_ignorados), key=lambda item: item[1], reverse=True)
 
     def validar(self) -> list[str]:
         erros: list[str] = []
@@ -166,7 +132,25 @@ class RedeEvolutiva:
         return erros
 
     def to_dict(self) -> dict[str, Any]:
-        return {
-            "nos": {k: asdict(v) for k, v in self.nos.items()},
-            "arestas": [asdict(a) for a in self.arestas],
-        }
+        return {"schema_version": self.schema_version, "nos": {k: asdict(v) for k, v in self.nos.items()}, "arestas": [asdict(a) for a in self.arestas]}
+
+    @classmethod
+    def from_dict(cls, dados: dict[str, Any]) -> "RedeEvolutiva":
+        rede = cls(schema_version=dados.get("schema_version", "0.1"))
+        rede.adicionar_nos(NoRede(**no) for no in dados.get("nos", {}).values())
+        for aresta in dados.get("arestas", []):
+            rede.conectar(ArestaRede(**aresta))
+        return rede
+
+    def salvar(self, path: str) -> None:
+        import json
+        from pathlib import Path
+        destino = Path(path)
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        destino.write_text(json.dumps(self.to_dict(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    @classmethod
+    def carregar(cls, path: str) -> "RedeEvolutiva":
+        import json
+        from pathlib import Path
+        return cls.from_dict(json.loads(Path(path).read_text(encoding="utf-8")))
