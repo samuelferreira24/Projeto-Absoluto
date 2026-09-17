@@ -1,7 +1,8 @@
 # Agendamento Adaptativo V0.1
 
 ## Objetivo
-Transformar o grafo de tarefas em uma camada de decisão operacional que escolha o próximo trabalho sem depender de uma rota fixa.
+
+Transformar o grafo de tarefas em um mecanismo de decisão operacional capaz de escolher dinamicamente o próximo trabalho considerando valor, custo, risco, tempo, dependências e recursos.
 
 ## Fluxo
 
@@ -14,12 +15,17 @@ GRAFO DE TAREFAS
   ↓
 TAREFAS PRONTAS
   ↓
-AGENDAMENTO
+PONTUAÇÃO ADAPTATIVA
+  ├─ valor esperado
   ├─ prioridade
-  ├─ dependências
-  ├─ recursos disponíveis
-  ├─ conflitos de recurso
-  └─ orçamento
+  ├─ custo
+  ├─ risco
+  └─ urgência/prazo
+  ↓
+SELEÇÃO DO LOTE
+  ├─ orçamento
+  ├─ limite
+  └─ conflitos de recursos
   ↓
 EXECUÇÃO
   ↓
@@ -33,17 +39,44 @@ REPLANEJAMENTO
 
 1. Dependências bloqueiam tarefas até que sejam concluídas.
 2. Recursos compartilhados impedem a seleção simultânea de tarefas conflitantes.
-3. Prioridade influencia a seleção do próximo lote.
-4. Um orçamento pode limitar o plano.
+3. Valor e prioridade orientam a seleção; risco e custo reduzem a pontuação.
+4. Um orçamento pode limitar o consumo planejado.
 5. O plano é recalculado após resultados; não existe rota permanente.
-6. O histórico dos planos permanece registrado para futura aprendizagem.
+6. O histórico dos planos, resultados e replanejamentos permanece registrado para futura aprendizagem.
 7. Falha de uma tarefa não apaga o grafo nem o histórico.
 8. A camada é separada do executor: decidir e executar são responsabilidades distintas.
+9. O agendador pode selecionar tarefas independentes para execução paralela quando os recursos não entram em conflito.
 
-## Limitações conhecidas
+## Dados adicionais da tarefa
 
-Esta versão ainda não possui estimativa real de custo/tempo por tarefa, risco probabilístico, valor esperado, deadlines, custo de comunicação entre agentes, políticas de retry/fallback ou seleção dinâmica de motor/modelo. Esses elementos devem ser adicionados como evolução, sem quebrar a interface atual.
+`NoTarefa` suporta:
+- `valor_estimado`
+- `custo_estimado`
+- `tempo_estimado`
+- `risco`
+- `prazo`
+- `preferencias`
 
 ## Próxima evolução
 
-Integrar orçamento de combustível, risco, valor marginal, seleção de capacidades/motores e aprendizado de estratégias de agendamento. O Meta-Cérebro deverá aprender quais políticas de composição produzem melhores resultados em cada contexto.
+Integrar orçamento de combustível real, capacidade quantitativa dos recursos, deadlines temporais, custo de comunicação, retry/fallback/cancelamento, seleção dinâmica de motor/modelo/capacidade, medição de resultados e detecção de sinergias.
+
+```text
+AGENDADOR
+   ↓
+ESCOLHA DE MOTOR / AGENTE / FERRAMENTA
+   ↓
+ALOCAÇÃO DE FUEL
+   ↓
+EXECUÇÃO
+   ↓
+MEDIÇÃO
+   ↓
+DETECÇÃO DE SINERGIA
+   ↓
+MEMÓRIA DE EXPERIÊNCIA
+   ↓
+META-CÉREBRO
+   ↓
+MELHOR AGENDAMENTO FUTURO
+```
