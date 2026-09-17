@@ -10,6 +10,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: cerebro-base-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   validar-base:
     runs-on: ubuntu-latest
