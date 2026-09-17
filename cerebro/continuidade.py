@@ -1,13 +1,22 @@
-"""Validação do pacote mínimo de continuidade entre agentes e plataformas."""
+"""Continuidade portatil: estado, memoria, aprendizado e retomada entre chats."""
 from __future__ import annotations
 
 import json
+from dataclasses import asdict
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 
+SCHEMA_VERSION = "0.2"
+
+
 class ErroContinuidade(ValueError):
     """Falha estrutural no pacote de continuidade."""
+
+
+def agora() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
 def carregar_json(path: str | Path) -> dict[str, Any]:
@@ -60,3 +69,124 @@ def validar_ou_erro(path: str | Path, raiz: str | Path | None = None) -> None:
     erros = validar_manifesto(path, raiz)
     if erros:
         raise ErroContinuidade("; ".join(erros))
+
+
+def _estado(obj: Any) -> dict[str, Any]:
+    if hasattr(obj, "to_dict"):
+        return obj.to_dict()
+    return asdict(obj)
+
+
+def _registros(cerebro: Any) -> list[dict[str, Any]]:
+    return [r.to_dict() for r in cerebro.registros()]
+
+
+def criar_snapshot(
+    cerebro: Any,
+    *,
+    objetivo_atual: str | None = None,
+    proximo_passo: str | None = None,
+    contexto_da_sessao: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Cria um snapshot completo e portatil para outra conversa."""
+    estado = cerebro.estado.to_dict()
+    tarefas = []
+    for tarefa in cerebro.grafo_tarefas.tarefas.values():
+        item = asdict(tarefa)
+        item["estado"] = tarefa.estado.value
+        tarefas.append(item)
+
+    memoria = _registros(cerebro)
+    aprendizados = [
+        r for r in memoria
+        if r.get("kind") in {"APRENDIZADO", "ENTENDIMENTO", "DESCOBERTA", "PROGRESSO", "ERRO", "DECISAO", "RESULTADO", "EXPERIENCIA"}
+    ]
+
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "snapshot_at": agora(),
+        "project_id": estado["project_id"],
+        "objetivo_atual": objetivo_atual or estado.get("next_priority"),
+        "proximo_passo": proximo_passo,
+        "contexto_da_sessao": dict(contexto_da_sessao or {}),
+        "estado_sistema": estado,
+        "tarefas": tarefas,
+        "memoria_completa": memoria,
+        "aprendizados": aprendizados,
+        "rede_evolutiva": {
+            "nos": [asdict(n) for n in cerebro.rede.nos.values()],
+            "arestas": [asdict(a) for a in cerebro.rede.arestas.values()],
+        },
+        "runtime": _estado(cerebro.runtime.estado),
+        "missoes": [asdict(m) for m in cerebro.orquestrador.missoes.values()],
+        "regras_de_continuidade": [
+            "O snapshot é uma ponte entre sessões, não uma substituição das evidências.",
+            "Preservar contexto, aprendizado, progresso, decisões, erros e histórico.",
+            "O passado informa a arquitetura, mas não determina a arquitetura.",
+            "Uma nova instrução pode ampliar ou corrigir a rota sem apagar trabalho anterior silenciosamente.",
+            "Validar o estado atual do repositório antes de continuar quando ele estiver disponível.",
+        ],
+    }
+
+
+def salvar_snapshot(
+    cerebro: Any,
+    path: str | Path = "cerebro/data/continuidade.json",
+    **kwargs: Any,
+) -> dict[str, Any]:
+    destino = Path(path)
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    snapshot = criar_snapshot(cerebro, **kwargs)
+    destino.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return snapshot
+
+
+def carregar_snapshot(path: str | Path = "cerebro/data/continuidade.json") -> dict[str, Any]:
+    return carregar_json(path)
+
+
+def gerar_prompt_retoma(snapshot: dict[str, Any]) -> str:
+    """Gera instrução que pode ser colada em outro chat."""
+    estado = snapshot.get("estado_sistema", {})
+    tarefas = snapshot.get("tarefas", [])
+    aprendizados = snapshot.get("aprendizados", [])
+    relevantes = [
+        t for t in tarefas
+        if t.get("estado") in {"PENDENTE", "PRONTA", "EXECUTANDO", "BLOQUEADA", "FALHOU"}
+    ]
+    return "\n".join([
+        "# RETOMADA DO PROJETO ABSOLUTO",
+        "",
+        f"Projeto: {snapshot.get('project_id', 'PROJETO-ABSOLUTO')}",
+        f"Snapshot: {snapshot.get('snapshot_at', '')}",
+        f"Objetivo atual: {snapshot.get('objetivo_atual') or 'não informado'}",
+        f"Próximo passo: {snapshot.get('proximo_passo') or 'determinar a partir do estado registrado'}",
+        "",
+        "## Estado do sistema",
+        json.dumps(estado, ensure_ascii=False, indent=2),
+        "",
+        "## Tarefas relevantes",
+        json.dumps(relevantes, ensure_ascii=False, indent=2),
+        "",
+        "## O que foi aprendido",
+        json.dumps(aprendizados, ensure_ascii=False, indent=2),
+        "",
+        "## Contexto adicional da sessão",
+        json.dumps(snapshot.get("contexto_da_sessao", {}), ensure_ascii=False, indent=2),
+        "",
+        "## Regra de retomada",
+        "Continue de onde o trabalho parou. Não recomece do zero. Não descarte decisões, aprendizados ou progresso registrados. Use o snapshot para reconstruir o contexto inicial e, quando o repositório estiver disponível, confira os arquivos atuais antes de modificar qualquer coisa. Registre novas descobertas, erros, decisões, mudanças de entendimento e progresso no Cérebro.",
+    ])
+
+
+def salvar_prompt_retoma(
+    cerebro: Any,
+    path: str | Path = "cerebro/data/RETOMAR_OUTRO_CHAT.md",
+    **kwargs: Any,
+) -> str:
+    snapshot = criar_snapshot(cerebro, **kwargs)
+    destino = Path(path)
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    prompt = gerar_prompt_retoma(snapshot)
+    destino.write_text(prompt + "\n", encoding="utf-8")
+    return prompt
