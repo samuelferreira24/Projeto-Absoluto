@@ -60,7 +60,9 @@ class GrafoTarefas:
         for tarefa in self.tarefas.values():
             if tarefa.estado != EstadoTarefa.PENDENTE:
                 continue
-            dependencias = [self.tarefas[d] for d in tarefa.depende_de if d in self.tarefas]
+            if any(dependencia not in self.tarefas for dependencia in tarefa.depende_de):
+                continue
+            dependencias = [self.tarefas[d] for d in tarefa.depende_de]
             if any(d.estado != EstadoTarefa.CONCLUIDA for d in dependencias):
                 continue
             if tarefa.recursos and not set(tarefa.recursos).issubset(recursos):
