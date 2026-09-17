@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from cerebro.continuidade import ErroContinuidade, validar_manifesto, validar_ou_erro
+from cerebro.continuidade import ErroContinuidade, gerar_prompt_retoma, salvar_snapshot, validar_manifesto, validar_ou_erro
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -55,3 +55,91 @@ def test_detecta_campo_essencial_ausente(tmp_path: Path):
 def test_manifesto_operacional_real_do_projeto():
     path = ROOT / "cerebro" / "especificacao" / "MANIFESTO_EXECUCAO_V0_1.json"
     assert validar_manifesto(path, ROOT) == []
+
+
+class _Estado:
+    def to_dict(self):
+        return {"project_id": "PROJETO-ABSOLUTO", "next_priority": "continuar"}
+
+
+class _Runtime:
+    class E:
+        def to_dict(self):
+            return {"estado": "PARADO", "ciclos": 1}
+    estado = E()
+
+
+class _Tarefa:
+    def __init__(self):
+        self.id = "T1"
+        self.objetivo = "continuar"
+        self.depende_de = ()
+        self.recursos = ()
+        self.capacidades = ()
+        self.estado = type("E", (), {"value": "PENDENTE"})()
+        self.prioridade = 1.0
+
+
+class _Rede:
+    nos = {}
+    arestas = {}
+
+
+class _Orq:
+    missoes = {}
+
+
+class _Registro:
+    def __init__(self, kind, title):
+        self.kind = kind
+        self.title = title
+
+    def to_dict(self):
+        return {"kind": self.kind, "title": self.title}
+
+
+class _Cerebro:
+    estado = _Estado()
+    runtime = _Runtime()
+    rede = _Rede()
+    orquestrador = _Orq()
+    grafo_tarefas = type("G", (), {"tarefas": {"T1": _Tarefa()}})()
+
+    def registros(self):
+        return [_Registro("APRENDIZADO", "Aprendizado persistente")]
+
+
+def test_snapshot_preserva_estado_tarefas_e_aprendizado(tmp_path: Path):
+    destino = tmp_path / "continuidade.json"
+    snapshot = salvar_snapshot(
+        _Cerebro(),
+        destino,
+        objetivo_atual="preservar contexto",
+        proximo_passo="implementar recuperação",
+        contexto_da_sessao={"origem": "chat"},
+    )
+    import json
+    dados = json.loads(destino.read_text(encoding="utf-8"))
+    assert dados["schema_version"] == "0.2"
+    assert dados["objetivo_atual"] == "preservar contexto"
+    assert dados["proximo_passo"] == "implementar recuperação"
+    assert dados["tarefas"][0]["estado"] == "PENDENTE"
+    assert dados["aprendizados"][0]["title"] == "Aprendizado persistente"
+    assert dados["contexto_da_sessao"]["origem"] == "chat"
+    assert snapshot["project_id"] == "PROJETO-ABSOLUTO"
+
+
+def test_prompt_de_retoma_e_portatil():
+    prompt = gerar_prompt_retoma({
+        "project_id": "PROJETO-ABSOLUTO",
+        "snapshot_at": "2026-09-17T00:00:00+00:00",
+        "objetivo_atual": "preservar contexto",
+        "proximo_passo": "recuperar",
+        "estado_sistema": {"status": "EM_CONSTRUCAO"},
+        "tarefas": [],
+        "aprendizados": [{"kind": "APRENDIZADO", "title": "teste"}],
+        "contexto_da_sessao": {"motivo": "continuidade"},
+    })
+    assert prompt.startswith("# RETOMADA DO PROJETO ABSOLUTO")
+    assert "preservar contexto" in prompt
+    assert "Não recomece do zero" in prompt
