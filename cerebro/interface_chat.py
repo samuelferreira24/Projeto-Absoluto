@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 from typing import Any, Iterable
 
 from .coleta import EventoCapturado
+from .contexto_operacional import construir_contexto, gerar_prompt_contexto
 
 
 @dataclass(frozen=True)
@@ -59,3 +60,20 @@ class InterfaceChat:
         """Recupera memória do Cérebro para alimentar uma nova sessão de chat."""
         consulta = objetivo or "contexto atual progresso decisões descobertas aprendizados"
         return self.cerebro.buscar(consulta, limite)
+
+    def contexto_inicial(self, *, objetivo: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> dict[str, Any]:
+        """Entrega o pacote estruturado que o chat deve conhecer antes de agir."""
+        return construir_contexto(
+            self.cerebro,
+            objetivo=objetivo,
+            proximo_passo=proximo_passo,
+            contexto_da_sessao=contexto_da_sessao,
+        ).to_dict()
+
+    def prompt_inicial(self, *, objetivo: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> str:
+        """Entrega a versão textual do contexto para hosts que trabalham por prompt."""
+        return gerar_prompt_contexto(self.contexto_inicial(
+            objetivo=objetivo,
+            proximo_passo=proximo_passo,
+            contexto_da_sessao=contexto_da_sessao,
+        ))
