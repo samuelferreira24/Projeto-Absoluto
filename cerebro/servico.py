@@ -19,11 +19,12 @@ class Cerebro:
     def __init__(self, dados: str | Path = "cerebro/data") -> None:
         self.repo = RepositorioJSONL(dados)
         self.estado_path = self.repo.root / "estado.json"
+        self.rede_path = self.repo.root / "rede_evolutiva.json"
         self.estado = EstadoSistema()
         if self.estado_path.exists():
             self.estado = EstadoSistema.carregar(self.estado_path)
         self.mapa = MapaConstrucao()
-        self.rede = RedeEvolutiva()
+        self.rede = RedeEvolutiva.carregar(self.rede_path) if self.rede_path.exists() else RedeEvolutiva()
 
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
         return extrair(arquivo)
@@ -43,11 +44,7 @@ class Cerebro:
     def relacionados(self, ids: list[str], profundidade: int = 1) -> list[Registro]:
         return expandir_relacoes(self.registros(), ids, profundidade)
 
-    def auditar(
-        self,
-        unidades: list[UnidadeSemantica],
-        relacoes: list[RelacaoSemantica] | None = None,
-    ) -> ResultadoAuditoria:
+    def auditar(self, unidades: list[UnidadeSemantica], relacoes: list[RelacaoSemantica] | None = None) -> ResultadoAuditoria:
         return auditar_semantica(unidades, relacoes)
 
     def adicionar_elemento_construcao(self, elemento: ElementoConstrucao) -> None:
@@ -72,7 +69,6 @@ class Cerebro:
         return self.rede.relacionados(no_id)
 
     def candidatos_rede(self, contexto: dict[str, float] | None = None) -> list[tuple[str, float]]:
-        """Fornece sinais contextuais; não cria uma ordem fixa de execução."""
         return self.rede.candidatos_contextuais(contexto)
 
     def pontos_de_alavancagem(self, limite: int = 10) -> list[tuple[str, float]]:
@@ -83,6 +79,7 @@ class Cerebro:
 
     def salvar_estado(self) -> None:
         self.estado.salvar(self.estado_path)
+        self.rede.salvar(str(self.rede_path))
 
     def diagnostico(self) -> dict[str, Any]:
         registros = self.registros()
