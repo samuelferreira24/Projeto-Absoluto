@@ -18,6 +18,7 @@ from .runtime import RuntimeContinuo
 from .semantica import RelacaoSemantica, UnidadeSemantica
 from .consolidar_aprendizados import salvar_consolidado
 from .grafo_tarefas import GrafoTarefas, NoTarefa
+from .continuidade import carregar_snapshot, gerar_prompt_retoma, salvar_prompt_retoma, salvar_snapshot
 
 
 class Cerebro:
@@ -82,6 +83,24 @@ class Cerebro:
     def consolidar_aprendizados(self, memoria: str | Path = "cerebro/memoria") -> dict[str, Any]:
         memoria = Path(memoria)
         return salvar_consolidado(memoria / "aprendizados_consolidados_v0_1.json", memoria / "aprendizados.jsonl", memoria / "aprendizados_fundamentais_v0_1.json")
+
+    def checkpoint(self, *, objetivo_atual: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> dict[str, Any]:
+        """Persiste uma fotografia portátil da sessão para continuidade em outro chat."""
+        self.salvar_estado()
+        return salvar_snapshot(self, objetivo_atual=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
+
+    def preparar_retoma(self, *, objetivo_atual: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> str:
+        """Gera o prompt portátil de retomada após salvar o checkpoint."""
+        self.checkpoint(objetivo_atual=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
+        return salvar_prompt_retoma(self, objetivo_atual=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
+
+    @staticmethod
+    def carregar_continuidade(path: str | Path = "cerebro/data/continuidade.json") -> dict[str, Any]:
+        return carregar_snapshot(path)
+
+    @staticmethod
+    def prompt_de_retoma(snapshot: dict[str, Any]) -> str:
+        return gerar_prompt_retoma(snapshot)
 
     def registros(self) -> list[Registro]:
         return list(self.repo._iter_registros())
@@ -156,6 +175,7 @@ class Cerebro:
                 aprendizados_consolidados = int(json.loads(consolidado_path.read_text(encoding="utf-8")).get("quantidade", 0))
             except (OSError, ValueError, TypeError, json.JSONDecodeError):
                 aprendizados_consolidados = 0
+        continuidade_path = self.repo.root / "continuidade.json"
         return {
             "registros": len(registros),
             "fontes": sum(1 for r in registros if r.kind == "DOCUMENTO"),
@@ -178,4 +198,6 @@ class Cerebro:
             "tarefas_prontas": len(self.tarefas_prontas()),
             "integridade_tarefas": self.validar_tarefas(),
             "aprendizados_consolidados": aprendizados_consolidados,
+            "continuidade": str(continuidade_path),
+            "continuidade_disponivel": continuidade_path.exists(),
         }
