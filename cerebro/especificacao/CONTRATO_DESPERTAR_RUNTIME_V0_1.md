@@ -77,10 +77,10 @@ O workflow só executa um agente quando um executor externo estiver configurado.
 
 Isso estabelece a infraestrutura de continuidade, mas não significa que o Projeto já esteja operando 24/7 em produção. Ainda é necessário hospedar/configurar um worker persistente e conectar um executor de IA/ferramentas reais com as permissões e guardrails apropriados.
 
-Além disso, o workflow agendado do GitHub só atua sobre o branch padrão e tem intervalo mínimo de cinco minutos; portanto ele é um mecanismo auxiliar de despertar, não a definição do runtime definitivo. citeturn0search5turn0search14
+Além disso, o workflow agendado do GitHub só atua sobre o branch padrão e tem intervalo mínimo de cinco minutos; portanto ele é um mecanismo auxiliar de despertar, não a definição do runtime definitivo.
 
 ## Direção evolutiva
 
 GitHub Actions, servidores próprios, runtimes de agentes, sandboxes e serviços de terceiros podem atuar como recursos de execução. A arquitetura deve permanecer substituível e preservar a identidade, estado, histórico, proveniência e conhecimento do Projeto fora do fornecedor.
 
-A atual API de Agentes da OpenAI demonstra que infraestrutura de agentes de longa duração, subagentes, ambientes persistentes e recuperação já pode ser fornecida como serviço; isso é uma opção futura de infraestrutura, não uma decisão arquitetural definitiva do Projeto. citeturn0search0turn0search1
+A infraestrutura atual da API de Agentes da OpenAI demonstra que agentes de longa duração, subagentes, ambientes persistentes e recuperação já podem ser fornecidos como serviço; isso é uma opção futura de infraestrutura, não uma decisão arquitetural definitiva do Projeto.
