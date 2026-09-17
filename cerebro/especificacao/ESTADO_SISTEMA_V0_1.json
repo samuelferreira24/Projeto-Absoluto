@@ -5,6 +5,7 @@
   "architecture_version": "FUNDACAO-V0.2",
   "status": "EM_CONSTRUCAO",
   "active_branch": "base-cerebro-v0.1",
+  "updated_at": "2026-09-17T14:40:17Z",
   "repositories": [
     "samuelferreira24/Projeto-Absoluto",
     "samuelferreira24/Sistema"
@@ -58,9 +59,9 @@
   "pending_decisions": [],
   "last_validation": {
     "scope": "base-cerebro-v0.1",
-    "result": "VALIDACAO_CI_ATUALIZADA",
-    "commit": "4c86bdb19901fd734a677a4308344fddb198f6c9",
-    "note": "A validacao agora inclui estado versionado, importacao da facade e a suite completa tests + cerebro/tests."
+    "result": "AGUARDANDO_NOVA_EXECUCAO_CI",
+    "commit": "e83d1a6adfef2d33920ed9cad63398c3dd7dcb7a",
+    "note": "A ultima execucao falhou porque o estado nao possuia updated_at; correcao aplicada neste commit e a validacao automatica deve ser repetida."
   },
   "next_priority": "PERSISTIR_MAPA_E_IMPLEMENTAR_RECONCILIACAO_DE_ESTADO",
   "continuity_package": [
