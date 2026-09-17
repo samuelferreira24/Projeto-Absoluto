@@ -9,6 +9,7 @@ from .ingestao import DocumentoEstruturado, extrair, registrar_fonte
 from .nucleo import Registro, RepositorioJSONL
 from .recuperacao import ResultadoBusca, buscar_hibrido, expandir_relacoes
 from .rastreabilidade import ElementoConstrucao, MapaConstrucao, RelacaoConstrucao
+from .rede_evolutiva import ArestaRede, NoRede, RedeEvolutiva
 from .semantica import RelacaoSemantica, UnidadeSemantica
 
 
@@ -22,6 +23,7 @@ class Cerebro:
         if self.estado_path.exists():
             self.estado = EstadoSistema.carregar(self.estado_path)
         self.mapa = MapaConstrucao()
+        self.rede = RedeEvolutiva()
 
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
         return extrair(arquivo)
@@ -57,6 +59,18 @@ class Cerebro:
     def validar_construcao(self) -> list[str]:
         return self.mapa.validar()
 
+    def adicionar_no_rede(self, no: NoRede) -> None:
+        self.rede.adicionar_no(no)
+
+    def conectar_rede(self, aresta: ArestaRede) -> None:
+        self.rede.conectar(aresta)
+
+    def pontos_de_alavancagem(self, limite: int = 10) -> list[tuple[str, float]]:
+        return self.rede.pontos_de_alavancagem(limite)
+
+    def validar_rede(self) -> list[str]:
+        return self.rede.validar()
+
     def salvar_estado(self) -> None:
         self.estado.salvar(self.estado_path)
 
@@ -71,4 +85,7 @@ class Cerebro:
             "elementos_construcao": len(self.mapa.elementos),
             "relacoes_construcao": len(self.mapa.relacoes),
             "integridade_construcao": self.validar_construcao(),
+            "nos_rede": len(self.rede.nos),
+            "arestas_rede": len(self.rede.arestas),
+            "integridade_rede": self.validar_rede(),
         }
