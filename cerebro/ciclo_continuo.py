@@ -14,7 +14,7 @@ class DecisaoCiclo:
 
 
 class CicloContinuo:
-    """Executa ciclos recuperáveis sem transformar o tabuleiro em fila fixa."""
+    """Executa ciclos recuperáveis sem transformar a rede em fila fixa."""
 
     def __init__(self, orquestrador: Orquestrador) -> None:
         self.orquestrador = orquestrador
@@ -27,8 +27,8 @@ class CicloContinuo:
         opcoes = candidatos(missao)
         if not opcoes:
             return DecisaoCiclo(False, motivo="nenhum caminho contextual disponível")
-        caminho, _sinal = opcoes[0]
-        return DecisaoCiclo(True, caminho=caminho, motivo="sinal contextual selecionado")
+        caminho, sinal = max(opcoes, key=lambda item: item[1])
+        return DecisaoCiclo(True, caminho=caminho, motivo=f"sinal contextual={sinal:.4f}")
 
     def rodar(
         self,
@@ -42,7 +42,6 @@ class CicloContinuo:
         if not decisao.executar or decisao.caminho is None:
             self.orquestrador.salvar()
             return {"executado": False, "motivo": decisao.motivo}
-
         return self.orquestrador.executar_um_ciclo(
             missao_id,
             lambda m: executor(m, decisao.caminho),
