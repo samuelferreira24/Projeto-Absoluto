@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1",
+  "project": {
+    "id": "PA-PROJETO-ABSOLUTO",
+    "name": "Projeto Absoluto"
+  },
+  "construction": {
+    "current_branch": "base-cerebro-v0.1",
+    "current_stage": "fundacao_e_cerebro_evolutivo",
+    "next_stage": "integracao_do_planejamento_do_projeto",
+    "principle": "o conhecimento de construcao pertence ao projeto"
+  },
+  "continuity": {
+    "identity": "cerebro/identidade.py",
+    "events": "cerebro/eventos.py",
+    "event_ledger": "cerebro/eventos_ledger.py",
+    "participants": "cerebro/registro.py",
+    "autonomy_policy": "cerebro/politica.py",
+    "integration_contract": "cerebro/especificacao/CONTRATO_INTEGRACAO_V0_1.md",
+    "continuity_manifest": "cerebro/especificacao/MANIFESTO_CONTINUIDADE_V0_1.md"
+  },
+  "required_validation": [
+    "estado versionado válido",
+    "suíte de testes passando",
+    "importação do núcleo funcionando",
+    "evidência operacional publicada"
+  ],
+  "rules": [
+    "não depender de uma IA específica",
+    "não depender de uma conta específica",
+    "não tratar GitHub como identidade do projeto",
+    "preservar histórico e proveniência",
+    "não declarar capacidade validada sem evidência adequada"
+  ],
+  "integration_boundary": {
+    "supported_conceptually": ["IA", "conta", "plataforma", "ferramenta", "sistema_externo"],
+    "strategy": "adaptadores por contrato",
+    "n_to_n_avoidance": true
+  }
+}
