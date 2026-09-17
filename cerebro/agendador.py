@@ -37,7 +37,12 @@ class AgendadorAdaptativo:
             self._carregar_historico()
 
     @staticmethod
-    def pontuacao(tarefa: NoTarefa, perfil: dict[str, float] | None = None) -> float:
+    def pontuacao(
+        tarefa: NoTarefa,
+        perfil: dict[str, float] | None = None,
+        *,
+        objetivo: str = "equilibrio",
+    ) -> float:
         """Valor marginal ajustado por risco, custo, prazo e experiência observada."""
         perfil = perfil or {}
         valor = tarefa.valor_estimado if tarefa.valor_estimado > 0 else tarefa.prioridade
@@ -46,6 +51,12 @@ class AgendadorAdaptativo:
         urgencia = 1.0 / max(1.0, tarefa.prazo) if tarefa.prazo is not None else 1.0
         confiabilidade_observada = perfil.get("confiabilidade", 1.0)
         fator_tempo = perfil.get("fator_tempo", 1.0)
+        if objetivo == "eficiencia":
+            return (valor * urgencia * (1.0 - risco) * confiabilidade_observada) / (custo * max(0.1, fator_tempo))
+        if objetivo == "conclusao":
+            return valor * urgencia * (1.0 - risco) * confiabilidade_observada / max(0.1, fator_tempo)
+        if objetivo == "rapidez":
+            return valor * (1.0 - risco) / max(0.1, tarefa.tempo_estimado * fator_tempo)
         return (valor * urgencia * (1.0 - risco) * confiabilidade_observada) / (custo * max(0.1, fator_tempo))
 
     def planejar(
@@ -54,6 +65,7 @@ class AgendadorAdaptativo:
         *,
         orcamento: float | None = None,
         limite: int | None = None,
+        objetivo: str = "equilibrio",
     ) -> PlanoExecucao:
         if self.grafo.validar():
             plano = PlanoExecucao((), 0.0, 0.0, 0.0, 0.0, 0.0, "grafo inválido; planejamento bloqueado")
@@ -67,7 +79,7 @@ class AgendadorAdaptativo:
             return plano
 
         avaliadas = [
-            (tarefa, self.pontuacao(tarefa, self.perfis.get(tarefa.id)))
+            (tarefa, self.pontuacao(tarefa, self.perfis.get(tarefa.id), objetivo=objetivo))
             for tarefa in prontas
         ]
         ordenadas = sorted(
@@ -162,14 +174,73 @@ class AgendadorAdaptativo:
         self._adicionar_historico({"evento": "RETRY", "tarefa": tarefa_id, "motivo": motivo})
 
     def replanejar(self, recursos_disponiveis: set[str] | None = None, **kwargs: object) -> PlanoExecucao:
-        """Recalcula a partir do estado atual e da experiência observada."""
+        """Recalcula após mudança e preserva o motivo do desvio."""
+        motivo = str(kwargs.pop("motivo", "estado do grafo, resultados, experiência ou recursos alterados"))
+        mudancas = kwargs.pop("mudancas", {})
         plano = self.planejar(recursos_disponiveis, **kwargs)
         self._adicionar_historico({
             "evento": "REPLANEJAMENTO",
             "tarefas": [t.id for t in plano.tarefas],
-            "motivo": "estado do grafo, resultados, experiência ou recursos alterados",
+            "motivo": motivo,
+            "mudancas": mudancas,
         })
         return plano
+
+    def planos_candidatos(
+        self,
+        recursos_disponiveis: set[str] | None = None,
+        *,
+        orcamento: float | None = None,
+        limite: int | None = None,
+    ) -> list[PlanoExecucao]:
+        """Gera alternativas antes da seleção final."""
+        estrategias = ("eficiencia", "conclusao", "rapidez", "equilibrio")
+        planos = [
+            self.planejar(
+                recursos_disponiveis,
+                orcamento=orcamento,
+                limite=limite,
+                objetivo=estrategia,
+            )
+            for estrategia in estrategias
+        ]
+        self._adicionar_historico({
+            "evento": "PLANOS_CANDIDATOS",
+            "estrategias": list(estrategias),
+            "planos": [[t.id for t in p.tarefas] for p in planos],
+        })
+        return planos
+
+    def selecionar_plano(
+        self,
+        planos: list[PlanoExecucao],
+        *,
+        objetivo: str = "equilibrio",
+    ) -> PlanoExecucao:
+        """Seleciona uma alternativa preservando as demais no histórico."""
+        validos = [p for p in planos if p.tarefas]
+        if not validos:
+            return PlanoExecucao((), 0.0, 0.0, 0.0, 0.0, 0.0, "nenhum plano candidato viável")
+
+        def score(plano: PlanoExecucao) -> float:
+            valor = plano.valor_estimado * (1.0 - plano.risco_estimado)
+            if objetivo == "eficiencia":
+                return valor / max(0.1, plano.custo_estimado)
+            if objetivo == "conclusao":
+                return valor
+            if objetivo == "rapidez":
+                return valor / max(0.1, plano.tempo_estimado)
+            return valor / (max(0.1, plano.custo_estimado) * max(0.1, plano.tempo_estimado))
+
+        escolhido = max(validos, key=lambda p: (score(p), -p.risco_estimado, -p.custo_estimado))
+        self._adicionar_historico({
+            "evento": "SELECAO_PLANO",
+            "objetivo": objetivo,
+            "selecionado": [t.id for t in escolhido.tarefas],
+            "pontuacao": score(escolhido),
+            "alternativas": [[t.id for t in p.tarefas] for p in validos],
+        })
+        return escolhido
 
     def perfil_tarefa(self, tarefa_id: str) -> dict[str, float]:
         return dict(self.perfis.get(tarefa_id, {}))
