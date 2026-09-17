@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
-from typing import Iterable
+from pathlib import Path
 
 from .grafo_tarefas import EstadoTarefa, GrafoTarefas, NoTarefa
 
@@ -27,10 +28,13 @@ class PlanoExecucao:
 class AgendadorAdaptativo:
     """Escolhe, executa, aprende e reavalia tarefas preservando a história."""
 
-    def __init__(self, grafo: GrafoTarefas) -> None:
+    def __init__(self, grafo: GrafoTarefas, historico_path: str | Path | None = None) -> None:
         self.grafo = grafo
+        self.historico_path = Path(historico_path) if historico_path else None
         self.historico: list[dict[str, object]] = []
         self.perfis: dict[str, dict[str, float]] = {}
+        if self.historico_path:
+            self._carregar_historico()
 
     @staticmethod
     def pontuacao(tarefa: NoTarefa, perfil: dict[str, float] | None = None) -> float:
@@ -112,7 +116,7 @@ class AgendadorAdaptativo:
         tempo_real: float | None = None,
         qualidade: float | None = None,
     ) -> None:
-        """Registra o resultado e atualiza um perfil local para o próximo planejamento."""
+        """Registra o resultado e atualiza um perfil persistível para o próximo planejamento."""
         tarefa = self.grafo.tarefas[tarefa_id]
         self.grafo.marcar(tarefa_id, EstadoTarefa.CONCLUIDA if sucesso else EstadoTarefa.FALHOU)
         perfil = self.perfis.setdefault(tarefa_id, {"execucoes": 0.0, "sucessos": 0.0, "confiabilidade": 1.0, "fator_tempo": 1.0})
@@ -123,7 +127,7 @@ class AgendadorAdaptativo:
         if tempo_real is not None and tarefa.tempo_estimado > 0:
             observado = max(0.1, tempo_real / tarefa.tempo_estimado)
             perfil["fator_tempo"] = (perfil["fator_tempo"] * (perfil["execucoes"] - 1.0) + observado) / perfil["execucoes"]
-        self.historico.append({
+        self._adicionar_historico({
             "evento": "RESULTADO",
             "tarefa": tarefa_id,
             "sucesso": sucesso,
@@ -140,16 +144,12 @@ class AgendadorAdaptativo:
         if tarefa.estado != EstadoTarefa.FALHOU:
             raise ValueError(f"Só é possível retentar tarefa FALHOU: {tarefa_id}")
         self.grafo.marcar(tarefa_id, EstadoTarefa.PENDENTE)
-        self.historico.append({
-            "evento": "RETRY",
-            "tarefa": tarefa_id,
-            "motivo": motivo,
-        })
+        self._adicionar_historico({"evento": "RETRY", "tarefa": tarefa_id, "motivo": motivo})
 
     def replanejar(self, recursos_disponiveis: set[str] | None = None, **kwargs: object) -> PlanoExecucao:
         """Recalcula a partir do estado atual e da experiência observada."""
         plano = self.planejar(recursos_disponiveis, **kwargs)
-        self.historico.append({
+        self._adicionar_historico({
             "evento": "REPLANEJAMENTO",
             "tarefas": [t.id for t in plano.tarefas],
             "motivo": "estado do grafo, resultados, experiência ou recursos alterados",
@@ -159,8 +159,30 @@ class AgendadorAdaptativo:
     def perfil_tarefa(self, tarefa_id: str) -> dict[str, float]:
         return dict(self.perfis.get(tarefa_id, {}))
 
+    def salvar_historico(self) -> None:
+        """Persiste decisões e resultados do agendador sem apagar o histórico anterior."""
+        if not self.historico_path:
+            return
+        self.historico_path.parent.mkdir(parents=True, exist_ok=True)
+        self.historico_path.write_text(json.dumps({"perfis": self.perfis, "historico": self.historico}, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    def _carregar_historico(self) -> None:
+        if not self.historico_path or not self.historico_path.exists():
+            return
+        try:
+            dados = json.loads(self.historico_path.read_text(encoding="utf-8"))
+            self.perfis = {str(k): {str(pk): float(pv) for pk, pv in v.items()} for k, v in dados.get("perfis", {}).items()}
+            self.historico = list(dados.get("historico", []))
+        except (OSError, ValueError, TypeError):
+            self.perfis = {}
+            self.historico = []
+
+    def _adicionar_historico(self, evento: dict[str, object]) -> None:
+        self.historico.append(evento)
+        self.salvar_historico()
+
     def _registrar_historico(self, plano: PlanoExecucao, *, evento: str) -> None:
-        self.historico.append({
+        self._adicionar_historico({
             "evento": evento,
             "tarefas": [t.id for t in plano.tarefas],
             "custo": plano.custo_estimado,
