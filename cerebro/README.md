@@ -5,6 +5,9 @@ BASE V0.1 — núcleo operacional em evolução.
 
 A base já possui ingestão preservada, registro versionado, busca, relações, camada semântica, auditoria determinística, fachada operacional e uma interface para modelos de IA substituíveis.
 
+## Lugar do Cérebro no Projeto
+O Cérebro é uma capacidade do Projeto Absoluto, não o Projeto inteiro. O quadro maior da construção está em `especificacao/MAPA_MESTRE_PROJETO_ABSOLUTO_V0_1.md`.
+
 ## Objetivo
 Criar uma camada independente de plataforma para preservar, organizar, relacionar, recuperar e reutilizar memória, conhecimento, experiências, decisões e aprendizados do Projeto Absoluto.
 
@@ -57,9 +60,12 @@ O Cérebro não depende de uma IA específica. `cerebro/modelos.py` define um co
 ## Recuperação
 A recuperação atual combina normalização textual, pesos por campo e expansão por relações. A arquitetura foi deixada modular para receber futuramente embeddings, busca vetorial, reranking e contexto temporal sem substituir a camada determinística.
 
+## Avaliação
+`especificacao/AVALIACAO_SEMANTICA_V0_1.md` define os casos e critérios para validar distinções semânticas antes de ampliar a automação. `tests/test_avaliacao_semantica.py` cobre fatos, hipóteses, interpretações, decisões, ambiguidade, contradições, contexto temporal e referências externas.
+
 ## Estrutura
 
-- `especificacao/` — contratos, arquitetura, método e roadmap.
+- `especificacao/` — contratos, arquitetura, método, avaliação e roadmap.
 - `ingestao.py` — entrada e preservação de fontes.
 - `nucleo.py` — registros, versionamento e histórico.
 - `semantica.py` — representação semântica explícita.
@@ -74,4 +80,4 @@ A recuperação atual combina normalização textual, pesos por campo e expansã
 A arquitetura deve evoluir sem destruir fontes, histórico, proveniência ou portabilidade. Componentes externos, modelos e interfaces são substituíveis; a identidade lógica do Cérebro permanece do Projeto Absoluto.
 
 ## Próximo estágio
-Validar classificação e relações em exemplos reais e ambíguos. Depois, ativar automação assistida, recuperação semântica avançada e consolidação automática somente onde os testes demonstrarem segurança e utilidade.
+Usar a avaliação semântica como base para ampliar a validação com dados reais, medir recuperação e relações, identificar limites de automação e só então avançar para capacidades semânticas mais fortes e consolidação auditável.
