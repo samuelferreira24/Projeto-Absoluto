@@ -135,3 +135,60 @@ def test_grafo_invalido_bloqueia_planejamento():
     plano = AgendadorAdaptativo(grafo).planejar()
     assert plano.tarefas == ()
     assert "grafo inválido" in plano.motivo
+
+
+def test_capacidade_de_recurso_permite_concorrencia_acima_de_um():
+    grafo = GrafoTarefas()
+    grafo.adicionar_varias([
+        NoTarefa("a", "A", recursos=("cpu",), valor_estimado=5),
+        NoTarefa("b", "B", recursos=("cpu",), valor_estimado=4),
+    ])
+    agendador = AgendadorAdaptativo(grafo)
+    plano = agendador.planejar({"cpu"}, capacidades_recursos={"cpu": 2.0})
+    assert [t.id for t in plano.tarefas] == ["a", "b"]
+
+
+def test_capacidade_temporal_limita_lote():
+    grafo = GrafoTarefas()
+    grafo.adicionar_varias([
+        NoTarefa("a", "A", recursos=("cpu",), valor_estimado=5, tempo_estimado=10),
+        NoTarefa("b", "B", recursos=("gpu",), valor_estimado=4, tempo_estimado=4),
+    ])
+    agendador = AgendadorAdaptativo(grafo)
+    plano = agendador.planejar({"cpu", "gpu"}, capacidade_de_tempo=5)
+    assert [t.id for t in plano.tarefas] == ["a"]
+
+
+def test_fallback_e_retry_ficam_registrados():
+    grafo = GrafoTarefas()
+    grafo.adicionar(NoTarefa("principal", "principal", fallbacks=("fallback",), prioridade=10))
+    grafo.adicionar(NoTarefa("fallback", "alternativa", prioridade=5))
+    agendador = AgendadorAdaptativo(grafo)
+    plano = agendador.planejar()
+    agendador.executar_inicio(plano)
+    agendador.registrar_resultado("principal", False, observacao="falha externa", fallback_tarefa_id="fallback", reintentar=True)
+    assert grafo.tarefas["principal"].estado == EstadoTarefa.PENDENTE
+    assert grafo.tarefas["fallback"].estado == EstadoTarefa.PENDENTE
+    eventos = [e["evento"] for e in agendador.historico]
+    assert "FALLBACK_ATIVADO" in eventos
+    assert "RETRY" in eventos
+
+
+def test_preferencia_oportunidade_e_incerteza_afetam_valor_esperado():
+    grafo = GrafoTarefas()
+    grafo.adicionar_varias([
+        NoTarefa("estavel", "estável", valor_estimado=10, custo_estimado=1, incerteza=0.0),
+        NoTarefa("incerta", "incerta", valor_estimado=14, custo_estimado=1, incerteza=0.9, oportunidade=2),
+    ])
+    agendador = AgendadorAdaptativo(grafo)
+    plano = agendador.planejar(limite=1)
+    assert plano.tarefas[0].id == "estavel"
+
+
+def test_mudanca_de_plano_gera_decisao_persistivel():
+    grafo = GrafoTarefas()
+    grafo.adicionar(NoTarefa("a", "tarefa", prioridade=1))
+    agendador = AgendadorAdaptativo(grafo)
+    plano = agendador.replanejar(motivo="nova evidência", mudancas={"recurso": "liberado"})
+    assert plano.tarefas[0].id == "a"
+    assert any(e["evento"] == "REPLANEJAMENTO" and e["motivo"] == "nova evidência" for e in agendador.historico)
