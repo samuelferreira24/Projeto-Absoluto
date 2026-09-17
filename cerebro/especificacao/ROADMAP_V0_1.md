@@ -48,11 +48,15 @@ O lote piloto cobriu MHT, TXT e DOCX e confirmou a preservação das fontes e a 
 
 ## Fase 6 — Automação
 
-**Estado: preparar contrato semântico antes de automatizar.**
+**Estado: contrato semântico definido e validado em unidade; automação de classificação ainda não ativada.**
 
-Depois de validar o modelo, adicionar classificação assistida, extração de relações, indexação semântica e rotinas de atualização.
+A representação semântica intermediária foi definida em `REPRESENTACAO_SEMANTICA_V0_1.md` e implementada em `cerebro/semantica.py`. O contrato preserva separadamente fonte, unidade semântica, classificação, confiança, estado, relações e proveniência.
 
-A próxima etapa técnica é definir e testar a representação semântica intermediária, mantendo separação entre conteúdo de fonte e inferência derivada, proveniência, estado e confiança.
+A classificação automática por IA, extração automática de relações e indexação semântica continuam condicionadas a testes com casos reais e ambíguos. Não automatizar inferências antes de validar esse comportamento.
+
+## Próxima etapa
+
+Construir um conjunto pequeno de exemplos semânticos reais e ambíguos, provenientes dos materiais já calibrados, e testar classificação, relações e proveniência contra critérios explícitos. A etapa deve produzir evidência antes de qualquer automação em escala.
 
 ## Critério de passagem
 
