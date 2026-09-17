@@ -5,12 +5,14 @@ import os
 import shlex
 import subprocess
 import sys
+import time
 from typing import Any
 
 from .servico import Cerebro
 
 
 def executar_pedidos_pendentes(cerebro: Cerebro, comando: str) -> list[dict[str, Any]]:
+    """Processa uma leva de pedidos e retorna resultados estruturados."""
     comando_argv = shlex.split(comando)
     if not comando_argv:
         raise ValueError("comando do executor vazio")
@@ -59,13 +61,39 @@ def executar_pedidos_pendentes(cerebro: Cerebro, comando: str) -> list[dict[str,
     return resultados
 
 
+def executar_continuamente(cerebro: Cerebro, comando: str, intervalo_segundos: int = 60, max_ciclos: int | None = None) -> list[list[dict[str, Any]]]:
+    """Mantém o worker ativo até parada externa ou limite opcional.
+
+    O worker é deliberadamente neutro quanto ao provedor: o comando externo
+    recebe uma missão/caminho em JSON e devolve JSON. A persistência e a
+    recuperação ficam no Cérebro, permitindo hospedar o processo fora do chat.
+    """
+    if intervalo_segundos < 0:
+        raise ValueError("intervalo_segundos não pode ser negativo")
+    if max_ciclos is not None and max_ciclos <= 0:
+        raise ValueError("max_ciclos deve ser positivo quando informado")
+
+    levas: list[list[dict[str, Any]]] = []
+    ciclos = 0
+    while max_ciclos is None or ciclos < max_ciclos:
+        levas.append(executar_pedidos_pendentes(cerebro, comando))
+        ciclos += 1
+        if max_ciclos is not None and ciclos >= max_ciclos:
+            break
+        time.sleep(intervalo_segundos)
+    return levas
+
+
 def main() -> int:
     comando = os.environ.get("PROJETO_ABSOLUTO_EXECUTOR_CMD")
     if not comando:
         print("PROJETO_ABSOLUTO_EXECUTOR_CMD não configurado", file=sys.stderr)
         return 2
+    intervalo = int(os.environ.get("PROJETO_ABSOLUTO_WORKER_INTERVALO", "60"))
+    limite_raw = os.environ.get("PROJETO_ABSOLUTO_WORKER_MAX_CICLOS")
+    limite = int(limite_raw) if limite_raw else None
     cerebro = Cerebro()
-    resultados = executar_pedidos_pendentes(cerebro, comando)
+    resultados = executar_continuamente(cerebro, comando, intervalo, limite)
     print(json.dumps(resultados, ensure_ascii=False, indent=2))
     return 0
 
