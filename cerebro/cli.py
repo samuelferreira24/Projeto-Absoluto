@@ -3,11 +3,13 @@ from __future__ import annotations
 import argparse
 import json
 
+from .grafo_tarefas import NoTarefa
 from .ingestao import extrair
+from .operacao import operar_entrada
 from .servico import Cerebro
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Cérebro do Projeto Absoluto — V0.1")
     sub = parser.add_subparsers(dest="comando", required=True)
 
@@ -31,7 +33,31 @@ def main() -> int:
     p_inspect = sub.add_parser("inspecionar", help="Extrai sem registrar")
     p_inspect.add_argument("arquivo")
 
-    args = parser.parse_args()
+    p_learn = sub.add_parser("aprender", help="Registra aprendizado na memória do Cérebro")
+    p_learn.add_argument("titulo")
+    p_learn.add_argument("conteudo")
+    p_learn.add_argument("--dados", default="cerebro/data")
+    p_learn.add_argument("--origem", default="cli")
+
+    p_task = sub.add_parser("tarefa", help="Adiciona uma tarefa ao grafo")
+    p_task.add_argument("id")
+    p_task.add_argument("objetivo")
+    p_task.add_argument("--prioridade", type=float, default=1.0)
+    p_task.add_argument("--valor", type=float, default=1.0)
+    p_task.add_argument("--custo", type=float, default=1.0)
+    p_task.add_argument("--tempo", type=float, default=1.0)
+    p_task.add_argument("--dados", default="cerebro/data")
+
+    p_plan = sub.add_parser("planejar", help="Planeja tarefas prontas")
+    p_plan.add_argument("--orcamento", type=float)
+    p_plan.add_argument("--dados", default="cerebro/data")
+
+    p_run = sub.add_parser("executar", help="Executa o ciclo operacional completo sobre uma entrada")
+    p_run.add_argument("arquivo")
+    p_run.add_argument("--objetivo")
+    p_run.add_argument("--dados", default="cerebro/data")
+
+    args = parser.parse_args(argv)
 
     if args.comando == "inspecionar":
         doc = extrair(args.arquivo)
@@ -39,6 +65,7 @@ def main() -> int:
         return 0 if not doc.erros else 2
 
     cerebro = Cerebro(args.dados)
+
     if args.comando == "ingerir":
         reg = cerebro.ingerir(args.arquivo)
         print(reg.to_json())
@@ -58,7 +85,40 @@ def main() -> int:
         print(json.dumps(cerebro.diagnostico(), ensure_ascii=False, indent=2))
         return 0
 
-    return 0
+    if args.comando == "aprender":
+        reg = cerebro.registrar_memoria("APRENDIZADO", args.titulo, args.conteudo, fonte=args.origem)
+        print(reg.to_json())
+        return 0
+
+    if args.comando == "tarefa":
+        cerebro.adicionar_tarefa(NoTarefa(
+            args.id, args.objetivo,
+            prioridade=args.prioridade,
+            valor_estimado=args.valor,
+            custo_estimado=args.custo,
+            tempo_estimado=args.tempo,
+        ))
+        print(json.dumps({"adicionada": args.id, "integridade": cerebro.validar_tarefas()}, ensure_ascii=False, indent=2))
+        return 0
+
+    if args.comando == "planejar":
+        plano = cerebro.planejar_tarefas(orcamento=args.orcamento)
+        print(json.dumps({
+            "tarefas": [t.id for t in plano.tarefas],
+            "custo": plano.custo_estimado,
+            "valor": plano.valor_estimado,
+            "risco": plano.risco_estimado,
+            "tempo": plano.tempo_estimado,
+            "motivo": plano.motivo,
+        }, ensure_ascii=False, indent=2))
+        return 0
+
+    if args.comando == "executar":
+        resultado = operar_entrada(cerebro, args.arquivo, objetivo=args.objetivo)
+        print(json.dumps(resultado.__dict__, ensure_ascii=False, indent=2))
+        return 0
+
+    return 2
 
 
 if __name__ == "__main__":
