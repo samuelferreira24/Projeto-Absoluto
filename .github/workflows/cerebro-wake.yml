@@ -1,0 +1,61 @@
+name: Despertar Cérebro — Runtime
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  repository_dispatch:
+    types: [cerebro-wake]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cerebro-runtime-wake
+  cancel-in-progress: false
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: python -m pip install --upgrade pip jsonschema pytest
+
+      - name: Verificar executor externo
+        id: executor
+        env:
+          EXECUTOR_CMD: ${{ secrets.PROJETO_ABSOLUTO_EXECUTOR_CMD }}
+        run: |
+          if [ -n "$EXECUTOR_CMD" ]; then
+            echo "configurado=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configurado=false" >> "$GITHUB_OUTPUT"
+            echo "Executor externo ainda não configurado; runtime permanece em modo de espera."
+          fi
+
+      - name: Despertar runtime
+        if: steps.executor.outputs.configurado == 'true'
+        env:
+          PROJETO_ABSOLUTO_EXECUTOR_CMD: ${{ secrets.PROJETO_ABSOLUTO_EXECUTOR_CMD }}
+        run: python -m cerebro.worker
+
+      - name: Registrar estado do despertar
+        if: always()
+        run: |
+          {
+            echo "## Despertar do runtime"
+            echo "- Executor configurado: ${{ steps.executor.outputs.configurado }}"
+            echo "- Evento: ${{ github.event_name }}"
+            echo "- Commit: ${{ github.sha }}"
+            echo "- Run: ${{ github.run_id }}"
+            echo "- Data UTC: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } >> "$GITHUB_STEP_SUMMARY"
