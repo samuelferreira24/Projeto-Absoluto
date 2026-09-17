@@ -25,22 +25,24 @@ class PlanoExecucao:
 
 
 class AgendadorAdaptativo:
-    """Escolhe, executa e reavalia tarefas preservando a história das decisões."""
+    """Escolhe, executa, aprende e reavalia tarefas preservando a história."""
 
     def __init__(self, grafo: GrafoTarefas) -> None:
         self.grafo = grafo
         self.historico: list[dict[str, object]] = []
+        self.perfis: dict[str, dict[str, float]] = {}
 
     @staticmethod
-    def pontuacao(tarefa: NoTarefa) -> float:
-        """Valor marginal aproximado para o contexto atual."""
+    def pontuacao(tarefa: NoTarefa, perfil: dict[str, float] | None = None) -> float:
+        """Valor marginal ajustado por risco, custo, prazo e experiência observada."""
+        perfil = perfil or {}
         valor = tarefa.valor_estimado if tarefa.valor_estimado > 0 else tarefa.prioridade
         custo = tarefa.custo_estimado if tarefa.custo_estimado > 0 else 1.0
         risco = max(0.0, min(1.0, tarefa.risco))
-        # V0.1: prazo menor significa maior urgência quando prazo é tratado
-        # como uma janela restante positiva; sem prazo, urgência neutra.
         urgencia = 1.0 / max(1.0, tarefa.prazo) if tarefa.prazo is not None else 1.0
-        return (valor * urgencia * (1.0 - risco)) / custo
+        confiabilidade_observada = perfil.get("confiabilidade", 1.0)
+        fator_tempo = perfil.get("fator_tempo", 1.0)
+        return (valor * urgencia * (1.0 - risco) * confiabilidade_observada) / (custo * max(0.1, fator_tempo))
 
     def planejar(
         self,
@@ -55,7 +57,10 @@ class AgendadorAdaptativo:
             self._registrar_historico(plano, evento="PLANEJAMENTO")
             return plano
 
-        ordenadas = sorted(prontas, key=lambda t: (-self.pontuacao(t), -t.prioridade, t.id))
+        ordenadas = sorted(
+            prontas,
+            key=lambda t: (-self.pontuacao(t, self.perfis.get(t.id)), -t.prioridade, t.id),
+        )
         selecionadas: list[NoTarefa] = []
         usados: set[str] = set()
         custo = valor = risco = tempo = prioridade = 0.0
@@ -70,12 +75,14 @@ class AgendadorAdaptativo:
                 custo_tarefa = 1.0 / max(tarefa.prioridade, 0.1)
             if orcamento is not None and custo + custo_tarefa > orcamento:
                 continue
+            perfil = self.perfis.get(tarefa.id, {})
+            tempo_tarefa = max(0.0, tarefa.tempo_estimado) * perfil.get("fator_tempo", 1.0)
             selecionadas.append(tarefa)
             usados.update(recursos)
             custo += custo_tarefa
             valor += max(0.0, tarefa.valor_estimado or tarefa.prioridade)
             risco += max(0.0, min(1.0, tarefa.risco))
-            tempo += max(0.0, tarefa.tempo_estimado)
+            tempo += tempo_tarefa
             prioridade += tarefa.prioridade
 
         plano = PlanoExecucao(
@@ -85,7 +92,7 @@ class AgendadorAdaptativo:
             prioridade,
             risco / len(selecionadas) if selecionadas else 0.0,
             tempo,
-            "valor marginal ajustado por risco/custo/prazo + paralelismo por recursos",
+            "valor marginal ajustado por risco/custo/prazo + experiência + paralelismo por recursos",
         )
         self._registrar_historico(plano, evento="PLANEJAMENTO")
         return plano
@@ -95,14 +102,36 @@ class AgendadorAdaptativo:
             self.grafo.marcar(tarefa.id, EstadoTarefa.EXECUTANDO)
         self._registrar_historico(plano, evento="INICIO_EXECUCAO")
 
-    def registrar_resultado(self, tarefa_id: str, sucesso: bool, *, observacao: str | None = None) -> None:
-        """Registra o resultado sem apagar o contexto que levou à decisão."""
+    def registrar_resultado(
+        self,
+        tarefa_id: str,
+        sucesso: bool,
+        *,
+        observacao: str | None = None,
+        custo_real: float | None = None,
+        tempo_real: float | None = None,
+        qualidade: float | None = None,
+    ) -> None:
+        """Registra o resultado e atualiza um perfil local para o próximo planejamento."""
+        tarefa = self.grafo.tarefas[tarefa_id]
         self.grafo.marcar(tarefa_id, EstadoTarefa.CONCLUIDA if sucesso else EstadoTarefa.FALHOU)
+        perfil = self.perfis.setdefault(tarefa_id, {"execucoes": 0.0, "sucessos": 0.0, "confiabilidade": 1.0, "fator_tempo": 1.0})
+        perfil["execucoes"] += 1.0
+        if sucesso:
+            perfil["sucessos"] += 1.0
+        perfil["confiabilidade"] = perfil["sucessos"] / perfil["execucoes"]
+        if tempo_real is not None and tarefa.tempo_estimado > 0:
+            observado = max(0.1, tempo_real / tarefa.tempo_estimado)
+            perfil["fator_tempo"] = (perfil["fator_tempo"] * (perfil["execucoes"] - 1.0) + observado) / perfil["execucoes"]
         self.historico.append({
             "evento": "RESULTADO",
             "tarefa": tarefa_id,
             "sucesso": sucesso,
             "observacao": observacao or "",
+            "custo_real": custo_real,
+            "tempo_real": tempo_real,
+            "qualidade": qualidade,
+            "perfil_atualizado": dict(perfil),
         })
 
     def retentar_tarefa(self, tarefa_id: str, *, motivo: str = "nova tentativa") -> None:
@@ -118,14 +147,17 @@ class AgendadorAdaptativo:
         })
 
     def replanejar(self, recursos_disponiveis: set[str] | None = None, **kwargs: object) -> PlanoExecucao:
-        """Recalcula a partir do estado atual, preservando as decisões anteriores."""
+        """Recalcula a partir do estado atual e da experiência observada."""
         plano = self.planejar(recursos_disponiveis, **kwargs)
         self.historico.append({
             "evento": "REPLANEJAMENTO",
             "tarefas": [t.id for t in plano.tarefas],
-            "motivo": "estado do grafo, resultado ou recursos alterados",
+            "motivo": "estado do grafo, resultados, experiência ou recursos alterados",
         })
         return plano
+
+    def perfil_tarefa(self, tarefa_id: str) -> dict[str, float]:
+        return dict(self.perfis.get(tarefa_id, {}))
 
     def _registrar_historico(self, plano: PlanoExecucao, *, evento: str) -> None:
         self.historico.append({
