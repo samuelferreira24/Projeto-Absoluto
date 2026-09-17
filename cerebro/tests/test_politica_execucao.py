@@ -1,10 +1,10 @@
 from cerebro.politica_execucao import Acao, NivelAutonomia, PoliticaExecucao
 
 
-def test_politica_permite_acoes_reversiveis_no_limite():
+def test_politica_permite_acoes_ate_o_limite():
     politica = PoliticaExecucao(NivelAutonomia.ACOES_REVERSIVEIS)
     assert politica.autorizada(Acao("pesquisar", NivelAutonomia.PESQUISAR))
-    assert politica.autorizada(Acao("criar_branch", NivelAutonomia.DELEGAR))
+    assert politica.autorizada(Acao("registrar_resultado", NivelAutonomia.ACOES_REVERSIVEIS))
 
 
 def test_politica_bloqueia_alem_do_limite():
