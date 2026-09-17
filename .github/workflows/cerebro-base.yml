@@ -30,7 +30,7 @@ jobs:
         run: python -m pip install --upgrade pip jsonschema pytest
 
       - name: Executar testes
-        run: pytest -q tests/test_base_structure.py
+        run: pytest -q tests/test_base_structure.py tests/test_ingestao_contract.py
 
       - name: Registrar retorno
         if: always()
