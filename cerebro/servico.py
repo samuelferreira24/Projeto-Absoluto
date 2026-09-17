@@ -50,7 +50,7 @@ class Cerebro:
         self.grafo_tarefas = GrafoTarefas()
         self.agendador = AgendadorAdaptativo(\n            self.grafo_tarefas,\n            self.agendador_path,\n            self.repo.root.parent / "memoria" / "aprendizados.jsonl",\n        )
         self.detector_sinergia = DetectorSinergia()
-        self.orquestrador_adaptativo = OrquestradorAdaptativo(self.grafo_tarefas)
+        self.orquestrador_adaptativo = OrquestradorAdaptativo(self.grafo_tarefas, agendador=self.agendador)
         self.interface_chat = InterfaceChat(self)
 
     def inventario_capacidades(self) -> list[dict[str, Any]]:
