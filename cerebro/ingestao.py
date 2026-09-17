@@ -10,6 +10,7 @@ import hashlib
 import html
 import json
 import re
+import shutil
 import zipfile
 import xml.etree.ElementTree as ET
 
@@ -136,6 +137,16 @@ def extrair(path: str | Path) -> DocumentoEstruturado:
 
 
 def registrar_fonte(repo: RepositorioJSONL, documento: DocumentoEstruturado) -> Registro:
+    origem = Path(documento.origem)
+    fonte_destino: str | None = None
+    if origem.exists() and origem.is_file():
+        fontes_dir = repo.root / "fontes"
+        fontes_dir.mkdir(parents=True, exist_ok=True)
+        destino = fontes_dir / f"{documento.sha256}{origem.suffix.lower()}"
+        if not destino.exists():
+            shutil.copy2(origem, destino)
+        fonte_destino = str(destino)
+
     registro = novo_registro(
         repo, "DOCUMENTO", documento.nome, documento.texto,
         source=documento.origem,
@@ -146,6 +157,8 @@ def registrar_fonte(repo: RepositorioJSONL, documento: DocumentoEstruturado) -> 
             "formato": documento.formato,
             "extrator": documento.metadados.get("parser"),
             "erros": documento.erros,
+            "fonte_original_preservada": fonte_destino is not None,
+            "copia_original": fonte_destino,
         },
         metadata={"tamanho": documento.tamanho, "estrutura": documento.estrutura, **documento.metadados},
     )
