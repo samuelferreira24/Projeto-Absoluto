@@ -1,0 +1,26 @@
+{
+  "versao": "0.1",
+  "descricao": "Consolidação inicial dos aprendizados acumulados na evolução do Projeto Absoluto. Estes registros são conhecimento histórico consolidado, não apenas aprendizados desta sessão.",
+  "aprendizados": [
+    {"tipo":"VISAO","titulo":"Sistema não é IA","conteudo":"O Sistema é uma estrutura maior na qual IA, automação, software e outras tecnologias são engrenagens."},
+    {"tipo":"VISAO","titulo":"Três pilares","conteudo":"O projeto maior se organiza conceitualmente em Imperador, Sistema e Império; economia é mecanismo interno, não um quarto pilar."},
+    {"tipo":"ARQUITETURA","titulo":"Visão não limitada","conteudo":"O primeiro sistema tentou concentrar todo o sistema em um único aplicativo. Essa experiência ensinou que um protótipo inicial não deve limitar a arquitetura futura."},
+    {"tipo":"PRINCIPIO","titulo":"Passado informa, não determina","conteudo":"Artefatos históricos devem ser compreendidos no contexto em que foram criados antes de serem reutilizados. O passado informa a arquitetura; não determina a arquitetura."},
+    {"tipo":"APRENDIZADO","titulo":"Múltiplos caminhos","conteudo":"O projeto não deve depender da descoberta antecipada de um único caminho correto. Deve explorar caminhos em paralelo, aprender, reconhecer convergências, multiplicar ganhos e abandonar caminhos sem perder aprendizado."},
+    {"tipo":"APRENDIZADO","titulo":"Lembretes podem ampliar a rota","conteudo":"Uma correção ou lembrete nem sempre significa mudar a rota em andamento; pode significar ampliar o que já estava sendo construído para incorporar uma dimensão adicional."},
+    {"tipo":"ARQUITETURA","titulo":"Cérebro como memória viva","conteudo":"O Cérebro deve guardar documentos, pesquisas, contexto, progresso, entendimentos, mudanças de entendimento, descobertas, decisões, ações, resultados, erros, experiências, aprendizados, sabedoria e relações."},
+    {"tipo":"APRENDIZADO","titulo":"Guardar o próprio progresso","conteudo":"O progresso da construção e os entendimentos produzidos durante a construção são conhecimento relevante e devem ser preservados."},
+    {"tipo":"CICLO","titulo":"Aprender enquanto constrói","conteudo":"Pesquisa, construção, resultado e aprendizado formam um ciclo. O sistema deve aumentar sua capacidade enquanto é construído."},
+    {"tipo":"ARQUITETURA","titulo":"IA é participante, não dona","conteudo":"A IA utiliza e alimenta o Cérebro, mas não é o proprietário do conhecimento do projeto. A arquitetura deve permitir substituição e multiplicidade de IAs."},
+    {"tipo":"ARQUITETURA","titulo":"Múltiplas IAs","conteudo":"Várias IAs podem compartilhar o mesmo Cérebro, com funções diferentes e possibilidade de supervisão, auditoria, debate e delegação dinâmica."},
+    {"tipo":"ARQUITETURA","titulo":"Motores e combustível","conteudo":"Motores são provedores de capacidade de processamento; combustível são recursos consumidos por eles, como tokens, créditos de API, GPU-hours, CPU-hours e capacidade computacional."},
+    {"tipo":"ARQUITETURA","titulo":"Coleta universal","conteudo":"A coleta deve aceitar qualquer fonte por meio de adaptadores específicos, preservando captura bruta, proveniência e idempotência, sem depender de uma lista fechada de fontes."},
+    {"tipo":"DADO","titulo":"Evidência bruta preservada","conteudo":"A evidência original deve permanecer intacta; interpretações, classificações e aprendizados ficam em camadas derivadas com proveniência."},
+    {"tipo":"HISTORICO","titulo":"Separar fases históricas","conteudo":"É necessário distinguir visão original, intenção, tentativa de implementação, execução, erros, limitações, reflexões, descobertas, aprendizados, mudanças de entendimento, material de estudo e arquitetura superada."},
+    {"tipo":"APRENDIZADO","titulo":"Protótipo antigo é evidência, não autoridade","conteudo":"Uma implementação antiga pode ser material de estudo e fonte de aprendizado sem ser tratada automaticamente como arquitetura atual."},
+    {"tipo":"ARQUITETURA","titulo":"Rede de relações","conteudo":"Elementos do projeto devem poder relacionar-se por dependência, habilitação, impulso, multiplicação de valor, convergência, alimentação, validação, questionamento, contradição, substituição, derivação, reutilização e revelação."},
+    {"tipo":"TEMPO","titulo":"Passado, presente e futuro","conteudo":"O projeto deve compreender seu passado, registrar seu presente e usar ambos para orientar sua evolução futura."},
+    {"tipo":"OPERACAO","titulo":"Persistência 24/7 exige controle","conteudo":"Operação contínua requer objetivos, permissões, guardrails, observabilidade, controle de custos e recursos, escalonamento e aprovação humana para ações de alto impacto ou irreversíveis."},
+    {"tipo":"META","titulo":"Construção e planejamento se alimentam","conteudo":"Planejamento deve evoluir com a experiência de construção, e a construção deve alimentar o planejamento com resultados, erros, descobertas e novos entendimentos."}
+  ]
+}
