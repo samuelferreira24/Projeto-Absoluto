@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from .auditoria import ResultadoAuditoria, auditar_semantica
+from .despertador import Despertador, PedidoDespertar
 from .estado import EstadoSistema
 from .ingestao import DocumentoEstruturado, extrair, registrar_fonte
 from .nucleo import Registro, RepositorioJSONL
@@ -24,6 +25,7 @@ class Cerebro:
         self.rede_path = self.repo.root / "rede_evolutiva.json"
         self.orquestrador_path = self.repo.root / "orquestrador.json"
         self.runtime_path = self.repo.root / "runtime.json"
+        self.despertador = Despertador(self.repo.root / "despertar.json")
         self.estado = EstadoSistema()
         if self.estado_path.exists():
             self.estado = EstadoSistema.carregar(self.estado_path)
@@ -86,6 +88,12 @@ class Cerebro:
     def registrar_missao(self, missao: Missao) -> None:
         self.orquestrador.registrar_missao(missao)
 
+    def solicitar_despertar(self, missao_id: str, origem: str, correlation_id: str | None = None, detalhes: dict[str, Any] | None = None) -> PedidoDespertar:
+        return self.despertador.solicitar(missao_id, origem, correlation_id, detalhes)
+
+    def despertares_pendentes(self, missao_id: str | None = None) -> list[PedidoDespertar]:
+        return self.despertador.pendentes(missao_id)
+
     def executar_missao(self, missao_id: str, candidatos: Callable, executor: Callable) -> dict[str, Any]:
         """Executa um ciclo recuperável sem depender da conversa aberta."""
         resultado = self.runtime.executar_ciclo(missao_id, candidatos, executor)
@@ -113,4 +121,5 @@ class Cerebro:
             "missoes": len(self.orquestrador.missoes),
             "ciclos": self.runtime.estado.ciclos,
             "runtime": self.runtime.estado.estado,
+            "despertares_pendentes": len(self.despertador.pendentes()),
         }
