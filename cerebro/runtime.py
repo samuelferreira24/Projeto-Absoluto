@@ -3,8 +3,12 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Callable, Any
+from typing import Any, Callable
 import json
+import os
+import socket
+import time
+import uuid
 
 from .ciclo_continuo import CicloContinuo
 from .orquestrador import Orquestrador
@@ -14,56 +18,156 @@ def agora() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
+def _parse_iso(valor: str | None) -> datetime | None:
+    if not valor:
+        return None
+    return datetime.fromisoformat(valor.replace("Z", "+00:00"))
+
+
 @dataclass
 class EstadoRuntime:
     estado: str = "PARADO"
     ultimo_ciclo: str | None = None
     ciclos: int = 0
     motivo_parada: str | None = None
+    runtime_id: str | None = None
     lease_id: str | None = None
     lease_expira_em: str | None = None
+    heartbeat_em: str | None = None
 
 
 class RuntimeContinuo:
-    """Laço persistente com lease para evitar dois runtimes simultâneos."""
+    """Runtime recuperável com claim atômico, lease e heartbeat.
 
-    def __init__(self, orquestrador: Orquestrador, path: str | Path = "cerebro/data/runtime.json") -> None:
+    O lease impede concorrência local; sua expiração permite recuperar um
+    worker abandonado. Efeitos externos continuam exigindo idempotência.
+    """
+
+    def __init__(
+        self,
+        orquestrador: Orquestrador,
+        path: str | Path = "cerebro/data/runtime.json",
+        lease_path: str | Path | None = None,
+        lease_segundos: int = 300,
+    ) -> None:
+        if lease_segundos <= 0:
+            raise ValueError("lease_segundos deve ser positivo")
         self.orquestrador = orquestrador
         self.path = Path(path)
-        self.estado = EstadoRuntime()
+        self.lease_path = Path(lease_path) if lease_path else self.path.with_suffix(".lease")
+        self.lease_segundos = lease_segundos
+        self.estado = EstadoRuntime(runtime_id=f"{socket.gethostname()}-{uuid.uuid4().hex[:12]}")
         self._carregar()
 
     def _carregar(self) -> None:
-        if self.path.exists():
-            self.estado = EstadoRuntime(**json.loads(self.path.read_text(encoding="utf-8")))
-            if self.estado.estado == "EXECUTANDO":
+        if not self.path.exists():
+            return
+        self.estado = EstadoRuntime(**json.loads(self.path.read_text(encoding="utf-8")))
+        if self.estado.estado == "EXECUTANDO":
+            expiracao = _parse_iso(self.estado.lease_expira_em)
+            if expiracao is None or expiracao <= datetime.now(timezone.utc):
                 self.estado.estado = "RECUPERADO"
-                self.estado.motivo_parada = "runtime anterior foi interrompido"
+                self.estado.motivo_parada = "lease do runtime anterior expirou"
                 self.estado.lease_id = None
                 self.estado.lease_expira_em = None
                 self._salvar()
 
     def _salvar(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.path.write_text(json.dumps(self.estado.__dict__, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        temporario = self.path.with_name(f".{self.path.name}.{os.getpid()}.tmp")
+        temporario.write_text(
+            json.dumps(self.estado.__dict__, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        os.replace(temporario, self.path)
 
-    def adquirir_lease(self, lease_id: str, expira_em: str) -> None:
-        if self.estado.lease_id is not None and self.estado.estado == "EXECUTANDO":
-            raise RuntimeError("runtime já possui lease ativo")
-        self.estado.lease_id = lease_id
-        self.estado.lease_expira_em = expira_em
+    def _lease_expirado(self) -> bool:
+        if not self.lease_path.exists():
+            return True
+        try:
+            dados = json.loads(self.lease_path.read_text(encoding="utf-8"))
+            expiracao = _parse_iso(dados.get("expira_em"))
+            return expiracao is None or expiracao <= datetime.now(timezone.utc)
+        except (OSError, json.JSONDecodeError):
+            return True
+
+    def adquirir_lease(self, lease_id: str, expira_em: str | None = None) -> None:
+        self.lease_path.parent.mkdir(parents=True, exist_ok=True)
+        expiracao = _parse_iso(expira_em) if expira_em else None
+        if expiracao is None:
+            expiracao = datetime.now(timezone.utc).replace(microsecond=0)
+            expiracao = expiracao + __import__("datetime").timedelta(seconds=self.lease_segundos)
+        dados = {
+            "lease_id": lease_id,
+            "runtime_id": self.estado.runtime_id,
+            "expira_em": expiracao.isoformat(),
+            "criado_em": agora(),
+        }
+        conteudo = json.dumps(dados, ensure_ascii=False)
+        for tentativa in range(2):
+            try:
+                fd = os.open(self.lease_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                try:
+                    os.write(fd, conteudo.encode("utf-8"))
+                finally:
+                    os.close(fd)
+                self.estado.lease_id = lease_id
+                self.estado.lease_expira_em = expiracao.isoformat()
+                self.estado.heartbeat_em = agora()
+                self._salvar()
+                return
+            except FileExistsError:
+                if not self._lease_expirado() or tentativa == 1:
+                    raise RuntimeError("runtime já possui lease ativo")
+                try:
+                    self.lease_path.unlink()
+                except FileNotFoundError:
+                    pass
+        raise RuntimeError("não foi possível adquirir lease")
+
+    def renovar_lease(self, lease_id: str, expira_em: str | None = None) -> None:
+        if self.estado.lease_id != lease_id:
+            raise RuntimeError("lease inválido")
+        if not self.lease_path.exists():
+            raise RuntimeError("lease não existe mais")
+        dados = json.loads(self.lease_path.read_text(encoding="utf-8"))
+        if dados.get("lease_id") != lease_id:
+            raise RuntimeError("lease não pertence a este runtime")
+        expiracao = _parse_iso(expira_em)
+        if expiracao is None:
+            expiracao = datetime.now(timezone.utc).replace(microsecond=0)
+            expiracao = expiracao + __import__("datetime").timedelta(seconds=self.lease_segundos)
+        dados["expira_em"] = expiracao.isoformat()
+        dados["heartbeat_em"] = agora()
+        self.lease_path.write_text(json.dumps(dados, ensure_ascii=False), encoding="utf-8")
+        self.estado.lease_expira_em = expiracao.isoformat()
+        self.estado.heartbeat_em = dados["heartbeat_em"]
         self._salvar()
 
     def liberar_lease(self, lease_id: str) -> None:
         if self.estado.lease_id != lease_id:
             raise RuntimeError("lease inválido")
+        try:
+            dados = json.loads(self.lease_path.read_text(encoding="utf-8"))
+            if dados.get("lease_id") == lease_id:
+                self.lease_path.unlink()
+        except FileNotFoundError:
+            pass
         self.estado.lease_id = None
         self.estado.lease_expira_em = None
+        self.estado.heartbeat_em = None
         self._salvar()
 
-    def executar_ciclo(self, missao_id: str, candidatos: Callable, executor: Callable, lease_id: str | None = None, lease_expira_em: str | None = None) -> dict[str, Any]:
-        if lease_id is not None:
-            self.adquirir_lease(lease_id, lease_expira_em or agora())
+    def executar_ciclo(
+        self,
+        missao_id: str,
+        candidatos: Callable,
+        executor: Callable,
+        lease_id: str | None = None,
+        lease_expira_em: str | None = None,
+    ) -> dict[str, Any]:
+        identificador = lease_id or f"{self.estado.runtime_id}-{uuid.uuid4().hex[:12]}"
+        self.adquirir_lease(identificador, lease_expira_em)
         self.estado.estado = "EXECUTANDO"
         self.estado.motivo_parada = None
         self._salvar()
@@ -80,14 +184,16 @@ class RuntimeContinuo:
             self._salvar()
             raise
         finally:
-            if lease_id is not None and self.estado.lease_id == lease_id:
-                self.estado.lease_id = None
-                self.estado.lease_expira_em = None
-                self._salvar()
+            if self.estado.lease_id == identificador:
+                self.liberar_lease(identificador)
 
     def parar(self, motivo: str = "parada solicitada") -> None:
+        if self.estado.lease_id:
+            try:
+                self.liberar_lease(self.estado.lease_id)
+            except RuntimeError:
+                self.estado.lease_id = None
+                self.estado.lease_expira_em = None
         self.estado.estado = "PARADO"
         self.estado.motivo_parada = motivo
-        self.estado.lease_id = None
-        self.estado.lease_expira_em = None
         self._salvar()
