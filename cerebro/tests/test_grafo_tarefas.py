@@ -28,3 +28,9 @@ def test_detecta_dependencia_inexistente_e_ciclo():
     ciclo.adicionar(NoTarefa(id="a", objetivo="x", depende_de=("b",)))
     ciclo.adicionar(NoTarefa(id="b", objetivo="y", depende_de=("a",)))
     assert "grafo contém ciclo de dependências" in ciclo.validar()
+
+
+def test_dependencia_ausente_nao_fica_pronta_por_acidente():
+    grafo = GrafoTarefas()
+    grafo.adicionar(NoTarefa(id="a", objetivo="x", depende_de=("ausente",)))
+    assert grafo.prontas() == []
