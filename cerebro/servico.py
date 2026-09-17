@@ -9,6 +9,7 @@ from .despertador import Despertador, PedidoDespertar
 from .estado import EstadoSistema
 from .ingestao import DocumentoEstruturado, extrair, registrar_fonte
 from .nucleo import Registro, RepositorioJSONL, novo_registro
+from .nucleo import Registro, RepositorioJSONL, novo_registro
 from .orquestrador import Missao, Orquestrador
 from .organizacao import FilaOrganizacao
 from .recuperacao import ResultadoBusca, buscar_hibrido, expandir_relacoes
@@ -17,6 +18,7 @@ from .rede_evolutiva import ArestaRede, NoRede, RedeEvolutiva
 from .runtime import RuntimeContinuo
 from .semantica import RelacaoSemantica, UnidadeSemantica
 from .consolidar_aprendizados import salvar_consolidado
+from .grafo_tarefas import GrafoTarefas, NoTarefa
 
 
 class Cerebro:
@@ -38,6 +40,7 @@ class Cerebro:
         self.rede = RedeEvolutiva.carregar(self.rede_path) if self.rede_path.exists() else RedeEvolutiva()
         self.orquestrador = Orquestrador(self.orquestrador_path)
         self.runtime = RuntimeContinuo(self.orquestrador, self.runtime_path)
+        self.grafo_tarefas = GrafoTarefas()
 
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
         return extrair(arquivo)
@@ -88,6 +91,18 @@ class Cerebro:
 
     def registrar_progresso(self, titulo: str, conteudo: str, **kwargs: Any) -> Registro:
         return self.registrar_memoria("PROGRESSO", titulo, conteudo, **kwargs)
+
+    def adicionar_tarefa(self, tarefa: NoTarefa) -> None:
+        self.grafo_tarefas.adicionar(tarefa)
+
+    def validar_tarefas(self) -> list[str]:
+        return self.grafo_tarefas.validar()
+
+    def tarefas_prontas(self, recursos: set[str] | None = None) -> list[NoTarefa]:
+        return self.grafo_tarefas.prontas(recursos)
+
+    def lote_paralelo(self, recursos: set[str] | None = None) -> list[list[NoTarefa]]:
+        return self.grafo_tarefas.lotes_paralelos(recursos)
 
     def consolidar_aprendizados(self, memoria: str | Path = "cerebro/memoria") -> dict[str, Any]:
         """Torna o aprendizado acumulado + novo uma visão consolidada do Cérebro.
@@ -193,5 +208,8 @@ class Cerebro:
             "despertares_pendentes": len(self.despertador.pendentes()),
             "captura_bruta": str(self.coletor.raw_path),
             "organizacao_pendente": len(self.fila_organizacao.pendentes()),
+            "tarefas": len(self.grafo_tarefas.tarefas),
+            "tarefas_prontas": len(self.tarefas_prontas()),
+            "integridade_tarefas": self.validar_tarefas(),
             "aprendizados_consolidados": aprendizados_consolidados,
         }
