@@ -30,7 +30,7 @@ jobs:
         run: python -m pip install --upgrade pip jsonschema pytest
 
       - name: Executar testes
-        run: pytest -q tests/test_base_structure.py tests/test_ingestao.py tests/test_calibracao.py tests/test_acervo.py tests/test_nucleo_recuperacao.py tests/test_semantica.py cerebro/tests/test_nucleo.py
+        run: pytest -q tests/test_base_structure.py tests/test_ingestao.py tests/test_calibracao.py tests/test_acervo.py tests/test_nucleo_recuperacao.py tests/test_semantica.py cerebro/tests/test_nucleo.py cerebro/tests/test_semantica.py cerebro/tests/test_modelos.py
 
       - name: Registrar retorno
         if: always()
