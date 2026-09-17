@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from .auditoria import ResultadoAuditoria, auditar_semantica
+from .coleta import ColetorMemoria, EventoCapturado
 from .despertador import Despertador, PedidoDespertar
 from .estado import EstadoSistema
 from .ingestao import DocumentoEstruturado, extrair, registrar_fonte
@@ -26,6 +27,7 @@ class Cerebro:
         self.orquestrador_path = self.repo.root / "orquestrador.json"
         self.runtime_path = self.repo.root / "runtime.json"
         self.despertador = Despertador(self.repo.root / "despertar.json")
+        self.coletor = ColetorMemoria(self.repo)
         self.estado = EstadoSistema()
         if self.estado_path.exists():
             self.estado = EstadoSistema.carregar(self.estado_path)
@@ -42,6 +44,10 @@ class Cerebro:
         if documento.erros:
             raise ValueError(f"Falha na ingestão: {documento.erros}")
         return registrar_fonte(self.repo, documento)
+
+    def capturar_evento(self, evento: EventoCapturado) -> list[Registro]:
+        """Entrada única para eventos provenientes de chats, IAs e plataformas."""
+        return self.coletor.capturar(evento)
 
     def registrar_memoria(
         self,
@@ -159,4 +165,5 @@ class Cerebro:
             "ciclos": self.runtime.estado.ciclos,
             "runtime": self.runtime.estado.estado,
             "despertares_pendentes": len(self.despertador.pendentes()),
+            "captura_bruta": str(self.coletor.raw_path),
         }
