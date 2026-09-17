@@ -66,8 +66,6 @@ class OrquestradorAdaptativo:
         for tarefa in sorted(prontas, key=self._chave):
             if limite is not None and len(escolhidas) >= limite:
                 break
-            if set(tarefa.recursos) & usados:
-                continue
             if not self._recursos_suportam(tarefa, uso_por_recurso):
                 continue
             if orcamento is not None and custo + max(0.0, tarefa.custo_estimado) > orcamento:
@@ -87,9 +85,8 @@ class OrquestradorAdaptativo:
     def _recursos_suportam(self, tarefa: NoTarefa, uso: dict[str, float]) -> bool:
         for recurso_id in tarefa.recursos:
             recurso = self.recursos.get(recurso_id)
-            if recurso is None:
-                continue
-            if uso.get(recurso_id, 0.0) + 1.0 > max(0.0, recurso.capacidade):
+            capacidade = recurso.capacidade if recurso is not None else 1.0
+            if uso.get(recurso_id, 0.0) + 1.0 > max(0.0, capacidade):
                 return False
         return True
 
