@@ -61,7 +61,7 @@ Resultados de execucao e mudancas de estrategia podem ser registrados no sistema
 
 ## 11. Pesquisa adicional incorporada
 
-Pesquisas recentes reforcam a necessidade de tratar planejamento como processo adaptativo, nao como ordem fixa. TPS-Bench avalia simultaneamente sucesso e eficiencia de scheduling; trabalhos recentes sobre memoria mostram que experiencias devem alimentar melhoria continua, mas que consolidacao automatica pode degradar conhecimento se substituir evidencia bruta. citeturn1academia0turn2academia1turn2academia3
+Pesquisas recentes reforcam a necessidade de tratar planejamento como processo adaptativo, nao como ordem fixa. TPS-Bench avalia simultaneamente sucesso e eficiencia de scheduling; trabalhos recentes sobre memoria mostram que experiencias devem alimentar melhoria continua, mas que consolidacao automatica pode degradar conhecimento se substituir evidencia bruta.
 
 ## 12. Limitacoes deliberadas
 
