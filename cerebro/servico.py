@@ -24,6 +24,7 @@ from .sinergia import DetectorSinergia, ResultadoCombinacao, SinalSinergia
 from .continuidade import carregar_snapshot, gerar_prompt_retoma, salvar_prompt_retoma, salvar_snapshot
 from .contexto_operacional import ContextoOperacional, construir_contexto, salvar_contexto, salvar_prompt_contexto
 from .interface_chat import InterfaceChat, MensagemChat
+from .inventario_capacidades import inventariar, resumo as resumo_capacidades, exportar_json as exportar_inventario_capacidades
 
 
 class Cerebro:
@@ -52,6 +53,15 @@ class Cerebro:
         self.orquestrador_adaptativo = OrquestradorAdaptativo(self.grafo_tarefas)
         self.interface_chat = InterfaceChat(self)
 
+    def inventario_capacidades(self) -> list[dict[str, Any]]:
+        return inventariar()
+
+    def resumo_capacidades(self) -> dict[str, Any]:
+        return resumo_capacidades()
+
+    def exportar_inventario_capacidades(self, path: str | Path = "cerebro/data/inventario_capacidades_v0_1.json") -> dict[str, Any]:
+        return exportar_inventario_capacidades(path)
+
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
         return extrair(arquivo)
 
@@ -74,7 +84,6 @@ class Cerebro:
         return self.interface_chat.contexto_para_retoma(objetivo=objetivo, limite=limite)
 
     def contexto_operacional(self, *, objetivo: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> ContextoOperacional:
-        """Retorna o estado operacional que qualquer chat deve conhecer antes de agir."""
         return construir_contexto(self, objetivo=objetivo, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
 
     def salvar_contexto_operacional(self, *, objetivo: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None, path: str | Path | None = None) -> dict[str, Any]:
@@ -124,12 +133,7 @@ class Cerebro:
         return self.agendador.replanejar(recursos, **kwargs)
 
     def plano_adaptativo(self, recursos: set[str] | None = None, *, orcamento: float | None = None, capacidade_de_tempo: float | None = None, limite: int | None = None) -> tuple[NoTarefa, ...]:
-        return self.orquestrador_adaptativo.plano_adaptativo(
-            recursos,
-            orcamento=orcamento,
-            capacidade_de_tempo=capacidade_de_tempo,
-            limite=limite,
-        )
+        return self.orquestrador_adaptativo.plano_adaptativo(recursos, orcamento=orcamento, capacidade_de_tempo=capacidade_de_tempo, limite=limite)
 
     def replanejar_apos_resultado(self, tarefa_id: str, sucesso: bool = True, **kwargs: Any) -> tuple[NoTarefa, ...]:
         return self.orquestrador_adaptativo.replanejar_apos_resultado(tarefa_id, sucesso, **kwargs)
@@ -148,14 +152,12 @@ class Cerebro:
         return salvar_consolidado(memoria / "aprendizados_consolidados_v0_1.json", memoria / "aprendizados.jsonl", memoria / "aprendizados_fundamentais_v0_1.json")
 
     def checkpoint(self, *, objetivo_atual: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> dict[str, Any]:
-        """Persiste uma fotografia portátil da sessão para continuidade em outro chat."""
         self.salvar_estado()
         self.agendador.salvar_historico()
         self.salvar_contexto_operacional(objetivo=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
         return salvar_snapshot(self, objetivo_atual=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
 
     def preparar_retoma(self, *, objetivo_atual: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> str:
-        """Gera o prompt portátil de retomada após salvar o checkpoint."""
         self.checkpoint(objetivo_atual=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
         return salvar_prompt_retoma(self, objetivo_atual=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
 
@@ -262,4 +264,5 @@ class Cerebro:
             "tarefas_prontas": len(self.tarefas_prontas()),
             "integridade_tarefas": self.validar_tarefas(),
             "aprendizados_consolidados": aprendizados_consolidados,
+            "capacidades": resumo_capacidades(),
         }
