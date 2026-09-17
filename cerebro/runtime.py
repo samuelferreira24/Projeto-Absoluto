@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable
 import json
 import os
 import socket
-import time
 import uuid
 
 from .ciclo_continuo import CicloContinuo
@@ -70,6 +69,7 @@ class RuntimeContinuo:
                 self.estado.motivo_parada = "lease do runtime anterior expirou"
                 self.estado.lease_id = None
                 self.estado.lease_expira_em = None
+                self.estado.heartbeat_em = None
                 self._salvar()
 
     def _salvar(self) -> None:
@@ -91,24 +91,27 @@ class RuntimeContinuo:
         except (OSError, json.JSONDecodeError):
             return True
 
+    def _nova_expiracao(self) -> str:
+        return (datetime.now(timezone.utc) + timedelta(seconds=self.lease_segundos)).replace(microsecond=0).isoformat()
+
     def adquirir_lease(self, lease_id: str, expira_em: str | None = None) -> None:
         self.lease_path.parent.mkdir(parents=True, exist_ok=True)
-        expiracao = _parse_iso(expira_em) if expira_em else None
+        expiracao = _parse_iso(expira_em)
         if expiracao is None:
-            expiracao = datetime.now(timezone.utc).replace(microsecond=0)
-            expiracao = expiracao + __import__("datetime").timedelta(seconds=self.lease_segundos)
+            expiracao = _parse_iso(self._nova_expiracao())
+        assert expiracao is not None
         dados = {
             "lease_id": lease_id,
             "runtime_id": self.estado.runtime_id,
             "expira_em": expiracao.isoformat(),
             "criado_em": agora(),
         }
-        conteudo = json.dumps(dados, ensure_ascii=False)
+        conteudo = json.dumps(dados, ensure_ascii=False).encode("utf-8")
         for tentativa in range(2):
             try:
                 fd = os.open(self.lease_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
                 try:
-                    os.write(fd, conteudo.encode("utf-8"))
+                    os.write(fd, conteudo)
                 finally:
                     os.close(fd)
                 self.estado.lease_id = lease_id
@@ -133,13 +136,16 @@ class RuntimeContinuo:
         dados = json.loads(self.lease_path.read_text(encoding="utf-8"))
         if dados.get("lease_id") != lease_id:
             raise RuntimeError("lease não pertence a este runtime")
-        expiracao = _parse_iso(expira_em)
-        if expiracao is None:
-            expiracao = datetime.now(timezone.utc).replace(microsecond=0)
-            expiracao = expiracao + __import__("datetime").timedelta(seconds=self.lease_segundos)
+        expiracao_atual = _parse_iso(dados.get("expira_em"))
+        if expiracao_atual is not None and expiracao_atual <= datetime.now(timezone.utc):
+            raise RuntimeError("lease expirado")
+        expiracao = _parse_iso(expira_em) or _parse_iso(self._nova_expiracao())
+        assert expiracao is not None
         dados["expira_em"] = expiracao.isoformat()
         dados["heartbeat_em"] = agora()
-        self.lease_path.write_text(json.dumps(dados, ensure_ascii=False), encoding="utf-8")
+        temporario = self.lease_path.with_name(f".{self.lease_path.name}.{os.getpid()}.tmp")
+        temporario.write_text(json.dumps(dados, ensure_ascii=False), encoding="utf-8")
+        os.replace(temporario, self.lease_path)
         self.estado.lease_expira_em = expiracao.isoformat()
         self.estado.heartbeat_em = dados["heartbeat_em"]
         self._salvar()
@@ -194,6 +200,7 @@ class RuntimeContinuo:
             except RuntimeError:
                 self.estado.lease_id = None
                 self.estado.lease_expira_em = None
+                self.estado.heartbeat_em = None
         self.estado.estado = "PARADO"
         self.estado.motivo_parada = motivo
         self._salvar()
