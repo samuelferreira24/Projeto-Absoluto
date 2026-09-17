@@ -6,13 +6,21 @@ O Cérebro não deve apenas acumular informação ou conhecimento. Deve transfor
 
 ## Base conceitual
 
-Pesquisas sobre aprendizagem organizacional distinguem processos de busca, criação, retenção e transferência de conhecimento; a retenção sem transferência não produz toda a capacidade possível. Estudos sobre aprendizagem a partir de experiências também mostram que a forma de codificar e generalizar experiências influencia a qualidade das decisões futuras. citeturn0search12turn0search1
+Pesquisas sobre aprendizagem organizacional distinguem processos de busca, criação, retenção e transferência de conhecimento; a retenção sem transferência não produz toda a capacidade possível. Estudos sobre aprendizagem a partir de experiências também mostram que a forma de codificar e generalizar experiências influencia a qualidade das decisões futuras.
 
-A literatura sobre lições aprendidas converge na necessidade de transformar experiências positivas e negativas em recomendações transferíveis, em vez de apenas arquivar relatos. Revisões sobre After-Action Reviews mostram o valor de registrar o que aconteceu, por que aconteceu e como evitar repetição de erros. citeturn1search15turn1search2
+Referências de base: Argote, Lee & Park (2020), *Organizational Learning Processes and Outcomes*; *Wisdom in the Wild: Generalization and Adaptive Dynamics* (Organization Science, 2022).
 
-Estudos sobre sabedoria aplicada à decisão destacam compreensão do contexto, reflexão, julgamento, valores e capacidade de agir, e não apenas posse de informação. citeturn0search2turn0search5
+A literatura sobre lições aprendidas converge na necessidade de transformar experiências positivas e negativas em recomendações transferíveis, em vez de apenas arquivar relatos. Revisões sobre After-Action Reviews mostram o valor de registrar o que aconteceu, por que aconteceu e como evitar repetição de erros.
 
-Pesquisas recentes sobre memória de agentes também apontam uma evolução de armazenamento para reflexão e abstração de experiências, com o objetivo de produzir aprendizado contínuo e consistência de longo prazo. citeturn0academia48
+Referências de base: *How to formulate high-quality lessons learned: a rapid review* (2025); Reiter-Palmon et al., *Naturalistic Decision Making in After-Action Review Meetings* (2015).
+
+Estudos sobre sabedoria aplicada à decisão destacam compreensão do contexto, reflexão, julgamento, valores e capacidade de agir, e não apenas posse de informação.
+
+Referências de base: Qayyum, *Modelling wisdom in learning and decision making* (2018); Intezari & Pauleen, *Conceptualizing Wise Management Decision-Making* (2018).
+
+Pesquisas recentes sobre memória de agentes também apontam uma evolução de armazenamento para reflexão e abstração de experiências, com o objetivo de produzir aprendizado contínuo e consistência de longo prazo.
+
+Referência de base: *From Storage to Experience: A Survey on the Evolution of LLM Agent Memory Mechanisms* (2026).
 
 ## Ciclo operacional
 
@@ -150,11 +158,11 @@ Após ações relevantes, o Cérebro deve poder produzir uma revisão estruturad
 - O que deve ser adaptado?
 - Que nova experiência ou teste deve ser executado?
 
-A finalidade é converter execução em aprendizado e evitar que o conhecimento permaneça apenas arquivado. A literatura de After-Action Review trata esse processo como mecanismo de aprendizagem organizacional e melhoria operacional. citeturn1search0turn1search13
+A finalidade é converter execução em aprendizado e evitar que o conhecimento permaneça apenas arquivado. A literatura de After-Action Review trata esse processo como mecanismo de aprendizagem organizacional e melhoria operacional.
 
 ## Proteção contra falsa sabedoria
 
-O sistema não deve criar uma regra geral apenas porque uma ação funcionou uma vez. A generalização precisa considerar quantidade e diversidade de experiências, contexto, resultados, contraexemplos e evidências. A pesquisa sobre aprendizagem a partir de experiências únicas destaca justamente o problema de determinar o nível adequado de generalização. citeturn0search1
+O sistema não deve criar uma regra geral apenas porque uma ação funcionou uma vez. A generalização precisa considerar quantidade e diversidade de experiências, contexto, resultados, contraexemplos e evidências. A pesquisa sobre aprendizagem a partir de experiências únicas destaca justamente o problema de determinar o nível adequado de generalização.
 
 ## Relação com a arquitetura atual
 
