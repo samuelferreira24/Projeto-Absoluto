@@ -4,7 +4,25 @@
 
 Este repositório preserva o planejamento, o Cérebro, as especificações, as fontes históricas e o conhecimento de construção do Projeto Absoluto.
 
-### Referências atuais
+## Cérebro operacional V0.1
+
+A primeira interface operacional real está disponível como módulo Python:
+
+```bash
+python -m cerebro diagnostico
+python -m cerebro ingerir caminho/arquivo.md
+python -m cerebro buscar "termo"
+python -m cerebro aprender "Título" "Conteúdo"
+python -m cerebro tarefa tarefa-1 "Objetivo"
+python -m cerebro planejar
+python -m cerebro executar caminho/arquivo.md --objetivo "Processar entrada"
+```
+
+O comando `executar` percorre o ciclo mínimo ponta a ponta: **ingestão → preservação → tarefa → planejamento → execução → resultado → aprendizado → consolidação**.
+
+A operação utiliza os componentes já existentes em vez de criar uma memória paralela. A entrada permanece registrada no acervo e o aprendizado mantém origem, evidência e contexto.
+
+## Referências atuais
 
 - `cerebro/especificacao/MAPA_MESTRE_PROJETO_ABSOLUTO_V0_2.md` — quadro mestre evolutivo.
 - `cerebro/ESTRUTURA_ATUAL_V0_2.md` — estrutura física atual do Cérebro.
