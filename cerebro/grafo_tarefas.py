@@ -23,6 +23,12 @@ class NoTarefa:
     capacidades: tuple[str, ...] = ()
     estado: EstadoTarefa = EstadoTarefa.PENDENTE
     prioridade: float = 0.0
+    valor_estimado: float = 0.0
+    custo_estimado: float = 0.0
+    tempo_estimado: float = 0.0
+    risco: float = 0.0
+    prazo: float | None = None
+    preferencias: tuple[str, ...] = ()
 
 
 @dataclass
@@ -49,7 +55,7 @@ class GrafoTarefas:
         return erros
 
     def prontas(self, recursos_disponiveis: set[str] | None = None) -> list[NoTarefa]:
-        recursos = recursos_disponiveis or set()
+        recursos = recursos_disponiveis if recursos_disponiveis is not None else set()
         resultado: list[NoTarefa] = []
         for tarefa in self.tarefas.values():
             if tarefa.estado != EstadoTarefa.PENDENTE:
@@ -84,6 +90,12 @@ class GrafoTarefas:
             capacidades=tarefa.capacidades,
             estado=estado,
             prioridade=tarefa.prioridade,
+            valor_estimado=tarefa.valor_estimado,
+            custo_estimado=tarefa.custo_estimado,
+            tempo_estimado=tarefa.tempo_estimado,
+            risco=tarefa.risco,
+            prazo=tarefa.prazo,
+            preferencias=tarefa.preferencias,
         )
 
     def _tem_ciclo(self) -> bool:
