@@ -220,3 +220,33 @@ class Cerebro:
     def diagnostico(self) -> dict[str, Any]:
         registros = self.registros()
         consolidado_path = self.repo.root.parent / "memoria" / "aprendizados_consolidados_v0_1.json"
+        aprendizados_consolidados = 0
+        if consolidado_path.exists():
+            try:
+                import json
+                aprendizados_consolidados = int(json.loads(consolidado_path.read_text(encoding="utf-8")).get("quantidade", 0))
+            except (OSError, ValueError, TypeError, json.JSONDecodeError):
+                aprendizados_consolidados = 0
+        return {
+            "registros": len(registros),
+            "fontes": sum(1 for r in registros if r.kind == "DOCUMENTO"),
+            "tipos": {kind: sum(1 for r in registros if r.kind == kind) for kind in sorted({r.kind for r in registros})},
+            "estado": self.estado.status,
+            "arquitetura": self.estado.architecture_version,
+            "elementos_construcao": len(self.mapa.elementos),
+            "relacoes_construcao": len(self.mapa.relacoes),
+            "integridade_construcao": self.validar_construcao(),
+            "nos_rede": len(self.rede.nos),
+            "arestas_rede": len(self.rede.arestas),
+            "integridade_rede": self.validar_rede(),
+            "missoes": len(self.orquestrador.missoes),
+            "ciclos": self.runtime.estado.ciclos,
+            "runtime": self.runtime.estado.estado,
+            "despertares_pendentes": len(self.despertador.pendentes()),
+            "captura_bruta": str(self.coletor.raw_path),
+            "organizacao_pendente": len(self.fila_organizacao.pendentes()),
+            "tarefas": len(self.grafo_tarefas.tarefas),
+            "tarefas_prontas": len(self.tarefas_prontas()),
+            "integridade_tarefas": self.validar_tarefas(),
+            "aprendizados_consolidados": aprendizados_consolidados,
+        }
