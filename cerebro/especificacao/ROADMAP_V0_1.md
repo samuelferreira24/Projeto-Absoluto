@@ -65,12 +65,18 @@ A classificação automática por IA, extração automática de relações e ind
 
 ## Fase 7 — Contexto temporal e recuperação avançada
 
-**Estado: especificada como próxima expansão arquitetural.**
+**Estado: primeira camada implementada e em validação.**
 
-A evolução deve incorporar, sem quebrar a base:
+A primeira expansão temporal foi implementada em `cerebro/temporal.py`, mantendo separados:
+
+- `valid_from` / `valid_until`: janela em que um fato ou relação é válido;
+- `recorded_at`: quando a evidência foi registrada pelo Cérebro.
+
+Isso evita confundir o tempo do acontecimento com o tempo de aquisição da informação. A camada aceita consultas por ponto no tempo e não exige banco externo.
+
+A arquitetura deve evoluir, sem quebrar a base, para:
 
 - histórico temporal de fatos e relações;
-- distinção entre quando algo ocorreu e quando o Cérebro aprendeu;
 - busca lexical + semântica + relações;
 - reranking independente;
 - recuperação orientada à pergunta;
@@ -78,7 +84,7 @@ A evolução deve incorporar, sem quebrar a base:
 - preservação de versões antigas em vez de apagamento;
 - métricas de qualidade de recuperação.
 
-Essa direção é coerente com arquiteturas atuais de memória de agentes que usam grafos temporais, proveniência e recuperação híbrida. A implementação deve continuar própria e substituível, podendo incorporar bibliotecas externas apenas como componentes intercambiáveis.
+Pesquisa atual indica que arquiteturas de memória/contexto temporal combinam proveniência, validade temporal e recuperação híbrida (semântica, palavra-chave e grafo). Isso é tratado como evidência arquitetural, não como dependência: a implementação do Projeto Absoluto permanece própria e substituível.
 
 ## Fase 8 — Consolidação automática
 
@@ -112,7 +118,9 @@ Construir um conjunto pequeno de exemplos semânticos reais e ambíguos, proveni
 - detecção de inconsistência;
 - recuperação direta;
 - recuperação por relações;
-- comportamento diante de informação contraditória.
+- comportamento diante de informação contraditória;
+- recuperação por ponto no tempo;
+- distinção entre data do fato e data de registro.
 
 Somente depois dessa medição ativar automação assistida com modelos reais.
 
