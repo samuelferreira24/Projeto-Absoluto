@@ -7,11 +7,13 @@ from cerebro.continuidade import ErroContinuidade, validar_manifesto, validar_ou
 
 def manifesto_valido() -> dict:
     return {
+        "schema_version": "0.1",
         "project": {"id": "PROJETO-ABSOLUTO", "name": "Projeto Absoluto"},
-        "construction": {"branch": "base-cerebro-v0.1", "stage": "fundacao"},
-        "continuity": {"required_files": ["docs/continuidade.md"]},
+        "construction": {"current_branch": "base-cerebro-v0.1", "current_stage": "fundacao"},
+        "continuity": {"required_file": "docs/continuidade.md"},
+        "required_validation": ["tests"],
         "rules": ["preservar histórico"],
-        "integration_boundary": {"provider_neutral": True},
+        "integration_boundary": {"strategy": "adaptadores por contrato"},
     }
 
 
@@ -33,7 +35,7 @@ def test_manifesto_valido(tmp_path: Path):
 
 def test_detecta_referencia_ausente(tmp_path: Path):
     data = manifesto_valido()
-    data["continuity"]["required_files"] = ["docs/inexistente.md"]
+    data["continuity"]["required_file"] = "docs/inexistente.md"
     path = escrever_manifesto(tmp_path, data)
     erros = validar_manifesto(path, path.parent)
     assert any("inexistente" in erro for erro in erros)
