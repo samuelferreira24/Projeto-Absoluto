@@ -48,7 +48,11 @@ class Cerebro:
         self.orquestrador = Orquestrador(self.orquestrador_path)
         self.runtime = RuntimeContinuo(self.orquestrador, self.runtime_path)
         self.grafo_tarefas = GrafoTarefas()
-        self.agendador = AgendadorAdaptativo(\n            self.grafo_tarefas,\n            self.agendador_path,\n            self.repo.root.parent / "memoria" / "aprendizados.jsonl",\n        )
+        self.agendador = AgendadorAdaptativo(
+            self.grafo_tarefas,
+            self.agendador_path,
+            self.repo.root.parent / "memoria" / "aprendizados.jsonl",
+        )
         self.detector_sinergia = DetectorSinergia()
         self.orquestrador_adaptativo = OrquestradorAdaptativo(self.grafo_tarefas, agendador=self.agendador)
         self.interface_chat = InterfaceChat(self)
