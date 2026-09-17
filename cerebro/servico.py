@@ -4,9 +4,11 @@ from pathlib import Path
 from typing import Any
 
 from .auditoria import ResultadoAuditoria, auditar_semantica
+from .estado import EstadoSistema
 from .ingestao import DocumentoEstruturado, extrair, registrar_fonte
 from .nucleo import Registro, RepositorioJSONL
 from .recuperacao import ResultadoBusca, buscar_hibrido, expandir_relacoes
+from .rastreabilidade import ElementoConstrucao, MapaConstrucao, RelacaoConstrucao
 from .semantica import RelacaoSemantica, UnidadeSemantica
 
 
@@ -15,6 +17,11 @@ class Cerebro:
 
     def __init__(self, dados: str | Path = "cerebro/data") -> None:
         self.repo = RepositorioJSONL(dados)
+        self.estado_path = self.repo.root / "estado.json"
+        self.estado = EstadoSistema()
+        if self.estado_path.exists():
+            self.estado = EstadoSistema.carregar(self.estado_path)
+        self.mapa = MapaConstrucao()
 
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
         return extrair(arquivo)
@@ -41,10 +48,27 @@ class Cerebro:
     ) -> ResultadoAuditoria:
         return auditar_semantica(unidades, relacoes)
 
+    def adicionar_elemento_construcao(self, elemento: ElementoConstrucao) -> None:
+        self.mapa.adicionar(elemento)
+
+    def adicionar_relacao_construcao(self, relacao: RelacaoConstrucao) -> None:
+        self.mapa.relacionar(relacao)
+
+    def validar_construcao(self) -> list[str]:
+        return self.mapa.validar()
+
+    def salvar_estado(self) -> None:
+        self.estado.salvar(self.estado_path)
+
     def diagnostico(self) -> dict[str, Any]:
         registros = self.registros()
         return {
             "registros": len(registros),
             "fontes": sum(1 for r in registros if r.kind == "DOCUMENTO"),
             "tipos": {kind: sum(1 for r in registros if r.kind == kind) for kind in sorted({r.kind for r in registros})},
+            "estado": self.estado.status,
+            "arquitetura": self.estado.architecture_version,
+            "elementos_construcao": len(self.mapa.elementos),
+            "relacoes_construcao": len(self.mapa.relacoes),
+            "integridade_construcao": self.validar_construcao(),
         }
