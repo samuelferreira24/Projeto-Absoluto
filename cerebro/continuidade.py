@@ -7,8 +7,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .contexto_operacional import construir_contexto
 
-SCHEMA_VERSION = "0.2"
+SCHEMA_VERSION = "0.3"
 
 
 class ErroContinuidade(ValueError):
@@ -101,6 +102,7 @@ def criar_snapshot(
         r for r in memoria
         if r.get("kind") in {"APRENDIZADO", "ENTENDIMENTO", "DESCOBERTA", "PROGRESSO", "ERRO", "DECISAO", "RESULTADO", "EXPERIENCIA"}
     ]
+    contexto = construir_contexto(cerebro, objetivo=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao).to_dict()
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -108,6 +110,7 @@ def criar_snapshot(
         "project_id": estado["project_id"],
         "objetivo_atual": objetivo_atual or estado.get("next_priority"),
         "proximo_passo": proximo_passo,
+        "contexto_operacional": contexto,
         "contexto_da_sessao": dict(contexto_da_sessao or {}),
         "estado_sistema": estado,
         "tarefas": tarefas,
@@ -125,6 +128,7 @@ def criar_snapshot(
             "O passado informa a arquitetura, mas não determina a arquitetura.",
             "Uma nova instrução pode ampliar ou corrigir a rota sem apagar trabalho anterior silenciosamente.",
             "Validar o estado atual do repositório antes de continuar quando ele estiver disponível.",
+            "Antes de agir, qualquer chat deve reconstruir o que está sendo feito, como, por que, estado, decisões, ações recentes, bloqueios, riscos e próximo passo.",
         ],
     }
 
@@ -150,6 +154,7 @@ def gerar_prompt_retoma(snapshot: dict[str, Any]) -> str:
     estado = snapshot.get("estado_sistema", {})
     tarefas = snapshot.get("tarefas", [])
     aprendizados = snapshot.get("aprendizados", [])
+    contexto = snapshot.get("contexto_operacional", {})
     relevantes = [
         t for t in tarefas
         if t.get("estado") in {"PENDENTE", "PRONTA", "EXECUTANDO", "BLOQUEADA", "FALHOU"}
@@ -161,6 +166,9 @@ def gerar_prompt_retoma(snapshot: dict[str, Any]) -> str:
         f"Snapshot: {snapshot.get('snapshot_at', '')}",
         f"Objetivo atual: {snapshot.get('objetivo_atual') or 'não informado'}",
         f"Próximo passo: {snapshot.get('proximo_passo') or 'determinar a partir do estado registrado'}",
+        "",
+        "## CONTEXTO OPERACIONAL OBRIGATÓRIO",
+        json.dumps(contexto, ensure_ascii=False, indent=2),
         "",
         "## Estado do sistema",
         json.dumps(estado, ensure_ascii=False, indent=2),
@@ -175,7 +183,7 @@ def gerar_prompt_retoma(snapshot: dict[str, Any]) -> str:
         json.dumps(snapshot.get("contexto_da_sessao", {}), ensure_ascii=False, indent=2),
         "",
         "## Regra de retomada",
-        "Continue de onde o trabalho parou. Não recomece do zero. Não descarte decisões, aprendizados ou progresso registrados. Use o snapshot para reconstruir o contexto inicial e, quando o repositório estiver disponível, confira os arquivos atuais antes de modificar qualquer coisa. Registre novas descobertas, erros, decisões, mudanças de entendimento e progresso no Cérebro.",
+        "Continue de onde o trabalho parou. Não recomece do zero. Antes de executar, entenda o que está sendo feito, como está sendo feito, por que está sendo feito, o que já foi feito, quais decisões foram tomadas, quais riscos e bloqueios existem e qual é o próximo passo. Ao executar, registre ação, ferramenta, motivo, resultado e evidência. Não descarte decisões, aprendizados ou progresso registrados. Use o snapshot para reconstruir o contexto inicial e, quando o repositório estiver disponível, confira os arquivos atuais antes de modificar qualquer coisa. Registre novas descobertas, erros, decisões, mudanças de entendimento e progresso no Cérebro.",
     ])
 
 
