@@ -8,18 +8,9 @@ Criar uma fronteira durável entre eventos externos e a execução do Projeto, p
 
 A conversa é uma interface. O pedido de trabalho pertence ao Projeto.
 
-Um evento externo pode gerar um `PedidoDespertar` persistente contendo:
+Um evento externo pode gerar um `PedidoDespertar` persistente contendo identidade, missão, origem, correlação, estado, timestamps, tentativas e detalhes/evidências.
 
-- identidade do pedido;
-- missão a ser despertada;
-- origem;
-- correlação;
-- estado;
-- momento de criação;
-- momento de processamento;
-- detalhes e evidências de falha.
-
-## Estados
+## Estados e recuperação
 
 ```text
 PENDENTE → PROCESSANDO → CONCLUIDO
@@ -27,7 +18,9 @@ PENDENTE → PROCESSANDO → CONCLUIDO
                      FALHOU
 ```
 
-Pedidos processados não devem voltar a ser tratados como novos despertares sem uma nova identidade. A execução efetiva continua sujeita ao lease, à idempotência e à política de autonomia do runtime.
+Um pedido em `PROCESSANDO` possui um momento de início. Se o worker desaparecer e o timeout expirar, o pedido volta a ser elegível para processamento. Isso evita que uma interrupção deixe uma missão permanentemente presa.
+
+A recuperação não significa que efeitos externos serão repetidos com segurança automaticamente. Cada executor deve usar a identidade do ciclo e sua chave de idempotência para deduplicar efeitos colaterais quando necessário.
 
 ## Fontes possíveis
 
@@ -55,7 +48,7 @@ MISSÃO
       ↓
 RUNTIME + LEASE + HEARTBEAT
       ↓
-CICLO
+CICLO + IDEMPOTÊNCIA
       ↓
 AGENTE / EXECUTOR
       ↓
@@ -64,10 +57,30 @@ RESULTADO + EVIDÊNCIA
 CÉREBRO
 ```
 
+## Worker agnóstico
+
+O Projeto possui um worker que pode entregar uma missão a um comando externo configurável. O worker não assume OpenAI, Claude, Gemini ou qualquer outro fornecedor. O executor recebe contexto estruturado por `stdin` e deve devolver JSON por `stdout`.
+
+Essa fronteira permite trocar o agente sem trocar o núcleo do Projeto.
+
+## Mecanismo de despertar
+
+O repositório possui um workflow de despertar por:
+
+- agenda;
+- `repository_dispatch`;
+- execução manual.
+
+O workflow só executa um agente quando um executor externo estiver configurado. Sem ele, registra o estado e permanece em espera.
+
 ## Limites atuais
 
-Este contrato não afirma que o Projeto já possui operação 24/7 hospedada. Ele fornece a fronteira persistente necessária para essa evolução. Ainda são necessários um worker persistente, mecanismo de disparo externo, observabilidade operacional e integração segura com agentes/ferramentas.
+Isso estabelece a infraestrutura de continuidade, mas não significa que o Projeto já esteja operando 24/7 em produção. Ainda é necessário hospedar/configurar um worker persistente e conectar um executor de IA/ferramentas reais com as permissões e guardrails apropriados.
+
+Além disso, o workflow agendado do GitHub só atua sobre o branch padrão e tem intervalo mínimo de cinco minutos; portanto ele é um mecanismo auxiliar de despertar, não a definição do runtime definitivo. citeturn0search5turn0search14
 
 ## Direção evolutiva
 
-GitHub Actions pode atuar como mecanismo de despertar/control-plane, e runtimes de agentes ou servidores persistentes podem atuar como workers. Nenhuma dessas tecnologias é a identidade do Sistema; são recursos substituíveis.
+GitHub Actions, servidores próprios, runtimes de agentes, sandboxes e serviços de terceiros podem atuar como recursos de execução. A arquitetura deve permanecer substituível e preservar a identidade, estado, histórico, proveniência e conhecimento do Projeto fora do fornecedor.
+
+A atual API de Agentes da OpenAI demonstra que infraestrutura de agentes de longa duração, subagentes, ambientes persistentes e recuperação já pode ser fornecida como serviço; isso é uma opção futura de infraestrutura, não uma decisão arquitetural definitiva do Projeto. citeturn0search0turn0search1
