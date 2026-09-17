@@ -293,3 +293,43 @@ Somente depois disso deve-se evoluir para seleção dinâmica de agentes, aloca�
 > **O próximo multiplicador do Projeto Absoluto pode não ser uma nova ferramenta. Pode ser a capacidade de combinar inteligentemente as ferramentas e capacidades que já possui.**
 
 Essa capacidade deve aprender com cada combinação executada e transformar os resultados em conhecimento reutilizável.
+
+## 16. Autonomia sob controle do proprietário
+
+> **Autonomia não significa perda de controle. O Projeto Absoluto deve poder operar, pesquisar, planejar, executar, aprender, replanejar e otimizar autonomamente dentro dos limites, permissões e objetivos definidos pelo proprietário.**
+
+A autonomia deve ser governável. O proprietário mantém autoridade sobre:
+
+- objetivos e prioridades fundamentais;
+- permissões e limites de atuação;
+- recursos e orçamento de combustível;
+- capacidades e ferramentas autorizadas;
+- níveis de risco aceitáveis;
+- ações que exigem aprovação humana;
+- critérios de interrupção, suspensão e retomada;
+- mudanças estruturais de alto impacto;
+- acesso, compartilhamento e retenção de conhecimento;
+- auditoria, histórico e rastreabilidade.
+
+O sistema pode decidir **como** executar uma tarefa dentro desses limites, inclusive escolhendo caminhos alternativos, paralelizando tarefas, replanejando após resultados e aprendendo estratégias melhores. Isso não transfere a autoridade sobre **o que é permitido fazer** para o sistema.
+
+O controle deve ser exercido por uma camada explícita de governança, com permissões, políticas, orçamento, observabilidade, registro de decisões e mecanismos de intervenção. Uma decisão autônoma deve permanecer rastreável: objetivo, contexto, capacidades utilizadas, recursos consumidos, decisão tomada, resultado e motivo de eventual replanejamento.
+
+Assim, o modelo desejado é:
+
+```text
+PROPRIETÁRIO
+     ↓
+OBJETIVOS + LIMITES + PERMISSÕES
+     ↓
+AUTONOMIA OPERACIONAL
+     ↓
+PLANEJAR → EXECUTAR → OBSERVAR → APRENDER → REPLANEJAR
+     ↺
+     ↓
+PRESTAÇÃO DE CONTAS / AUDITORIA
+     ↓
+PROPRIETÁRIO
+```
+
+A autonomia é, portanto, uma **capacidade de operação**, e não uma transferência de soberania.
