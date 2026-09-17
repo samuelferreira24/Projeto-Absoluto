@@ -18,14 +18,17 @@
     "contexto_temporal",
     "orquestracao_de_modelos",
     "auditoria_semantica",
-    "testes_automatizados"
+    "testes_automatizados",
+    "estado_operacional_portatil",
+    "modelo_operacional_de_rastreabilidade",
+    "integracao_estado_rastreabilidade_na_facade",
+    "validacao_ci_da_suíte_completa"
   ],
   "in_construction": [
     "identidade_e_continuidade",
-    "estado_global_operacional",
-    "mapa_operacional_da_construcao",
-    "rastreabilidade_requisito_capacidade_componente",
-    "contratos_e_interfaces",
+    "mapa_persistente_da_construcao",
+    "rastreabilidade_completa_objetivo_a_validacao",
+    "contratos_e_interfaces_executaveis",
     "registro_de_agentes_e_permissoes",
     "eventos_e_observabilidade",
     "gestao_de_mudancas_e_evidencias",
@@ -33,7 +36,13 @@
     "recuperacao",
     "evolucao"
   ],
-  "open_problems": [],
+  "open_problems": [
+    {
+      "id": "PROBLEM-0001",
+      "description": "O mapa operacional ainda nao possui persistencia propria nem reconciliacao automatica com codigo, testes e estado.",
+      "next_action": "Implementar persistencia portatil do mapa e verificacao de consistencia."
+    }
+  ],
   "risks": [
     {
       "id": "RISK-0001",
@@ -43,16 +52,17 @@
     {
       "id": "RISK-0002",
       "description": "O estado pode divergir de codigo, documentacao ou realidade operacional.",
-      "mitigation": "Criar verificacoes de drift e exigir evidencia para mudancas relevantes."
+      "mitigation": "Verificacao de drift, evidencias e atualizacao controlada do estado."
     }
   ],
   "pending_decisions": [],
   "last_validation": {
     "scope": "base-cerebro-v0.1",
-    "result": "SUITE_ATUAL_PASSANDO",
-    "note": "A validacao atual cobre os testes existentes; nao implica que toda a arquitetura V0.2 esteja implementada."
+    "result": "VALIDACAO_CI_ATUALIZADA",
+    "commit": "4c86bdb19901fd734a677a4308344fddb198f6c9",
+    "note": "A validacao agora inclui estado versionado, importacao da facade e a suite completa tests + cerebro/tests."
   },
-  "next_priority": "IMPLEMENTAR_MODELO_DE_IDENTIDADE_ESTADO_E_RASTREABILIDADE",
+  "next_priority": "PERSISTIR_MAPA_E_IMPLEMENTAR_RECONCILIACAO_DE_ESTADO",
   "continuity_package": [
     "visao",
     "arquitetura",
