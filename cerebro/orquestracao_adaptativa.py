@@ -60,11 +60,15 @@ class OrquestradorAdaptativo:
         prontas = self.grafo.prontas(recursos_disponiveis)
         escolhidas: list[NoTarefa] = []
         usados: set[str] = set()
-        custo = tempo = 0.0
+        uso_por_recurso: dict[str, float] = {}
+        custo = 0.0
+        duracoes: list[float] = []
         for tarefa in sorted(prontas, key=self._chave):
             if limite is not None and len(escolhidas) >= limite:
                 break
             if set(tarefa.recursos) & usados:
+                continue
+            if not self._recursos_suportam(tarefa, uso_por_recurso):
                 continue
             if orcamento is not None and custo + max(0.0, tarefa.custo_estimado) > orcamento:
                 continue
@@ -72,10 +76,22 @@ class OrquestradorAdaptativo:
                 continue
             escolhidas.append(tarefa)
             usados.update(tarefa.recursos)
+            for recurso in tarefa.recursos:
+                uso_por_recurso[recurso] = uso_por_recurso.get(recurso, 0.0) + 1.0
             custo += max(0.0, tarefa.custo_estimado)
-            tempo += max(0.0, tarefa.tempo_estimado)
+            duracoes.append(max(0.0, tarefa.tempo_estimado))
+        tempo = max(duracoes, default=0.0)
         self.decisões_guardadas(escolhidas, custo, tempo)
         return tuple(escolhidas)
+
+    def _recursos_suportam(self, tarefa: NoTarefa, uso: dict[str, float]) -> bool:
+        for recurso_id in tarefa.recursos:
+            recurso = self.recursos.get(recurso_id)
+            if recurso is None:
+                continue
+            if uso.get(recurso_id, 0.0) + 1.0 > max(0.0, recurso.capacidade):
+                return False
+        return True
 
     def registrar_resultado(self, tarefas: Iterable[str], resultado: float, custo: float, tempo: float, qualidade: float) -> Sinergia | None:
         fatores = tuple(sorted(tarefas))
