@@ -27,18 +27,19 @@ def test_calibracao_acervo_real_preserva_origem_e_integridade():
         assert documento.formato == "docx"
         assert documento.nome == nome
         assert documento.tamanho == len(original)
-        assert documento.sha256
+        assert len(documento.sha256) == 64
+        assert documento.origem == str(path)
         assert documento.texto.strip()
         assert documento.estrutura
         assert path.read_bytes() == original
 
 
-def test_calibracao_registra_limites_da_base_atual():
-    """A calibração deve tornar explícito o que ainda não é extraído automaticamente."""
+def test_calibracao_torna_explicito_o_limite_semantico_da_base_atual():
+    """A extração estrutural não deve fingir que já fez análise semântica."""
     raiz = Path(__file__).resolve().parents[1]
     documento = extrair(raiz / FONTES_CALIBRACAO[0])
 
-    # A V0.1 já preserva origem, integridade e estrutura documental.
-    # Relações semânticas e distinção fato/hipótese/interpretação/decisão
-    # ainda pertencem às próximas camadas e não devem ser inferidas pelo extrator.
-    assert documento.provenance if hasattr(documento, "provenance") else True
+    assert documento.metadados["parser"] == "stdlib-docx-xml"
+    assert all(item["tipo"] in {"paragrafo", "tabela"} for item in documento.estrutura)
+    # Relações semânticas e distinção entre fato, hipótese, interpretação e decisão
+    # ainda são capacidades de camadas posteriores; não são inferidas pelo extrator.
