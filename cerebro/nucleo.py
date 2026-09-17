@@ -9,7 +9,6 @@ import json
 import re
 import uuid
 
-
 TIPOS = {
     "FONTE", "DOCUMENTO", "IDEIA", "PESQUISA", "CONHECIMENTO", "HIPOTESE",
     "EVIDENCIA", "DECISAO", "PLANEJAMENTO", "EXPERIMENTO", "PROBLEMA", "ERRO",
@@ -17,10 +16,8 @@ TIPOS = {
 }
 ESTADOS = {"NOVO", "EM_ANALISE", "EM_TESTE", "VALIDADO", "REFUTADO", "SUPERADO", "ARQUIVADO"}
 
-
 def agora() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-
 
 def hash_arquivo(path: Path, chunk_size: int = 1024 * 1024) -> str:
     h = hashlib.sha256()
@@ -29,12 +26,10 @@ def hash_arquivo(path: Path, chunk_size: int = 1024 * 1024) -> str:
             h.update(chunk)
     return h.hexdigest()
 
-
 def novo_id(tipo: str, numero: int = 1, ano: int | None = None) -> str:
     ano = ano or datetime.now(timezone.utc).year
     tipo = tipo.upper().replace(" ", "_")
     return f"{tipo}-{ano}-{numero:04d}"
-
 
 @dataclass
 class Registro:
@@ -70,10 +65,8 @@ class Registro:
     def to_json(self) -> str:
         return json.dumps(self.to_dict(), ensure_ascii=False, indent=2)
 
-
 class RepositorioJSONL:
     """Armazenamento portátil e simples; cada registro ocupa uma linha JSON."""
-
     def __init__(self, root: str | Path):
         self.root = Path(root)
         self.root.mkdir(parents=True, exist_ok=True)
@@ -85,45 +78,56 @@ class RepositorioJSONL:
         return self.root / "registros" / f"{registro.kind.lower()}.jsonl"
 
     def salvar(self, registro: Registro) -> None:
-        path = self._path(registro)
-        with path.open("a", encoding="utf-8") as f:
+        with self._path(registro).open("a", encoding="utf-8") as f:
             f.write(registro.to_json().replace("\n", " ") + "\n")
         historico = self.root / "historico" / f"{registro.id}.jsonl"
         with historico.open("a", encoding="utf-8") as f:
             f.write(json.dumps({"at": agora(), "version": registro.version, "record": registro.to_dict()}, ensure_ascii=False) + "\n")
 
-    def buscar(self, texto: str) -> list[Registro]:
-        termo = texto.casefold()
-        encontrados: list[Registro] = []
+    def _iter_registros(self):
         for path in (self.root / "registros").glob("*.jsonl"):
             for line in path.read_text(encoding="utf-8").splitlines():
                 if not line.strip():
                     continue
-                data = json.loads(line)
-                if termo in json.dumps(data, ensure_ascii=False).casefold():
-                    encontrados.append(Registro(**data))
-        return encontrados
+                try:
+                    yield Registro(**json.loads(line))
+                except (json.JSONDecodeError, TypeError, ValueError):
+                    continue
+
+    def buscar(self, texto: str) -> list[Registro]:
+        termo = texto.casefold()
+        return [r for r in self._iter_registros() if termo in json.dumps(r.to_dict(), ensure_ascii=False).casefold()]
+
+    def buscar_por_metadados(self, filtros: dict[str, Any]) -> list[Registro]:
+        """Busca por igualdade em metadados, tipo, estado ou origem."""
+        resultados = []
+        for registro in self._iter_registros():
+            corresponde = True
+            for chave, esperado in filtros.items():
+                atual = getattr(registro, chave) if chave in {"kind", "state", "source"} else registro.metadata.get(chave)
+                if atual != esperado:
+                    corresponde = False
+                    break
+            if corresponde:
+                resultados.append(registro)
+        return resultados
 
     def proximo_numero(self, tipo: str, ano: int | None = None) -> int:
         ano = ano or datetime.now(timezone.utc).year
         prefix = f"{tipo.upper()}-{ano}-"
         maior = 0
-        for path in (self.root / "registros").glob("*.jsonl"):
-            for line in path.read_text(encoding="utf-8").splitlines():
+        for registro in self._iter_registros():
+            if registro.id.startswith(prefix):
                 try:
-                    rid = json.loads(line).get("id", "")
-                    if rid.startswith(prefix):
-                        maior = max(maior, int(rid.rsplit("-", 1)[1]))
-                except (ValueError, json.JSONDecodeError):
+                    maior = max(maior, int(registro.id.rsplit("-", 1)[1]))
+                except ValueError:
                     continue
         return maior + 1
-
 
 def novo_registro(repo: RepositorioJSONL, tipo: str, titulo: str, conteudo: str = "", **kwargs: Any) -> Registro:
     rid = novo_id(tipo, repo.proximo_numero(tipo))
     now = agora()
     return Registro(id=rid, kind=tipo, title=titulo, created_at=now, updated_at=now, content=conteudo, **kwargs)
-
 
 def slug(texto: str) -> str:
     texto = re.sub(r"[^\w\s-]", "", texto, flags=re.UNICODE).strip().lower()
