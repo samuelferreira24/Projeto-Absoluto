@@ -21,7 +21,7 @@ def validar_manifesto(path: str | Path, raiz: str | Path | None = None) -> list[
     """Valida estrutura e referências locais de um manifesto operacional."""
     manifesto = carregar_json(path)
     erros: list[str] = []
-    obrigatorios = {"project", "construction", "continuity", "rules", "integration_boundary"}
+    obrigatorios = {"schema_version", "project", "construction", "continuity", "required_validation", "rules", "integration_boundary"}
     erros.extend(f"campo obrigatório ausente: {x}" for x in sorted(obrigatorios - manifesto.keys()))
 
     project = manifesto.get("project", {})
@@ -32,25 +32,26 @@ def validar_manifesto(path: str | Path, raiz: str | Path | None = None) -> list[
     if not isinstance(construction, dict):
         erros.append("construction deve ser objeto")
     else:
-        for campo in ("branch", "stage"):
-            if not construction.get(campo):
-                erros.append(f"construction.{campo} é obrigatório")
+        if not construction.get("current_branch"):
+            erros.append("construction.current_branch é obrigatório")
+        if not construction.get("current_stage"):
+            erros.append("construction.current_stage é obrigatório")
 
     continuity = manifesto.get("continuity", {})
     if not isinstance(continuity, dict):
         erros.append("continuity deve ser objeto")
     else:
-        refs = continuity.get("required_files", [])
-        if not isinstance(refs, list):
-            erros.append("continuity.required_files deve ser lista")
-        else:
-            base = Path(raiz) if raiz is not None else Path(path).parent.parent
-            for ref in refs:
-                if not isinstance(ref, str):
-                    erros.append("referência de continuidade inválida")
-                    continue
-                if not (base / ref).exists():
-                    erros.append(f"arquivo de continuidade ausente: {ref}")
+        base = Path(raiz) if raiz is not None else Path(path).parent.parent.parent
+        for nome, ref in continuity.items():
+            if not isinstance(ref, str):
+                erros.append(f"referência de continuidade inválida: {nome}")
+                continue
+            if not (base / ref).exists():
+                erros.append(f"arquivo de continuidade ausente: {ref}")
+
+    boundary = manifesto.get("integration_boundary", {})
+    if not isinstance(boundary, dict) or not boundary.get("strategy"):
+        erros.append("integration_boundary.strategy é obrigatório")
 
     return erros
 
