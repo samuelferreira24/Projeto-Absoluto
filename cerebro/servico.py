@@ -7,7 +7,7 @@ from .auditoria import ResultadoAuditoria, auditar_semantica
 from .despertador import Despertador, PedidoDespertar
 from .estado import EstadoSistema
 from .ingestao import DocumentoEstruturado, extrair, registrar_fonte
-from .nucleo import Registro, RepositorioJSONL
+from .nucleo import Registro, RepositorioJSONL, novo_registro
 from .orquestrador import Missao, Orquestrador
 from .recuperacao import ResultadoBusca, buscar_hibrido, expandir_relacoes
 from .rastreabilidade import ElementoConstrucao, MapaConstrucao, RelacaoConstrucao
@@ -42,6 +42,43 @@ class Cerebro:
         if documento.erros:
             raise ValueError(f"Falha na ingestão: {documento.erros}")
         return registrar_fonte(self.repo, documento)
+
+    def registrar_memoria(
+        self,
+        tipo: str,
+        titulo: str,
+        conteudo: str,
+        *,
+        fonte: str | None = None,
+        contexto: dict[str, Any] | None = None,
+        relacoes: list[dict[str, str]] | None = None,
+        proveniencia: dict[str, Any] | None = None,
+        estado: str = "NOVO",
+        metadata: dict[str, Any] | None = None,
+    ) -> Registro:
+        """Registra conhecimento produzido no próprio processo do Projeto."""
+        registro = novo_registro(
+            self.repo,
+            tipo,
+            titulo,
+            conteudo,
+            source=fonte,
+            relations=list(relacoes or []),
+            provenance=dict(proveniencia or {}),
+            state=estado,
+            metadata={"contexto": dict(contexto or {}), **dict(metadata or {})},
+        )
+        self.repo.salvar(registro)
+        return registro
+
+    def registrar_entendimento(self, titulo: str, conteudo: str, **kwargs: Any) -> Registro:
+        return self.registrar_memoria("ENTENDIMENTO", titulo, conteudo, **kwargs)
+
+    def registrar_descoberta(self, titulo: str, conteudo: str, **kwargs: Any) -> Registro:
+        return self.registrar_memoria("DESCOBERTA", titulo, conteudo, **kwargs)
+
+    def registrar_progresso(self, titulo: str, conteudo: str, **kwargs: Any) -> Registro:
+        return self.registrar_memoria("PROGRESSO", titulo, conteudo, **kwargs)
 
     def registros(self) -> list[Registro]:
         return list(self.repo._iter_registros())
