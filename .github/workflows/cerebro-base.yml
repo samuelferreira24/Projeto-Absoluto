@@ -49,6 +49,50 @@ jobs:
       - name: Verificar importação do núcleo
         run: python -c "from cerebro.servico import Cerebro; print(Cerebro().diagnostico())"
 
+      - name: Gerar evidência operacional
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          mkdir -p .github/evidencias
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from cerebro.github_controle import correlation_id, idempotency_key
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          ref = os.environ["GITHUB_REF_NAME"]
+          commit = os.environ["GITHUB_SHA"]
+          workflow = os.environ["GITHUB_WORKFLOW"]
+          status = os.environ["JOB_STATUS"]
+          data = {
+              "schema_version": "0.1",
+              "event_type": "workflow.validation",
+              "repository": repo,
+              "ref": ref,
+              "commit": commit,
+              "workflow": workflow,
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "run_attempt": int(os.environ["GITHUB_RUN_ATTEMPT"]),
+              "job_status": status,
+              "correlation_id": correlation_id(repo, ref, commit, os.environ["GITHUB_RUN_ID"]),
+              "idempotency_key": idempotency_key(repo, ref, "workflow.validation"),
+          }
+          Path(".github/evidencias/validacao.json").write_text(
+              json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          PY
+
+      - name: Publicar evidência da validação
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencia-validacao-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .github/evidencias/validacao.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Registrar retorno
         if: always()
         run: |
@@ -56,6 +100,10 @@ jobs:
             echo "## Resultado da validação"
             echo "- Status: ${{ job.status }}"
             echo "- Commit: ${{ github.sha }}"
+            echo "- Ref: ${{ github.ref_name }}"
+            echo "- Run: ${{ github.run_id }}"
+            echo "- Tentativa: ${{ github.run_attempt }}"
             echo "- Workflow: ${{ github.workflow }}"
+            echo "- Evidência: evidencia-validacao-${{ github.run_id }}-${{ github.run_attempt }}"
             echo "- Data UTC: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           } >> "$GITHUB_STEP_SUMMARY"
