@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Callable
+from typing import Any, Callable, Protocol
 
 from .politica_execucao import Acao, PoliticaExecucao
-from .servico import Cerebro
+
+
+class FonteContextual(Protocol):
+    def candidatos_rede(self, contexto: dict[str, float] | None = None) -> list[tuple[str, float]]: ...
 
 
 @dataclass
@@ -17,12 +20,15 @@ class PlanoCiclo:
 class ExecutorCerebro:
     """Ponte entre sinais do Cérebro e execução autorizada.
 
-    A escolha concreta do trabalho permanece externa e contextual; esta
-    camada somente aplica política, executa e devolve evidência do ciclo.
+    Depende apenas do contrato contextual, evitando acoplamento circular ao
+    serviço concreto do Cérebro e mantendo a camada de execução substituível.
     """
 
-    def __init__(self, cerebro: Cerebro | None = None, politica: PoliticaExecucao | None = None) -> None:
-        self.cerebro = cerebro or Cerebro()
+    def __init__(self, cerebro: FonteContextual | None = None, politica: PoliticaExecucao | None = None) -> None:
+        if cerebro is None:
+            from .servico import Cerebro
+            cerebro = Cerebro()
+        self.cerebro = cerebro
         self.politica = politica or PoliticaExecucao()
 
     def selecionar(self, contexto: dict[str, float] | None = None) -> list[tuple[str, float]]:
