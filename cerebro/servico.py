@@ -34,6 +34,7 @@ class Cerebro:
         self.rede_path = self.repo.root / "rede_evolutiva.json"
         self.orquestrador_path = self.repo.root / "orquestrador.json"
         self.runtime_path = self.repo.root / "runtime.json"
+        self.agendador_path = self.repo.root / "agendador.json"
         self.despertador = Despertador(self.repo.root / "despertar.json")
         self.coletor = ColetorMemoria(self.repo)
         self.fila_organizacao = FilaOrganizacao(self.repo.root / "organizacao.jsonl")
@@ -45,7 +46,7 @@ class Cerebro:
         self.orquestrador = Orquestrador(self.orquestrador_path)
         self.runtime = RuntimeContinuo(self.orquestrador, self.runtime_path)
         self.grafo_tarefas = GrafoTarefas()
-        self.agendador = AgendadorAdaptativo(self.grafo_tarefas)
+        self.agendador = AgendadorAdaptativo(self.grafo_tarefas, self.agendador_path)
         self.detector_sinergia = DetectorSinergia()
         self.interface_chat = InterfaceChat(self)
 
@@ -114,8 +115,8 @@ class Cerebro:
     def iniciar_plano(self, plano: PlanoExecucao) -> None:
         self.agendador.executar_inicio(plano)
 
-    def concluir_tarefa(self, tarefa_id: str, sucesso: bool = True) -> None:
-        self.agendador.registrar_resultado(tarefa_id, sucesso)
+    def concluir_tarefa(self, tarefa_id: str, sucesso: bool = True, **kwargs: Any) -> None:
+        self.agendador.registrar_resultado(tarefa_id, sucesso, **kwargs)
 
     def replanejar_tarefas(self, recursos: set[str] | None = None, **kwargs: Any) -> PlanoExecucao:
         return self.agendador.replanejar(recursos, **kwargs)
@@ -136,6 +137,7 @@ class Cerebro:
     def checkpoint(self, *, objetivo_atual: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> dict[str, Any]:
         """Persiste uma fotografia portátil da sessão para continuidade em outro chat."""
         self.salvar_estado()
+        self.agendador.salvar_historico()
         self.salvar_contexto_operacional(objetivo=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
         return salvar_snapshot(self, objetivo_atual=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
 
@@ -218,42 +220,3 @@ class Cerebro:
     def diagnostico(self) -> dict[str, Any]:
         registros = self.registros()
         consolidado_path = self.repo.root.parent / "memoria" / "aprendizados_consolidados_v0_1.json"
-        aprendizados_consolidados = 0
-        if consolidado_path.exists():
-            try:
-                import json
-                aprendizados_consolidados = int(json.loads(consolidado_path.read_text(encoding="utf-8")).get("quantidade", 0))
-            except (OSError, ValueError, TypeError, json.JSONDecodeError):
-                aprendizados_consolidados = 0
-        continuidade_path = self.repo.root / "continuidade.json"
-        contexto_path = self.repo.root / "contexto_operacional.json"
-        return {
-            "registros": len(registros),
-            "fontes": sum(1 for r in registros if r.kind == "DOCUMENTO"),
-            "tipos": {kind: sum(1 for r in registros if r.kind == kind) for kind in sorted({r.kind for r in registros})},
-            "estado": self.estado.status,
-            "arquitetura": self.estado.architecture_version,
-            "elementos_construcao": len(self.mapa.elementos),
-            "relacoes_construcao": len(self.mapa.relacoes),
-            "integridade_construcao": self.validar_construcao(),
-            "nos_rede": len(self.rede.nos),
-            "arestas_rede": len(self.rede.arestas),
-            "integridade_rede": self.validar_rede(),
-            "missoes": len(self.orquestrador.missoes),
-            "ciclos": self.runtime.estado.ciclos,
-            "runtime": self.runtime.estado.estado,
-            "despertares_pendentes": len(self.despertador.pendentes()),
-            "captura_bruta": str(self.coletor.raw_path),
-            "organizacao_pendente": len(self.fila_organizacao.pendentes()),
-            "tarefas": len(self.grafo_tarefas.tarefas),
-            "tarefas_prontas": len(self.tarefas_prontas()),
-            "integridade_tarefas": self.validar_tarefas(),
-            "plano_atual": [t.id for t in self.agendador.planejar().tarefas],
-            "historico_planejamento": len(self.agendador.historico),
-            "sinergias_evidenciadas": len(self.detector_sinergia.detectar()),
-            "aprendizados_consolidados": aprendizados_consolidados,
-            "continuidade": str(continuidade_path),
-            "continuidade_disponivel": continuidade_path.exists(),
-            "contexto_operacional": str(contexto_path),
-            "contexto_operacional_disponivel": contexto_path.exists(),
-        }
