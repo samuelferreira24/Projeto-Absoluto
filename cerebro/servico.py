@@ -1,15 +1,17 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from .auditoria import ResultadoAuditoria, auditar_semantica
 from .estado import EstadoSistema
 from .ingestao import DocumentoEstruturado, extrair, registrar_fonte
 from .nucleo import Registro, RepositorioJSONL
+from .orquestrador import Missao, Orquestrador
 from .recuperacao import ResultadoBusca, buscar_hibrido, expandir_relacoes
 from .rastreabilidade import ElementoConstrucao, MapaConstrucao, RelacaoConstrucao
 from .rede_evolutiva import ArestaRede, NoRede, RedeEvolutiva
+from .runtime import RuntimeContinuo
 from .semantica import RelacaoSemantica, UnidadeSemantica
 
 
@@ -20,11 +22,15 @@ class Cerebro:
         self.repo = RepositorioJSONL(dados)
         self.estado_path = self.repo.root / "estado.json"
         self.rede_path = self.repo.root / "rede_evolutiva.json"
+        self.orquestrador_path = self.repo.root / "orquestrador.json"
+        self.runtime_path = self.repo.root / "runtime.json"
         self.estado = EstadoSistema()
         if self.estado_path.exists():
             self.estado = EstadoSistema.carregar(self.estado_path)
         self.mapa = MapaConstrucao()
         self.rede = RedeEvolutiva.carregar(self.rede_path) if self.rede_path.exists() else RedeEvolutiva()
+        self.orquestrador = Orquestrador(self.orquestrador_path)
+        self.runtime = RuntimeContinuo(self.orquestrador, self.runtime_path)
 
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
         return extrair(arquivo)
@@ -77,6 +83,15 @@ class Cerebro:
     def validar_rede(self) -> list[str]:
         return self.rede.validar()
 
+    def registrar_missao(self, missao: Missao) -> None:
+        self.orquestrador.registrar_missao(missao)
+
+    def executar_missao(self, missao_id: str, candidatos: Callable, executor: Callable) -> dict[str, Any]:
+        """Executa um ciclo recuperável sem depender da conversa aberta."""
+        resultado = self.runtime.executar_ciclo(missao_id, candidatos, executor)
+        self.salvar_estado()
+        return resultado
+
     def salvar_estado(self) -> None:
         self.estado.salvar(self.estado_path)
         self.rede.salvar(str(self.rede_path))
@@ -95,4 +110,7 @@ class Cerebro:
             "nos_rede": len(self.rede.nos),
             "arestas_rede": len(self.rede.arestas),
             "integridade_rede": self.validar_rede(),
+            "missoes": len(self.orquestrador.missoes),
+            "ciclos": self.runtime.estado.ciclos,
+            "runtime": self.runtime.estado.estado,
         }
