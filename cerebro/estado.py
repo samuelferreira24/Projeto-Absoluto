@@ -41,7 +41,7 @@ class EstadoSistema:
         if desconhecidos:
             raise ValueError(f"Campos desconhecidos: {sorted(desconhecidos)}")
         for chave, valor in changes.items():
-            setattr(self, chave, value)
+            setattr(self, chave, valor)
         self.__post_init__()
         self.updated_at = agora()
         return self
