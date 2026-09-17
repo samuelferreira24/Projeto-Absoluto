@@ -79,6 +79,7 @@ class AgendadorAdaptativo:
         objetivo: str = "equilibrio",
         capacidades_recursos: dict[str, float] | None = None,
         restricao_satisfaz: Callable[[NoTarefa], bool] | None = None,
+        capacidade_de_tempo: float | None = None,
     ) -> PlanoExecucao:
         if self.grafo.validar():
             plano = PlanoExecucao((), 0.0, 0.0, 0.0, 0.0, 0.0, "grafo inválido; planejamento bloqueado")
@@ -126,6 +127,11 @@ class AgendadorAdaptativo:
                 continue
             perfil = self.perfis.get(tarefa.id, {})
             tempo_tarefa = max(0.0, tarefa.tempo_estimado) * perfil.get("fator_tempo", 1.0)
+            novo_tempo = max([*tempos, tempo_tarefa], default=0.0)
+            if capacidade_de_tempo is not None and novo_tempo > capacidade_de_tempo:
+                bloqueios.append(f"{tarefa.id}: capacidade de tempo")
+                decisoes.append({"tarefa": tarefa.id, "score": score, "aceita": False, "motivo": "tempo"})
+                continue
             if tarefa.prazo is not None and tarefa.prazo < tempo_tarefa:
                 bloqueios.append(f"{tarefa.id}: prazo incompatível")
                 decisoes.append({"tarefa": tarefa.id, "score": score, "aceita": False, "motivo": "prazo"})
