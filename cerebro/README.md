@@ -1,7 +1,9 @@
 # Cérebro do Projeto Absoluto
 
 ## Estado
-BASE V0.1 — fundação em construção.
+BASE V0.1 — núcleo operacional em evolução.
+
+A base já possui ingestão preservada, registro versionado, busca, relações, camada semântica, auditoria determinística, fachada operacional e uma interface para modelos de IA substituíveis.
 
 ## Objetivo
 Criar uma camada independente de plataforma para preservar, organizar, relacionar, recuperar e reutilizar memória, conhecimento, experiências, decisões e aprendizados do Projeto Absoluto.
@@ -21,38 +23,55 @@ O Cérebro não é apenas uma pasta de documentos, um banco de dados ou uma mem�
 ## Regra de preservação
 Nenhum material original deve ser substituído pela interpretação extraída dele. A fonte permanece preservada e o conhecimento derivado aponta de volta para sua origem.
 
-## Fluxo inicial
+## Fluxo operacional
 
 ```text
 FONTE
   ↓
-INGESTÃO
+INGESTÃO PRESERVADA
   ↓
 REPRESENTAÇÃO ESTRUTURADA
   ↓
-MEMÓRIA
+REGISTRO + HISTÓRICO
   ↓
-ANÁLISE / CLASSIFICAÇÃO
+REPRESENTAÇÃO SEMÂNTICA
   ↓
-CONHECIMENTO
+AUDITORIA
   ↓
 RELAÇÕES + PROVENIÊNCIA
+  ↓
+RECUPERAÇÃO HÍBRIDA
+  ↓
+MODELOS / VERIFICAÇÃO
+  ↓
+CONHECIMENTO VALIDADO
   ↓
 EXPERIÊNCIA / APRENDIZADO
   ↓
 APLICAÇÃO NA EXECUÇÃO
 ```
 
+## Arquitetura de modelos
+O Cérebro não depende de uma IA específica. `cerebro/modelos.py` define um contrato para conectar diferentes modelos por papel, permitindo substituição de fornecedor, comparação e consenso quando isso gerar evidência útil. A IA propõe; a camada de auditoria e os critérios do Cérebro verificam.
+
+## Recuperação
+A recuperação atual combina normalização textual, pesos por campo e expansão por relações. A arquitetura foi deixada modular para receber futuramente embeddings, busca vetorial, reranking e contexto temporal sem substituir a camada determinística.
+
 ## Estrutura
 
-- `especificacao/` — contratos e decisões da base.
-- `esquemas/` — estruturas formais dos registros.
-- `ingestao/` — arquitetura para entrada de arquivos e outras fontes.
-- `registros/` — futuro armazenamento lógico dos registros do Cérebro.
-- `relacoes/` — futuro armazenamento das relações.
-- `historico/` — histórico e evolução da base.
+- `especificacao/` — contratos, arquitetura, método e roadmap.
+- `ingestao.py` — entrada e preservação de fontes.
+- `nucleo.py` — registros, versionamento e histórico.
+- `semantica.py` — representação semântica explícita.
+- `auditoria.py` — verificações determinísticas.
+- `recuperacao.py` — busca e expansão por relações.
+- `modelos.py` — interface para múltiplos modelos/provedores.
+- `servico.py` — fachada operacional integrada.
+- `cli.py` — interface de operação.
+- `tests/` — validação automatizada.
 
-## Escopo da V0.1
-A V0.1 estabelece identidade, tipos, contrato mínimo, proveniência, versionamento, relações e ingestão como conceitos independentes da tecnologia de armazenamento.
+## Regra de evolução
+A arquitetura deve evoluir sem destruir fontes, histórico, proveniência ou portabilidade. Componentes externos, modelos e interfaces são substituíveis; a identidade lógica do Cérebro permanece do Projeto Absoluto.
 
-A automação de classificação e a migração em massa de arquivos antigos ficam para depois da validação da base.
+## Próximo estágio
+Validar classificação e relações em exemplos reais e ambíguos. Depois, ativar automação assistida, recuperação semântica avançada e consolidação automática somente onde os testes demonstrarem segurança e utilidade.
