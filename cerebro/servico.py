@@ -34,6 +34,8 @@ from .portas import Porta, RegistroPortas
 from .ativacao_portas import AtivadorPortas, Handler, ResultadoPorta
 from .executor_portas import ExecutorOperacionalPortas
 from .cerebros import CerebroRemoto, RegistroCerebros
+from .cliente_app import ClienteAppDireto
+from .gateway_app import GatewayAppDireto, ServidorGatewayApp
 
 
 class Cerebro:
@@ -71,6 +73,46 @@ class Cerebro:
         self.ativador_portas = AtivadorPortas(self.portas)
         self.executor_portas = ExecutorOperacionalPortas(self.ativador_portas)
         self.cerebros = RegistroCerebros(self.repo.root / "cerebros.json")
+        self.gateway_app = None
+
+    def iniciar_gateway_app(
+        self,
+        *,
+        host: str = "127.0.0.1",
+        porta: int = 8787,
+        token: str | None = None,
+    ) -> ServidorGatewayApp:
+        """Abre comunicação direta com o App; Termux não é necessário."""
+        if self.gateway_app is not None:
+            return self.gateway_app
+        servidor = ServidorGatewayApp(
+            GatewayAppDireto(),
+            host=host,
+            porta=porta,
+            token=token,
+        )
+        servidor.iniciar()
+        self.gateway_app = servidor
+        return servidor
+
+    def parar_gateway_app(self) -> None:
+        if self.gateway_app is None:
+            return
+        self.gateway_app.parar()
+        self.gateway_app = None
+
+    def executar_com_app(
+        self,
+        capacidade: str,
+        payload: dict[str, Any] | None = None,
+        *,
+        endpoint: str = "http://127.0.0.1:8787",
+        token: str | None = None,
+        timeout: float = 60.0,
+    ) -> dict[str, Any]:
+        """Solicita ao App uma capacidade sem passar pelo Termux."""
+        cliente = ClienteAppDireto(endpoint, token=token, timeout=timeout)
+        return cliente.executar(capacidade, payload, timeout=timeout)
 
     def registrar_cerebro(self, cerebro: CerebroRemoto) -> None:
         """Registra outro núcleo possível sem impor hierarquia ou topologia."""
