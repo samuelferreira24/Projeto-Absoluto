@@ -34,6 +34,10 @@ from .portas import Porta, RegistroPortas
 from .ativacao_portas import AtivadorPortas, Handler, ResultadoPorta
 from .executor_portas import ExecutorOperacionalPortas
 from .cerebros import CerebroRemoto, RegistroCerebros
+from .cliente_app import ClienteAppDireto
+from .gateway_app import GatewayAppDireto, ServidorGatewayApp
+from .nos_app import NoApp, RegistroNosApp
+from .conhecimento_fundamental import conhecimento_fundamental, buscar_conhecimento_fundamental
 
 
 class Cerebro:
@@ -71,6 +75,111 @@ class Cerebro:
         self.ativador_portas = AtivadorPortas(self.portas)
         self.executor_portas = ExecutorOperacionalPortas(self.ativador_portas)
         self.cerebros = RegistroCerebros(self.repo.root / "cerebros.json")
+        self.nos_app = RegistroNosApp(self.repo.root / "nos_app.json")
+        self.gateway_app = None
+
+    def conhecimento_fundamental(self) -> list[dict[str, Any]]:
+        """Retorna o conhecimento de referência consolidado do projeto."""
+        return conhecimento_fundamental()
+
+    def buscar_conhecimento(self, termo: str) -> list[dict[str, Any]]:
+        """Busca conhecimento de referência sem depender de um provedor externo."""
+        return buscar_conhecimento_fundamental(termo)
+
+    def iniciar_gateway_app(
+        self,
+        *,
+        host: str = "127.0.0.1",
+        porta: int = 8787,
+        token: str | None = None,
+    ) -> ServidorGatewayApp:
+        """Abre comunicação direta com o App; Termux não é necessário."""
+        if self.gateway_app is not None:
+            return self.gateway_app
+        servidor = ServidorGatewayApp(
+            GatewayAppDireto(self.nos_app),
+            host=host,
+            porta=porta,
+            token=token,
+        )
+        servidor.iniciar()
+        self.gateway_app = servidor
+        return servidor
+
+    def registrar_no_app(self, no: NoApp) -> NoApp:
+        return self.nos_app.registrar(no)
+
+    def sinalizar_no_app(self, no_id: str) -> bool:
+        return self.nos_app.sinalizar(no_id)
+
+    def listar_nos_app(self, *, ativos: bool | None = None) -> list[NoApp]:
+        return self.nos_app.listar(ativos=ativos)
+
+    def nos_app_por_capacidade(self, capacidade: str) -> list[NoApp]:
+        return self.nos_app.por_capacidade(capacidade)
+
+    def parar_gateway_app(self) -> None:
+        if self.gateway_app is None:
+            return
+        self.gateway_app.parar()
+        self.gateway_app = None
+
+    def executar_com_app(
+        self,
+        capacidade: str,
+        payload: dict[str, Any] | None = None,
+        *,
+        endpoint: str = "http://127.0.0.1:8787",
+        token: str | None = None,
+        timeout: float = 60.0,
+    ) -> dict[str, Any]:
+        """Solicita ao App uma capacidade sem passar pelo Termux."""
+        cliente = ClienteAppDireto(endpoint, token=token, timeout=timeout)
+        return cliente.executar(capacidade, payload, timeout=timeout)
+
+    def conectar_app_porta(
+        self,
+        *,
+        porta_id: str = "app-direto",
+        nome: str = "App Sistema Absoluto",
+        ambiente: str = "web",
+        endpoint: str = "http://127.0.0.1:8787",
+        token: str | None = None,
+        capacidades: tuple[str, ...] = ("inferencia",),
+    ) -> Porta:
+        """Registra o App como uma porta substituível do Cérebro."""
+        porta = Porta(
+            id=porta_id,
+            nome=nome,
+            categoria="app",
+            provedor="sistema-absoluto",
+            ambiente=ambiente,
+            capacidades=capacidades,
+            endpoint=endpoint,
+            modo="externo",
+            ativa=True,
+            substituivel=True,
+            metadata={"termux_necessario": False},
+        )
+        self.registrar_porta(porta)
+        return porta
+
+    def ativar_app_porta(
+        self,
+        *,
+        porta_id: str = "app-direto",
+        endpoint: str = "http://127.0.0.1:8787",
+        token: str | None = None,
+    ) -> None:
+        """Liga a capacidade de inferência do App ao sistema de portas."""
+        cliente = ClienteAppDireto(endpoint, token=token)
+
+        def inferencia(payload: dict[str, Any] | None = None, **kwargs: Any) -> dict[str, Any]:
+            dados = dict(payload or {})
+            dados.update(kwargs)
+            return cliente.executar("inferencia", dados)
+
+        self.ativador_portas.ativar(porta_id, "inferencia", inferencia)
 
     def registrar_cerebro(self, cerebro: CerebroRemoto) -> None:
         """Registra outro núcleo possível sem impor hierarquia ou topologia."""
