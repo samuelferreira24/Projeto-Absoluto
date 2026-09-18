@@ -30,6 +30,7 @@ from .persistencia_orquestracao import carregar_orquestracao, salvar_orquestraca
 from .controle_execucao import ControleExecucao
 from .execucao_plano import ExecutorPlano
 from .ciclo_operacional import CicloOperacional, DecisorOperacional, ExecutorOperacional
+from .portas import Porta, RegistroPortas
 
 
 class Cerebro:
@@ -63,6 +64,19 @@ class Cerebro:
         self.orquestrador_adaptativo = OrquestradorAdaptativo(self.grafo_tarefas, agendador=self.agendador, detector_sinergia=self.detector_sinergia)
         self.executor_plano = ExecutorPlano(self.agendador, self.controle_execucao)
         self.interface_chat = InterfaceChat(self)
+        self.portas = RegistroPortas(self.repo.root / "portas.json")
+
+    def registrar_porta(self, porta: Porta) -> None:
+        self.portas.registrar(porta)
+
+    def listar_portas(self, *, ativas: bool | None = None) -> list[Porta]:
+        return self.portas.listar(ativas=ativas)
+
+    def portas_por_capacidade(self, capacidade: str, *, ativas: bool = True) -> list[Porta]:
+        return self.portas.por_capacidade(capacidade, ativas=ativas)
+
+    def portas_por_ambiente(self, ambiente: str, *, ativas: bool = True) -> list[Porta]:
+        return self.portas.por_ambiente(ambiente, ativas=ativas)
 
     def inventario_capacidades(self) -> list[dict[str, Any]]:
         return inventariar()
