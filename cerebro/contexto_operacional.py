@@ -130,7 +130,11 @@ def construir_contexto(cerebro: Any, *, objetivo: str | None = None, proximo_pas
         restricoes=list(sessao.get("restricoes", [])),
         tarefas_pendentes=pendentes,
         evidencias_relevantes=list(sessao.get("evidencias_relevantes", [])),
-        aprendizados_relevantes=[\n            getattr(r, "title", getattr(r, "titulo", ""))\n            for r in cerebro.registros()\n            if getattr(r, "kind", getattr(r, "tipo", "")) in {"APRENDIZADO", "ENTENDIMENTO", "DESCOBERTA"}\n        ][-20:],
+        aprendizados_relevantes=[
+            getattr(r, "title", getattr(r, "titulo", ""))
+            for r in cerebro.registros()
+            if getattr(r, "kind", getattr(r, "tipo", "")) in {"APRENDIZADO", "ENTENDIMENTO", "DESCOBERTA"}
+        ][-20:],
         mudancas_desde_ultima_sessao=list(sessao.get("mudancas_desde_ultima_sessao", [])),
         agentes_ativos=list(sessao.get("agentes_ativos", [])),
         ferramentas_disponiveis=list(sessao.get("ferramentas_disponiveis", [])),
