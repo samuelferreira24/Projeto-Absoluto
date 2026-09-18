@@ -83,3 +83,31 @@ def test_runtime_nao_renova_lease_expirado(tmp_path):
         runtime.renovar_lease("a")
     runtime.estado.lease_id = "a"
     runtime.liberar_lease("a")
+
+
+from cerebro.controle_agente import AutorizacaoAgente, ControleAgente, TelemetriaAgente
+from cerebro.identidade import identidade_agente
+
+
+def test_runtime_controlado_bloqueia_ferramenta(tmp_path):
+    o = Orquestrador(tmp_path / "orq.json")
+    o.registrar_missao(Missao("M-C", "continuar"))
+    controle = ControleAgente(
+        AutorizacaoAgente(
+            identidade=identidade_agente(),
+            ferramentas_permitidas=("pesquisa",),
+            nivel_maximo_autonomia=2,
+        ),
+        TelemetriaAgente(tmp_path / "telemetria.jsonl"),
+    )
+    runtime = RuntimeContinuo(o, tmp_path / "runtime.json")
+    resultado = runtime.executar_ciclo_controlado(
+        "M-C",
+        lambda _: [("caminho-a", 1.0)],
+        lambda _, caminho: {"caminho": caminho},
+        controle=controle,
+        ferramenta="shell",
+    )
+    assert resultado["executado"] is False
+    assert resultado["estado"] == "BLOQUEADO"
+    assert runtime.estado.ciclos == 0
