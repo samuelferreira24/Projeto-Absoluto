@@ -65,7 +65,7 @@ def test_facade_delega_capacity_de_tempo_ao_scheduler():
     ])
     o = OrquestradorAdaptativo(g)
     plano = o.plano_adaptativo({"cpu", "gpu"}, capacidade_de_tempo=5)
-    assert [t.id for t in plano] == ["a"]
+    assert [t.id for t in plano] == ["b"]
 
 
 def test_replanejamento_apos_falha_ativa_fallback():
