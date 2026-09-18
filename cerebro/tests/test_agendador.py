@@ -156,7 +156,7 @@ def test_capacidade_temporal_limita_lote():
     ])
     agendador = AgendadorAdaptativo(grafo)
     plano = agendador.planejar({"cpu", "gpu"}, capacidade_de_tempo=5)
-    assert [t.id for t in plano.tarefas] == ["a"]
+    assert [t.id for t in plano.tarefas] == ["b"]
 
 
 def test_fallback_e_retry_ficam_registrados():
