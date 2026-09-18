@@ -225,6 +225,34 @@ class RuntimeContinuo:
             if self.estado.lease_id == identificador:
                 self.liberar_lease(identificador)
 
+    def executar_ciclo_controlado(
+        self,
+        missao_id: str,
+        candidatos: Callable,
+        executor: Callable,
+        *,
+        controle,
+        ferramenta: str,
+        recurso: str | None = None,
+        nivel: int = 0,
+        custo_estimado: float = 0.0,
+        cadeia: int = 1,
+        aprovacao: bool = False,
+    ) -> dict[str, Any]:
+        """Executa somente depois de uma autorização explícita do agente."""
+        permitido, motivo = controle.verificar(
+            operacao="runtime_controlado",
+            ferramenta=ferramenta,
+            recurso=recurso,
+            nivel=nivel,
+            custo_estimado=custo_estimado,
+            cadeia=cadeia,
+            aprovacao=aprovacao,
+        )
+        if not permitido:
+            return {"executado": False, "estado": "BLOQUEADO", "motivo": motivo}
+        return self.executar_ciclo(missao_id, candidatos, executor)
+
     def parar(self, motivo: str = "parada solicitada") -> None:
         if self.estado.lease_id:
             try:
