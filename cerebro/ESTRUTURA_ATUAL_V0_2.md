@@ -123,3 +123,36 @@ Arquivos V0.1 e versões anteriores permanecem para reconstrução histórica. U
 A estrutura deste arquivo descreve a organização física atual. A autoridade conceitual continua distribuída entre os documentos canônicos da especificação, os contratos, os registros de memória e as evidências de implementação.
 
 A classificação de autoridade documental é mantida em `cerebro/especificacao/INDICE_ARQUITETURA_E_ACERVO_V0_1.md`.
+
+
+## 7. Reavaliação sistêmica — ciclo de 2026-09-18
+
+A auditoria desta etapa mostrou que o núcleo de orquestração já ultrapassou o estágio de simples grafo + scheduler. Há agora runtime recuperável, controle de execução, identidade de agentes, política de autonomia, telemetria, simulação, sinergia e persistência.
+
+A lacuna de maior valor encontrada nesta etapa foi a fronteira entre **decisão** e **autoridade de execução**. Foram reforçados:
+
+- aprovação vinculada à ação, ferramenta, recurso, custo, cadeia e validade;
+- consumo único da aprovação;
+- serialização interprocessos dos claims;
+- persistência atômica do controle de execução;
+- reconciliação que devolve tarefas com claim expirado ao estado recuperável;
+- registro do aprendizado gerado pela descoberta.
+
+A arquitetura atual passa a tratar segurança como uma camada transversal da execução, e não apenas como uma propriedade do agente.
+
+## 8. Próximas lacunas prioritárias
+
+As próximas lacunas identificadas, sem ordem definitiva de implementação, são:
+
+1. autoridade de origem e confiança da memória;
+2. proteção contra memory poisoning e conteúdo externo malicioso;
+3. assinatura/autenticação de mensagens entre agentes;
+4. circuit breakers e limites distribuídos de custo/retry;
+5. persistência compartilhada para operação distribuída;
+6. avaliação adversarial automatizada;
+7. seleção persistente de modelos, ferramentas e agentes;
+8. integração entre resultados de pesquisa e planejamento;
+9. descoberta automática de novos caminhos a partir de resultados;
+10. observabilidade de ponta a ponta.
+
+A prioridade deve continuar sendo recalculada pelo valor, dependências desbloqueadas, risco e capacidade de multiplicação.
