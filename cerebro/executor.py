@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Callable, Protocol
 
+from .controle_agente import ControleAgente
 from .politica_execucao import Acao, PoliticaExecucao
 
 
@@ -15,27 +16,73 @@ class PlanoCiclo:
     acao: Acao
     alvo: str | None = None
     contexto: dict[str, Any] = field(default_factory=dict)
+    ferramenta: str | None = None
+    recurso: str | None = None
+    custo_estimado: float = 0.0
+    cadeia: int = 1
+    aprovacao: bool = False
+    correlation_id: str | None = None
+    parent_id: str | None = None
 
 
 class ExecutorCerebro:
     """Ponte entre sinais do Cérebro e execução autorizada.
 
-    Depende apenas do contrato contextual, evitando acoplamento circular ao
-    serviço concreto do Cérebro e mantendo a camada de execução substituível.
+    A política de autonomia continua sendo obrigatória. Quando um ControleAgente
+    é fornecido, a autorização de identidade/escopo também passa a ser
+    obrigatória e o resultado é registrado na telemetria.
     """
 
-    def __init__(self, cerebro: FonteContextual | None = None, politica: PoliticaExecucao | None = None) -> None:
+    def __init__(
+        self,
+        cerebro: FonteContextual | None = None,
+        politica: PoliticaExecucao | None = None,
+        controle: ControleAgente | None = None,
+    ) -> None:
         if cerebro is None:
             from .servico import Cerebro
             cerebro = Cerebro()
         self.cerebro = cerebro
         self.politica = politica or PoliticaExecucao()
+        self.controle = controle
 
     def selecionar(self, contexto: dict[str, float] | None = None) -> list[tuple[str, float]]:
         return self.cerebro.candidatos_rede(contexto)
 
     def executar(self, plano: PlanoCiclo, funcao: Callable[[PlanoCiclo], dict[str, Any]]) -> dict[str, Any]:
         if not self.politica.autorizada(plano.acao):
+            if self.controle:
+                self.controle.registrar_resultado(
+                    operacao=plano.acao.nome, estado="BLOQUEADO",
+                    ferramenta=plano.ferramenta, recurso=plano.recurso,
+                    correlation_id=plano.correlation_id, parent_id=plano.parent_id,
+                    detalhes={"motivo": "ação fora da política de autonomia"},
+                )
             return {"executado": False, "estado": "BLOQUEADO", "motivo": "ação fora da política de autonomia"}
+
+        if self.controle:
+            ferramenta = plano.ferramenta or plano.acao.nome
+            permitido, motivo = self.controle.verificar(
+                operacao=plano.acao.nome,
+                ferramenta=ferramenta,
+                recurso=plano.recurso,
+                nivel=int(plano.acao.nivel),
+                custo_estimado=plano.custo_estimado,
+                cadeia=plano.cadeia,
+                aprovacao=plano.aprovacao,
+                correlation_id=plano.correlation_id,
+                parent_id=plano.parent_id,
+            )
+            if not permitido:
+                return {"executado": False, "estado": "BLOQUEADO", "motivo": motivo}
+
         resultado = funcao(plano)
+
+        if self.controle:
+            self.controle.registrar_resultado(
+                operacao=plano.acao.nome, estado="CONCLUIDO",
+                ferramenta=plano.ferramenta or plano.acao.nome,
+                recurso=plano.recurso, custo=plano.custo_estimado,
+                correlation_id=plano.correlation_id, parent_id=plano.parent_id,
+            )
         return {"executado": True, "estado": "CONCLUIDO", "resultado": resultado}
