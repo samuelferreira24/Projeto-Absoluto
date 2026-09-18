@@ -93,7 +93,7 @@ def criar_snapshot(
     estado = cerebro.estado.to_dict()
     tarefas = []
     for tarefa in cerebro.grafo_tarefas.tarefas.values():
-        item = asdict(tarefa)
+        item = tarefa.to_dict() if hasattr(tarefa, "to_dict") else (asdict(tarefa) if hasattr(tarefa, "__dataclass_fields__") else dict(vars(tarefa)))
         item["estado"] = tarefa.estado.value
         tarefas.append(item)
 
