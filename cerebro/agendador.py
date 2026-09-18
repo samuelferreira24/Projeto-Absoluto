@@ -236,7 +236,7 @@ class AgendadorAdaptativo:
                 self.grafo.marcar(tarefa.id, EstadoTarefa.EXECUTANDO)
         self._adicionar_historico({"evento": "INICIO_EXECUCAO", "tarefas": [t.id for t in plano.tarefas], "modo": plano.modo_execucao})
 
-    def registrar_resultado(self, tarefa_id: str, sucesso: bool, *, observacao: str | None = None, custo_real: float | None = None, tempo_real: float | None = None, qualidade: float | None = None, evidencia: str | None = None, contexto: dict[str, object] | None = None, aprendizado: str | None = None, fallback_tarefa_id: str | None = None, reintentar: bool = False) -> None:
+    def registrar_resultado(self, tarefa_id: str, sucesso: bool, *, observacao: str | None = None, custo_real: float | None = None, tempo_real: float | None = None, qualidade: float | None = None, evidencia: str | None = None, contexto: dict[str, object] | None = None, aprendizado: str | None = None, fallback_tarefa_id: str | None = None, reintentar: bool = False, consumo_combustivel: float | None = None) -> None:
         tarefa = self.grafo.tarefas[tarefa_id]
         self.grafo.marcar(tarefa_id, EstadoTarefa.CONCLUIDA if sucesso else EstadoTarefa.FALHOU)
         perfil = self.perfis.setdefault(tarefa_id, {"execucoes": 0.0, "sucessos": 0.0, "confiabilidade": 1.0, "fator_tempo": 1.0})
