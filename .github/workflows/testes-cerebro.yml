@@ -1,0 +1,27 @@
+name: Cérebro - testes
+
+on:
+  push:
+    branches:
+      - base-cerebro-v0.1
+  pull_request:
+    branches:
+      - base-cerebro-v0.1
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar pytest
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Executar testes
+        run: python -m pytest -q
