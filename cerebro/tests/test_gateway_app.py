@@ -71,3 +71,28 @@ def test_gateway_expoe_que_termux_nao_e_necessario():
         assert "inferencia" in dados["capacidades"]
     finally:
         servidor.parar()
+
+
+def test_gateway_rejeita_token_incorreto():
+    import urllib.error
+    import urllib.request
+
+    servidor = ServidorGatewayApp(GatewayAppDireto(), porta=0, token="segredo")
+    porta = servidor._server.server_address[1]
+    servidor.iniciar()
+    try:
+        req = urllib.request.Request(f"http://127.0.0.1:{porta}/saude")
+        try:
+            urllib.request.urlopen(req, timeout=2)
+            assert False, "deveria rejeitar"
+        except urllib.error.HTTPError as exc:
+            assert exc.code == 401
+
+        req_ok = urllib.request.Request(
+            f"http://127.0.0.1:{porta}/saude",
+            headers={"X-Cerebro-Token": "segredo"},
+        )
+        with urllib.request.urlopen(req_ok, timeout=2) as resposta:
+            assert json.loads(resposta.read().decode())["ok"] is True
+    finally:
+        servidor.parar()
