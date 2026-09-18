@@ -96,3 +96,45 @@ def test_gateway_rejeita_token_incorreto():
             assert json.loads(resposta.read().decode())["ok"] is True
     finally:
         servidor.parar()
+
+
+def test_gateway_registra_e_sinaliza_no_app():
+    from cerebro.nos_app import RegistroNosApp
+
+    registro = RegistroNosApp("/tmp/test-nos-app.json")
+    gateway = GatewayAppDireto(registro)
+    servidor = ServidorGatewayApp(gateway, porta=0)
+    porta = servidor._server.server_address[1]
+    servidor.iniciar()
+    try:
+        body = json.dumps({
+            "id": "celular-a",
+            "nome": "Celular A",
+            "ambiente": "android",
+            "capacidades": ["inferencia"],
+        }).encode()
+        req = urllib.request.Request(
+            f"http://127.0.0.1:{porta}/v1/nos",
+            data=body,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=2) as resposta:
+            assert resposta.status == 201
+
+        req = urllib.request.Request(f"http://127.0.0.1:{porta}/v1/nos")
+        with urllib.request.urlopen(req, timeout=2) as resposta:
+            dados = json.loads(resposta.read().decode())
+        assert dados["nos"][0]["id"] == "celular-a"
+        assert dados["nos"][0]["capacidades"] == ["inferencia"]
+
+        req = urllib.request.Request(
+            f"http://127.0.0.1:{porta}/v1/nos/celular-a/sinal",
+            data=b"{}",
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=2) as resposta:
+            assert json.loads(resposta.read().decode())["ok"] is True
+    finally:
+        servidor.parar()
