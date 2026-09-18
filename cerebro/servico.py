@@ -114,6 +114,50 @@ class Cerebro:
         cliente = ClienteAppDireto(endpoint, token=token, timeout=timeout)
         return cliente.executar(capacidade, payload, timeout=timeout)
 
+    def conectar_app_porta(
+        self,
+        *,
+        porta_id: str = "app-direto",
+        nome: str = "App Sistema Absoluto",
+        ambiente: str = "web",
+        endpoint: str = "http://127.0.0.1:8787",
+        token: str | None = None,
+        capacidades: tuple[str, ...] = ("inferencia",),
+    ) -> Porta:
+        """Registra o App como uma porta substituível do Cérebro."""
+        porta = Porta(
+            id=porta_id,
+            nome=nome,
+            categoria="app",
+            provedor="sistema-absoluto",
+            ambiente=ambiente,
+            capacidades=capacidades,
+            endpoint=endpoint,
+            modo="externo",
+            ativa=True,
+            substituivel=True,
+            metadata={"termux_necessario": False},
+        )
+        self.registrar_porta(porta)
+        return porta
+
+    def ativar_app_porta(
+        self,
+        *,
+        porta_id: str = "app-direto",
+        endpoint: str = "http://127.0.0.1:8787",
+        token: str | None = None,
+    ) -> None:
+        """Liga a capacidade de inferência do App ao sistema de portas."""
+        cliente = ClienteAppDireto(endpoint, token=token)
+
+        def inferencia(payload: dict[str, Any] | None = None, **kwargs: Any) -> dict[str, Any]:
+            dados = dict(payload or {})
+            dados.update(kwargs)
+            return cliente.executar("inferencia", dados)
+
+        self.ativador_portas.ativar(porta_id, "inferencia", inferencia)
+
     def registrar_cerebro(self, cerebro: CerebroRemoto) -> None:
         """Registra outro núcleo possível sem impor hierarquia ou topologia."""
         self.cerebros.registrar(cerebro)
