@@ -9,10 +9,13 @@ import time
 from typing import Any
 
 from .servico import Cerebro
+from .politica_execucao import Acao, NivelAutonomia, PoliticaExecucao
 
 
-def executar_pedidos_pendentes(cerebro: Cerebro, comando: str) -> list[dict[str, Any]]:
+def executar_pedidos_pendentes(cerebro: Cerebro, comando: str, politica: PoliticaExecucao | None = None) -> list[dict[str, Any]]:
     """Processa uma leva de pedidos e retorna resultados estruturados."""
+    politica = politica or PoliticaExecucao(NivelAutonomia.DELEGAR)
+    acao_executor = Acao("executar_executor_externo", NivelAutonomia.DELEGAR, reversivel=False)
     comando_argv = shlex.split(comando)
     if not comando_argv:
         raise ValueError("comando do executor vazio")
@@ -52,6 +55,8 @@ def executar_pedidos_pendentes(cerebro: Cerebro, comando: str) -> list[dict[str,
                 raise RuntimeError("executor deve retornar JSON em stdout") from exc
 
         try:
+            if not politica.autorizada(acao_executor):
+                raise PermissionError("executor externo bloqueado pela política de autonomia")
             resultado = cerebro.executar_missao(pedido.missao_id, candidatos, executor)
             cerebro.despertador.concluir(pedido.id)
             resultados.append({"pedido": pedido.id, **resultado})
