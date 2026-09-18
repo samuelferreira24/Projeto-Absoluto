@@ -221,11 +221,37 @@ class Cerebro:
     def registros(self) -> list[Registro]:
         return list(self.repo._iter_registros())
 
-    def buscar(self, consulta: str, limite: int = 10) -> list[ResultadoBusca]:
-        return buscar_hibrido(self.registros(), consulta, limite)
+    def buscar(
+        self,
+        consulta: str,
+        limite: int = 10,
+        *,
+        instante: str | None = None,
+        incluir_superados: bool = False,
+    ) -> list[ResultadoBusca]:
+        return buscar_hibrido(
+            self.registros(),
+            consulta,
+            limite,
+            instante=instante,
+            incluir_superados=incluir_superados,
+        )
 
-    def relacionados(self, ids: list[str], profundidade: int = 1) -> list[Registro]:
-        return expandir_relacoes(self.registros(), ids, profundidade)
+    def relacionados(
+        self,
+        ids: list[str],
+        profundidade: int = 1,
+        *,
+        instante: str | None = None,
+        incluir_superados: bool = False,
+    ) -> list[Registro]:
+        return expandir_relacoes(
+            self.registros(),
+            ids,
+            profundidade,
+            instante=instante,
+            incluir_superados=incluir_superados,
+        )
 
     def auditar(self, unidades: list[UnidadeSemantica], relacoes: list[RelacaoSemantica] | None = None) -> ResultadoAuditoria:
         return auditar_semantica(unidades, relacoes)
