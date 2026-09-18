@@ -28,6 +28,7 @@ from .inventario_capacidades import inventariar, resumo as resumo_capacidades, e
 from .simulador_orquestracao import CenarioSimulacao, SimuladorOrquestracao
 from .persistencia_orquestracao import carregar_orquestracao, salvar_orquestracao
 from .controle_execucao import ControleExecucao
+from .execucao_plano import ExecutorPlano
 
 
 class Cerebro:
@@ -59,6 +60,7 @@ class Cerebro:
             self.repo.root.parent / "memoria" / "aprendizados.jsonl",
         )
         self.orquestrador_adaptativo = OrquestradorAdaptativo(self.grafo_tarefas, agendador=self.agendador)
+        self.executor_plano = ExecutorPlano(self.agendador, self.controle_execucao)
         self.interface_chat = InterfaceChat(self)
 
     def inventario_capacidades(self) -> list[dict[str, Any]]:
@@ -188,6 +190,11 @@ class Cerebro:
 
     def padroes_orquestracao_reutilizaveis(self, minimo_ocorrencias: int = 2) -> list[dict[str, object]]:
         return self.agendador.padroes_orquestracao_reutilizaveis(minimo_ocorrencias)
+
+    def executar_plano(self, plano: PlanoExecucao, handlers: dict[str, Callable[[NoTarefa], dict[str, Any]]], *, parar_na_falha: bool = False, correlation_id: str | None = None) -> list[dict[str, Any]]:
+        resultados = self.executor_plano.executar(plano, handlers, parar_na_falha=parar_na_falha, correlation_id=correlation_id)
+        self._salvar_orquestracao()
+        return [r.__dict__ for r in resultados]
 
     def concluir_tarefa(self, tarefa_id: str, sucesso: bool = True, **kwargs: Any) -> None:
         self.agendador.registrar_resultado(tarefa_id, sucesso, **kwargs)
