@@ -66,3 +66,20 @@ def test_claim_recarrega_e_impede_claim_duplicado(tmp_path):
     segundo.liberar("t1")
     terceiro = ControleExecucao(caminho)
     assert terceiro.claim("t1").tentativa == 2
+
+
+def test_reconciliacao_do_servico_desbloqueia_tarefa_expirada(tmp_path):
+    from cerebro.servico import Cerebro
+    from cerebro.grafo_tarefas import NoTarefa, EstadoTarefa, GrafoTarefas
+    cerebro = Cerebro(tmp_path / "data")
+    cerebro.adicionar_tarefa(NoTarefa("t1", "executar"))
+    cerebro.grafo_tarefas.marcar("t1", EstadoTarefa.EXECUTANDO)
+    cerebro.controle_execucao.claims["t1"] = ClaimTarefa(
+        tarefa_id="t1",
+        claim_id="expired",
+        adquirido_em="2026-01-01T00:00:00+00:00",
+        expira_em=(datetime.now(timezone.utc) - timedelta(seconds=1)).isoformat(),
+    )
+    cerebro.controle_execucao.salvar()
+    assert cerebro.reconciliar_execucao() == ["t1"]
+    assert cerebro.grafo_tarefas.tarefas["t1"].estado == EstadoTarefa.PENDENTE
