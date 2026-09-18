@@ -5,6 +5,7 @@ from enum import IntEnum
 from pathlib import Path
 from typing import Iterable, Sequence
 import os
+import shutil
 import uuid
 from datetime import datetime, timedelta, timezone
 
@@ -37,10 +38,19 @@ class EscopoExecucao:
     def validar_comando(self, argv: Sequence[str]) -> tuple[bool, str]:
         if not argv:
             return False, "comando vazio"
-        executavel = Path(argv[0]).name
-        permitidos = {Path(item).name for item in self.executaveis_permitidos}
-        if executavel not in permitidos:
-            return False, f"executável não permitido pelo escopo: {executavel}"
+        comando = argv[0]
+        executavel_resolvido = Path(comando).resolve() if Path(comando).is_absolute() else Path(shutil.which(comando) or "").resolve()
+        if not str(executavel_resolvido) or not executavel_resolvido.exists():
+            return False, f"executável não encontrado: {comando}"
+
+        permitidos: set[Path] = set()
+        for permitido in self.executaveis_permitidos:
+            resolvido = Path(permitido).resolve() if Path(permitido).is_absolute() else Path(shutil.which(permitido) or "").resolve()
+            if str(resolvido) and resolvido.exists():
+                permitidos.add(resolvido)
+
+        if executavel_resolvido not in permitidos:
+            return False, f"executável não permitido pelo escopo: {comando}"
         if self.diretorio_trabalho is not None and not Path(self.diretorio_trabalho).is_dir():
             return False, f"diretório de trabalho inexistente: {self.diretorio_trabalho}"
         return True, "OK"
