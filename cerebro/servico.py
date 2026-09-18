@@ -37,6 +37,7 @@ from .cerebros import CerebroRemoto, RegistroCerebros
 from .cliente_app import ClienteAppDireto
 from .gateway_app import GatewayAppDireto, ServidorGatewayApp
 from .nos_app import NoApp, RegistroNosApp
+from .conhecimento_fundamental import conhecimento_fundamental, buscar_conhecimento_fundamental
 
 
 class Cerebro:
@@ -76,6 +77,14 @@ class Cerebro:
         self.cerebros = RegistroCerebros(self.repo.root / "cerebros.json")
         self.nos_app = RegistroNosApp(self.repo.root / "nos_app.json")
         self.gateway_app = None
+
+    def conhecimento_fundamental(self) -> list[dict[str, Any]]:
+        """Retorna o conhecimento de referência consolidado do projeto."""
+        return conhecimento_fundamental()
+
+    def buscar_conhecimento(self, termo: str) -> list[dict[str, Any]]:
+        """Busca conhecimento de referência sem depender de um provedor externo."""
+        return buscar_conhecimento_fundamental(termo)
 
     def iniciar_gateway_app(
         self,
