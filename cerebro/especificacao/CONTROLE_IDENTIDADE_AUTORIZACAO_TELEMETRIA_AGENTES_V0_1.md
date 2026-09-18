@@ -29,4 +29,4 @@ Esta versão não implementa sandbox de sistema operacional, identidade criptogr
 
 ## Próxima etapa
 
-Conectar este plano de controle ao ExecutorCerebro e ao RuntimeContinuo para que uma ação operacional não possa contornar autorização e telemetria. Em paralelo, avaliar um adaptador OpenTelemetry e testes de falha/recuperação.
+A camada já foi conectada ao ExecutorCerebro e possui um caminho controlado no RuntimeContinuo. O próximo endurecimento é tornar esse caminho obrigatório para operações de maior impacto, sem quebrar operações locais de baixo risco. Em paralelo, avaliar um adaptador OpenTelemetry e testes de falha/recuperação.
