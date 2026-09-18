@@ -70,3 +70,14 @@ def test_executor_bloqueia_ferramenta_fora_do_allowlist(tmp_path: Path):
     resultado = executor.executar(plano, lambda _: {"nao": "deve executar"})
     assert resultado["executado"] is False
     assert resultado["estado"] == "BLOQUEADO"
+
+
+def test_executor_acao_sensivel_exige_aprovacao_vinculada():
+    acao = Acao("alterar", NivelAutonomia.ALTERAR_SISTEMAS_AUTORIZADOS, exige_autorizacao=True)
+    politica = PoliticaExecucao(NivelAutonomia.ALTERAR_SISTEMAS_AUTORIZADOS)
+    executor = ExecutorCerebro(politica=politica)
+    bloqueado = executor.executar(PlanoCiclo(acao=acao, ferramenta="git", recurso="repo-x"), lambda _: {"nao": "executou"})
+    assert bloqueado["executado"] is False
+    token = politica.emitir_aprovacao(acao, ferramenta="git", recurso="repo-x")
+    plano = PlanoCiclo(acao=acao, ferramenta="git", recurso="repo-x", aprovacao_id=token)
+    assert executor.executar(plano, lambda _: {"ok": True})["executado"] is True
