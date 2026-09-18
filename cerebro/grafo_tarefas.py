@@ -70,7 +70,11 @@ class GrafoTarefas:
         return erros
 
     def prontas(self, recursos_disponiveis: set[str] | None = None) -> list[NoTarefa]:
-        recursos = recursos_disponiveis if recursos_disponiveis is not None else set()
+        # None significa que o scheduler não impôs filtro de disponibilidade.
+        # Um conjunto vazio, quando fornecido explicitamente, significa que nenhum
+        # recurso externo está disponível. Essa distinção evita bloquear tarefas
+        # autossuficientes quando o chamador não fornece um inventário de recursos.
+        recursos = recursos_disponiveis
         resultado: list[NoTarefa] = []
         for tarefa in self.tarefas.values():
             if tarefa.estado != EstadoTarefa.PENDENTE:
