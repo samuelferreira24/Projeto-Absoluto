@@ -34,3 +34,15 @@ def test_dependencia_ausente_nao_fica_pronta_por_acidente():
     grafo = GrafoTarefas()
     grafo.adicionar(NoTarefa(id="a", objetivo="x", depende_de=("ausente",)))
     assert grafo.prontas() == []
+
+
+def test_none_nao_bloqueia_tarefa_com_recurso():
+    grafo = GrafoTarefas()
+    grafo.adicionar(NoTarefa(id="a", objetivo="x", recursos=("cpu",)))
+    assert [t.id for t in grafo.prontas()] == ["a"]
+
+
+def test_conjunto_vazio_bloqueia_tarefa_com_recurso():
+    grafo = GrafoTarefas()
+    grafo.adicionar(NoTarefa(id="a", objetivo="x", recursos=("cpu",)))
+    assert grafo.prontas(set()) == []
