@@ -32,6 +32,7 @@ from .execucao_plano import ExecutorPlano
 from .ciclo_operacional import CicloOperacional, DecisorOperacional, ExecutorOperacional
 from .portas import Porta, RegistroPortas
 from .ativacao_portas import AtivadorPortas, Handler, ResultadoPorta
+from .executor_portas import ExecutorOperacionalPortas
 
 
 class Cerebro:
@@ -67,6 +68,7 @@ class Cerebro:
         self.interface_chat = InterfaceChat(self)
         self.portas = RegistroPortas(self.repo.root / "portas.json")
         self.ativador_portas = AtivadorPortas(self.portas)
+        self.executor_portas = ExecutorOperacionalPortas(self.ativador_portas)
 
     def registrar_porta(self, porta: Porta) -> None:
         self.portas.registrar(porta)
@@ -101,6 +103,67 @@ class Cerebro:
             porta_id=porta_id,
             **kwargs,
         )
+
+    def executar_objetivo_com_portas(
+        self,
+        missao_id: str,
+        decisor: DecisorOperacional,
+        *,
+        limite_ciclos: int = 20,
+    ) -> list[dict[str, Any]]:
+        """Executa o ciclo operacional usando as portas ativadas como executores."""
+        historico = CicloOperacional(self.orquestrador).executar(
+            missao_id,
+            decisor,
+            self.executor_portas,
+            limite_ciclos=limite_ciclos,
+        )
+        self._salvar_orquestracao()
+        return historico
+
+    def executar_ciclo_continuo(self, missao_id: str, candidatos: Callable, executor: Callable) -> dict[str, Any]:
+        return self.runtime.executar_ciclo(missao_id, candidatos, executor)
+
+    def executar_ciclo_controlado(
+        self,
+        missao_id: str,
+        candidatos: Callable,
+        executor: Callable,
+        *,
+        ferramenta: str,
+        recurso: str | None = None,
+        nivel: int = 0,
+        custo_estimado: float = 0.0,
+        cadeia: int = 1,
+        aprovacao: bool = False,
+    ) -> dict[str, Any]:
+        return self.runtime.executar_ciclo_controlado(
+            missao_id,
+            candidatos,
+            executor,
+            controle=self.controle_execucao,
+            ferramenta=ferramenta,
+            recurso=recurso,
+            nivel=nivel,
+            custo_estimado=custo_estimado,
+            cadeia=cadeia,
+            aprovacao=aprovacao,
+        )
+
+    def parar_runtime(self, motivo: str = "parada solicitada") -> None:
+        self.runtime.parar(motivo)
+
+    def iniciar_despertar(self, pedido_id: str) -> PedidoDespertar:
+        return self.despertador.iniciar(pedido_id)
+
+    def concluir_despertar(self, pedido_id: str) -> PedidoDespertar:
+        return self.despertador.concluir(pedido_id)
+
+    def falhar_despertar(self, pedido_id: str, erro: str) -> PedidoDespertar:
+        return self.despertador.falhar(pedido_id, erro)
+
+    def retries_prontos(self) -> list[str]:
+        return self.controle_execucao.prontas_para_retry()
 
     def inventario_capacidades(self) -> list[dict[str, Any]]:
         return inventariar()
