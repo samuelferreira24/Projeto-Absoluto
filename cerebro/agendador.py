@@ -123,6 +123,8 @@ class AgendadorAdaptativo:
             if requeridas and not requeridas.issubset(capacidades):
                 continue
             compat = len(requeridas & capacidades) / len(requeridas) if requeridas else 1.0
+            if tarefa.ferramenta and tarefa.ferramenta not in executor.ferramentas:
+                continue
             ofertas = {executor.id, *executor.ferramentas, *executor.modelos, *executor.capacidades}
             preferencia = 1.0 + (0.15 * len(preferencias & ofertas))
             score = (
@@ -166,6 +168,7 @@ class AgendadorAdaptativo:
         ordenadas = sorted(avaliadas, key=lambda x: (-x[1], -x[0].prioridade, x[0].id))
         selecionadas: list[NoTarefa] = []
         uso: dict[str, float] = {}
+        uso_executores: dict[str, int] = {}
         custo = valor = risco = prioridade = fuel = 0.0
         duracoes: list[float] = []
         bloqueios: list[str] = []
@@ -181,6 +184,11 @@ class AgendadorAdaptativo:
                 continue
             custo_tarefa = max(0.0, tarefa.custo_estimado)
             if executor:
+                limite_executor = max(1, executor.capacidade_concorrencia)
+                if uso_executores.get(executor.id, 0) >= limite_executor:
+                    bloqueios.append(f"{tarefa.id}: capacidade do executor")
+                    continue
+                uso_executores[executor.id] = uso_executores.get(executor.id, 0) + 1
                 custo_tarefa *= max(0.0, executor.custo_multiplicador)
             if custo_tarefa == 0:
                 custo_tarefa = 1.0 / max(tarefa.prioridade, 0.1)
