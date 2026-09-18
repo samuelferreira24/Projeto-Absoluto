@@ -117,12 +117,18 @@ class AgendadorAdaptativo:
     def selecionar_executor(self, tarefa: NoTarefa) -> PerfilExecutor | None:
         requeridas = set(tarefa.capacidades)
         candidatos: list[tuple[float, PerfilExecutor]] = []
+        preferencias = set(tarefa.preferencias)
         for executor in self.executores.values():
             capacidades = set(executor.capacidades)
             if requeridas and not requeridas.issubset(capacidades):
                 continue
             compat = len(requeridas & capacidades) / len(requeridas) if requeridas else 1.0
-            score = compat * executor.confiabilidade / max(0.1, executor.fator_tempo * executor.custo_multiplicador)
+            ofertas = {executor.id, *executor.ferramentas, *executor.modelos, *executor.capacidades}
+            preferencia = 1.0 + (0.15 * len(preferencias & ofertas))
+            score = (
+                compat * executor.confiabilidade * preferencia
+                / max(0.1, executor.fator_tempo * executor.custo_multiplicador)
+            )
             candidatos.append((score, executor))
         return max(candidatos, key=lambda x: (x[0], x[1].id))[1] if candidatos else None
 
@@ -242,12 +248,21 @@ class AgendadorAdaptativo:
             observado = max(0.1, tempo_real / tarefa.tempo_estimado)
             n = perfil["execucoes"]
             perfil["fator_tempo"] = (perfil["fator_tempo"] * (n - 1.0) + observado) / n
+        if consumo_combustivel is not None:
+            if consumo_combustivel < 0:
+                raise ValueError("consumo de combustível não pode ser negativo")
+            self.fuel = OrcamentoCombustivel(
+                self.fuel.disponivel,
+                self.fuel.reservado,
+                self.fuel.consumido + consumo_combustivel,
+            )
         self._adicionar_historico({
             "evento": "RESULTADO", "tarefa": tarefa_id, "sucesso": sucesso,
             "observacao": observacao or "", "custo_real": custo_real, "tempo_real": tempo_real,
             "qualidade": qualidade, "evidencia": evidencia or "", "contexto": dict(contexto or {}),
             "aprendizado": aprendizado or "", "perfil_atualizado": dict(perfil),
             "fallback": fallback_tarefa_id, "retry": reintentar,
+            "consumo_combustivel": consumo_combustivel,
         })
         if not sucesso and fallback_tarefa_id:
             if fallback_tarefa_id not in self.grafo.tarefas:
@@ -331,8 +346,27 @@ class AgendadorAdaptativo:
             self.perfis = {str(k): {str(pk): float(pv) for pk, pv in v.items()} for k, v in dados.get("perfis", {}).items()}
             self.historico = list(dados.get("historico", []))
             self.cenario = dict(dados.get("cenario", {}))
+            for eid, raw in dados.get("executores", {}).items():
+                self.executores[eid] = PerfilExecutor(
+                    id=eid,
+                    capacidades=tuple(raw.get("capacidades", ())),
+                    ferramentas=tuple(raw.get("ferramentas", ())),
+                    modelos=tuple(raw.get("modelos", ())),
+                    confiabilidade=float(raw.get("confiabilidade", 1.0)),
+                    fator_tempo=float(raw.get("fator_tempo", 1.0)),
+                    custo_multiplicador=float(raw.get("custo_multiplicador", 1.0)),
+                    combustivel_por_unidade=float(raw.get("combustivel_por_unidade", 0.0)),
+                    capacidade_concorrencia=int(raw.get("capacidade_concorrencia", 1)),
+                )
+            fuel = dados.get("fuel", {})
+            if fuel:
+                self.fuel = OrcamentoCombustivel(
+                    float(fuel.get("disponivel", float("inf"))),
+                    float(fuel.get("reservado", 0.0)),
+                    float(fuel.get("consumido", 0.0)),
+                )
         except (OSError, ValueError, TypeError, json.JSONDecodeError):
-            self.perfis, self.historico, self.cenario = {}, [], {}
+            self.perfis, self.historico, self.executores, self.cenario = {}, [], {}, {}
 
     def _adicionar_historico(self, evento: dict[str, object]) -> None:
         self.historico.append(evento)
