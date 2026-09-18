@@ -9,16 +9,25 @@ import time
 from typing import Any
 
 from .servico import Cerebro
-from .politica_execucao import Acao, NivelAutonomia, PoliticaExecucao
+from .politica_execucao import Acao, EscopoExecucao, NivelAutonomia, PoliticaExecucao
 
 
 def executar_pedidos_pendentes(cerebro: Cerebro, comando: str, politica: PoliticaExecucao | None = None) -> list[dict[str, Any]]:
-    """Processa uma leva de pedidos e retorna resultados estruturados."""
+    """Processa uma leva de pedidos dentro de um escopo técnico explícito."""
     politica = politica or PoliticaExecucao(NivelAutonomia.DELEGAR)
     acao_executor = Acao("executar_executor_externo", NivelAutonomia.DELEGAR, reversivel=False)
     comando_argv = shlex.split(comando)
     if not comando_argv:
         raise ValueError("comando do executor vazio")
+
+    autorizado, motivo = politica.validar_executor_externo(acao_executor, comando_argv)
+    if not autorizado:
+        resultados = []
+        for pedido in list(cerebro.despertador.pendentes()):
+            cerebro.despertador.iniciar(pedido.id)
+            cerebro.despertador.falhar(pedido.id, motivo)
+            resultados.append({"pedido": pedido.id, "executado": False, "erro": motivo})
+        return resultados
 
     resultados: list[dict[str, Any]] = []
     for pedido in cerebro.despertador.pendentes():
@@ -44,8 +53,11 @@ def executar_pedidos_pendentes(cerebro: Cerebro, comando: str, politica: Politic
                 input=json.dumps(entrada, ensure_ascii=False),
                 text=True,
                 capture_output=True,
-                timeout=900,
+                timeout=politica.escopo.timeout_segundos,
                 check=False,
+                cwd=politica.escopo.diretorio_trabalho,
+                env=politica.escopo.ambiente(),
+                shell=False,
             )
             if processo.returncode != 0:
                 raise RuntimeError(processo.stderr.strip() or f"executor retornou {processo.returncode}")
@@ -55,8 +67,6 @@ def executar_pedidos_pendentes(cerebro: Cerebro, comando: str, politica: Politic
                 raise RuntimeError("executor deve retornar JSON em stdout") from exc
 
         try:
-            if not politica.autorizada(acao_executor):
-                raise PermissionError("executor externo bloqueado pela política de autonomia")
             resultado = cerebro.executar_missao(pedido.missao_id, candidatos, executor)
             cerebro.despertador.concluir(pedido.id)
             resultados.append({"pedido": pedido.id, **resultado})
@@ -66,13 +76,14 @@ def executar_pedidos_pendentes(cerebro: Cerebro, comando: str, politica: Politic
     return resultados
 
 
-def executar_continuamente(cerebro: Cerebro, comando: str, intervalo_segundos: int = 60, max_ciclos: int | None = None) -> list[list[dict[str, Any]]]:
-    """Mantém o worker ativo até parada externa ou limite opcional.
-
-    O worker é deliberadamente neutro quanto ao provedor: o comando externo
-    recebe uma missão/caminho em JSON e devolve JSON. A persistência e a
-    recuperação ficam no Cérebro, permitindo hospedar o processo fora do chat.
-    """
+def executar_continuamente(
+    cerebro: Cerebro,
+    comando: str,
+    intervalo_segundos: int = 60,
+    max_ciclos: int | None = None,
+    politica: PoliticaExecucao | None = None,
+) -> list[list[dict[str, Any]]]:
+    """Mantém o worker ativo até parada externa ou limite opcional."""
     if intervalo_segundos < 0:
         raise ValueError("intervalo_segundos não pode ser negativo")
     if max_ciclos is not None and max_ciclos <= 0:
@@ -81,7 +92,7 @@ def executar_continuamente(cerebro: Cerebro, comando: str, intervalo_segundos: i
     levas: list[list[dict[str, Any]]] = []
     ciclos = 0
     while max_ciclos is None or ciclos < max_ciclos:
-        levas.append(executar_pedidos_pendentes(cerebro, comando))
+        levas.append(executar_pedidos_pendentes(cerebro, comando, politica=politica))
         ciclos += 1
         if max_ciclos is not None and ciclos >= max_ciclos:
             break
@@ -97,8 +108,20 @@ def main() -> int:
     intervalo = int(os.environ.get("PROJETO_ABSOLUTO_WORKER_INTERVALO", "60"))
     limite_raw = os.environ.get("PROJETO_ABSOLUTO_WORKER_MAX_CICLOS")
     limite = int(limite_raw) if limite_raw else None
+    permitidos = tuple(
+        item for item in os.environ.get("PROJETO_ABSOLUTO_EXECUTOR_ALLOWLIST", "").split(os.pathsep)
+        if item
+    )
+    politica = PoliticaExecucao(
+        NivelAutonomia.DELEGAR,
+        escopo=EscopoExecucao(
+            executaveis_permitidos=permitidos,
+            diretorio_trabalho=os.environ.get("PROJETO_ABSOLUTO_EXECUTOR_CWD") or None,
+            timeout_segundos=int(os.environ.get("PROJETO_ABSOLUTO_EXECUTOR_TIMEOUT", "900")),
+        ),
+    )
     cerebro = Cerebro()
-    resultados = executar_continuamente(cerebro, comando, intervalo, limite)
+    resultados = executar_continuamente(cerebro, comando, intervalo, limite, politica=politica)
     print(json.dumps(resultados, ensure_ascii=False, indent=2))
     return 0
 
