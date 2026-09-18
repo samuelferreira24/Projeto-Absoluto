@@ -5,6 +5,8 @@ from enum import IntEnum
 from pathlib import Path
 from typing import Iterable, Sequence
 import os
+import uuid
+from datetime import datetime, timedelta, timezone
 
 
 class NivelAutonomia(IntEnum):
@@ -66,18 +68,51 @@ class PoliticaExecucao:
     ) -> None:
         self.nivel_maximo = nivel_maximo
         self.escopo = escopo or EscopoExecucao()
+        self._aprovacoes: dict[str, dict[str, object]] = {}
 
-    def autorizada(self, acao: Acao) -> bool:
-        if acao.exige_autorizacao:
-            return False
+    def emitir_aprovacao(self, acao: Acao, *, ferramenta: str | None = None, recurso: str | None = None,
+                         custo_maximo: float = 0.0, cadeia_maxima: int = 1, validade_segundos: int = 300) -> str:
+        if validade_segundos <= 0 or custo_maximo < 0 or cadeia_maxima < 1:
+            raise ValueError("limites de aprovação inválidos")
+        agora = datetime.now(timezone.utc)
+        token = f"APV-{uuid.uuid4().hex}"
+        self._aprovacoes[token] = {
+            "acao": acao.nome, "nivel": int(acao.nivel), "ferramenta": ferramenta,
+            "recurso": recurso, "custo_maximo": custo_maximo, "cadeia_maxima": cadeia_maxima,
+            "expira_em": (agora + timedelta(seconds=validade_segundos)).isoformat(), "utilizada": False,
+        }
+        return token
+
+    def autorizada(self, acao: Acao, *, ferramenta: str | None = None, recurso: str | None = None,
+                   custo_estimado: float = 0.0, cadeia: int = 1, aprovacao_id: str | None = None) -> bool:
         if acao.nivel > self.nivel_maximo:
             return False
         if not acao.reversivel and acao.nivel >= NivelAutonomia.ALTO_IMPACTO:
             return False
+        if acao.exige_autorizacao:
+            aprovacao = self._aprovacoes.get(aprovacao_id or "")
+            if not aprovacao or aprovacao["utilizada"]:
+                return False
+            if datetime.fromisoformat(str(aprovacao["expira_em"])) <= datetime.now(timezone.utc):
+                return False
+            if aprovacao["acao"] != acao.nome or int(aprovacao["nivel"]) != int(acao.nivel):
+                return False
+            if aprovacao["ferramenta"] != ferramenta or aprovacao["recurso"] != recurso:
+                return False
+            if custo_estimado > float(aprovacao["custo_maximo"]) or cadeia > int(aprovacao["cadeia_maxima"]):
+                return False
         return True
 
-    def validar_executor_externo(self, acao: Acao, argv: Sequence[str]) -> tuple[bool, str]:
-        if not self.autorizada(acao):
+    def consumir_aprovacao(self, aprovacao_id: str | None) -> None:
+        if not aprovacao_id:
+            return
+        aprovacao = self._aprovacoes.get(aprovacao_id)
+        if aprovacao is None:
+            raise ValueError("aprovação inexistente")
+        aprovacao["utilizada"] = True
+
+    def validar_executor_externo(self, acao: Acao, argv: Sequence[str], *, aprovacao_id: str | None = None) -> tuple[bool, str]:
+        if not self.autorizada(acao, aprovacao_id=aprovacao_id):
             return False, "ação fora da política de autonomia"
         if not self.escopo.autorizado:
             return False, "executor externo sem escopo técnico autorizado"
