@@ -35,6 +35,8 @@ from .ativacao_portas import AtivadorPortas, Handler, ResultadoPorta
 from .executor_portas import ExecutorOperacionalPortas
 from .cerebros import CerebroRemoto, RegistroCerebros
 from .conhecimento import BaseConhecimento, Conhecimento, ResultadoConhecimento
+from .sinais import RegistroSinais, Sinal
+from .roteamento_sinais import Canal, RoteadorSinais
 
 
 class Cerebro:
@@ -73,6 +75,27 @@ class Cerebro:
         self.ativador_portas = AtivadorPortas(self.portas)
         self.executor_portas = ExecutorOperacionalPortas(self.ativador_portas)
         self.cerebros = RegistroCerebros(self.repo.root / "cerebros.json")
+        self.sinais = RegistroSinais()
+        self.roteador_sinais = RoteadorSinais()
+
+    def registrar_canal_sinal(self, canal: Canal) -> None:
+        self.roteador_sinais.registrar_canal(canal)
+
+    def canais_sinal(self, *, entrada: bool | None = None) -> list[Canal]:
+        if entrada is True:
+            return self.roteador_sinais.canais_entrada()
+        if entrada is False:
+            return self.roteador_sinais.canais_saida()
+        return list(self.roteador_sinais.canais.values())
+
+    def receber_sinal(self, sinal: Sinal, *, canal_id: str | None = None) -> bool:
+        registrado = self.sinais.registrar(sinal)
+        if registrado:
+            self.roteador_sinais.rotear(sinal, canal_id)
+        return registrado
+
+    def sinais_recebidos(self, *, tipo: str | None = None, origem: str | None = None) -> list[Sinal]:
+        return self.sinais.listar(tipo=tipo, origem=origem)
 
     def registrar_cerebro(self, cerebro: CerebroRemoto) -> None:
         """Registra outro núcleo possível sem impor hierarquia ou topologia."""
@@ -599,4 +622,6 @@ class Cerebro:
             "executores": len(self.agendador.executores),
             "combustivel_restante": self.agendador.fuel.restante,
             "historico_orquestracao": len(self.agendador.historico),
+            "sinais": len(self.sinais.listar()),
+            "canais_sinal": len(self.roteador_sinais.canais),
         }
