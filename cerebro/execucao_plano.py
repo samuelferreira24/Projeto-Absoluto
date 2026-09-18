@@ -46,8 +46,10 @@ class ExecutorPlano:
         *,
         parar_na_falha: bool = False,
         correlation_id: str | None = None,
+        aprovacoes: dict[str, str] | None = None,
     ) -> list[ResultadoExecucaoTarefa]:
         correlacao = correlation_id or f"PLANO-{uuid.uuid4().hex}"
+        aprovacoes = dict(aprovacoes or {})
         resultados: list[ResultadoExecucaoTarefa] = []
 
         for tarefa in plano.tarefas:
@@ -75,19 +77,22 @@ class ExecutorPlano:
                     break
                 continue
 
+            nivel = NivelAutonomia(max(0, min(int(tarefa.nivel_autonomia), int(NivelAutonomia.ALTO_IMPACTO))))
             acao = Acao(
                 nome=f"executar_tarefa:{tarefa.id}",
-                nivel=NivelAutonomia.ACOES_REVERSIVEIS,
-                reversivel=True,
+                nivel=nivel,
+                reversivel=tarefa.reversivel,
+                exige_autorizacao=tarefa.exige_aprovacao,
             )
             plano_ciclo = PlanoCiclo(
                 acao=acao,
                 alvo=tarefa.id,
                 contexto={"objetivo": tarefa.objetivo},
-                ferramenta=tarefa.capacidades[0] if tarefa.capacidades else acao.nome,
+                ferramenta=tarefa.ferramenta or (tarefa.capacidades[0] if tarefa.capacidades else acao.nome),
                 recurso=tarefa.recursos[0] if tarefa.recursos else None,
                 custo_estimado=tarefa.custo_estimado,
                 cadeia=1,
+                aprovacao_id=aprovacoes.get(tarefa.id),
                 correlation_id=correlacao,
             )
 
