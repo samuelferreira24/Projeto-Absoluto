@@ -5,6 +5,7 @@ from typing import Iterable
 
 from .agendador import AgendadorAdaptativo
 from .grafo_tarefas import GrafoTarefas, NoTarefa
+from .sinergia import DetectorSinergia, ResultadoCombinacao as EvidenciaCombinacao
 
 
 @dataclass(frozen=True)
@@ -42,6 +43,7 @@ class OrquestradorAdaptativo:
     sinergias: list[Sinergia] = field(default_factory=list)
     decisoes: list[dict[str, object]] = field(default_factory=list)
     agendador: AgendadorAdaptativo | None = None
+    detector_sinergia: DetectorSinergia | None = None
 
     def __post_init__(self) -> None:
         if self.agendador is None:
@@ -61,10 +63,44 @@ class OrquestradorAdaptativo:
         return plano.tarefas
 
     def replanejar_apos_resultado(self, tarefa_id: str, sucesso: bool, **kwargs: object) -> tuple[NoTarefa, ...]:
+        """Registra resultado, alimenta evidência de combinação e replaneja em um único ciclo.
+
+        As métricas de combinação são opcionais. Quando fornecidas, tornam o resultado
+        observável pelo detector de sinergia; quando ausentes, o scheduler ainda
+        aprende com o resultado da tarefa e replaneja normalmente.
+        """
         resultado_keys = {"observacao", "custo_real", "tempo_real", "qualidade", "evidencia", "contexto", "aprendizado", "fallback_tarefa_id", "reintentar"}
         planejamento_keys = {"recursos_disponiveis", "orcamento", "limite", "objetivo", "capacidades_recursos", "capacidade_de_tempo"}
-        self.agendador.registrar_resultado(tarefa_id, sucesso, **{k: v for k, v in kwargs.items() if k in resultado_keys})
-        plano = self.agendador.replanejar(**{k: v for k, v in kwargs.items() if k in planejamento_keys}, motivo=f"resultado de {tarefa_id}: {'sucesso' if sucesso else 'falha'}")
+        capacidades = tuple(str(x) for x in kwargs.pop("capacidades", ()) or ())
+        valor_observado = kwargs.pop("valor_observado", None)
+        custo_observado = kwargs.pop("custo_observado", kwargs.get("custo_real", 0.0))
+        tempo_observado = kwargs.pop("tempo_observado", kwargs.get("tempo_real", 0.0))
+        qualidade_observada = kwargs.pop("qualidade_observada", kwargs.get("qualidade", 0.0))
+        contexto_combinacao = dict(kwargs.pop("contexto_combinacao", kwargs.get("contexto", {})) or {})
+
+        self.agendador.registrar_resultado(
+            tarefa_id,
+            sucesso,
+            **{k: v for k, v in kwargs.items() if k in resultado_keys},
+        )
+
+        if self.detector_sinergia is not None and capacidades and valor_observado is not None:
+            self.detector_sinergia.registrar(
+                EvidenciaCombinacao(
+                    combinacao_id=f"execucao:{tarefa_id}:{len(self.detector_sinergia.resultados) + 1}",
+                    capacidades=capacidades,
+                    valor_observado=float(valor_observado),
+                    custo_observado=float(custo_observado or 0.0),
+                    tempo_observado=float(tempo_observado or 0.0),
+                    qualidade=float(qualidade_observada or 0.0),
+                    contexto={str(k): str(v) for k, v in contexto_combinacao.items()},
+                )
+            )
+
+        plano = self.agendador.replanejar(
+            **{k: v for k, v in kwargs.items() if k in planejamento_keys},
+            motivo=f"resultado de {tarefa_id}: {'sucesso' if sucesso else 'falha'}",
+        )
         self._sincronizar_decisoes()
         return plano.tarefas
 
