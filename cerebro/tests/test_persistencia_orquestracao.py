@@ -6,7 +6,7 @@ from cerebro.sinergia import DetectorSinergia, ResultadoCombinacao
 def test_persiste_e_recarrega_grafo_e_sinergias(tmp_path):
     grafo = __import__("cerebro.grafo_tarefas", fromlist=["GrafoTarefas"]).GrafoTarefas()
     grafo.adicionar(NoTarefa("a", "A", prioridade=3, estado=EstadoTarefa.CONCLUIDA))
-    grafo.adicionar(NoTarefa("b", "B", depende_de=("a",), valor_estimado=5))
+    grafo.adicionar(NoTarefa("b", "B", depende_de=("a",), valor_estimado=5, nivel_autonomia=4, reversivel=False, exige_aprovacao=True, ferramenta="git"))
     detector = DetectorSinergia()
     detector.registrar(ResultadoCombinacao("ab", ("A", "B"), 12, 2, 3, 0.9, {"fase": "teste"}))
 
@@ -15,7 +15,7 @@ def test_persiste_e_recarrega_grafo_e_sinergias(tmp_path):
     recarregado, sinergia = carregar_orquestracao(caminho)
 
     assert recarregado.tarefas["a"].estado is EstadoTarefa.CONCLUIDA
-    assert recarregado.tarefas["b"].depende_de == ("a",)
+    assert recarregado.tarefas["b"].depende_de == ("a",)\n    assert recarregado.tarefas["b"].nivel_autonomia == 4\n    assert recarregado.tarefas["b"].reversivel is False\n    assert recarregado.tarefas["b"].exige_aprovacao is True\n    assert recarregado.tarefas["b"].ferramenta == "git"
     assert len(sinergia.resultados) == 1
     assert sinergia.resultados[0].capacidades == ("A", "B")
 
