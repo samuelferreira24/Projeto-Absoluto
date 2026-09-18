@@ -46,6 +46,9 @@ def carregar_orquestracao(path: str | Path) -> tuple[GrafoTarefas, DetectorSiner
     for item in dados.get("tarefas", []):
         item = dict(item)
         item["estado"] = EstadoTarefa(item.get("estado", EstadoTarefa.PENDENTE.value))
+        for chave in ("depende_de", "recursos", "capacidades", "preferencias", "restricoes", "fallbacks"):
+            if chave in item and isinstance(item[chave], list):
+                item[chave] = tuple(item[chave])
         grafo.adicionar(NoTarefa(**item))
 
     detector = DetectorSinergia()
