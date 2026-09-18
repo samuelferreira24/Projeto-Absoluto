@@ -76,3 +76,29 @@ def test_replanejamento_apos_falha_ativa_fallback():
     o.plano_adaptativo()
     proximo = o.replanejar_apos_resultado("a", False, fallback_tarefa_id="b")
     assert [t.id for t in proximo] == ["b"]
+
+
+def test_replanejamento_alimenta_detector_de_sinergia_com_evidencia():
+    from cerebro.sinergia import DetectorSinergia
+
+    g = GrafoTarefas()
+    g.adicionar(NoTarefa("ab", "combinação A+B", valor_estimado=10))
+    detector = DetectorSinergia()
+    o = OrquestradorAdaptativo(g, detector_sinergia=detector)
+
+    o.plano_adaptativo()
+    proximo = o.replanejar_apos_resultado(
+        "ab",
+        True,
+        capacidades=("A", "B"),
+        valor_observado=15,
+        custo_observado=2,
+        tempo_observado=1,
+        qualidade_observada=0.9,
+        contexto_combinacao={"fase": "teste"},
+    )
+
+    assert proximo == ()
+    assert len(detector.resultados) == 1
+    assert detector.resultados[0].capacidades == ("A", "B")
+    assert detector.resultados[0].valor_observado == 15
