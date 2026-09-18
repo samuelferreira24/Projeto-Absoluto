@@ -5,6 +5,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from queue import Empty, Queue
 from threading import Lock
 from typing import Any
+
+from .nos_app import NoApp, RegistroNosApp
 import json
 import os
 import threading
@@ -29,7 +31,8 @@ class GatewayAppDireto:
     próprios motores/configurações e devolve o resultado.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, registro_nos: RegistroNosApp | None = None) -> None:
+        self.registro_nos = registro_nos
         self._fila: Queue[TrabalhoApp] = Queue()
         self._resultados: dict[str, dict[str, Any]] = {}
         self._lock = Lock()
@@ -116,6 +119,11 @@ class _Handler(BaseHTTPRequestHandler):
             self._responder(200, {"ok": True, "servico": "cerebro-app-direto"})
             return
 
+        if caminho == "/v1/nos":
+            nos = self.gateway.registro_nos.listar() if self.gateway.registro_nos else []
+            self._responder(200, {"nos": [no.to_dict() for no in nos]})
+            return
+
         if caminho == "/v1/capacidades":
             self._responder(
                 200,
@@ -170,6 +178,36 @@ class _Handler(BaseHTTPRequestHandler):
             dados = json.loads(self.rfile.read(tamanho) or b"{}")
         except (ValueError, json.JSONDecodeError) as exc:
             self._responder(400, {"erro": f"json inválido: {exc}"})
+            return
+
+        if parsed.path == "/v1/nos":
+            if self.gateway.registro_nos is None:
+                self._responder(503, {"erro": "registro de nós indisponível"})
+                return
+            try:
+                no = NoApp(
+                    id=str(dados["id"]),
+                    nome=str(dados.get("nome", dados["id"])),
+                    ambiente=str(dados.get("ambiente", "desconhecido")),
+                    capacidades=tuple(dados.get("capacidades", [])),
+                    endpoint=dados.get("endpoint"),
+                    ativo=bool(dados.get("ativo", True)),
+                    metadata=dict(dados.get("metadata", {})),
+                )
+            except (KeyError, TypeError, ValueError) as exc:
+                self._responder(400, {"erro": f"nó inválido: {exc}"})
+                return
+            self.gateway.registro_nos.registrar(no)
+            self._responder(201, no.to_dict())
+            return
+
+        if parsed.path.startswith("/v1/nos/") and parsed.path.endswith("/sinal"):
+            if self.gateway.registro_nos is None:
+                self._responder(503, {"erro": "registro de nós indisponível"})
+                return
+            no_id = parsed.path.split("/")[3]
+            ok = self.gateway.registro_nos.sinalizar(no_id)
+            self._responder(200 if ok else 404, {"ok": ok, "id": no_id})
             return
 
         if parsed.path == "/v1/trabalho":
