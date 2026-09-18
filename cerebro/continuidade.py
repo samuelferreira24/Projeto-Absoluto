@@ -118,7 +118,7 @@ def criar_snapshot(
         "aprendizados": aprendizados,
         "rede_evolutiva": {
             "nos": [asdict(n) for n in cerebro.rede.nos.values()],
-            "arestas": [asdict(a) for a in cerebro.rede.arestas.values()],
+            "arestas": [asdict(a) for a in cerebro.rede.arestas],
         },
         "runtime": _estado(cerebro.runtime.estado),
         "missoes": [asdict(m) for m in cerebro.orquestrador.missoes.values()],
