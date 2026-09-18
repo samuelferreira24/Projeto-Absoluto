@@ -120,7 +120,7 @@ def test_snapshot_preserva_estado_tarefas_e_aprendizado(tmp_path: Path):
     )
     import json
     dados = json.loads(destino.read_text(encoding="utf-8"))
-    assert dados["schema_version"] == "0.2"
+    assert dados["schema_version"] == "0.3"
     assert dados["objetivo_atual"] == "preservar contexto"
     assert dados["proximo_passo"] == "implementar recuperação"
     assert dados["tarefas"][0]["estado"] == "PENDENTE"
