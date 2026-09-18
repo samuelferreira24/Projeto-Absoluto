@@ -132,6 +132,7 @@ class Cerebro:
 
     def iniciar_plano(self, plano: PlanoExecucao) -> None:
         self.agendador.executar_inicio(plano)
+        self._salvar_orquestracao()
 
     def registrar_executor(self, executor: PerfilExecutor) -> None:
         self.agendador.registrar_executor(executor)
@@ -143,7 +144,9 @@ class Cerebro:
         self.agendador.atualizar_cenario(**mudancas)
 
     def cancelar_tarefa(self, tarefa_id: str, *, motivo: str = "cancelamento solicitado", cancelar_dependentes: bool = False) -> list[str]:
-        return self.agendador.cancelar_tarefa(tarefa_id, motivo=motivo, cancelar_dependentes=cancelar_dependentes)
+        resultado = self.agendador.cancelar_tarefa(tarefa_id, motivo=motivo, cancelar_dependentes=cancelar_dependentes)
+        self._salvar_orquestracao()
+        return resultado
 
     def planos_candidatos(self, recursos: set[str] | None = None, *, orcamento: float | None = None, limite: int | None = None) -> list[PlanoExecucao]:
         return self.agendador.planos_candidatos(recursos, orcamento=orcamento, limite=limite)
@@ -159,6 +162,7 @@ class Cerebro:
         simulador = SimuladorOrquestracao(self.grafo_tarefas)
         escolhido, diagnostico = simulador.selecionar_robusto(planos, cenarios)
         self.agendador._adicionar_historico({"evento": "SELECAO_ROBUSTA", **diagnostico})
+        self.agendador.salvar_historico()
         return escolhido
 
     def padroes_orquestracao_reutilizaveis(self, minimo_ocorrencias: int = 2) -> list[dict[str, object]]:
@@ -169,13 +173,17 @@ class Cerebro:
         self._salvar_orquestracao()
 
     def replanejar_tarefas(self, recursos: set[str] | None = None, **kwargs: Any) -> PlanoExecucao:
-        return self.agendador.replanejar(recursos, **kwargs)
+        plano = self.agendador.replanejar(recursos, **kwargs)
+        self._salvar_orquestracao()
+        return plano
 
     def plano_adaptativo(self, recursos: set[str] | None = None, *, orcamento: float | None = None, capacidade_de_tempo: float | None = None, limite: int | None = None) -> tuple[NoTarefa, ...]:
         return self.orquestrador_adaptativo.plano_adaptativo(recursos, orcamento=orcamento, capacidade_de_tempo=capacidade_de_tempo, limite=limite)
 
     def replanejar_apos_resultado(self, tarefa_id: str, sucesso: bool = True, **kwargs: Any) -> tuple[NoTarefa, ...]:
-        return self.orquestrador_adaptativo.replanejar_apos_resultado(tarefa_id, sucesso, **kwargs)
+        resultado = self.orquestrador_adaptativo.replanejar_apos_resultado(tarefa_id, sucesso, **kwargs)
+        self._salvar_orquestracao()
+        return resultado
 
     def registrar_resultado_combinacao(self, resultado: ResultadoCombinacao) -> None:
         self.detector_sinergia.registrar(resultado)
