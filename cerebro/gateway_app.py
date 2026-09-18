@@ -89,7 +89,7 @@ class _Handler(BaseHTTPRequestHandler):
         return not self.token or self.headers.get("X-Cerebro-Token", "") == self.token
 
     def _responder(self, status: int, dados: dict[str, Any]) -> None:
-        corpo = json.dumps(dados, ensure_ascii=False).encode("utf-8")
+        corpo = b"" if status == 204 else json.dumps(dados, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(corpo)))
@@ -99,7 +99,8 @@ class _Handler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Private-Network", "true")
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
-        self.wfile.write(corpo)
+        if corpo:
+            self.wfile.write(corpo)
 
     def do_OPTIONS(self) -> None:
         self._responder(204, {})
