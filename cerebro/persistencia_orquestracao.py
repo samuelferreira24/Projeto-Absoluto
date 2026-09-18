@@ -27,7 +27,9 @@ def salvar_orquestracao(path: str | Path, grafo: GrafoTarefas, sinergia: Detecto
         "tarefas": [_serializar_tarefa(t) for t in grafo.tarefas.values()],
         "resultados_sinergia": [asdict(r) for r in sinergia.resultados],
     }
-    destino.write_text(json.dumps(pacote, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporario = destino.with_suffix(destino.suffix + ".tmp")
+    temporario.write_text(json.dumps(pacote, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporario.replace(destino)
     return pacote
 
 
