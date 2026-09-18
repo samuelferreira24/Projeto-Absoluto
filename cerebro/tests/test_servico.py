@@ -3,6 +3,8 @@ import unittest
 from pathlib import Path
 
 from cerebro.rede_evolutiva import ArestaRede, NoRede
+from cerebro.grafo_tarefas import NoTarefa
+from cerebro.sinergia import ResultadoCombinacao
 from cerebro.servico import Cerebro
 
 
@@ -36,6 +38,22 @@ class TestServico(unittest.TestCase):
             self.assertEqual(recarregado.relacionados_rede("construcao"), ["pesquisa"])
             self.assertEqual(recarregado.impulso_total("construcao"), 7)
             self.assertEqual(recarregado.validar_rede(), [])
+
+
+    def test_orquestracao_persiste_entre_instancias(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            dados = Path(tmp) / "data"
+            cerebro = Cerebro(dados)
+            cerebro.adicionar_tarefa(NoTarefa("a", "A", prioridade=3))
+            cerebro.registrar_resultado_combinacao(
+                ResultadoCombinacao("ab", ("A", "B"), 12, 2, 3, 0.9, {"fase": "persistencia"})
+            )
+            cerebro.checkpoint()
+
+            recarregado = Cerebro(dados)
+            self.assertIn("a", recarregado.grafo_tarefas.tarefas)
+            self.assertEqual(len(recarregado.detector_sinergia.resultados), 1)
+            self.assertEqual(recarregado.detector_sinergia.resultados[0].capacidades, ("A", "B"))
 
 
 if __name__ == "__main__":
