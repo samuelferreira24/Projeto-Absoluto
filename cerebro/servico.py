@@ -26,6 +26,7 @@ from .contexto_operacional import ContextoOperacional, construir_contexto, salva
 from .interface_chat import InterfaceChat, MensagemChat
 from .inventario_capacidades import inventariar, resumo as resumo_capacidades, exportar_json as exportar_inventario_capacidades
 from .simulador_orquestracao import CenarioSimulacao, SimuladorOrquestracao
+from .persistencia_orquestracao import carregar_orquestracao, salvar_orquestracao
 
 
 class Cerebro:
@@ -38,6 +39,7 @@ class Cerebro:
         self.orquestrador_path = self.repo.root / "orquestrador.json"
         self.runtime_path = self.repo.root / "runtime.json"
         self.agendador_path = self.repo.root / "agendador.json"
+        self.orquestracao_path = self.repo.root / "orquestracao.json"
         self.despertador = Despertador(self.repo.root / "despertar.json")
         self.coletor = ColetorMemoria(self.repo)
         self.fila_organizacao = FilaOrganizacao(self.repo.root / "organizacao.jsonl")
@@ -48,13 +50,12 @@ class Cerebro:
         self.rede = RedeEvolutiva.carregar(self.rede_path) if self.rede_path.exists() else RedeEvolutiva()
         self.orquestrador = Orquestrador(self.orquestrador_path)
         self.runtime = RuntimeContinuo(self.orquestrador, self.runtime_path)
-        self.grafo_tarefas = GrafoTarefas()
+        self.grafo_tarefas, self.detector_sinergia = carregar_orquestracao(self.orquestracao_path)
         self.agendador = AgendadorAdaptativo(
             self.grafo_tarefas,
             self.agendador_path,
             self.repo.root.parent / "memoria" / "aprendizados.jsonl",
         )
-        self.detector_sinergia = DetectorSinergia()
         self.orquestrador_adaptativo = OrquestradorAdaptativo(self.grafo_tarefas, agendador=self.agendador)
         self.interface_chat = InterfaceChat(self)
 
@@ -115,6 +116,7 @@ class Cerebro:
 
     def adicionar_tarefa(self, tarefa: NoTarefa) -> None:
         self.grafo_tarefas.adicionar(tarefa)
+        self._salvar_orquestracao()
 
     def validar_tarefas(self) -> list[str]:
         return self.grafo_tarefas.validar()
@@ -164,6 +166,7 @@ class Cerebro:
 
     def concluir_tarefa(self, tarefa_id: str, sucesso: bool = True, **kwargs: Any) -> None:
         self.agendador.registrar_resultado(tarefa_id, sucesso, **kwargs)
+        self._salvar_orquestracao()
 
     def replanejar_tarefas(self, recursos: set[str] | None = None, **kwargs: Any) -> PlanoExecucao:
         return self.agendador.replanejar(recursos, **kwargs)
@@ -176,6 +179,7 @@ class Cerebro:
 
     def registrar_resultado_combinacao(self, resultado: ResultadoCombinacao) -> None:
         self.detector_sinergia.registrar(resultado)
+        self._salvar_orquestracao()
 
     def detectar_sinergias(self, *, minimo_evidencias: int = 2) -> list[SinalSinergia]:
         return self.detector_sinergia.detectar(minimo_evidencias=minimo_evidencias)
@@ -190,6 +194,7 @@ class Cerebro:
     def checkpoint(self, *, objetivo_atual: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> dict[str, Any]:
         self.salvar_estado()
         self.agendador.salvar_historico()
+        self._salvar_orquestracao()
         self.salvar_contexto_operacional(objetivo=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
         return salvar_snapshot(self, objetivo_atual=objetivo_atual, proximo_passo=proximo_passo, contexto_da_sessao=contexto_da_sessao)
 
@@ -264,9 +269,13 @@ class Cerebro:
         self.salvar_estado()
         return resultado
 
+    def _salvar_orquestracao(self) -> None:
+        salvar_orquestracao(self.orquestracao_path, self.grafo_tarefas, self.detector_sinergia)
+
     def salvar_estado(self) -> None:
         self.estado.salvar(self.estado_path)
         self.rede.salvar(str(self.rede_path))
+        self._salvar_orquestracao()
 
     def diagnostico(self) -> dict[str, Any]:
         registros = self.registros()
