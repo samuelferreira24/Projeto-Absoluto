@@ -18,7 +18,7 @@ from .runtime import RuntimeContinuo
 from .semantica import RelacaoSemantica, UnidadeSemantica
 from .consolidar_aprendizados import salvar_consolidado
 from .grafo_tarefas import GrafoTarefas, NoTarefa
-from .agendador import AgendadorAdaptativo, PlanoExecucao
+from .agendador import AgendadorAdaptativo, PerfilExecutor, PlanoExecucao
 from .orquestracao_adaptativa import OrquestradorAdaptativo
 from .sinergia import DetectorSinergia, ResultadoCombinacao, SinalSinergia
 from .continuidade import carregar_snapshot, gerar_prompt_retoma, salvar_prompt_retoma, salvar_snapshot
@@ -129,6 +129,24 @@ class Cerebro:
 
     def iniciar_plano(self, plano: PlanoExecucao) -> None:
         self.agendador.executar_inicio(plano)
+
+    def registrar_executor(self, executor: PerfilExecutor) -> None:
+        self.agendador.registrar_executor(executor)
+
+    def definir_combustivel(self, disponivel: float, *, reservado: float = 0.0, consumido: float = 0.0) -> None:
+        self.agendador.definir_combustivel(disponivel, reservado=reservado, consumido=consumido)
+
+    def atualizar_cenario_orquestracao(self, **mudancas: object) -> None:
+        self.agendador.atualizar_cenario(**mudancas)
+
+    def cancelar_tarefa(self, tarefa_id: str, *, motivo: str = "cancelamento solicitado", cancelar_dependentes: bool = False) -> list[str]:
+        return self.agendador.cancelar_tarefa(tarefa_id, motivo=motivo, cancelar_dependentes=cancelar_dependentes)
+
+    def planos_candidatos(self, recursos: set[str] | None = None, *, orcamento: float | None = None, limite: int | None = None) -> list[PlanoExecucao]:
+        return self.agendador.planos_candidatos(recursos, orcamento=orcamento, limite=limite)
+
+    def padroes_orquestracao_reutilizaveis(self, minimo_ocorrencias: int = 2) -> list[dict[str, object]]:
+        return self.agendador.padroes_orquestracao_reutilizaveis(minimo_ocorrencias)
 
     def concluir_tarefa(self, tarefa_id: str, sucesso: bool = True, **kwargs: Any) -> None:
         self.agendador.registrar_resultado(tarefa_id, sucesso, **kwargs)
@@ -269,4 +287,7 @@ class Cerebro:
             "integridade_tarefas": self.validar_tarefas(),
             "aprendizados_consolidados": aprendizados_consolidados,
             "capacidades": resumo_capacidades(),
+            "executores": len(self.agendador.executores),
+            "combustivel_restante": self.agendador.fuel.restante,
+            "historico_orquestracao": len(self.agendador.historico),
         }
