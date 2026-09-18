@@ -46,7 +46,13 @@ class RuntimeContinuo:
     continuam exigindo idempotência.
     """
 
-    def __init__(self, orquestrador: Orquestrador, path: str | Path = "cerebro/data/runtime.json", lease_path: str | Path | None = None, lease_segundos: int = 300) -> None:
+    def __init__(
+        self,
+        orquestrador: Orquestrador,
+        path: str | Path = "cerebro/data/runtime.json",
+        lease_path: str | Path | None = None,
+        lease_segundos: int = 300,
+    ) -> None:
         if lease_segundos <= 0:
             raise ValueError("lease_segundos deve ser positivo")
         self.orquestrador = orquestrador
@@ -85,7 +91,10 @@ class RuntimeContinuo:
     def _salvar(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         temporario = self.path.with_name(f".{self.path.name}.{os.getpid()}.tmp")
-        temporario.write_text(json.dumps(self.estado.__dict__, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        temporario.write_text(
+            json.dumps(self.estado.__dict__, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
         os.replace(temporario, self.path)
 
     def _lease_expirado(self) -> bool:
@@ -113,8 +122,14 @@ class RuntimeContinuo:
                     self.lease_path.unlink()
                 except FileNotFoundError:
                     pass
-            dados = {"lease_id": lease_id, "runtime_id": self.estado.runtime_id, "expira_em": expiracao.isoformat(), "criado_em": agora()}
-            fd = os.open(self.lease_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            dados = {
+                "lease_id": lease_id,
+                "runtime_id": self.estado.runtime_id,
+                "expira_em": expiracao.isoformat(),
+                "criado_em": agora(),
+            }
+            flags = os.O_CREAT | os.O_EXCL | os.O_WRONLY
+            fd = os.open(self.lease_path, flags)
             try:
                 os.write(fd, json.dumps(dados, ensure_ascii=False).encode("utf-8"))
             finally:
@@ -178,7 +193,14 @@ class RuntimeContinuo:
         thread.start()
         return parar, thread
 
-    def executar_ciclo(self, missao_id: str, candidatos: Callable, executor: Callable, lease_id: str | None = None, lease_expira_em: str | None = None) -> dict[str, Any]:
+    def executar_ciclo(
+        self,
+        missao_id: str,
+        candidatos: Callable,
+        executor: Callable,
+        lease_id: str | None = None,
+        lease_expira_em: str | None = None,
+    ) -> dict[str, Any]:
         identificador = lease_id or f"{self.estado.runtime_id}-{uuid.uuid4().hex[:12]}"
         self.adquirir_lease(identificador, lease_expira_em)
         heartbeat_stop, heartbeat_thread = self._iniciar_heartbeat(identificador)
