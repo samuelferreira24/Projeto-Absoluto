@@ -25,6 +25,7 @@ from .continuidade import carregar_snapshot, gerar_prompt_retoma, salvar_prompt_
 from .contexto_operacional import ContextoOperacional, construir_contexto, salvar_contexto, salvar_prompt_contexto
 from .interface_chat import InterfaceChat, MensagemChat
 from .inventario_capacidades import inventariar, resumo as resumo_capacidades, exportar_json as exportar_inventario_capacidades
+from .simulador_orquestracao import CenarioSimulacao, SimuladorOrquestracao
 
 
 class Cerebro:
@@ -144,6 +145,19 @@ class Cerebro:
 
     def planos_candidatos(self, recursos: set[str] | None = None, *, orcamento: float | None = None, limite: int | None = None) -> list[PlanoExecucao]:
         return self.agendador.planos_candidatos(recursos, orcamento=orcamento, limite=limite)
+
+    def simular_planos(self, planos: list[PlanoExecucao], cenarios: list[CenarioSimulacao] | None = None) -> list[dict[str, object]]:
+        simulador = SimuladorOrquestracao(self.grafo_tarefas)
+        return [
+            {"plano": [t.id for t in plano.tarefas], "resultados": [r.__dict__ for r in simulador.simular(plano, cenarios)]}
+            for plano in planos
+        ]
+
+    def selecionar_plano_robusto(self, planos: list[PlanoExecucao], cenarios: list[CenarioSimulacao] | None = None) -> PlanoExecucao | None:
+        simulador = SimuladorOrquestracao(self.grafo_tarefas)
+        escolhido, diagnostico = simulador.selecionar_robusto(planos, cenarios)
+        self.agendador._adicionar_historico({"evento": "SELECAO_ROBUSTA", **diagnostico})
+        return escolhido
 
     def padroes_orquestracao_reutilizaveis(self, minimo_ocorrencias: int = 2) -> list[dict[str, object]]:
         return self.agendador.padroes_orquestracao_reutilizaveis(minimo_ocorrencias)
