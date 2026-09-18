@@ -59,7 +59,7 @@ class Cerebro:
             self.agendador_path,
             self.repo.root.parent / "memoria" / "aprendizados.jsonl",
         )
-        self.orquestrador_adaptativo = OrquestradorAdaptativo(self.grafo_tarefas, agendador=self.agendador)
+        self.orquestrador_adaptativo = OrquestradorAdaptativo(self.grafo_tarefas, agendador=self.agendador, detector_sinergia=self.detector_sinergia)
         self.executor_plano = ExecutorPlano(self.agendador, self.controle_execucao)
         self.interface_chat = InterfaceChat(self)
 
