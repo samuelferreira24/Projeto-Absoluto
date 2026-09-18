@@ -37,6 +37,10 @@ class NoTarefa:
     fallbacks: tuple[str, ...] = ()
     combustivel_estimado: float = 0.0
     prazo_critico: bool = False
+    nivel_autonomia: int = 2
+    reversivel: bool = True
+    exige_aprovacao: bool = False
+    ferramenta: str | None = None
 
 
 @dataclass
@@ -102,7 +106,9 @@ class GrafoTarefas:
             restricoes=tarefa.restricoes, oportunidade=tarefa.oportunidade,
             incerteza=tarefa.incerteza, comunicacao_estimado=tarefa.comunicacao_estimado,
             fallbacks=tarefa.fallbacks, combustivel_estimado=tarefa.combustivel_estimado,
-            prazo_critico=tarefa.prazo_critico,
+            prazo_critico=tarefa.prazo_critico, nivel_autonomia=tarefa.nivel_autonomia,
+            reversivel=tarefa.reversivel, exige_aprovacao=tarefa.exige_aprovacao,
+            ferramenta=tarefa.ferramenta,
         )
 
     def dependentes_de(self, tarefa_id: str) -> list[NoTarefa]:
