@@ -29,6 +29,7 @@ from .simulador_orquestracao import CenarioSimulacao, SimuladorOrquestracao
 from .persistencia_orquestracao import carregar_orquestracao, salvar_orquestracao
 from .controle_execucao import ControleExecucao
 from .execucao_plano import ExecutorPlano
+from .ciclo_operacional import CicloOperacional, DecisorOperacional, ExecutorOperacional
 
 
 class Cerebro:
@@ -191,6 +192,21 @@ class Cerebro:
 
     def padroes_orquestracao_reutilizaveis(self, minimo_ocorrencias: int = 2) -> list[dict[str, object]]:
         return self.agendador.padroes_orquestracao_reutilizaveis(minimo_ocorrencias)
+
+    def executar_objetivo(
+        self,
+        missao_id: str,
+        decisor: DecisorOperacional,
+        executor: ExecutorOperacional,
+        *,
+        limite_ciclos: int = 20,
+    ) -> list[dict[str, Any]]:
+        """Conduz uma missão ciclo a ciclo usando capacidades externas substituíveis."""
+        historico = CicloOperacional(self.orquestrador).executar(
+            missao_id, decisor, executor, limite_ciclos=limite_ciclos
+        )
+        self._salvar_orquestracao()
+        return historico
 
     def executar_plano(self, plano: PlanoExecucao, handlers: dict[str, Callable[[NoTarefa], dict[str, Any]]], *, parar_na_falha: bool = False, correlation_id: str | None = None) -> list[dict[str, Any]]:
         resultados = self.executor_plano.executar(plano, handlers, parar_na_falha=parar_na_falha, correlation_id=correlation_id)
