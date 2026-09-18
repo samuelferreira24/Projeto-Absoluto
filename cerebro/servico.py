@@ -34,6 +34,7 @@ from .portas import Porta, RegistroPortas
 from .ativacao_portas import AtivadorPortas, Handler, ResultadoPorta
 from .executor_portas import ExecutorOperacionalPortas
 from .cerebros import CerebroRemoto, RegistroCerebros
+from .conhecimento import BaseConhecimento, Conhecimento, ResultadoConhecimento
 
 
 class Cerebro:
@@ -41,6 +42,7 @@ class Cerebro:
 
     def __init__(self, dados: str | Path = "cerebro/data") -> None:
         self.repo = RepositorioJSONL(dados)
+        self.conhecimento = BaseConhecimento(self.repo.root / "conhecimento")
         self.estado_path = self.repo.root / "estado.json"
         self.rede_path = self.repo.root / "rede_evolutiva.json"
         self.orquestrador_path = self.repo.root / "orquestrador.json"
@@ -197,6 +199,79 @@ class Cerebro:
         if documento.erros:
             raise ValueError(f"Falha na ingestão: {documento.erros}")
         return registrar_fonte(self.repo, documento)
+
+    def registrar_conhecimento(
+        self, tipo: str, titulo: str, conteudo: str, *,
+        fontes: list[str] | tuple[str, ...] = (),
+        evidencias: list[str] | tuple[str, ...] = (),
+        contexto: dict[str, Any] | None = None,
+        proveniencia: dict[str, Any] | None = None,
+        confianca: str = "DESCONHECIDA", estado: str = "NOVO",
+        temporal: dict[str, str | None] | None = None,
+        supersede: list[str] | tuple[str, ...] = (),
+        relacoes: list[dict[str, str]] | tuple[dict[str, str], ...] = (),
+        metadata: dict[str, Any] | None = None,
+    ) -> Conhecimento:
+        return self.conhecimento.criar(
+            tipo, titulo, conteudo, source_ids=fontes, evidence_ids=evidencias,
+            provenance=proveniencia or {}, context=contexto or {},
+            confidence=confianca, state=estado, temporal=temporal or {},
+            supersedes=supersede, relations=relacoes, metadata=metadata or {},
+        )
+
+    def buscar_conhecimento(self, consulta: str, limite: int = 10, *,
+                            instante: str | None = None,
+                            incluir_superados: bool = False,
+                            tipos: set[str] | None = None) -> list[ResultadoConhecimento]:
+        return self.conhecimento.buscar(consulta, limite, instante=instante,
+                                        incluir_superados=incluir_superados, tipos=tipos)
+
+    def conhecimento_relacionado(self, ids: list[str], profundidade: int = 1, *,
+                                 incluir_superados: bool = False) -> list[Conhecimento]:
+        return self.conhecimento.relacionados(ids, profundidade,
+                                              incluir_superados=incluir_superados)
+
+    def relacionar_conhecimento(self, origem_id: str, relacao: str, destino_id: str, *,
+                                proveniencia: dict[str, Any] | None = None) -> Conhecimento:
+        return self.conhecimento.relacionar(origem_id, relacao, destino_id,
+                                            provenance=proveniencia)
+
+    def atualizar_conhecimento(self, conhecimento_id: str, **mudancas: Any) -> Conhecimento:
+        return self.conhecimento.atualizar(conhecimento_id, **mudancas)
+
+    def importar_aprendizados_para_conhecimento(self, memoria: str | Path = "cerebro/memoria") -> list[Conhecimento]:
+        memoria = Path(memoria)
+        caminho = memoria / "aprendizados.jsonl"
+        if not caminho.exists():
+            return []
+        import json
+        registros = []
+        for linha in caminho.read_text(encoding="utf-8").splitlines():
+            if not linha.strip():
+                continue
+            try:
+                valor = json.loads(linha)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(valor, dict):
+                registros.append(valor)
+        return self.conhecimento.importar_aprendizados(registros)
+
+    def registrar_experiencia(
+        self, titulo: str, conteudo: str, *, objetivo: str,
+        resultado: str = "", evidencias: list[str] | tuple[str, ...] = (),
+        contexto: dict[str, Any] | None = None,
+        decisoes: list[str] | tuple[str, ...] = (),
+        erros: list[str] | tuple[str, ...] = (),
+        confianca: str = "DESCONHECIDA",
+    ) -> Conhecimento:
+        return self.registrar_conhecimento(
+            "EXPERIENCIA", titulo, conteudo, evidencias=evidencias,
+            contexto={"objetivo": objetivo, "resultado": resultado, **(contexto or {})},
+            proveniencia={"tipo": "experiencia", "origem": "Cerebro"},
+            confianca=confianca,
+            metadata={"decisoes": list(decisoes), "erros": list(erros)},
+        )
 
     def capturar_evento(self, evento: EventoCapturado) -> list[Registro]:
         return self.coletor.capturar(evento)
@@ -366,7 +441,13 @@ class Cerebro:
 
     def consolidar_aprendizados(self, memoria: str | Path = "cerebro/memoria") -> dict[str, Any]:
         memoria = Path(memoria)
-        return salvar_consolidado(memoria / "aprendizados_consolidados_v0_1.json", memoria / "aprendizados.jsonl", memoria / "aprendizados_fundamentais_v0_1.json")
+        resultado = salvar_consolidado(
+            memoria / "aprendizados_consolidados_v0_1.json",
+            memoria / "aprendizados.jsonl",
+            memoria / "aprendizados_fundamentais_v0_1.json",
+        )
+        self.importar_aprendizados_para_conhecimento(memoria)
+        return resultado
 
     def checkpoint(self, *, objetivo_atual: str | None = None, proximo_passo: str | None = None, contexto_da_sessao: dict[str, Any] | None = None) -> dict[str, Any]:
         self.salvar_estado()
@@ -490,8 +571,10 @@ class Cerebro:
                 aprendizados_consolidados = int(json.loads(consolidado_path.read_text(encoding="utf-8")).get("quantidade", 0))
             except (OSError, ValueError, TypeError, json.JSONDecodeError):
                 aprendizados_consolidados = 0
+        diagnostico_conhecimento = self.conhecimento.diagnostico()
         return {
             "registros": len(registros),
+            "conhecimento": diagnostico_conhecimento,
             "fontes": sum(1 for r in registros if r.kind == "DOCUMENTO"),
             "tipos": {kind: sum(1 for r in registros if r.kind == kind) for kind in sorted({r.kind for r in registros})},
             "estado": self.estado.status,
