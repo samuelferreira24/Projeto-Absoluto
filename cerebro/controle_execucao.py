@@ -3,7 +3,10 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from contextlib import contextmanager
+import fcntl
 import json
+import os
 import uuid
 
 
@@ -30,12 +33,32 @@ class ControleExecucao:
         if lease_segundos <= 0:
             raise ValueError("lease_segundos deve ser positivo")
         self.path = Path(path)
+        self.lock_path = self.path.with_suffix(self.path.suffix + '.lock')
         self.lease_segundos = lease_segundos
         self.claims: dict[str, ClaimTarefa] = {}
         self._carregar()
 
+    @contextmanager
+    def _lock(self):
+        self.lock_path.parent.mkdir(parents=True, exist_ok=True)
+        with self.lock_path.open('a+') as arquivo:
+            fcntl.flock(arquivo.fileno(), fcntl.LOCK_EX)
+            try:
+                yield
+            finally:
+                fcntl.flock(arquivo.fileno(), fcntl.LOCK_UN)
+
+    def _recarregar(self) -> None:
+        if not self.path.exists():
+            self.claims = {}
+            return
+        dados = json.loads(self.path.read_text(encoding='utf-8'))
+        self.claims = {k: ClaimTarefa(**v) for k, v in dados.get('claims', {}).items()}
+
     def claim(self, tarefa_id: str) -> ClaimTarefa:
-        existente = self.claims.get(tarefa_id)
+        with self._lock():
+            self._recarregar()
+            existente = self.claims.get(tarefa_id)
         if existente and existente.estado == "ATIVA" and not self.expirado(existente):
             raise RuntimeError(f"tarefa já possui claim ativo: {tarefa_id}")
         tentativa = (existente.tentativa + 1) if existente else 1
@@ -52,13 +75,17 @@ class ControleExecucao:
         return claim
 
     def concluir(self, tarefa_id: str) -> None:
-        claim = self.claims.get(tarefa_id)
+        with self._lock():
+            self._recarregar()
+            claim = self.claims.get(tarefa_id)
         if claim:
             self.claims[tarefa_id] = ClaimTarefa(**{**asdict(claim), "estado": "CONCLUIDA"})
             self.salvar()
 
     def falhar(self, tarefa_id: str, erro: str, *, retry_segundos: int | None = None) -> None:
-        claim = self.claims.get(tarefa_id)
+        with self._lock():
+            self._recarregar()
+            claim = self.claims.get(tarefa_id)
         if not claim:
             return
         retry_em = None
@@ -72,7 +99,9 @@ class ControleExecucao:
         self.salvar()
 
     def liberar(self, tarefa_id: str) -> None:
-        claim = self.claims.get(tarefa_id)
+        with self._lock():
+            self._recarregar()
+            claim = self.claims.get(tarefa_id)
         if claim:
             self.claims[tarefa_id] = ClaimTarefa(**{**asdict(claim), "estado": "LIBERADA"})
             self.salvar()
@@ -81,7 +110,9 @@ class ControleExecucao:
         return datetime.fromisoformat(claim.expira_em) <= agora()
 
     def reconciliar(self) -> list[str]:
-        recuperadas: list[str] = []
+        with self._lock():
+            self._recarregar()
+            recuperadas: list[str] = []
         for tarefa_id, claim in list(self.claims.items()):
             if claim.estado == "ATIVA" and self.expirado(claim):
                 self.claims[tarefa_id] = ClaimTarefa(**{**asdict(claim), "estado": "EXPIRADA", "ultimo_erro": "lease expirado"})
@@ -91,7 +122,9 @@ class ControleExecucao:
         return recuperadas
 
     def prontas_para_retry(self) -> list[str]:
-        agora_dt = agora()
+        with self._lock():
+            self._recarregar()
+            agora_dt = agora()
         return [
             tarefa_id
             for tarefa_id, claim in self.claims.items()
@@ -102,10 +135,10 @@ class ControleExecucao:
 
     def salvar(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = self.path.with_suffix(self.path.suffix + ".tmp")
+        tmp = self.path.with_name('.' + self.path.name + '.' + str(os.getpid()) + '.tmp')
         tmp.write_text(
             json.dumps(
-                {"versao": "0.1", "lease_segundos": self.lease_segundos, "claims": {k: asdict(v) for k, v in self.claims.items()}},
+                {"versao": "0.2", "lease_segundos": self.lease_segundos, "claims": {k: asdict(v) for k, v in self.claims.items()}},
                 ensure_ascii=False,
                 indent=2,
             ) + "\n",
