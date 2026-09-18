@@ -53,7 +53,11 @@ class ControleExecucao:
             self.claims = {}
             return
         dados = json.loads(self.path.read_text(encoding="utf-8"))
-        self.claims = {k: ClaimTarefa(**v) for k, v in dados.get("claims", {}).items()}
+        persistidos = {k: ClaimTarefa(**v) for k, v in dados.get("claims", {}).items()}
+        # Mantém entradas locais ainda não persistidas (útil para composição/testes),
+        # enquanto a versão persistida continua prevalecendo quando a chave existe.
+        locais = {k: v for k, v in self.claims.items() if k not in persistidos}
+        self.claims = {**locais, **persistidos}
 
     def claim(self, tarefa_id: str) -> ClaimTarefa:
         with self._lock():
