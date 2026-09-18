@@ -112,7 +112,7 @@ def construir_contexto(cerebro: Any, *, objetivo: str | None = None, proximo_pas
     tarefas = list(cerebro.grafo_tarefas.tarefas.values())
     pendentes = [t.id for t in tarefas if t.estado.value != "CONCLUIDA"]
     prontas = [t.id for t in tarefas if t.estado.value == "PRONTA"]
-    plano = [t.id for t in cerebro.agendador.planejar().tarefas]
+    plano = [t.id for t in cerebro.agendador.planejar().tarefas] if hasattr(cerebro, "agendador") else []
     sessao = dict(contexto_da_sessao or {})
 
     return ContextoOperacional(
