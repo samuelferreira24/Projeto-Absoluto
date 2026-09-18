@@ -36,6 +36,7 @@ from .executor_portas import ExecutorOperacionalPortas
 from .cerebros import CerebroRemoto, RegistroCerebros
 from .cliente_app import ClienteAppDireto
 from .gateway_app import GatewayAppDireto, ServidorGatewayApp
+from .nos_app import NoApp, RegistroNosApp
 
 
 class Cerebro:
@@ -73,6 +74,7 @@ class Cerebro:
         self.ativador_portas = AtivadorPortas(self.portas)
         self.executor_portas = ExecutorOperacionalPortas(self.ativador_portas)
         self.cerebros = RegistroCerebros(self.repo.root / "cerebros.json")
+        self.nos_app = RegistroNosApp(self.repo.root / "nos_app.json")
         self.gateway_app = None
 
     def iniciar_gateway_app(
@@ -86,7 +88,7 @@ class Cerebro:
         if self.gateway_app is not None:
             return self.gateway_app
         servidor = ServidorGatewayApp(
-            GatewayAppDireto(),
+            GatewayAppDireto(self.nos_app),
             host=host,
             porta=porta,
             token=token,
@@ -94,6 +96,18 @@ class Cerebro:
         servidor.iniciar()
         self.gateway_app = servidor
         return servidor
+
+    def registrar_no_app(self, no: NoApp) -> NoApp:
+        return self.nos_app.registrar(no)
+
+    def sinalizar_no_app(self, no_id: str) -> bool:
+        return self.nos_app.sinalizar(no_id)
+
+    def listar_nos_app(self, *, ativos: bool | None = None) -> list[NoApp]:
+        return self.nos_app.listar(ativos=ativos)
+
+    def nos_app_por_capacidade(self, capacidade: str) -> list[NoApp]:
+        return self.nos_app.por_capacidade(capacidade)
 
     def parar_gateway_app(self) -> None:
         if self.gateway_app is None:
