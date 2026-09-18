@@ -1,0 +1,280 @@
+{
+  "versao": "0.1",
+  "tipo": "MEMORIA_ESTRUTURADA_PROJETO_ABSOLUTO",
+  "data": "2026-09-18",
+  "finalidade": "Representar no Cérebro o conhecimento conceitual das fontes fundadoras sem transformar a representação em regra rígida.",
+  "fontes": [
+    {
+      "id": "F01",
+      "nome": "Projeto_Absoluto_MEMORIA_IA_V10.docx",
+      "papel": "memória orientada a IA, contexto, continuidade e operação",
+      "estado": "recuperada"
+    },
+    {
+      "id": "F02",
+      "nome": "Projeto_Absoluto_EBOOK_HUMANO_V10.docx",
+      "papel": "explicação humana, visão, método, pilares, funcionamento e plano",
+      "estado": "recuperada"
+    },
+    {
+      "id": "F03",
+      "nome": "Pesquisa_Representacao_Armazenamento_Informacao_IA_Projeto_Absoluto_v1.docx",
+      "papel": "fonte paralela de pesquisa sobre representação e armazenamento da informação em IA",
+      "estado": "identificada_mas_conteudo_nao_recuperado_nesta_sessao"
+    }
+  ],
+  "conhecimento": [
+    {
+      "id": "K01",
+      "tipo": "VISAO",
+      "titulo": "Visão central",
+      "conteudo": "Construir um Império capaz de chegar a Marte com meios próprios em aproximadamente 30 anos; Marte funciona como estrela-guia e direção de longo prazo.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K02",
+      "tipo": "ARQUITETURA_CONCEITUAL",
+      "titulo": "Três pilares",
+      "conteudo": "Imperador Absoluto, Sistema Absoluto e Império Absoluto são partes relacionadas do Projeto; o Sistema não é sinônimo do Projeto.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K03",
+      "tipo": "METODO",
+      "titulo": "PP+BN+AV",
+      "conteudo": "Primeiros Princípios questionam premissas; Bola de Neve amplia possibilidades; Avalanche confronta viabilidade, risco e realidade. A formulação deve permanecer aberta à evolução.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K04",
+      "tipo": "PRINCIPIO",
+      "titulo": "BN serve à verdade",
+      "conteudo": "Expandir possibilidades não significa proteger a visão contra evidência contrária; a expansão pode revelar caminhos que contradigam a formulação atual.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K05",
+      "tipo": "PRINCIPIO",
+      "titulo": "Passado informa, não determina",
+      "conteudo": "Artefatos históricos preservam experiência e contexto, mas não devem congelar a arquitetura futura.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K06",
+      "tipo": "MODELO",
+      "titulo": "Sistema como governo vivo",
+      "conteudo": "O Sistema é uma camada viva de coordenação, planejamento, execução, aprendizado, comunicação e proteção; software, IA, APIs e outras tecnologias são meios substituíveis.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K07",
+      "tipo": "MEMORIA",
+      "titulo": "Arquivo não é memória inteira",
+      "conteudo": "A visão pode permanecer em fonte profunda; tarefas podem recuperar somente contexto relevante; memória e estado externos sustentam continuidade.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K08",
+      "tipo": "REPRESENTACAO",
+      "titulo": "Informação em camadas",
+      "conteudo": "Separar, quando útil, fonte/evidência, informação extraída, interpretação, conhecimento, decisão, ação, resultado, experiência, aprendizado e sabedoria, preservando proveniência e contexto.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03"
+      ]
+    },
+    {
+      "id": "K09",
+      "tipo": "MEMORIA",
+      "titulo": "Memória associativa",
+      "conteudo": "Símbolos e conceitos podem funcionar como chaves para redes de conceitos, experiências, relações e contexto; a arquitetura deve permitir recuperação por múltiplos caminhos.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03"
+      ]
+    },
+    {
+      "id": "K10",
+      "tipo": "APRENDIZADO",
+      "titulo": "Ciclo de descoberta",
+      "conteudo": "Pergunta → hipóteses → pesquisa → evidências/contraevidências → comparação → experimento → resultado → avaliação → atualização → novas perguntas.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03"
+      ]
+    },
+    {
+      "id": "K11",
+      "tipo": "APRENDIZADO",
+      "titulo": "Construir enquanto aprende",
+      "conteudo": "Planejamento, construção, experiência, memória, aprendizado e revisão alimentam-se continuamente.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K12",
+      "tipo": "PRINCIPIO",
+      "titulo": "Não confundir resposta com validação",
+      "conteudo": "Uma saída de IA pode ser hipótese, interpretação ou proposta; validação depende de evidência, teste ou verificação adequada ao caso.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03"
+      ]
+    },
+    {
+      "id": "K13",
+      "tipo": "ARQUITETURA",
+      "titulo": "IA é participante",
+      "conteudo": "Modelos de IA são provedores de capacidade e podem ser substituídos ou multiplicados; nenhum modelo individual é o próprio Sistema.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K14",
+      "tipo": "PORTABILIDADE",
+      "titulo": "Independência tecnológica",
+      "conteudo": "Conhecimento, identidade, histórico e estrutura devem permanecer portáveis entre IAs, contas, plataformas e ferramentas.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K15",
+      "tipo": "EVOLUCAO",
+      "titulo": "Capacidade real",
+      "conteudo": "O crescimento deve ser observado pelo que o Sistema consegue fazer agora que antes não conseguia, não pela quantidade de código.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K16",
+      "tipo": "MEMORIA",
+      "titulo": "Histórico como conhecimento",
+      "conteudo": "Decisões, erros, correções, mudanças de entendimento e progresso da própria construção são patrimônio cognitivo do Projeto.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    },
+    {
+      "id": "K17",
+      "tipo": "SABEDORIA",
+      "titulo": "Sabedoria contextual",
+      "conteudo": "Sabedoria operacional deve combinar contexto, experiência, evidência, limites e aplicação; não deve virar comando universal automaticamente.",
+      "fontes": [
+        "F01",
+        "F02",
+        "F03"
+      ]
+    },
+    {
+      "id": "K18",
+      "tipo": "CICLO",
+      "titulo": "Ciclo atual de capacidade",
+      "conteudo": "Visão → contexto → IA(s) → pesquisa → hipótese → ação/experimento → resultado → avaliação → aprendizado → memória → novo contexto → novo ciclo.",
+      "fontes": [
+        "F01",
+        "F02"
+      ]
+    }
+  ],
+  "relações": [
+    [
+      "K01",
+      "ORIENTA",
+      "K03"
+    ],
+    [
+      "K03",
+      "INFORMA",
+      "K06"
+    ],
+    [
+      "K05",
+      "PROTEGE",
+      "K06"
+    ],
+    [
+      "K07",
+      "SUSTENTA",
+      "K10"
+    ],
+    [
+      "K08",
+      "REPRESENTA",
+      "K09"
+    ],
+    [
+      "K09",
+      "FACILITA",
+      "K07"
+    ],
+    [
+      "K10",
+      "GERA",
+      "K11"
+    ],
+    [
+      "K12",
+      "LIMITA",
+      "K13"
+    ],
+    [
+      "K14",
+      "PROTEGE",
+      "K13"
+    ],
+    [
+      "K16",
+      "ALIMENTA",
+      "K11"
+    ],
+    [
+      "K17",
+      "DERIVA_DE",
+      "K10"
+    ],
+    [
+      "K18",
+      "INTEGRA",
+      "K01"
+    ]
+  ],
+  "lacunas": [
+    "Conteúdo integral da F03 ainda não foi recuperado nesta sessão; relações que dependam especificamente dela devem permanecer provisórias.",
+    "Ainda falta executar no runtime do Cérebro o ciclo completo com consulta/recuperação real das unidades recém-representadas.",
+    "Ainda não há garantia de recuperação semântica profunda/vectorial; a implementação atual possui busca textual híbrida e expansão de relações."
+  ]
+}
