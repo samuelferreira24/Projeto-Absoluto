@@ -50,7 +50,6 @@ class ControleExecucao:
 
     def _recarregar(self) -> None:
         if not self.path.exists():
-            self.claims = {}
             return
         dados = json.loads(self.path.read_text(encoding="utf-8"))
         persistidos = {k: ClaimTarefa(**v) for k, v in dados.get("claims", {}).items()}
