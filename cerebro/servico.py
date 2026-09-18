@@ -135,8 +135,9 @@ class Cerebro:
         return self.agendador.planejar(recursos, orcamento=orcamento, limite=limite)
 
     def iniciar_plano(self, plano: PlanoExecucao) -> None:
-        for tarefa in plano.tarefas:
-            self.controle_execucao.claim(tarefa.id)
+        # O claim pertence ao ExecutorPlano, que possui o ciclo completo de
+        # autorização, execução, conclusão/falha e reconciliação. Reservá-lo
+        # aqui duplicaria o claim e bloquearia a execução subsequente.
         self.agendador.executar_inicio(plano)
         self._salvar_orquestracao()
 
