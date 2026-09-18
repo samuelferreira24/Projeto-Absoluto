@@ -30,3 +30,4 @@ def test_snapshot_nao_altera_fontes_em_memoria(tmp_path):
 
     assert grafo.tarefas["a"].estado is EstadoTarefa.PENDENTE
     assert detector.resultados == []
+    assert not caminho.with_suffix(".json.tmp").exists()
