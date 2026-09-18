@@ -54,3 +54,15 @@ def test_persistencia_recarrega_claims(tmp_path):
 
     assert "t1" in segundo.claims
     assert segundo.claims["t1"].claim_id == primeiro.claims["t1"].claim_id
+
+
+def test_claim_recarrega_e_impede_claim_duplicado(tmp_path):
+    caminho = tmp_path / "controle.json"
+    primeiro = ControleExecucao(caminho)
+    primeiro.claim("t1")
+    segundo = ControleExecucao(caminho)
+    with pytest.raises(RuntimeError):
+        segundo.claim("t1")
+    segundo.liberar("t1")
+    terceiro = ControleExecucao(caminho)
+    assert terceiro.claim("t1").tentativa == 2
