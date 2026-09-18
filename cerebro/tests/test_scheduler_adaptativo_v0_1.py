@@ -79,3 +79,23 @@ def test_padroes_bem_sucedidos_sao_reutilizaveis():
     s.grafo.marcar("a", EstadoTarefa.PENDENTE)
     s.registrar_resultado("a", True)
     assert s.padroes_orquestracao_reutilizaveis(2) == [{"tarefa": "a", "ocorrencias": 2}]
+
+
+def test_preferencia_seleciona_ferramenta_ou_modelo():
+    g = GrafoTarefas()
+    g.adicionar(NoTarefa("a", "A", capacidades=("pesquisa",), preferencias=("modelo-rapido",), valor_estimado=10))
+    s = AgendadorAdaptativo(g)
+    s.registrar_executor(PerfilExecutor("x", capacidades=("pesquisa",), modelos=("modelo-lento",)))
+    s.registrar_executor(PerfilExecutor("y", capacidades=("pesquisa",), modelos=("modelo-rapido",)))
+    assert s.selecionar_executor(g.tarefas["a"]).id == "y"
+
+
+def test_consumo_real_de_combustivel_e_persistido_no_estado():
+    g = GrafoTarefas()
+    g.adicionar(NoTarefa("a", "A", combustivel_estimado=2))
+    s = AgendadorAdaptativo(g)
+    s.definir_combustivel(10)
+    s.registrar_resultado("a", True, consumo_combustivel=3)
+    assert s.fuel.restante == 7
+    evento = [e for e in s.historico if e["evento"] == "RESULTADO"][-1]
+    assert evento["consumo_combustivel"] == 3
