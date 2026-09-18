@@ -44,3 +44,18 @@ def test_executor_plano_nao_duplica_claim_ativo(tmp_path):
     resultado = executor.executar(plano, {"a": lambda _: {"ok": True}})
 
     assert resultado[0].estado == "BLOQUEADO"
+
+
+def test_servico_iniciar_plano_nao_cria_claim_duplicado(tmp_path):
+    from cerebro.servico import Cerebro
+
+    cerebro = Cerebro(tmp_path / "data")
+    cerebro.adicionar_tarefa(NoTarefa("a", "A", valor_estimado=10))
+    plano = cerebro.planejar_tarefas()
+    cerebro.iniciar_plano(plano)
+
+    assert "a" not in cerebro.controle_execucao.claims
+    resultado = cerebro.executar_plano(plano, {"a": lambda tarefa: {"ok": True}})
+
+    assert resultado[0]["estado"] == "CONCLUIDA"
+    assert cerebro.controle_execucao.claims["a"].estado == "CONCLUIDA"
