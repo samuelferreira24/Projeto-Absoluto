@@ -188,7 +188,6 @@ class AgendadorAdaptativo:
                 if uso_executores.get(executor.id, 0) >= limite_executor:
                     bloqueios.append(f"{tarefa.id}: capacidade do executor")
                     continue
-                uso_executores[executor.id] = uso_executores.get(executor.id, 0) + 1
                 custo_tarefa *= max(0.0, executor.custo_multiplicador)
             if custo_tarefa == 0:
                 custo_tarefa = 1.0 / max(tarefa.prioridade, 0.1)
@@ -209,6 +208,8 @@ class AgendadorAdaptativo:
                 continue
 
             selecionadas.append(tarefa)
+            if executor:
+                uso_executores[executor.id] = uso_executores.get(executor.id, 0) + 1
             for r in recursos:
                 uso[r] = uso.get(r, 0.0) + 1.0
             custo += custo_tarefa
