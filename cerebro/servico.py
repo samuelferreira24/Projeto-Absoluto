@@ -33,6 +33,7 @@ from .ciclo_operacional import CicloOperacional, DecisorOperacional, ExecutorOpe
 from .portas import Porta, RegistroPortas
 from .ativacao_portas import AtivadorPortas, Handler, ResultadoPorta
 from .executor_portas import ExecutorOperacionalPortas
+from .cerebros import CerebroRemoto, RegistroCerebros
 
 
 class Cerebro:
@@ -69,6 +70,20 @@ class Cerebro:
         self.portas = RegistroPortas(self.repo.root / "portas.json")
         self.ativador_portas = AtivadorPortas(self.portas)
         self.executor_portas = ExecutorOperacionalPortas(self.ativador_portas)
+        self.cerebros = RegistroCerebros(self.repo.root / "cerebros.json")
+
+    def registrar_cerebro(self, cerebro: CerebroRemoto) -> None:
+        """Registra outro núcleo possível sem impor hierarquia ou topologia."""
+        self.cerebros.registrar(cerebro)
+
+    def listar_cerebros(self, *, ativos: bool | None = None) -> list[CerebroRemoto]:
+        return self.cerebros.listar(ativos=ativos)
+
+    def cerebros_por_capacidade(self, capacidade: str, *, ativos: bool = True) -> list[CerebroRemoto]:
+        return self.cerebros.por_capacidade(capacidade, ativos=ativos)
+
+    def cerebros_por_ambiente(self, ambiente: str, *, ativos: bool = True) -> list[CerebroRemoto]:
+        return self.cerebros.por_ambiente(ambiente, ativos=ativos)
 
     def registrar_porta(self, porta: Porta) -> None:
         self.portas.registrar(porta)
