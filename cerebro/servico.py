@@ -27,6 +27,7 @@ from .interface_chat import InterfaceChat, MensagemChat
 from .inventario_capacidades import inventariar, resumo as resumo_capacidades, exportar_json as exportar_inventario_capacidades
 from .simulador_orquestracao import CenarioSimulacao, SimuladorOrquestracao
 from .persistencia_orquestracao import carregar_orquestracao, salvar_orquestracao
+from .controle_execucao import ControleExecucao
 
 
 class Cerebro:
@@ -40,6 +41,7 @@ class Cerebro:
         self.runtime_path = self.repo.root / "runtime.json"
         self.agendador_path = self.repo.root / "agendador.json"
         self.orquestracao_path = self.repo.root / "orquestracao.json"
+        self.controle_execucao = ControleExecucao(self.repo.root / "controle_execucao.json")
         self.despertador = Despertador(self.repo.root / "despertar.json")
         self.coletor = ColetorMemoria(self.repo)
         self.fila_organizacao = FilaOrganizacao(self.repo.root / "organizacao.jsonl")
@@ -131,8 +133,13 @@ class Cerebro:
         return self.agendador.planejar(recursos, orcamento=orcamento, limite=limite)
 
     def iniciar_plano(self, plano: PlanoExecucao) -> None:
+        for tarefa in plano.tarefas:
+            self.controle_execucao.claim(tarefa.id)
         self.agendador.executar_inicio(plano)
         self._salvar_orquestracao()
+
+    def reconciliar_execucao(self) -> list[str]:
+        return self.controle_execucao.reconciliar()
 
     def registrar_executor(self, executor: PerfilExecutor) -> None:
         self.agendador.registrar_executor(executor)
@@ -145,6 +152,7 @@ class Cerebro:
 
     def cancelar_tarefa(self, tarefa_id: str, *, motivo: str = "cancelamento solicitado", cancelar_dependentes: bool = False) -> list[str]:
         resultado = self.agendador.cancelar_tarefa(tarefa_id, motivo=motivo, cancelar_dependentes=cancelar_dependentes)
+        self.controle_execucao.liberar(tarefa_id)
         self._salvar_orquestracao()
         return resultado
 
@@ -170,6 +178,14 @@ class Cerebro:
 
     def concluir_tarefa(self, tarefa_id: str, sucesso: bool = True, **kwargs: Any) -> None:
         self.agendador.registrar_resultado(tarefa_id, sucesso, **kwargs)
+        if sucesso:
+            self.controle_execucao.concluir(tarefa_id)
+        else:
+            self.controle_execucao.falhar(
+                tarefa_id,
+                str(kwargs.get("observacao") or "falha de tarefa"),
+                retry_segundos=kwargs.get("retry_segundos"),
+            )
         self._salvar_orquestracao()
 
     def replanejar_tarefas(self, recursos: set[str] | None = None, **kwargs: Any) -> PlanoExecucao:
