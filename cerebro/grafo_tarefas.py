@@ -12,6 +12,7 @@ class EstadoTarefa(str, Enum):
     CONCLUIDA = "CONCLUIDA"
     BLOQUEADA = "BLOQUEADA"
     FALHOU = "FALHOU"
+    CANCELADA = "CANCELADA"
 
 
 @dataclass(frozen=True)
@@ -34,6 +35,8 @@ class NoTarefa:
     incerteza: float = 0.0
     comunicacao_estimado: float = 0.0
     fallbacks: tuple[str, ...] = ()
+    combustivel_estimado: float = 0.0
+    prazo_critico: bool = False
 
 
 @dataclass
@@ -70,8 +73,7 @@ class GrafoTarefas:
                 continue
             if any(dependencia not in self.tarefas for dependencia in tarefa.depende_de):
                 continue
-            dependencias = [self.tarefas[d] for d in tarefa.depende_de]
-            if any(d.estado != EstadoTarefa.CONCLUIDA for d in dependencias):
+            if any(self.tarefas[d].estado != EstadoTarefa.CONCLUIDA for d in tarefa.depende_de):
                 continue
             if tarefa.recursos and not set(tarefa.recursos).issubset(recursos):
                 continue
@@ -79,7 +81,6 @@ class GrafoTarefas:
         return sorted(resultado, key=lambda t: (-t.prioridade, t.id))
 
     def lotes_paralelos(self, recursos_disponiveis: set[str] | None = None) -> list[list[NoTarefa]]:
-        """Forma um lote máximo simples sem compartilhar o mesmo recurso."""
         lote: list[NoTarefa] = []
         usados: set[str] = set()
         for tarefa in self.prontas(recursos_disponiveis):
@@ -93,28 +94,31 @@ class GrafoTarefas:
     def marcar(self, tarefa_id: str, estado: EstadoTarefa) -> None:
         tarefa = self.tarefas[tarefa_id]
         self.tarefas[tarefa_id] = NoTarefa(
-            id=tarefa.id,
-            objetivo=tarefa.objetivo,
-            depende_de=tarefa.depende_de,
-            recursos=tarefa.recursos,
-            capacidades=tarefa.capacidades,
-            estado=estado,
-            prioridade=tarefa.prioridade,
-            valor_estimado=tarefa.valor_estimado,
-            custo_estimado=tarefa.custo_estimado,
-            tempo_estimado=tarefa.tempo_estimado,
-            risco=tarefa.risco,
-            prazo=tarefa.prazo,
-            preferencias=tarefa.preferencias,
-            restricoes=tarefa.restricoes,
-            oportunidade=tarefa.oportunidade,
-            incerteza=tarefa.incerteza,
-            comunicacao_estimado=tarefa.comunicacao_estimado,
-            fallbacks=tarefa.fallbacks,
+            id=tarefa.id, objetivo=tarefa.objetivo, depende_de=tarefa.depende_de,
+            recursos=tarefa.recursos, capacidades=tarefa.capacidades, estado=estado,
+            prioridade=tarefa.prioridade, valor_estimado=tarefa.valor_estimado,
+            custo_estimado=tarefa.custo_estimado, tempo_estimado=tarefa.tempo_estimado,
+            risco=tarefa.risco, prazo=tarefa.prazo, preferencias=tarefa.preferencias,
+            restricoes=tarefa.restricoes, oportunidade=tarefa.oportunidade,
+            incerteza=tarefa.incerteza, comunicacao_estimado=tarefa.comunicacao_estimado,
+            fallbacks=tarefa.fallbacks, combustivel_estimado=tarefa.combustivel_estimado,
+            prazo_critico=tarefa.prazo_critico,
         )
 
     def dependentes_de(self, tarefa_id: str) -> list[NoTarefa]:
-        return sorted((t for t in self.tarefas.values() if tarefa_id in t.depende_de), key=lambda t: (-t.prioridade, t.id))
+        return sorted(
+            (t for t in self.tarefas.values() if tarefa_id in t.depende_de),
+            key=lambda t: (-t.prioridade, t.id),
+        )
+
+    def cancelar_dependentes(self, tarefa_id: str) -> list[str]:
+        canceladas: list[str] = []
+        for tarefa in self.dependentes_de(tarefa_id):
+            if tarefa.estado in {EstadoTarefa.PENDENTE, EstadoTarefa.PRONTA}:
+                self.marcar(tarefa.id, EstadoTarefa.CANCELADA)
+                canceladas.append(tarefa.id)
+                canceladas.extend(self.cancelar_dependentes(tarefa.id))
+        return canceladas
 
     def _tem_ciclo(self) -> bool:
         visitados: set[str] = set()
