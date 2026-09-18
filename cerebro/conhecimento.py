@@ -341,7 +341,7 @@ class BaseConhecimento:
                 kind,
                 str(aprendizado.get("titulo", "Aprendizado sem título")),
                 str(aprendizado.get("conteudo", "")),
-                source_ids=aprendizado.get("evidencias", ()) or (),
+                source_ids=(),
                 evidence_ids=aprendizado.get("evidencias", ()) or (),
                 provenance={
                     "tipo": "aprendizado",
