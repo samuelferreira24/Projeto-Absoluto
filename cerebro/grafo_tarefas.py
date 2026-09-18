@@ -83,7 +83,7 @@ class GrafoTarefas:
                 continue
             if any(self.tarefas[d].estado != EstadoTarefa.CONCLUIDA for d in tarefa.depende_de):
                 continue
-            if tarefa.recursos and not set(tarefa.recursos).issubset(recursos):
+            if tarefa.recursos and recursos is not None and not set(tarefa.recursos).issubset(recursos):
                 continue
             resultado.append(tarefa)
         return sorted(resultado, key=lambda t: (-t.prioridade, t.id))
