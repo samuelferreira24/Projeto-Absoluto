@@ -21,6 +21,7 @@ class PlanoCiclo:
     custo_estimado: float = 0.0
     cadeia: int = 1
     aprovacao: bool = False
+    aprovacao_id: str | None = None
     correlation_id: str | None = None
     parent_id: str | None = None
 
@@ -50,7 +51,8 @@ class ExecutorCerebro:
         return self.cerebro.candidatos_rede(contexto)
 
     def executar(self, plano: PlanoCiclo, funcao: Callable[[PlanoCiclo], dict[str, Any]]) -> dict[str, Any]:
-        if not self.politica.autorizada(plano.acao):
+        ferramenta = plano.ferramenta or plano.acao.nome
+        if not self.politica.autorizada(plano.acao, ferramenta=ferramenta, recurso=plano.recurso, custo_estimado=plano.custo_estimado, cadeia=plano.cadeia, aprovacao_id=plano.aprovacao_id):
             if self.controle:
                 self.controle.registrar_resultado(
                     operacao=plano.acao.nome, estado="BLOQUEADO",
@@ -61,7 +63,6 @@ class ExecutorCerebro:
             return {"executado": False, "estado": "BLOQUEADO", "motivo": "ação fora da política de autonomia"}
 
         if self.controle:
-            ferramenta = plano.ferramenta or plano.acao.nome
             permitido, motivo = self.controle.verificar(
                 operacao=plano.acao.nome,
                 ferramenta=ferramenta,
@@ -76,7 +77,20 @@ class ExecutorCerebro:
             if not permitido:
                 return {"executado": False, "estado": "BLOQUEADO", "motivo": motivo}
 
-        resultado = funcao(plano)
+        try:
+            resultado = funcao(plano)
+        except Exception as exc:
+            if self.controle:
+                self.controle.registrar_resultado(
+                    operacao=plano.acao.nome, estado="FALHOU",
+                    ferramenta=ferramenta, recurso=plano.recurso,
+                    custo=plano.custo_estimado, correlation_id=plano.correlation_id,
+                    parent_id=plano.parent_id, detalhes={"erro": str(exc)},
+                )
+            raise
+
+        if plano.aprovacao_id:
+            self.politica.consumir_aprovacao(plano.aprovacao_id)
 
         if self.controle:
             self.controle.registrar_resultado(
