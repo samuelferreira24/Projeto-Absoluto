@@ -31,6 +31,7 @@ from .controle_execucao import ControleExecucao
 from .execucao_plano import ExecutorPlano
 from .ciclo_operacional import CicloOperacional, DecisorOperacional, ExecutorOperacional
 from .portas import Porta, RegistroPortas
+from .ativacao_portas import AtivadorPortas, Handler, ResultadoPorta
 
 
 class Cerebro:
@@ -65,6 +66,7 @@ class Cerebro:
         self.executor_plano = ExecutorPlano(self.agendador, self.controle_execucao)
         self.interface_chat = InterfaceChat(self)
         self.portas = RegistroPortas(self.repo.root / "portas.json")
+        self.ativador_portas = AtivadorPortas(self.portas)
 
     def registrar_porta(self, porta: Porta) -> None:
         self.portas.registrar(porta)
@@ -77,6 +79,28 @@ class Cerebro:
 
     def portas_por_ambiente(self, ambiente: str, *, ativas: bool = True) -> list[Porta]:
         return self.portas.por_ambiente(ambiente, ativas=ativas)
+
+    def ativar_capacidade(self, porta_id: str, capacidade: str, handler: Handler) -> None:
+        self.ativador_portas.ativar(porta_id, capacidade, handler)
+
+    def capacidade_disponivel(self, capacidade: str, *, ambiente: str | None = None) -> bool:
+        return self.ativador_portas.disponivel(capacidade, ambiente=ambiente)
+
+    def executar_capacidade(
+        self,
+        capacidade: str,
+        *args: Any,
+        ambiente: str | None = None,
+        porta_id: str | None = None,
+        **kwargs: Any,
+    ) -> ResultadoPorta:
+        return self.ativador_portas.executar(
+            capacidade,
+            *args,
+            ambiente=ambiente,
+            porta_id=porta_id,
+            **kwargs,
+        )
 
     def inventario_capacidades(self) -> list[dict[str, Any]]:
         return inventariar()
