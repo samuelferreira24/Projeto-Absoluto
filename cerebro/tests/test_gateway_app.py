@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import threading
 import urllib.request
+from urllib.error import HTTPError
 
 from cerebro.cliente_app import ClienteAppDireto
 from cerebro.gateway_app import GatewayAppDireto, ServidorGatewayApp
@@ -74,7 +75,6 @@ def test_gateway_expoe_que_termux_nao_e_necessario():
 
 
 def test_gateway_rejeita_token_incorreto():
-    import urllib.error
     import urllib.request
 
     servidor = ServidorGatewayApp(GatewayAppDireto(), porta=0, token="segredo")
@@ -85,7 +85,7 @@ def test_gateway_rejeita_token_incorreto():
         try:
             urllib.request.urlopen(req, timeout=2)
             assert False, "deveria rejeitar"
-        except urllib.error.HTTPError as exc:
+        except HTTPError as exc:
             assert exc.code == 401
 
         req_ok = urllib.request.Request(
