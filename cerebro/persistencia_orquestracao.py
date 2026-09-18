@@ -53,5 +53,11 @@ def carregar_orquestracao(path: str | Path) -> tuple[GrafoTarefas, DetectorSiner
 
     detector = DetectorSinergia()
     for item in dados.get("resultados_sinergia", []):
+        item = dict(item)
+        for chave in ("capacidades",):
+            if chave in item and isinstance(item[chave], list):
+                item[chave] = tuple(item[chave])
+        if isinstance(item.get("contexto"), dict):
+            item["contexto"] = {str(k): str(v) for k, v in item["contexto"].items()}
         detector.registrar(ResultadoCombinacao(**item))
     return grafo, detector
