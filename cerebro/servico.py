@@ -139,7 +139,20 @@ class Cerebro:
         self._salvar_orquestracao()
 
     def reconciliar_execucao(self) -> list[str]:
-        return self.controle_execucao.reconciliar()
+        recuperadas = self.controle_execucao.reconciliar()
+        if recuperadas:
+            from .grafo_tarefas import EstadoTarefa
+            for tarefa_id in recuperadas:
+                tarefa = self.grafo_tarefas.tarefas.get(tarefa_id)
+                if tarefa is not None and tarefa.estado == EstadoTarefa.EXECUTANDO:
+                    self.grafo_tarefas.marcar(tarefa_id, EstadoTarefa.PENDENTE)
+                    self.agendador._adicionar_historico({
+                        "evento": "RECUPERACAO_CLAIM_EXPIRADO",
+                        "tarefa": tarefa_id,
+                        "motivo": "claim expirou sem conclusão",
+                    })
+            self._salvar_orquestracao()
+        return recuperadas
 
     def registrar_executor(self, executor: PerfilExecutor) -> None:
         self.agendador.registrar_executor(executor)
