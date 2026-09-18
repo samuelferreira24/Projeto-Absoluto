@@ -64,6 +64,8 @@ PROJETO ABSOLUTO
 | `cerebro/especificacao/PESQUISA_RETENCAO_EVOLUCAO_CONHECIMENTO_V0_1.md` | ATIVO | pesquisa/retensão |
 | `cerebro/especificacao/MECANISMO_DESCOBERTA_E_REAVALIACAO_V0_1.md` | ATIVO | descoberta e reavaliação |
 | `cerebro/memoria/` | ATIVO | memória persistida |
+| `cerebro/conhecimento.py` | ATIVO | camada canônica de conhecimento |
+| `cerebro/data/conhecimento/` | ATIVO | dados persistidos de conhecimento e histórico de versões |
 | `Projeto_Absoluto_MEMORIA_IA_V10_ATUALIZADO.docx` | FONTE_BRUTA | referência histórica primária |
 | `Projeto_Absoluto_EBOOK_HUMANO_V10_ATUALIZADO.docx` | FONTE_BRUTA | referência histórica primária |
 | `Pesquisa_Representacao_Armazenamento_Informacao_IA_Projeto_Absoluto_v1.docx` | FONTE_BRUTA | pesquisa histórica primária |
@@ -117,6 +119,10 @@ Snapshots de estado são fotografias temporais. Não devem ser usados para reesc
 - persistir estado do grafo, sinergias e decisões de orquestração;
 - integrar experiência de execução à memória permanente.
 
-## 10. Regra final
+## 10. Integração do conhecimento
+
+A camada canônica de conhecimento conecta fonte, evidência, contexto, relações, temporalidade, aprendizado e experiência sem substituir o acervo bruto. Projeções especializadas (vetor, grafo, índices) devem permanecer substituíveis.
+
+## 11. Regra final
 
 > **Organizar significa tornar encontrável, contextualizado, relacionado e corretamente classificado — não apagar aquilo que ainda não foi compreendido.**
