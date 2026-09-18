@@ -21,6 +21,11 @@ class ResultadoExecucaoTarefa:
     tentativa: int | None = None
 
 
+class _FonteNula:
+    def candidatos_rede(self, contexto: dict[str, float] | None = None) -> list[tuple[str, float]]:
+        return []
+
+
 class ExecutorPlano:
     """Executa um plano já autorizado pelo scheduler, com claim, política e aprendizado."""
 
@@ -32,7 +37,7 @@ class ExecutorPlano:
     ) -> None:
         self.agendador = agendador
         self.controle = controle
-        self.executor = executor or ExecutorCerebro(politica=None)
+        self.executor = executor or ExecutorCerebro(cerebro=_FonteNula())
 
     def executar(
         self,
