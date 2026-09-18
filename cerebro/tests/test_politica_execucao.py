@@ -30,3 +30,18 @@ def test_aprovacao_nao_pode_ser_reutilizada_para_outra_ferramenta():
     politica = PoliticaExecucao(NivelAutonomia.ALTERAR_SISTEMAS_AUTORIZADOS)
     token = politica.emitir_aprovacao(acao, ferramenta="git", recurso="repo-x")
     assert not politica.autorizada(acao, ferramenta="shell", recurso="repo-x", aprovacao_id=token)
+
+
+def test_escopo_de_execucao_compara_caminho_resolvido(tmp_path):
+    import sys
+    from cerebro.politica_execucao import EscopoExecucao
+
+    escopo = EscopoExecucao(executaveis_permitidos=(sys.executable,))
+    permitido, motivo = escopo.validar_comando((sys.executable, "-V"))
+    assert permitido is True
+    assert motivo == "OK"
+
+    outro = tmp_path / "mesmo_nome"
+    outro.write_text("", encoding="utf-8")
+    permitido, _ = escopo.validar_comando((str(outro),))
+    assert permitido is False
