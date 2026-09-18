@@ -27,6 +27,7 @@ cerebro/
 │
 ├── conhecimento e memória
 │   ├── registro.py
+│   ├── conhecimento.py
 │   ├── recuperacao.py
 │   ├── semantica.py
 │   ├── temporal.py
@@ -79,6 +80,7 @@ cerebro/
 - `cerebro/*.py` = implementação da capacidade do Cérebro.
 - `cerebro/especificacao/` = contratos, princípios, arquitetura, métodos, mapas e documentação normativa/analítica.
 - `cerebro/memoria/` = dados persistidos de aprendizado e recuperação.
+- `cerebro/data/conhecimento/` = base canônica persistente de conhecimento, com histórico versionado.
 - `cerebro/tests/` = evidência automatizada da implementação.
 
 Materiais históricos brutos do Projeto não devem ser confundidos com especificações atuais.
