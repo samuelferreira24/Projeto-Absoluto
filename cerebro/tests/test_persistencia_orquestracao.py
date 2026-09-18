@@ -15,7 +15,11 @@ def test_persiste_e_recarrega_grafo_e_sinergias(tmp_path):
     recarregado, sinergia = carregar_orquestracao(caminho)
 
     assert recarregado.tarefas["a"].estado is EstadoTarefa.CONCLUIDA
-    assert recarregado.tarefas["b"].depende_de == ("a",)\n    assert recarregado.tarefas["b"].nivel_autonomia == 4\n    assert recarregado.tarefas["b"].reversivel is False\n    assert recarregado.tarefas["b"].exige_aprovacao is True\n    assert recarregado.tarefas["b"].ferramenta == "git"
+    assert recarregado.tarefas["b"].depende_de == ("a",)
+    assert recarregado.tarefas["b"].nivel_autonomia == 4
+    assert recarregado.tarefas["b"].reversivel is False
+    assert recarregado.tarefas["b"].exige_aprovacao is True
+    assert recarregado.tarefas["b"].ferramenta == "git"
     assert len(sinergia.resultados) == 1
     assert sinergia.resultados[0].capacidades == ("A", "B")
 
