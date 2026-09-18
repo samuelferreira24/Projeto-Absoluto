@@ -34,6 +34,7 @@ from .portas import Porta, RegistroPortas
 from .ativacao_portas import AtivadorPortas, Handler, ResultadoPorta
 from .executor_portas import ExecutorOperacionalPortas
 from .cerebros import CerebroRemoto, RegistroCerebros
+from .fontes_base import auditar_fontes, ingerir_fontes_base
 
 
 class Cerebro:
@@ -188,6 +189,14 @@ class Cerebro:
 
     def exportar_inventario_capacidades(self, path: str | Path = "cerebro/data/inventario_capacidades_v0_1.json") -> dict[str, Any]:
         return exportar_inventario_capacidades(path)
+
+    def auditar_fontes_base(self, raiz_projeto: str | Path | None = None) -> list[dict[str, Any]]:
+        raiz = Path(raiz_projeto) if raiz_projeto is not None else self.repo.root.parent.parent
+        return auditar_fontes(raiz)
+
+    def ingerir_fontes_base(self, raiz_projeto: str | Path | None = None) -> dict[str, Any]:
+        raiz = Path(raiz_projeto) if raiz_projeto is not None else self.repo.root.parent.parent
+        return ingerir_fontes_base(self.repo, raiz)
 
     def inspecionar(self, arquivo: str | Path) -> DocumentoEstruturado:
         return extrair(arquivo)
