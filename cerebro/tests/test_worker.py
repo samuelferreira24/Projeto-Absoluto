@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import shlex
 
 from cerebro.orquestrador import Missao
 from cerebro.servico import Cerebro
@@ -25,7 +26,8 @@ def test_worker_processa_pedido_com_executor_externo(tmp_path):
     preparar_caminho(cerebro)
     pedido = cerebro.solicitar_despertar("m1", "teste")
 
-    comando = f'{sys.executable} -c "import json,sys; d=json.load(sys.stdin); print(json.dumps({{\"ok\": True, \"missao\": d[\"missao\"][\"id\"]}}))"'
+    script = 'import json,sys; d=json.load(sys.stdin); print(json.dumps({"ok": True, "missao": d["missao"]["id"]}))'
+    comando = f"{shlex.quote(sys.executable)} -c {shlex.quote(script)}"
     resultado = executar_pedidos_pendentes(cerebro, comando, politica=politica_teste())
 
     assert resultado[0]["executado"] is True
