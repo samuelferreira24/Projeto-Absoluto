@@ -60,7 +60,13 @@ class MiniCerebro:
             if not p.is_file() or any(part in IGNORE for part in p.parts): continue
             try: data=p.read_bytes()
             except OSError: continue
-            self.document(sid,str(p.relative_to(root)),data); count+=1
+            rel=str(p.relative_to(root))
+            if p.suffix.lower()==".zip":
+                self.document(sid,rel,data); count+=1
+                try: self.ingest_zip(p)
+                except (OSError,zipfile.BadZipFile): pass
+            else:
+                self.document(sid,rel,data); count+=1
         self.ingest_git(root,sid)
         return {"source_id":sid,"documents":count}
 
@@ -122,6 +128,12 @@ class MiniCerebro:
         return self.db.execute("""SELECT c.*,d.path,s.path FROM claims c
         LEFT JOIN documents d ON d.id=c.source_document_id
         LEFT JOIN sources s ON s.id=d.source_id WHERE c.id=?""",(claim_id,)).fetchone()
+
+    def stats(self):
+        out={}
+        for table in ("sources","documents","git_commits","claims","relations","investigations"):
+            out[table]=self.db.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+        return out
 
     def export(self,out="mini_cerebro_export.json"):
         payload={}
