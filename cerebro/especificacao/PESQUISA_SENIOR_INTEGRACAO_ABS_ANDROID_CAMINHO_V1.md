@@ -99,3 +99,80 @@ Mapear sistematicamente as portas reais de integração ABS → Android, da inte
 - classificação V1 (🟢/🟡/🔴).
 
 Este documento registra o caminho, não uma arquitetura final.
+
+
+## Pesquisa aprofundada — novas evidências
+
+### Portas adicionais de integração identificadas
+A arquitetura AOSP mostra que a integração não precisa ocorrer em um único salto. Há pontos distintos:
+- propriedades e configuração do sistema;
+- system services/framework;
+- Binder/AIDL para comunicação entre componentes;
+- apps privilegiados na system image;
+- HALs e interfaces com hardware;
+- partições system/vendor/odm;
+- init/boot e imagens de sistema;
+- kernel/boot image.
+
+AOSP documenta que o framework e componentes HAL se comunicam por Binder, e que a separação system/vendor cria fronteiras de integração entre plataforma e código específico do dispositivo. Isso é relevante porque o ABS pode ser projetado como componente que atravessa essas interfaces sem precisar inicialmente substituir todas as camadas. citeturn1search3turn1search48
+
+### Integração por administração do dispositivo
+Device Owner é uma porta real para o ABS assumir controle administrativo amplo do dispositivo. A documentação atual descreve Device Owner como o tipo mais poderoso de Device Policy Controller, capaz de afetar políticas em todo o dispositivo. Também existe DeviceAdminService, que o sistema tenta manter conectado enquanto o usuário hospedeiro estiver em execução. citeturn0search0turn0search7
+
+### Integração por system image
+Permissões privilegiadas são associadas a apps pré-instalados nos caminhos privilegiados da system image e dependem de allowlists. Isso cria uma rota concreta para transformar o ABS de um app comum em um componente integrado à imagem do sistema, quando o dispositivo/build permitir. citeturn0search8
+
+### Integração por AOSP
+AOSP permite criar imagens de sistema próprias; GSI é um exemplo de imagem baseada no AOSP que pode substituir a imagem de sistema em dispositivos compatíveis. Isso confirma que “Android adaptado” é uma possibilidade técnica real, mas a implantação concreta depende da compatibilidade e das condições do dispositivo. citeturn1search2
+
+### Baixo nível não é simplesmente “root”
+AOSP documenta que SELinux continua restringindo processos mesmo com root e que Verified Boot protege a integridade do sistema. Portanto, root deve ser tratado como uma porta de privilégio, não como sinônimo de integração integral. citeturn0search3turn1search4
+
+### Nova leitura arquitetural
+A pesquisa reforça uma arquitetura de integração por camadas:
+
+1. **Presença** — ABS roda no Android.
+2. **Recursos** — ABS usa CPU/RAM/armazenamento/rede/processos.
+3. **Administração** — ABS controla políticas e estado do dispositivo.
+4. **Serviços** — ABS integra serviços persistentes e comunicação com o sistema.
+5. **Privilégio** — ABS ocupa posições privilegiadas na system image quando possível.
+6. **Framework** — ABS passa a participar/modificar serviços e APIs do Android.
+7. **Hardware abstraction** — ABS pode integrar-se às interfaces HAL necessárias.
+8. **Boot/system image** — ABS passa a fazer parte da imagem e do ciclo de inicialização.
+9. **Integração operacional** — Android adaptado torna-se camada constitutiva da configuração do ABS.
+
+Esta sequência é uma hipótese de investigação, não uma exigência de que todos os passos sejam necessários.
+
+### Critério prático para os próximos testes
+Para cada porta, pesquisar:
+- acesso necessário;
+- mecanismo oficial/real;
+- se funciona no aparelho atual;
+- se exige bootloader desbloqueado;
+- se exige imagem própria;
+- se exige root;
+- se exige alteração de SELinux;
+- se exige AOSP/build;
+- persistência após reinicialização;
+- reversibilidade;
+- risco de perda de controle;
+- possibilidade de preservar o Android original;
+- evidência mínima para classificar a porta como 🟢, 🟡 ou 🔴.
+
+### Regra importante
+Não assumir que “mais profundo” significa automaticamente “melhor”. O objetivo é **integração do Android ao ABS**, e não obter privilégios por si mesmos. Uma porta menos profunda pode ser suficiente para uma função específica; uma porta mais profunda só deve ser perseguida quando acrescentar capacidade real ao ABS.
+
+### Próximo ramo da pesquisa
+**Android → Portas de Integração ABS**
+
+Sub-ramos iniciais:
+- Administração do dispositivo
+- Serviços persistentes
+- System apps / privileged apps
+- System services / framework
+- Binder / AIDL
+- System image / AOSP
+- Boot / init
+- HAL
+- Kernel / SELinux / Verified Boot
+
