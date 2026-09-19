@@ -275,3 +275,46 @@ A fronteira de construção será atingida quando houver informação suficiente
 > **O que construir primeiro, por que construir, qual capacidade isso cria, qual evidência sustenta a escolha, como testar, como reverter e como isso se conecta ao restante do ABS?**
 
 Até lá, pesquisar.
+
+
+## 12. FECHAMENTO ADICIONAL — ESTADO DO EXPERIMENTO DIRETO
+
+A análise do diff completo da PR #1 confirma que o adapter direto é pequeno e deliberadamente desacoplado do núcleo do App.
+
+Características observadas no código:
+- polling opcional;
+- endpoint padrão local `127.0.0.1:8787`;
+- token enviado como `X-Cerebro-Token`;
+- configuração persistida em `localStorage`;
+- capacidade inicial única: `inferencia`;
+- processamento através de `chamarMotor(mensagens)`;
+- retorno de sucesso/erro ao Cérebro;
+- falha de comunicação não interrompe o App;
+- ativação por query string ou API JavaScript.
+
+Isso permite uma conclusão mais precisa:
+
+**O experimento demonstrou uma forma de acoplamento operacional entre App e Cérebro, mas não demonstrou ainda uma arquitetura geral de comunicação entre dois sistemas inteligentes.**
+
+O desenho é de **executor-polling**, não de sincronização cognitiva.
+
+### Perguntas ainda abertas
+1. O gateway do Cérebro realmente existia e executava os endpoints no período da PR?
+2. Houve teste ponta a ponta App → Cérebro → App?
+3. Qual era a origem do endpoint em uso real?
+4. O token era apenas mecanismo experimental ou requisito de segurança?
+5. O polling de 15 s era suficiente para o uso pretendido?
+6. Como o canal lidava com concorrência?
+7. Como evitava duplicação de trabalho?
+8. Como recuperava trabalho interrompido?
+9. Como registrava proveniência do resultado?
+10. Como um Cérebro poderia devolver mais de uma capacidade?
+11. Como seriam autorização e identidade se o canal saísse de localhost?
+12. Como isso se comportaria no Android real sob suspensão/encerramento?
+
+### Conclusão
+A investigação histórica do adapter direto está fechada quanto ao **que o código implementa**.
+
+Ela continua aberta quanto ao **resultado operacional real**.
+
+Não construir ainda.
