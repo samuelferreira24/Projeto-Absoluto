@@ -1,0 +1,34 @@
+name: Mini-Cerebro historical ingestion
+on:
+  push:
+    branches: [mini-cerebro-run-sistema]
+permissions:
+  contents: read
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Acquire Sistema repository
+        run: |
+          git clone --no-hardlinks https://github.com/samuelferreira24/Sistema.git /tmp/sistema
+      - name: Run Mini-Cerebro
+        run: |
+          python -m mini-cerebro ingest-github https://github.com/samuelferreira24/Sistema.git --destination /tmp/sistema --db /tmp/mini.sqlite3
+          python -m mini-cerebro stats --db /tmp/mini.sqlite3
+          python -m mini-cerebro classify --db /tmp/mini.sqlite3 > /tmp/classification.json
+          python -m mini-cerebro search 'MEMORIA' --db /tmp/mini.sqlite3 --limit 20 > /tmp/search_memoria.json
+          python -m mini-cerebro search 'motor' --db /tmp/mini.sqlite3 --limit 20 > /tmp/search_motor.json
+          python -m mini-cerebro export --db /tmp/mini.sqlite3 --out /tmp/mini_export.json
+      - name: Package Mini-Cerebro result
+        run: |
+          mkdir -p mini-cerebro-result
+          cp /tmp/mini.sqlite3 mini-cerebro-result/
+          cp /tmp/classification.json /tmp/search_memoria.json /tmp/search_motor.json /tmp/mini_export.json mini-cerebro-result/
+          cp /tmp/sistema/sistema-absoluto.zip mini-cerebro-result/
+          sha256sum mini-cerebro-result/* > mini-cerebro-result/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mini-cerebro-historical-result
+          path: mini-cerebro-result/
+          retention-days: 7
