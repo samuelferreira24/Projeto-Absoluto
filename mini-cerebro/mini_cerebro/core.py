@@ -10,11 +10,18 @@ def now(): return datetime.now(timezone.utc).isoformat()
 def sha256(data): return hashlib.sha256(data).hexdigest()
 
 class MiniCerebro:
-    def __init__(self, db_path="mini_cerebro.sqlite3"):
+    def __init__(self, db_path="mini_cerebro.sqlite3", store_dir=None):
         self.db=sqlite3.connect(db_path)
         self.db.execute("PRAGMA foreign_keys=ON")
         self.db.executescript(Path(__file__).with_name("schema.sql").read_text())
+        self.store=Path(store_dir) if store_dir else Path(db_path).parent/"raw"
+        self.store.mkdir(parents=True,exist_ok=True)
         self.db.commit()
+
+    def _raw(self,data):
+        h=sha256(data); p=self.store/h
+        if not p.exists(): p.write_bytes(data)
+        return str(p)
 
     def source(self,key,kind,path=None,meta=None,data=b""):
         cur=self.db.execute("""INSERT OR IGNORE INTO sources
@@ -33,6 +40,7 @@ class MiniCerebro:
             except UnicodeDecodeError:
                 try: text=data.decode("latin-1"); enc="latin-1"; status="extracted"
                 except Exception: status="decode_error"
+        self._raw(data)
         cur=self.db.execute("""INSERT OR IGNORE INTO documents
         (source_id,path,name,extension,sha256,size,content_text,encoding,extraction_status)
         VALUES(?,?,?,?,?,?,?,?,?)""",(source_id,path,Path(path).name,ext,sha256(data),len(data),text,enc,status))
@@ -54,7 +62,7 @@ class MiniCerebro:
             except OSError: continue
             self.document(sid,str(p.relative_to(root)),data); count+=1
         self.ingest_git(root,sid)
-        return {"source_id":sid,"documents":count}
+        return {"source_id":sid,"documents":count,"zip_sha256":sha256(raw)}
 
     def ingest_zip(self,zpath):
         raw=zpath.read_bytes()
