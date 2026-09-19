@@ -176,3 +176,223 @@ Sub-ramos iniciais:
 - HAL
 - Kernel / SELinux / Verified Boot
 
+
+
+## Mapeamento amplo das portas — rodada 2
+
+### Camada A — Portas disponíveis sem modificar o SO
+| Porta | Função para o ABS | Situação conceitual |
+|---|---|---|
+| App próprio | núcleo/interface inicial | 🟢 |
+| Foreground Service | processo persistente em primeiro plano | 🟢/🟡 |
+| AccessibilityService | observar/interagir com UI e eventos | 🟡 |
+| NotificationListenerService | perceber notificações e eventos de notificação | 🟡 |
+| VPN Service | criar interface de rede virtual e controlar o tráfego que passa pelo túnel | 🟡 |
+| APIs Android | acessar capacidades expostas pelo framework | 🟢/🟡 |
+| Storage/arquivos acessíveis | estado, memória e dados | 🟢 |
+| Internet/API | comunicação externa | 🟢 |
+
+Observação: AccessibilityService é deliberadamente restrito pela plataforma ao domínio de acessibilidade e requer ativação explícita pelo usuário; portanto não deve ser tratado como uma porta genérica de controle total. NotificationListenerService fornece eventos de notificações, não controle integral de aplicativos. VpnService fornece uma interface VPN e fluxo de pacotes para o serviço, não acesso irrestrito à rede. citeturn1search0turn1search1turn1search2
+
+### Camada B — Controle administrativo do dispositivo
+**Device Owner / Device Policy Controller**
+
+Essa é uma porta especialmente relevante. A documentação do Android identifica Device Owner como o tipo mais poderoso de Device Policy Controller e mostra capacidades adicionais, inclusive operações relacionadas a pacotes e políticas. DeviceAdminService pode manter uma conexão ligada ao proprietário do dispositivo/perfil durante a execução do usuário hospedeiro. citeturn1search7turn0search10turn1search4
+
+Hipótese para o ABS:
+**ABS App → Device Owner → controle administrativo amplo → preparação para integração mais profunda.**
+
+Isso não equivale ao Nível 9.
+
+### Camada C — Persistência operacional
+O Android impõe restrições ao trabalho em segundo plano e a serviços de primeiro plano. Apps modernos precisam respeitar tipos/permissões de foreground service e existem restrições para iniciar serviços a partir do background. Device Owner está entre as exceções relevantes. citeturn0search3turn0search8
+
+Consequência para o ABS:
+**persistência é uma capacidade própria a mapear**, porque “ABS instalado” não significa “ABS continuamente operacional”.
+
+Devemos investigar:
+- boot/startup;
+- foreground service;
+- DeviceAdminService;
+- recuperação após encerramento;
+- reinicialização;
+- battery optimization;
+- conectividade perdida/restabelecida;
+- estado persistente.
+
+### Camada D — Segurança e sandbox
+Apps Android normalmente são isolados por UID/processo e têm acesso limitado ao SO. A partição de sistema também é protegida por integridade e normalmente somente leitura. citeturn0search7turn0search4
+
+Logo, o caminho de integração deve considerar explicitamente:
+**sandbox → permissões → privilégios → SELinux → system image → boot integrity.**
+
+Não devemos assumir que uma API disponível elimina essas fronteiras.
+
+### Camada E — System image / componentes privilegiados
+A integração pode avançar quando o ABS deixa de ser somente um app distribuído normalmente e passa a ser incorporado à imagem do sistema.
+
+Portas a mapear:
+- privileged app;
+- allowlist de permissões privilegiadas;
+- system service;
+- APEX;
+- overlays/configuração;
+- system/vendor;
+- propriedades persistentes;
+- init.
+
+AOSP documenta propriedades de sistema com contexto SELinux e mecanismos de configuração no início do boot; também documenta APEX e componentes vendor que podem ser ativados cedo no ciclo de boot. citeturn0search6turn0search12turn0search0
+
+### Camada F — IPC / comunicação interna
+**Binder/AIDL** é uma porta estrutural importante.
+
+O Android usa Binder para comunicação entre componentes do framework e HALs. Portanto, uma integração profunda do ABS provavelmente precisará mapear:
+- serviço Binder próprio;
+- interface AIDL;
+- permissões do serviço;
+- SELinux service_contexts;
+- comunicação ABS ↔ framework;
+- comunicação ABS ↔ HAL quando necessário.
+
+A existência dessas interfaces significa que integração não precisa significar “substituir tudo”: o ABS pode entrar no sistema através de interfaces internas bem definidas. citeturn0search16
+
+### Camada G — Boot e ciclo de inicialização
+Para integração profunda, investigar:
+- bootloader;
+- boot image;
+- init;
+- early-init;
+- ramdisk;
+- system/vendor;
+- AVB;
+- slots A/B;
+- dynamic partitions;
+- recovery;
+- OTA.
+
+AOSP documenta que o processo de boot e as imagens são fortemente ligados à verificação de integridade e à configuração do dispositivo. Partições dinâmicas e A/B também alteram como imagens são atualizadas. citeturn0search5turn0search2turn0search17
+
+### Camada H — Framework / System Services
+Aqui começa uma integração qualitativamente diferente.
+
+Possibilidades a pesquisar:
+- criar um serviço de sistema ABS;
+- integrar o serviço ao System Server;
+- criar APIs internas;
+- criar políticas próprias;
+- coordenar recursos Android pelo serviço;
+- integrar eventos do sistema diretamente ao ABS.
+
+Isso pode reduzir a dependência de automação por interface e aproximar o ABS do próprio mecanismo de operação do Android.
+
+### Camada I — HAL / Hardware Abstraction
+HAL é uma porta quando o ABS precisa controlar capacidades de hardware através das interfaces Android.
+
+Não significa que o ABS precise controlar diretamente cada componente físico. Pode integrar-se às abstrações existentes.
+
+Subáreas:
+- câmera;
+- áudio;
+- sensores;
+- biometria;
+- gráficos;
+- conectividade;
+- outros HALs relevantes.
+
+AIDL é atualmente uma interface importante para HALs e a documentação AOSP mantém diretrizes para interfaces HAL estáveis e compatíveis. citeturn0search15turn0search16
+
+### Camada J — Kernel / SELinux
+É uma camada de integração profunda, mas deve ser tratada separadamente:
+- kernel;
+- drivers;
+- SELinux policy;
+- namespaces/cgroups;
+- dispositivos;
+- interfaces kernel;
+- segurança de boot.
+
+Não devemos assumir que chegar ao kernel seja necessário para qualquer função do ABS.
+
+### Camada K — Android próprio/adaptado
+AOSP permite construir imagens próprias e GSI demonstra a possibilidade de substituir a imagem de sistema em dispositivos compatíveis. Isso abre a porta para um Android onde componentes do ABS sejam parte do sistema desde a construção. citeturn0search1
+
+### Camada L — Continuidade e identidade
+Independentemente da profundidade técnica, precisamos separar:
+- identidade do ABS;
+- estado do ABS;
+- memória do ABS;
+- autorização do Imperador;
+- capacidade de reconstrução;
+- capacidade de migrar;
+- capacidade de recuperar após atualização/falha;
+- vínculo com um dispositivo específico.
+
+**Conclusão provisória:** integrar Android ao ABS não deve significar tornar o ABS dependente da identidade física de um único telefone. O Android pode ser uma camada integrada enquanto a identidade/estado do ABS permanece acima dela.
+
+## Mapa geral atual
+
+**Portas de aplicação**
+→ App
+→ APIs
+→ serviços
+→ Accessibility
+→ notificações
+→ VPN
+
+**Portas administrativas**
+→ Device Owner
+→ DeviceAdminService
+→ políticas do dispositivo
+
+**Portas de sistema**
+→ privileged app
+→ Binder/AIDL
+→ system services
+→ system properties
+→ APEX
+→ init
+
+**Portas de plataforma**
+→ framework
+→ system image
+→ system/vendor
+→ boot/recovery
+→ AOSP
+
+**Portas de baixo nível**
+→ HAL
+→ SELinux
+→ kernel
+→ drivers
+→ hardware
+
+**Portas de continuidade**
+→ estado
+→ memória
+→ identidade
+→ atualização
+→ recuperação
+→ migração
+
+## Regra de investigação antes da construção
+
+Ainda NÃO construir a integração profunda.
+
+Primeiro devemos completar:
+1. inventário das portas;
+2. dependências de cada porta;
+3. pré-requisitos do aparelho atual;
+4. limitações por versão Android;
+5. caminho reversível;
+6. caminho irreversível;
+7. riscos;
+8. testes mínimos;
+9. relação com os Níveis 0–9;
+10. quais portas realmente aumentam a capacidade do ABS;
+11. quais portas são redundantes;
+12. qual combinação mínima permite a primeira integração real.
+
+Só depois disso selecionar o primeiro caminho de construção.
+
+## Estado
+O mapa ainda está aberto. Nenhuma porta foi declarada como arquitetura final.
