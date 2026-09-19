@@ -62,7 +62,7 @@ class MiniCerebro:
             except OSError: continue
             self.document(sid,str(p.relative_to(root)),data); count+=1
         self.ingest_git(root,sid)
-        return {"source_id":sid,"documents":count,"zip_sha256":sha256(raw)}
+        return {"source_id":sid,"documents":count}
 
     def ingest_zip(self,zpath):
         raw=zpath.read_bytes()
@@ -73,7 +73,7 @@ class MiniCerebro:
                 if info.is_dir(): continue
                 data=z.read(info)
                 self.document(sid,info.filename,data); count+=1
-        return {"source_id":sid,"documents":count}
+        return {"source_id":sid,"documents":count,"zip_sha256":sha256(raw)}
 
     def ingest_git(self,root,sid):
         if not (root/".git").exists(): return
