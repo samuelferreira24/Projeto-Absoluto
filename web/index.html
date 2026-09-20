@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ABS — Interface V1</title></head>
+<body>
+<main>
+<h1>ABS</h1>
+<p>Primeira interface funcional: comando → trabalho → capacidade → execução → resultado.</p>
+<label>Objetivo<br><input id="objective" style="width:min(700px,95%)" placeholder="Ex.: analisar o estado do projeto"></label>
+<br><label><input type="checkbox" id="approved"> Autorizar execução de capacidade externa</label><br><br><button id="create">Criar trabalho</button>
+<pre id="output"></pre>
+<h2>Capacidades</h2><ul id="caps"></ul>
+</main>
+<script>
+const out=document.querySelector('#output');
+async function loadCaps(){const r=await fetch('/capabilities');const d=await r.json();document.querySelector('#caps').innerHTML=d.capabilities.map(c=>'<li>'+c.id+' — '+c.name+'</li>').join('')}
+document.querySelector('#create').onclick=async()=>{const objective=document.querySelector('#objective').value.trim();if(!objective)return;const created=await (await fetch('/works',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({objective})})).json();out.textContent='Trabalho criado: '+created.id+'\nExecutando...';const result=await (await fetch('/works/'+created.id+'/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({approved:document.querySelector("#approved").checked})})).json();out.textContent=JSON.stringify(result,null,2)};
+loadCaps();
+</script>
+</body></html>

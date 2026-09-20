@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "abs-capability-foundation"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+codex = ["openai-codex"]
+
+[project.scripts]
+abs-server = "abs_core.server:main"
+abs-cli = "abs_core.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
