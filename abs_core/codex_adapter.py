@@ -59,7 +59,7 @@ class CodexCapability:
         if self.bypass_sandbox:
             args.append("--dangerously-bypass-approvals-and-sandbox")
         else:
-            args.extend(["--sandbox", self.sandbox, "--ask-for-approval", self.approval])
+            args.extend(["-s", self.sandbox, "--ask-for-approval", self.approval])
 
         cwd = context.get("_codex_cwd") or os.getcwd()
         completed = subprocess.run(
