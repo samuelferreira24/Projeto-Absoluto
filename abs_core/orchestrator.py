@@ -44,6 +44,7 @@ class Orchestrator:
             work.emit("work.completed", capability_id=cap.id)
         except Exception as exc:
             work.state = WorkState.FAILED
+            work.result = {"type": "error", "error": str(exc), "error_type": type(exc).__name__}
             work.emit("work.failed", capability_id=cap.id, error=repr(exc))
         self.store.save(work)
         return work
