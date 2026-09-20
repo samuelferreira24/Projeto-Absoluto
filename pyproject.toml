@@ -7,5 +7,5 @@ name = "abs-capability-foundation"
 version = "0.1.0"
 requires-python = ">=3.10"
 
-[tool.pytest.ini_options]
+[project.optional-dependencies]\ncodex = ["openai-codex"]\n\n[project.scripts]\nabs-server = "abs_core.server:main"\nabs-cli = "abs_core.cli:main"\n\n[tool.pytest.ini_options]
 pythonpath = ["."]
