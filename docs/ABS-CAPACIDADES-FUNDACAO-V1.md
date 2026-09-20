@@ -43,7 +43,7 @@ Interface
 
 O primeiro adaptador real é o **Codex CLI local**.
 
-O ABS não importa o SDK Python do Codex. Ele chama o executável `codex` disponível no ambiente e consome sua saída JSONL. O modo não interativo `codex exec --json` fornece eventos estruturados, incluindo `thread.started` e mensagens finais do agente; uma sessão pode ser retomada com `codex exec resume <SESSION_ID>`. citeturn1search0
+O ABS não importa o SDK Python do Codex. Ele chama o executável `codex` disponível no ambiente e consome sua saída JSONL. O modo não interativo `codex exec --json` fornece eventos estruturados, incluindo o identificador da thread e mensagens do agente. Uma sessão pode ser retomada com `codex exec resume <SESSION_ID>`.
 
 O adaptador registra o identificador da sessão no `Work`, permitindo:
 
@@ -74,7 +74,7 @@ Isso mantém a primeira integração em modo de baixo impacto. Para operações 
 ABS_CODEX_SANDBOX=workspace-write
 ```
 
-O ambiente Android/Termux usado atualmente apresentou incompatibilidade do sandbox Linux do Codex com `proot/bwrap`. Nesse ambiente, a execução com acesso elevado só deve ser habilitada explicitamente e para um workspace controlado. A documentação atual do Codex descreve `workspace-write` e `danger-full-access` como modos distintos e recomenda acesso amplo somente em ambientes controlados. citeturn0search0turn0search3
+O ambiente Android/Termux usado atualmente apresentou incompatibilidade do sandbox Linux do Codex com `proot/bwrap`. Nesse ambiente, a execução com acesso elevado só deve ser habilitada explicitamente e para um workspace controlado.
 
 O bypass completo fica separado atrás de:
 
@@ -89,12 +89,12 @@ e nunca é ativado por padrão.
 Variáveis opcionais:
 
 - `ABS_CODEX_COMMAND`: executável do Codex; padrão `codex`.
-- `ABS_CODEX_SANDBOX`: `read-only`, `workspace-write` ou outro modo suportado pelo ambiente.
+- `ABS_CODEX_SANDBOX`: modo de sandbox.
 - `ABS_CODEX_APPROVAL`: política de aprovação.
 - `ABS_CODEX_TIMEOUT`: timeout em segundos; padrão 900.
 - `ABS_CODEX_DANGEROUSLY_BYPASS`: habilita explicitamente o bypass completo.
 
-A autenticação permanece fora do repositório, no ambiente local do Codex. Nunca registrar `~/.codex/auth.json` ou tokens no projeto. citeturn1search0
+A autenticação permanece fora do repositório, no ambiente local do Codex. Nunca registrar tokens ou `~/.codex/auth.json` no projeto.
 
 ## Critério de sucesso
 
