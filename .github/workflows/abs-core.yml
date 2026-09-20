@@ -1,4 +1,5 @@
 name: ABS Core
+# Foundation suite only; legacy historical tests are not part of this vertical slice.
 on:
   push:
     branches: ["main", "abs/capability-foundation-v1"]
