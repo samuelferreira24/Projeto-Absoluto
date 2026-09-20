@@ -63,7 +63,9 @@ def status() -> dict:
         "current_commit": _git("rev-parse", "HEAD"),
         "configured_ref": REF,
         "remote": REMOTE,
-        **{k: v for k, v in _load_state().items() if k in ("last_update", "last_known_good", "rollback_commit")}
+        "last_update": _load_state().get("last_update"),
+        "last_known_good": _load_state().get("last_known_good"),
+        "rollback_commit": _load_state().get("rollback_commit"),
     }
 
 def check() -> dict:
