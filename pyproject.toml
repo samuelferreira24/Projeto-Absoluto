@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "abs-capability-foundation"
-version = "0.2.0"
+version = "0.3.0"
 requires-python = ">=3.10"
 
 [project.scripts]
 abs-server = "abs_core.server:main"
 abs-cli = "abs_core.cli:main"
 abs-local = "abs_core.local:main"
+abs-update = "abs_core.update_manager:main"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
