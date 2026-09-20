@@ -2,10 +2,8 @@ from __future__ import annotations
 
 import json
 import os
-import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
 from typing import Any
 
 from .cli import build
@@ -103,8 +101,6 @@ class Handler(BaseHTTPRequestHandler):
         self._json(404, {"error": "not_found"})
 
 def main() -> None:
-    if AUTO_UPDATE:
-        threading.Thread(target=_auto_update_loop, daemon=True).start()
     server = ThreadingHTTPServer((HOST, PORT), Handler)
     print(f"ABS local V1 running at http://{HOST}:{PORT}")
     print("Update manager: external")
