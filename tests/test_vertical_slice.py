@@ -1,0 +1,36 @@
+import tempfile
+from abs_core.adapters import EchoCapability
+from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
+from abs_core.orchestrator import Orchestrator
+from abs_core.store import WorkStore
+
+def test_create_run_persist_resume():
+    with tempfile.NamedTemporaryFile(suffix=".db") as f:
+        store = WorkStore(f.name)
+        registry = CapabilityRegistry()
+        registry.register(CapabilityRecord("echo", "Echo", "test", EchoCapability()))
+        orch = Orchestrator(registry, store)
+        work = orch.create("prove the execution loop", {"source": "test"})
+        result = orch.run(work.id)
+        loaded = store.load(work.id)
+        assert result.state.value == "completed"
+        assert loaded.result["objective"] == "prove the execution loop"
+        assert [e.type for e in loaded.events] == ["work.created", "work.started", "work.completed"]
+        resumed = orch.resume(work.id, "echo")
+        assert resumed.state.value == "completed"
+        assert len(resumed.provenance) == 2
+
+def test_capability_can_be_replaced_between_runs():
+    class Second(EchoCapability):
+        id = "second"
+        name = "Second capability"
+    store = WorkStore()
+    registry = CapabilityRegistry()
+    registry.register(CapabilityRecord("echo", "Echo", "test", EchoCapability()))
+    registry.register(CapabilityRecord("second", "Second", "test", Second()))
+    orch = Orchestrator(registry, store)
+    work = orch.create("transfer me")
+    first = orch.run(work.id, "echo")
+    second = orch.resume(work.id, "second")
+    assert first.provenance[-1]["capability_id"] == "echo"
+    assert second.provenance[-1]["capability_id"] == "second"
