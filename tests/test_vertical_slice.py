@@ -34,3 +34,23 @@ def test_capability_can_be_replaced_between_runs():
     second = orch.resume(work.id, "second")
     assert first.provenance[-1]["capability_id"] == "echo"
     assert second.provenance[-1]["capability_id"] == "second"
+
+
+def test_external_capability_requires_approval():
+    class External:
+        id = "external"
+        name = "External"
+        def execute(self, objective, context):
+            return {"ok": True}
+    store = WorkStore()
+    registry = CapabilityRegistry()
+    registry.register(CapabilityRecord("external", "External", "external_ai", External()))
+    orch = Orchestrator(registry, store)
+    work = orch.create("protected")
+    try:
+        orch.run(work.id, "external")
+    except PermissionError:
+        pass
+    else:
+        raise AssertionError("external capability executed without approval")
+    assert store.load(work.id).events[-1].type == "work.denied"
