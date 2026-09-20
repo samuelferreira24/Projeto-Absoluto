@@ -14,9 +14,13 @@ class Orchestrator:
         self.store.save(work)
         return work
 
-    def run(self, work_id: str, capability_id: str | None = None) -> Work:
+    def run(self, work_id: str, capability_id: str | None = None, approved: bool = False) -> Work:
         work = self.store.load(work_id)
         cap = self.registry.choose(capability_id or work.capability_id)
+        if cap.kind != "test" and not approved:
+            work.emit("work.denied", capability_id=cap.id, reason="imperator_approval_required")
+            self.store.save(work)
+            raise PermissionError(f"Imperator approval required for capability: {cap.id}")
         work.capability_id = cap.id
         work.state = WorkState.RUNNING
         work.emit("work.started", capability_id=cap.id)
@@ -40,5 +44,5 @@ class Orchestrator:
         self.store.save(work)
         return work
 
-    def resume(self, work_id: str, capability_id: str | None = None) -> Work:
-        return self.run(work_id, capability_id)
+    def resume(self, work_id: str, capability_id: str | None = None, approved: bool = False) -> Work:
+        return self.run(work_id, capability_id, approved)
