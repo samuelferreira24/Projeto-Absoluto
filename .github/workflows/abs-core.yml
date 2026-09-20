@@ -2,7 +2,7 @@ name: ABS Core
 # Foundation suite only; legacy historical tests are not part of this vertical slice.
 on:
   push:
-    branches: ["main", "abs/capability-foundation-v1"]
+    branches: ["main", "abs/capability-foundation-v1", "codex-cli-integration"]
   pull_request:
     branches: ["main"]
 jobs:
@@ -14,4 +14,4 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install -U pip pytest
-      - run: pytest -q tests/test_vertical_slice.py
+      - run: pytest -q tests
