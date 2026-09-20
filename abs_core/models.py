@@ -4,7 +4,6 @@ from enum import Enum
 from typing import Any
 import uuid
 
-
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -34,6 +33,7 @@ class Work:
     result: Any = None
     events: list[Event] = field(default_factory=list)
     provenance: list[dict[str, Any]] = field(default_factory=list)
+    sessions: dict[str, dict[str, Any]] = field(default_factory=dict)
 
     def emit(self, event_type: str, **payload: Any) -> Event:
         event = Event(event_type, self.id, payload)
