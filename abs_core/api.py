@@ -47,7 +47,10 @@ class ABSHandler(BaseHTTPRequestHandler):
             self._send(201, {"id": w.id, "state": w.state.value}); return
         if self.path.startswith("/works/") and self.path.endswith("/run"):
             work_id = self.path.split("/")[2]
-            w = self.orchestrator.run(work_id, data.get("capability_id"))
+            try:
+                w = self.orchestrator.run(work_id, data.get("capability_id"), bool(data.get("approved", False)))
+            except PermissionError as exc:
+                self._send(403, {"error": "approval_required", "detail": str(exc)}); return
             self._send(200, {"id": w.id, "state": w.state.value, "result": w.result, "provenance": w.provenance}); return
         if self.path.startswith("/works/") and self.path.endswith("/pause"):
             work_id = self.path.split("/")[2]
