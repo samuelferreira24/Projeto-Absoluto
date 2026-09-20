@@ -2,18 +2,18 @@
 
 ## Estado
 
-Esta etapa executa a decisão atual do Projeto Absoluto de tratar **capacidades como requisito primário** e a interface como camada de acesso.
+A fundação mantém a regra central do Projeto Absoluto: **capacidades primeiro; interface depois**.
 
-A V1 não deve começar por um design de interface. Primeiro deve existir uma base capaz de:
+A V1 fornece:
 
-1. receber uma intenção;
-2. representar um trabalho persistente;
-3. selecionar/usar uma capacidade;
-4. executar;
-5. acompanhar estado e eventos;
-6. registrar resultado e proveniência;
-7. permitir continuação, interrupção e substituição;
-8. devolver controle ao Imperador.
+1. intenção;
+2. trabalho persistente;
+3. registro de capacidades;
+4. execução;
+5. estado e eventos;
+6. resultado e proveniência;
+7. continuidade;
+8. controle do Imperador.
 
 ## Ordem de construção
 
@@ -22,11 +22,11 @@ Imperador
   ↓
 Comando / intenção
   ↓
-Núcleo de trabalho
+Work persistente
   ↓
 Orquestração
   ↓
-Adaptadores de capacidades
+Adaptador de capacidade
   ↓
 Execução
   ↓
@@ -34,175 +34,82 @@ Eventos / estado
   ↓
 Memória / proveniência
   ↓
-Controle / aprovação
+Controle
   ↓
 Interface
 ```
 
-## Primeira capacidade externa prioritária
+## Codex CLI
 
-**Codex** é a primeira integração de referência para validar a arquitetura de capacidades.
+O primeiro adaptador real é o **Codex CLI local**.
 
-A documentação oficial atual da OpenAI descreve:
+O ABS não importa o SDK Python do Codex. Ele chama o executável `codex` disponível no ambiente e consome sua saída JSONL. O modo não interativo `codex exec --json` fornece eventos estruturados, incluindo `thread.started` e mensagens finais do agente; uma sessão pode ser retomada com `codex exec resume <SESSION_ID>`. citeturn1search0
 
-- **Codex SDK**: integração programática para iniciar, continuar e retomar threads e automatizar trabalhos.
-- **Codex App Server**: integração profunda de produto, com autenticação, histórico, aprovações e eventos em streaming; usa JSON-RPC e suporta threads, retomada, fork, interrupção e execução de comandos.
-
-O App Server é atualmente descrito como experimental/não suportado para cargas de produção. Portanto, deve ser tratado como **adaptador de capacidade experimental**, não como identidade ou fundamento permanente do ABS.
-
-## Abstração obrigatória
-
-O ABS não deve depender diretamente de APIs específicas de uma única IA.
-
-Criar uma fronteira conceitual:
-
-```
-Capability
-├── identidade
-├── tipo
-├── capacidades oferecidas
-├── modo de conexão
-├── autenticação
-├── permissões
-├── entrada
-├── execução
-├── eventos
-├── saída
-├── interrupção
-├── recuperação
-└── proveniência
-```
-
-Codex, Claude, Gemini ou qualquer outra capacidade devem poder implementar essa fronteira por adaptadores diferentes.
-
-## Trabalho persistente
-
-O objeto central de continuidade deve ser o **trabalho**, não a conversa de uma IA.
-
-Modelo inicial:
-
-```
-WORK
-├── id
-├── objetivo
-├── contexto
-├── estado
-├── capacidade atual
-├── histórico de capacidades
-├── entradas
-├── eventos
-├── artefatos
-├── testes
-├── resultados
-├── problemas
-├── decisões
-├── proveniência
-└── próximo passo
-```
-
-Uma capacidade pode executar um trabalho e depois ser substituída por outra sem apagar o estado do trabalho.
-
-## Regra de substituição
+O adaptador registra o identificador da sessão no `Work`, permitindo:
 
 ```
 WORK
  ↓
-Codex A
+Codex CLI
  ↓
-estado persistido
+thread_id persistido
  ↓
-Codex B / outra capacidade
+Codex CLI resume
  ↓
-continuação
+continuação do trabalho
 ```
 
-A implementação deve provar essa possibilidade antes de assumir que ela funciona.
+## Segurança e sandbox
 
-## Interface
-
-A interface entra depois da fundação de capacidades.
-
-Ela deve consumir o mesmo modelo de trabalho e capacidade usado pelo núcleo.
-
-Isso permite futuramente:
-
-- texto;
-- voz;
-- toque;
-- web;
-- Android;
-- 3D;
-- AR/MR/XR;
-- outras interfaces.
-
-Nenhuma dessas formas deve alterar a identidade do trabalho ou da capacidade.
-
-## O que construir agora
-
-### P0 — Fundação
-
-- modelo de trabalho;
-- registro de capacidades;
-- adaptador de capacidade;
-- ciclo de execução;
-- estado/eventos;
-- proveniência;
-- controle básico;
-- teste de continuidade.
-
-### P1 — Primeiro adaptador
-
-Implementar um adaptador real para Codex usando a integração oficialmente suportada que melhor corresponda ao primeiro caso de uso.
-
-Antes de fixar App Server ou SDK como base, testar ambos conceitualmente e escolher conforme a necessidade real.
-
-### P2 — Segunda capacidade
-
-Adicionar uma segunda capacidade independente para provar que o núcleo não foi acoplado ao Codex.
-
-### P3 — Interface
-
-Somente após P0/P1/P2 funcionarem, construir a primeira interface de acesso.
-
-## Critério de sucesso da etapa
-
-A etapa estará validada quando for possível demonstrar:
-
-> O Imperador cria um trabalho → ABS seleciona uma capacidade → a capacidade executa → o ABS registra estado/eventos/resultado → o trabalho pode ser retomado → outra capacidade pode assumir quando suportado → o Imperador permanece no controle.
-
-## Não decidir agora
-
-Não decidir prematuramente:
-
-- arquitetura definitiva do ABS;
-- IA definitiva;
-- modelo definitivo;
-- Android como identidade;
-- interface definitiva;
-- 3D como interface principal;
-- arquitetura de produção do App Server;
-- infraestrutura definitiva.
-
-## Próxima ação técnica
-
-Construir primeiro um **vertical slice mínimo de capacidade**, não uma interface completa:
+O adaptador usa por padrão:
 
 ```
-comando
-→ work
-→ capability registry
-→ adapter
-→ execução
-→ evento
-→ resultado
-→ persistência
-→ retomada
+sandbox = read-only
+approval = never
 ```
 
-Depois testar com uma segunda capacidade.
+Isso mantém a primeira integração em modo de baixo impacto. Para operações que precisam editar o workspace, o ABS pode receber explicitamente:
 
-## Princípio
+```
+ABS_CODEX_SANDBOX=workspace-write
+```
 
-> **Não construir a porta antes de construir o mecanismo que a porta precisa abrir.**
+O ambiente Android/Termux usado atualmente apresentou incompatibilidade do sandbox Linux do Codex com `proot/bwrap`. Nesse ambiente, a execução com acesso elevado só deve ser habilitada explicitamente e para um workspace controlado. A documentação atual do Codex descreve `workspace-write` e `danger-full-access` como modos distintos e recomenda acesso amplo somente em ambientes controlados. citeturn0search0turn0search3
 
-A interface continuará sendo importante, mas nesta etapa ela é consequência das capacidades que o ABS realmente possuir.
+O bypass completo fica separado atrás de:
+
+```
+ABS_CODEX_DANGEROUSLY_BYPASS=1
+```
+
+e nunca é ativado por padrão.
+
+## Configuração
+
+Variáveis opcionais:
+
+- `ABS_CODEX_COMMAND`: executável do Codex; padrão `codex`.
+- `ABS_CODEX_SANDBOX`: `read-only`, `workspace-write` ou outro modo suportado pelo ambiente.
+- `ABS_CODEX_APPROVAL`: política de aprovação.
+- `ABS_CODEX_TIMEOUT`: timeout em segundos; padrão 900.
+- `ABS_CODEX_DANGEROUSLY_BYPASS`: habilita explicitamente o bypass completo.
+
+A autenticação permanece fora do repositório, no ambiente local do Codex. Nunca registrar `~/.codex/auth.json` ou tokens no projeto. citeturn1search0
+
+## Critério de sucesso
+
+```
+Imperador cria trabalho
+→ ABS seleciona Codex
+→ Codex executa
+→ ABS recebe resultado
+→ ABS registra sessão/proveniência
+→ trabalho pode ser retomado
+→ outra capacidade pode assumir posteriormente
+```
+
+## Próxima etapa
+
+Com a ponte Codex CLI validada, o próximo passo é usar essa capacidade para avançar a construção do próprio ABS, mantendo a interface como camada de acesso ao núcleo.
+
+A interface não define o ABS. Ela expõe as capacidades que o núcleo realmente possui.
