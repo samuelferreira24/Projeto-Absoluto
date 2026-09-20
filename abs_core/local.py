@@ -2,22 +2,14 @@ from __future__ import annotations
 
 import json
 import os
-import subprocess
-import sys
-import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
 from typing import Any
 
 from .cli import build
 
 HOST = os.getenv("ABS_HOST", "127.0.0.1")
 PORT = int(os.getenv("ABS_PORT", "8787"))
-AUTO_UPDATE = os.getenv("ABS_AUTO_UPDATE", "1").lower() not in {"0", "false", "no"}
-UPDATE_INTERVAL = int(os.getenv("ABS_UPDATE_INTERVAL", "60"))
-REPO_DIR = Path(os.getenv("ABS_REPO_DIR", os.getcwd())).resolve()
-BRANCH = os.getenv("ABS_UPDATE_BRANCH", "main")
 
 class LocalABS:
     def __init__(self) -> None:
@@ -56,9 +48,9 @@ class Handler(BaseHTTPRequestHandler):
             self._json(200, {
                 "name": "ABS",
                 "status": "alive",
-                "version": "local-v1",
+                "version": "v1",
                 "uptime_seconds": round(time.time() - ABS.started_at, 3),
-                "auto_update": AUTO_UPDATE,
+                "update_manager": "external",
             })
             return
         if self.path == "/capabilities":
@@ -108,49 +100,10 @@ class Handler(BaseHTTPRequestHandler):
             return
         self._json(404, {"error": "not_found"})
 
-def _git(*args: str) -> str:
-    result = subprocess.run(
-        ["git", *args],
-        cwd=REPO_DIR,
-        capture_output=True,
-        text=True,
-        timeout=30,
-        check=True,
-    )
-    return result.stdout.strip()
-
-def _auto_update_loop() -> None:
-    if not AUTO_UPDATE:
-        return
-    while True:
-        try:
-            if (REPO_DIR / ".git").exists():
-                branch = _git("branch", "--show-current")
-                if branch == BRANCH:
-                    before = _git("rev-parse", "HEAD")
-                    _git("fetch", "origin", BRANCH)
-                    remote = _git("rev-parse", f"origin/{BRANCH}")
-                    dirty = subprocess.run(
-                        ["git", "status", "--porcelain"],
-                        cwd=REPO_DIR,
-                        capture_output=True,
-                        text=True,
-                        timeout=30,
-                        check=True,
-                    ).stdout.strip()
-                    if remote != before and not dirty:
-                        _git("merge", "--ff-only", f"origin/{BRANCH}")
-                        os.execv(sys.executable, [sys.executable, "-m", "abs_core.local"])
-        except Exception:
-            pass
-        time.sleep(UPDATE_INTERVAL)
-
 def main() -> None:
-    if AUTO_UPDATE:
-        threading.Thread(target=_auto_update_loop, daemon=True).start()
     server = ThreadingHTTPServer((HOST, PORT), Handler)
     print(f"ABS local V1 running at http://{HOST}:{PORT}")
-    print(f"Auto-update: {'on' if AUTO_UPDATE else 'off'}")
+    print("Update manager: external")
     server.serve_forever()
 
 if __name__ == "__main__":
