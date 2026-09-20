@@ -1,0 +1,55 @@
+FECHAMENTO — SORRISO MAIOR
+Construída sobre as respostas da Lary. 9 abas viraram 5, e nenhuma
+informação é digitada duas vezes.
+
+═══ AS 5 ABAS ═══
+
+1) CALENDÁRIO — configure uma vez por mês
+   Marque "Não" nos dias que a clínica não abre (feriado, folga, domingo).
+   A meta se redistribui sozinha entre os dias que sobram.
+   Cada clínica marca o seu — resolve o "depende, tem clínica que trabalha
+   sábado e outra não".
+
+2) MOVIMENTO — a líder digita aqui, e só aqui
+   Cada venda uma linha: data, procedimento, forma de recebimento, valor.
+   No topo: vendido, meta, atingimento e tendência, ao vivo.
+
+3) DESPESAS — cada saída, uma linha
+
+4) DIA A DIA — não se digita nada
+   Meta do dia, vendido, %, se bateu, acumulado e diferença.
+   Tudo lido do Movimento e do Calendário.
+
+5) APRESENTAÇÃO — pronta para o print
+   Uma tela só, com os quatro números grandes, receita por procedimento
+   e por recebimento, e o resultado. Já em paisagem, cabe numa página.
+   É para acabar com o "tirar print e colocar no PowerPoint".
+
+═══ O QUE MUDOU, E POR QUÊ ═══
+
+"temos que digitar todas as vezes pois não é automatizado"
+  → Agora é uma vez só. O Movimento alimenta tudo.
+
+"depende... tem clínica que sim outras não. feriado não trabalha"
+  → Calendário configurável. Marque Não e a meta se ajusta.
+
+"=F10/1*21 ... acumulado / dia trabalhado * total de dias"
+  → É a fórmula de vocês. Testei: 9.418,87 ÷ 2 dias × 25 = R$ 117.735,88.
+
+"ATENDE [convênio]"
+  → Convênio entrou como forma de recebimento.
+
+"ISSO O DIA QUE BATEU"
+  → Conta 1 quando o vendido alcança a meta daquele dia.
+
+═══ TESTADO ANTES DE ENTREGAR ═══
+Lancei 6 vendas e 2 despesas, e marquei um feriado.
+· Dia 1: R$ 5.800 · Dia 2: R$ 3.618,87 · Acumulado: R$ 9.418,87
+  (é o número real de abril de vocês)
+· O feriado zerou a meta daquele dia e redistribuiu nos outros
+· Procedimento, recebimento e resultado se preencheram sozinhos
+
+═══ O QUE AINDA NÃO ENTROU ═══
+· Adesão (conversão de orçamento) — a Lary pediu um exemplo antes
+· Comparação com ano anterior — falta saber de onde vêm os números antigos
+· Consolidação das 80 clínicas — é a fase seguinte

@@ -1,0 +1,26 @@
+{
+  "appId": "br.sistemaabsoluto.app",
+  "appName": "Sistema Absoluto",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": true,
+    "webContentsDebuggingEnabled": false
+  },
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true,
+    "url": "https://SEU-USUARIO.github.io/sistema-absoluto/",
+    "errorPath": "index.html"
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    },
+    "SplashScreen": {
+      "launchShowDuration": 900,
+      "backgroundColor": "#0B0B0D",
+      "showSpinner": false
+    }
+  }
+}
