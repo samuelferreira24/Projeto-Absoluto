@@ -21,15 +21,26 @@ class Orchestrator:
             work.emit("work.denied", capability_id=cap.id, reason="imperator_approval_required")
             self.store.save(work)
             raise PermissionError(f"Imperator approval required for capability: {cap.id}")
+
         work.capability_id = cap.id
         work.state = WorkState.RUNNING
         work.emit("work.started", capability_id=cap.id)
         self.store.save(work)
         try:
-            result = cap.adapter.execute(work.objective, work.context)
+            execution_context = dict(work.context)
+            session = work.sessions.get(cap.id)
+            if session and session.get("thread_id"):
+                execution_context["_codex_thread_id"] = session["thread_id"]
+            result = cap.adapter.execute(work.objective, execution_context)
             work.result = result
             work.state = WorkState.COMPLETED
-            work.provenance.append({"capability_id": cap.id, "capability_name": cap.name})
+            if isinstance(result, dict) and result.get("thread_id"):
+                work.sessions[cap.id] = {"thread_id": result["thread_id"]}
+            work.provenance.append({
+                "capability_id": cap.id,
+                "capability_name": cap.name,
+                "session": work.sessions.get(cap.id),
+            })
             work.emit("work.completed", capability_id=cap.id)
         except Exception as exc:
             work.state = WorkState.FAILED
