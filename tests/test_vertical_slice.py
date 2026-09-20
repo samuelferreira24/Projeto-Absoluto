@@ -35,7 +35,6 @@ def test_capability_can_be_replaced_between_runs():
     assert first.provenance[-1]["capability_id"] == "echo"
     assert second.provenance[-1]["capability_id"] == "second"
 
-
 def test_external_capability_requires_approval():
     class External:
         id = "external"
@@ -54,3 +53,26 @@ def test_external_capability_requires_approval():
     else:
         raise AssertionError("external capability executed without approval")
     assert store.load(work.id).events[-1].type == "work.denied"
+
+def test_capability_session_is_persisted_and_reused():
+    class SessionCapability:
+        id = "session"
+        name = "Session capability"
+        def __init__(self):
+            self.received = []
+        def execute(self, objective, context):
+            self.received.append(context.get("_codex_thread_id"))
+            return {"thread_id": "thread-123", "turn": len(self.received)}
+
+    with tempfile.NamedTemporaryFile(suffix=".db") as f:
+        store = WorkStore(f.name)
+        registry = CapabilityRegistry()
+        adapter = SessionCapability()
+        registry.register(CapabilityRecord("session", "Session", "test", adapter))
+        orch = Orchestrator(registry, store)
+        work = orch.create("continue me")
+        orch.run(work.id, "session")
+        persisted = store.load(work.id)
+        assert persisted.sessions["session"]["thread_id"] == "thread-123"
+        orch.resume(work.id, "session")
+        assert adapter.received == [None, "thread-123"]
