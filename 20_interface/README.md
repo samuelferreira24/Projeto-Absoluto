@@ -38,3 +38,13 @@ O princípio é:
 > **Interface única para o Imperador; infraestrutura substituível por baixo.**
 
 A Web V1 é, portanto, uma primeira interface operacional e uma base de produto, não a forma definitiva do ABS.
+
+## Arquitetura evolutiva
+
+A direção da interface está registrada em `20_interface/01_ARQUITETURA_INTERFACE_EVOLUTIVA_V1.md`.
+
+A interface é deliberadamente **extensível e multimodal**. Ela não é limitada a chat, dashboard ou navegador. Voz, texto, imagem, navegação web, 2D, 3D, experiências espaciais e futuras formas de interação podem coexistir ou ser adicionadas conforme a necessidade.
+
+O navegador é uma capacidade da interface, não a definição do ABS. A arquitetura também prevê troca de modos e múltiplos dispositivos sobre o mesmo ABS Core.
+
+O inventário atual de modos e tecnologias não é fechado: novas necessidades devem poder gerar novas capacidades sem redefinir o núcleo do ABS.
