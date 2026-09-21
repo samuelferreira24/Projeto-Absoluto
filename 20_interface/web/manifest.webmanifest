@@ -1,0 +1,9 @@
+{
+  "name": "ABS — Centro de Controle",
+  "short_name": "ABS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070b14",
+  "theme_color": "#0b1020",
+  "description": "Interface de acesso e controle do Projeto Absoluto."
+}
