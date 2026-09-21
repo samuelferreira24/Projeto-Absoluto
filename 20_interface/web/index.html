@@ -37,6 +37,7 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 <button class="active" data-tab="control">Controle</button>
 <button data-tab="capabilities">Capacidades</button>
 <button data-tab="devices">Dispositivos</button>
+<button data-tab="connections">Conexões</button>
 </nav>
 <div class="card" style="margin-bottom:14px">
 <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
@@ -78,6 +79,10 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 <div class="notice">A arquitetura já separa interface, ABS Core e recursos. Registro remoto de dispositivos está disponível; execução distribuída será adicionada quando o protocolo de agente/autenticação estiver validado.</div>
 </div>
 </section>
+
+<section id="connections" class="tab hidden">
+<div class="card"><h2>Recursos e conexões</h2><div id="connectionList" class="cards"><div class="muted">carregando…</div></div><div class="notice">Conexões são meios substituíveis. Configurado não significa operacionalmente validado.</div></div>
+</section>
 </main>
 <script>
 const $=s=>document.querySelector(s);
@@ -102,13 +107,14 @@ $('#mode').onchange=async()=>{try{await json(await fetch('/interface/mode',{meth
 
 async function refresh(){
  try{
-  const [h,c,d]=await Promise.all([fetch('/health'),fetch('/capabilities'),fetch('/devices')]);
-  const health=await json(h), caps=await json(c), devices=await json(d);
+  const [h,c,d,x]=await Promise.all([fetch('/health'),fetch('/capabilities'),fetch('/devices'),fetch('/connections')]);
+  const health=await json(h), caps=await json(c), devices=await json(d), connections=await json(x);
   $('#dot').classList.add('ok');$('#status').textContent=health.status+' · '+health.version;
   $('#capability').innerHTML='<option value="">automática</option>'+caps.capabilities.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.name)+'</option>').join('');
   $('#capList').innerHTML=caps.capabilities.map(c=>'<div class="item"><div><strong>'+esc(c.name)+'</strong><div class="muted">'+esc(c.id)+'</div></div><span class="tag">'+esc(c.kind)+'</span></div>').join('');
   $('#dTotal').textContent=devices.summary.total;$('#dOnline').textContent=devices.summary.online;$('#dOther').textContent=devices.summary.total-devices.summary.online;
   $('#deviceList').innerHTML=devices.devices.map(d=>'<div class="item"><div><strong>'+esc(d.name)+'</strong><div class="muted">'+esc(d.kind)+' · '+esc(d.id)+'</div></div><span class="tag '+(d.status==='online'?'online':'warning')+'">'+esc(d.status)+'</span></div>').join('');
+  $('#connectionList').innerHTML=connections.connections.map(c=>'<div class="item"><div><strong>'+esc(c.name)+'</strong><div class="muted">'+esc(c.category)+' · '+esc(c.transport)+'</div></div><span class="tag '+(c.configured?'online':'warning')+'">'+esc(c.status)+'</span></div>').join('');
  }catch(e){$('#status').textContent='indisponível';$('#result').textContent=e.message}
 }
 $('#run').onclick=async()=>{
