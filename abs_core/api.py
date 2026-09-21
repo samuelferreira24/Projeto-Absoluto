@@ -6,6 +6,7 @@ from .orchestrator import Orchestrator
 from .resources import ResourceManager
 from .interface_runtime import InterfaceRuntime
 from .connections import ConnectionRegistry
+from .resource_router import ResourceRouteRequest, ResourceRouter
 from . import update_manager
 
 WEB_INDEX = Path(__file__).resolve().parent.parent / "20_interface" / "web" / "index.html"
@@ -126,6 +127,29 @@ class ABSHandler(BaseHTTPRequestHandler):
                 self._send(500, {"error": "update_failed", "detail": str(exc)})
                 return
             self._send(200, result)
+            return
+
+        if self.path == "/resources/select":
+            objective = str(data.get("objective") or "").strip()
+            if not objective:
+                self._send(400, {"error": "objective_required"})
+                return
+            request = ResourceRouteRequest(
+                objective=objective,
+                required_capabilities=tuple(data.get("required_capabilities") or []),
+                preferred_categories=tuple(data.get("preferred_categories") or []),
+                preferred_transports=tuple(data.get("preferred_transports") or []),
+                allowed_connections=tuple(data.get("allowed_connections") or []),
+                excluded_connections=tuple(data.get("excluded_connections") or []),
+                require_configured=bool(data.get("require_configured", False)),
+                context=data.get("context") if isinstance(data.get("context"), dict) else {},
+            )
+            routes = ResourceRouter(self.connections).rank(request)
+            self._send(200, {"objective": objective, "routes": [
+                {"connection_id": route.connection_id, "score": route.score,
+                 "reasons": list(route.reasons), "connection": route.connection}
+                for route in routes
+            ]})
             return
 
         if self.path == "/interface/mode":
