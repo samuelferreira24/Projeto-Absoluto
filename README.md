@@ -19,4 +19,4 @@ Repositório principal da construção atual do Projeto Absoluto.
 
 A estrutura separa operação atual, arquitetura, planejamento, conhecimento, histórico e arquivo. A classificação física não altera conteúdo histórico nem transforma documentação em capacidade executável.
 
-A estrutura completa está em `ESTRUTURA_REPOSITORIOS.md`.
+A estrutura completa está em `00_ESTRUTURA_REPOSITORIO.md`.
