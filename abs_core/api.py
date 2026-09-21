@@ -5,6 +5,7 @@ from pathlib import Path
 from .orchestrator import Orchestrator
 from .resources import ResourceManager
 from .interface_runtime import InterfaceRuntime
+from .connections import ConnectionRegistry
 
 WEB_INDEX = Path(__file__).resolve().parent.parent / "20_interface" / "web" / "index.html"
 WEB_MANIFEST = WEB_INDEX.parent / "manifest.webmanifest"
@@ -16,6 +17,7 @@ class ABSHandler(BaseHTTPRequestHandler):
     registry = None
     resources: ResourceManager | None = None
     interface_runtime: InterfaceRuntime | None = None
+    connections: ConnectionRegistry | None = None
     started_at = time.time()
 
     def _send(self, status: int, payload: dict) -> None:
@@ -56,12 +58,17 @@ class ABSHandler(BaseHTTPRequestHandler):
         if self.path == "/interface/inputs":
             self._send(200, {"inputs": self.interface_runtime.list_inputs()})
             return
+        if self.path == "/connections":
+            self._send(200, {"connections": self.connections.public()})
+            return
         if self.path == "/health":
             self._send(200, {
                 "name": "ABS",
                 "status": "alive",
                 "version": "v1",
                 "uptime_seconds": round(time.time() - self.started_at, 3),
+                "connection_count": len(self.connections.list()),
+                "auto_update": True,
             })
             return
         if self.path == "/capabilities":
@@ -202,11 +209,13 @@ class ABSHandler(BaseHTTPRequestHandler):
         self._send(404, {"error": "not_found"})
 
 
-def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787, resources=None, interface_runtime=None):
+def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
+          resources=None, interface_runtime=None, connections=None):
     ABSHandler.orchestrator = orchestrator
     ABSHandler.registry = registry
     ABSHandler.resources = resources or ResourceManager()
     ABSHandler.interface_runtime = interface_runtime or InterfaceRuntime()
+    ABSHandler.connections = connections or ConnectionRegistry.defaults()
     ABSHandler.started_at = time.time()
     server = ThreadingHTTPServer((host, port), ABSHandler)
     server.serve_forever()
