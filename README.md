@@ -11,13 +11,12 @@ Repositório principal da construção atual do Projeto Absoluto.
 - `docs/` — documentação classificada.
 - `scripts/` — automação e operação Termux.
 - `tests/` — testes do ABS.
+- `20_interface/` — interface atual.
+- `50_frentes/` — frentes de execução.
 - `99_arquivo/` — patrimônio histórico/legado preservado.
 
 ## Princípio de organização
 
-A classificação física separa operação atual, arquitetura, planejamento, conhecimento, histórico e arquivo. Ela não altera o conteúdo histórico nem transforma documentação em capacidade executável.
+A estrutura separa operação atual, arquitetura, planejamento, conhecimento, histórico e arquivo. A classificação física não altera conteúdo histórico nem transforma documentação em capacidade executável.
 
-
-## Organização
-
-A estrutura completa está em `00_ESTRUTURA_REPOSITORIO.md`. Componentes atuais permanecem em seus caminhos operacionais; históricos ficam separados em `99_arquivo/`.
+A estrutura completa está em `ESTRUTURA_REPOSITORIOS.md`.
