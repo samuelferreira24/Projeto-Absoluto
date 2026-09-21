@@ -27,3 +27,19 @@ def test_gemini_adapter_parses_interaction_output(monkeypatch) -> None:
     result = GeminiCapability().execute("hello", {})
     assert result["final_response"] == "GEMINI_OK"
     assert result["interaction_id"] == "interaction-test"
+
+
+def test_openai_adapter_parses_output_text(monkeypatch) -> None:
+    from abs_core.ai_adapters import OpenAICapability
+
+    def fake_post(*args, **kwargs):
+        return {
+            "id": "resp-test",
+            "model": "gpt-test",
+            "output_text": "OPENAI_OK",
+        }
+    monkeypatch.setenv("OPENAI_API_KEY", "key")
+    monkeypatch.setattr("abs_core.ai_adapters._post_json", fake_post)
+    result = OpenAICapability().execute("hello", {})
+    assert result["final_response"] == "OPENAI_OK"
+    assert result["response_id"] == "resp-test"
