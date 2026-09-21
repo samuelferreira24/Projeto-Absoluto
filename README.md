@@ -16,3 +16,8 @@ Repositório principal da construção atual do Projeto Absoluto.
 ## Princípio de organização
 
 A classificação física separa operação atual, arquitetura, planejamento, conhecimento, histórico e arquivo. Ela não altera o conteúdo histórico nem transforma documentação em capacidade executável.
+
+
+## Organização
+
+A estrutura completa está em `00_ESTRUTURA_REPOSITORIO.md`. Componentes atuais permanecem em seus caminhos operacionais; históricos ficam separados em `99_arquivo/`.
