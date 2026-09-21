@@ -1,8 +1,10 @@
 import argparse
+import os
 from .adapters import EchoCapability
 from .capabilities import CapabilityRecord, CapabilityRegistry
 from .orchestrator import Orchestrator
 from .store import WorkStore
+from .continuity import OperationalContinuity
 
 
 def build():
@@ -13,7 +15,10 @@ def build():
         registry.register(CapabilityRecord("codex", "OpenAI Codex CLI", "external_ai", CodexCapability()))
     except Exception:
         pass
-    return Orchestrator(registry, WorkStore("abs.db"))
+    db_path = os.getenv("ABS_DB_PATH", "abs.db")
+    store = WorkStore(db_path)
+    store.recover_interrupted()
+    return Orchestrator(registry, store)
 
 
 def main():
@@ -23,6 +28,9 @@ def main():
     create = sub.add_parser("create")
     create.add_argument("objective")
 
+    continuity = sub.add_parser("continuity")
+    continuity.add_argument("action", choices=("checkpoint", "verify"))
+
     run = sub.add_parser("run")
     run.add_argument("work_id")
     run.add_argument("--capability", default=None)
@@ -30,6 +38,11 @@ def main():
 
     args = parser.parse_args()
     orch = build()
+
+    if args.command == "continuity":
+        manager = OperationalContinuity(orch.store.path)
+        print(manager.checkpoint() if args.action == "checkpoint" else manager.verify())
+        return
 
     if args.command == "create":
         print(orch.create(args.objective).id)
