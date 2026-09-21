@@ -6,6 +6,7 @@ from typing import Any
 from .api import serve
 from .cli import build
 from .resources import ResourceManager
+from .interface_runtime import InterfaceRuntime
 
 HOST = os.getenv("ABS_HOST", "127.0.0.1")
 PORT = int(os.getenv("ABS_PORT", "8787"))
@@ -21,6 +22,7 @@ class LocalABS:
     def __init__(self) -> None:
         self.orchestrator = build()
         self.resources = ResourceManager()
+        self.interface_runtime = InterfaceRuntime()
 
     def task(self, payload: dict[str, Any]) -> dict[str, Any]:
         objective = str(payload["objective"])
@@ -53,6 +55,7 @@ def main() -> None:
         host=HOST,
         port=PORT,
         resources=local.resources,
+        interface_runtime=local.interface_runtime,
     )
 
 

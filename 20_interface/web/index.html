@@ -38,6 +38,13 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 <button data-tab="capabilities">Capacidades</button>
 <button data-tab="devices">Dispositivos</button>
 </nav>
+<div class="card" style="margin-bottom:14px">
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+<label style="margin:0">Modo da interface</label>
+<select id="mode" style="max-width:260px"></select>
+<span id="modeInfo" class="muted"></span>
+</div>
+</div>
 
 <section id="control" class="tab">
 <div class="grid">
@@ -82,6 +89,17 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
  document.querySelectorAll('.tab').forEach(x=>x.classList.add('hidden'));$('#'+b.dataset.tab).classList.remove('hidden');
 });
 
+async function refreshInterface(){
+ try{
+  const [stateRes,modesRes]=await Promise.all([fetch('/interface/state'),fetch('/interface/modes')]);
+  const state=await json(stateRes), modes=await json(modesRes);
+  $('#mode').innerHTML=modes.modes.map(m=>'<option value="'+esc(m.id)+'">'+esc(m.name)+'</option>').join('');
+  $('#mode').value=state.mode.id;
+  $('#modeInfo').textContent=state.mode.description || '';
+ }catch(e){$('#modeInfo').textContent='runtime de interface indisponível'}
+}
+$('#mode').onchange=async()=>{try{await json(await fetch('/interface/mode',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode_id:$('#mode').value})}));refreshInterface()}catch(e){$('#modeInfo').textContent=e.message}};
+
 async function refresh(){
  try{
   const [h,c,d]=await Promise.all([fetch('/health'),fetch('/capabilities'),fetch('/devices')]);
@@ -105,7 +123,9 @@ $('#run').onclick=async()=>{
 };
 if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
 refresh();
+refreshInterface();
 setInterval(refresh,15000);
+setInterval(refreshInterface,15000);
 </script>
 </body>
 </html>
