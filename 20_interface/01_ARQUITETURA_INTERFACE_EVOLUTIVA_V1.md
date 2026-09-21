@@ -282,3 +282,65 @@ Em vez disso:
 O Web V1 é o primeiro ponto operacional dessa camada.
 
 Ele não define a forma final da interface.
+
+
+## 15. Gerenciador de recursos e conexões
+
+A interface pode alcançar um mesmo recurso por diferentes meios. A arquitetura agora possui um registro explícito de conexões no ABS Core.
+
+Exemplos:
+
+- Codex via Termux/CLI;
+- GitHub via API;
+- GitHub via Termux;
+- ChatGPT Connector administrado pela plataforma;
+- Claude via API;
+- Gemini via API;
+- IA local;
+- Internet/HTTP;
+- APIs externas;
+- rede local;
+- dispositivos remotos;
+- futuros transportes.
+
+O registro de conexão não é a implementação da capacidade. Ele permite ao ABS conhecer quais meios existem, como são transportados, seu estado de configuração e quais capacidades estão associadas.
+
+O princípio é:
+
+RECURSO
+↓
+UM OU MAIS MEIOS DE CONEXÃO
+↓
+ADAPTER / CAPABILITY
+↓
+ABS CORE
+
+A mesma capacidade pode, portanto, possuir múltiplos caminhos de acesso.
+
+## 16. Evolução pelo próprio ABS
+
+A primeira interface operacional deve ser também um ponto de entrada para a construção das próximas versões.
+
+O fluxo futuro é:
+
+IMPERADOR
+↓
+INTERFACE
+↓
+ABS
+↓
+RECURSOS E FERRAMENTAS
+↓
+IMPLEMENTAÇÃO
+↓
+TESTE
+↓
+GIT / CONTINUIDADE
+↓
+UPDATE / ROLLBACK
+↓
+NOVA VERSÃO
+
+Isso não elimina autorização humana. A interface fornece o meio; o ABS executa o ciclo controlado; o Imperador permanece como autoridade.
+
+O registro de conexões e o update manager formam parte dessa fundação. Capacidades ainda não validadas continuam explicitamente classificadas como futuras ou planejadas.

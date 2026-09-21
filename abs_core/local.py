@@ -7,6 +7,7 @@ from .api import serve
 from .cli import build
 from .resources import ResourceManager
 from .interface_runtime import InterfaceRuntime
+from .connections import ConnectionRegistry
 
 HOST = os.getenv("ABS_HOST", "127.0.0.1")
 PORT = int(os.getenv("ABS_PORT", "8787"))
@@ -23,6 +24,7 @@ class LocalABS:
         self.orchestrator = build()
         self.resources = ResourceManager()
         self.interface_runtime = InterfaceRuntime()
+        self.connections = ConnectionRegistry.defaults()
 
     def task(self, payload: dict[str, Any]) -> dict[str, Any]:
         objective = str(payload["objective"])
@@ -56,6 +58,7 @@ def main() -> None:
         port=PORT,
         resources=local.resources,
         interface_runtime=local.interface_runtime,
+        connections=local.connections,
     )
 
 
