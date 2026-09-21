@@ -6,6 +6,7 @@ from .connections import ConnectionRegistry
 from .interface_runtime import InterfaceRuntime
 from .store import WorkStore
 from .api import serve
+import os
 
 
 def build_registry():
