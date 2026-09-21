@@ -83,6 +83,9 @@ class ConnectionRegistry:
 
         add("codex-termux", "OpenAI Codex CLI", "ai", "cli-termux",
             capabilities=["code", "reasoning", "execution"], metadata={"adapter": "codex"})
+        add("openai-api", "OpenAI API", "ai", "https",
+            env="OPENAI_API_KEY", endpoint="https://api.openai.com/v1/responses",
+            capabilities=["ai", "reasoning", "multimodal", "web", "tools"], metadata={"adapter": "openai-responses"})
         add("chatgpt-connector", "ChatGPT Connector", "ai", "connector",
             capabilities=["ai", "context", "tool-access"],
             metadata={"host_managed": True, "note": "Connector availability is managed by the host platform."})
