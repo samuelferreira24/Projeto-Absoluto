@@ -1,19 +1,68 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ABS — Interface V1</title></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ABS — Interface Operacional V1</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#e8eef7;background:#0b1020}
+body{margin:0;background:radial-gradient(circle at top,#18243d,#0b1020 55%);min-height:100vh}
+main{width:min(980px,92%);margin:0 auto;padding:28px 0 48px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}
+h1{margin:0;font-size:30px} h2{font-size:17px;margin:0 0 12px}
+.card{background:#111a2d;border:1px solid #263653;border-radius:14px;padding:18px;margin:14px 0;box-shadow:0 10px 30px #0003}
+.status{display:inline-flex;align-items:center;gap:8px}.dot{width:9px;height:9px;border-radius:50%;background:#777}.dot.ok{background:#45d483}
+label{display:block;font-size:13px;color:#aebbd0;margin-bottom:7px}
+textarea,select{box-sizing:border-box;width:100%;background:#0b1222;color:#fff;border:1px solid #30415f;border-radius:9px;padding:12px;font:inherit}
+textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:650px){.row{grid-template-columns:1fr}}
+button{background:#e8eef7;color:#0b1020;border:0;border-radius:9px;padding:11px 16px;font-weight:700;cursor:pointer}
+button:disabled{opacity:.5;cursor:wait}
+pre{white-space:pre-wrap;overflow:auto;margin:0;color:#dbe7f7}
+ul{margin:0;padding-left:20px;color:#c4d0e3}
+.muted{color:#8fa0ba;font-size:13px}.error{color:#ff9c9c}
+</style>
+</head>
 <body>
 <main>
-<h1>ABS</h1>
-<p>Primeira interface funcional: comando → trabalho → capacidade → execução → resultado.</p>
-<label>Objetivo<br><input id="objective" style="width:min(700px,95%)" placeholder="Ex.: analisar o estado do projeto"></label>
-<br><label><input type="checkbox" id="approved"> Autorizar execução de capacidade externa</label><br><br><button id="create">Criar trabalho</button>
-<pre id="output"></pre>
-<h2>Capacidades</h2><ul id="caps"></ul>
+<header><div><h1>ABS</h1><div class="muted">Interface Operacional V1</div></div><div class="status"><span id="dot" class="dot"></span><span id="status">verificando…</span></div></header>
+<section class="card">
+<h2>Executar capacidade</h2>
+<label for="objective">Objetivo</label>
+<textarea id="objective" placeholder="Ex.: Responda somente ABS_INTERFACE_OK"></textarea>
+<div class="row">
+<div><label for="capability">Capacidade</label><select id="capability"><option value="">automática</option></select></div>
+<div><label><input type="checkbox" id="approved"> autorizar capacidade externa</label></div>
+</div>
+<br><button id="run">Executar</button>
+</section>
+<section class="card"><h2>Resultado</h2><pre id="result" class="muted">Nenhuma execução ainda.</pre></section>
+<section class="card"><h2>Capacidades disponíveis</h2><ul id="caps"><li>carregando…</li></ul></section>
 </main>
 <script>
-const out=document.querySelector('#output');
-async function loadCaps(){const r=await fetch('/capabilities');const d=await r.json();document.querySelector('#caps').innerHTML=d.capabilities.map(c=>'<li>'+c.id+' — '+c.name+'</li>').join('')}
-document.querySelector('#create').onclick=async()=>{const objective=document.querySelector('#objective').value.trim();if(!objective)return;const created=await (await fetch('/works',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({objective})})).json();out.textContent='Trabalho criado: '+created.id+'\nExecutando...';const result=await (await fetch('/works/'+created.id+'/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({approved:document.querySelector("#approved").checked})})).json();out.textContent=JSON.stringify(result,null,2)};
-loadCaps();
+const $=s=>document.querySelector(s);
+const json=async(r)=>{const d=await r.json();if(!r.ok)throw new Error(d.detail||d.error||("HTTP "+r.status));return d};
+async function refresh(){
+ try{
+  const [h,c]=await Promise.all([fetch('/health'),fetch('/capabilities')]);
+  const health=await json(h), caps=await json(c);
+  $('#dot').classList.add('ok'); $('#status').textContent=health.status+' · '+health.version;
+  $('#caps').innerHTML=caps.capabilities.map(c=>'<li>'+c.id+' — '+c.name+' <span class="muted">('+c.kind+')</span></li>').join('');
+  $('#capability').innerHTML='<option value="">automática</option>'+caps.capabilities.map(c=>'<option value="'+c.id+'">'+c.name+'</option>').join('');
+ }catch(e){$('#status').textContent='indisponível';$('#result').innerHTML='<span class="error">'+e.message+'</span>'}
+}
+$('#run').onclick=async()=>{
+ const objective=$('#objective').value.trim(); if(!objective)return;
+ $('#run').disabled=true; $('#result').textContent='Criando trabalho…';
+ try{
+  const created=await json(await fetch('/works',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({objective})}));
+  $('#result').textContent='Executando '+created.id+'…';
+  const done=await json(await fetch('/works/'+created.id+'/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({capability_id:$('#capability').value||null,approved:$('#approved').checked})}));
+  $('#result').textContent=JSON.stringify(done,null,2);
+ }catch(e){$('#result').innerHTML='<span class="error">'+e.message+'</span>'}
+ finally{$('#run').disabled=false}
+};
+refresh();
 </script>
-</body></html>
+</body>
+</html>
