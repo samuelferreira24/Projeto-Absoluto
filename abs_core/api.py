@@ -4,6 +4,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from .orchestrator import Orchestrator
 from .resources import ResourceManager
+from .interface_runtime import InterfaceRuntime
 
 WEB_INDEX = Path(__file__).resolve().parent.parent / "20_interface" / "web" / "index.html"
 WEB_MANIFEST = WEB_INDEX.parent / "manifest.webmanifest"
@@ -14,6 +15,7 @@ class ABSHandler(BaseHTTPRequestHandler):
     orchestrator: Orchestrator | None = None
     registry = None
     resources: ResourceManager | None = None
+    interface_runtime: InterfaceRuntime | None = None
     started_at = time.time()
 
     def _send(self, status: int, payload: dict) -> None:
@@ -44,6 +46,15 @@ class ABSHandler(BaseHTTPRequestHandler):
             return
         if self.path == "/sw.js":
             self._send_file(WEB_SW, "application/javascript; charset=utf-8")
+            return
+        if self.path == "/interface/state":
+            self._send(200, self.interface_runtime.public_state())
+            return
+        if self.path == "/interface/modes":
+            self._send(200, {"modes": self.interface_runtime.public_modes()})
+            return
+        if self.path == "/interface/inputs":
+            self._send(200, {"inputs": self.interface_runtime.list_inputs()})
             return
         if self.path == "/health":
             self._send(200, {
@@ -91,6 +102,40 @@ class ABSHandler(BaseHTTPRequestHandler):
             self._send(400, {"error": "invalid_json"})
             return
 
+        if self.path == "/interface/mode":
+            mode_id = data.get("mode_id")
+            if not mode_id:
+                self._send(400, {"error": "mode_id_required"})
+                return
+            try:
+                self.interface_runtime.set_mode(str(mode_id))
+            except KeyError:
+                self._send(404, {"error": "interface_mode_not_found"})
+                return
+            self._send(200, self.interface_runtime.public_state())
+            return
+
+        if self.path == "/interface/input":
+            channel = data.get("channel")
+            if not channel:
+                self._send(400, {"error": "input_channel_required"})
+                return
+            try:
+                self.interface_runtime.set_input(str(channel))
+            except KeyError:
+                self._send(404, {"error": "interface_input_not_found"})
+                return
+            self._send(200, self.interface_runtime.public_state())
+            return
+
+        if self.path == "/interface/context":
+            values = data.get("context")
+            if not isinstance(values, dict):
+                self._send(400, {"error": "context_object_required"})
+                return
+            self.interface_runtime.update_context(**values)
+            self._send(200, self.interface_runtime.public_state())
+            return
         if self.path == "/works":
             if not data.get("objective"):
                 self._send(400, {"error": "objective_required"})
@@ -157,10 +202,11 @@ class ABSHandler(BaseHTTPRequestHandler):
         self._send(404, {"error": "not_found"})
 
 
-def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787, resources=None):
+def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787, resources=None, interface_runtime=None):
     ABSHandler.orchestrator = orchestrator
     ABSHandler.registry = registry
     ABSHandler.resources = resources or ResourceManager()
+    ABSHandler.interface_runtime = interface_runtime or InterfaceRuntime()
     ABSHandler.started_at = time.time()
     server = ThreadingHTTPServer((host, port), ABSHandler)
     server.serve_forever()
