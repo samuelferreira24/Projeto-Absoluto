@@ -38,6 +38,7 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 <button data-tab="capabilities">Capacidades</button>
 <button data-tab="devices">Dispositivos</button>
 <button data-tab="connections">Conexões</button>
+<button data-tab="evolution">Evolução</button>
 </nav>
 <div class="card" style="margin-bottom:14px">
 <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
@@ -82,6 +83,12 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 
 <section id="connections" class="tab hidden">
 <div class="card"><h2>Recursos e conexões</h2><div id="connectionList" class="cards"><div class="muted">carregando…</div></div><div class="notice">Conexões são meios substituíveis. Configurado não significa operacionalmente validado.</div></div>
+</section>
+
+<section id="evolution" class="tab hidden">
+<div class="card"><h2>Evolução do ABS</h2><div id="updateState" class="result">carregando…</div>
+<div class="row"><button class="primary" id="checkUpdate">Verificar atualização</button><button class="primary" id="applyUpdate">Aplicar atualização</button><button class="primary" id="rollback">Rollback</button></div>
+<div class="notice">Aplicar atualização exige autorização explícita. O ABS usa health check e rollback para proteger a continuidade.</div></div>
 </section>
 </main>
 <script>
@@ -130,8 +137,37 @@ $('#run').onclick=async()=>{
 if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
 refresh();
 refreshInterface();
+refreshUpdate();
 setInterval(refresh,15000);
 setInterval(refreshInterface,15000);
+setInterval(refreshUpdate,30000);
+
+async function refreshUpdate(){
+ try{
+  const data=await json(await fetch('/update/status'));
+  $('#updateState').textContent=JSON.stringify(data,null,2);
+ }catch(e){$('#updateState').textContent='Update manager indisponível: '+e.message}
+}
+$('#checkUpdate').onclick=async()=>{
+ $('#updateState').textContent='verificando…';
+ try{const data=await json(await fetch('/update/status')); $('#updateState').textContent=JSON.stringify(data,null,2)}
+ catch(e){$('#updateState').textContent=e.message}
+};
+$('#applyUpdate').onclick=async()=>{
+ if(!confirm('Autorizar aplicação da atualização disponível?')) return;
+ try{
+  $('#updateState').textContent='aplicando atualização…';
+  const data=await json(await fetch('/update/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({approved:true})}));
+  $('#updateState').textContent=JSON.stringify(data,null,2);
+ }catch(e){$('#updateState').textContent=e.message}
+};
+$('#rollback').onclick=async()=>{
+ if(!confirm('Autorizar rollback do ABS?')) return;
+ try{
+  const data=await json(await fetch('/update/rollback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({approved:true})}));
+  $('#updateState').textContent=JSON.stringify(data,null,2);
+ }catch(e){$('#updateState').textContent=e.message}
+};
 </script>
 </body>
 </html>

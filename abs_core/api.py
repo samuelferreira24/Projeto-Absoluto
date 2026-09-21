@@ -6,6 +6,7 @@ from .orchestrator import Orchestrator
 from .resources import ResourceManager
 from .interface_runtime import InterfaceRuntime
 from .connections import ConnectionRegistry
+from . import update_manager
 
 WEB_INDEX = Path(__file__).resolve().parent.parent / "20_interface" / "web" / "index.html"
 WEB_MANIFEST = WEB_INDEX.parent / "manifest.webmanifest"
@@ -58,6 +59,12 @@ class ABSHandler(BaseHTTPRequestHandler):
         if self.path == "/interface/inputs":
             self._send(200, {"inputs": self.interface_runtime.list_inputs()})
             return
+        if self.path == "/update/status":
+            try:
+                self._send(200, update_manager.status())
+            except Exception as exc:
+                self._send(503, {"error": "update_status_failed", "detail": str(exc)})
+            return
         if self.path == "/connections":
             self._send(200, {"connections": self.connections.public()})
             return
@@ -107,6 +114,18 @@ class ABSHandler(BaseHTTPRequestHandler):
             data = json.loads(self.rfile.read(length) or b"{}")
         except json.JSONDecodeError:
             self._send(400, {"error": "invalid_json"})
+            return
+
+        if self.path in {"/update/apply", "/update/rollback"}:
+            if data.get("approved") is not True:
+                self._send(403, {"error": "approval_required", "detail": "Explicit update authorization required."})
+                return
+            try:
+                result = update_manager.apply() if self.path == "/update/apply" else update_manager.rollback()
+            except Exception as exc:
+                self._send(500, {"error": "update_failed", "detail": str(exc)})
+                return
+            self._send(200, result)
             return
 
         if self.path == "/interface/mode":
