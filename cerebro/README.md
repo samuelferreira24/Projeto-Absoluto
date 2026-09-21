@@ -4,7 +4,7 @@ Núcleo de conhecimento, estado, especificações, mapas e reconstruções do Pr
 
 ## Estrutura
 - `00_estado/` — estado operacional/documental do cérebro.
-- `01_dados/` — dados e continuidade persistida.
+- `data/` — dados e continuidade persistida.
 - `especificacao/` — especificações classificadas por função.
 - `mapas/` — mapas e tabuleiros existentes.
 - `*.py` — implementação do cérebro.
