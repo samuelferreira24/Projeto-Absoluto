@@ -6,6 +6,7 @@ from .connections import ConnectionRegistry
 from .interface_runtime import InterfaceRuntime
 from .store import WorkStore
 from .api import serve
+from .tool_catalog import default_tool_knowledge
 
 
 def build_registry():
@@ -24,7 +25,9 @@ def main():
     orchestrator = Orchestrator(registry, WorkStore("abs.db"))
     resources = ResourceManager()
     interface_runtime = InterfaceRuntime()
-    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime)
+    connections = ConnectionRegistry.defaults()
+    tool_knowledge = default_tool_knowledge()
+    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime, connections=connections, tool_knowledge=tool_knowledge)
 
 
 if __name__ == "__main__":
