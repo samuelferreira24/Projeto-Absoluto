@@ -70,6 +70,9 @@ class ResourceRouter:
             if missing:
                 continue
 
+            if item.status in {"planned", "extensible", "offline"}:
+                continue
+
             score = self._STATUS_SCORE.get(item.status, 0.0)
             reasons: list[str] = [f"status:{item.status}"]
 
