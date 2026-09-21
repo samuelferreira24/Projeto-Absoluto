@@ -2,6 +2,7 @@ from .adapters import EchoCapability
 from .capabilities import CapabilityRecord, CapabilityRegistry
 from .orchestrator import Orchestrator
 from .resources import ResourceManager
+from .interface_runtime import InterfaceRuntime
 from .store import WorkStore
 from .api import serve
 
@@ -21,7 +22,8 @@ def main():
     registry = build_registry()
     orchestrator = Orchestrator(registry, WorkStore("abs.db"))
     resources = ResourceManager()
-    serve(orchestrator, registry, resources=resources)
+    interface_runtime = InterfaceRuntime()
+    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime)
 
 
 if __name__ == "__main__":
