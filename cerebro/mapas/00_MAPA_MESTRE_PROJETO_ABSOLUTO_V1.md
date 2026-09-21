@@ -37,7 +37,7 @@ Fonte de verdade para saber o que realmente existe:
 
 ### NÍVEL 2 — MAPA MESTRE
 Este arquivo:
-`cerebro/INDICE_MESTRE_PROJETO_ABSOLUTO_V1.md`
+`cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md`
 
 Responde:
 - onde está cada mapa;
@@ -47,7 +47,7 @@ Responde:
 - qual frente está atualmente em foco.
 
 ### NÍVEL 3 — TABULEIRO ESTRATÉGICO
-`cerebro/especificacao/TABULEIRO_COMPLETO_EXECUCAO_PROJETO_ABSOLUTO_V0_1.md`
+`cerebro/mapas/01_TABULEIRO_72_CAPACIDADES_V0_1.md`
 
 Responde:
 - quais capacidades existem no universo do projeto;
@@ -60,8 +60,8 @@ Responde:
 É uma **rede dinâmica**, não uma lista de tarefas.
 
 ### NÍVEL 4 — PLANEJAMENTO DINÂMICO
-- `cerebro/especificacao/QUADRO_PENDENCIAS_E_CONSTRUCAO_V0_1.md`
-- `cerebro/especificacao/PLANO_EXECUCAO_REDE_EVOLUTIVA_V0_1.md`
+- `cerebro/mapas/02_QUADRO_PENDENCIAS_CONSTRUCAO_V0_1.md`
+- `cerebro/mapas/03_PLANO_REDE_EVOLUTIVA_V0_1.md`
 
 Respondem:
 - o que falta;
