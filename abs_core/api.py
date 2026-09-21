@@ -6,6 +6,9 @@ from .orchestrator import Orchestrator
 from .resources import ResourceManager
 from .interface_runtime import InterfaceRuntime
 from .connections import ConnectionRegistry
+from .resource_router import ResourceRouteRequest, ResourceRouter
+from .tool_knowledge import ToolKnowledgeRegistry
+from .tool_discovery import ToolDiscovery, ToolDiscoveryCandidate
 from . import update_manager
 
 WEB_INDEX = Path(__file__).resolve().parent.parent / "20_interface" / "web" / "index.html"
@@ -19,6 +22,8 @@ class ABSHandler(BaseHTTPRequestHandler):
     resources: ResourceManager | None = None
     interface_runtime: InterfaceRuntime | None = None
     connections: ConnectionRegistry | None = None
+    tool_knowledge: ToolKnowledgeRegistry | None = None
+    tool_discovery: ToolDiscovery | None = None
     started_at = time.time()
 
     def _send(self, status: int, payload: dict) -> None:
@@ -64,6 +69,9 @@ class ABSHandler(BaseHTTPRequestHandler):
                 self._send(200, update_manager.status())
             except Exception as exc:
                 self._send(503, {"error": "update_status_failed", "detail": str(exc)})
+            return
+        if self.path == "/tools/knowledge":
+            self._send(200, {"tools": [item.public() for item in self.tool_knowledge.list()]})
             return
         if self.path == "/connections":
             self._send(200, {"connections": self.connections.public()})
@@ -126,6 +134,71 @@ class ABSHandler(BaseHTTPRequestHandler):
                 self._send(500, {"error": "update_failed", "detail": str(exc)})
                 return
             self._send(200, result)
+            return
+
+        if self.path == "/tools/discover":
+            name = str(data.get("name") or "").strip()
+            source = str(data.get("source") or "").strip()
+            category = str(data.get("category") or "unknown").strip()
+            if not name or not source:
+                self._send(400, {"error": "tool_name_and_source_required"})
+                return
+            candidate = ToolDiscoveryCandidate(
+                name=name, category=category, source=source,
+                description=str(data.get("description") or ""),
+                capabilities=tuple(data.get("capabilities") or []),
+                connection_hints=tuple(data.get("connection_hints") or []),
+                metadata=data.get("metadata") if isinstance(data.get("metadata"), dict) else {},
+            )
+            missing = self.tool_discovery.validate_candidate(candidate)
+            if missing:
+                self._send(400, {"error": "invalid_tool_candidate", "missing": missing})
+                return
+            self._send(201, {"candidate": self.tool_discovery.from_candidate(candidate)})
+            return
+
+        if self.path == "/tools/learn":
+            tool_id = str(data.get("tool_id") or "").strip()
+            if not tool_id:
+                self._send(400, {"error": "tool_id_required"})
+                return
+            try:
+                learned = self.tool_knowledge.learn(
+                    tool_id,
+                    capabilities=data.get("capabilities"),
+                    connection_ids=data.get("connection_ids"),
+                    usage_pattern=data.get("usage_pattern"),
+                    lesson=data.get("lesson"),
+                    evidence=data.get("evidence") if isinstance(data.get("evidence"), dict) else None,
+                    status=data.get("status"),
+                )
+            except KeyError:
+                self._send(404, {"error": "tool_knowledge_not_found"})
+                return
+            self._send(200, {"tool": learned.public()})
+            return
+
+        if self.path == "/resources/select":
+            objective = str(data.get("objective") or "").strip()
+            if not objective:
+                self._send(400, {"error": "objective_required"})
+                return
+            request = ResourceRouteRequest(
+                objective=objective,
+                required_capabilities=tuple(data.get("required_capabilities") or []),
+                preferred_categories=tuple(data.get("preferred_categories") or []),
+                preferred_transports=tuple(data.get("preferred_transports") or []),
+                allowed_connections=tuple(data.get("allowed_connections") or []),
+                excluded_connections=tuple(data.get("excluded_connections") or []),
+                require_configured=bool(data.get("require_configured", False)),
+                context=data.get("context") if isinstance(data.get("context"), dict) else {},
+            )
+            routes = ResourceRouter(self.connections).rank(request)
+            self._send(200, {"objective": objective, "routes": [
+                {"connection_id": route.connection_id, "score": route.score,
+                 "reasons": list(route.reasons), "connection": route.connection}
+                for route in routes
+            ]})
             return
 
         if self.path == "/interface/mode":
@@ -229,12 +302,14 @@ class ABSHandler(BaseHTTPRequestHandler):
 
 
 def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
-          resources=None, interface_runtime=None, connections=None):
+          resources=None, interface_runtime=None, connections=None, tool_knowledge=None, tool_discovery=None):
     ABSHandler.orchestrator = orchestrator
     ABSHandler.registry = registry
     ABSHandler.resources = resources or ResourceManager()
     ABSHandler.interface_runtime = interface_runtime or InterfaceRuntime()
     ABSHandler.connections = connections or ConnectionRegistry.defaults()
+    ABSHandler.tool_knowledge = tool_knowledge or ToolKnowledgeRegistry()
+    ABSHandler.tool_discovery = tool_discovery or ToolDiscovery()
     ABSHandler.started_at = time.time()
     server = ThreadingHTTPServer((host, port), ABSHandler)
     server.serve_forever()
