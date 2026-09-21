@@ -7,6 +7,7 @@ from .models import Work, WorkState
 
 class WorkStore:
     def __init__(self, path: str | Path = ":memory:") -> None:
+        self.path = Path(path).expanduser().resolve() if str(path) != ":memory:" else Path(":memory:")
         self.conn = sqlite3.connect(str(path), check_same_thread=False)
         self._lock = threading.RLock()
         self.conn.execute("CREATE TABLE IF NOT EXISTS works (id TEXT PRIMARY KEY, objective TEXT NOT NULL, context TEXT NOT NULL, state TEXT NOT NULL, capability_id TEXT, result TEXT)")
@@ -37,6 +38,20 @@ class WorkStore:
                 [(work.id, capability_id, json.dumps(data)) for capability_id, data in work.sessions.items()],
             )
             self.conn.commit()
+
+    def recover_interrupted(self) -> list[str]:
+        """Recupera trabalhos RUNNING após reinício do processo."""
+        with self._lock:
+            rows = self.conn.execute("SELECT id FROM works WHERE state=?", (WorkState.RUNNING.value,)).fetchall()
+            recovered = []
+            for (work_id,) in rows:
+                self.conn.execute("UPDATE works SET state=? WHERE id=?", (WorkState.PAUSED.value, work_id))
+                self.conn.execute("INSERT INTO events VALUES (?, ?, ?, datetime('now'), ?)",
+                                  (f"recovery-{work_id}", work_id, "work.recovered",
+                                   json.dumps({"reason": "process_restart"})))
+                recovered.append(work_id)
+            self.conn.commit()
+            return recovered
 
     def load(self, work_id: str) -> Work:
         with self._lock:
