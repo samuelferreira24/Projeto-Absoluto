@@ -2,6 +2,7 @@ from .adapters import EchoCapability
 from .capabilities import CapabilityRecord, CapabilityRegistry
 from .orchestrator import Orchestrator
 from .resources import ResourceManager
+from .connections import ConnectionRegistry
 from .interface_runtime import InterfaceRuntime
 from .store import WorkStore
 from .api import serve
