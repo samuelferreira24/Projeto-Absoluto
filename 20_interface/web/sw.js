@@ -1,4 +1,4 @@
-const CACHE="abs-interface-v2";
+const CACHE="abs-interface-v3";
 
 self.addEventListener("install",e=>{
   e.waitUntil(
