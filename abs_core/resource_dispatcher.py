@@ -9,6 +9,7 @@ from .orchestrator import Orchestrator
 from .resource_router import ResourceRouteRequest, ResourceRouter
 from .tool_knowledge import ToolKnowledgeRegistry
 from .tool_planner import ToolPlanner
+from .tool_learning import ToolLearningEngine
 
 
 _CONNECTION_TO_CAPABILITY = {
@@ -49,11 +50,13 @@ class ResourceDispatcher:
         planner: ToolPlanner,
         capabilities: CapabilityRegistry,
         knowledge: ToolKnowledgeRegistry,
+        learning: ToolLearningEngine | None = None,
     ) -> None:
         self.router = router
         self.planner = planner
         self.capabilities = capabilities
         self.knowledge = knowledge
+        self.learning = learning or ToolLearningEngine(knowledge)
         self.orchestrator = None
 
     def executable_capability_for(self, connection_id: str):
@@ -81,6 +84,23 @@ class ResourceDispatcher:
                 return route, capability
         raise LookupError("no_executable_resource_route_available")
 
+
+    def _learn(self, capability_id: str, connection_id: str, work: Work, success: bool, detail: str | None = None) -> None:
+        try:
+            self.learning.record(
+                capability_id,
+                success=success,
+                evidence={
+                    "work_id": work.id,
+                    "connection_id": connection_id,
+                    "state": work.state.value,
+                    "detail": detail,
+                },
+                usage_pattern="resource-dispatch",
+                lesson="dispatch succeeded" if success else "dispatch failed",
+            )
+        except KeyError:
+            pass
 
     def dispatch(
         self,
@@ -111,6 +131,7 @@ class ResourceDispatcher:
                 ))
                 raise
             if work.state.value == "completed":
+                self._learn(capability.id, route.connection_id, work, True)
                 attempts.append(DispatchAttempt(route.connection_id, capability.id, "completed"))
                 return DispatchResult(work, route.connection_id, tuple(attempts))
             attempts.append(DispatchAttempt(
