@@ -24,6 +24,58 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 .hidden{display:none}.notice{padding:10px 12px;border-radius:9px;background:#0b1321;border:1px solid #22324c;color:#9eacc2;font-size:12px;margin-top:10px}
 .check{display:flex;gap:8px;align-items:center;margin-top:22px}.check input{accent-color:#dfe8f7}
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}.kpi{padding:12px;border:1px solid #202e45;border-radius:10px;background:#0b1220}.kpi b{display:block;font-size:20px}.kpi span{font-size:10px;color:var(--muted)}
+
+/* ABS Spatial Experience V3 */
+:root{--abs-cyan:#6fe7ff;--abs-violet:#9b8cff;--abs-panel:rgba(12,18,31,.72);--abs-grid:rgba(111,231,255,.07)}
+body{overflow-x:hidden;background:#03060d;color:#edf5ff}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 40%,rgba(111,231,255,.06),transparent 28%),linear-gradient(var(--abs-grid) 1px,transparent 1px),linear-gradient(90deg,var(--abs-grid) 1px,transparent 1px);background-size:auto,42px 42px,42px 42px;mask-image:linear-gradient(to bottom,black,transparent 92%);z-index:-1}
+main{width:min(1500px,96%);padding:16px 0 44px}
+.top{position:sticky;top:0;z-index:20;padding:10px 0;background:linear-gradient(180deg,#03060deF,#03060dCC,transparent);backdrop-filter:blur(12px)}
+.brand .mark{width:46px;height:46px;border-radius:14px;border-color:#315a70;background:radial-gradient(circle,#163447,#0b111d 68%);box-shadow:0 0 28px rgba(111,231,255,.12)}
+.brand h1{font-size:22px;letter-spacing:.02em}.brand p{font-size:11px}
+nav{position:sticky;top:66px;z-index:19;padding:7px;margin:0 -4px 10px;border:1px solid #17263a;border-radius:14px;background:rgba(5,10,18,.72);backdrop-filter:blur(16px);box-shadow:0 12px 40px #0007}
+nav button{border:0;background:transparent;padding:10px 13px;border-radius:9px;color:#8294ae;transition:transform .18s ease,background .18s ease,color .18s ease}
+nav button:hover{background:#102033;color:#dceeff;transform:translateY(-1px)}
+nav button.active{background:linear-gradient(135deg,#dff8ff,#9de9ff);color:#061018;box-shadow:0 0 22px rgba(111,231,255,.16)}
+.card{background:var(--abs-panel);border:1px solid #1b3045;border-radius:18px;box-shadow:0 20px 60px #0008, inset 0 1px #ffffff08;backdrop-filter:blur(18px)}
+button.primary{border-radius:11px;background:linear-gradient(135deg,#e9fbff,#b7efff);box-shadow:0 8px 25px #0005;transition:transform .18s ease,box-shadow .18s ease}
+button.primary:hover{transform:translateY(-1px);box-shadow:0 12px 30px #0007}
+input,textarea,select{background:rgba(3,8,15,.72)!important;border-color:#203850!important}
+.abs-hero{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;margin-bottom:14px}
+.abs-map{position:relative;min-height:610px;overflow:hidden;border:1px solid #1d3850;border-radius:22px;background:radial-gradient(circle at 50% 48%,rgba(111,231,255,.12),transparent 16%),radial-gradient(circle at 30% 25%,rgba(155,140,255,.08),transparent 25%),#040914;box-shadow:inset 0 0 100px #0008,0 25px 70px #0008;touch-action:none;cursor:grab}
+.abs-map:active{cursor:grabbing}
+.abs-map:before{content:"";position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 45%,rgba(111,231,255,.035) 50%,transparent 55%);transform:rotate(12deg);pointer-events:none}
+.abs-space{position:absolute;inset:0;transform-origin:50% 50%;transition:transform .12s ease-out}
+.abs-map.dragging .abs-space{transition:none}
+.abs-grid{position:absolute;inset:-50%;background:linear-gradient(rgba(111,231,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(111,231,255,.055) 1px,transparent 1px);background-size:55px 55px;transform:perspective(700px) rotateX(58deg) translateY(12%);opacity:.65}
+.abs-orbit{position:absolute;left:50%;top:50%;border:1px solid rgba(111,231,255,.13);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
+.abs-orbit.o1{width:310px;height:180px}.abs-orbit.o2{width:540px;height:310px}.abs-orbit.o3{width:820px;height:470px}
+.abs-core-node{position:absolute;left:50%;top:50%;width:132px;height:132px;transform:translate(-50%,-50%);display:grid;place-items:center;border-radius:50%;border:1px solid #6fe7ff88;background:radial-gradient(circle at 35% 30%,#1b6178,#07121e 62%);box-shadow:0 0 28px #6fe7ff33,0 0 90px #6fe7ff18,inset 0 0 25px #9b8cff22;z-index:5}
+.abs-core-node:after{content:"";position:absolute;inset:-16px;border:1px solid #6fe7ff22;border-radius:50%;animation:absPulse 3s ease-in-out infinite}
+.abs-core-node strong{font-size:25px;letter-spacing:.08em}.abs-core-node span{position:absolute;top:88px;font-size:9px;letter-spacing:.18em;color:#9fdff0}
+.abs-node{position:absolute;min-width:120px;padding:12px 14px;border:1px solid #28435b;border-radius:14px;background:rgba(8,16,27,.86);box-shadow:0 14px 35px #0008,0 0 20px #6fe7ff0d;cursor:pointer;user-select:none;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.abs-node:hover{transform:translateY(-3px) scale(1.025);border-color:#6fe7ff88;box-shadow:0 18px 42px #0009,0 0 28px #6fe7ff18}
+.abs-node b{display:block;font-size:13px}.abs-node small{color:#71869f;font-size:10px}
+.abs-node.n1{left:15%;top:18%}.abs-node.n2{right:13%;top:19%}.abs-node.n3{left:10%;bottom:17%}.abs-node.n4{right:11%;bottom:18%}.abs-node.n5{left:43%;top:7%}.abs-node.n6{left:43%;bottom:6%}
+.abs-link{position:absolute;height:1px;background:linear-gradient(90deg,transparent,#6fe7ff66,transparent);transform-origin:left center;pointer-events:none;opacity:.6}
+.abs-link.l1{left:28%;top:31%;width:23%;transform:rotate(17deg)}.abs-link.l2{left:52%;top:31%;width:23%;transform:rotate(-17deg)}.abs-link.l3{left:25%;top:62%;width:28%;transform:rotate(-20deg)}.abs-link.l4{left:52%;top:62%;width:28%;transform:rotate(20deg)}
+.abs-map-label{position:absolute;left:18px;top:16px;color:#6f829a;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.abs-map-hint{position:absolute;right:18px;top:16px;color:#61758e;font-size:10px}
+.abs-map-tools{position:absolute;right:16px;bottom:16px;display:flex;gap:6px;z-index:8}
+.abs-map-tools button{width:38px;height:38px;border-radius:10px;border:1px solid #274058;background:#07111dcc;color:#c9eaff;cursor:pointer}
+.abs-side{display:flex;flex-direction:column;gap:14px}
+.abs-side .card{height:100%}
+.abs-breadcrumb{display:flex;gap:7px;align-items:center;color:#71869f;font-size:11px;margin-bottom:12px}.abs-breadcrumb strong{color:#d9f5ff}
+.abs-focus{min-height:230px}.abs-focus h2{font-size:19px}.abs-stat{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #ffffff09;font-size:12px}.abs-stat span{color:#71869f}
+.abs-activity{max-height:270px;overflow:auto}.abs-event{padding:9px 0;border-bottom:1px solid #ffffff09;font-size:11px}.abs-event b{color:#bfeeff}.abs-event span{display:block;color:#657b95;margin-top:3px}
+.abs-depth{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.abs-depth button{border:1px solid #254057;background:#07111d;color:#8fa6be;border-radius:999px;padding:6px 9px;font-size:10px;cursor:pointer}
+.abs-depth button.active{border-color:#6fe7ff66;color:#c9f5ff;background:#0b2130}
+.abs-modebar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.abs-map-message{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);padding:8px 12px;border:1px solid #29455c;border-radius:999px;background:#06101bd9;color:#91a9c0;font-size:10px;opacity:0;transition:opacity .2s;pointer-events:none}.abs-map-message.show{opacity:1}
+@keyframes absPulse{0%,100%{transform:scale(1);opacity:.45}50%{transform:scale(1.08);opacity:.9}}
+@media(max-width:900px){.abs-hero{grid-template-columns:1fr}.abs-map{min-height:520px}.abs-side{display:grid;grid-template-columns:1fr 1fr}.abs-side .card{height:auto}}
+@media(max-width:620px){main{width:calc(100% - 20px)}.top{position:relative}.brand p{display:none}nav{top:0}.abs-map{min-height:500px}.abs-side{display:flex}.abs-node{min-width:102px;padding:9px 10px}.abs-node b{font-size:11px}.abs-node small{font-size:9px}.abs-core-node{width:108px;height:108px}.abs-core-node strong{font-size:21px}.abs-core-node span{top:72px}.abs-orbit.o3{width:600px}.abs-map-hint{display:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -34,7 +86,7 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 </header>
 
 <nav>
-<button class="active" data-tab="control">Controle</button>
+<button class="active" data-tab="empire">Império</button><button data-tab="control">Comando</button>
 <button data-tab="capabilities">Capacidades</button>
 <button data-tab="tools">Ferramentas</button>
 <button data-tab="devices">Dispositivos</button>
@@ -51,7 +103,36 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 </div>
 </div>
 
-<section id="control" class="tab">
+
+<section id="empire" class="tab">
+  <div class="abs-modebar">
+    <div><div class="abs-breadcrumb"><strong>IMPÉRIO</strong><span>·</span><span>visão geral</span></div><div class="muted">Explore o ABS por espaço, profundidade e ação. O mapa é uma camada de navegação sobre capacidades reais.</div></div>
+    <div class="abs-depth"><button class="active" data-depth="1">Império</button><button data-depth="2">Sistema</button><button data-depth="3">Detalhe</button></div>
+  </div>
+  <div class="abs-hero">
+    <section class="abs-map" id="absMap" aria-label="Mapa interativo do Império">
+      <div class="abs-space" id="absSpace">
+        <div class="abs-grid"></div><div class="abs-orbit o1"></div><div class="abs-orbit o2"></div><div class="abs-orbit o3"></div>
+        <div class="abs-link l1"></div><div class="abs-link l2"></div><div class="abs-link l3"></div><div class="abs-link l4"></div>
+        <button class="abs-core-node" data-focus="ABS" aria-label="Abrir ABS"><strong>ABS</strong><span>SISTEMA</span></button>
+        <button class="abs-node n1" data-focus="Inteligências"><b>Inteligências</b><small>ecossistema de IAs</small></button>
+        <button class="abs-node n2" data-focus="Cérebro"><b>Cérebro</b><small>estado · memória · ciclo</small></button>
+        <button class="abs-node n3" data-focus="Missões"><b>Missões</b><small>planejamento · execução</small></button>
+        <button class="abs-node n4" data-focus="Recursos"><b>Recursos</b><small>conexões · ferramentas</small></button>
+        <button class="abs-node n5" data-focus="Projetos"><b>Projetos</b><small>frentes em evolução</small></button>
+        <button class="abs-node n6" data-focus="Evolução"><b>Evolução</b><small>mudança · continuidade</small></button>
+      </div>
+      <div class="abs-map-label">MAPA ABS · NÍVEL 01</div><div class="abs-map-hint">arraste · roda/pinça · clique para aproximar</div>
+      <div class="abs-map-tools"><button id="mapMinus" aria-label="Diminuir zoom">−</button><button id="mapReset" aria-label="Recentrar mapa">⌂</button><button id="mapPlus" aria-label="Aumentar zoom">+</button></div>
+      <div id="mapMessage" class="abs-map-message">Mapa reposicionado</div>
+    </section>
+    <aside class="abs-side">
+      <section class="card abs-focus"><div class="muted">FOCO</div><h2 id="focusTitle">ABS</h2><div class="abs-stat"><span>Estado</span><strong id="focusState">conectando…</strong></div><div class="abs-stat"><span>Profundidade</span><strong id="focusDepth">Império</strong></div><div class="abs-stat"><span>Ação</span><strong id="focusAction">explorar</strong></div><div id="focusDescription" class="notice">Selecione uma área do mapa para aproximar a experiência.</div></section>
+      <section class="card"><div class="muted">ATIVIDADE</div><div id="absActivity" class="abs-activity"><div class="abs-event"><b>ABS</b><span>Ambiente preparado para exploração.</span></div></div></section>
+    </aside>
+  </div>
+</section>
+<section id="control" class="tab hidden">
 <div class="grid">
 <section class="card">
 <h2>Nova execução</h2>
@@ -308,6 +389,49 @@ $('#rollback').onclick=async()=>{
   $('#updateState').textContent=JSON.stringify(data,null,2);
  }catch(e){$('#updateState').textContent=e.message}
 };
-</script>
+
+<script>
+(()=>{
+const map=document.getElementById('absMap'),space=document.getElementById('absSpace'),msg=document.getElementById('mapMessage');
+if(!map||!space)return;
+let scale=1,tx=0,ty=0,drag=false,sx=0,sy=0,stx=0,sty=0;
+const apply=()=>{space.style.transform=`translate3d(${tx}px,${ty}px,0) scale(${scale})`};
+const announce=t=>{msg.textContent=t;msg.classList.add('show');clearTimeout(window.__absMsg);window.__absMsg=setTimeout(()=>msg.classList.remove('show'),1300)};
+const setZoom=(v)=>{scale=Math.max(.65,Math.min(2.4,v));apply();announce('Zoom '+Math.round(scale*100)+'%')};
+document.getElementById('mapPlus').onclick=()=>setZoom(scale+.18);
+document.getElementById('mapMinus').onclick=()=>setZoom(scale-.18);
+document.getElementById('mapReset').onclick=()=>{scale=1;tx=0;ty=0;apply();announce('Mapa recentrado')};
+map.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;drag=true;map.classList.add('dragging');sx=e.clientX;sy=e.clientY;stx=tx;sty=ty;map.setPointerCapture(e.pointerId)});
+map.addEventListener('pointermove',e=>{if(!drag)return;tx=stx+(e.clientX-sx);ty=sty+(e.clientY-sy);apply()});
+map.addEventListener('pointerup',e=>{drag=false;map.classList.remove('dragging');try{map.releasePointerCapture(e.pointerId)}catch(_){}});
+map.addEventListener('wheel',e=>{e.preventDefault();setZoom(scale+(e.deltaY<0?.12:-.12))},{passive:false});
+let pinch=0;
+map.addEventListener('touchmove',e=>{if(e.touches.length===2){const a=e.touches[0],b=e.touches[1];const d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);if(pinch){setZoom(scale*(d/pinch))}pinch=d}},{passive:false});
+map.addEventListener('touchend',()=>pinch=0);
+const descriptions={
+ ABS:'Núcleo de coordenação. A interface mostra o sistema sem confundir a representação visual com a implementação real.',
+ Inteligências:'Ecossistema de inteligências disponíveis. Aprofunde para conversar ou observar capacidades conectadas.',
+ Cérebro:'Camada de estado, memória, ciclo e coordenação do ABS. O mapa é uma porta de entrada, não substitui o runtime.',
+ Missões:'Objetivos e execuções. Use o modo direto quando quiser comandar uma execução sem explorar o mapa.',
+ Recursos:'Ferramentas, conexões, dispositivos e outros meios substituíveis do sistema.',
+ Projetos:'Frentes e estruturas que podem crescer sem prender o ABS a uma arquitetura final.',
+ Evolução:'Continuidade, atualizações, aprendizado e expansão futura do sistema.'
+};
+document.querySelectorAll('.abs-node,.abs-core-node').forEach(n=>n.addEventListener('click',()=>{
+ const f=n.dataset.focus;document.getElementById('focusTitle').textContent=f;document.getElementById('focusDescription').textContent=descriptions[f]||'Área do ABS.';
+ document.getElementById('focusAction').textContent='aproximar';document.getElementById('focusDepth').textContent='Nível '+(f==='ABS'?'01':'02');
+ const tab={Inteligências:'intelligence',Cérebro:'control',Missões:'control',Recursos:'connections',Projetos:'control',Evolução:'evolution'}[f];
+ if(f==='Inteligências'){document.querySelector('[data-tab="intelligence"]').click()}
+ else if(f==='Evolução'){document.querySelector('[data-tab="evolution"]').click()}
+ announce('Foco: '+f);
+}));
+document.querySelectorAll('[data-depth]').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('[data-depth]').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+ const d=b.dataset.depth;setZoom(d==='1'?1:d==='2'?1.35:1.75);
+ document.getElementById('focusDepth').textContent='Nível '+d;
+ document.querySelector('.abs-map-label').textContent='MAPA ABS · NÍVEL 0'+d;
+});
+})();
+</script></script>
 </body>
 </html>
