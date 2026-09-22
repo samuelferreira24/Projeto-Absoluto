@@ -42,5 +42,4 @@ Service logs are written to:
 
 ## Important
 
-This service layer does not activate the ABS update manager yet. Automatic
-versioned update + validation + rollback comes after the service lifecycle is verified.
+This service layer is compatible with the ABS update manager. The update manager can be installed separately with `scripts/termux/install_abs_update_manager.sh`; update application remains protected by explicit authorization, health validation and rollback.
