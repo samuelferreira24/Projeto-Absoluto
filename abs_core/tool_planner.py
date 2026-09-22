@@ -40,7 +40,7 @@ class ToolPlanner:
         candidates = (
             [self.knowledge.get(tool_id)]
             if tool_id
-            else self.knowledge.find_by_capability(required_capabilities[0])
+            else self.knowledge.find_by_capabilities(required_capabilities)
             if required_capabilities
             else self.knowledge.list()
         )
