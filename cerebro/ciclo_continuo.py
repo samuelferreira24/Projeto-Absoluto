@@ -37,4 +37,37 @@ class CicloContinuo:
         )
         resultado["caminho"] = caminho
         resultado["pontuacao"] = pontuacao
+        resultado["observacao"] = {
+            "estado": resultado.get("resultado", {}).get("state") if isinstance(resultado.get("resultado"), dict) else None,
+            "caminho": caminho,
+            "pontuacao": pontuacao,
+        }
         return resultado
+
+    def reavaliar(
+        self,
+        missao_id: str,
+        candidatos: Callable[[Missao], Iterable[tuple[Any, float]]],
+        *,
+        observacao: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        """Recompute candidate ordering from the current mission state and observation."""
+        if missao_id not in self.orquestrador.missoes:
+            raise KeyError(missao_id)
+        missao = self.orquestrador.missoes[missao_id]
+        if observacao:
+            missao.contexto = {
+                **missao.contexto,
+                "_ultima_observacao": dict(observacao),
+            }
+            missao.atualizar()
+            self.orquestrador.salvar()
+        opcoes = list(candidatos(missao))
+        if not opcoes:
+            return {"reavaliado": True, "opcoes": [], "proximo": None}
+        ordenadas = sorted(opcoes, key=lambda item: item[1], reverse=True)
+        return {
+            "reavaliado": True,
+            "opcoes": [{"caminho": caminho, "pontuacao": score} for caminho, score in ordenadas],
+            "proximo": ordenadas[0][0],
+        }
