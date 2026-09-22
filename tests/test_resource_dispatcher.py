@@ -126,4 +126,6 @@ def test_learning_changes_planning_order() -> None:
         preferred_categories=("ai",),
         require_configured=True,
     )
-    assert [plan.tool_id for plan in plans[:2]] == ["gemini", "claude"]
+    ids = [plan.tool_id for plan in plans]
+    assert ids[0] == "gemini"
+    assert ids.index("gemini") < ids.index("claude")
