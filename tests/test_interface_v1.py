@@ -1,5 +1,7 @@
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[1]
+
 from abs_core import api
 from abs_core.resources import ResourceManager
 
@@ -32,7 +34,7 @@ def test_resource_manager_registers_local_device_and_remote_devices() -> None:
 
 
 def test_interface_exposes_tool_planning_discovery_and_voice_controls():
-    html = Path("20_interface/web/index.html").read_text(encoding="utf-8")
+    html = (ROOT / "20_interface" / "web" / "index.html").read_text(encoding="utf-8")
     for marker in ("/tools/knowledge", "/tools/plan", "/resources/dispatch", "/tools/discover", "SpeechRecognition", "Conversa com uma IA", "Sala de Inteligências", "room-ai", "abs-chat-history", "MAPA ABS", "absMap", "data-depth", "abs-node", "absControlDock", "absPanelOpen", "data-uxmode", "absCreate", "absUndo", "absRedo", "abs-workspace-v4"):
         assert marker in html
 
