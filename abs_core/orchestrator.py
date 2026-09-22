@@ -1,12 +1,21 @@
 from typing import Any
+from datetime import datetime, timezone
+import uuid
+
 from .capabilities import CapabilityRegistry
 from .models import Work, WorkState
 from .store import WorkStore
 
+
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
 class Orchestrator:
-    def __init__(self, registry: CapabilityRegistry, store: WorkStore) -> None:
+    def __init__(self, registry: CapabilityRegistry, store: WorkStore, continuity=None) -> None:
         self.registry = registry
         self.store = store
+        self.continuity = continuity
 
     def create(self, objective: str, context: dict[str, Any] | None = None) -> Work:
         work = Work(objective, context or {})
@@ -14,12 +23,17 @@ class Orchestrator:
         self.store.save(work)
         return work
 
+    def _checkpoint(self) -> None:
+        if self.continuity is not None:
+            self.continuity.checkpoint()
+
     def run(self, work_id: str, capability_id: str | None = None, approved: bool = False) -> Work:
         work = self.store.load(work_id)
         cap = self.registry.choose(capability_id or work.capability_id)
         if cap.kind != "test" and not approved:
             work.emit("work.denied", capability_id=cap.id, reason="imperator_approval_required")
             self.store.save(work)
+            self._checkpoint()
             raise PermissionError(f"Imperator approval required for capability: {cap.id}")
 
         work.capability_id = cap.id
@@ -37,16 +51,35 @@ class Orchestrator:
             if isinstance(result, dict) and result.get("thread_id"):
                 work.sessions[cap.id] = {"thread_id": result["thread_id"]}
             work.provenance.append({
+                "provenance_id": str(uuid.uuid4()),
+                "work_id": work.id,
+                "objective": work.objective,
                 "capability_id": cap.id,
                 "capability_name": cap.name,
                 "session": work.sessions.get(cap.id),
+                "recorded_at": _now(),
+                "state": work.state.value,
+                "result_type": result.get("type") if isinstance(result, dict) else type(result).__name__,
+                "context_keys": sorted(work.context.keys()),
             })
             work.emit("work.completed", capability_id=cap.id)
         except Exception as exc:
             work.state = WorkState.FAILED
             work.result = {"type": "error", "error": str(exc), "error_type": type(exc).__name__}
+            work.provenance.append({
+                "provenance_id": str(uuid.uuid4()),
+                "work_id": work.id,
+                "objective": work.objective,
+                "capability_id": cap.id,
+                "capability_name": cap.name,
+                "recorded_at": _now(),
+                "state": work.state.value,
+                "result_type": "error",
+                "error_type": type(exc).__name__,
+            })
             work.emit("work.failed", capability_id=cap.id, error=repr(exc))
         self.store.save(work)
+        self._checkpoint()
         return work
 
     def pause(self, work_id: str) -> Work:
@@ -54,6 +87,7 @@ class Orchestrator:
         work.state = WorkState.PAUSED
         work.emit("work.paused")
         self.store.save(work)
+        self._checkpoint()
         return work
 
     def resume(self, work_id: str, capability_id: str | None = None, approved: bool = False) -> Work:

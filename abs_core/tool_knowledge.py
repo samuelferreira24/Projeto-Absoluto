@@ -30,6 +30,17 @@ class ToolKnowledge:
     def public(self) -> dict[str, Any]:
         return asdict(self)
 
+    def reliability(self) -> float:
+        """Return the observed success ratio from recorded evidence."""
+        outcomes = [
+            item.get("success")
+            for item in self.evidence
+            if isinstance(item, dict) and isinstance(item.get("success"), bool)
+        ]
+        if not outcomes:
+            return 0.5
+        return sum(outcomes) / len(outcomes)
+
 
 class ToolKnowledgeRegistry:
     """Extensible memory of tool usage knowledge and evidence."""
