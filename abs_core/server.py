@@ -11,6 +11,7 @@ from .tool_knowledge_store import ToolKnowledgeStore
 from .tool_learning import ToolLearningEngine
 from .tool_planner import ToolPlanner
 from .resource_router import ResourceRouter
+from .resource_dispatcher import ResourceDispatcher
 import os
 
 
