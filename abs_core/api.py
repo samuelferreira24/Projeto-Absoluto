@@ -193,14 +193,12 @@ class ABSHandler(BaseHTTPRequestHandler):
                 self._send(400, {"error": "tool_id_required"})
                 return
             try:
-                learned = self.tool_knowledge.learn(
+                learned = self.tool_learning.record(
                     tool_id,
-                    capabilities=data.get("capabilities"),
-                    connection_ids=data.get("connection_ids"),
-                    usage_pattern=data.get("usage_pattern"),
+                    success=bool(data.get("success", False)),
+                    evidence=data.get("evidence") if isinstance(data.get("evidence"), dict) else {},
                     lesson=data.get("lesson"),
-                    evidence=data.get("evidence") if isinstance(data.get("evidence"), dict) else None,
-                    status=data.get("status"),
+                    usage_pattern=data.get("usage_pattern"),
                 )
             except KeyError:
                 self._send(404, {"error": "tool_knowledge_not_found"})
