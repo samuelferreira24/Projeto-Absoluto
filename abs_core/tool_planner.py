@@ -51,7 +51,7 @@ class ToolPlanner:
                 continue
             route_request = ResourceRouteRequest(
                 objective=objective,
-                required_capabilities=tuple(tool.capabilities),
+                required_capabilities=tuple(required_capabilities),
                 preferred_categories=preferred_categories or (tool.category,),
                 require_configured=require_configured,
             )
