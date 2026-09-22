@@ -86,7 +86,7 @@ def check() -> dict:
 
 
 def _runtime_only_change(path: str) -> bool:
-    normalized = path.lstrip("./")
+    normalized = path.removeprefix("./")
     return (
         normalized == "abs.db"
         or normalized.startswith("abs.db-")
