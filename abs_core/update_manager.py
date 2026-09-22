@@ -92,7 +92,8 @@ def _runtime_only_change(path: str) -> bool:
         or normalized.startswith("abs.db-")
         or normalized.startswith("__pycache__/")
         or "/__pycache__/" in normalized
-        or normalized == ".pytest_cache"\n        or normalized.startswith(".pytest_cache/")
+        or normalized == ".pytest_cache"
+        or normalized.startswith(".pytest_cache/")
         or "/.pytest_cache/" in normalized
     )
 
