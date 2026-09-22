@@ -50,10 +50,11 @@ class ToolDiscovery:
         self,
         candidate: ToolDiscoveryCandidate,
         *,
-        state: str,
+        current_state: str,
+        next_state: str,
         evidence: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
-        """Advance discovery state only with explicit evidence for trust stages."""
+        """Advance a discovered tool only through explicit lifecycle gates."""
         allowed = {
             "discovered": {"researched"},
             "researched": {"validated"},
@@ -63,13 +64,15 @@ class ToolDiscovery:
             "approved": {"usable"},
             "usable": set(),
         }
-        current = "discovered"
-        if evidence and isinstance(evidence.get("state"), str):
-            current = evidence["state"]
-        if state not in allowed.get(current, set()):
-            raise ValueError(f"invalid_tool_lifecycle_transition:{current}->{state}")
+        if next_state not in allowed.get(current_state, set()):
+            raise ValueError(
+                f"invalid_tool_lifecycle_transition:{current_state}->{next_state}"
+            )
+        if next_state in {"researched", "validated", "connected", "tested", "approved", "usable"} and not evidence:
+            raise ValueError("lifecycle_evidence_required")
         payload = self.from_candidate(candidate)
-        payload["state"] = state
+        payload["state"] = next_state
+        payload["previous_state"] = current_state
         payload["evidence"] = dict(evidence or {})
         return payload
 
