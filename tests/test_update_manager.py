@@ -20,3 +20,25 @@ def test_state_round_trip(monkeypatch, tmp_path):
     monkeypatch.setattr(um, "STATE_PATH", state)
     um._save_state({"last_known_good": "abc"})
     assert json.loads(state.read_text())["last_known_good"] == "abc"
+
+
+def test_candidate_validation_passes(monkeypatch):
+    class Result:
+        returncode = 0
+        stdout = "5 passed"
+        stderr = ""
+    monkeypatch.setattr(um.subprocess, "run", lambda *args, **kwargs: Result())
+    monkeypatch.setattr(um, "RUN_TESTS", True)
+    result = um._validate_target()
+    assert result["validation"] == "passed"
+
+
+def test_candidate_validation_rejects(monkeypatch):
+    class Result:
+        returncode = 1
+        stdout = "1 failed"
+        stderr = ""
+    monkeypatch.setattr(um.subprocess, "run", lambda *args, **kwargs: Result())
+    monkeypatch.setattr(um, "RUN_TESTS", True)
+    with pytest.raises(um.UpdateError, match="candidate validation failed"):
+        um._validate_target()
