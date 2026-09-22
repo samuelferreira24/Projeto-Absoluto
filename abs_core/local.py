@@ -26,7 +26,7 @@ class LocalABS:
         self.resources = ResourceManager()
         self.interface_runtime = InterfaceRuntime()
         self.connections = ConnectionRegistry.defaults()
-        self.accounts = AccountRegistry()
+        self.accounts = AccountRegistry(os.getenv("ABS_DB_PATH", "abs.db"))
 
     def task(self, payload: dict[str, Any]) -> dict[str, Any]:
         objective = str(payload["objective"])
