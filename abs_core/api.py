@@ -166,7 +166,7 @@ class ABSHandler(BaseHTTPRequestHandler):
             ]})
             return
 
-        if self.path == "/tools/learn":
+        if self.path == "/tools/discover":
             name = str(data.get("name") or "").strip()
             source = str(data.get("source") or "").strip()
             category = str(data.get("category") or "unknown").strip()
