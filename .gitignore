@@ -1,0 +1,6 @@
+# ABS runtime state and Python-generated files
+abs.db
+abs.db-*
+__pycache__/
+*.py[cod]
+.pytest_cache/
