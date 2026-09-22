@@ -76,6 +76,44 @@ input,textarea,select{background:rgba(3,8,15,.72)!important;border-color:#203850
 @media(max-width:900px){.abs-hero{grid-template-columns:1fr}.abs-map{min-height:520px}.abs-side{display:grid;grid-template-columns:1fr 1fr}.abs-side .card{height:auto}}
 @media(max-width:620px){main{width:calc(100% - 20px)}.top{position:relative}.brand p{display:none}nav{top:0}.abs-map{min-height:500px}.abs-side{display:flex}.abs-node{min-width:102px;padding:9px 10px}.abs-node b{font-size:11px}.abs-node small{font-size:9px}.abs-core-node{width:108px;height:108px}.abs-core-node strong{font-size:21px}.abs-core-node span{top:72px}.abs-orbit.o3{width:600px}.abs-map-hint{display:none}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+
+/* ABS Interaction & Construction V4 */
+.abs-control-dock{position:fixed;right:18px;bottom:18px;z-index:80;width:min(360px,calc(100vw - 36px));padding:12px;border:1px solid #24415a;border-radius:18px;background:rgba(5,11,20,.9);backdrop-filter:blur(20px);box-shadow:0 24px 70px #0009;display:none}
+.abs-control-dock.open{display:block}
+.abs-dock-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}
+.abs-dock-title{font-size:11px;letter-spacing:.12em;color:#bfeeff;text-transform:uppercase}
+.abs-dock-actions{display:flex;gap:6px}
+.abs-tool-row{display:flex;gap:6px;flex-wrap:wrap}
+.abs-tool-row button,.abs-dock-actions button{border:1px solid #28465e;background:#081522;color:#a9c7dc;border-radius:9px;padding:8px 10px;cursor:pointer;font-size:11px}
+.abs-tool-row button.active{border-color:#6fe7ff66;background:#0b2635;color:#d8f8ff}
+.abs-tool-row button:hover,.abs-dock-actions button:hover{border-color:#6fe7ff88;color:#e7fbff}
+.abs-edit-bar{display:none;gap:6px;align-items:center;flex-wrap:wrap;padding:8px;margin:0 0 10px;border:1px solid #31516a;border-radius:13px;background:rgba(7,17,28,.8)}
+body.abs-editing .abs-edit-bar{display:flex}
+.abs-edit-label{font-size:10px;letter-spacing:.1em;color:#6fe7ff;text-transform:uppercase;margin-right:4px}
+.abs-edit-bar button{border:1px solid #29455d;background:#091724;color:#b8d1e3;border-radius:8px;padding:7px 9px;font-size:10px;cursor:pointer}
+.abs-edit-bar button:disabled{opacity:.4}
+.abs-node.selected,.abs-core-node.selected{outline:2px solid #6fe7ff;outline-offset:4px;box-shadow:0 0 0 5px #6fe7ff18,0 18px 45px #000a,0 0 32px #6fe7ff22}
+body.abs-editing .abs-node{cursor:move}
+.abs-context-panel{position:absolute;right:16px;top:52px;z-index:10;width:min(320px,calc(100% - 32px));padding:13px;border:1px solid #29475f;border-radius:15px;background:rgba(5,12,21,.9);backdrop-filter:blur(16px);box-shadow:0 18px 55px #0009;display:none}
+.abs-context-panel.open{display:block}
+.abs-context-panel h3{margin:0 0 10px;font-size:14px}
+.abs-context-grid{display:grid;gap:8px}
+.abs-context-grid label{margin:0}
+.abs-context-grid input,.abs-context-grid textarea{font-size:12px;padding:9px}
+.abs-context-grid textarea{min-height:70px}
+.abs-context-footer{display:flex;gap:6px;margin-top:9px}
+.abs-context-footer button{flex:1;border:1px solid #2b4a63;background:#091724;color:#b9d8e9;border-radius:8px;padding:8px;cursor:pointer}
+.abs-context-footer .save{background:#b9efff;color:#061018;border-color:#b9efff}
+.abs-workspace-status{font-size:10px;color:#71869f;margin-top:8px}
+.abs-mode-pill{font-size:10px;padding:5px 8px;border-radius:999px;border:1px solid #2c475e;color:#9fb6c9}
+body.abs-operating .abs-mode-pill{border-color:#8d6b32;color:#f0c66f}
+body.abs-editing .abs-mode-pill{border-color:#466e86;color:#6fe7ff}
+.abs-user-node{border-style:dashed!important}
+.abs-user-link{position:absolute;height:2px;background:linear-gradient(90deg,#6fe7ff,#9b8cff);transform-origin:left center;pointer-events:none;opacity:.75;z-index:2}
+.abs-user-link:after{content:"";position:absolute;right:-3px;top:-3px;width:8px;height:8px;border-radius:50%;background:#9b8cff;box-shadow:0 0 10px #9b8cff}
+.abs-shortcuts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;color:#71869f;font-size:9px}
+.abs-shortcuts kbd{border:1px solid #2b4358;border-radius:5px;padding:2px 5px;color:#a9c4d6;background:#07111b}
+@media(max-width:620px){.abs-control-dock{right:10px;bottom:10px;width:calc(100vw - 20px)}.abs-context-panel{position:fixed;right:10px;top:auto;bottom:10px}.abs-edit-bar{overflow:auto;flex-wrap:nowrap}}
 </style>
 </head>
 <body>
@@ -105,6 +143,24 @@ input,textarea,select{background:rgba(3,8,15,.72)!important;border-color:#203850
 
 
 <section id="empire" class="tab">
+<div class="abs-edit-bar" id="absEditBar">
+  <span class="abs-edit-label">Construção</span>
+  <button type="button" id="absEditCreate">+ Criar</button>
+  <button type="button" id="absEditConnect">Conectar</button>
+  <button type="button" id="absEditUndo">↶</button>
+  <button type="button" id="absEditRedo">↷</button>
+  <button type="button" id="absEditDone">Concluir</button>
+</div>
+
+<div class="abs-context-panel" id="absContextPanel">
+  <h3 id="absContextTitle">Objeto selecionado</h3>
+  <div class="abs-context-grid">
+    <label for="absObjectName">Nome</label><input id="absObjectName" type="text" autocomplete="off">
+    <label for="absObjectDesc">Descrição</label><textarea id="absObjectDesc"></textarea>
+  </div>
+  <div class="abs-context-footer"><button type="button" id="absContextCancel">Cancelar</button><button type="button" id="absContextSave" class="save">Aplicar</button></div>
+</div>
+
   <div class="abs-modebar">
     <div><div class="abs-breadcrumb"><strong>IMPÉRIO</strong><span>·</span><span>visão geral</span></div><div class="muted">Explore o ABS por espaço, profundidade e ação. O mapa é uma camada de navegação sobre capacidades reais.</div></div>
     <div class="abs-depth"><button class="active" data-depth="1">Império</button><button data-depth="2">Sistema</button><button data-depth="3">Detalhe</button></div>
@@ -230,6 +286,30 @@ input,textarea,select{background:rgba(3,8,15,.72)!important;border-color:#203850
 <div class="row"><button class="primary" id="checkUpdate">Verificar atualização</button><button class="primary" id="applyUpdate">Aplicar atualização</button><button class="primary" id="rollback">Rollback</button></div>
 <div class="notice">Aplicar atualização exige autorização explícita. O ABS usa health check e rollback para proteger a continuidade.</div></div>
 </section>
+
+<div class="abs-control-dock" id="absControlDock" aria-label="Painel de controle ABS">
+  <div class="abs-dock-head">
+    <span class="abs-dock-title">Painel ABS</span>
+    <span class="abs-mode-pill" id="absModePill">Explorar</span>
+    <div class="abs-dock-actions"><button id="absDockPin" type="button">Fixar</button><button id="absDockClose" type="button">Fechar</button></div>
+  </div>
+  <div class="abs-tool-row">
+    <button type="button" data-uxmode="explore" class="active">Explorar</button>
+    <button type="button" data-uxmode="edit">Editar</button>
+    <button type="button" data-uxmode="operate">Operar</button>
+  </div>
+  <div class="abs-tool-row" style="margin-top:7px">
+    <button type="button" id="absCreate">Criar</button><button type="button" id="absEdit">Editar objeto</button><button type="button" id="absDuplicate">Duplicar</button><button type="button" id="absDelete">Remover</button>
+  </div>
+  <div class="abs-tool-row" style="margin-top:7px">
+    <button type="button" id="absConnect">Conectar</button><button type="button" id="absGroup">Agrupar</button><button type="button" id="absResize">Redimensionar</button><button type="button" id="absUndo">↶ Desfazer</button><button type="button" id="absRedo">↷ Refazer</button>
+  </div>
+  <div class="abs-tool-row" style="margin-top:7px">
+    <button type="button" id="absSave">Salvar ambiente</button><button type="button" id="absResetWorkspace">Restaurar ambiente</button>
+  </div>
+  <div class="abs-workspace-status" id="absWorkspaceStatus">Alterações visuais do ambiente. Não alteram o ABS real.</div>
+  <div class="abs-shortcuts"><span><kbd>Esc</kbd> cancelar</span><span><kbd>Ctrl/Cmd+Z</kbd> desfazer</span><span><kbd>Ctrl/Cmd+Shift+Z</kbd> refazer</span></div>
+</div>
 </main>
 <script>
 const $=s=>document.querySelector(s);
@@ -433,5 +513,119 @@ document.querySelectorAll('[data-depth]').forEach(b=>b.onclick=()=>{
 });
 })();
 </script></script>
+
+<script>
+(() => {
+  const map=document.getElementById('absMap');
+  const space=document.getElementById('absSpace');
+  if(!map||!space)return;
+  const dock=document.getElementById('absControlDock');
+  const ctx=document.getElementById('absContextPanel');
+  const pill=document.getElementById('absModePill');
+  const status=document.getElementById('absWorkspaceStatus');
+  const state={mode:localStorage.getItem('abs-ux-mode')||'explore',panelPinned:localStorage.getItem('abs-panel-pinned')==='1',selected:null,connectFirst:null,undo:[],redo:[]};
+  const modeNames={explore:'Explorar',edit:'Editar',operate:'Operar'};
+  const customKey='abs-workspace-v4';
+  const uid=()=> 'custom-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
+  const nodeEls=()=>[...space.querySelectorAll('.abs-node,.abs-core-node')];
+  const selected=()=>state.selected ? document.getElementById(state.selected) : null;
+  const setMode=(m)=>{
+    state.mode=m;localStorage.setItem('abs-ux-mode',m);document.body.classList.toggle('abs-editing',m==='edit');document.body.classList.toggle('abs-operating',m==='operate');
+    pill.textContent=modeNames[m];
+    document.querySelectorAll('[data-uxmode]').forEach(b=>b.classList.toggle('active',b.dataset.uxmode===m));
+    status.textContent=m==='edit'?'Modo construção: alterações são apenas visuais neste estágio.':m==='operate'?'Modo operação: ações reais exigem comando explícito.':'Ambiente em exploração; nenhum objeto é alterado.';
+    document.querySelectorAll('#absEditBar button').forEach(b=>b.disabled=m!=='edit');
+  };
+  const snapshot=()=>JSON.stringify(nodeEls().map(n=>({id:n.id||'',custom:n.classList.contains('abs-user-node'),focus:n.dataset.focus||'',name:n.querySelector('b,strong')?.textContent||'',desc:n.querySelector('small,span')?.textContent||'',className:n.className,style:n.getAttribute('style')||'',hidden:n.hidden})));
+  const pushUndo=()=>{state.undo.push(snapshot());if(state.undo.length>40)state.undo.shift();state.redo=[];};
+  const restore=(raw)=>{
+    if(!raw)return;
+    [...space.querySelectorAll('.abs-user-node')].forEach(n=>n.remove());
+    let items=[];try{items=JSON.parse(raw)}catch(_){return}
+    items.forEach(d=>{
+      let n=d.id?document.getElementById(d.id):null;
+      if(!n && d.custom){n=document.createElement('button');n.type='button';n.className='abs-node abs-user-node';n.id=d.id||uid();n.dataset.custom='1';n.innerHTML='<b></b><small></small>';space.appendChild(n)}
+      if(!n)return;
+      n.className=d.className;n.dataset.focus=d.focus||n.dataset.focus||n.id;n.setAttribute('style',d.style||'');n.hidden=!!d.hidden;
+      const b=n.querySelector('b,strong');const s=n.querySelector('small,span');if(b)b.textContent=d.name||n.dataset.focus;if(s&&s!==n.querySelector('.abs-core-node span'))s.textContent=d.desc||'estrutura visual';
+      bindNode(n);
+    });
+    selectNode(state.selected);
+    drawLinks();
+  };
+  const save=()=>{localStorage.setItem(customKey,snapshot());status.textContent='Ambiente salvo localmente.'};
+  const load=()=>{const raw=localStorage.getItem(customKey);if(raw)restore(raw)};
+  const selectNode=(n)=>{
+    nodeEls().forEach(x=>x.classList.remove('selected'));
+    const el=typeof n==='string'?document.getElementById(n):n;
+    state.selected=el?.id||null;
+    if(el){el.classList.add('selected');openContext(el)}
+    else ctx.classList.remove('open');
+  };
+  const openContext=(el)=>{
+    const b=el.querySelector('b,strong'),s=el.querySelector('small');
+    document.getElementById('absContextTitle').textContent=el.dataset.focus||b?.textContent||'Objeto';
+    document.getElementById('absObjectName').value=b?.textContent||el.dataset.focus||'';
+    document.getElementById('absObjectDesc').value=s?.textContent||'';
+    ctx.classList.add('open');
+    if(!state.panelPinned && state.mode==='explore')dock.classList.add('open');
+  };
+  const applyEdit=()=>{
+    const el=selected();if(!el)return;
+    pushUndo();
+    const name=document.getElementById('absObjectName').value.trim()||'Objeto';
+    const desc=document.getElementById('absObjectDesc').value.trim();
+    const b=el.querySelector('b,strong'),s=el.querySelector('small');
+    if(b)b.textContent=name;if(s)s.textContent=desc;
+    el.dataset.focus=name;
+    status.textContent='Alteração visual aplicada.';
+    save();drawLinks();
+  };
+  const createNode=()=>{
+    setMode('edit');pushUndo();
+    const n=document.createElement('button');n.type='button';n.className='abs-node abs-user-node';n.id=uid();n.dataset.custom='1';n.dataset.focus='Nova área';
+    n.style.left='46%';n.style.top='42%';n.innerHTML='<b>Nova área</b><small>estrutura visual</small>';space.appendChild(n);bindNode(n);selectNode(n);save();
+  };
+  const duplicate=()=>{const el=selected();if(!el)return;pushUndo();const n=el.cloneNode(true);n.id=uid();n.dataset.custom='1';n.classList.add('abs-user-node');n.classList.remove('selected');n.style.transform=(el.style.transform||'')+' translate(28px,28px)';space.appendChild(n);bindNode(n);selectNode(n);save();drawLinks()};
+  const remove=()=>{const el=selected();if(!el||!el.classList.contains('abs-user-node')){status.textContent='Objetos estruturais do ABS não são removidos pela edição visual.';return}pushUndo();el.remove();state.selected=null;ctx.classList.remove('open');save();drawLinks()};
+  const resize=()=>{const el=selected();if(!el)return;pushUndo();const current=parseFloat(el.dataset.scale||'1');const next=current>=1.35?.8:current+.2;el.dataset.scale=next;el.style.transform='scale('+next+')';save()};
+  const connect=()=>{if(!selected()){status.textContent='Selecione o primeiro objeto.';return}if(!state.connectFirst){state.connectFirst=selected().id;status.textContent='Primeiro objeto marcado. Selecione o segundo.';return}const second=selected();if(second.id===state.connectFirst)return;pushUndo();const a=document.getElementById(state.connectFirst);if(a&&second){const link=document.createElement('div');link.className='abs-user-link';link.dataset.from=a.id;link.dataset.to=second.id;space.appendChild(link)}state.connectFirst=null;save();drawLinks();status.textContent='Conexão visual criada.'};
+  const drawLinks=()=>{space.querySelectorAll('.abs-user-link').forEach(l=>{const a=document.getElementById(l.dataset.from),b=document.getElementById(l.dataset.to);if(!a||!b){l.remove();return}const ar=a.getBoundingClientRect(),br=b.getBoundingClientRect(),mr=map.getBoundingClientRect();const x=ar.left+ar.width/2-mr.left,y=ar.top+ar.height/2-mr.top,x2=br.left+br.width/2-mr.left,y2=br.top+br.height/2-mr.top;const dx=x2-x,dy=y2-y;l.style.left=x+'px';l.style.top=y+'px';l.style.width=Math.hypot(dx,dy)+'px';l.style.transform='rotate('+Math.atan2(dy,dx)+'rad)';})};
+  const bindNode=(n)=>{
+    if(n.dataset.absBound)return;n.dataset.absBound='1';
+    n.addEventListener('click',e=>{e.stopPropagation();selectNode(n)});
+    n.addEventListener('pointerdown',e=>{
+      if(state.mode!=='edit')return;
+      e.stopPropagation();n.setPointerCapture?.(e.pointerId);const startX=e.clientX,startY=e.clientY,base=n.style.transform||'',scale=Math.max(1,.65);
+      const move=ev=>{n.style.transform=base+' translate('+((ev.clientX-startX)/scale)+'px,'+((ev.clientY-startY)/scale)+'px)';drawLinks()};
+      const up=()=>{n.releasePointerCapture?.(e.pointerId);n.removeEventListener('pointermove',move);n.removeEventListener('pointerup',up);pushUndo();save()};
+      n.addEventListener('pointermove',move);n.addEventListener('pointerup',up);
+    });
+  };
+  nodeEls().forEach(bindNode);
+  document.querySelectorAll('[data-uxmode]').forEach(b=>b.onclick=()=>setMode(b.dataset.uxmode));
+  document.getElementById('absDockPin').onclick=()=>{state.panelPinned=!state.panelPinned;localStorage.setItem('abs-panel-pinned',state.panelPinned?'1':'0');dock.classList.toggle('open',state.panelPinned||!!state.selected);document.getElementById('absDockPin').textContent=state.panelPinned?'Desafixar':'Fixar'};
+  document.getElementById('absDockClose').onclick=()=>{if(!state.panelPinned)dock.classList.remove('open');ctx.classList.remove('open')};
+  document.getElementById('absCreate').onclick=createNode;document.getElementById('absEditCreate').onclick=createNode;
+  document.getElementById('absEdit').onclick=()=>{setMode('edit');if(selected())openContext(selected())};
+  document.getElementById('absDuplicate').onclick=duplicate;document.getElementById('absDelete').onclick=remove;document.getElementById('absResize').onclick=resize;
+  document.getElementById('absConnect').onclick=connect;document.getElementById('absEditConnect').onclick=connect;
+  document.getElementById('absGroup').onclick=()=>{const el=selected();if(!el)return;pushUndo();el.dataset.group=el.dataset.group?'':'grupo-1';status.textContent=el.dataset.group?'Objeto agrupado visualmente.':'Grupo removido.';save()};
+  const undo=()=>{const current=snapshot();const prev=state.undo.pop();if(!prev)return;state.redo.push(current);restore(prev);status.textContent='Desfeito.'};
+  const redo=()=>{const current=snapshot();const next=state.redo.pop();if(!next)return;state.undo.push(current);restore(next);status.textContent='Refeito.'};
+  document.getElementById('absUndo').onclick=undo;document.getElementById('absRedo').onclick=redo;document.getElementById('absEditUndo').onclick=undo;document.getElementById('absEditRedo').onclick=redo;
+  document.getElementById('absSave').onclick=save;document.getElementById('absResetWorkspace').onclick=()=>{localStorage.removeItem(customKey);location.reload()};
+  document.getElementById('absContextCancel').onclick=()=>ctx.classList.remove('open');document.getElementById('absContextSave').onclick=applyEdit;
+  document.getElementById('absEditDone').onclick=()=>{setMode('explore');ctx.classList.remove('open')};
+  map.addEventListener('click',e=>{if(e.target===map&&!state.panelPinned){selectNode(null);dock.classList.remove('open')}});
+  document.addEventListener('keydown',e=>{
+    const mod=e.ctrlKey||e.metaKey;
+    if(mod&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo()}
+    if(e.key==='Escape'){state.connectFirst=null;ctx.classList.remove('open');if(!state.panelPinned)dock.classList.remove('open');if(state.mode==='edit')setMode('explore')}
+  });
+  setMode(state.mode);dock.classList.toggle('open',state.panelPinned);document.getElementById('absDockPin').textContent=state.panelPinned?'Desafixar':'Fixar';load();
+  window.addEventListener('resize',drawLinks);setInterval(drawLinks,700);
+})();
+</script>
 </body>
 </html>
