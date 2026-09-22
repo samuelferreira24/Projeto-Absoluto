@@ -181,7 +181,7 @@ async function refresh(){
   $('#dot').classList.add('ok');$('#status').textContent=health.status+' · '+health.version;
   $('#capability').innerHTML='<option value="">automática</option>'+caps.capabilities.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.name)+'</option>').join('');
   const intelligences=caps.capabilities.filter(c=>c.kind==='external_ai');
-  $('#chatCapability').innerHTML='<option value="">automática</option>'+intelligences.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.name)+'</option>').join('');
+  $('#chatCapability').innerHTML=intelligences.length ? intelligences.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.name)+'</option>').join('') : '<option value="">nenhuma IA externa</option>';
   $('#roomCapabilities').innerHTML=intelligences.length ? intelligences.map(c=>'<label class="item" style="cursor:pointer"><span><strong>'+esc(c.name)+'</strong><div class="muted">'+esc(c.id)+'</div></span><input type="checkbox" class="room-ai" value="'+esc(c.id)+'"></label>').join('') : '<div class="muted">Nenhuma capacidade de IA externa está configurada neste nó.</div>';
   $('#intelligenceSummary').innerHTML=intelligences.length ? intelligences.map(c=>'<div class="item"><div><strong>'+esc(c.name)+'</strong><div class="muted">capacidade operacional registrada</div></div><span class="tag online">conectada</span></div>').join('') : '<div class="muted">Nenhuma IA externa configurada. O ABS continua operacional com as demais capacidades.</div>';
   renderChat();
@@ -240,6 +240,7 @@ function renderChat(){
 async function sendChat(){
  const input=$('#chatInput').value.trim(); if(!input)return;
  const capability=$('#chatCapability').value||null;
+ if(!capability){$('#chatHistory').textContent='Nenhuma capacidade de IA externa está configurada neste nó.';return;}
  chatHistory.push({role:'user',text:input});
  renderChat(); $('#chatInput').value=''; $('#sendChat').disabled=true;
  try{
