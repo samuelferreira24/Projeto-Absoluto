@@ -87,3 +87,7 @@ class ToolKnowledgeRegistry:
 
     def find_by_capability(self, capability: str) -> list[ToolKnowledge]:
         return [item for item in self.list() if capability in item.capabilities]
+
+    def find_by_capabilities(self, capabilities: list[str] | tuple[str, ...]) -> list[ToolKnowledge]:
+        required = set(capabilities)
+        return [item for item in self.list() if required.issubset(item.capabilities)]
