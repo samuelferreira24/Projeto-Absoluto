@@ -149,7 +149,7 @@ async function refresh(){
   $('#deviceList').innerHTML=devices.devices.map(d=>'<div class="item"><div><strong>'+esc(d.name)+'</strong><div class="muted">'+esc(d.kind)+' · '+esc(d.id)+'</div></div><span class="tag '+(d.status==='online'?'online':'warning')+'">'+esc(d.status)+'</span></div>').join('');
   $('#toolList').innerHTML=tools.tools.map(t=>'<div class="item"><div><strong>'+esc(t.name)+'</strong><div class="muted">'+esc(t.category)+' · '+esc(t.id)+'</div></div><span class="tag">'+esc(t.status)+'</span></div>').join('');
   $('#connectionList').innerHTML=connections.connections.map(c=>'<div class="item"><div><strong>'+esc(c.name)+'</strong><div class="muted">'+esc(c.category)+' · '+esc(c.transport)+'</div></div><span class="tag '+(c.configured?'online':'warning')+'">'+esc(c.status)+'</span></div>').join('');
-  $('#accountList').innerHTML=accounts.accounts.length ? accounts.accounts.map(a=>'<div class="item"><div><strong>'+esc(a.name)+'</strong><div class="muted">'+esc(a.provider)+' · '+esc(a.connection_id)+' · '+esc(a.id)+'</div></div><span class="tag '+(a.status==='configured'?'online':'warning')+'">'+esc(a.status)+'</span></div>').join('') : '<div class="muted">Nenhuma conta registrada ainda.</div>';
+  $('#accountList').innerHTML=accounts.accounts.length ? accounts.accounts.map(a=>'<div class="item"><div><strong>'+esc(a.name)+'</strong><div class="muted">'+esc(a.provider)+' · '+esc(a.connection_id)+' · '+esc(a.id)+'</div></div><span class="tag '+(a.status==='operational'?'online':'warning')+'">'+esc(a.status)+'</span></div>').join('') : '<div class="muted">Nenhuma conta registrada ainda.</div>';
  }catch(e){$('#status').textContent='indisponível';$('#result').textContent=e.message}
 }
 async function planMission(){

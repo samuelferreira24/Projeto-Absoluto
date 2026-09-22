@@ -33,7 +33,9 @@ def test_accounts_api_registers_multiple_accounts():
         ]
         for payload in payloads:
             conn.request("POST", "/accounts/register", body=json.dumps(payload), headers={"Content-Type": "application/json"})
-            assert conn.getresponse().status == 201
+            response = conn.getresponse()
+            assert response.status == 201
+            response.read()
         conn.request("GET", "/accounts")
         response = conn.getresponse()
         body = json.loads(response.read())

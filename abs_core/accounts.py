@@ -28,6 +28,9 @@ class AccountRecord:
     def public(self) -> dict[str, Any]:
         data = asdict(self)
         data["credential_ref"] = bool(self.credential_ref)
+        # Metadata may contain implementation-specific data and must not be
+        # exposed through the public account API by default.
+        data.pop("metadata", None)
         return data
 
 
