@@ -7,6 +7,7 @@ from .resources import ResourceManager
 from .interface_runtime import InterfaceRuntime
 from .connections import ConnectionRegistry
 from .resource_router import ResourceRouteRequest, ResourceRouter
+from .resource_dispatcher import ResourceDispatcher
 from .tool_knowledge import ToolKnowledgeRegistry
 from .tool_discovery import ToolDiscovery, ToolDiscoveryCandidate
 from .tool_planner import ToolPlanner
@@ -28,6 +29,7 @@ class ABSHandler(BaseHTTPRequestHandler):
     tool_discovery: ToolDiscovery | None = None
     tool_planner: ToolPlanner | None = None
     tool_learning: ToolLearningEngine | None = None
+    resource_dispatcher: ResourceDispatcher | None = None
     started_at = time.time()
 
     def _send(self, status: int, payload: dict) -> None:
@@ -206,6 +208,46 @@ class ABSHandler(BaseHTTPRequestHandler):
             self._send(200, {"tool": learned.public()})
             return
 
+        if self.path == "/resources/dispatch":
+            objective = str(data.get("objective") or "").strip()
+            if not objective:
+                self._send(400, {"error": "objective_required"})
+                return
+            request = ResourceRouteRequest(
+                objective=objective,
+                required_capabilities=tuple(data.get("required_capabilities") or []),
+                preferred_categories=tuple(data.get("preferred_categories") or []),
+                preferred_transports=tuple(data.get("preferred_transports") or []),
+                allowed_connections=tuple(data.get("allowed_connections") or []),
+                excluded_connections=tuple(data.get("excluded_connections") or []),
+                require_configured=bool(data.get("require_configured", False)),
+                context=data.get("context") if isinstance(data.get("context"), dict) else {},
+            )
+            try:
+                result = self.resource_dispatcher.dispatch(
+                    objective,
+                    request,
+                    context=request.context,
+                    approved=bool(data.get("approved", False)),
+                    orchestrator=self.orchestrator,
+                )
+            except PermissionError as exc:
+                self._send(403, {"error": "approval_required", "detail": str(exc)})
+                return
+            except LookupError as exc:
+                self._send(404, {"error": str(exc)})
+                return
+            self._send(200, {
+                "work": {
+                    "id": result.work.id,
+                    "state": result.work.state.value,
+                    "result": result.work.result,
+                },
+                "selected_connection": result.selected_connection,
+                "attempts": [attempt.__dict__ for attempt in result.attempts],
+            })
+            return
+
         if self.path == "/resources/select":
             objective = str(data.get("objective") or "").strip()
             if not objective:
@@ -330,7 +372,7 @@ class ABSHandler(BaseHTTPRequestHandler):
 
 
 def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
-          resources=None, interface_runtime=None, connections=None, tool_knowledge=None, tool_discovery=None, tool_planner=None, tool_learning=None):
+          resources=None, interface_runtime=None, connections=None, tool_knowledge=None, tool_discovery=None, tool_planner=None, tool_learning=None, resource_dispatcher=None):
     ABSHandler.orchestrator = orchestrator
     ABSHandler.registry = registry
     ABSHandler.resources = resources or ResourceManager()
@@ -340,6 +382,10 @@ def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
     ABSHandler.tool_discovery = tool_discovery or ToolDiscovery()
     ABSHandler.tool_planner = tool_planner or ToolPlanner(ABSHandler.tool_knowledge, ResourceRouter(ABSHandler.connections))
     ABSHandler.tool_learning = tool_learning or ToolLearningEngine(ABSHandler.tool_knowledge)
+    ABSHandler.resource_dispatcher = resource_dispatcher or ResourceDispatcher(
+        ResourceRouter(ABSHandler.connections), ABSHandler.tool_planner,
+        ABSHandler.registry, ABSHandler.tool_knowledge,
+    )
     ABSHandler.started_at = time.time()
     server = ThreadingHTTPServer((host, port), ABSHandler)
     server.serve_forever()
