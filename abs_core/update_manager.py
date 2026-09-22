@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import shlex
 import subprocess
 import time
 from pathlib import Path
@@ -15,6 +16,8 @@ REF = os.getenv("ABS_UPDATE_REF", "main")
 HEALTH_URL = os.getenv("ABS_UPDATE_HEALTH_URL", "http://127.0.0.1:8787/health")
 SERVICE = os.getenv("ABS_UPDATE_SERVICE", "abs")
 HEALTH_TIMEOUT = int(os.getenv("ABS_UPDATE_HEALTH_TIMEOUT", "30"))
+TEST_COMMAND = os.getenv("ABS_UPDATE_TEST_COMMAND", "python -m pytest -q tests")
+RUN_TESTS = os.getenv("ABS_UPDATE_RUN_TESTS", "1").lower() not in {"0", "false", "no"}
 RUNTIME_IGNORED_PATHS = ("abs.db", "abs.db-", "__pycache__/", ".pytest_cache/")
 
 
@@ -125,6 +128,19 @@ def _restart() -> None:
     _run("sv", "restart", SERVICE)
 
 
+def _validate_target() -> dict:
+    if not RUN_TESTS:
+        return {"validation": "skipped"}
+    command = shlex.split(TEST_COMMAND)
+    if not command:
+        raise UpdateError("ABS_UPDATE_TEST_COMMAND is empty")
+    p = subprocess.run(command, cwd=REPO_DIR, text=True, capture_output=True, timeout=600)
+    if p.returncode:
+        detail = (p.stdout + "\n" + p.stderr).strip()
+        raise UpdateError(f"candidate validation failed: {detail[-4000:]}")
+    return {"validation": "passed", "test_command": TEST_COMMAND}
+
+
 def apply() -> dict:
     before = _git("rev-parse", "HEAD")
     _require_clean_worktree("update")
@@ -139,6 +155,7 @@ def apply() -> dict:
 
     try:
         _git("reset", "--hard", target)
+        validation = _validate_target()
         _restart()
         health = _wait_health()
     except Exception as exc:
@@ -150,7 +167,7 @@ def apply() -> dict:
             raise UpdateError(f"Update failed; rollback also failed: {rollback_exc}") from exc
         raise UpdateError(f"Update failed; rollback completed: {exc}") from exc
 
-    state.update({"last_known_good": target, "last_update": time.time(), "health": health})
+    state.update({"last_known_good": target, "last_update": time.time(), "health": health, **validation})
     _save_state(state)
     return {"updated": True, "previous_commit": before, "current_commit": target, "health": health}
 
