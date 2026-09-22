@@ -29,3 +29,9 @@ def test_resource_manager_registers_local_device_and_remote_devices() -> None:
     assert manager.summary()["total"] == 2
     manager.heartbeat(device.id, "degraded")
     assert manager.get(device.id).status == "degraded"
+
+
+def test_interface_exposes_tool_planning_discovery_and_voice_controls():
+    html = Path("20_interface/web/index.html").read_text(encoding="utf-8")
+    for marker in ("/tools/knowledge", "/tools/plan", "/resources/dispatch", "/tools/discover", "SpeechRecognition"):
+        assert marker in html

@@ -36,6 +36,7 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 <nav>
 <button class="active" data-tab="control">Controle</button>
 <button data-tab="capabilities">Capacidades</button>
+<button data-tab="tools">Ferramentas</button>
 <button data-tab="devices">Dispositivos</button>
 <button data-tab="connections">Conexões</button>
 <button data-tab="evolution">Evolução</button>
@@ -53,7 +54,7 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 <section class="card">
 <h2>Nova execução</h2>
 <label for="objective">Objetivo</label>
-<textarea id="objective" placeholder="Diga ao ABS o que deve ser realizado."></textarea>
+<textarea id="objective" placeholder="Diga ao ABS o que deve ser realizado."></textarea><button type="button" id="voice" class="primary">🎙️ Falar</button>
 <div class="row">
 <div><label for="capability">Capacidade</label><select id="capability"><option value="">automática</option></select></div>
 <div><label>&nbsp;</label><div class="notice">O ABS pode escolher a capacidade adequada conforme a evolução do sistema.</div></div>
@@ -70,6 +71,23 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 
 <section id="capabilities" class="tab hidden">
 <div class="card"><h2>Capacidades disponíveis</h2><div id="capList" class="cards"><div class="muted">carregando…</div></div></div>
+</section>
+
+<section id="tools" class="tab hidden">
+<div class="grid">
+<section class="card"><h2>Universo de ferramentas</h2><div id="toolList" class="cards"><div class="muted">carregando…</div></div></section>
+<section class="card"><h2>Planejar uma missão</h2>
+<label for="missionObjective">Objetivo</label><textarea id="missionObjective" placeholder="O que o ABS precisa realizar?"></textarea>
+<label for="requiredCaps">Capacidades necessárias</label><input id="requiredCaps" type="text" placeholder="ex.: reasoning, code">
+<label class="check"><input type="checkbox" id="missionApproved"> autorizar execução externa</label>
+<div class="row"><button class="primary" id="planMission">Planejar</button><button class="primary" id="dispatchMission">Executar</button></div>
+<div id="planResult" class="result" style="margin-top:12px">Nenhum plano.</div></section>
+</div>
+<div class="card" style="margin-top:14px"><h2>Descobrir ferramenta</h2>
+<div class="row"><div><label for="toolName">Nome</label><input id="toolName" type="text" placeholder="Nova ferramenta"></div>
+<div><label for="toolSource">Fonte</label><input id="toolSource" type="text" placeholder="https://..."></div></div>
+<button class="primary" id="discoverTool">Registrar descoberta</button>
+<div id="discoverResult" class="notice">Descoberta não significa confiança, instalação ou autorização.</div></div>
 </section>
 
 <section id="devices" class="tab hidden">
@@ -114,16 +132,45 @@ $('#mode').onchange=async()=>{try{await json(await fetch('/interface/mode',{meth
 
 async function refresh(){
  try{
-  const [h,c,d,x]=await Promise.all([fetch('/health'),fetch('/capabilities'),fetch('/devices'),fetch('/connections')]);
-  const health=await json(h), caps=await json(c), devices=await json(d), connections=await json(x);
+  const [h,c,d,x,t]=await Promise.all([fetch('/health'),fetch('/capabilities'),fetch('/devices'),fetch('/connections'),fetch('/tools/knowledge')]);
+  const health=await json(h), caps=await json(c), devices=await json(d), connections=await json(x), tools=await json(t);
   $('#dot').classList.add('ok');$('#status').textContent=health.status+' · '+health.version;
   $('#capability').innerHTML='<option value="">automática</option>'+caps.capabilities.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.name)+'</option>').join('');
   $('#capList').innerHTML=caps.capabilities.map(c=>'<div class="item"><div><strong>'+esc(c.name)+'</strong><div class="muted">'+esc(c.id)+'</div></div><span class="tag">'+esc(c.kind)+'</span></div>').join('');
   $('#dTotal').textContent=devices.summary.total;$('#dOnline').textContent=devices.summary.online;$('#dOther').textContent=devices.summary.total-devices.summary.online;
   $('#deviceList').innerHTML=devices.devices.map(d=>'<div class="item"><div><strong>'+esc(d.name)+'</strong><div class="muted">'+esc(d.kind)+' · '+esc(d.id)+'</div></div><span class="tag '+(d.status==='online'?'online':'warning')+'">'+esc(d.status)+'</span></div>').join('');
+  $('#toolList').innerHTML=tools.tools.map(t=>'<div class="item"><div><strong>'+esc(t.name)+'</strong><div class="muted">'+esc(t.category)+' · '+esc(t.id)+'</div></div><span class="tag">'+esc(t.status)+'</span></div>').join('');
   $('#connectionList').innerHTML=connections.connections.map(c=>'<div class="item"><div><strong>'+esc(c.name)+'</strong><div class="muted">'+esc(c.category)+' · '+esc(c.transport)+'</div></div><span class="tag '+(c.configured?'online':'warning')+'">'+esc(c.status)+'</span></div>').join('');
  }catch(e){$('#status').textContent='indisponível';$('#result').textContent=e.message}
 }
+async function planMission(){
+ const objective=$('#missionObjective').value.trim();
+ const capabilities=$('#requiredCaps').value.split(',').map(x=>x.trim()).filter(Boolean);
+ if(!objective||!capabilities.length){$('#planResult').textContent='Informe objetivo e capacidades.';return}
+ $('#planResult').textContent='planejando…';
+ try{const data=await json(await fetch('/tools/plan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({objective,required_capabilities:capabilities})}));$('#planResult').textContent=JSON.stringify(data,null,2)}
+ catch(e){$('#planResult').textContent='Erro: '+e.message}
+}
+$('#planMission').onclick=planMission;
+$('#dispatchMission').onclick=async()=>{
+ const objective=$('#missionObjective').value.trim(),capabilities=$('#requiredCaps').value.split(',').map(x=>x.trim()).filter(Boolean);
+ if(!objective||!capabilities.length)return;
+ $('#dispatchMission').disabled=true;$('#planResult').textContent='selecionando recurso e executando…';
+ try{const data=await json(await fetch('/resources/dispatch',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({objective,required_capabilities:capabilities,approved:$('#missionApproved').checked})}));$('#planResult').textContent=JSON.stringify(data,null,2)}
+ catch(e){$('#planResult').textContent='Erro: '+e.message}
+ finally{$('#dispatchMission').disabled=false}
+};
+$('#discoverTool').onclick=async()=>{
+ const name=$('#toolName').value.trim(),source=$('#toolSource').value.trim();if(!name||!source)return;
+ try{const data=await json(await fetch('/tools/discover',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,source})}));$('#discoverResult').textContent='Descoberta registrada: '+JSON.stringify(data.candidate)}
+ catch(e){$('#discoverResult').textContent='Erro: '+e.message}
+};
+$('#voice').onclick=()=>{
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!SR){$('#result').textContent='Reconhecimento de voz não disponível neste navegador.';return}
+ const r=new SR();r.lang='pt-BR';r.interimResults=false;r.maxAlternatives=1;$('#result').textContent='ouvindo…';
+ r.onresult=e=>{$('#objective').value=e.results[0][0].transcript;$('#result').textContent='Comando recebido.'};r.onerror=e=>$('#result').textContent='Voz: '+e.error;r.start();
+};
 $('#run').onclick=async()=>{
  const objective=$('#objective').value.trim();if(!objective)return;
  $('#run').disabled=true;$('#result').textContent='Criando e executando…';
