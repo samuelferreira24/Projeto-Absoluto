@@ -76,3 +76,23 @@ def test_capability_session_is_persisted_and_reused():
         assert persisted.sessions["session"]["thread_id"] == "thread-123"
         orch.resume(work.id, "session")
         assert adapter.received == [None, "thread-123"]
+
+
+def test_provenance_has_identity_and_checkpoint(tmp_path):
+    from abs_core.continuity import OperationalContinuity
+
+    db = tmp_path / "abs.db"
+    continuity = OperationalContinuity(db, tmp_path / "continuity")
+    store = WorkStore(db)
+    registry = CapabilityRegistry()
+    registry.register(CapabilityRecord("echo", "Echo", "test", EchoCapability()))
+    orch = Orchestrator(registry, store, continuity=continuity)
+
+    work = orch.create("prove convergence")
+    completed = orch.run(work.id, "echo")
+    loaded = store.load(completed.id)
+
+    assert loaded.provenance[-1]["work_id"] == completed.id
+    assert loaded.provenance[-1]["capability_id"] == "echo"
+    assert loaded.provenance[-1]["state"] == "completed"
+    assert continuity.verify()["valid"] is True
