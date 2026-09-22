@@ -3,12 +3,14 @@ from __future__ import annotations
 import argparse
 import fcntl
 import os
+import subprocess
 import time
 from pathlib import Path
 
 from . import update_manager as um
 
 INTERVAL = int(os.getenv("ABS_UPDATE_INTERVAL", "60"))
+SERVICE = os.getenv("ABS_UPDATE_DAEMON_SERVICE", "abs-updater")
 LOCK_PATH = Path(os.getenv("ABS_UPDATE_LOCK", str(Path.home() / ".abs" / "update-daemon.lock"))).expanduser()
 LOG_PATH = Path(os.getenv("ABS_UPDATE_LOG", str(Path.home() / ".abs" / "update-daemon.log"))).expanduser()
 
@@ -38,6 +40,10 @@ def run_once() -> dict:
     try:
         applied = um.apply()
         _log(f"update result: {applied}")
+        try:
+            subprocess.run(["sv", "restart", SERVICE], cwd=um.REPO_DIR, check=True, timeout=30)
+        except Exception as exc:
+            _log(f"updater self-restart failed: {exc}")
         return {"checked": True, **applied}
     except Exception as exc:
         _log(f"update rejected/failed: {exc}")
