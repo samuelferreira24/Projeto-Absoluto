@@ -1,29 +1,59 @@
-# PACOTE DE CONTINUIDADE — PROJETO ABSOLUTO
+# CONTINUIDADE — PROJETO ABSOLUTO
 
-## Para o próximo chat
+## Função
 
-Este pacote é o ponto oficial de continuidade do Projeto Absoluto.
+Este diretório reúne os documentos usados para transferir contexto entre sessões e IAs.
 
-### Regra principal
+**Importante:** os documentos de continuidade são registros de contexto, não substituem o estado real do código, testes e evidências operacionais.
 
-**NÃO começar a construir o ABS ainda.**
+## Estado atual
 
-O projeto está na fase de investigação anterior à construção. O objetivo imediato é recuperar, através do Mini-Cérebro, o patrimônio histórico do antigo Sistema, especialmente o conteúdo do `sistema-absoluto.zip`, e descobrir o que pode ser reaproveitado, recriado, melhorado ou simplesmente preservado como conhecimento.
+O ABS V1 **está em construção**. Já existe uma fundação operacional significativa, mas a V1 não está concluída.
 
-### Ordem de leitura
+A continuidade atual deve ser lida sem confundir:
+- planejamento original;
+- estado atual implementado;
+- auditoria;
+- histórico;
+- handoff de uma sessão para outra.
 
-1. `01_ESTADO_ATUAL_PROJETO.md`
-2. `02_MODELO_ABS_E_PRINCIPIOS.md`
-3. `03_HISTORICO_SISTEMA_ANTIGO_E_MINI_CEREBRO.md`
-4. `04_PONTO_EXATO_DE_PARADA.md`
-5. `05_DECISOES_CORRECOES_E_REGRAS.md`
+## Ordem recomendada de leitura
 
-Depois, consultar os arquivos do diretório `cerebro/especificacao/` e do `mini-cerebro/` conforme necessário.
+1. `05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md` — estado operacional mais recente registrado.
+2. `05_handoffs/02_HANDOFF_NOVO_CHAT_ABS_V1_PLANEJAMENTO.md` — continuidade produzida a partir do planejamento original.
+3. `02_estado/01_ESTADO_ATUAL_PROJETO.md` — registro de estado da continuidade.
+4. `01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md` — modelo e princípios.
+5. `03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md` — decisões e correções registradas.
+6. `04_construcao/` — pontos de parada e handoffs ligados à construção.
+7. `99_legado/` — snapshots antigos; não tratar como estado atual.
 
-### O que o próximo chat deve fazer
+## Regra de interpretação
 
-Continuar a investigação de onde este pacote parou. Não reconstruir o projeto do zero, não transformar hipóteses em decisões e não iniciar uma arquitetura definitiva sem concluir a investigação histórica.
+Quando houver conflito entre um documento antigo e o estado atual:
 
-### Fonte de verdade
+**código atual + testes + CI + evidência operacional > documentação de continuidade antiga.**
 
-Este pacote registra o estado de continuidade. O repositório, os arquivos históricos e o Mini-Cérebro continuam sendo as fontes primárias de evidência.
+A continuidade serve para preservar contexto e evitar reconstrução desnecessária.
+
+## Regra para continuar a construção
+
+Antes de criar qualquer componente:
+
+1. localizar o que o planejamento original exige;
+2. verificar se já existe;
+3. verificar se está integrado;
+4. verificar testes e evidências;
+5. construir somente a lacuna comprovada.
+
+A próxima grande análise da V1 deve cruzar o planejamento original com a implementação atual e produzir uma matriz de completude.
+
+## Organização
+
+- `01_contexto/` — contexto e fundamentos.
+- `02_estado/` — registros de estado.
+- `03_decisoes/` — decisões, correções e regras.
+- `04_construcao/` — pontos de parada e continuidade da construção.
+- `05_handoffs/` — handoffs operacionais entre chats/IAs.
+- `99_legado/` — snapshots de continuidade antigos.
+
+**Não apagar o histórico apenas para deixar a estrutura limpa.** Organizar significa tornar explícito o papel de cada documento.
