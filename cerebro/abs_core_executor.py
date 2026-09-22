@@ -28,6 +28,20 @@ class AbsCoreExecutor:
         self.capability_id = capability_id
         self.approved = approved
 
+    def consultar_work(self, work_id: str) -> dict[str, Any]:
+        """Read back the authoritative ABS Core state for a Cerebro work."""
+        work = self.orchestrator.store.load(work_id)
+        return {
+            "work_id": work.id,
+            "objective": work.objective,
+            "state": work.state.value,
+            "capability_id": work.capability_id,
+            "result": work.result,
+            "provenance": work.provenance,
+            "events": [event.type for event in work.events],
+            "sessions": work.sessions,
+        }
+
     def executar(self, missao: Missao, caminho: Any) -> dict[str, Any]:
         context = {
             **missao.contexto,
