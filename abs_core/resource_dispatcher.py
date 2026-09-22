@@ -134,8 +134,9 @@ class ResourceDispatcher:
                 self._learn(capability.id, route.connection_id, work, True)
                 attempts.append(DispatchAttempt(route.connection_id, capability.id, "completed"))
                 return DispatchResult(work, route.connection_id, tuple(attempts))
+            detail = (work.result or {}).get("error") if isinstance(work.result, dict) else None
+            self._learn(capability.id, route.connection_id, work, False, detail)
             attempts.append(DispatchAttempt(
-                route.connection_id, capability.id, "failed",
-                (work.result or {}).get("error") if isinstance(work.result, dict) else None,
+                route.connection_id, capability.id, "failed", detail,
             ))
         return DispatchResult(work, None, tuple(attempts))
