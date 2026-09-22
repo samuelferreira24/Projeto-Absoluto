@@ -7,6 +7,8 @@ from .interface_runtime import InterfaceRuntime
 from .store import WorkStore
 from .api import serve
 from .tool_catalog import default_tool_knowledge
+from .tool_knowledge_store import ToolKnowledgeStore
+from .tool_learning import ToolLearningEngine
 
 
 def build_registry():
@@ -27,7 +29,10 @@ def main():
     interface_runtime = InterfaceRuntime()
     connections = ConnectionRegistry.defaults()
     tool_knowledge = default_tool_knowledge()
-    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime, connections=connections, tool_knowledge=tool_knowledge)
+    tool_store = ToolKnowledgeStore("abs.db")
+    tool_store.load_into(tool_knowledge)
+    tool_learning = ToolLearningEngine(tool_knowledge, tool_store)
+    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime, connections=connections, tool_knowledge=tool_knowledge, tool_learning=tool_learning)
 
 
 if __name__ == "__main__":
