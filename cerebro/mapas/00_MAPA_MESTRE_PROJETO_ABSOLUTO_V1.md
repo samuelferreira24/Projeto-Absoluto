@@ -110,6 +110,7 @@ Não devem ser usados automaticamente como arquitetura atual.
 | **TABULEIRO COMPLETO 72** | Universo de capacidades e relações | **ATUAL / ESTRATÉGICO** |
 | **QUADRO DE PENDÊNCIAS** | Lacunas e construção | **ATUAL / DINÂMICO** |
 | **PLANO REDE EVOLUTIVA** | Método de execução não linear | **ATUAL / MÉTODO** |
+| **QUADRO MESTRE STATUS V1 (2026-09-22)** | Estado real consolidado da V1 contra auditoria/código/testes | **ATUAL / FECHAMENTO V1** |
 | **ABS FUNDAÇÃO V1** | Contrato da fundação operacional | **ATUAL / OPERACIONAL** |
 | **STATUS CÉREBRO LIGADO** | Estado do Cérebro persistente | **ATUAL / ESTADO** |
 | **TRANSFERÊNCIA V1** | Pacote de continuidade | **SNAPSHOT / HISTÓRICO** |
