@@ -9,6 +9,8 @@ from .connections import ConnectionRegistry
 from .resource_router import ResourceRouteRequest, ResourceRouter
 from .tool_knowledge import ToolKnowledgeRegistry
 from .tool_discovery import ToolDiscovery, ToolDiscoveryCandidate
+from .tool_planner import ToolPlanner
+from .tool_learning import ToolLearningEngine
 from . import update_manager
 
 WEB_INDEX = Path(__file__).resolve().parent.parent / "20_interface" / "web" / "index.html"
@@ -24,6 +26,8 @@ class ABSHandler(BaseHTTPRequestHandler):
     connections: ConnectionRegistry | None = None
     tool_knowledge: ToolKnowledgeRegistry | None = None
     tool_discovery: ToolDiscovery | None = None
+    tool_planner: ToolPlanner | None = None
+    tool_learning: ToolLearningEngine | None = None
     started_at = time.time()
 
     def _send(self, status: int, payload: dict) -> None:
@@ -136,7 +140,33 @@ class ABSHandler(BaseHTTPRequestHandler):
             self._send(200, result)
             return
 
-        if self.path == "/tools/discover":
+        if self.path == "/tools/plan":
+            objective = str(data.get("objective") or "").strip()
+            capabilities = tuple(data.get("required_capabilities") or [])
+            if not objective or not capabilities:
+                self._send(400, {"error": "objective_and_required_capabilities_required"})
+                return
+            plans = self.tool_planner.plan(
+                objective,
+                capabilities,
+                preferred_categories=tuple(data.get("preferred_categories") or []),
+                require_configured=bool(data.get("require_configured", False)),
+                tool_id=data.get("tool_id"),
+            )
+            self._send(200, {"objective": objective, "plans": [
+                {
+                    "tool_id": plan.tool_id,
+                    "tool_name": plan.tool_name,
+                    "capabilities": list(plan.capabilities),
+                    "routes": list(plan.routes),
+                    "rationale": list(plan.rationale),
+                    "constraints": list(plan.constraints),
+                }
+                for plan in plans
+            ]})
+            return
+
+        if self.path == "/tools/learn":
             name = str(data.get("name") or "").strip()
             source = str(data.get("source") or "").strip()
             category = str(data.get("category") or "unknown").strip()
@@ -302,7 +332,7 @@ class ABSHandler(BaseHTTPRequestHandler):
 
 
 def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
-          resources=None, interface_runtime=None, connections=None, tool_knowledge=None, tool_discovery=None):
+          resources=None, interface_runtime=None, connections=None, tool_knowledge=None, tool_discovery=None, tool_planner=None, tool_learning=None):
     ABSHandler.orchestrator = orchestrator
     ABSHandler.registry = registry
     ABSHandler.resources = resources or ResourceManager()
@@ -310,6 +340,8 @@ def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
     ABSHandler.connections = connections or ConnectionRegistry.defaults()
     ABSHandler.tool_knowledge = tool_knowledge or ToolKnowledgeRegistry()
     ABSHandler.tool_discovery = tool_discovery or ToolDiscovery()
+    ABSHandler.tool_planner = tool_planner or ToolPlanner(ABSHandler.tool_knowledge, ResourceRouter(ABSHandler.connections))
+    ABSHandler.tool_learning = tool_learning or ToolLearningEngine(ABSHandler.tool_knowledge)
     ABSHandler.started_at = time.time()
     server = ThreadingHTTPServer((host, port), ABSHandler)
     server.serve_forever()
