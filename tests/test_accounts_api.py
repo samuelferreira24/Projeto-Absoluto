@@ -3,6 +3,7 @@ import threading
 from http.client import HTTPConnection
 
 from abs_core.accounts import AccountRegistry
+from abs_core.connections import ConnectionRegistry
 from abs_core.adapters import EchoCapability
 from abs_core.api import ABSHandler
 from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
@@ -18,6 +19,7 @@ def test_accounts_api_registers_multiple_accounts():
     ABSHandler.orchestrator = orchestrator
     ABSHandler.registry = registry
     ABSHandler.accounts = AccountRegistry(":memory:")
+    ABSHandler.connections = ConnectionRegistry.defaults()
 
     from http.server import ThreadingHTTPServer
     server = ThreadingHTTPServer(("127.0.0.1", 0), ABSHandler)
