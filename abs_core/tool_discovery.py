@@ -46,6 +46,33 @@ class ToolDiscovery:
             connection_hints=("https",),
         )
 
+    def transition(
+        self,
+        candidate: ToolDiscoveryCandidate,
+        *,
+        state: str,
+        evidence: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        """Advance discovery state only with explicit evidence for trust stages."""
+        allowed = {
+            "discovered": {"researched"},
+            "researched": {"validated"},
+            "validated": {"connected"},
+            "connected": {"tested"},
+            "tested": {"approved"},
+            "approved": {"usable"},
+            "usable": set(),
+        }
+        current = "discovered"
+        if evidence and isinstance(evidence.get("state"), str):
+            current = evidence["state"]
+        if state not in allowed.get(current, set()):
+            raise ValueError(f"invalid_tool_lifecycle_transition:{current}->{state}")
+        payload = self.from_candidate(candidate)
+        payload["state"] = state
+        payload["evidence"] = dict(evidence or {})
+        return payload
+
     def validate_candidate(
         self,
         candidate: ToolDiscoveryCandidate,
