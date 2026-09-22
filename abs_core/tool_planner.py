@@ -74,6 +74,7 @@ class ToolPlanner:
                 rationale=(
                     f"tool:{tool.id}",
                     f"status:{tool.status}",
+                    f"reliability:{tool.reliability():.3f}",
                     f"route:{routes[0].connection_id}",
                 ),
                 constraints=tuple(tool.constraints),
