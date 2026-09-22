@@ -40,6 +40,7 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 <button data-tab="devices">Dispositivos</button>
 <button data-tab="connections">Conexões</button>
 <button data-tab="accounts">Contas</button>
+<button data-tab="intelligence">Inteligências</button>
 <button data-tab="evolution">Evolução</button>
 </nav>
 <div class="card" style="margin-bottom:14px">
@@ -111,6 +112,38 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 </div>
 </section>
 
+<section id="intelligence" class="tab hidden">
+<div class="grid">
+<section class="card">
+<h2>Conversa com uma IA</h2>
+<p class="muted">Chat é um meio de interação do ABS. A inteligência usada pode ser trocada sem trocar o núcleo.</p>
+<label for="chatCapability">Inteligência</label>
+<select id="chatCapability"><option value="">automática</option></select>
+<div id="chatHistory" class="result" style="min-height:260px;margin-bottom:10px">Nenhuma conversa ainda.</div>
+<textarea id="chatInput" placeholder="Converse com a inteligência selecionada…"></textarea>
+<div class="row">
+<label class="check"><input type="checkbox" id="chatApproved"> autorizar uso de capacidade externa</label>
+<button class="primary" id="sendChat">Enviar</button>
+</div>
+</section>
+<section class="card">
+<h2>Sala de Inteligências</h2>
+<p class="muted">Experimento de colaboração entre múltiplas IAs disponíveis. Não é uma arquitetura de IA-pessoal ainda; é uma superfície de teste sobre as capacidades já conectadas.</p>
+<div id="roomCapabilities" class="cards"><div class="muted">carregando…</div></div>
+<label for="roomInput" style="margin-top:12px">Problema / pergunta</label>
+<textarea id="roomInput" placeholder="Coloque um problema para as inteligências analisarem."></textarea>
+<label class="check"><input type="checkbox" id="roomApproved"> autorizar uso de capacidades externas</label>
+<button class="primary" id="runRoom">Consultar selecionadas</button>
+<div id="roomResult" class="result" style="margin-top:12px">Nenhum experimento.</div>
+</section>
+</div>
+<div class="card" style="margin-top:14px">
+<h2>Ecossistema de inteligências</h2>
+<div id="intelligenceSummary" class="cards"></div>
+<div class="notice">Modelos, ferramentas e IA-pessoais são camadas diferentes. O ABS pode incorporar modelos existentes, combinar inteligências e futuramente criar IA-pessoais persistentes. Esta interface não declara essas camadas como implementadas antes da validação.</div>
+</div>
+</section>
+
 <section id="evolution" class="tab hidden">
 <div class="card"><h2>Evolução do ABS</h2><div id="updateState" class="result">carregando…</div>
 <div class="row"><button class="primary" id="checkUpdate">Verificar atualização</button><button class="primary" id="applyUpdate">Aplicar atualização</button><button class="primary" id="rollback">Rollback</button></div>
@@ -120,6 +153,9 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 <script>
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+let chatHistory=[];
+try{chatHistory=JSON.parse(localStorage.getItem('abs-chat-history')||'[]')}catch(_){chatHistory=[];}
+const aiCaps=()=>[...document.querySelectorAll('#capability option')].filter(o=>o.value && ['claude','gemini','openai-api','codex'].includes(o.value));
 const json=async r=>{const d=await r.json();if(!r.ok)throw new Error(d.detail||d.error||('HTTP '+r.status));return d};
 
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
@@ -144,6 +180,11 @@ async function refresh(){
   const health=await json(h), caps=await json(c), devices=await json(d), connections=await json(x), tools=await json(t), accounts=await json(a);
   $('#dot').classList.add('ok');$('#status').textContent=health.status+' · '+health.version;
   $('#capability').innerHTML='<option value="">automática</option>'+caps.capabilities.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.name)+'</option>').join('');
+  const intelligences=caps.capabilities.filter(c=>c.kind==='external_ai');
+  $('#chatCapability').innerHTML=intelligences.length ? intelligences.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.name)+'</option>').join('') : '<option value="">nenhuma IA externa</option>';
+  $('#roomCapabilities').innerHTML=intelligences.length ? intelligences.map(c=>'<label class="item" style="cursor:pointer"><span><strong>'+esc(c.name)+'</strong><div class="muted">'+esc(c.id)+'</div></span><input type="checkbox" class="room-ai" value="'+esc(c.id)+'"></label>').join('') : '<div class="muted">Nenhuma capacidade de IA externa está configurada neste nó.</div>';
+  $('#intelligenceSummary').innerHTML=intelligences.length ? intelligences.map(c=>'<div class="item"><div><strong>'+esc(c.name)+'</strong><div class="muted">capacidade operacional registrada</div></div><span class="tag online">conectada</span></div>').join('') : '<div class="muted">Nenhuma IA externa configurada. O ABS continua operacional com as demais capacidades.</div>';
+  renderChat();
   $('#capList').innerHTML=caps.capabilities.map(c=>'<div class="item"><div><strong>'+esc(c.name)+'</strong><div class="muted">'+esc(c.id)+'</div></div><span class="tag">'+esc(c.kind)+'</span></div>').join('');
   $('#dTotal').textContent=devices.summary.total;$('#dOnline').textContent=devices.summary.online;$('#dOther').textContent=devices.summary.total-devices.summary.online;
   $('#deviceList').innerHTML=devices.devices.map(d=>'<div class="item"><div><strong>'+esc(d.name)+'</strong><div class="muted">'+esc(d.kind)+' · '+esc(d.id)+'</div></div><span class="tag '+(d.status==='online'?'online':'warning')+'">'+esc(d.status)+'</span></div>').join('');
@@ -190,6 +231,49 @@ $('#run').onclick=async()=>{
  }catch(e){$('#result').textContent='Erro: '+e.message}
  finally{$('#run').disabled=false}
 };
+function renderChat(){
+ const box=$('#chatHistory');
+ if(!chatHistory.length){box.textContent='Nenhuma conversa ainda.';return;}
+ box.innerHTML=chatHistory.map(m=>'<div style="margin-bottom:12px"><strong>'+esc(m.role==='user'?'Você':m.name||'ABS')+'</strong><div style="margin-top:4px">'+esc(m.text)+'</div></div>').join('');
+ box.scrollTop=box.scrollHeight;
+}
+async function sendChat(){
+ const input=$('#chatInput').value.trim(); if(!input)return;
+ const capability=$('#chatCapability').value||null;
+ if(!capability){$('#chatHistory').textContent='Nenhuma capacidade de IA externa está configurada neste nó.';return;}
+ chatHistory.push({role:'user',text:input});
+ renderChat(); $('#chatInput').value=''; $('#sendChat').disabled=true;
+ try{
+  const created=await json(await fetch('/works',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({objective:input,context:{interface_mode:'chat',conversation:chatHistory.slice(-12)}})}));
+  const done=await json(await fetch('/works/'+created.id+'/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({capability_id:capability,approved:$('#chatApproved').checked})}));
+  const response=done.result?.result?.final_response || done.result?.result?.body || JSON.stringify(done.result?.result||done);
+  const selected=done.provenance?.[0]?.capability_name || capability || 'ABS';
+  chatHistory.push({role:'assistant',name:selected,text:response});
+  localStorage.setItem('abs-chat-history',JSON.stringify(chatHistory.slice(-40))); renderChat();
+ }catch(e){chatHistory.push({role:'assistant',name:'ABS',text:'Erro: '+e.message});renderChat();}
+ finally{$('#sendChat').disabled=false;}
+}
+$('#sendChat').onclick=sendChat;
+$('#chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();sendChat();} });
+
+async function runRoom(){
+ const objective=$('#roomInput').value.trim();
+ const selected=[...document.querySelectorAll('.room-ai:checked')].map(x=>x.value);
+ if(!objective||!selected.length){$('#roomResult').textContent='Informe o problema e selecione pelo menos uma IA.';return;}
+ $('#runRoom').disabled=true; $('#roomResult').textContent='consultando as inteligências…';
+ const results=[];
+ for(const capability_id of selected){
+  try{
+   const created=await json(await fetch('/works',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({objective,context:{interface_mode:'intelligence-room',room:selected,parallel_intent:true}})}));
+   const done=await json(await fetch('/works/'+created.id+'/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({capability_id,approved:$('#roomApproved').checked})}));
+   results.push({capability_id,result:done.result?.result||done.result,state:done.state});
+  }catch(e){results.push({capability_id,error:e.message});}
+  $('#roomResult').textContent=JSON.stringify(results,null,2);
+ }
+ $('#runRoom').disabled=false;
+}
+$('#runRoom').onclick=runRoom;
+
 if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
 refresh();
 refreshInterface();

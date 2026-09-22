@@ -33,5 +33,5 @@ def test_resource_manager_registers_local_device_and_remote_devices() -> None:
 
 def test_interface_exposes_tool_planning_discovery_and_voice_controls():
     html = Path("20_interface/web/index.html").read_text(encoding="utf-8")
-    for marker in ("/tools/knowledge", "/tools/plan", "/resources/dispatch", "/tools/discover", "SpeechRecognition"):
+    for marker in ("/tools/knowledge", "/tools/plan", "/resources/dispatch", "/tools/discover", "SpeechRecognition", "Conversa com uma IA", "Sala de Inteligências", "room-ai", "abs-chat-history"):
         assert marker in html
