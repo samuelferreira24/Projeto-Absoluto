@@ -559,7 +559,7 @@ document.querySelectorAll('[data-depth]').forEach(b=>b.onclick=()=>{
     status.textContent=m==='edit'?'Construção visual: o ABS real não é alterado.':m==='operate'?'Operação: ações reais exigem comando explícito.':'Exploração: nenhuma alteração é executada.';
     document.querySelectorAll('#absEditBar button').forEach(b=>b.disabled=m!=='edit');
   };
-  const select(n)=>{
+  const select=(n)=>{
     nodes().forEach(x=>x.classList.remove('selected'));
     const x=typeof n==='string'?document.getElementById(n):n;state.selected=x?.id||null;
     if(!x){ctx.classList.remove('open');return}
