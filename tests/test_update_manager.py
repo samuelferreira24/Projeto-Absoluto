@@ -12,7 +12,7 @@ def test_status_reads_commit(monkeypatch, tmp_path):
 
 def test_apply_refuses_dirty_tree(monkeypatch):
     monkeypatch.setattr(um, "_git", lambda *args: " M file" if args == ("status", "--porcelain") else "abc")
-    with pytest.raises(um.UpdateError, match="not clean"):
+    with pytest.raises(um.UpdateError, match="non-runtime changes"):
         um.apply()
 
 def test_state_round_trip(monkeypatch, tmp_path):
