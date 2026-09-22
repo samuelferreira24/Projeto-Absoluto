@@ -9,6 +9,8 @@ from .api import serve
 from .tool_catalog import default_tool_knowledge
 from .tool_knowledge_store import ToolKnowledgeStore
 from .tool_learning import ToolLearningEngine
+from .tool_planner import ToolPlanner
+from .resource_router import ResourceRouter
 import os
 
 
@@ -45,7 +47,7 @@ def main():
     tool_store = ToolKnowledgeStore("abs.db")
     tool_store.load_into(tool_knowledge)
     tool_learning = ToolLearningEngine(tool_knowledge, tool_store)
-    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime, connections=connections, tool_knowledge=tool_knowledge, tool_learning=tool_learning)
+    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime, connections=connections, tool_knowledge=tool_knowledge, tool_planner=ToolPlanner(tool_knowledge, ResourceRouter(connections)), tool_learning=tool_learning)
 
 
 if __name__ == "__main__":
