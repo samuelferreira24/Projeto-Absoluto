@@ -25,6 +25,7 @@ class AbsCoreExecutor:
         approved: bool = False,
     ) -> None:
         self.orchestrator = AbsOrchestrator(registry, store)
+        self.registry = registry
         self.capability_id = capability_id
         self.approved = approved
 
