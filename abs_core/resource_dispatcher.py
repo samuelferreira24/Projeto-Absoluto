@@ -5,6 +5,7 @@ from typing import Any
 
 from .capabilities import CapabilityRegistry
 from .models import Work
+from .orchestrator import Orchestrator
 from .resource_router import ResourceRouteRequest, ResourceRouter
 from .tool_knowledge import ToolKnowledgeRegistry
 from .tool_planner import ToolPlanner
@@ -52,6 +53,7 @@ class ResourceDispatcher:
         self.planner = planner
         self.capabilities = capabilities
         self.knowledge = knowledge
+        self.orchestrator = None
 
     def executable_capability_for(self, connection_id: str):
         capability_id = _CONNECTION_TO_CAPABILITY.get(connection_id)
@@ -77,3 +79,41 @@ class ResourceDispatcher:
             if capability is not None:
                 return route, capability
         raise LookupError("no_executable_resource_route_available")
+
+
+    def dispatch(
+        self,
+        objective: str,
+        request: ResourceRouteRequest,
+        *,
+        context: dict[str, Any] | None = None,
+        approved: bool = False,
+        orchestrator: Orchestrator | None = None,
+    ) -> DispatchResult:
+        orch = orchestrator or self.orchestrator
+        if orch is None:
+            raise RuntimeError("orchestrator_required")
+        work = orch.create(objective, context or {})
+        attempts: list[DispatchAttempt] = []
+        for route in self.router.rank(request):
+            capability = self.executable_capability_for(route.connection_id)
+            if capability is None:
+                attempts.append(DispatchAttempt(
+                    route.connection_id, None, "unavailable", "no_registered_capability"
+                ))
+                continue
+            try:
+                work = orch.run(work.id, capability.id, approved=approved)
+            except PermissionError as exc:
+                attempts.append(DispatchAttempt(
+                    route.connection_id, capability.id, "denied", str(exc)
+                ))
+                raise
+            if work.state.value == "completed":
+                attempts.append(DispatchAttempt(route.connection_id, capability.id, "completed"))
+                return DispatchResult(work, route.connection_id, tuple(attempts))
+            attempts.append(DispatchAttempt(
+                route.connection_id, capability.id, "failed",
+                (work.result or {}).get("error") if isinstance(work.result, dict) else None,
+            ))
+        return DispatchResult(work, None, tuple(attempts))
