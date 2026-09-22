@@ -373,3 +373,79 @@ A seleção de conta deve ser uma dimensão de planejamento e roteamento, e não
 A V1 agora possui o registro de múltiplas contas e a superfície de interface para visualização. A execução efetivamente autenticada por conta ainda exige adapters/credential providers capazes de receber a identidade selecionada sem recorrer a uma credencial global única.
 
 Esse último ponto é deliberadamente separado para não declarar como operacional algo que ainda não foi validado.
+
+
+## 18. Ecossistema de inteligências e pesquisa ABS × AGI
+
+A interface pode ser uma superfície de acesso ao ecossistema de inteligências do ABS. Isso não transforma o ABS em uma IA única nem define AGI como requisito do sistema.
+
+A arquitetura deve permanecer aberta para diferentes caminhos:
+
+- utilizar modelos e inteligências existentes;
+- combinar múltiplas IAs;
+- permitir que inteligências especializadas cooperem e se fiscalizem;
+- experimentar ambientes de múltiplas IAs;
+- incorporar uma eventual AGI como capacidade do ecossistema;
+- pesquisar se capacidades de inteligência geral podem surgir de uma composição de modelos, memória, ferramentas, planejamento, execução, aprendizado e supervisão;
+- futuramente criar IA-pessoais persistentes sobre modelos/molde adaptáveis.
+
+O número de inteligências controladoras não é fixo. A quantidade deve ser determinada pela necessidade, complexidade, especialização, risco e capacidade de supervisão. Qualquer quantidade registrada em um experimento é uma configuração daquele experimento, não um limite arquitetural.
+
+### Camadas conceituais
+
+```
+MODELO / MOTOR
+      ↓
+CAPACIDADE DE IA
+      ↓
+IA-PESSOAL (quando houver identidade persistente)
+      ↓
+ECOSSISTEMA DE INTELIGÊNCIAS
+      ↓
+MATRIZ DE CONTROLE / SUPERVISÃO
+      ↓
+ABS
+```
+
+Essas camadas não devem ser confundidas. Uma API de modelo não é uma IA-pessoal; uma IA-pessoal não é o ABS; uma AGI, caso exista como capacidade disponível, também não redefine o ABS.
+
+A pesquisa ABS × AGI permanece uma linha de investigação aberta. Hipóteses históricas, simulações e comparações devem ser preservadas como pesquisa até que experimentos forneçam evidência operacional.
+
+## 19. Interface de inteligência na V2
+
+A Web App pode oferecer:
+
+- conversa com uma inteligência selecionada;
+- troca entre inteligências disponíveis;
+- sala experimental para consultar múltiplas IAs;
+- comparação das respostas;
+- histórico local de conversa;
+- passagem de contexto para o ABS;
+- futura interação com IA-pessoais;
+- futuras experiências de pesquisa, debate, supervisão e criação de novas inteligências.
+
+A sala experimental não deve ser descrita como uma arquitetura multiagente completa. Na primeira implementação ela é uma superfície de orquestração sobre capacidades já disponíveis. A coordenação autônoma, memória própria das IA-pessoais, supervisão distribuída e criação de novas inteligências continuam sendo linhas de construção.
+
+## 20. Visão sem limite, implementação com evidência
+
+A interface deve permitir que novas descobertas alterem sua forma.
+
+```
+VISÃO
+↓
+PESQUISA
+↓
+HIPÓTESE
+↓
+EXPERIMENTO
+↓
+EVIDÊNCIA
+↓
+CAPACIDADE
+↓
+INTERFACE
+↓
+NOVA DESCOBERTA
+```
+
+Não limitar a interface ao que já existe hoje também não significa declarar capacidades futuras como prontas. A interface deve conseguir incorporar novos meios quando o ABS adquirir ou comprovar essas capacidades.
