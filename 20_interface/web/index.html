@@ -518,116 +518,102 @@ document.querySelectorAll('[data-depth]').forEach(b=>b.onclick=()=>{
   const map=document.getElementById('absMap');
   const space=document.getElementById('absSpace');
   if(!map||!space)return;
-  const dock=document.getElementById('absControlDock');
-  const ctx=document.getElementById('absContextPanel');
-  const pill=document.getElementById('absModePill');
-  const status=document.getElementById('absWorkspaceStatus');
-  const state={mode:localStorage.getItem('abs-ux-mode')||'explore',panelPinned:localStorage.getItem('abs-panel-pinned')==='1',selected:null,connectFirst:null,undo:[],redo:[]};
-  const modeNames={explore:'Explorar',edit:'Editar',operate:'Operar'};
-  const customKey='abs-workspace-v4';
-  const uid=()=> 'custom-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
-  const nodeEls=()=>[...space.querySelectorAll('.abs-node,.abs-core-node')];
-  const selected=()=>state.selected ? document.getElementById(state.selected) : null;
-  const setMode=(m)=>{
+  const dock=document.getElementById('absControlDock'),ctx=document.getElementById('absContextPanel');
+  const pill=document.getElementById('absModePill'),status=document.getElementById('absWorkspaceStatus');
+  const key='abs-workspace-v4';
+  const state={mode:localStorage.getItem('abs-ux-mode')||'explore',pinned:localStorage.getItem('abs-panel-pinned')==='1',selected:null,connectFrom:null,undo:[],redo:[]};
+  const names={explore:'Explorar',edit:'Editar',operate:'Operar'};
+  const uid=()=>`custom-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,7)}`;
+  const nodes=()=>[...space.querySelectorAll('.abs-node,.abs-core-node')];
+  const el=()=>state.selected?document.getElementById(state.selected):null;
+  const readNode=n=>({id:n.id,custom:n.classList.contains('abs-user-node'),focus:n.dataset.focus||'',name:n.querySelector('b,strong')?.textContent||'',desc:n.querySelector('small')?.textContent||'',x:n.dataset.x||'',y:n.dataset.y||'',scale:n.dataset.scale||'1',group:n.dataset.group||''});
+  const readState=()=>({nodes:nodes().map(readNode),links:[...space.querySelectorAll('.abs-user-link')].map(x=>({from:x.dataset.from,to:x.dataset.to}))});
+  const commit=()=>{localStorage.setItem(key,JSON.stringify(readState()));status.textContent='Ambiente salvo localmente.'};
+  const remember=()=>{state.undo.push(JSON.stringify(readState()));if(state.undo.length>40)state.undo.shift();state.redo=[]};
+  const applyNode(n,d){
+    if(!n)return;
+    const x=d.x||n.dataset.x||n.style.left||'46%';
+    const y=d.y||n.dataset.y||n.style.top||'42%';
+    n.dataset.x=x;n.dataset.y=y;n.dataset.scale=d.scale||'1';n.dataset.group=d.group||'';
+    n.style.left=x;n.style.top=y;n.style.transform=`scale(${Number(n.dataset.scale)||1})`;
+    n.dataset.focus=d.focus||n.dataset.focus||n.id;
+    const b=n.querySelector('b,strong'),s=n.querySelector('small');if(b)b.textContent=d.name||n.dataset.focus;if(s)s.textContent=d.desc||s.textContent;
+  }
+  const restore=raw=>{
+    let data;try{data=JSON.parse(raw)}catch(_){return}
+    if(Array.isArray(data))data={nodes:data,links:[]};
+    space.querySelectorAll('.abs-user-node').forEach(n=>n.remove());
+    (data.nodes||[]).forEach(d=>{
+      let n=document.getElementById(d.id);
+      if(!n&&d.custom){n=document.createElement('button');n.type='button';n.className='abs-node abs-user-node';n.id=d.id;n.dataset.custom='1';n.innerHTML='<b></b><small></small>';space.appendChild(n)}
+      if(n){n.className=d.custom?'abs-node abs-user-node':n.className;applyNode(n,d);bind(n)}
+    });
+    space.querySelectorAll('.abs-user-link').forEach(n=>n.remove());
+    (data.links||[]).forEach(l=>{const line=document.createElement('div');line.className='abs-user-link';line.dataset.from=l.from;line.dataset.to=l.to;space.appendChild(line)});
+    select(state.selected);drawLinks();
+  };
+  const save=()=>commit();
+  const setMode=m=>{
     state.mode=m;localStorage.setItem('abs-ux-mode',m);document.body.classList.toggle('abs-editing',m==='edit');document.body.classList.toggle('abs-operating',m==='operate');
-    pill.textContent=modeNames[m];
-    document.querySelectorAll('[data-uxmode]').forEach(b=>b.classList.toggle('active',b.dataset.uxmode===m));
-    status.textContent=m==='edit'?'Modo construção: alterações são apenas visuais neste estágio.':m==='operate'?'Modo operação: ações reais exigem comando explícito.':'Ambiente em exploração; nenhum objeto é alterado.';
+    pill.textContent=names[m];document.querySelectorAll('[data-uxmode]').forEach(b=>b.classList.toggle('active',b.dataset.uxmode===m));
+    status.textContent=m==='edit'?'Construção visual: o ABS real não é alterado.':m==='operate'?'Operação: ações reais exigem comando explícito.':'Exploração: nenhuma alteração é executada.';
     document.querySelectorAll('#absEditBar button').forEach(b=>b.disabled=m!=='edit');
   };
-  const snapshot=()=>JSON.stringify({nodes:nodeEls().map(n=>({id:n.id||'',custom:n.classList.contains('abs-user-node'),focus:n.dataset.focus||'',name:n.querySelector('b,strong')?.textContent||'',desc:n.querySelector('small')?.textContent||'',className:n.className,style:n.getAttribute('style')||'',hidden:n.hidden,scale:n.dataset.scale||''})),links:[...space.querySelectorAll('.abs-user-link')].map(l=>({from:l.dataset.from,to:l.dataset.to}))});
-  const pushUndo=()=>{state.undo.push(snapshot());if(state.undo.length>40)state.undo.shift();state.redo=[];};
-  const restore=(raw)=>{
-    if(!raw)return;
-    [...space.querySelectorAll('.abs-user-node')].forEach(n=>n.remove());
-    let data;try{data=JSON.parse(raw)}catch(_){return}
-    const items=Array.isArray(data)?data:data.nodes||[];
-    items.forEach(d=>{
-      let n=d.id?document.getElementById(d.id):null;
-      if(!n && d.custom){n=document.createElement('button');n.type='button';n.className='abs-node abs-user-node';n.id=d.id||uid();n.dataset.custom='1';n.innerHTML='<b></b><small></small>';space.appendChild(n)}
-      if(!n)return;
-      n.className=d.className;n.dataset.focus=d.focus||n.dataset.focus||n.id;n.setAttribute('style',d.style||'');n.hidden=!!d.hidden;
-      const b=n.querySelector('b,strong');const s=n.querySelector('small,span');if(b)b.textContent=d.name||n.dataset.focus;if(s&&s!==n.querySelector('.abs-core-node span'))s.textContent=d.desc||'estrutura visual';
-      bindNode(n);
-    });
-    space.querySelectorAll('.abs-user-link').forEach(l=>l.remove());
-    (Array.isArray(data?.links)?data.links:[]).forEach(l=>{const link=document.createElement('div');link.className='abs-user-link';link.dataset.from=l.from;link.dataset.to=l.to;space.appendChild(link)});
-    selectNode(state.selected);
-    drawLinks();
+  const select(n)=>{
+    nodes().forEach(x=>x.classList.remove('selected'));
+    const x=typeof n==='string'?document.getElementById(n):n;state.selected=x?.id||null;
+    if(!x){ctx.classList.remove('open');return}
+    x.classList.add('selected');const b=x.querySelector('b,strong'),s=x.querySelector('small');
+    document.getElementById('absContextTitle').textContent=x.dataset.focus||b?.textContent||'Objeto';
+    document.getElementById('absObjectName').value=b?.textContent||x.dataset.focus||'';
+    document.getElementById('absObjectDesc').value=s?.textContent||'';ctx.classList.add('open');dock.classList.add('open');
   };
-  const save=()=>{localStorage.setItem(customKey,snapshot());status.textContent='Ambiente salvo localmente.'};
-  const load=()=>{const raw=localStorage.getItem(customKey);if(raw)restore(raw)};
-  const selectNode=(n)=>{
-    nodeEls().forEach(x=>x.classList.remove('selected'));
-    const el=typeof n==='string'?document.getElementById(n):n;
-    state.selected=el?.id||null;
-    if(el){el.classList.add('selected');openContext(el)}
-    else ctx.classList.remove('open');
+  const create=()=>{
+    setMode('edit');remember();
+    const n=document.createElement('button');n.type='button';n.className='abs-node abs-user-node';n.id=uid();n.dataset.custom='1';n.dataset.focus='Nova área';n.innerHTML='<b>Nova área</b><small>estrutura visual</small>';n.dataset.x='46%';n.dataset.y='42%';n.style.left=n.dataset.x;n.style.top=n.dataset.y;space.appendChild(n);bind(n);select(n);commit();
   };
-  const openContext=(el)=>{
-    const b=el.querySelector('b,strong'),s=el.querySelector('small');
-    document.getElementById('absContextTitle').textContent=el.dataset.focus||b?.textContent||'Objeto';
-    document.getElementById('absObjectName').value=b?.textContent||el.dataset.focus||'';
-    document.getElementById('absObjectDesc').value=s?.textContent||'';
-    ctx.classList.add('open');
-    if(!state.panelPinned && state.mode==='explore')dock.classList.add('open');
-  };
-  const applyEdit=()=>{
-    const el=selected();if(!el)return;
-    pushUndo();
-    const name=document.getElementById('absObjectName').value.trim()||'Objeto';
-    const desc=document.getElementById('absObjectDesc').value.trim();
-    const b=el.querySelector('b,strong'),s=el.querySelector('small');
-    if(b)b.textContent=name;if(s)s.textContent=desc;
-    el.dataset.focus=name;
-    status.textContent='Alteração visual aplicada.';
-    save();drawLinks();
-  };
-  const createNode=()=>{
-    setMode('edit');pushUndo();
-    const n=document.createElement('button');n.type='button';n.className='abs-node abs-user-node';n.id=uid();n.dataset.custom='1';n.dataset.focus='Nova área';
-    n.style.left='46%';n.style.top='42%';n.innerHTML='<b>Nova área</b><small>estrutura visual</small>';space.appendChild(n);bindNode(n);selectNode(n);save();
-  };
-  const duplicate=()=>{const el=selected();if(!el)return;pushUndo();const n=el.cloneNode(true);n.id=uid();n.dataset.custom='1';n.classList.add('abs-user-node');n.classList.remove('selected');n.style.transform=(el.style.transform||'')+' translate(28px,28px)';space.appendChild(n);bindNode(n);selectNode(n);save();drawLinks()};
-  const remove=()=>{const el=selected();if(!el||!el.classList.contains('abs-user-node')){status.textContent='Objetos estruturais do ABS não são removidos pela edição visual.';return}pushUndo();el.remove();state.selected=null;ctx.classList.remove('open');save();drawLinks()};
-  const resize=()=>{const el=selected();if(!el)return;pushUndo();const current=parseFloat(el.dataset.scale||'1');const next=current>=1.35?.8:current+.2;el.dataset.scale=next;el.style.transform='scale('+next+')';save()};
-  const connect=()=>{if(!selected()){status.textContent='Selecione o primeiro objeto.';return}if(!state.connectFirst){state.connectFirst=selected().id;status.textContent='Primeiro objeto marcado. Selecione o segundo.';return}const second=selected();if(second.id===state.connectFirst)return;pushUndo();const a=document.getElementById(state.connectFirst);if(a&&second){const link=document.createElement('div');link.className='abs-user-link';link.dataset.from=a.id;link.dataset.to=second.id;space.appendChild(link)}state.connectFirst=null;save();drawLinks();status.textContent='Conexão visual criada.'};
-  const drawLinks=()=>{space.querySelectorAll('.abs-user-link').forEach(l=>{const a=document.getElementById(l.dataset.from),b=document.getElementById(l.dataset.to);if(!a||!b){l.remove();return}const ar=a.getBoundingClientRect(),br=b.getBoundingClientRect(),mr=map.getBoundingClientRect();const x=ar.left+ar.width/2-mr.left,y=ar.top+ar.height/2-mr.top,x2=br.left+br.width/2-mr.left,y2=br.top+br.height/2-mr.top;const dx=x2-x,dy=y2-y;l.style.left=x+'px';l.style.top=y+'px';l.style.width=Math.hypot(dx,dy)+'px';l.style.transform='rotate('+Math.atan2(dy,dx)+'rad)';})};
-  const bindNode=(n)=>{
+  const bind=n=>{
     if(n.dataset.absBound)return;n.dataset.absBound='1';
-    n.addEventListener('click',e=>{e.stopPropagation();selectNode(n)});
+    n.addEventListener('click',e=>{e.stopPropagation();select(n)});
     n.addEventListener('pointerdown',e=>{
-      if(state.mode!=='edit')return;
-      e.stopPropagation();n.setPointerCapture?.(e.pointerId);const before=snapshot(),startX=e.clientX,startY=e.clientY,base=n.style.transform||'',scale=1;
-      const move=ev=>{n.style.transform=base+' translate('+((ev.clientX-startX)/scale)+'px,'+((ev.clientY-startY)/scale)+'px)';drawLinks()};
-      const up=()=>{n.releasePointerCapture?.(e.pointerId);n.removeEventListener('pointermove',move);n.removeEventListener('pointerup',up);state.undo.push(before);if(state.undo.length>40)state.undo.shift();state.redo=[];save()};
+      if(state.mode!=='edit')return;e.stopPropagation();n.setPointerCapture?.(e.pointerId);
+      const before=JSON.stringify(readState()),sx=e.clientX,sy=e.clientY,bx=parseFloat(n.dataset.x)||46,by=parseFloat(n.dataset.y)||42;
+      const move=ev=>{n.dataset.x=(bx+(ev.clientX-sx)/Math.max(1,map.clientWidth)*100)+'%';n.dataset.y=(by+(ev.clientY-sy)/Math.max(1,map.clientHeight)*100)+'%';n.style.left=n.dataset.x;n.style.top=n.dataset.y;drawLinks()};
+      const up=()=>{n.releasePointerCapture?.(e.pointerId);n.removeEventListener('pointermove',move);n.removeEventListener('pointerup',up);state.undo.push(before);if(state.undo.length>40)state.undo.shift();state.redo=[];commit()};
       n.addEventListener('pointermove',move);n.addEventListener('pointerup',up);
     });
   };
-  nodeEls().forEach(bindNode);
+  const edit=()=>{
+    const n=el();if(!n)return;setMode('edit');remember();
+    const name=document.getElementById('absObjectName').value.trim()||'Objeto',desc=document.getElementById('absObjectDesc').value.trim();
+    const b=n.querySelector('b,strong'),s=n.querySelector('small');if(b)b.textContent=name;if(s)s.textContent=desc;n.dataset.focus=name;commit();
+  };
+  const duplicate=()=>{const n=el();if(!n)return;remember();const d=readNode(n);d.id=uid();d.custom=true;d.name=d.name+' cópia';d.x=((parseFloat(d.x)||46)+5)+'%';d.y=((parseFloat(d.y)||42)+5)+'%';const c=n.cloneNode(true);c.id=d.id;c.classList.add('abs-user-node');c.dataset.custom='1';space.appendChild(c);applyNode(c,d);bind(c);select(c);commit()};
+  const remove=()=>{const n=el();if(!n||!n.classList.contains('abs-user-node')){status.textContent='Objetos estruturais do ABS não são removidos pela edição visual.';return}remember();space.querySelectorAll(`.abs-user-link[data-from="${n.id}"],.abs-user-link[data-to="${n.id}"]`).forEach(x=>x.remove());n.remove();state.selected=null;ctx.classList.remove('open');commit();drawLinks()};
+  const resize=()=>{const n=el();if(!n)return;remember();const s=Number(n.dataset.scale||1),next=s>=1.35?.8:s+.2;n.dataset.scale=String(next);n.style.transform=`scale(${next})`;commit()};
+  const connect=()=>{
+    const n=el();if(!n){status.textContent='Selecione um objeto.';return}
+    if(!state.connectFrom){state.connectFrom=n.id;status.textContent='Primeiro objeto marcado. Selecione o segundo.';return}
+    if(state.connectFrom===n.id)return;
+    remember();const line=document.createElement('div');line.className='abs-user-link';line.dataset.from=state.connectFrom;line.dataset.to=n.id;space.appendChild(line);state.connectFrom=null;commit();drawLinks();status.textContent='Conexão visual criada.';
+  };
+  const drawLinks=()=>space.querySelectorAll('.abs-user-link').forEach(l=>{const a=document.getElementById(l.dataset.from),b=document.getElementById(l.dataset.to);if(!a||!b){l.remove();return}const ar=a.getBoundingClientRect(),br=b.getBoundingClientRect(),mr=map.getBoundingClientRect(),x=ar.left+ar.width/2-mr.left,y=ar.top+ar.height/2-mr.top,x2=br.left+br.width/2-mr.left,y2=br.top+br.height/2-mr.top;l.style.left=x+'px';l.style.top=y+'px';l.style.width=Math.hypot(x2-x,y2-y)+'px';l.style.transform=`rotate(${Math.atan2(y2-y,x2-x)}rad)`});
+  const undo=()=>{const p=state.undo.pop();if(!p)return;state.redo.push(JSON.stringify(readState()));restore(p);status.textContent='Desfeito.'};
+  const redo=()=>{const p=state.redo.pop();if(!p)return;state.undo.push(JSON.stringify(readState()));restore(p);status.textContent='Refeito.'};
   document.querySelectorAll('[data-uxmode]').forEach(b=>b.onclick=()=>setMode(b.dataset.uxmode));
-  document.getElementById('absPanelOpen').onclick=()=>{dock.classList.add('open');ctx.classList.add('open');if(!selected())document.getElementById('absContextTitle').textContent='Painel do ambiente';};
-  document.getElementById('absDockPin').onclick=()=>{state.panelPinned=!state.panelPinned;localStorage.setItem('abs-panel-pinned',state.panelPinned?'1':'0');dock.classList.toggle('open',state.panelPinned||!!state.selected);document.getElementById('absDockPin').textContent=state.panelPinned?'Desafixar':'Fixar'};
-  document.getElementById('absDockClose').onclick=()=>{if(!state.panelPinned)dock.classList.remove('open');ctx.classList.remove('open')};
-  document.getElementById('absCreate').onclick=createNode;document.getElementById('absEditCreate').onclick=createNode;
-  document.getElementById('absEdit').onclick=()=>{setMode('edit');if(selected())openContext(selected())};
-  document.getElementById('absDuplicate').onclick=duplicate;document.getElementById('absDelete').onclick=remove;document.getElementById('absResize').onclick=resize;
-  document.getElementById('absConnect').onclick=connect;document.getElementById('absEditConnect').onclick=connect;
-  document.getElementById('absGroup').onclick=()=>{const el=selected();if(!el)return;pushUndo();el.dataset.group=el.dataset.group?'':'grupo-1';status.textContent=el.dataset.group?'Objeto agrupado visualmente.':'Grupo removido.';save()};
-  const undo=()=>{const current=snapshot();const prev=state.undo.pop();if(!prev)return;state.redo.push(current);restore(prev);status.textContent='Desfeito.'};
-  const redo=()=>{const current=snapshot();const next=state.redo.pop();if(!next)return;state.undo.push(current);restore(next);status.textContent='Refeito.'};
+  document.getElementById('absPanelOpen').onclick=()=>dock.classList.add('open');
+  document.getElementById('absDockPin').onclick=()=>{state.pinned=!state.pinned;localStorage.setItem('abs-panel-pinned',state.pinned?'1':'0');dock.classList.toggle('open',state.pinned);document.getElementById('absDockPin').textContent=state.pinned?'Desafixar':'Fixar'};
+  document.getElementById('absDockClose').onclick=()=>{if(!state.pinned)dock.classList.remove('open');ctx.classList.remove('open')};
+  document.getElementById('absCreate').onclick=create;document.getElementById('absEditCreate').onclick=create;document.getElementById('absEdit').onclick=edit;
+  document.getElementById('absDuplicate').onclick=duplicate;document.getElementById('absDelete').onclick=remove;document.getElementById('absResize').onclick=resize;document.getElementById('absConnect').onclick=connect;document.getElementById('absEditConnect').onclick=connect;
+  document.getElementById('absGroup').onclick=()=>{const n=el();if(!n)return;remember();n.dataset.group=n.dataset.group?'':'grupo-1';commit();status.textContent=n.dataset.group?'Agrupado visualmente.':'Grupo removido.'};
   document.getElementById('absUndo').onclick=undo;document.getElementById('absRedo').onclick=redo;document.getElementById('absEditUndo').onclick=undo;document.getElementById('absEditRedo').onclick=redo;
-  document.getElementById('absSave').onclick=save;document.getElementById('absResetWorkspace').onclick=()=>{localStorage.removeItem(customKey);location.reload()};
-  document.getElementById('absContextCancel').onclick=()=>ctx.classList.remove('open');document.getElementById('absContextSave').onclick=applyEdit;
-  document.getElementById('absEditDone').onclick=()=>{setMode('explore');ctx.classList.remove('open')};
-  map.addEventListener('click',e=>{if(e.target===map&&!state.panelPinned){selectNode(null);dock.classList.remove('open')}});
-  document.addEventListener('keydown',e=>{
-    const mod=e.ctrlKey||e.metaKey;
-    if(mod&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo()}
-    if(e.key==='Escape'){state.connectFirst=null;ctx.classList.remove('open');if(!state.panelPinned)dock.classList.remove('open');if(state.mode==='edit')setMode('explore')}
-  });
-  setMode(state.mode);dock.classList.toggle('open',state.panelPinned);document.getElementById('absDockPin').textContent=state.panelPinned?'Desafixar':'Fixar';load();
-  window.addEventListener('resize',drawLinks);setInterval(drawLinks,700);
+  document.getElementById('absSave').onclick=save;document.getElementById('absResetWorkspace').onclick=()=>{localStorage.removeItem(key);location.reload()};
+  document.getElementById('absContextCancel').onclick=()=>ctx.classList.remove('open');document.getElementById('absContextSave').onclick=edit;document.getElementById('absEditDone').onclick=()=>setMode('explore');
+  map.addEventListener('click',e=>{if(e.target===map&&!state.pinned){select(null);dock.classList.remove('open')}});
+  document.addEventListener('keydown',e=>{const mod=e.ctrlKey||e.metaKey;if(mod&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo()}if(e.key==='Escape'){state.connectFrom=null;ctx.classList.remove('open');if(state.mode==='edit')setMode('explore')}});
+  nodes().forEach(bind);setMode(state.mode);dock.classList.toggle('open',state.pinned);document.getElementById('absDockPin').textContent=state.pinned?'Desafixar':'Fixar';
+  const raw=localStorage.getItem(key);if(raw)restore(raw);window.addEventListener('resize',drawLinks);setInterval(drawLinks,700);
 })();
 </script>
 </body>
