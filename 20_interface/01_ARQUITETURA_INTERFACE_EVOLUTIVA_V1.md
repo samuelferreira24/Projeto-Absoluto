@@ -449,3 +449,97 @@ NOVA DESCOBERTA
 ```
 
 Não limitar a interface ao que já existe hoje também não significa declarar capacidades futuras como prontas. A interface deve conseguir incorporar novos meios quando o ABS adquirir ou comprovar essas capacidades.
+
+
+## 21. Ambiente interativo, painéis e construção
+
+A interface possui duas formas de apresentar o controle:
+
+1. **Painel contextual** — aparece associado ao objeto ou área selecionada dentro da experiência interativa.
+2. **Painel fixo** — permanece disponível para comandos recorrentes, independentemente do foco atual.
+
+A navegação visual e os painéis são complementares:
+
+```
+MAPA
+ ↓
+FOCO
+ ↓
+PAINEL CONTEXTUAL
+ ↓
+AÇÃO
+```
+
+O usuário também pode manter o painel fixo quando quiser operar por controles diretos.
+
+### Modos de interação
+
+```
+EXPLORAR
+   ↓
+EDITAR / CONSTRUIR
+   ↓
+OPERAR
+```
+
+- **Explorar:** navegar, aproximar, afastar e selecionar sem modificar o ambiente.
+- **Editar/Construir:** reorganizar a representação visual do ambiente.
+- **Operar:** executar ações reais do ABS por comandos explícitos e pelos contratos operacionais existentes.
+
+Uma alteração visual não deve ser interpretada automaticamente como alteração do sistema real.
+
+### Ferramentas do ambiente
+
+A superfície de construção pode oferecer:
+
+- criar;
+- editar;
+- mover;
+- duplicar;
+- remover;
+- redimensionar;
+- conectar;
+- agrupar;
+- desfazer;
+- refazer;
+- salvar;
+- restaurar.
+
+Na primeira implementação dessas ferramentas, a persistência é do **workspace visual da interface**, não de uma alteração estrutural do ABS Core. Capacidades futuras poderão promover determinadas operações para ações reais quando existir contrato, teste, autorização e persistência apropriados.
+
+### Personalização
+
+O ambiente pode possuir layouts diferentes para diferentes finalidades:
+
+- operação;
+- pesquisa;
+- desenvolvimento;
+- monitoramento;
+- inteligências;
+- projetos;
+- ambientes definidos pelo Imperador.
+
+A personalização da visualização não altera a identidade ou a arquitetura do ABS. Ela altera a forma de acessar e organizar a experiência.
+
+### Reversibilidade
+
+Toda alteração visual significativa deve ser reversível sempre que possível.
+
+```
+AÇÃO
+ ↓
+ESTADO ANTERIOR
+ ↓
+DESFAZER
+ ↓
+REFAZER
+```
+
+A interface deve preservar liberdade de exploração sem transformar uma manipulação acidental em mudança operacional irreversível.
+
+### Interação direta com alternativas
+
+Arrastar, zoom, toque e gestos são meios de interação, não os únicos meios. A interface deve manter controles explícitos e, quando aplicável, atalhos de teclado para as mesmas operações.
+
+Essa regra prepara a experiência para múltiplos dispositivos e para futura evolução 2D → 2.5D → 3D → espacial.
+
