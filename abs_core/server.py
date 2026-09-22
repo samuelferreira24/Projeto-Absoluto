@@ -38,7 +38,7 @@ def main():
     resources = ResourceManager()
     interface_runtime = InterfaceRuntime()
     connections = ConnectionRegistry.defaults()
-    accounts = AccountRegistry()
+    accounts = AccountRegistry(os.getenv("ABS_DB_PATH", "abs.db"))
     for module_name, class_name, capability_id, name, env_name in (
         (".ai_adapters", "ClaudeCapability", "claude", "Anthropic Claude API", "ANTHROPIC_API_KEY"),
         (".ai_adapters", "GeminiCapability", "gemini", "Google Gemini API", "GEMINI_API_KEY"),
