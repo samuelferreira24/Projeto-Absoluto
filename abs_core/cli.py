@@ -27,6 +27,11 @@ def build():
                 registry.register(CapabilityRecord(capability_id, name, kind, capability))
             except Exception:
                 pass
+    try:
+        from .internet_adapter import InternetHTTPCapability
+        registry.register(CapabilityRecord("internet-http", "Internet HTTP", "network", InternetHTTPCapability()))
+    except Exception:
+        pass
     db_path = os.getenv("ABS_DB_PATH", "abs.db")
     store = WorkStore(db_path)
     store.recover_interrupted()

@@ -19,6 +19,11 @@ def build_registry():
     registry = CapabilityRegistry()
     registry.register(CapabilityRecord("echo", "Echo test capability", "test", EchoCapability()))
     try:
+        from .internet_adapter import InternetHTTPCapability
+        registry.register(CapabilityRecord("internet-http", "Internet HTTP", "network", InternetHTTPCapability()))
+    except Exception:
+        pass
+    try:
         from .codex_adapter import CodexCapability
         registry.register(CapabilityRecord("codex", "OpenAI Codex", "external_ai", CodexCapability()))
     except Exception:

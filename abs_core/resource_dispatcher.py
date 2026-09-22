@@ -16,6 +16,7 @@ _CONNECTION_TO_CAPABILITY = {
     "claude-api": "claude",
     "gemini-api": "gemini",
     "openai-api": "openai-api",
+    "internet-http": "internet-http",
 }
 
 
