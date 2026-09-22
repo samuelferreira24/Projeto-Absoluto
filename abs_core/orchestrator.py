@@ -61,6 +61,9 @@ class Orchestrator:
                 "state": work.state.value,
                 "result_type": result.get("type") if isinstance(result, dict) else type(result).__name__,
                 "context_keys": sorted(work.context.keys()),
+                "mission_id": work.context.get("cerebro_missao_id"),
+                "cycle_id": (work.context.get("_execucao") or {}).get("ciclo_id"),
+                "idempotency_key": (work.context.get("_execucao") or {}).get("idempotency_key"),
             })
             work.emit("work.completed", capability_id=cap.id)
         except Exception as exc:
