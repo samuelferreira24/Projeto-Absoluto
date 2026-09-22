@@ -15,6 +15,18 @@ def build():
         registry.register(CapabilityRecord("codex", "OpenAI Codex CLI", "external_ai", CodexCapability()))
     except Exception:
         pass
+    for module_name, class_name, capability_id, name, kind, env_name in (
+        (".ai_adapters", "ClaudeCapability", "claude", "Anthropic Claude API", "external_ai", "ANTHROPIC_API_KEY"),
+        (".ai_adapters", "GeminiCapability", "gemini", "Google Gemini API", "external_ai", "GEMINI_API_KEY"),
+        (".openai_adapter", "OpenAICapability", "openai-api", "OpenAI API", "external_ai", "OPENAI_API_KEY"),
+    ):
+        if os.getenv(env_name):
+            try:
+                module = __import__(module_name, package=__package__, fromlist=[class_name])
+                capability = getattr(module, class_name)()
+                registry.register(CapabilityRecord(capability_id, name, kind, capability))
+            except Exception:
+                pass
     db_path = os.getenv("ABS_DB_PATH", "abs.db")
     store = WorkStore(db_path)
     store.recover_interrupted()
