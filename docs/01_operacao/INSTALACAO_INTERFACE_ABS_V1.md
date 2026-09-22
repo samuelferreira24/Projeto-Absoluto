@@ -58,3 +58,32 @@ Depois da primeira interface instalada, ela passa a ser uma nova superfície par
 Fluxo:
 
 Imperador → Interface → ABS → planejamento → execução → teste → atualização → nova versão
+
+
+## Evolução da interface — superfície de inteligências
+
+A atualização da Web App acrescenta uma superfície de **Inteligências** sem substituir as capacidades anteriores.
+
+A interface passa a permitir:
+- conversar com uma capacidade de IA já operacional no ABS;
+- selecionar a inteligência utilizada;
+- manter histórico local da conversa;
+- consultar múltiplas inteligências em uma Sala de Inteligências experimental;
+- visualizar o ecossistema de inteligências disponível.
+
+Esta etapa não significa que IA-pessoal, multiagente completo ou AGI já estejam implementados. A interface expõe somente capacidades efetivamente disponíveis no nó.
+
+### Atualização de uma instalação existente
+
+Depois da integração da nova versão na `main`:
+
+```bash
+cd ~/Projeto-Absoluto
+git pull
+sv restart abs
+curl -s http://127.0.0.1:8787/health
+```
+
+Depois, abra novamente a Web App. O serviço deve estar executando o commit atualizado e a aba **Inteligências** deve aparecer.
+
+Não remover `abs.db`: ele contém estado operacional persistente.
