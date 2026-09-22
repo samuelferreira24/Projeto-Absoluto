@@ -55,3 +55,14 @@ O inventário atual de modos e tecnologias não é fechado: novas necessidades d
 A Web App também expõe o registro de contas do ABS. O sistema pode manter várias contas do mesmo serviço, cada uma associada a uma identidade lógica e a uma conexão. A interface não exibe segredos. O cadastro persistido guarda apenas referência à credencial externa.
 
 Isso permite que ChatGPT, GitHub, Claude, Gemini e outros serviços tenham múltiplas contas sem transformar uma conta específica no núcleo do ABS.
+
+
+## Inteligências
+
+A interface agora possui uma primeira superfície operacional para conversar com capacidades de IA externas já registradas no ABS e para consultar múltiplas dessas capacidades em uma **Sala de Inteligências** experimental.
+
+Isso não significa que o ABS já possua IA-pessoais, uma arquitetura multiagente completa ou AGI. A superfície usa as capacidades disponíveis e mantém essas futuras camadas separadas.
+
+A quantidade de IAs controladoras não é fixa. Ela deve crescer ou diminuir conforme necessidade, especialização, risco e capacidade de supervisão.
+
+A pesquisa ABS × AGI permanece aberta: AGI pode ser uma capacidade incorporada ao ABS, enquanto também permanece em investigação a possibilidade de alcançar maior generalidade por composição e evolução do próprio ecossistema.
