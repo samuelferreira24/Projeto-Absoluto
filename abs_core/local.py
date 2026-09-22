@@ -8,6 +8,7 @@ from .cli import build
 from .resources import ResourceManager
 from .interface_runtime import InterfaceRuntime
 from .connections import ConnectionRegistry
+from .accounts import AccountRegistry
 
 HOST = os.getenv("ABS_HOST", "127.0.0.1")
 PORT = int(os.getenv("ABS_PORT", "8787"))
@@ -25,6 +26,7 @@ class LocalABS:
         self.resources = ResourceManager()
         self.interface_runtime = InterfaceRuntime()
         self.connections = ConnectionRegistry.defaults()
+        self.accounts = AccountRegistry(os.getenv("ABS_DB_PATH", "abs.db"))
 
     def task(self, payload: dict[str, Any]) -> dict[str, Any]:
         objective = str(payload["objective"])
@@ -59,6 +61,7 @@ def main() -> None:
         resources=local.resources,
         interface_runtime=local.interface_runtime,
         connections=local.connections,
+        accounts=local.accounts,
     )
 
 

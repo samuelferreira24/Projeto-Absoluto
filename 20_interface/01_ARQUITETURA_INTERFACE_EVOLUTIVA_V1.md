@@ -344,3 +344,32 @@ NOVA VERSÃO
 Isso não elimina autorização humana. A interface fornece o meio; o ABS executa o ciclo controlado; o Imperador permanece como autoridade.
 
 O registro de conexões e o update manager formam parte dessa fundação. Capacidades ainda não validadas continuam explicitamente classificadas como futuras ou planejadas.
+
+
+## 17. Múltiplas contas e identidades
+
+O ABS não deve assumir uma única conta por serviço.
+
+A arquitetura separa:
+
+PROVEDOR / SERVIÇO
+↓
+UMA OU MAIS CONTAS
+↓
+UMA OU MAIS CONEXÕES
+↓
+CAPACIDADES
+↓
+RECURSOS
+
+Exemplo: ChatGPT pode possuir conta 1, conta 2 e conta 3; GitHub pode possuir conta 1 e conta 2.
+
+Uma conta identifica uma identidade lógica e pode apontar para uma conexão específica. Contas do mesmo provedor podem coexistir e podem utilizar caminhos diferentes quando o serviço oferecer essas possibilidades.
+
+Credenciais, tokens, cookies e segredos não fazem parte do cadastro público de contas. O registro mantém apenas uma referência externa à credencial, quando existente.
+
+A seleção de conta deve ser uma dimensão de planejamento e roteamento, e não deve ser confundida com a existência de uma conexão ou com a implementação de uma capacidade.
+
+A V1 agora possui o registro de múltiplas contas e a superfície de interface para visualização. A execução efetivamente autenticada por conta ainda exige adapters/credential providers capazes de receber a identidade selecionada sem recorrer a uma credencial global única.
+
+Esse último ponto é deliberadamente separado para não declarar como operacional algo que ainda não foi validado.

@@ -39,6 +39,7 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 <button data-tab="tools">Ferramentas</button>
 <button data-tab="devices">Dispositivos</button>
 <button data-tab="connections">Conexões</button>
+<button data-tab="accounts">Contas</button>
 <button data-tab="evolution">Evolução</button>
 </nav>
 <div class="card" style="margin-bottom:14px">
@@ -103,6 +104,13 @@ label{display:block;color:#9eacc2;font-size:12px;margin:0 0 7px}button.primary{m
 <div class="card"><h2>Recursos e conexões</h2><div id="connectionList" class="cards"><div class="muted">carregando…</div></div><div class="notice">Conexões são meios substituíveis. Configurado não significa operacionalmente validado.</div></div>
 </section>
 
+<section id="accounts" class="tab hidden">
+<div class="card"><h2>Contas e identidades</h2>
+<div id="accountList" class="cards"><div class="muted">carregando…</div></div>
+<div class="notice">O ABS separa serviço, conta, conexão e capacidade. Credenciais nunca são exibidas pela interface; cada conta referencia um mecanismo seguro de credenciais. Uma conta pode coexistir com outras contas do mesmo serviço.</div>
+</div>
+</section>
+
 <section id="evolution" class="tab hidden">
 <div class="card"><h2>Evolução do ABS</h2><div id="updateState" class="result">carregando…</div>
 <div class="row"><button class="primary" id="checkUpdate">Verificar atualização</button><button class="primary" id="applyUpdate">Aplicar atualização</button><button class="primary" id="rollback">Rollback</button></div>
@@ -132,8 +140,8 @@ $('#mode').onchange=async()=>{try{await json(await fetch('/interface/mode',{meth
 
 async function refresh(){
  try{
-  const [h,c,d,x,t]=await Promise.all([fetch('/health'),fetch('/capabilities'),fetch('/devices'),fetch('/connections'),fetch('/tools/knowledge')]);
-  const health=await json(h), caps=await json(c), devices=await json(d), connections=await json(x), tools=await json(t);
+  const [h,c,d,x,t,a]=await Promise.all([fetch('/health'),fetch('/capabilities'),fetch('/devices'),fetch('/connections'),fetch('/tools/knowledge'),fetch('/accounts')]);
+  const health=await json(h), caps=await json(c), devices=await json(d), connections=await json(x), tools=await json(t), accounts=await json(a);
   $('#dot').classList.add('ok');$('#status').textContent=health.status+' · '+health.version;
   $('#capability').innerHTML='<option value="">automática</option>'+caps.capabilities.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.name)+'</option>').join('');
   $('#capList').innerHTML=caps.capabilities.map(c=>'<div class="item"><div><strong>'+esc(c.name)+'</strong><div class="muted">'+esc(c.id)+'</div></div><span class="tag">'+esc(c.kind)+'</span></div>').join('');
@@ -141,6 +149,7 @@ async function refresh(){
   $('#deviceList').innerHTML=devices.devices.map(d=>'<div class="item"><div><strong>'+esc(d.name)+'</strong><div class="muted">'+esc(d.kind)+' · '+esc(d.id)+'</div></div><span class="tag '+(d.status==='online'?'online':'warning')+'">'+esc(d.status)+'</span></div>').join('');
   $('#toolList').innerHTML=tools.tools.map(t=>'<div class="item"><div><strong>'+esc(t.name)+'</strong><div class="muted">'+esc(t.category)+' · '+esc(t.id)+'</div></div><span class="tag">'+esc(t.status)+'</span></div>').join('');
   $('#connectionList').innerHTML=connections.connections.map(c=>'<div class="item"><div><strong>'+esc(c.name)+'</strong><div class="muted">'+esc(c.category)+' · '+esc(c.transport)+'</div></div><span class="tag '+(c.configured?'online':'warning')+'">'+esc(c.status)+'</span></div>').join('');
+  $('#accountList').innerHTML=accounts.accounts.length ? accounts.accounts.map(a=>'<div class="item"><div><strong>'+esc(a.name)+'</strong><div class="muted">'+esc(a.provider)+' · '+esc(a.connection_id)+' · '+esc(a.id)+'</div></div><span class="tag '+(a.status==='configured'?'online':'warning')+'">'+esc(a.status)+'</span></div>').join('') : '<div class="muted">Nenhuma conta registrada ainda.</div>';
  }catch(e){$('#status').textContent='indisponível';$('#result').textContent=e.message}
 }
 async function planMission(){

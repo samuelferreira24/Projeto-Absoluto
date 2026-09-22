@@ -3,6 +3,7 @@ from .capabilities import CapabilityRecord, CapabilityRegistry
 from .orchestrator import Orchestrator
 from .resources import ResourceManager
 from .connections import ConnectionRegistry
+from .accounts import AccountRegistry
 from .interface_runtime import InterfaceRuntime
 from .store import WorkStore
 from .api import serve
@@ -37,6 +38,7 @@ def main():
     resources = ResourceManager()
     interface_runtime = InterfaceRuntime()
     connections = ConnectionRegistry.defaults()
+    accounts = AccountRegistry(os.getenv("ABS_DB_PATH", "abs.db"))
     for module_name, class_name, capability_id, name, env_name in (
         (".ai_adapters", "ClaudeCapability", "claude", "Anthropic Claude API", "ANTHROPIC_API_KEY"),
         (".ai_adapters", "GeminiCapability", "gemini", "Google Gemini API", "GEMINI_API_KEY"),
@@ -53,7 +55,7 @@ def main():
     tool_store = ToolKnowledgeStore("abs.db")
     tool_store.load_into(tool_knowledge)
     tool_learning = ToolLearningEngine(tool_knowledge, tool_store)
-    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime, connections=connections, tool_knowledge=tool_knowledge, tool_planner=ToolPlanner(tool_knowledge, ResourceRouter(connections)), tool_learning=tool_learning)
+    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime, connections=connections, accounts=accounts, tool_knowledge=tool_knowledge, tool_planner=ToolPlanner(tool_knowledge, ResourceRouter(connections)), tool_learning=tool_learning)
 
 
 if __name__ == "__main__":

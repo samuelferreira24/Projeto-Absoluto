@@ -48,3 +48,10 @@ A interface é deliberadamente **extensível e multimodal**. Ela não é limitad
 O navegador é uma capacidade da interface, não a definição do ABS. A arquitetura também prevê troca de modos e múltiplos dispositivos sobre o mesmo ABS Core.
 
 O inventário atual de modos e tecnologias não é fechado: novas necessidades devem poder gerar novas capacidades sem redefinir o núcleo do ABS.
+
+
+## Contas
+
+A Web App também expõe o registro de contas do ABS. O sistema pode manter várias contas do mesmo serviço, cada uma associada a uma identidade lógica e a uma conexão. A interface não exibe segredos. O cadastro persistido guarda apenas referência à credencial externa.
+
+Isso permite que ChatGPT, GitHub, Claude, Gemini e outros serviços tenham múltiplas contas sem transformar uma conta específica no núcleo do ABS.

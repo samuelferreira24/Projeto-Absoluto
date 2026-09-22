@@ -6,6 +6,7 @@ from .orchestrator import Orchestrator
 from .resources import ResourceManager
 from .interface_runtime import InterfaceRuntime
 from .connections import ConnectionRegistry
+from .accounts import AccountRegistry, AccountRecord
 from .resource_router import ResourceRouteRequest, ResourceRouter
 from .resource_dispatcher import ResourceDispatcher
 from .tool_knowledge import ToolKnowledgeRegistry
@@ -25,6 +26,7 @@ class ABSHandler(BaseHTTPRequestHandler):
     resources: ResourceManager | None = None
     interface_runtime: InterfaceRuntime | None = None
     connections: ConnectionRegistry | None = None
+    accounts: AccountRegistry | None = None
     tool_knowledge: ToolKnowledgeRegistry | None = None
     tool_discovery: ToolDiscovery | None = None
     tool_planner: ToolPlanner | None = None
@@ -81,6 +83,9 @@ class ABSHandler(BaseHTTPRequestHandler):
             return
         if self.path == "/connections":
             self._send(200, {"connections": self.connections.public()})
+            return
+        if self.path == "/accounts":
+            self._send(200, {"accounts": self.accounts.public()})
             return
         if self.path == "/health":
             self._send(200, {
@@ -140,6 +145,33 @@ class ABSHandler(BaseHTTPRequestHandler):
                 self._send(500, {"error": "update_failed", "detail": str(exc)})
                 return
             self._send(200, result)
+            return
+
+        if self.path == "/accounts/register":
+            account_id = str(data.get("id") or "").strip()
+            provider = str(data.get("provider") or "").strip()
+            name = str(data.get("name") or "").strip()
+            connection_id = str(data.get("connection_id") or "").strip()
+            if not account_id or not provider or not name or not connection_id:
+                self._send(400, {"error": "account_id_provider_name_connection_id_required"})
+                return
+            try:
+                self.connections.get(connection_id)
+            except KeyError:
+                self._send(404, {"error": "connection_not_found"})
+                return
+            try:
+                account = self.accounts.register(AccountRecord(
+                    id=account_id, provider=provider, name=name,
+                    connection_id=connection_id,
+                    credential_ref=str(data.get("credential_ref") or "") or None,
+                    capabilities=list(data.get("capabilities") or []),
+                    metadata=data.get("metadata") if isinstance(data.get("metadata"), dict) else {},
+                ))
+            except ValueError:
+                self._send(409, {"error": "account_already_registered"})
+                return
+            self._send(201, {"account": account.public()})
             return
 
         if self.path == "/tools/plan":
@@ -372,12 +404,13 @@ class ABSHandler(BaseHTTPRequestHandler):
 
 
 def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
-          resources=None, interface_runtime=None, connections=None, tool_knowledge=None, tool_discovery=None, tool_planner=None, tool_learning=None, resource_dispatcher=None):
+          resources=None, interface_runtime=None, connections=None, accounts=None, tool_knowledge=None, tool_discovery=None, tool_planner=None, tool_learning=None, resource_dispatcher=None):
     ABSHandler.orchestrator = orchestrator
     ABSHandler.registry = registry
     ABSHandler.resources = resources or ResourceManager()
     ABSHandler.interface_runtime = interface_runtime or InterfaceRuntime()
     ABSHandler.connections = connections or ConnectionRegistry.defaults()
+    ABSHandler.accounts = accounts or AccountRegistry()
     ABSHandler.tool_knowledge = tool_knowledge or ToolKnowledgeRegistry()
     ABSHandler.tool_discovery = tool_discovery or ToolDiscovery()
     ABSHandler.tool_planner = tool_planner or ToolPlanner(ABSHandler.tool_knowledge, ResourceRouter(ABSHandler.connections))
