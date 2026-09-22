@@ -4,3 +4,7 @@ abs.db-*
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# Local bootstrap command artifacts (preserve locally, keep out of update dirty-tree checks)
+"git log --all --oneline --grep=ABS V1"
+"tatus --short"

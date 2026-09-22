@@ -33,7 +33,14 @@ def _lock():
 
 
 def run_once() -> dict:
+    _log("check started")
     result = um.check()
+    _log(
+        "check completed: "
+        f"current={result['current_commit']} "
+        f"target={result['target_commit']} "
+        f"update_available={result['update_available']}"
+    )
     if not result["update_available"]:
         return {"checked": True, "updated": False, **result}
     _log(f"update candidate detected: {result['current_commit']} -> {result['target_commit']}")
