@@ -163,7 +163,7 @@ body.abs-editing .abs-mode-pill{border-color:#466e86;color:#6fe7ff}
 
   <div class="abs-modebar">
     <div><div class="abs-breadcrumb"><strong>IMPÉRIO</strong><span>·</span><span>visão geral</span></div><div class="muted">Explore o ABS por espaço, profundidade e ação. O mapa é uma camada de navegação sobre capacidades reais.</div></div>
-    <div class="abs-depth"><button class="active" data-depth="1">Império</button><button data-depth="2">Sistema</button><button data-depth="3">Detalhe</button></div>
+    <div class="abs-depth"><button class="active" data-depth="1">Império</button><button data-depth="2">Sistema</button><button data-depth="3">Detalhe</button><button id="absPanelOpen" type="button">Painel</button></div>
   </div>
   <div class="abs-hero">
     <section class="abs-map" id="absMap" aria-label="Mapa interativo do Império">
@@ -536,12 +536,13 @@ document.querySelectorAll('[data-depth]').forEach(b=>b.onclick=()=>{
     status.textContent=m==='edit'?'Modo construção: alterações são apenas visuais neste estágio.':m==='operate'?'Modo operação: ações reais exigem comando explícito.':'Ambiente em exploração; nenhum objeto é alterado.';
     document.querySelectorAll('#absEditBar button').forEach(b=>b.disabled=m!=='edit');
   };
-  const snapshot=()=>JSON.stringify(nodeEls().map(n=>({id:n.id||'',custom:n.classList.contains('abs-user-node'),focus:n.dataset.focus||'',name:n.querySelector('b,strong')?.textContent||'',desc:n.querySelector('small,span')?.textContent||'',className:n.className,style:n.getAttribute('style')||'',hidden:n.hidden})));
+  const snapshot=()=>JSON.stringify({nodes:nodeEls().map(n=>({id:n.id||'',custom:n.classList.contains('abs-user-node'),focus:n.dataset.focus||'',name:n.querySelector('b,strong')?.textContent||'',desc:n.querySelector('small')?.textContent||'',className:n.className,style:n.getAttribute('style')||'',hidden:n.hidden,scale:n.dataset.scale||''})),links:[...space.querySelectorAll('.abs-user-link')].map(l=>({from:l.dataset.from,to:l.dataset.to}))});
   const pushUndo=()=>{state.undo.push(snapshot());if(state.undo.length>40)state.undo.shift();state.redo=[];};
   const restore=(raw)=>{
     if(!raw)return;
     [...space.querySelectorAll('.abs-user-node')].forEach(n=>n.remove());
-    let items=[];try{items=JSON.parse(raw)}catch(_){return}
+    let data;try{data=JSON.parse(raw)}catch(_){return}
+    const items=Array.isArray(data)?data:data.nodes||[];
     items.forEach(d=>{
       let n=d.id?document.getElementById(d.id):null;
       if(!n && d.custom){n=document.createElement('button');n.type='button';n.className='abs-node abs-user-node';n.id=d.id||uid();n.dataset.custom='1';n.innerHTML='<b></b><small></small>';space.appendChild(n)}
@@ -550,6 +551,8 @@ document.querySelectorAll('[data-depth]').forEach(b=>b.onclick=()=>{
       const b=n.querySelector('b,strong');const s=n.querySelector('small,span');if(b)b.textContent=d.name||n.dataset.focus;if(s&&s!==n.querySelector('.abs-core-node span'))s.textContent=d.desc||'estrutura visual';
       bindNode(n);
     });
+    space.querySelectorAll('.abs-user-link').forEach(l=>l.remove());
+    (Array.isArray(data?.links)?data.links:[]).forEach(l=>{const link=document.createElement('div');link.className='abs-user-link';link.dataset.from=l.from;link.dataset.to=l.to;space.appendChild(link)});
     selectNode(state.selected);
     drawLinks();
   };
@@ -596,14 +599,15 @@ document.querySelectorAll('[data-depth]').forEach(b=>b.onclick=()=>{
     n.addEventListener('click',e=>{e.stopPropagation();selectNode(n)});
     n.addEventListener('pointerdown',e=>{
       if(state.mode!=='edit')return;
-      e.stopPropagation();n.setPointerCapture?.(e.pointerId);const startX=e.clientX,startY=e.clientY,base=n.style.transform||'',scale=Math.max(1,.65);
+      e.stopPropagation();n.setPointerCapture?.(e.pointerId);const before=snapshot(),startX=e.clientX,startY=e.clientY,base=n.style.transform||'',scale=1;
       const move=ev=>{n.style.transform=base+' translate('+((ev.clientX-startX)/scale)+'px,'+((ev.clientY-startY)/scale)+'px)';drawLinks()};
-      const up=()=>{n.releasePointerCapture?.(e.pointerId);n.removeEventListener('pointermove',move);n.removeEventListener('pointerup',up);pushUndo();save()};
+      const up=()=>{n.releasePointerCapture?.(e.pointerId);n.removeEventListener('pointermove',move);n.removeEventListener('pointerup',up);state.undo.push(before);if(state.undo.length>40)state.undo.shift();state.redo=[];save()};
       n.addEventListener('pointermove',move);n.addEventListener('pointerup',up);
     });
   };
   nodeEls().forEach(bindNode);
   document.querySelectorAll('[data-uxmode]').forEach(b=>b.onclick=()=>setMode(b.dataset.uxmode));
+  document.getElementById('absPanelOpen').onclick=()=>{dock.classList.add('open');ctx.classList.add('open');if(!selected())document.getElementById('absContextTitle').textContent='Painel do ambiente';};
   document.getElementById('absDockPin').onclick=()=>{state.panelPinned=!state.panelPinned;localStorage.setItem('abs-panel-pinned',state.panelPinned?'1':'0');dock.classList.toggle('open',state.panelPinned||!!state.selected);document.getElementById('absDockPin').textContent=state.panelPinned?'Desafixar':'Fixar'};
   document.getElementById('absDockClose').onclick=()=>{if(!state.panelPinned)dock.classList.remove('open');ctx.classList.remove('open')};
   document.getElementById('absCreate').onclick=createNode;document.getElementById('absEditCreate').onclick=createNode;
