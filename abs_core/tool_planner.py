@@ -79,4 +79,11 @@ class ToolPlanner:
                 constraints=tuple(tool.constraints),
             ))
 
-        return plans
+        return sorted(
+            plans,
+            key=lambda plan: (
+                -self.knowledge.get(plan.tool_id).reliability(),
+                -(plan.routes[0]["score"] if plan.routes else 0.0),
+                plan.tool_id,
+            ),
+        )
