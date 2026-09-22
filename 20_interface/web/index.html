@@ -435,7 +435,7 @@ async function runRoom(){
 }
 $('#runRoom').onclick=runRoom;
 
-if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
 refresh();
 refreshInterface();
 refreshUpdate();
