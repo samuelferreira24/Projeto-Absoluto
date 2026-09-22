@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import os
+import subprocess
+from pathlib import Path
 from typing import Any
 
 from .api import serve
@@ -12,6 +14,20 @@ from .accounts import AccountRegistry
 
 HOST = os.getenv("ABS_HOST", "127.0.0.1")
 PORT = int(os.getenv("ABS_PORT", "8787"))
+
+
+def _ensure_updater_service() -> None:
+    if os.getenv("ABS_DISABLE_AUTO_UPDATER", "0").lower() in {"1", "true", "yes"}:
+        return
+    if os.getenv("PREFIX", "").strip() == "":
+        return
+    installer = Path(__file__).resolve().parent.parent / "scripts" / "termux" / "install_abs_updater_service.sh"
+    if not installer.exists():
+        return
+    try:
+        subprocess.run(["bash", str(installer)], cwd=installer.parent.parent.parent, check=False, timeout=30)
+    except Exception:
+        pass
 
 
 class LocalABS:
@@ -50,6 +66,7 @@ class LocalABS:
 
 
 def main() -> None:
+    _ensure_updater_service()
     local = LocalABS()
     print(f"ABS V1 running at http://{HOST}:{PORT}")
     print("Interface, capabilities and device resources are served by the unified ABS API.")
