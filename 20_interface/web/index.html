@@ -530,7 +530,7 @@ document.querySelectorAll('[data-depth]').forEach(b=>b.onclick=()=>{
   const readState=()=>({nodes:nodes().map(readNode),links:[...space.querySelectorAll('.abs-user-link')].map(x=>({from:x.dataset.from,to:x.dataset.to}))});
   const commit=()=>{localStorage.setItem(key,JSON.stringify(readState()));status.textContent='Ambiente salvo localmente.'};
   const remember=()=>{state.undo.push(JSON.stringify(readState()));if(state.undo.length>40)state.undo.shift();state.redo=[]};
-  const applyNode(n,d){
+  const applyNode=(n,d)=>{
     if(!n)return;
     const x=d.x||n.dataset.x||n.style.left||'46%';
     const y=d.y||n.dataset.y||n.style.top||'42%';
