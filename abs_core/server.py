@@ -9,6 +9,7 @@ from .api import serve
 from .tool_catalog import default_tool_knowledge
 from .tool_knowledge_store import ToolKnowledgeStore
 from .tool_learning import ToolLearningEngine
+import os
 
 
 def build_registry():
@@ -28,6 +29,18 @@ def main():
     resources = ResourceManager()
     interface_runtime = InterfaceRuntime()
     connections = ConnectionRegistry.defaults()
+    for module_name, class_name, capability_id, name, env_name in (
+        (".ai_adapters", "ClaudeCapability", "claude", "Anthropic Claude API", "ANTHROPIC_API_KEY"),
+        (".ai_adapters", "GeminiCapability", "gemini", "Google Gemini API", "GEMINI_API_KEY"),
+        (".openai_adapter", "OpenAICapability", "openai-api", "OpenAI API", "OPENAI_API_KEY"),
+    ):
+        if os.getenv(env_name):
+            try:
+                module = __import__(module_name, package=__package__, fromlist=[class_name])
+                capability = getattr(module, class_name)()
+                registry.register(CapabilityRecord(capability_id, name, "external_ai", capability))
+            except Exception:
+                pass
     tool_knowledge = default_tool_knowledge()
     tool_store = ToolKnowledgeStore("abs.db")
     tool_store.load_into(tool_knowledge)
