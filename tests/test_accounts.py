@@ -34,3 +34,18 @@ def test_account_can_use_different_connection_paths():
     assert {a.connection_id for a in registry.by_provider("claude")} == {
         "claude-api", "local-network"
     }
+
+
+def test_public_account_does_not_expose_metadata():
+    registry = AccountRegistry(":memory:")
+    registry.register(AccountRecord(
+        id="safe-1",
+        provider="example",
+        name="Safe",
+        connection_id="api-http",
+        credential_ref="secret://safe",
+        metadata={"token": "DO_NOT_EXPOSE"},
+    ))
+    public = registry.public()[0]
+    assert "metadata" not in public
+    assert "DO_NOT_EXPOSE" not in str(public)
