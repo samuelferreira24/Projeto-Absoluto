@@ -543,3 +543,109 @@ Arrastar, zoom, toque e gestos são meios de interação, não os únicos meios.
 
 Essa regra prepara a experiência para múltiplos dispositivos e para futura evolução 2D → 2.5D → 3D → espacial.
 
+
+## 22. Estado estruturado do workspace e separação de modos
+
+A interface mantém dois níveis distintos que não devem ser confundidos:
+
+```text
+INTERFACE
+├── RUNTIME / EXPERIÊNCIA
+│   ├── Controle
+│   ├── Capacidades
+│   ├── Dispositivos
+│   └── Navegador
+│
+└── MODO DE INTERAÇÃO
+    ├── Explorar
+    ├── Editar / Construir
+    └── Operar
+```
+
+O primeiro nível define a experiência ou área funcional apresentada pelo `InterfaceRuntime`. O segundo define como o usuário interage com o ambiente visual.
+
+O modo **Operar** não constitui uma nova autoridade de execução. Uma ação real continua seguindo:
+
+```text
+INTERFACE
+↓
+API / CONTRATO
+↓
+ABS CORE
+↓
+ORCHESTRATOR
+↓
+CAPABILITY
+↓
+EXECUÇÃO
+```
+
+### Estado explícito
+
+O workspace visual deve ser tratado como estado estruturado, e não como informação inferida somente do DOM ou de estilos.
+
+Modelo mínimo:
+
+```text
+WorkspaceState
+├── nodes
+├── links
+├── groups
+├── panels
+├── selected
+├── viewport
+└── metadata
+```
+
+Cada objeto visual pode representar uma entidade real ou existir apenas como elemento criado pelo usuário:
+
+```text
+VisualNode
+├── id
+├── represents
+├── type
+├── position
+├── scale
+└── metadata
+```
+
+Assim:
+
+```text
+VisualNode → representa Cérebro
+```
+
+é diferente de:
+
+```text
+VisualNode → área criada pelo usuário
+```
+
+Mover, redimensionar ou reorganizar um VisualNode não modifica automaticamente a entidade que ele representa.
+
+### Estado de transformação
+
+Posição, escala e outros atributos de transformação devem possuir estado independente:
+
+```text
+node
+├── x
+├── y
+├── scale
+└── rotation
+```
+
+A apresentação visual é derivada desse estado. Isso evita que mover e redimensionar sobrescrevam uma à outra.
+
+### Persistência atual
+
+Na V4/V5 da experiência interativa, o workspace é persistido localmente no navegador. Isso é uma persistência da experiência visual.
+
+Ainda não significa:
+
+- persistência multi-dispositivo;
+- sincronização com ABS Core;
+- alteração estrutural do sistema;
+- armazenamento de relações reais do ABS.
+
+Essas capacidades exigem contratos próprios e validação adicional.
