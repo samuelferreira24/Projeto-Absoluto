@@ -65,7 +65,7 @@ def main():
     intelligence = IntelligenceRegistry()
     intelligence.discover_from_capabilities(registry, connections)
     cognitive_runtime = CognitiveRuntime(
-        registry, intelligence,
+        registry, intelligence, orchestrator,
         store_path=os.getenv("ABS_DB_PATH", "abs.db"),
     )
     serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime, connections=connections, accounts=accounts, tool_knowledge=tool_knowledge, tool_planner=ToolPlanner(tool_knowledge, ResourceRouter(connections)), tool_learning=tool_learning, cognitive_runtime=cognitive_runtime)
