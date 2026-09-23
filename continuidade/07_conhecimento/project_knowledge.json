@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-23T17:52:29-03:00",
-  "source_revision": "fb8cdc92655998cd9335e9df85fc71d58ce6363b",
+  "generated_at": "2026-09-23T18:01:48-03:00",
+  "source_revision": "8c32e9f6c7d4c6a4c26275493297c7c3aa423f13",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 34
+      "file_count": 35
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "fb8cdc92655998cd9335e9df85fc71d58ce6363b",
-      "commit_subject": "docs: persist current continuity session checkpoint"
+      "revision": "8c32e9f6c7d4c6a4c26275493297c7c3aa423f13",
+      "commit_subject": "docs: registrar auditoria senior da arquitetura de informação"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:24989a0fa69e"
+        "evidence:repository:0749f8d81686"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T17:52:29-03:00"
+      "last_validated": "2026-09-23T18:01:48-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:24989a0fa69e",
-        "evidence:test:cdf4df78d8ab"
+        "evidence:repository:0749f8d81686",
+        "evidence:test:4e361f8ba842"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T17:52:29-03:00"
+      "last_validated": "2026-09-23T18:01:48-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,58 +176,58 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:24989a0fa69e"
+        "evidence:repository:0749f8d81686"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T17:52:29-03:00"
+      "last_validated": "2026-09-23T18:01:48-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:24989a0fa69e",
+      "id": "evidence:repository:0749f8d81686",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-23T17:52:29-03:00",
+      "observed_at": "2026-09-23T18:01:48-03:00",
       "status": "observed",
-      "detail": "298 files indexed at revision fb8cdc92655998cd9335e9df85fc71d58ce6363b"
+      "detail": "299 files indexed at revision 8c32e9f6c7d4c6a4c26275493297c7c3aa423f13"
     },
     {
-      "id": "evidence:test:cdf4df78d8ab",
+      "id": "evidence:test:4e361f8ba842",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-23T17:52:29-03:00",
+      "observed_at": "2026-09-23T18:01:48-03:00",
       "status": "tested",
-      "detail": "101 passed in 7.07s"
+      "detail": "101 passed in 6.37s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:24989a0fa69e",
+      "id": "event:repository-scan:0749f8d81686",
       "type": "repository_scanned",
-      "at": "2026-09-23T17:52:29-03:00",
-      "revision": "fb8cdc92655998cd9335e9df85fc71d58ce6363b",
-      "file_count": 298,
-      "evidence_id": "evidence:repository:24989a0fa69e"
+      "at": "2026-09-23T18:01:48-03:00",
+      "revision": "8c32e9f6c7d4c6a4c26275493297c7c3aa423f13",
+      "file_count": 299,
+      "evidence_id": "evidence:repository:0749f8d81686"
     },
     {
-      "id": "event:commit-observed:fb8cdc926559",
+      "id": "event:commit-observed:8c32e9f6c7d4",
       "type": "commit_observed",
-      "at": "2026-09-23T17:52:29-03:00",
-      "revision": "fb8cdc92655998cd9335e9df85fc71d58ce6363b",
+      "at": "2026-09-23T18:01:48-03:00",
+      "revision": "8c32e9f6c7d4c6a4c26275493297c7c3aa423f13",
       "branch": "main",
-      "subject": "docs: persist current continuity session checkpoint",
+      "subject": "docs: registrar auditoria senior da arquitetura de informação",
       "changed_files": [
-        "continuidade/07_conhecimento/SESSAO_ATUAL.md"
+        "docs/06_auditoria/AUDITORIA_SENIOR_ARQUITETURA_INFORMACAO_2026-09-23.md"
       ]
     },
     {
-      "id": "event:test:cdf4df78d8ab",
+      "id": "event:test:4e361f8ba842",
       "type": "tests_observed",
-      "at": "2026-09-23T17:52:29-03:00",
+      "at": "2026-09-23T18:01:48-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:cdf4df78d8ab"
+      "evidence_id": "evidence:test:4e361f8ba842"
     }
   ]
 }
