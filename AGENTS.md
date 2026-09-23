@@ -26,3 +26,9 @@ Antes de construir, descubra o estado atual do Projeto. Não dependa da memória
 ## Continuidade
 
 Se o chat terminar, o próximo agente deve conseguir continuar lendo o repositório. O repositório é o mecanismo de continuidade; a conversa é apenas uma sessão de trabalho.
+
+## Regra de persistência da sessão
+
+O contexto produzido durante uma sessão não pode permanecer somente no chat quando ele altera o estado do Projeto. Antes de encerrar ou transferir uma sessão, o agente deve persistir no repositório os fatos novos, decisões autorizadas, resultados, evidências, pendências e próximo ponto de continuação. O novo agente deve ler esse estado antes de continuar.
+
+A continuidade automática observa o que mudou no repositório; ela não consegue capturar uma conversa que nunca foi persistida. Portanto, trabalho concluído sem registro no repositório continua sendo contexto de chat e não é considerado continuidade do Projeto.
