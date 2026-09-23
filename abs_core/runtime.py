@@ -55,7 +55,7 @@ def build_registry() -> CapabilityRegistry:
         (".openai_adapter", "OpenAICapability", "openai-api", "OpenAI API", "external_ai", "OPENAI_API_KEY"),
     )
     for module_name, class_name, capability_id, name, kind, env_name in optional:
-        if env_name and not os.getenv(env_name):
+        if env_name and not os.getenv(env_name) and capability_id not in {"codex", "internet-http"}:
             continue
         try:
             module = __import__(module_name, package=__package__, fromlist=[class_name])
