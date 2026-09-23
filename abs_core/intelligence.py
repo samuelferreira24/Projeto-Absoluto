@@ -83,7 +83,7 @@ class IntelligenceRegistry:
                 capabilities=capabilities_hint,
                 status=status,
                 priority=10.0 if local else 5.0,
-                metadata={"connection_id": connection.id if connection else None},
+                metadata={"connection_id": connection.id if connection else None, "conversational": cap.id not in {"codex"}},
             )
             self.register(resource)
             found.append(resource)
@@ -236,7 +236,7 @@ class CognitiveRuntime:
                 },
             }
             work = self.orchestrator.create(message, execution_context)
-            work = self.orchestrator.run(work.id, resource.capability_id, approved=approved)
+            work = self.orchestrator.run(work.id, resource.capability_id, approved=(approved or resource.metadata.get("conversational", False)))
             result = work.result
             final_response = result.get("final_response") if isinstance(result, dict) else result
             if work.state.value == "failed":
