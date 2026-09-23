@@ -9,10 +9,12 @@ Este arquivo é a navegação rápida para qualquer IA, agente ou ferramenta.
 1. `AGENTS.md` — regras permanentes.
 2. `README.md` — visão resumida.
 3. `docs/00_GOVERNANCA_INFORMACAO.md` — autoridade, classificação e continuidade.
-4. `00_ESTRUTURA_REPOSITORIO.md` — estrutura física.
-5. Estado vivo: `continuidade/07_conhecimento/project_knowledge.json` e `MAPA_AUTO_ESTADO_PROJETO.md`.
-6. `cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md` — navegação estratégica.
-7. Fonte específica conforme a pergunta.
+4. `docs/00_MODELO_PROJETO_ABSOLUTO.md` — relação entre Projeto Absoluto, Sistema e projetos.
+5. `00_ESTRUTURA_REPOSITORIO.md` — estrutura física.
+6. Estado vivo: `continuidade/07_conhecimento/project_knowledge.json` e `MAPA_AUTO_ESTADO_PROJETO.md`.
+7. `cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md` — navegação estratégica.
+8. Fonte específica conforme a pergunta.
+
 
 ## Regra de autoridade
 Para afirmar o que existe hoje:
@@ -25,6 +27,7 @@ Para histórico:
 **fonte histórica preservada, sem tratá-la como estado atual.**
 
 ## Navegação por intenção
+- **Projeto Absoluto / visão:** `docs/00_MODELO_PROJETO_ABSOLUTO.md` + arquivos-base catalogados na auditoria.
 - **Estado atual:** `continuidade/07_conhecimento/`, código e testes.
 - **Conhecimento:** `cerebro/` e Project Knowledge.
 - **Decisões:** `continuidade/03_decisoes/`.
