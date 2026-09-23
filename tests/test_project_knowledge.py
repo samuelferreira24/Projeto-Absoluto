@@ -88,3 +88,19 @@ def test_commit_event_contains_branch_and_subject(tmp_path: Path):
     event = next(e for e in k.events if e["type"] == "commit_observed")
     assert event["subject"] == "construction event"
     assert event["branch"] in {"master", "main"}
+
+
+def test_repository_resource_contains_provenance(tmp_path: Path):
+    import subprocess
+
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "orchestrator.py").write_text("x", encoding="utf-8")
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "config", "user.email", "test@example.invalid"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "config", "user.name", "Test"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "add", "."], cwd=tmp_path, check=True)
+    subprocess.run(["git", "commit", "-qm", "provenance"], cwd=tmp_path, check=True)
+    resource = RepositoryScanner(tmp_path).scan().resources[0]
+    assert resource["revision"]
+    assert resource["commit_subject"] == "provenance"
+    assert resource["branch"] in {"master", "main"}
