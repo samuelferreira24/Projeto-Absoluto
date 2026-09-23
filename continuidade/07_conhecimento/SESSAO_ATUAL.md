@@ -30,11 +30,15 @@ Projeto Absoluto.
 - continuidade → checkpoints/handoffs;
 - histórico → fontes/snapshots/arquivo preservado.
 
-## Próxima etapa
-Auditar **planejamento × mapas** antes de qualquer nova migração.
+## Auditoria planejamento × mapas — concluída
+- `docs/03_planejamento/` permanece como entrada documental do planejamento.
+- `cerebro/mapas/` permanece como rede de capacidades, dependências, pendências e caminhos.
+- Não houve necessidade de fundir as áreas nem criar nova camada documental.
+- O quadro de status ABS foi o único item desta zona que precisava de reclassificação física: saiu de `cerebro/mapas/` e foi para `cerebro/00_estado/STATUS_ABS_V1_2026-09-22.md`, preservando o conteúdo.
+- Os índices e referências foram atualizados para impedir nova confusão entre planejamento e estado.
 
-Depois:
-**fontes × histórico × Mini-Cérebro × 99_arquivo**.
+## Próxima etapa
+Auditar **fontes × histórico × Mini-Cérebro × 99_arquivo** antes de nova migração física.
 
 ## Regra
 Não alterar automaticamente visão, princípios ou decisões do Imperador.
