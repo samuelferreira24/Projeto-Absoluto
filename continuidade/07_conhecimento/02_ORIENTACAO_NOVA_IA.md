@@ -17,6 +17,10 @@ Você está no **Projeto Absoluto**, não em um projeto exclusivamente ABS.
 Não reconstruir o contexto pela memória. Reconstruir pelo repositório e pelas evidências.
 
 Se uma informação não estiver comprovada, classificá-la como desconhecida/hipotética em vez de inventá-la.
+
+## Regra crítica: chat não é armazenamento de projeto
+
+O chat é uma sessão de trabalho, não a fonte persistente do Projeto. Se a sessão produzir progresso que não esteja refletido em código, evidência, decisão ou registro de sessão no repositório, esse progresso ainda depende do contexto do chat. Antes de transferir para outro chat/IA, persistir o estado necessário no repositório.
 ## Pacote mínimo de entrada
 
 Uma nova IA não precisa reconstruir o projeto pela conversa. A sequência mínima é:
