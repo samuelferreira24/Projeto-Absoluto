@@ -180,7 +180,7 @@ class RepositoryScanner:
                 "diff-tree", "--no-commit-id", "--name-status", "-r", revision
             ) or ""
             changed = [
-                line.split("\\t", 1)[-1]
+                line.split("\t", 1)[-1]
                 for line in changes.splitlines()
                 if line.strip()
             ]
