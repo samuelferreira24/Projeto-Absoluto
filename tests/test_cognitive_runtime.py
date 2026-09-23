@@ -1,5 +1,7 @@
 from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
 from abs_core.intelligence import CognitiveRuntime, IntelligenceRegistry, IntelligenceResource
+from abs_core.orchestrator import Orchestrator
+from abs_core.store import WorkStore
 
 
 class FakeChat:
@@ -27,7 +29,7 @@ def test_cognitive_runtime_keeps_open_conversation() -> None:
         capabilities=("conversation", "reasoning"),
         status="available",
     ))
-    runtime = CognitiveRuntime(registry, intelligence, store_path=":memory:")
+    runtime = CognitiveRuntime(registry, intelligence, Orchestrator(registry, WorkStore(":memory:")), store_path=":memory:")
     first = runtime.turn("quero conversar", approved=True)
     second = runtime.turn("continue a ideia", session_id=first["session_id"], approved=True)
 
