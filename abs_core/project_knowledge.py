@@ -175,6 +175,24 @@ class RepositoryScanner:
                 "evidence_id": evidence_id,
             }
         )
+        if revision:
+            changes = self._git(
+                "diff-tree", "--no-commit-id", "--name-status", "-r", revision
+            ) or ""
+            changed = [
+                line.split("\\t", 1)[-1]
+                for line in changes.splitlines()
+                if line.strip()
+            ]
+            k.events.append(
+                {
+                    "id": "event:commit-observed:" + revision[:12],
+                    "type": "commit_observed",
+                    "at": observed_at,
+                    "revision": revision,
+                    "changed_files": changed,
+                }
+            )
         k.resources = [
             {
                 "id": "resource:repository",
