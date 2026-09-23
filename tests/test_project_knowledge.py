@@ -104,3 +104,17 @@ def test_repository_resource_contains_provenance(tmp_path: Path):
     assert resource["revision"]
     assert resource["commit_subject"] == "provenance"
     assert resource["branch"] in {"master", "main"}
+
+
+def test_projection_includes_runtime_categories_and_path_evidence(tmp_path: Path):
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "codex_adapter.py").write_text("x", encoding="utf-8")
+    result = synchronize(
+        tmp_path, tmp_path / "knowledge", test_status="tested", test_detail="1 passed"
+    )
+    projection = Path(result["map"]).read_text(encoding="utf-8")
+    assert "## Recursos" in projection
+    assert "## Ferramentas" in projection
+    assert "## Nós" in projection
+    assert "## Caminhos" in projection
+    assert "evidências:" in projection
