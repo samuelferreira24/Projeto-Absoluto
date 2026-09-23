@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import subprocess
+from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
@@ -24,7 +25,7 @@ class LocalABS:
         approved = bool(payload.get("approved", False))
         work = self.runtime.orchestrator.create(objective, payload)
         work = self.runtime.orchestrator.run(work.id, capability_id, approved)
-        return work.public() if hasattr(work, "public") else work.to_dict()
+        return asdict(work)
 
 
 def _ensure_updater_service() -> None:
