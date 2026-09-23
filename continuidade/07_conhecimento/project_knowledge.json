@@ -1,0 +1,233 @@
+{
+  "schema_version": "1.1",
+  "project": "Projeto Absoluto",
+  "generated_at": "2026-09-23T17:52:29-03:00",
+  "source_revision": "fb8cdc92655998cd9335e9df85fc71d58ce6363b",
+  "components": [
+    {
+      "id": "component:abs_core",
+      "kind": "abs_core",
+      "file_count": 42
+    },
+    {
+      "id": "component:cerebro",
+      "kind": "cerebro",
+      "file_count": 46
+    },
+    {
+      "id": "component:continuity",
+      "kind": "continuity",
+      "file_count": 20
+    },
+    {
+      "id": "component:docs",
+      "kind": "docs",
+      "file_count": 34
+    },
+    {
+      "id": "component:historical_mini_cerebro",
+      "kind": "historical_mini_cerebro",
+      "file_count": 12
+    },
+    {
+      "id": "component:project",
+      "kind": "project",
+      "file_count": 103
+    },
+    {
+      "id": "component:tests",
+      "kind": "tests",
+      "file_count": 41
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "capability:codex",
+      "name": "Codex code engineering",
+      "state": "observed",
+      "source": "repository",
+      "module": "abs_core/codex_adapter.py"
+    },
+    {
+      "id": "capability:internet-http",
+      "name": "Internet HTTP",
+      "state": "observed",
+      "source": "repository",
+      "module": "abs_core/internet_adapter.py"
+    },
+    {
+      "id": "capability:orchestrator",
+      "name": "ABS orchestration",
+      "state": "observed",
+      "source": "repository",
+      "module": "abs_core/orchestrator.py"
+    }
+  ],
+  "resources": [
+    {
+      "id": "resource:repository",
+      "name": "Projeto-Absoluto",
+      "type": "repository",
+      "state": "observed",
+      "branch": "main",
+      "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
+      "revision": "fb8cdc92655998cd9335e9df85fc71d58ce6363b",
+      "commit_subject": "docs: persist current continuity session checkpoint"
+    }
+  ],
+  "tools": [
+    {
+      "id": "tool:file:abs_core/bridge.py",
+      "name": "abs_core/bridge.py",
+      "state": "present",
+      "source": "repository"
+    },
+    {
+      "id": "tool:file:abs_core/codex_adapter.py",
+      "name": "abs_core/codex_adapter.py",
+      "state": "present",
+      "source": "repository"
+    },
+    {
+      "id": "tool:file:abs_core/tool_catalog.py",
+      "name": "abs_core/tool_catalog.py",
+      "state": "present",
+      "source": "repository"
+    },
+    {
+      "id": "tool:file:abs_core/tool_discovery.py",
+      "name": "abs_core/tool_discovery.py",
+      "state": "present",
+      "source": "repository"
+    },
+    {
+      "id": "tool:file:abs_core/tool_knowledge.py",
+      "name": "abs_core/tool_knowledge.py",
+      "state": "present",
+      "source": "repository"
+    },
+    {
+      "id": "tool:file:abs_core/tool_knowledge_store.py",
+      "name": "abs_core/tool_knowledge_store.py",
+      "state": "present",
+      "source": "repository"
+    },
+    {
+      "id": "tool:file:abs_core/tool_learning.py",
+      "name": "abs_core/tool_learning.py",
+      "state": "present",
+      "source": "repository"
+    },
+    {
+      "id": "tool:file:abs_core/tool_planner.py",
+      "name": "abs_core/tool_planner.py",
+      "state": "present",
+      "source": "repository"
+    }
+  ],
+  "nodes": [],
+  "paths": [
+    {
+      "id": "PATH-ABS-ORCHESTRATOR",
+      "objective": "route an ABS work request through the operational core",
+      "origin": "Imperador/ABS input",
+      "destination": "ABS Work result",
+      "state": "observed",
+      "preconditions": [],
+      "resources": [],
+      "tools": [
+        "abs_core/orchestrator.py"
+      ],
+      "evidence": [
+        "evidence:repository:24989a0fa69e"
+      ],
+      "fallback": [],
+      "approval": "required",
+      "last_validated": "2026-09-23T17:52:29-03:00"
+    },
+    {
+      "id": "PATH-ABS-CODEX",
+      "objective": "execute code-engineering work through Codex adapter",
+      "origin": "ABS Orchestrator",
+      "destination": "Projeto Absoluto codebase",
+      "state": "tested",
+      "preconditions": [],
+      "resources": [],
+      "tools": [
+        "abs_core/codex_adapter.py"
+      ],
+      "evidence": [
+        "evidence:repository:24989a0fa69e",
+        "evidence:test:cdf4df78d8ab"
+      ],
+      "fallback": [],
+      "approval": "required",
+      "last_validated": "2026-09-23T17:52:29-03:00"
+    },
+    {
+      "id": "PATH-ABS-INTERNET-HTTP",
+      "objective": "execute an HTTP request through the Internet adapter",
+      "origin": "ABS capability/resource",
+      "destination": "HTTP response",
+      "state": "observed",
+      "preconditions": [],
+      "resources": [],
+      "tools": [
+        "abs_core/internet_adapter.py"
+      ],
+      "evidence": [
+        "evidence:repository:24989a0fa69e"
+      ],
+      "fallback": [],
+      "approval": "required",
+      "last_validated": "2026-09-23T17:52:29-03:00"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence:repository:24989a0fa69e",
+      "kind": "repository_scan",
+      "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
+      "observed_at": "2026-09-23T17:52:29-03:00",
+      "status": "observed",
+      "detail": "298 files indexed at revision fb8cdc92655998cd9335e9df85fc71d58ce6363b"
+    },
+    {
+      "id": "evidence:test:cdf4df78d8ab",
+      "kind": "test",
+      "source": "pytest",
+      "observed_at": "2026-09-23T17:52:29-03:00",
+      "status": "tested",
+      "detail": "101 passed in 7.07s"
+    }
+  ],
+  "decisions": [],
+  "events": [
+    {
+      "id": "event:repository-scan:24989a0fa69e",
+      "type": "repository_scanned",
+      "at": "2026-09-23T17:52:29-03:00",
+      "revision": "fb8cdc92655998cd9335e9df85fc71d58ce6363b",
+      "file_count": 298,
+      "evidence_id": "evidence:repository:24989a0fa69e"
+    },
+    {
+      "id": "event:commit-observed:fb8cdc926559",
+      "type": "commit_observed",
+      "at": "2026-09-23T17:52:29-03:00",
+      "revision": "fb8cdc92655998cd9335e9df85fc71d58ce6363b",
+      "branch": "main",
+      "subject": "docs: persist current continuity session checkpoint",
+      "changed_files": [
+        "continuidade/07_conhecimento/SESSAO_ATUAL.md"
+      ]
+    },
+    {
+      "id": "event:test:cdf4df78d8ab",
+      "type": "tests_observed",
+      "at": "2026-09-23T17:52:29-03:00",
+      "status": "tested",
+      "evidence_id": "evidence:test:cdf4df78d8ab"
+    }
+  ]
+}
