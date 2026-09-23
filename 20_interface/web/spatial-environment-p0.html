@@ -47,12 +47,32 @@ camera.position.set(0,5,32);
 const webgl=new THREE.WebGLRenderer({antialias:true,alpha:true});
 webgl.setPixelRatio(Math.min(devicePixelRatio,2)); webgl.setSize(innerWidth,innerHeight);
 webgl.setClearColor(0x05080d,1); document.getElementById('scene').appendChild(webgl.domElement);
-const css=new CSS3DRenderer(); css.setSize(innerWidth,innerHeight); css.domElement.style.position='absolute'; css.domElement.style.inset='0'; css.domElement.style.pointerEvents='none'; document.getElementById('scene').appendChild(css.domElement);
+const css=new CSS3DRenderer(); css.setSize(innerWidth,innerHeight); css.domElement.style.position='absolute'; css.domElement.style.inset='0'; css.domElement.style.pointerEvents='auto'; document.getElementById('scene').appendChild(css.domElement);
 const controls=new OrbitControls(camera,css.domElement); controls.enableDamping=true; controls.dampingFactor=.07; controls.enablePan=true; controls.minDistance=5; controls.maxDistance=90; controls.target.set(0,0,0);
 
 const light=new THREE.PointLight(0x62dfff,55,90); light.position.set(0,8,15); scene.add(light);
 const ambient=new THREE.AmbientLight(0x6688aa,1.2); scene.add(ambient);
 const grid=new THREE.GridHelper(180,60,0x19384a,0x0d1e29); grid.position.y=-7; grid.material.transparent=true; grid.material.opacity=.28; scene.add(grid);
+
+const stars = new THREE.Group();
+for(let i=0;i<180;i++){
+  const p=new THREE.Mesh(
+    new THREE.SphereGeometry(.025+Math.random()*.035,6,6),
+    new THREE.MeshBasicMaterial({color:0x78dfff,transparent:true,opacity:.12+Math.random()*.2})
+  );
+  p.position.set((Math.random()-.5)*150,(Math.random()-.5)*90,(Math.random()-.5)*130);
+  stars.add(p);
+}
+scene.add(stars);
+
+const spatialShells = new THREE.Group(); scene.add(spatialShells);
+function shellFor(pos,radius=3.2){
+  const s=new THREE.Mesh(
+    new THREE.SphereGeometry(radius,32,20),
+    new THREE.MeshBasicMaterial({color:0x55dfff,wireframe:true,transparent:true,opacity:.045})
+  );
+  s.position.copy(pos); spatialShells.add(s); return s;
+}
 
 const objects=new Map(), links=[];
 const definitions=[
@@ -68,22 +88,23 @@ function elNode(name,desc){
  const d=document.createElement('div'); d.className='node'; d.innerHTML='<b>'+name+'</b><small>'+desc+'</small>'; return d;
 }
 function addNode(name,desc,pos){
- const o=new CSS3DObject(elNode(name,desc)); o.position.set(...pos); o.userData={name,desc,home:new THREE.Vector3(...pos)}; scene.add(o); objects.set(name,o);
+ const shell=shellFor(new THREE.Vector3(...pos),3.2);
+ const o=new CSS3DObject(elNode(name,desc)); o.position.set(...pos); o.userData={name,desc,home:new THREE.Vector3(...pos),shell}; scene.add(o); objects.set(name,o);
  o.element.addEventListener('click',()=>focus(name)); return o;
 }
 const coreEl=document.createElement('div'); coreEl.className='core'; coreEl.innerHTML='<div><b>ABS</b><small>AMBIENTE VIVO</small></div>';
-const core=new CSS3DObject(coreEl); core.position.set(0,0,0); core.userData={name:'ABS',home:new THREE.Vector3(0,0,0)}; scene.add(core); objects.set('ABS',core);
+const core=new CSS3DObject(coreEl); core.position.set(0,0,0); core.userData={name:'ABS',home:new THREE.Vector3(0,0,0),shell:shellFor(new THREE.Vector3(0,0,0),4.8)}; scene.add(core); objects.set('ABS',core);
 definitions.forEach(x=>addNode(...x));
 function link(a,b){const g=new THREE.BufferGeometry().setFromPoints([a.position,b.position]);const m=new THREE.LineBasicMaterial({color:0x5bdfff,transparent:true,opacity:.16});const l=new THREE.Line(g,m);scene.add(l);links.push({a,b,l})}
 definitions.forEach(x=>link(core,objects.get(x[0])));
-function refreshLinks(){links.forEach(x=>{x.l.geometry.setFromPoints([x.a.position,x.b.position])})}
+function refreshLinks(){links.forEach(x=>{x.l.geometry.setFromPoints([x.a.position,x.b.position])});objects.forEach(o=>{if(o.userData.shell)o.userData.shell.position.copy(o.position)})}
 
 const homeCamera=new THREE.Vector3(0,5,32);
 let focusName='ABS';
 function toast(t){const x=document.getElementById('toast');x.textContent=t;x.classList.add('show');clearTimeout(window.__t);window.__t=setTimeout(()=>x.classList.remove('show'),1400)}
 function tween(obj,to,dur=700){
- const from=obj.position.clone(),start=performance.now();
- function step(now){const p=Math.min(1,(now-start)/dur),e=1-Math.pow(1-p,3);obj.position.lerpVectors(from,to,e);if(p<1)requestAnimationFrame(step);else refreshLinks()} requestAnimationFrame(step)
+ const from=obj.position.clone(),start=performance.now(),shell=obj.userData.shell,shellFrom=shell?shell.position.clone():null;
+ function step(now){const p=Math.min(1,(now-start)/dur),e=1-Math.pow(1-p,3);obj.position.lerpVectors(from,to,e);if(shell&&shellFrom)shell.position.lerpVectors(shellFrom,to,e);if(p<1)requestAnimationFrame(step);else refreshLinks()} requestAnimationFrame(step)
 }
 function focus(name){
  const target=objects.get(name); if(!target)return;
@@ -106,6 +127,24 @@ function restoreHome(){
  definitions.forEach(([n])=>tween(objects.get(n),objects.get(n).userData.home,650));
  tween(core,new THREE.Vector3(0,0,0),650); controls.target.set(0,0,0); camera.position.lerp(homeCamera,.35);
 }
+function hologram(name,title,body){
+ const target=objects.get(name); if(!target)return;
+ const p=document.createElement('div'); p.className='panel holo';
+ p.innerHTML='<h3>'+title+'</h3><p>'+body+'</p><div class="line">Objeto espacial ativo</div><div class="line">A posição acompanha o objeto.</div><button>Recolher</button>';
+ const o=new CSS3DObject(p); o.position.copy(target.position).add(new THREE.Vector3(0,2,1.8)); o.userData={parent:target}; scene.add(o);
+ p.style.pointerEvents='auto'; p.querySelector('button').onclick=()=>{scene.remove(o);toast('Holograma recolhido')};
+ return o;
+}
+function spawnIntelligences(){
+ const parent=objects.get('Inteligências'); if(!parent)return;
+ ['ChatGPT','Claude','Gemini'].forEach((name,i)=>{
+   if(objects.has('IA:'+name))return;
+   const d=elNode(name,'inteligência · objeto espacial'); d.classList.add('focus');
+   const o=new CSS3DObject(d); o.position.copy(parent.position).add(new THREE.Vector3((i-1)*4,i===1?2:0,-2)); o.userData={home:o.position.clone()};
+   scene.add(o); objects.set('IA:'+name,o);
+   d.addEventListener('click',()=>{focus('IA:'+name);hologram('IA:'+name,name,'Objeto de inteligência. A conexão real será ligada ao recurso correspondente do ABS.')});
+ });
+}
 function openPanel(name){
  const target=objects.get(name); if(!target)return;
  const p=document.createElement('div');p.className='panel';p.innerHTML='<h3>'+name+'</h3><p>Objeto interativo do ambiente ABS. Este painel é uma extensão do objeto, não uma nova tela.</p><div class="line">Estado: disponível</div><div class="line">Posição: '+target.position.x.toFixed(1)+' / '+target.position.y.toFixed(1)+' / '+target.position.z.toFixed(1)+'</div><button id="closePanel">Recolher</button>';
@@ -118,14 +157,24 @@ function command(q){
  if(s.includes('volte')||s.includes('visão geral')||s.includes('visao geral'))return focus('ABS');
  const map=[['ia','Inteligências'],['intelig','Inteligências'],['projeto','Projetos'],['miss','Missões'],['recurso','Recursos'],['cérebro','Cérebro'],['cerebro','Cérebro'],['evol','Evolução'],['conversa','Conversas']];
  for(const [k,n] of map)if(s.includes(k))return focus(n);
- if(s.includes('painel'))return openPanel(focusName);
+ if(s.includes('chatgpt')||s.includes('claude')||s.includes('gemini')){
+ const key=s.includes('chatgpt')?'IA:ChatGPT':s.includes('claude')?'IA:Claude':'IA:Gemini';
+ spawnIntelligences(); setTimeout(()=>{focus(key);hologram(key,key,'Objeto de inteligência pronto para conexão.');},30); return;
+}
+if(s.includes('todas as ias')||s.includes('todas as ia')||s.includes('mostrar ias')){
+ spawnIntelligences(); focus('Inteligências'); return;
+}
+if(s.includes('compar')){
+ spawnIntelligences(); setTimeout(()=>{tween(objects.get('IA:ChatGPT'),new THREE.Vector3(-5,1,-2),700);tween(objects.get('IA:Claude'),new THREE.Vector3(5,1,-2),700);hologram('IA:ChatGPT','Comparação','ChatGPT posicionado para comparação.');hologram('IA:Claude','Comparação','Claude posicionado para comparação.');toast('Ambiente reorganizado para comparação')},30); return;
+}
+if(s.includes('painel'))return openPanel(focusName);
  if(s.includes('esconda')||s.includes('oculte')){definitions.forEach(([n])=>tween(objects.get(n),new THREE.Vector3(0,-80,-80),500));toast('Ambiente recolhido; núcleo permanece');return}
  if(s.includes('mostrar tudo'))return restoreHome();
  toast('Comando ainda não mapeado no P0');
 }
 document.getElementById('command').addEventListener('submit',e=>{e.preventDefault();const i=document.getElementById('input');if(i.value.trim())command(i.value.trim());i.value=''});
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();webgl.setSize(innerWidth,innerHeight);css.setSize(innerWidth,innerHeight)});
-function animate(){controls.update();refreshLinks();webgl.render(scene,camera);css.render(scene,camera);requestAnimationFrame(animate)} animate();
+function animate(){controls.update();stars.rotation.y+=0.00008;spatialShells.children.forEach(s=>{s.rotation.y+=0.0004;s.rotation.x+=0.00015});refreshLinks();webgl.render(scene,camera);css.render(scene,camera);requestAnimationFrame(animate)} animate();
 </script>
 </body>
 </html>
