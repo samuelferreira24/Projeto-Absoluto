@@ -12,10 +12,17 @@ def _now() -> str:
 
 
 class Orchestrator:
-    def __init__(self, registry: CapabilityRegistry, store: WorkStore, continuity=None) -> None:
+    def __init__(
+        self,
+        registry: CapabilityRegistry,
+        store: WorkStore,
+        continuity=None,
+        knowledge_runtime=None,
+    ) -> None:
         self.registry = registry
         self.store = store
         self.continuity = continuity
+        self.knowledge_runtime = knowledge_runtime
 
     def create(self, objective: str, context: dict[str, Any] | None = None) -> Work:
         work = Work(objective, context or {})
@@ -26,6 +33,18 @@ class Orchestrator:
     def _checkpoint(self) -> None:
         if self.continuity is not None:
             self.continuity.checkpoint()
+
+    def _record_execution(self, work: Work, capability_id: str, status: str, detail: str) -> None:
+        recorder = self.knowledge_runtime
+        if recorder is None or not hasattr(recorder, "record_execution"):
+            return
+        recorder.record_execution(
+            path_id=f"PATH-ABS-{capability_id.upper()}",
+            operation=f"work:{work.id}",
+            status=status,
+            detail=detail,
+            source=f"ABS Orchestrator ({capability_id})",
+        )
 
     def run(self, work_id: str, capability_id: str | None = None, approved: bool = False) -> Work:
         work = self.store.load(work_id)
@@ -66,6 +85,7 @@ class Orchestrator:
                 "idempotency_key": (work.context.get("_execucao") or {}).get("idempotency_key"),
             })
             work.emit("work.completed", capability_id=cap.id)
+            self._record_execution(work, cap.id, "operational", "Capability execution completed successfully.")
         except Exception as exc:
             work.state = WorkState.FAILED
             work.result = {"type": "error", "error": str(exc), "error_type": type(exc).__name__}
@@ -81,6 +101,7 @@ class Orchestrator:
                 "error_type": type(exc).__name__,
             })
             work.emit("work.failed", capability_id=cap.id, error=repr(exc))
+            self._record_execution(work, cap.id, "failure", f"{type(exc).__name__}: {exc}")
         self.store.save(work)
         self._checkpoint()
         return work
