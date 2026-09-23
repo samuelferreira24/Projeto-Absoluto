@@ -128,13 +128,15 @@ Não devem ser usados automaticamente como arquitetura atual.
 
 A visão maior permanece:
 
-**Imperador → Visão → Projeto Absoluto → Sistema + Império**
+**Imperador → Visão → Projeto Absoluto → projetos + Sistema + Império**
 
-O ABS é o sistema sob controle do Imperador.
+O Projeto Absoluto é o nível maior de visão, método, princípios, objetivos e direção.
+O **Sistema é uma peça de infraestrutura/capacidade** criada para ajudar o Imperador a pesquisar, aprender, planejar, construir, testar e executar.
+O **ABS é o primeiro projeto em construção** dentro do Projeto Absoluto. ABS não é sinônimo de Sistema.
 
-Definição de trabalho:
+Definição de trabalho do ABS:
 
-> ABS é o sistema sob controle do Imperador, criado para realizar aquilo que ele determina, utilizando, adquirindo, combinando, criando, substituindo ou desenvolvendo as capacidades, estruturas, recursos e meios necessários.
+> ABS é o primeiro projeto que o Imperador está tentando construir para realizar sua visão. Sua forma não é definitiva; futuras versões podem substituir, expandir ou abandonar componentes conforme a aprendizagem e as evidências.
 
 O ABS não é definido por:
 - Android;
