@@ -5,6 +5,7 @@ from typing import Any
 
 from .capabilities import CapabilityRegistry
 from .connections import ConnectionRegistry
+from .orchestrator import Orchestrator
 
 
 @dataclass(frozen=True)
@@ -61,7 +62,7 @@ class IntelligenceRegistry:
         connection_map = {item.id: item for item in (connections.list() if connections else [])}
         found: list[IntelligenceResource] = []
         for cap in capabilities.list():
-            if cap.kind not in {"external_ai", "ai", "local_ai", "test"} and cap.id not in {
+            if cap.kind not in {"external_ai", "ai", "local_ai"} and cap.id not in {
                 "codex", "openai-api", "claude", "gemini", "local-ai"
             }:
                 continue
@@ -102,6 +103,7 @@ class CognitiveRuntime:
         self,
         capabilities: CapabilityRegistry,
         intelligence: IntelligenceRegistry,
+        orchestrator: Orchestrator,
         *,
         store_path: str = "abs.db",
         max_history: int = 24,
@@ -112,6 +114,7 @@ class CognitiveRuntime:
 
         self.capabilities = capabilities
         self.intelligence = intelligence
+        self.orchestrator = orchestrator
         self.max_history = max_history
         self._lock = threading.RLock()
         self._json = json
@@ -232,13 +235,20 @@ class CognitiveRuntime:
                     "messages": list(session["messages"]),
                 },
             }
-            result = cap.adapter.execute(message, execution_context)
+            work = self.orchestrator.create(message, execution_context)
+            work = self.orchestrator.run(work.id, resource.capability_id, approved=approved)
+            result = work.result
             final_response = result.get("final_response") if isinstance(result, dict) else result
+            if work.state.value == "failed":
+                final_response = result.get("error", "intelligence_execution_failed") if isinstance(result, dict) else str(result)
             session["messages"].append({"role": "assistant", "content": final_response})
             session["preferred_resource"] = preferred_resource or session.get("preferred_resource")
             self._save(session)
             return {
                 "session_id": sid,
+                "work_id": work.id,
+                "work_state": work.state.value,
+                "provenance": work.provenance,
                 "resource": resource.public(),
                 "response": final_response,
                 "result": result,
