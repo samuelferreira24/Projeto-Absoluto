@@ -20,7 +20,7 @@ jobs:
         run: python scripts/project_knowledge_sync.py
       - name: Commit generated projections only
         run: |
-          if git diff --quiet -- continuidade/07_conhecimento/project_knowledge.json continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md; then
+          if [ -z "$(git status --porcelain -- continuidade/07_conhecimento/project_knowledge.json continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md)" ]; then
             echo "Project Knowledge already current."
             exit 0
           fi
