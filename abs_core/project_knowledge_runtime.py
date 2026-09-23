@@ -176,3 +176,50 @@ class RuntimeKnowledgeCollector:
                 }
             )
         return knowledge
+
+
+
+class ExecutionKnowledgeRecorder:
+    """Persist real execution evidence into the generated project knowledge."""
+
+    def __init__(self, root: str = ".", output_dir: str | None = None) -> None:
+        from pathlib import Path
+        from .project_knowledge import DEFAULT_OUTPUT
+        self.root = Path(root).resolve()
+        self.output_dir = Path(output_dir or DEFAULT_OUTPUT).resolve()
+
+    def _load(self) -> ProjectKnowledge:
+        from dataclasses import fields
+        from .project_knowledge import PathRecord, Evidence, RepositoryScanner
+        state_path = self.output_dir / "project_knowledge.json"
+        if not state_path.exists():
+            return RepositoryScanner(self.root).scan()
+        data = json.loads(state_path.read_text(encoding="utf-8"))
+        known = {field.name for field in fields(ProjectKnowledge)}
+        kwargs = {key: value for key, value in data.items() if key in known}
+        kwargs["paths"] = [PathRecord(**item) for item in kwargs.get("paths", [])]
+        kwargs["evidence"] = [Evidence(**item) for item in kwargs.get("evidence", [])]
+        return ProjectKnowledge(**kwargs)
+
+    def record_execution(
+        self,
+        *,
+        path_id: str,
+        operation: str,
+        status: str,
+        detail: str = "",
+        source: str = "ABS runtime",
+    ) -> ProjectKnowledge:
+        from .project_knowledge import KnowledgeStore, evaluate_paths
+        knowledge = self._load()
+        knowledge = RuntimeKnowledgeCollector().record_execution(
+            knowledge,
+            path_id=path_id,
+            operation=operation,
+            status=status,
+            detail=detail,
+            source=source,
+        )
+        evaluate_paths(knowledge)
+        KnowledgeStore(self.output_dir).write(knowledge)
+        return knowledge
