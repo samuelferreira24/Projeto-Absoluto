@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-23T18:01:48-03:00",
-  "source_revision": "8c32e9f6c7d4c6a4c26275493297c7c3aa423f13",
+  "generated_at": "2026-09-23T18:54:53-03:00",
+  "source_revision": "3e8187466a988e4559adc380ff3c5a27a2c26dc7",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 35
+      "file_count": 39
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "8c32e9f6c7d4c6a4c26275493297c7c3aa423f13",
-      "commit_subject": "docs: registrar auditoria senior da arquitetura de informação"
+      "revision": "3e8187466a988e4559adc380ff3c5a27a2c26dc7",
+      "commit_subject": "Merge pull request #69 from samuelferreira24/codex/ia-information-architecture-v1"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:0749f8d81686"
+        "evidence:repository:005149ddc392"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T18:01:48-03:00"
+      "last_validated": "2026-09-23T18:54:53-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:0749f8d81686",
-        "evidence:test:4e361f8ba842"
+        "evidence:repository:005149ddc392",
+        "evidence:test:6d83cbb42ba7"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T18:01:48-03:00"
+      "last_validated": "2026-09-23T18:54:53-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,58 +176,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:0749f8d81686"
+        "evidence:repository:005149ddc392"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T18:01:48-03:00"
+      "last_validated": "2026-09-23T18:54:53-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:0749f8d81686",
+      "id": "evidence:repository:005149ddc392",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-23T18:01:48-03:00",
+      "observed_at": "2026-09-23T18:54:53-03:00",
       "status": "observed",
-      "detail": "299 files indexed at revision 8c32e9f6c7d4c6a4c26275493297c7c3aa423f13"
+      "detail": "303 files indexed at revision 3e8187466a988e4559adc380ff3c5a27a2c26dc7"
     },
     {
-      "id": "evidence:test:4e361f8ba842",
+      "id": "evidence:test:6d83cbb42ba7",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-23T18:01:48-03:00",
+      "observed_at": "2026-09-23T18:54:53-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.37s"
+      "detail": "101 passed in 6.29s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:0749f8d81686",
+      "id": "event:repository-scan:005149ddc392",
       "type": "repository_scanned",
-      "at": "2026-09-23T18:01:48-03:00",
-      "revision": "8c32e9f6c7d4c6a4c26275493297c7c3aa423f13",
-      "file_count": 299,
-      "evidence_id": "evidence:repository:0749f8d81686"
+      "at": "2026-09-23T18:54:53-03:00",
+      "revision": "3e8187466a988e4559adc380ff3c5a27a2c26dc7",
+      "file_count": 303,
+      "evidence_id": "evidence:repository:005149ddc392"
     },
     {
-      "id": "event:commit-observed:8c32e9f6c7d4",
+      "id": "event:commit-observed:3e8187466a98",
       "type": "commit_observed",
-      "at": "2026-09-23T18:01:48-03:00",
-      "revision": "8c32e9f6c7d4c6a4c26275493297c7c3aa423f13",
+      "at": "2026-09-23T18:54:53-03:00",
+      "revision": "3e8187466a988e4559adc380ff3c5a27a2c26dc7",
       "branch": "main",
-      "subject": "docs: registrar auditoria senior da arquitetura de informação",
-      "changed_files": [
-        "docs/06_auditoria/AUDITORIA_SENIOR_ARQUITETURA_INFORMACAO_2026-09-23.md"
-      ]
+      "subject": "Merge pull request #69 from samuelferreira24/codex/ia-information-architecture-v1",
+      "changed_files": []
     },
     {
-      "id": "event:test:4e361f8ba842",
+      "id": "event:test:6d83cbb42ba7",
       "type": "tests_observed",
-      "at": "2026-09-23T18:01:48-03:00",
+      "at": "2026-09-23T18:54:53-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:4e361f8ba842"
+      "evidence_id": "evidence:test:6d83cbb42ba7"
     }
   ]
 }
