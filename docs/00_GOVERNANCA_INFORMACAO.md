@@ -11,7 +11,14 @@ Cada informação deve possuir:
 
 A organização física é consequência dessa classificação, não o contrário.
 
-## 3. Fontes de autoridade
+## 3. Modelo do Projeto
+O modelo conceitual está em `docs/00_MODELO_PROJETO_ABSOLUTO.md`.
+
+A distinção fundamental é: Projeto Absoluto = visão/método/objetivos; Sistema = meio para ampliar capacidade de execução; ABS = primeiro projeto em construção; futuros projetos podem reutilizar ou substituir capacidades do Sistema.
+
+Os arquivos-base da visão original são fontes de origem e não devem ser reescritos como se fossem documentação técnica do ABS.
+
+## 4. Fontes de autoridade
 
 ### O que existe agora
 Prioridade:
@@ -35,7 +42,7 @@ O conhecimento estruturado deve ser persistido no mecanismo de Project Knowledge
 ### O que aconteceu
 Histórico preservado é autoridade sobre o registro histórico daquilo que ocorreu, mas não sobre o estado operacional atual.
 
-## 4. Classes de informação
+## 5. Classes de informação
 | Classe | Pergunta |
 |---|---|
 | Estado | O que existe agora? |
@@ -51,7 +58,7 @@ Histórico preservado é autoridade sobre o registro histórico daquilo que ocor
 | Referência | Qual é a descrição técnica estável? |
 | Tutorial/How-to | Como realizar uma ação? |
 
-## 5. Documentação
+## 6. Documentação
 A documentação deve separar necessidades diferentes em vez de colocar tudo no mesmo documento.
 
 Aplicação adaptada ao Projeto Absoluto:
@@ -62,7 +69,7 @@ Aplicação adaptada ao Projeto Absoluto:
 
 Não criar quatro pastas vazias apenas para obedecer a um modelo. A classificação deve surgir do conteúdo real.
 
-## 6. Continuidade
+## 7. Continuidade
 A pasta continuidade é infraestrutura de transferência entre sessões/IAs.
 Ela não deve virar um segundo depósito geral de documentação.
 
@@ -76,32 +83,32 @@ Deve conter principalmente:
 
 Material que pertence estruturalmente a arquitetura, operação, referência ou planejamento deve permanecer em sua área própria.
 
-## 7. Estado vivo
+## 8. Estado vivo
 O estado estruturado produzido por Project Knowledge deve ser tratado como fonte canônica de estado derivado do repositório e das evidências que o mecanismo consegue observar.
 
 MAPA_AUTO_ESTADO_PROJETO.md é uma projeção humana desse estado.
 
 Handoffs não devem competir com o estado vivo. São checkpoints de contexto e devem apontar para as fontes canônicas.
 
-## 8. Sessões
+## 9. Sessões
 Uma sessão de IA é uma unidade temporária de trabalho.
 
 Quando uma sessão produzir decisão, mudança de arquitetura, resultado, evidência, descoberta, pendência ou ponto de retomada que altere o estado do Projeto, isso deve ser persistido no repositório antes do encerramento/transferência.
 
 A conversa não é armazenamento persistente do Projeto.
 
-## 9. Histórico
+## 10. Histórico
 Histórico nunca deve ser apagado apenas para simplificar a navegação.
 Mas histórico também não deve aparecer como implementação atual.
 
 Cada fonte histórica deve ser identificada por origem, período, versão, estado, relação com o presente e se foi superada ou continua válida.
 
-## 10. Mapas
+## 11. Mapas
 Mapas são instrumentos de navegação e planejamento.
 Eles não são código, prova operacional, fila obrigatória ou substituto do estado vivo.
 O mapa deve apontar para fontes verificáveis.
 
-## 11. Reorganização física
+## 12. Reorganização física
 Nenhum arquivo operacional deve ser movido apenas por estética.
 
 Antes de mover:
@@ -118,7 +125,7 @@ Antes de mover:
 
 Documentos podem ser reorganizados com menor risco, mas também devem preservar histórico e referências.
 
-## 12. Regra contra duplicação
+## 13. Regra contra duplicação
 Dois documentos com o mesmo assunto não são automaticamente duplicados.
 
 Comparar:
@@ -128,7 +135,7 @@ Só consolidar quando função e autoridade forem equivalentes.
 
 Quando houver conteúdo histórico diferente, preservar a fonte e criar referência para a autoridade atual.
 
-## 13. Regra de navegação
+## 14. Regra de navegação
 Uma IA nova deve conseguir responder:
 1. Qual é o Projeto?
 2. Qual é o estado atual?
@@ -140,7 +147,7 @@ Uma IA nova deve conseguir responder:
 8. O que é histórico?
 9. Qual é o ponto de retomada da sessão?
 
-## 14. Arquitetura de informação
+## 15. Arquitetura de informação
 A estrutura não deve ser reorganizada para criar uma árvore artificialmente profunda.
 
 Preferir:
@@ -151,7 +158,7 @@ Preferir:
 - uma autoridade por pergunta;
 - projeções automáticas quando possível.
 
-## 15. Fases da reorganização
+## 16. Fases da reorganização
 ### Fase 1 — Governança e navegação
 Definir autoridade, taxonomia, índice mestre, portas de entrada e documentos derivados.
 
@@ -170,7 +177,7 @@ Somente quando houver benefício operacional comprovado; código é protegido; t
 ### Fase 6 — Automação
 Gerar índices, validar links, detectar documentos órfãos e estado desatualizado, e atualizar projeções.
 
-## 16. Critério profissional de conclusão
+## 17. Critério profissional de conclusão
 A reorganização só será concluída quando uma nova IA puder, sem depender da conversa anterior:
 - localizar o estado atual;
 - distinguir atual/histórico/hipótese;
