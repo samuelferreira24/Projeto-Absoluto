@@ -16,6 +16,7 @@ from .tool_learning import ToolLearningEngine
 from . import update_manager
 
 WEB_INDEX = Path(__file__).resolve().parent.parent / "20_interface" / "web" / "index.html"
+WEB_SPATIAL_P0 = WEB_INDEX.parent / "spatial-environment-p0.html"
 WEB_MANIFEST = WEB_INDEX.parent / "manifest.webmanifest"
 WEB_SW = WEB_INDEX.parent / "sw.js"
 
@@ -60,6 +61,9 @@ class ABSHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
             self._send_file(WEB_INDEX, "text/html; charset=utf-8")
+            return
+        if self.path == "/spatial-environment-p0.html":
+            self._send_file(WEB_SPATIAL_P0, "text/html; charset=utf-8")
             return
         if self.path == "/manifest.webmanifest":
             self._send_file(WEB_MANIFEST, "application/manifest+json")
