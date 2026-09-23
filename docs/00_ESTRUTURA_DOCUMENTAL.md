@@ -23,3 +23,17 @@ A documentação não deve virar uma sequência cronológica de arquivos. Cada d
 
 ## Regra
 **Classificar antes de mover.** Código operacional só é movido após verificar dependências.
+
+
+## Estado da reorganização em 2026-09-23
+
+A documentação temática de interface que estava em `continuidade/06_interface/` foi redistribuída por função:
+- pesquisa → `docs/90_fontes/`;
+- arquitetura → `docs/02_arquitetura/`;
+- planejamento → `docs/03_planejamento/`.
+
+A área `continuidade/` permanece reservada à transferência entre sessões/IAs.
+
+Snapshots antigos de estado e construção foram reclassificados em `continuidade/99_legado/` ou `continuidade/05_handoffs/` conforme sua função temporal.
+
+A próxima zona de auditoria é `docs/03_planejamento/` × `cerebro/mapas/`.
