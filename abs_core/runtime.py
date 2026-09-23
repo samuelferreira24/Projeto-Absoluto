@@ -46,9 +46,15 @@ def build_registry() -> CapabilityRegistry:
     registry = CapabilityRegistry()
     registry.register(CapabilityRecord("echo", "Echo test capability", "test", EchoCapability()))
 
+    # Core local/network capabilities are structural ABS capabilities and must
+    # remain discoverable even when optional credentials are absent.
+    from .codex_adapter import CodexCapability
+    from .internet_adapter import InternetHTTPCapability
+
+    registry.register(CapabilityRecord("codex", "OpenAI Codex CLI", "external_ai", CodexCapability()))
+    registry.register(CapabilityRecord("internet-http", "Internet HTTP", "network", InternetHTTPCapability()))
+
     optional = (
-        (".codex_adapter", "CodexCapability", "codex", "OpenAI Codex CLI", "external_ai", None),
-        (".internet_adapter", "InternetHTTPCapability", "internet-http", "Internet HTTP", "network", None),
         (".local_ai_adapter", "LocalAICapability", "local-ai", "IA local", "local_ai", "ABS_LOCAL_AI_URL"),
         (".ai_adapters", "ClaudeCapability", "claude", "Anthropic Claude API", "external_ai", "ANTHROPIC_API_KEY"),
         (".ai_adapters", "GeminiCapability", "gemini", "Google Gemini API", "external_ai", "GEMINI_API_KEY"),

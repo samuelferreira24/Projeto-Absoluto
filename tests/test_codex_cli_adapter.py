@@ -28,7 +28,7 @@ def test_codex_cli_adapter_creates_and_resumes_session(monkeypatch, tmp_path):
     assert first["thread_id"] == "thread-created"
     assert first["final_response"] == "CODEX_CLI_OK"
     assert calls[0][0][:5] == [
-        "/usr/bin/codex", "exec", "--json", "--sandbox", "read-only"
+        "/usr/bin/codex", "exec", "--json", "--sandbox", "workspace-write"
     ]
 
     second = adapter.execute(

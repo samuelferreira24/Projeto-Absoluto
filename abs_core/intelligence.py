@@ -6,6 +6,7 @@ from typing import Any
 from .capabilities import CapabilityRegistry
 from .connections import ConnectionRegistry
 from .orchestrator import Orchestrator
+from .store import WorkStore
 
 
 @dataclass(frozen=True)
@@ -103,7 +104,7 @@ class CognitiveRuntime:
         self,
         capabilities: CapabilityRegistry,
         intelligence: IntelligenceRegistry,
-        orchestrator: Orchestrator,
+        orchestrator: Orchestrator | None = None,
         *,
         store_path: str = "abs.db",
         max_history: int = 24,
@@ -116,6 +117,7 @@ class CognitiveRuntime:
         self.intelligence = intelligence
         self.orchestrator = orchestrator
         self.max_history = max_history
+        self.store_path = store_path
         self._lock = threading.RLock()
         self._json = json
         self._conn = sqlite3.connect(store_path, check_same_thread=False)
@@ -235,6 +237,8 @@ class CognitiveRuntime:
                     "messages": list(session["messages"]),
                 },
             }
+            if self.orchestrator is None:
+                self.orchestrator = Orchestrator(self.capabilities, WorkStore(self.store_path))
             work = self.orchestrator.create(message, execution_context)
             work = self.orchestrator.run(work.id, resource.capability_id, approved=(approved or resource.metadata.get("conversational", False)))
             result = work.result
