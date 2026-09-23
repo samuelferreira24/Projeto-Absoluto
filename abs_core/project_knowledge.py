@@ -86,6 +86,27 @@ class RepositoryScanner:
         "abs_core/internet_adapter.py": ("internet-http", "Internet HTTP"),
     }
 
+    CAPABILITY_PATHS = {
+        "orchestrator": (
+            "PATH-ABS-ORCHESTRATOR",
+            "route an ABS work request through the operational core",
+            "Imperador/ABS input",
+            "ABS Work result",
+        ),
+        "codex": (
+            "PATH-ABS-CODEX",
+            "execute code-engineering work through Codex adapter",
+            "ABS Orchestrator",
+            "Projeto Absoluto codebase",
+        ),
+        "internet-http": (
+            "PATH-ABS-INTERNET-HTTP",
+            "execute an HTTP request through the Internet adapter",
+            "ABS capability/resource",
+            "HTTP response",
+        ),
+    }
+
     def __init__(self, root: str | Path) -> None:
         self.root = Path(root).resolve()
 
@@ -244,33 +265,28 @@ class RepositoryScanner:
                 )
 
         paths = {f["path"] for f in files}
-        if "abs_core/orchestrator.py" in paths:
-            k.paths.append(
-                PathRecord(
-                    "PATH-ABS-ORCHESTRATOR",
-                    "route an ABS work request through the operational core",
-                    "Imperador/ABS input",
-                    "ABS Work result",
-                    "observed",
-                    tools=["abs_core/orchestrator.py"],
-                    evidence=[evidence_id],
-                    approval="required",
-                )
+        for capability_id, (path_id, objective, origin, destination) in self.CAPABILITY_PATHS.items():
+            module = next(
+                (
+                    file["path"]
+                    for file in files
+                    if self.CAPABILITY_FILES.get(file["path"], (None,))[0] == capability_id
+                ),
+                None,
             )
-        if "abs_core/codex_adapter.py" in paths:
-            k.paths.append(
-                PathRecord(
-                    "PATH-ABS-CODEX",
-                    "execute code-engineering work through Codex adapter",
-                    "ABS Orchestrator",
-                    "Projeto Absoluto codebase",
-                    "observed",
-                    tools=["abs_core/codex_adapter.py"],
-                    evidence=[evidence_id],
-                    fallback=["another compatible execution resource"],
-                    approval="required",
+            if module:
+                k.paths.append(
+                    PathRecord(
+                        path_id,
+                        objective,
+                        origin,
+                        destination,
+                        "observed",
+                        tools=[module],
+                        evidence=[evidence_id],
+                        approval="required",
+                    )
                 )
-            )
         return k
 
 
