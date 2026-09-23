@@ -131,3 +131,48 @@ class RuntimeKnowledgeCollector:
                 }
             )
         return k
+
+
+    def record_execution(
+        self,
+        knowledge: ProjectKnowledge,
+        *,
+        path_id: str,
+        operation: str,
+        status: str,
+        detail: str = "",
+        source: str = "ABS runtime",
+    ) -> ProjectKnowledge:
+        """Record explicit runtime execution evidence for a path."""
+        execution_key = digest(
+            f"{knowledge.source_revision or 'unknown'}|{path_id}|{operation}|{status}|{detail}"
+        )[:12]
+        evidence_id = f"evidence:execution:{execution_key}"
+        if not any(item.id == evidence_id for item in knowledge.evidence):
+            knowledge.evidence.append(
+                Evidence(
+                    evidence_id,
+                    "execution",
+                    source,
+                    knowledge.generated_at,
+                    status,
+                    detail,
+                )
+            )
+        for path in knowledge.paths:
+            if path.id == path_id and evidence_id not in path.evidence:
+                path.evidence.append(evidence_id)
+        event_id = f"event:execution:{execution_key}"
+        if not any(item.get("id") == event_id for item in knowledge.events):
+            knowledge.events.append(
+                {
+                    "id": event_id,
+                    "type": "execution_observed",
+                    "at": knowledge.generated_at,
+                    "path_id": path_id,
+                    "operation": operation,
+                    "status": status,
+                    "evidence_id": evidence_id,
+                }
+            )
+        return knowledge
