@@ -6,6 +6,7 @@ from typing import Any
 from .capabilities import CapabilityRegistry
 from .connections import ConnectionRegistry
 from .orchestrator import Orchestrator
+from .store import WorkStore
 
 
 @dataclass(frozen=True)
@@ -103,7 +104,7 @@ class CognitiveRuntime:
         self,
         capabilities: CapabilityRegistry,
         intelligence: IntelligenceRegistry,
-        orchestrator: Orchestrator,
+        orchestrator: Orchestrator | None = None,
         *,
         store_path: str = "abs.db",
         max_history: int = 24,
@@ -235,6 +236,8 @@ class CognitiveRuntime:
                     "messages": list(session["messages"]),
                 },
             }
+            if self.orchestrator is None:
+                self.orchestrator = Orchestrator(self.capabilities, WorkStore(store_path))
             work = self.orchestrator.create(message, execution_context)
             work = self.orchestrator.run(work.id, resource.capability_id, approved=(approved or resource.metadata.get("conversational", False)))
             result = work.result
