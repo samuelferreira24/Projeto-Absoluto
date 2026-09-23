@@ -49,3 +49,18 @@ def test_cognitive_runtime_allows_explicit_resource_without_fixed_command() -> N
     runtime = CognitiveRuntime(registry, intelligence, store_path=":memory:")
     result = runtime.turn("pesquise isto", preferred_resource="intelligence:fake-chat", approved=True)
     assert result["response"].startswith("resposta:pesquise isto")
+
+
+def test_conversational_resource_does_not_require_action_approval() -> None:
+    registry = CapabilityRegistry()
+    registry.register(CapabilityRecord("fake-chat", "Fake Chat", "external_ai", FakeChat()))
+    intelligence = IntelligenceRegistry()
+    intelligence.register(IntelligenceResource(
+        id="intelligence:fake-chat", capability_id="fake-chat",
+        name="Fake Chat", source="local", local=True, status="available",
+        metadata={"conversational": True},
+    ))
+    runtime = CognitiveRuntime(registry, intelligence, store_path=":memory:")
+    result = runtime.turn("vamos conversar", approved=False)
+    assert result["work_state"] == "completed"
+    assert result["response"].startswith("resposta:vamos conversar")
