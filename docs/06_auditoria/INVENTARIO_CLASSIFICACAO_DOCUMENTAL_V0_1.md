@@ -5,7 +5,7 @@
 Registrar a primeira classificação profissional da informação do Projeto Absoluto antes de realizar migrações físicas.
 
 Regra desta fase:
-**INVENTARIAR → CLASSIFICAR → DETERMINAR AUTORIDADE → REFERENCIAR → MIGRAR CONTROLADAMENTE**
+**INVENTARIAR → CLASSIFICAR → DETERMINAR AUTORIDADE → REFERENCIAR → MIGRAR CONTROLADAMENTE → VALIDAR**
 
 Nenhum conteúdo é apagado apenas por parecer duplicado.
 
@@ -39,13 +39,13 @@ Cada documento é analisado por função, autoridade, temporalidade, origem, pú
 | cerebro/00_estado/ | estado e snapshots | mista | CLASSIFY |
 | cerebro/data/ | dados/conhecimento | evolução | CLASSIFY |
 | continuidade/ | transferência | atual + histórico | CLASSIFY |
-| continuidade/06_interface/ | tema de interface | mista | CLASSIFY/MOVE LATER |
+| continuidade/06_interface/ | tema de interface | mista | MIGRATED / EMPTY |
 | continuidade/07_conhecimento/ | estado/continuidade estruturada | atual | KEEP/CANONICAL |
 | docs/01_operacao/ | operação | atual | KEEP |
 | docs/02_arquitetura/ | arquitetura | atual/evolução | KEEP + CROSS-REFERENCE |
 | docs/03_planejamento/ | planejamento | evolução | KEEP + CROSS-REFERENCE |
 | docs/04_referencia/ | referência | atual/evolução | KEEP |
-| docs/architecture/ | arquitetura existente | mista | CONSOLIDATE LATER |
+| docs/architecture/ | arquitetura existente | — | REMOVED / CONSOLIDATED |
 | docs/api/ | referência API | atual | KEEP |
 | docs/90_fontes/ | fontes | histórica/origem | KEEP |
 | docs/06_auditoria/ | avaliação | temporal | KEEP |
@@ -68,11 +68,15 @@ Há múltiplos mecanismos: cerebro/00_estado/, continuidade/02_estado/, handoffs
 
 **Ação:** Project Knowledge deve ser o estado estruturado derivado atual. Os demais devem ser classificados como fonte, projeção, checkpoint ou histórico.
 
-### 3. Planejamento
+### 3. Planejamento × mapas
 
-Há sobreposição potencial entre docs/03_planejamento/, cerebro/mapas/, documentos de continuidade e mapas históricos.
+A auditoria documento a documento desta zona concluiu que há sobreposição temática, mas não duplicação funcional suficiente para fundir as áreas.
 
-**Ação:** mapas permanecem instrumentos de navegação/planejamento; não devem ser tratados como fila ou estado operacional.
+- `docs/03_planejamento/` é a entrada documental e abriga planejamentos específicos;
+- `cerebro/mapas/` é a representação em rede de capacidades, dependências, pendências e caminhos;
+- `cerebro/00_estado/` fica fora do planejamento porque registra estado/snapshots.
+
+**Ação:** manter as áreas separadas, reforçar referências cruzadas e não criar uma nova camada intermediária.
 
 ### 4. Continuidade
 
@@ -103,6 +107,12 @@ Há patrimônio em docs/90_fontes/, mini-cerebro/, 99_arquivo/ e históricos den
 Os arquivos-base que contêm a visão original do Projeto Absoluto devem ser tratados como **fontes de origem da visão**, e não como simples documentação técnica do ABS.
 
 Nesta fase, não reescrever nem substituir os arquivos-base. Primeiro catalogá-los e estabelecer seus papéis. Uma documentação derivada pode explicar sua relação, mas não deve apagar ou alterar a fonte original.
+
+## Resultado da auditoria planejamento × mapas
+
+Não foi identificada migração física necessária nesta zona. O único arquivo que estava funcionalmente fora de lugar era o quadro de status ABS, já reclassificado para `cerebro/00_estado/STATUS_ABS_V1_2026-09-22.md`.
+
+As áreas de planejamento permanecem separadas por função e agora apontam umas para as outras sem duplicar conteúdo.
 
 ## Próxima etapa
 
@@ -140,3 +150,5 @@ Só depois disso executar migrações em lotes pequenos, verificáveis e revers�
 `Project Knowledge` permanece como estado estruturado derivado. `cerebro/00_estado/` permanece para estado/snapshots do Cérebro. `continuidade/05_handoffs/` contém checkpoints de transferência. Material histórico de continuidade fica em `continuidade/99_legado/`.
 
 A antiga `continuidade/06_interface/` não deve voltar a ser usada como área temática. Novos documentos de interface devem ser classificados por função.
+
+A antiga `docs/architecture/` não deve voltar a ser usada; arquitetura atual fica em `docs/02_arquitetura/`.
