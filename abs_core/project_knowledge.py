@@ -210,6 +210,10 @@ class RepositoryScanner:
                 "name": self.root.name,
                 "type": "repository",
                 "state": "observed",
+                "branch": self.branch(),
+                "remote": self.remote(),
+                "revision": revision,
+                "commit_subject": self.commit_subject(),
             }
         ]
 
