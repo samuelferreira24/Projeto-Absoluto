@@ -21,6 +21,7 @@ from .tool_planner import ToolPlanner
 from .capabilities import CapabilityRecord, CapabilityRegistry
 from .adapters import EchoCapability
 from .intelligence import CognitiveRuntime, IntelligenceRegistry
+from .project_knowledge_runtime import ExecutionKnowledgeRecorder
 
 
 @dataclass
@@ -76,7 +77,8 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
     registry = build_registry()
     store = WorkStore(db_path)
     store.recover_interrupted()
-    orchestrator = Orchestrator(registry, store)
+    knowledge_runtime = ExecutionKnowledgeRecorder(root=".")
+    orchestrator = Orchestrator(registry, store, knowledge_runtime=knowledge_runtime)
 
     resources = ResourceManager()
     interface_runtime = InterfaceRuntime()
