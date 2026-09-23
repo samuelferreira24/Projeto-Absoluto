@@ -77,7 +77,9 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
     registry = build_registry()
     store = WorkStore(db_path)
     store.recover_interrupted()
-    knowledge_runtime = ExecutionKnowledgeRecorder(root=".")
+    from pathlib import Path
+    project_root = Path(__file__).resolve().parents[1]
+    knowledge_runtime = ExecutionKnowledgeRecorder(root=project_root, output_dir=project_root / "continuidade/07_conhecimento")
     orchestrator = Orchestrator(registry, store, knowledge_runtime=knowledge_runtime)
 
     resources = ResourceManager()
