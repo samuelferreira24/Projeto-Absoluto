@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ABS Spatial Environment — P0</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05080d;color:#eef6ff;font-family:Inter,system-ui,sans-serif}
+#scene{position:fixed;inset:0}
+#hud{position:fixed;inset:0;pointer-events:none}
+#brand{position:absolute;top:18px;left:20px;letter-spacing:.12em;font-size:12px;color:#cdeeff;text-shadow:0 0 18px #5de1ff66}
+#state{position:absolute;top:18px;right:20px;font-size:10px;color:#7f94a9}
+#command{pointer-events:auto;position:absolute;left:50%;bottom:22px;transform:translateX(-50%);width:min(680px,calc(100vw - 32px));display:flex;gap:8px;padding:9px;border:1px solid #29475c;border-radius:18px;background:#07101ad9;backdrop-filter:blur(18px);box-shadow:0 18px 70px #0009}
+#command input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#eaf7ff;font:14px inherit;padding:8px 10px}
+#command button{border:1px solid #31556c;background:#0a1b27;color:#bfeeff;border-radius:11px;padding:8px 13px;cursor:pointer}
+#hint{position:absolute;bottom:76px;left:50%;transform:translateX(-50%);font-size:10px;color:#657b90;white-space:nowrap}
+.node{width:150px;min-height:72px;padding:15px;border:1px solid #31536a;border-radius:18px;background:rgba(8,17,27,.72);box-shadow:0 18px 45px #0009,0 0 35px #56dfff10;backdrop-filter:blur(12px);cursor:pointer;transition:border-color .25s,box-shadow .25s,background .25s}
+.node:hover,.node.focus{border-color:#71e5ff;box-shadow:0 20px 55px #000b,0 0 45px #71e5ff25;background:rgba(10,28,40,.88)}
+.node b{display:block;font-size:14px}.node small{display:block;margin-top:6px;color:#7890a6;font-size:10px}
+.core{width:180px;height:180px;border-radius:50%;display:grid;place-items:center;text-align:center;border:1px solid #73e8ff88;background:radial-gradient(circle,#17475c,#071019 68%);box-shadow:0 0 35px #66e4ff38,0 0 120px #66e4ff15}
+.core b{font-size:34px;letter-spacing:.08em}.core small{display:block;color:#8ed7eb;font-size:9px;letter-spacing:.2em;margin-top:6px}
+.panel{width:310px;padding:18px;border:1px solid #5ddfff88;border-radius:20px;background:rgba(5,14,23,.88);box-shadow:0 25px 80px #000b,0 0 45px #5ddfff18;backdrop-filter:blur(20px);color:#eaf7ff}
+.panel h3{margin:0 0 7px;font-size:17px}.panel p{margin:0;color:#91a7bb;font-size:11px;line-height:1.5}.panel .line{margin-top:13px;padding-top:10px;border-top:1px solid #ffffff0b;font-size:11px}.panel button{margin-top:12px;border:1px solid #34576d;background:#0a1d2a;color:#c9f2ff;border-radius:9px;padding:8px 10px;cursor:pointer}
+.edge{height:2px;background:linear-gradient(90deg,transparent,#64dfff88,transparent);transform-origin:left center;opacity:.35}
+#toast{position:absolute;left:50%;top:70px;transform:translateX(-50%) translateY(-8px);opacity:0;padding:8px 12px;border:1px solid #31566d;border-radius:999px;background:#07131ed9;color:#a8dff1;font-size:10px;transition:.25s}
+#toast.show{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="hud">
+  <div id="brand">ABS · AMBIENTE ESPACIAL P0</div>
+  <div id="state">Explorar · espaço 3D · estado visual</div>
+  <div id="toast"></div>
+  <div id="hint">arraste para olhar · roda/pinça para aproximar · toque em um objeto para entrar</div>
+  <form id="command"><input id="input" autocomplete="off" placeholder="Diga ao ABS o que quer ver…"><button>Executar</button></form>
+</div>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js';
+import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js';
+import {CSS3DRenderer,CSS3DObject} from 'https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/renderers/CSS3DRenderer.js';
+
+const scene=new THREE.Scene();
+scene.fog=new THREE.FogExp2(0x05080d,.035);
+const camera=new THREE.PerspectiveCamera(58,innerWidth/innerHeight,.1,3000);
+camera.position.set(0,5,32);
+const webgl=new THREE.WebGLRenderer({antialias:true,alpha:true});
+webgl.setPixelRatio(Math.min(devicePixelRatio,2)); webgl.setSize(innerWidth,innerHeight);
+webgl.setClearColor(0x05080d,1); document.getElementById('scene').appendChild(webgl.domElement);
+const css=new CSS3DRenderer(); css.setSize(innerWidth,innerHeight); css.domElement.style.position='absolute'; css.domElement.style.inset='0'; css.domElement.style.pointerEvents='none'; document.getElementById('scene').appendChild(css.domElement);
+const controls=new OrbitControls(camera,css.domElement); controls.enableDamping=true; controls.dampingFactor=.07; controls.enablePan=true; controls.minDistance=5; controls.maxDistance=90; controls.target.set(0,0,0);
+
+const light=new THREE.PointLight(0x62dfff,55,90); light.position.set(0,8,15); scene.add(light);
+const ambient=new THREE.AmbientLight(0x6688aa,1.2); scene.add(ambient);
+const grid=new THREE.GridHelper(180,60,0x19384a,0x0d1e29); grid.position.y=-7; grid.material.transparent=true; grid.material.opacity=.28; scene.add(grid);
+
+const objects=new Map(), links=[];
+const definitions=[
+ ['Projetos','frentes e estruturas',[-13,5,-5]],
+ ['Inteligências','IAs e capacidades',[13,5,-5]],
+ ['Missões','objetivos e execução',[-14,-3,-3]],
+ ['Recursos','ferramentas e conexões',[14,-3,-3]],
+ ['Cérebro','memória e coordenação',[-8,10,-12]],
+ ['Evolução','aprendizado e continuidade',[8,10,-12]],
+ ['Conversas','interação com inteligências',[0,-8,-10]]
+];
+function elNode(name,desc){
+ const d=document.createElement('div'); d.className='node'; d.innerHTML='<b>'+name+'</b><small>'+desc+'</small>'; return d;
+}
+function addNode(name,desc,pos){
+ const o=new CSS3DObject(elNode(name,desc)); o.position.set(...pos); o.userData={name,desc,home:new THREE.Vector3(...pos)}; scene.add(o); objects.set(name,o);
+ o.element.addEventListener('click',()=>focus(name)); return o;
+}
+const coreEl=document.createElement('div'); coreEl.className='core'; coreEl.innerHTML='<div><b>ABS</b><small>AMBIENTE VIVO</small></div>';
+const core=new CSS3DObject(coreEl); core.position.set(0,0,0); core.userData={name:'ABS',home:new THREE.Vector3(0,0,0)}; scene.add(core); objects.set('ABS',core);
+definitions.forEach(x=>addNode(...x));
+function link(a,b){const g=new THREE.BufferGeometry().setFromPoints([a.position,b.position]);const m=new THREE.LineBasicMaterial({color:0x5bdfff,transparent:true,opacity:.16});const l=new THREE.Line(g,m);scene.add(l);links.push({a,b,l})}
+definitions.forEach(x=>link(core,objects.get(x[0])));
+function refreshLinks(){links.forEach(x=>{x.l.geometry.setFromPoints([x.a.position,x.b.position])})}
+
+const homeCamera=new THREE.Vector3(0,5,32);
+let focusName='ABS';
+function toast(t){const x=document.getElementById('toast');x.textContent=t;x.classList.add('show');clearTimeout(window.__t);window.__t=setTimeout(()=>x.classList.remove('show'),1400)}
+function tween(obj,to,dur=700){
+ const from=obj.position.clone(),start=performance.now();
+ function step(now){const p=Math.min(1,(now-start)/dur),e=1-Math.pow(1-p,3);obj.position.lerpVectors(from,to,e);if(p<1)requestAnimationFrame(step);else refreshLinks()} requestAnimationFrame(step)
+}
+function focus(name){
+ const target=objects.get(name); if(!target)return;
+ focusName=name; document.querySelectorAll('.node,.core').forEach(e=>e.classList.remove('focus')); target.element.classList.add('focus');
+ controls.target.copy(target.position);
+ const desired=target.position.clone().add(new THREE.Vector3(0,1,10));
+ const from=camera.position.clone(),start=performance.now(),dur=850;
+ function step(now){const p=Math.min(1,(now-start)/dur),e=1-Math.pow(1-p,3);camera.position.lerpVectors(from,desired,e);controls.update();if(p<1)requestAnimationFrame(step)}
+ requestAnimationFrame(step);
+ if(name==='ABS'){restoreHome();toast('Visão geral')}
+ else {rearrange(name);toast('Entrando em '+name)}
+}
+function rearrange(name){
+ definitions.forEach(([n],i)=>{
+   const o=objects.get(n); if(n===name)tween(o,new THREE.Vector3(0,1,-2),850);
+   else {const ang=(i/(definitions.length))*Math.PI*2; const r=15; tween(o,new THREE.Vector3(Math.cos(ang)*r,Math.sin(ang)*5-1,-10-Math.sin(ang)*4),850)}
+ });
+}
+function restoreHome(){
+ definitions.forEach(([n])=>tween(objects.get(n),objects.get(n).userData.home,650));
+ tween(core,new THREE.Vector3(0,0,0),650); controls.target.set(0,0,0); camera.position.lerp(homeCamera,.35);
+}
+function openPanel(name){
+ const target=objects.get(name); if(!target)return;
+ const p=document.createElement('div');p.className='panel';p.innerHTML='<h3>'+name+'</h3><p>Objeto interativo do ambiente ABS. Este painel é uma extensão do objeto, não uma nova tela.</p><div class="line">Estado: disponível</div><div class="line">Posição: '+target.position.x.toFixed(1)+' / '+target.position.y.toFixed(1)+' / '+target.position.z.toFixed(1)+'</div><button id="closePanel">Recolher</button>';
+ const po=new CSS3DObject(p); po.position.copy(target.position).add(new THREE.Vector3(0,0,3)); scene.add(po);
+ p.style.pointerEvents='auto'; p.querySelector('#closePanel').onclick=()=>{scene.remove(po);toast('Painel recolhido')};
+ toast('Painel emergiu de '+name);
+}
+function command(q){
+ const s=q.toLowerCase();
+ if(s.includes('volte')||s.includes('visão geral')||s.includes('visao geral'))return focus('ABS');
+ const map=[['ia','Inteligências'],['intelig','Inteligências'],['projeto','Projetos'],['miss','Missões'],['recurso','Recursos'],['cérebro','Cérebro'],['cerebro','Cérebro'],['evol','Evolução'],['conversa','Conversas']];
+ for(const [k,n] of map)if(s.includes(k))return focus(n);
+ if(s.includes('painel'))return openPanel(focusName);
+ if(s.includes('esconda')||s.includes('oculte')){definitions.forEach(([n])=>tween(objects.get(n),new THREE.Vector3(0,-80,-80),500));toast('Ambiente recolhido; núcleo permanece');return}
+ if(s.includes('mostrar tudo'))return restoreHome();
+ toast('Comando ainda não mapeado no P0');
+}
+document.getElementById('command').addEventListener('submit',e=>{e.preventDefault();const i=document.getElementById('input');if(i.value.trim())command(i.value.trim());i.value=''});
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();webgl.setSize(innerWidth,innerHeight);css.setSize(innerWidth,innerHeight)});
+function animate(){controls.update();refreshLinks();webgl.render(scene,camera);css.render(scene,camera);requestAnimationFrame(animate)} animate();
+</script>
+</body>
+</html>
