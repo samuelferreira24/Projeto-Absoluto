@@ -25,3 +25,36 @@ def test_authoritative_files_are_preserved(tmp_path: Path):
     decision.write_text("# Decisão humana\n", encoding="utf-8")
     KnowledgeStore(out).write(RepositoryScanner(tmp_path).scan())
     assert decision.read_text(encoding="utf-8") == "# Decisão humana\n"
+
+
+def test_sync_is_deterministic_for_same_revision(tmp_path: Path):
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "orchestrator.py").write_text("x", encoding="utf-8")
+    first = RepositoryScanner(tmp_path).scan().to_dict()
+    second = RepositoryScanner(tmp_path).scan().to_dict()
+    assert first == second
+
+
+def test_scanner_does_not_promote_every_module_to_capability(tmp_path: Path):
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "random_module.py").write_text("x", encoding="utf-8")
+    k = RepositoryScanner(tmp_path).scan()
+    assert not any(
+        x["id"] == "capability:module:abs_core/random_module.py"
+        for x in k.capabilities
+    )
+
+
+def test_path_evaluator_is_used_by_sync(tmp_path: Path):
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "codex_adapter.py").write_text("x", encoding="utf-8")
+    (tmp_path / "tests").mkdir()
+    (tmp_path / "tests" / "test_codex_cli_adapter.py").write_text("x", encoding="utf-8")
+    result = synchronize(
+        tmp_path, tmp_path / "knowledge", test_status="tested", test_detail="1 passed"
+    )
+    data = __import__("json").loads(
+        Path(result["state"]).read_text(encoding="utf-8")
+    )
+    path = next(x for x in data["paths"] if x["id"] == "PATH-ABS-CODEX")
+    assert path["state"] == "tested"
