@@ -15,11 +15,13 @@ from .tool_planner import ToolPlanner
 from .tool_learning import ToolLearningEngine
 from . import update_manager
 from .intelligence import CognitiveRuntime
+from .integration import integration_descriptor
 
 WEB_INDEX = Path(__file__).resolve().parent.parent / "20_interface" / "web" / "index.html"
 WEB_SPATIAL_P0 = WEB_INDEX.parent / "spatial-environment-p0.html"
 WEB_MANIFEST = WEB_INDEX.parent / "manifest.webmanifest"
 WEB_SW = WEB_INDEX.parent / "sw.js"
+OPENAPI = Path(__file__).resolve().parent.parent / "docs" / "api" / "openapi.json"
 
 
 class ABSHandler(BaseHTTPRequestHandler):
@@ -36,6 +38,15 @@ class ABSHandler(BaseHTTPRequestHandler):
     resource_dispatcher: ResourceDispatcher | None = None
     cognitive_runtime: CognitiveRuntime | None = None
     started_at = time.time()
+
+    def _request_path(self) -> str:
+        path = self.path.split("?", 1)[0]
+        prefix = "/api/v1"
+        if path == prefix:
+            return "/"
+        if path.startswith(prefix + "/"):
+            return path[len(prefix):]
+        return path
 
     def _send(self, status: int, payload: dict) -> None:
         body = json.dumps(payload, ensure_ascii=False).encode()
@@ -61,6 +72,7 @@ class ABSHandler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
+        path = self._request_path()
         if self.path == "/":
             self._send_file(WEB_INDEX, "text/html; charset=utf-8")
             return
@@ -144,6 +156,7 @@ class ABSHandler(BaseHTTPRequestHandler):
         self._send(404, {"error": "not_found"})
 
     def do_POST(self):
+        path = self._request_path()
         length = int(self.headers.get("Content-Length", "0"))
         try:
             data = json.loads(self.rfile.read(length) or b"{}")
