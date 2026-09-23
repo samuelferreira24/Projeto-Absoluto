@@ -118,3 +118,12 @@ def test_projection_includes_runtime_categories_and_path_evidence(tmp_path: Path
     assert "## Nós" in projection
     assert "## Caminhos" in projection
     assert "evidências:" in projection
+
+
+def test_capability_discovery_expands_paths_without_manual_map_edit(tmp_path: Path):
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "internet_adapter.py").write_text("x", encoding="utf-8")
+    k = RepositoryScanner(tmp_path).scan()
+    path = next(p for p in k.paths if p.id == "PATH-ABS-INTERNET-HTTP")
+    assert path.state == "observed"
+    assert "abs_core/internet_adapter.py" in path.tools
