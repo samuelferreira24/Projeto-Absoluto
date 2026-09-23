@@ -38,8 +38,16 @@ class Orchestrator:
         recorder = self.knowledge_runtime
         if recorder is None or not hasattr(recorder, "record_execution"):
             return
+        path_id = {
+            "echo": "PATH-ABS-ORCHESTRATOR",
+            "orchestrator": "PATH-ABS-ORCHESTRATOR",
+            "codex": "PATH-ABS-CODEX",
+            "internet-http": "PATH-ABS-INTERNET-HTTP",
+        }.get(capability_id)
+        if path_id is None:
+            return
         recorder.record_execution(
-            path_id=f"PATH-ABS-{capability_id.upper()}",
+            path_id=path_id,
             operation=f"work:{work.id}",
             status=status,
             detail=detail,
