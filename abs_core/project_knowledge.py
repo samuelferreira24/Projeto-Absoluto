@@ -105,6 +105,14 @@ class RepositoryScanner:
 
     def revision_timestamp(self) -> str:
         return self._git("show", "-s", "--format=%cI", "HEAD") or "unknown"
+\n    def branch(self) -> str | None:
+        return self._git("branch", "--show-current")
+
+    def remote(self) -> str | None:
+        return self._git("config", "--get", "remote.origin.url")
+
+    def commit_subject(self) -> str | None:
+        return self._git("show", "-s", "--format=%s", "HEAD")
 
     def scan_files(self) -> list[dict[str, Any]]:
         out: list[dict[str, Any]] = []
@@ -190,6 +198,8 @@ class RepositoryScanner:
                     "type": "commit_observed",
                     "at": observed_at,
                     "revision": revision,
+                    "branch": self.branch(),
+                    "subject": self.commit_subject(),
                     "changed_files": changed,
                 }
             )
