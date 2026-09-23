@@ -7,6 +7,15 @@
 <style>
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05080d;color:#eef6ff;font-family:Inter,system-ui,sans-serif}
 #scene{position:fixed;inset:0}
+#startupHub{position:fixed;inset:0;z-index:1;display:block;pointer-events:none;background:radial-gradient(circle at 50% 48%,rgba(44,102,126,.18),transparent 24%),radial-gradient(circle at 50% 50%,#0b1620 0,#05080d 65%);transition:opacity .7s ease}
+#startupHub.ready{opacity:0}
+.hubCore,.hubNode{position:absolute;transform:translate(-50%,-50%);border:1px solid #31536a;border-radius:18px;background:rgba(8,17,27,.86);box-shadow:0 18px 55px #0009,0 0 35px #56dfff12;backdrop-filter:blur(12px);text-align:center}
+.hubCore{left:50%;top:48%;width:170px;height:170px;border-radius:50%;display:grid;place-content:center;border-color:#73e8ff88;background:radial-gradient(circle,#17475c,#071019 68%);box-shadow:0 0 45px #66e4ff35,0 0 130px #66e4ff12;font-size:34px;font-weight:900;letter-spacing:.08em}
+.hubCore small{display:block;font-size:9px;letter-spacing:.2em;color:#8ed7eb;margin-top:7px}
+.hubNode{width:135px;padding:13px 10px;font-size:14px}
+.hubNode small{display:block;margin-top:5px;color:#7890a6;font-size:9px}
+.n1{left:23%;top:28%}.n2{left:77%;top:28%}.n3{left:20%;top:55%}.n4{left:80%;top:55%}.n5{left:31%;top:78%}.n6{left:69%;top:78%}.n7{left:50%;top:88%}
+
 #hud{position:fixed;inset:0;pointer-events:none}
 #brand{position:absolute;top:18px;left:20px;letter-spacing:.12em;font-size:12px;color:#cdeeff;text-shadow:0 0 18px #5de1ff66}
 #state{position:absolute;top:18px;right:20px;font-size:10px;color:#7f94a9}
@@ -27,7 +36,7 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05080d;col
 </style>
 </head>
 <body>
-<div id="scene"></div>
+<div id="startupHub" aria-hidden="true"><div class="hubCore">ABS<small>AMBIENTE VIVO</small></div><div class="hubNode n1">Projetos<small>frentes e estruturas</small></div><div class="hubNode n2">Inteligências<small>IAs e capacidades</small></div><div class="hubNode n3">Missões<small>objetivos e execução</small></div><div class="hubNode n4">Recursos<small>ferramentas e conexões</small></div><div class="hubNode n5">Cérebro<small>memória e coordenação</small></div><div class="hubNode n6">Evolução<small>aprendizado e continuidade</small></div><div class="hubNode n7">Conversas<small>interação</small></div></div><div id="scene"></div>
 <div id="hud">
   <div id="brand">ABS · AMBIENTE ESPACIAL P0</div>
   <div id="state">Explorar · espaço 3D · estado visual</div>
@@ -152,6 +161,17 @@ function openPanel(name){
  p.style.pointerEvents='auto'; p.querySelector('#closePanel').onclick=()=>{scene.remove(po);toast('Painel recolhido')};
  toast('Painel emergiu de '+name);
 }
+async function backendCommand(q){
+ try{
+  const caps=await (await fetch("/capabilities")).json();
+  const usable=(caps.capabilities||[]).find(x=>x.id!=="echo");
+  if(!usable){toast("Nenhuma inteligência executável está conectada");return}
+  const created=await (await fetch("/works",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({objective:q,context:{interface:"spatial-environment-p0",source:"imperador-command"}})})).json();
+  const done=await (await fetch("/works/"+created.id+"/run",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({capability_id:usable.id,approved:true})})).json();
+  const result=done.result?.result?.final_response||done.result?.result?.body||JSON.stringify(done.result?.result||done);
+  hologram("ABS","Resultado do comando",result); toast("Comando executado por "+usable.name);
+ }catch(e){toast("Falha na execução: "+e.message)}
+}
 function command(q){
  const s=q.toLowerCase();
  if(s.includes('volte')||s.includes('visão geral')||s.includes('visao geral'))return focus('ABS');
@@ -170,9 +190,9 @@ if(s.includes('compar')){
 if(s.includes('painel'))return openPanel(focusName);
  if(s.includes('esconda')||s.includes('oculte')){definitions.forEach(([n])=>tween(objects.get(n),new THREE.Vector3(0,-80,-80),500));toast('Ambiente recolhido; núcleo permanece');return}
  if(s.includes('mostrar tudo'))return restoreHome();
- toast('Comando ainda não mapeado no P0');
+ backendCommand(q);
 }
-document.getElementById('command').addEventListener('submit',e=>{e.preventDefault();const i=document.getElementById('input');if(i.value.trim())command(i.value.trim());i.value=''});
+document.getElementById('command').addEventListener('submit',e=>{e.preventDefault();const i=document.getElementById('input');if(i.value.trim())command(i.value.trim());i.value=''}); setTimeout(()=>document.getElementById('startupHub').classList.add('ready'),350);
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();webgl.setSize(innerWidth,innerHeight);css.setSize(innerWidth,innerHeight)});
 function animate(){controls.update();stars.rotation.y+=0.00008;spatialShells.children.forEach(s=>{s.rotation.y+=0.0004;s.rotation.x+=0.00015});refreshLinks();webgl.render(scene,camera);css.render(scene,camera);requestAnimationFrame(animate)} animate();
 </script>
