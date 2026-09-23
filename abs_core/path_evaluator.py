@@ -7,12 +7,16 @@ from .project_knowledge import Evidence, PathRecord
 
 
 class PathEvaluator:
-    """Derive path state from evidence without inventing operational proof."""
+    """Derive path state from explicit evidence only."""
 
     def evaluate(self, path: PathRecord, evidence: Iterable[Evidence]) -> PathRecord:
-        relevant = {item.id: item for item in evidence if item.id in set(path.evidence)}
+        relevant = {
+            item.id: item
+            for item in evidence
+            if item.id in set(path.evidence)
+        }
         if not relevant:
-            return replace(path, state="observed")
+            return replace(path, state="observed", last_validated=None)
 
         statuses = {item.status for item in relevant.values()}
         if "unavailable" in statuses:
@@ -25,4 +29,9 @@ class PathEvaluator:
             state = "tested"
         else:
             state = "observed"
-        return replace(path, state=state, last_validated=max(x.observed_at for x in relevant.values()))
+
+        return replace(
+            path,
+            state=state,
+            last_validated=max(x.observed_at for x in relevant.values()),
+        )
