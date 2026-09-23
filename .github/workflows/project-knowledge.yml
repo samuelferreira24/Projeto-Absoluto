@@ -2,8 +2,6 @@ name: Project Knowledge Sync
 on:
   push:
     branches: ["main"]
-  pull_request:
-    types: [opened, closed, synchronize, reopened, ready_for_review]
 permissions:
   contents: write
 jobs:
