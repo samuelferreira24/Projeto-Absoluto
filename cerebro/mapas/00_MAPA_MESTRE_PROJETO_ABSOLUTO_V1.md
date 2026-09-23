@@ -71,8 +71,11 @@ Respondem:
 - quais caminhos podem avançar em paralelo.
 
 ### NÍVEL 5 — MEMÓRIA / TRANSFERÊNCIA
-- `cerebro/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md`
-- `cerebro/STATUS_CEREBRO_LIGADO.md`
+- `continuidade/07_conhecimento/project_knowledge.json`
+- `continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md`
+- `continuidade/07_conhecimento/SESSAO_ATUAL.md`
+- `cerebro/00_estado/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md`
+- `cerebro/00_estado/STATUS_CEREBRO_LIGADO.md`
 
 Servem para:
 - continuidade entre conversas/IA;
@@ -285,7 +288,7 @@ Objetivo:
 
 ### FRENTE C — ABS operacional
 Objetivo:
-- manter V1 estável;
+- manter o primeiro projeto ABS e sua V1 estáveis;
 - corrigir lacunas;
 - testar contratos;
 - ampliar capacidades sem quebrar continuidade.
