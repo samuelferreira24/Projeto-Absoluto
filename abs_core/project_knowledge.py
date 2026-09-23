@@ -315,9 +315,24 @@ class KnowledgeStore:
             f"- {x['id']} — {x['name']} — estado: {x['state']}"
             for x in k.capabilities
         ]
+        lines += ["", "## Recursos"]
+        lines += [
+            f"- {x.get('id')} — {x.get('name', x.get('type', 'recurso'))} — estado: {x.get('state', 'unknown')}"
+            for x in k.resources
+        ]
+        lines += ["", "## Ferramentas"]
+        lines += [
+            f"- {x.get('id')} — {x.get('name')} — estado: {x.get('state', 'unknown')}"
+            for x in k.tools
+        ]
+        lines += ["", "## Nós"]
+        lines += [
+            f"- {x.get('id')} — {x.get('name')} — estado: {x.get('state', 'unknown')}"
+            for x in k.nodes
+        ]
         lines += ["", "## Caminhos"]
         lines += [
-            f"- {p.id} — {p.objective} — estado: {p.state}"
+            f"- {p.id} — {p.objective} — estado: {p.state} — evidências: {', '.join(p.evidence) or 'nenhuma'}"
             for p in k.paths
         ]
         lines += ["", "## Eventos"]
