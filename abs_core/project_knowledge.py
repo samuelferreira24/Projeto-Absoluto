@@ -105,7 +105,8 @@ class RepositoryScanner:
 
     def revision_timestamp(self) -> str:
         return self._git("show", "-s", "--format=%cI", "HEAD") or "unknown"
-\n    def branch(self) -> str | None:
+
+    def branch(self) -> str | None:
         return self._git("branch", "--show-current")
 
     def remote(self) -> str | None:
