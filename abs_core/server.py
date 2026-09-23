@@ -13,6 +13,7 @@ from .tool_learning import ToolLearningEngine
 from .tool_planner import ToolPlanner
 from .resource_router import ResourceRouter
 from .resource_dispatcher import ResourceDispatcher
+from .intelligence import IntelligenceRegistry, CognitiveRuntime
 import os
 
 
@@ -22,6 +23,12 @@ def build_registry():
     try:
         from .internet_adapter import InternetHTTPCapability
         registry.register(CapabilityRecord("internet-http", "Internet HTTP", "network", InternetHTTPCapability()))
+    except Exception:
+        pass
+    try:
+        from .local_ai_adapter import LocalAICapability
+        if os.getenv("ABS_LOCAL_AI_URL"):
+            registry.register(CapabilityRecord("local-ai", "IA local", "local_ai", LocalAICapability()))
     except Exception:
         pass
     try:
@@ -55,7 +62,13 @@ def main():
     tool_store = ToolKnowledgeStore("abs.db")
     tool_store.load_into(tool_knowledge)
     tool_learning = ToolLearningEngine(tool_knowledge, tool_store)
-    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime, connections=connections, accounts=accounts, tool_knowledge=tool_knowledge, tool_planner=ToolPlanner(tool_knowledge, ResourceRouter(connections)), tool_learning=tool_learning)
+    intelligence = IntelligenceRegistry()
+    intelligence.discover_from_capabilities(registry, connections)
+    cognitive_runtime = CognitiveRuntime(
+        registry, intelligence,
+        store_path=os.getenv("ABS_DB_PATH", "abs.db"),
+    )
+    serve(orchestrator, registry, resources=resources, interface_runtime=interface_runtime, connections=connections, accounts=accounts, tool_knowledge=tool_knowledge, tool_planner=ToolPlanner(tool_knowledge, ResourceRouter(connections)), tool_learning=tool_learning, cognitive_runtime=cognitive_runtime)
 
 
 if __name__ == "__main__":
