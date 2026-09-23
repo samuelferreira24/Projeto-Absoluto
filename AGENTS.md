@@ -13,7 +13,8 @@ Antes de construir, descubra o estado atual do Projeto. Não dependa da memória
 ## Regras
 
 - Projeto Absoluto é maior que ABS.
-- ABS é uma parte do Sistema do Projeto.
+- ABS é o primeiro projeto em construção dentro do Projeto Absoluto.
+- O Sistema é uma peça/infraestrutura do Projeto Absoluto criada para ampliar a capacidade de pesquisar, aprender, planejar, construir, testar e executar; ele não é sinônimo de ABS.
 - Verificar antes de construir.
 - Mapa não é implementação.
 - Hipótese não é decisão.
