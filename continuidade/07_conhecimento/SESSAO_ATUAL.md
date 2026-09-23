@@ -26,11 +26,17 @@ Não mover documentos ou código por estética. Primeiro inventariar, classifica
 ## Problema de continuidade
 O progresso produzido durante uma sessão precisa ser persistido no repositório. Ler o repositório não é suficiente se a própria sessão não registrar o que descobriu, decidiu, testou ou deixou pendente.
 
+## Resultado da rastreabilidade das fontes-base
+- A fonte histórica `cerebro/especificacao/FONTES_BASE_PROJETO_ABSOLUTO_V0_1.md` foi localizada na branch `memoria-fontes-base` e confirma 3 fontes primárias documentais: `Projeto_Absoluto_EBOOK_HUMANO_V10_ATUALIZADO.docx`, `Projeto_Absoluto_MEMORIA_IA_V10_ATUALIZADO.docx` e `Pesquisa_Representacao_Armazenamento_Informacao_IA_Projeto_Absoluto_v1.docx`.
+- A `VARREDURA_SENIOR_IDEIAS_PROJETO_ABSOLUTO_V0_1.md` foi localizada na branch `base-cerebro-v0.1` e funciona como mapa/varredura de ideias, não como implementação.
+- O `MAPA_MESTRE_IDEIAS_CEREBRO_PROJETO_APP(1).txt` foi localizado na File Library; ele não está comprovado como arquivo versionado na `main` e não deve ser tratado como fonte do repositório até uma importação controlada.
+- Portanto, a composição histórica de 5 fontes/arquivos-base foi rastreada em nível de origem, mas o quinto arquivo externo à árvore versionada ainda não foi promovido à fonte canônica do repositório.
+
 ## Próxima etapa
-1. Identificar/cadastrar os 5 arquivos-base da visão original sem reescrevê-los.
-2. Concluir a classificação documento a documento das zonas de concorrência.
-3. Executar apenas migrações documentais comprovadamente seguras.
-4. Validar navegação e continuidade com uma nova IA.
+1. Concluir a classificação documento a documento das zonas de concorrência.
+2. Executar apenas migrações documentais comprovadamente seguras.
+3. Validar navegação e continuidade com uma nova IA.
+4. Em etapa separada, decidir a importação controlada do arquivo-base que hoje está apenas na File Library.
 
 ## Próxima etapa anterior
 1. Catalogar os 5 arquivos-base da visão original e registrar sua função sem reescrevê-los.
