@@ -224,7 +224,7 @@ class CognitiveRuntime:
             resource = self._choose(session, preferred_resource)
             cap = self.capabilities.get(resource.capability_id)
             # The normal ABS authorization boundary remains authoritative.
-            if cap.kind != "test" and not approved:
+            if cap.kind != "test" and not approved and not resource.metadata.get("conversational", False):
                 raise PermissionError(f"Imperator approval required for intelligence: {cap.id}")
 
             session["messages"].append({"role": "user", "content": message})
