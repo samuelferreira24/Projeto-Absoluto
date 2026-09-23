@@ -1,4 +1,4 @@
-from __future__
+from __future__ import annotations
 
 """Stable integration contract for ABS surfaces and nodes."""
 
