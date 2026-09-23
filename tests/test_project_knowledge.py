@@ -58,3 +58,17 @@ def test_path_evaluator_is_used_by_sync(tmp_path: Path):
     )
     path = next(x for x in data["paths"] if x["id"] == "PATH-ABS-CODEX")
     assert path["state"] == "tested"
+
+
+def test_git_commit_event_is_discovered_when_revision_exists(tmp_path: Path):
+    import subprocess
+
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "orchestrator.py").write_text("x", encoding="utf-8")
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "config", "user.email", "test@example.invalid"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "config", "user.name", "Test"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "add", "."], cwd=tmp_path, check=True)
+    subprocess.run(["git", "commit", "-qm", "initial"], cwd=tmp_path, check=True)
+    k = RepositoryScanner(tmp_path).scan()
+    assert any(e["type"] == "commit_observed" for e in k.events)
