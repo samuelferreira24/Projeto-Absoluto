@@ -117,6 +117,7 @@ class CognitiveRuntime:
         self.intelligence = intelligence
         self.orchestrator = orchestrator
         self.max_history = max_history
+        self.store_path = store_path
         self._lock = threading.RLock()
         self._json = json
         self._conn = sqlite3.connect(store_path, check_same_thread=False)
@@ -237,7 +238,7 @@ class CognitiveRuntime:
                 },
             }
             if self.orchestrator is None:
-                self.orchestrator = Orchestrator(self.capabilities, WorkStore(store_path))
+                self.orchestrator = Orchestrator(self.capabilities, WorkStore(self.store_path))
             work = self.orchestrator.create(message, execution_context)
             work = self.orchestrator.run(work.id, resource.capability_id, approved=(approved or resource.metadata.get("conversational", False)))
             result = work.result
