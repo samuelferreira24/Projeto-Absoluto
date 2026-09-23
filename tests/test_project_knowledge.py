@@ -35,6 +35,7 @@ def test_sync_is_deterministic_for_same_revision(tmp_path: Path):
     assert first == second
 
 
+
 def test_scanner_does_not_promote_every_module_to_capability(tmp_path: Path):
     (tmp_path / "abs_core").mkdir()
     (tmp_path / "abs_core" / "random_module.py").write_text("x", encoding="utf-8")
