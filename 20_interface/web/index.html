@@ -402,14 +402,13 @@ function renderChat(){
 async function sendChat(){
  const input=$('#chatInput').value.trim(); if(!input)return;
  const capability=$('#chatCapability').value||null;
- if(!capability){$('#chatHistory').textContent='Nenhuma capacidade de IA externa está configurada neste nó.';return;}
  chatHistory.push({role:'user',text:input});
  renderChat(); $('#chatInput').value=''; $('#sendChat').disabled=true;
  try{
-  const created=await json(await fetch('/works',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({objective:input,context:{interface_mode:'chat',conversation:chatHistory.slice(-12)}})}));
-  const done=await json(await fetch('/works/'+created.id+'/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({capability_id:capability,approved:$('#chatApproved').checked})}));
-  const response=done.result?.result?.final_response || done.result?.result?.body || JSON.stringify(done.result?.result||done);
-  const selected=done.provenance?.[0]?.capability_name || capability || 'ABS';
+  const payload={message:input,preferred_resource:capability?('intelligence:'+capability):null,context:{interface_mode:'chat'}};
+  const done=await json(await fetch('/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}));
+  const response=done.response || JSON.stringify(done.result||done);
+  const selected=done.resource?.name || capability || 'ABS';
   chatHistory.push({role:'assistant',name:selected,text:response});
   localStorage.setItem('abs-chat-history',JSON.stringify(chatHistory.slice(-40))); renderChat();
  }catch(e){chatHistory.push({role:'assistant',name:'ABS',text:'Erro: '+e.message});renderChat();}
