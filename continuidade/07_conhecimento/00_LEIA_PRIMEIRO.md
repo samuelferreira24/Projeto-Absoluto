@@ -40,12 +40,22 @@ Automação não pode alterar silenciosamente:
 - decisões do Imperador;
 - arquitetura intencionalmente declarada como autoridade humana.
 
+## Estado desta vertical
+
+As integrações iniciais já estão implementadas nesta vertical:
+- Git/revisão/branch/commit como proveniência observável;
+- runtime como snapshot observável;
+- testes como evidência;
+- avaliador automático de paths;
+- expansão automática de paths a partir de capacidades conhecidas;
+- projeção automática de recursos, ferramentas, nós, paths, eventos e evidências.
+
+Ainda não é uma integração completa com a API do GitHub para PRs/issues nem um fluxo de eventos em tempo real do daemon. Esses são níveis posteriores de automação.
+
 ## Próximas integrações
 
-1. Git/GitHub e PRs como eventos.
-2. runtime ABS como fonte de recursos/capacidades/nós.
-3. testes/CI como evidência.
-4. avaliador automático de caminhos.
-5. projeções adicionais para mapas existentes.
-6. pacote de orientação para nova IA.
-7. integração no daemon de atualização.
+1. GitHub PRs/issues/workflows como eventos externos.
+2. eventos reais do runtime ABS, em vez de somente snapshots.
+3. promoção operacional baseada em execução real.
+4. integração direta com o daemon de atualização.
+5. descoberta/validação automática de novas ferramentas e caminhos.
