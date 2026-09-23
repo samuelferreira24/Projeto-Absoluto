@@ -40,7 +40,7 @@ class ABSHandler(BaseHTTPRequestHandler):
     started_at = time.time()
 
     def _request_path(self) -> str:
-        path = path.split("?", 1)[0]
+        path = self.path.split("?", 1)[0]
         prefix = "/api/v1"
         if path == prefix:
             return "/"
