@@ -46,13 +46,18 @@ class Orchestrator:
         }.get(capability_id)
         if path_id is None:
             return
-        recorder.record_execution(
-            path_id=path_id,
-            operation=f"work:{work.id}",
-            status=status,
-            detail=detail,
-            source=f"ABS Orchestrator ({capability_id})",
-        )
+        try:
+            recorder.record_execution(
+                path_id=path_id,
+                operation=f"work:{work.id}",
+                status=status,
+                detail=detail,
+                source=f"ABS Orchestrator ({capability_id})",
+            )
+        except Exception as exc:
+            # Knowledge projection failure must not rewrite the outcome of the real work.
+            if hasattr(work, "emit"):
+                work.emit("knowledge.recording_failed", capability_id=capability_id, error=repr(exc))
 
     def run(self, work_id: str, capability_id: str | None = None, approved: bool = False) -> Work:
         work = self.store.load(work_id)
