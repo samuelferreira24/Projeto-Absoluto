@@ -122,3 +122,21 @@ DESTINO
 ```
 
 Só depois disso executar migrações em lotes pequenos, verificáveis e reversíveis.
+
+## Migração seguinte — estado, continuidade e interface
+
+### Interface
+- `continuidade/06_interface/01_PESQUISA_REFERENCIAL_INTERFACE_ADAPTATIVA.md` → `docs/90_fontes/INTERFACE_ADAPTATIVA_PESQUISA_2026-09-22.md` — MOVE / fonte de pesquisa.
+- `continuidade/06_interface/02_DEFINICAO_INTERFACE_ADAPTATIVA_ABS.md` → `docs/02_arquitetura/INTERFACE_ADAPTATIVA_ABS_V0_1.md` — MOVE / arquitetura de protótipo.
+- `continuidade/06_interface/03_PLANEJAMENTO_ATUAL_INTERFACE_ABS_P0.md` → `docs/03_planejamento/INTERFACE_ADAPTATIVA_ABS_P0.md` — MOVE / planejamento.
+
+### Estado e construção
+- `continuidade/02_estado/01_ESTADO_ATUAL_PROJETO.md` → `continuidade/99_legado/ESTADO_ATUAL_PROJETO_SNAPSHOT_2026-09-19.md` — HISTORICAL SNAPSHOT.
+- `continuidade/04_construcao/01_PONTO_EXATO_DE_PARADA.md` → `continuidade/99_legado/PONTO_EXATO_DE_PARADA_SNAPSHOT.md` — HISTORICAL SNAPSHOT.
+- `continuidade/04_construcao/02_HANDOFF_CONSTRUCAO_ABS_V1.md` → `continuidade/05_handoffs/03_HANDOFF_CONSTRUCAO_ABS_V1_SNAPSHOT_2026-09-21.md` — HANDOFF SNAPSHOT.
+
+## Estado após a classificação
+
+`Project Knowledge` permanece como estado estruturado derivado. `cerebro/00_estado/` permanece para estado/snapshots do Cérebro. `continuidade/05_handoffs/` contém checkpoints de transferência. Material histórico de continuidade fica em `continuidade/99_legado/`.
+
+A antiga `continuidade/06_interface/` não deve voltar a ser usada como área temática. Novos documentos de interface devem ser classificados por função.
