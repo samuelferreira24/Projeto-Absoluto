@@ -14,6 +14,7 @@ from .tool_discovery import ToolDiscovery, ToolDiscoveryCandidate
 from .tool_planner import ToolPlanner
 from .tool_learning import ToolLearningEngine
 from . import update_manager
+from .intelligence import CognitiveRuntime
 
 WEB_INDEX = Path(__file__).resolve().parent.parent / "20_interface" / "web" / "index.html"
 WEB_SPATIAL_P0 = WEB_INDEX.parent / "spatial-environment-p0.html"
@@ -33,6 +34,7 @@ class ABSHandler(BaseHTTPRequestHandler):
     tool_planner: ToolPlanner | None = None
     tool_learning: ToolLearningEngine | None = None
     resource_dispatcher: ResourceDispatcher | None = None
+    cognitive_runtime: CognitiveRuntime | None = None
     started_at = time.time()
 
     def _send(self, status: int, payload: dict) -> None:
@@ -104,6 +106,12 @@ class ABSHandler(BaseHTTPRequestHandler):
                 "connection_count": len(self.connections.list()),
                 "auto_update": True,
             })
+            return
+        if self.path == "/intelligence":
+            self._send(200, {"intelligences": [item.public() for item in self.cognitive_runtime.intelligence.list()]})
+            return
+        if self.path == "/chat/sessions":
+            self._send(200, {"sessions": self.cognitive_runtime.list_sessions()})
             return
         if self.path == "/capabilities":
             self._send(200, {
@@ -345,6 +353,31 @@ class ABSHandler(BaseHTTPRequestHandler):
             self.interface_runtime.update_context(**values)
             self._send(200, self.interface_runtime.public_state())
             return
+        if self.path == "/chat":
+            message = str(data.get("message") or "").strip()
+            if not message:
+                self._send(400, {"error": "message_required"})
+                return
+            try:
+                result = self.cognitive_runtime.turn(
+                    message,
+                    session_id=data.get("session_id"),
+                    preferred_resource=data.get("preferred_resource"),
+                    context=data.get("context") if isinstance(data.get("context"), dict) else None,
+                    approved=bool(data.get("approved", False)),
+                )
+            except PermissionError as exc:
+                self._send(403, {"error": "approval_required", "detail": str(exc)})
+                return
+            except (KeyError, ValueError) as exc:
+                self._send(400, {"error": str(exc)})
+                return
+            except RuntimeError as exc:
+                self._send(503, {"error": str(exc)})
+                return
+            self._send(200, result)
+            return
+
         if self.path == "/works":
             if not data.get("objective"):
                 self._send(400, {"error": "objective_required"})
@@ -412,7 +445,7 @@ class ABSHandler(BaseHTTPRequestHandler):
 
 
 def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
-          resources=None, interface_runtime=None, connections=None, accounts=None, tool_knowledge=None, tool_discovery=None, tool_planner=None, tool_learning=None, resource_dispatcher=None):
+          resources=None, interface_runtime=None, connections=None, accounts=None, tool_knowledge=None, tool_discovery=None, tool_planner=None, tool_learning=None, resource_dispatcher=None, cognitive_runtime=None):
     ABSHandler.orchestrator = orchestrator
     ABSHandler.registry = registry
     ABSHandler.resources = resources or ResourceManager()
@@ -423,6 +456,7 @@ def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
     ABSHandler.tool_discovery = tool_discovery or ToolDiscovery()
     ABSHandler.tool_planner = tool_planner or ToolPlanner(ABSHandler.tool_knowledge, ResourceRouter(ABSHandler.connections))
     ABSHandler.tool_learning = tool_learning or ToolLearningEngine(ABSHandler.tool_knowledge)
+    ABSHandler.cognitive_runtime = cognitive_runtime
     ABSHandler.resource_dispatcher = resource_dispatcher or ResourceDispatcher(
         ResourceRouter(ABSHandler.connections), ABSHandler.tool_planner,
         ABSHandler.registry, ABSHandler.tool_knowledge,
