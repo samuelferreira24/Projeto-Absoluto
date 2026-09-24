@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-23T23:09:49-03:00",
-  "source_revision": "065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb",
+  "generated_at": "2026-09-23T23:24:17-03:00",
+  "source_revision": "4df24e7d1090451041d066b84bc4cebd44241c31",
   "components": [
     {
       "id": "component:abs_core",
@@ -17,7 +17,7 @@
     {
       "id": "component:continuity",
       "kind": "continuity",
-      "file_count": 23
+      "file_count": 24
     },
     {
       "id": "component:docs",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb",
-      "commit_subject": "docs: audit sources history and mini-cerebro (#73)"
+      "revision": "4df24e7d1090451041d066b84bc4cebd44241c31",
+      "commit_subject": "docs: atualizar checkpoint de continuidade da sessão"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:02402891b7a4"
+        "evidence:repository:8b05482af557"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T23:09:49-03:00"
+      "last_validated": "2026-09-23T23:24:17-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:02402891b7a4",
-        "evidence:test:758c89947552"
+        "evidence:repository:8b05482af557",
+        "evidence:test:e185c4a66935"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T23:09:49-03:00"
+      "last_validated": "2026-09-23T23:24:17-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,58 +176,58 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:02402891b7a4"
+        "evidence:repository:8b05482af557"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T23:09:49-03:00"
+      "last_validated": "2026-09-23T23:24:17-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:02402891b7a4",
+      "id": "evidence:repository:8b05482af557",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-23T23:09:49-03:00",
+      "observed_at": "2026-09-23T23:24:17-03:00",
       "status": "observed",
-      "detail": "314 files indexed at revision 065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb"
+      "detail": "315 files indexed at revision 4df24e7d1090451041d066b84bc4cebd44241c31"
     },
     {
-      "id": "evidence:test:758c89947552",
+      "id": "evidence:test:e185c4a66935",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-23T23:09:49-03:00",
+      "observed_at": "2026-09-23T23:24:17-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.30s"
+      "detail": "101 passed in 6.35s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:02402891b7a4",
+      "id": "event:repository-scan:8b05482af557",
       "type": "repository_scanned",
-      "at": "2026-09-23T23:09:49-03:00",
-      "revision": "065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb",
-      "file_count": 314,
-      "evidence_id": "evidence:repository:02402891b7a4"
+      "at": "2026-09-23T23:24:17-03:00",
+      "revision": "4df24e7d1090451041d066b84bc4cebd44241c31",
+      "file_count": 315,
+      "evidence_id": "evidence:repository:8b05482af557"
     },
     {
-      "id": "event:commit-observed:065a60d0ac57",
+      "id": "event:commit-observed:4df24e7d1090",
       "type": "commit_observed",
-      "at": "2026-09-23T23:09:49-03:00",
-      "revision": "065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb",
+      "at": "2026-09-23T23:24:17-03:00",
+      "revision": "4df24e7d1090451041d066b84bc4cebd44241c31",
       "branch": "main",
-      "subject": "docs: audit sources history and mini-cerebro (#73)",
+      "subject": "docs: atualizar checkpoint de continuidade da sessão",
       "changed_files": [
-        "docs/06_auditoria/AUDITORIA_FONTES_HISTORICO_MINI_CEREBRO_2026-09-24.md"
+        "continuidade/07_conhecimento/SESSAO_ATUAL.md"
       ]
     },
     {
-      "id": "event:test:758c89947552",
+      "id": "event:test:e185c4a66935",
       "type": "tests_observed",
-      "at": "2026-09-23T23:09:49-03:00",
+      "at": "2026-09-23T23:24:17-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:758c89947552"
+      "evidence_id": "evidence:test:e185c4a66935"
     }
   ]
 }
