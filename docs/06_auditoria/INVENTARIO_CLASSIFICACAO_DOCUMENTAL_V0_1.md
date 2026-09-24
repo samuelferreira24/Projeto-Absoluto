@@ -2,16 +2,17 @@
 
 ## Objetivo
 
-Registrar a primeira classificação profissional da informação do Projeto Absoluto antes de realizar migrações físicas.
+Registrar a classificação profissional da informação do Projeto Absoluto antes de novas migrações físicas.
 
-Regra desta fase:
-**INVENTARIAR → CLASSIFICAR → DETERMINAR AUTORIDADE → REFERENCIAR → MIGRAR CONTROLADAMENTE**
+Regra:
+**INVENTARIAR → CLASSIFICAR → DETERMINAR AUTORIDADE → REFERENCIAR → MIGRAR CONTROLADAMENTE → VALIDAR**
 
 Nenhum conteúdo é apagado apenas por parecer duplicado.
 
 ## Taxonomia aplicada
 
-Cada documento é analisado por função, autoridade, temporalidade, origem, público e relação com outras fontes.
+Cada documento é analisado por:
+**função + autoridade + temporalidade + origem + público + relação com outras fontes**.
 
 ## Fontes de maior autoridade por pergunta
 
@@ -27,98 +28,94 @@ Cada documento é analisado por função, autoridade, temporalidade, origem, pú
 | O que aconteceu antes? | histórico preservado |
 | Como retomar uma sessão? | continuidade/checkpoint |
 
-## Classificação inicial das áreas
+## Classificação atual das áreas
 
-| Área | Função dominante | Temporalidade | Ação |
+| Área | Função dominante | Estado | Ação |
 |---|---|---|---|
-| abs_core/ | implementação | atual | KEEP |
-| tests/ | verificação | atual | KEEP |
-| scripts/ | operação/automação | atual | KEEP |
-| cerebro/mapas/ | mapas/navegação | evolução | KEEP + INDEX |
-| cerebro/especificacao/ | conhecimento/especificação | mista | CLASSIFY |
-| cerebro/00_estado/ | estado e snapshots | mista | CLASSIFY |
-| cerebro/data/ | dados/conhecimento | evolução | CLASSIFY |
-| continuidade/ | transferência | atual + histórico | CLASSIFY |
-| continuidade/06_interface/ | tema de interface | mista | CLASSIFY/MOVE LATER |
-| continuidade/07_conhecimento/ | estado/continuidade estruturada | atual | KEEP/CANONICAL |
-| docs/01_operacao/ | operação | atual | KEEP |
-| docs/02_arquitetura/ | arquitetura | atual/evolução | KEEP + CROSS-REFERENCE |
-| docs/03_planejamento/ | planejamento | evolução | KEEP + CROSS-REFERENCE |
-| docs/04_referencia/ | referência | atual/evolução | KEEP |
-| docs/architecture/ | arquitetura existente | mista | CONSOLIDATE LATER |
-| docs/api/ | referência API | atual | KEEP |
-| docs/90_fontes/ | fontes | histórica/origem | KEEP |
-| docs/06_auditoria/ | avaliação | temporal | KEEP |
-| mini-cerebro/ | auxiliar/histórico | mista | KEEP + CLASSIFY |
-| 20_interface/ | implementação/interface | atual | KEEP |
-| 50_frentes/ | frentes futuras | futura | KEEP |
-| 99_arquivo/ | patrimônio | histórico | KEEP |
+| `abs_core/` | implementação | atual | KEEP |
+| `tests/` | verificação | atual | KEEP |
+| `scripts/` | operação/automação | atual | KEEP |
+| `cerebro/mapas/` | mapas/navegação | evolução | KEEP + INDEX |
+| `cerebro/especificacao/` | especificação/conhecimento | mista | CLASSIFY |
+| `cerebro/00_estado/` | estado/snapshots | mista | CLASSIFY |
+| `cerebro/data/` | dados/conhecimento | evolução | CLASSIFY |
+| `continuidade/` | transferência | atual + histórico | CLASSIFY |
+| `continuidade/06_interface/` | material temático de interface | mista | MOVE LATER |
+| `continuidade/07_conhecimento/` | continuidade/estado estruturado | atual | KEEP / CANONICAL |
+| `docs/01_operacao/` | operação | atual | KEEP |
+| `docs/02_arquitetura/` | arquitetura | atual/evolução | KEEP + INDEX |
+| `docs/03_planejamento/` | planejamento | evolução | KEEP + CROSS-REFERENCE |
+| `docs/04_referencia/` | referência | atual/evolução | KEEP |
+| `docs/06_auditoria/` | auditoria | temporal | KEEP |
+| `docs/90_fontes/` | fontes | origem/histórico | KEEP |
+| `docs/api/` | referência API | atual | KEEP |
+| `20_interface/` | implementação/interface | atual | KEEP |
+| `mini-cerebro/` | recuperação/patrimônio | mista | KEEP + CLASSIFY |
+| `50_frentes/` | frentes futuras | futura | KEEP |
+| `99_arquivo/` | patrimônio histórico | histórico | KEEP |
 
-## Concorrências que precisam de auditoria
+## Migração concluída nesta etapa
 
-### 1. Arquitetura
+A antiga concorrência `docs/architecture/` foi eliminada.
 
-Há três áreas que podem responder parcialmente à mesma pergunta: docs/02_arquitetura/, docs/architecture/ e cerebro/especificacao/.
+Movidos, sem alteração de conteúdo:
 
-**Ação:** não mover ainda. Mapear documento por documento e determinar qual é arquitetura atual, referência, especificação histórica ou fonte.
+- `docs/architecture/ABS_INTEGRATION_V1.md`
+  → `docs/02_arquitetura/ABS_INTEGRATION_V1.md`
+- `docs/architecture/PROJECT_KNOWLEDGE_V1.md`
+  → `docs/02_arquitetura/PROJECT_KNOWLEDGE_V1.md`
+- `docs/06_ROTEAMENTO_DE_RECURSOS_V1.md`
+  → `docs/02_arquitetura/ROTEAMENTO_DE_RECURSOS_V1.md`
+- `docs/04_EVOLUCAO_AUTONOMA_ASSISTIDA_ABS.md`
+  → `docs/02_arquitetura/EVOLUCAO_AUTONOMA_ASSISTIDA_ABS.md`
+- `docs/05_CONTROLE_DE_EVOLUCAO_PELA_INTERFACE.md`
+  → `docs/02_arquitetura/CONTROLE_DE_EVOLUCAO_PELA_INTERFACE.md`
+- `docs/07_CONHECIMENTO_E_DESCOBERTA_DE_FERRAMENTAS_V1.md`
+  → `docs/02_arquitetura/CONHECIMENTO_E_DESCOBERTA_DE_FERRAMENTAS_V1.md`
+- `docs/08_PLANEJAMENTO_E_APRENDIZAGEM_DE_FERRAMENTAS_V1.md`
+  → `docs/02_arquitetura/PLANEJAMENTO_E_APRENDIZAGEM_DE_FERRAMENTAS_V1.md`
+- `docs/09_MEMORIA_PERSISTENTE_DE_FERRAMENTAS_V1.md`
+  → `docs/02_arquitetura/MEMORIA_PERSISTENTE_DE_FERRAMENTAS_V1.md`
 
-### 2. Estado
+Essa migração resolve uma duplicação estrutural clara: havia duas áreas destinadas à arquitetura atual.
 
-Há múltiplos mecanismos: cerebro/00_estado/, continuidade/02_estado/, handoffs, project_knowledge.json e MAPA_AUTO_ESTADO_PROJETO.md.
+## Concorrências ainda abertas
 
-**Ação:** Project Knowledge deve ser o estado estruturado derivado atual. Os demais devem ser classificados como fonte, projeção, checkpoint ou histórico.
+### Arquitetura
+`docs/02_arquitetura/` × `cerebro/especificacao/`
 
-### 3. Planejamento
+A próxima análise deve separar:
+- arquitetura operacional atual;
+- especificação de conhecimento;
+- legado reintegrado;
+- histórico de investigação.
 
-Há sobreposição potencial entre docs/03_planejamento/, cerebro/mapas/, documentos de continuidade e mapas históricos.
+### Estado
+`cerebro/00_estado/` × `continuidade/02_estado/` × Project Knowledge × handoffs.
 
-**Ação:** mapas permanecem instrumentos de navegação/planejamento; não devem ser tratados como fila ou estado operacional.
+Project Knowledge permanece como estado estruturado derivado; os demais precisam ser classificados como fonte, projeção, checkpoint ou histórico.
 
-### 4. Continuidade
+### Planejamento
+`docs/03_planejamento/` × `cerebro/mapas/`.
 
-continuidade/ contém material de transferência e também material temático.
+Mapas continuam instrumentos de navegação/planejamento, não fila de tarefas.
 
-**Ação:** manter a infraestrutura de transferência; classificar e posteriormente retirar material que pertence estruturalmente a operação, arquitetura, planejamento ou referência.
+### Continuidade
+`continuidade/06_interface/` contém material temático que pode pertencer à documentação de arquitetura/planejamento da interface.
 
-### 5. Histórico
+Não mover até comparar referências e função.
 
-Há patrimônio em docs/90_fontes/, mini-cerebro/, 99_arquivo/ e históricos dentro de cerebro/especificacao/.
+### Histórico
+`docs/90_fontes/` × `cerebro/especificacao/07_historico/` × `mini-cerebro/` × `99_arquivo/`.
 
-**Ação:** não apagar. Identificar origem, período, função e relação com o presente.
-
-## Classes de ação
-
-- KEEP — permanece no caminho atual.
-- INDEX — permanece, mas precisa de índice/ponte.
-- LINK — permanece e ganha referência para a autoridade correta.
-- CLASSIFY — precisa de análise documento a documento.
-- CONSOLIDATE — candidato a unificação depois de comparar função e autoridade.
-- MOVE LATER — candidato a migração controlada após dependências.
-- DERIVED — projeção gerada de outra fonte.
-- HISTORICAL — preservado como passado.
-- OBSOLETE — só usar após evidência de substituição.
+Não apagar. Determinar origem, período, função e relação com o presente.
 
 ## Regra sobre os arquivos-base
 
-Os arquivos-base que contêm a visão original do Projeto Absoluto devem ser tratados como **fontes de origem da visão**, e não como simples documentação técnica do ABS.
+Os arquivos-base da visão original do Projeto Absoluto são **fontes de origem da visão**. Não devem ser reescritos como documentação técnica do ABS.
 
-Nesta fase, não reescrever nem substituir os arquivos-base. Primeiro catalogá-los e estabelecer seus papéis. Uma documentação derivada pode explicar sua relação, mas não deve apagar ou alterar a fonte original.
+A rastreabilidade atual está registrada em `continuidade/07_conhecimento/SESSAO_ATUAL.md` e na documentação de auditoria.
 
 ## Próxima etapa
 
-A próxima auditoria deve ser documento a documento, com pelo menos:
-
-```
-CAMINHO
-FUNÇÃO
-AUTORIDADE
-TEMPORALIDADE
-ORIGEM
-PÚBLICO
-DUPLICAÇÃO
-REFERÊNCIAS
-AÇÃO
-DESTINO
-```
-
-Só depois disso executar migrações em lotes pequenos, verificáveis e reversíveis.
+Continuar por **estado e continuidade**, depois planejamento e histórico. Só migrar documentos quando sua função e autoridade estiverem comprovadas.
