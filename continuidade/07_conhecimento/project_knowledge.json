@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-23T18:54:53-03:00",
-  "source_revision": "3e8187466a988e4559adc380ff3c5a27a2c26dc7",
+  "generated_at": "2026-09-23T23:05:52-03:00",
+  "source_revision": "421f3c08304a7ac1c8e155292962c23763eaec7e",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 39
+      "file_count": 41
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "3e8187466a988e4559adc380ff3c5a27a2c26dc7",
-      "commit_subject": "Merge pull request #69 from samuelferreira24/codex/ia-information-architecture-v1"
+      "revision": "421f3c08304a7ac1c8e155292962c23763eaec7e",
+      "commit_subject": "docs: consolidar estrutura documental e migrar arquitetura (#70)"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:005149ddc392"
+        "evidence:repository:c412e74abec0"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T18:54:53-03:00"
+      "last_validated": "2026-09-23T23:05:52-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:005149ddc392",
-        "evidence:test:6d83cbb42ba7"
+        "evidence:repository:c412e74abec0",
+        "evidence:test:14a1bd14438f"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T18:54:53-03:00"
+      "last_validated": "2026-09-23T23:05:52-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,56 +176,78 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:005149ddc392"
+        "evidence:repository:c412e74abec0"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T18:54:53-03:00"
+      "last_validated": "2026-09-23T23:05:52-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:005149ddc392",
+      "id": "evidence:repository:c412e74abec0",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-23T18:54:53-03:00",
+      "observed_at": "2026-09-23T23:05:52-03:00",
       "status": "observed",
-      "detail": "303 files indexed at revision 3e8187466a988e4559adc380ff3c5a27a2c26dc7"
+      "detail": "305 files indexed at revision 421f3c08304a7ac1c8e155292962c23763eaec7e"
     },
     {
-      "id": "evidence:test:6d83cbb42ba7",
+      "id": "evidence:test:14a1bd14438f",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-23T18:54:53-03:00",
+      "observed_at": "2026-09-23T23:05:52-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.29s"
+      "detail": "101 passed in 5.80s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:005149ddc392",
+      "id": "event:repository-scan:c412e74abec0",
       "type": "repository_scanned",
-      "at": "2026-09-23T18:54:53-03:00",
-      "revision": "3e8187466a988e4559adc380ff3c5a27a2c26dc7",
-      "file_count": 303,
-      "evidence_id": "evidence:repository:005149ddc392"
+      "at": "2026-09-23T23:05:52-03:00",
+      "revision": "421f3c08304a7ac1c8e155292962c23763eaec7e",
+      "file_count": 305,
+      "evidence_id": "evidence:repository:c412e74abec0"
     },
     {
-      "id": "event:commit-observed:3e8187466a98",
+      "id": "event:commit-observed:421f3c08304a",
       "type": "commit_observed",
-      "at": "2026-09-23T18:54:53-03:00",
-      "revision": "3e8187466a988e4559adc380ff3c5a27a2c26dc7",
+      "at": "2026-09-23T23:05:52-03:00",
+      "revision": "421f3c08304a7ac1c8e155292962c23763eaec7e",
       "branch": "main",
-      "subject": "Merge pull request #69 from samuelferreira24/codex/ia-information-architecture-v1",
-      "changed_files": []
+      "subject": "docs: consolidar estrutura documental e migrar arquitetura (#70)",
+      "changed_files": [
+        "continuidade/07_conhecimento/SESSAO_ATUAL.md",
+        "docs/00_ESTRUTURA_DOCUMENTAL.md",
+        "docs/02_arquitetura/ABS_INTEGRATION_V1.md",
+        "docs/02_arquitetura/CONHECIMENTO_E_DESCOBERTA_DE_FERRAMENTAS_V1.md",
+        "docs/02_arquitetura/CONTROLE_DE_EVOLUCAO_PELA_INTERFACE.md",
+        "docs/02_arquitetura/EVOLUCAO_AUTONOMA_ASSISTIDA_ABS.md",
+        "docs/02_arquitetura/MEMORIA_PERSISTENTE_DE_FERRAMENTAS_V1.md",
+        "docs/02_arquitetura/PLANEJAMENTO_E_APRENDIZAGEM_DE_FERRAMENTAS_V1.md",
+        "docs/02_arquitetura/PROJECT_KNOWLEDGE_V1.md",
+        "docs/02_arquitetura/README.md",
+        "docs/02_arquitetura/ROTEAMENTO_DE_RECURSOS_V1.md",
+        "docs/04_EVOLUCAO_AUTONOMA_ASSISTIDA_ABS.md",
+        "docs/05_CONTROLE_DE_EVOLUCAO_PELA_INTERFACE.md",
+        "docs/06_ROTEAMENTO_DE_RECURSOS_V1.md",
+        "docs/06_auditoria/INVENTARIO_CLASSIFICACAO_DOCUMENTAL_V0_1.md",
+        "docs/06_auditoria/MIGRACAO_DOCUMENTAL_2026-09-23.md",
+        "docs/07_CONHECIMENTO_E_DESCOBERTA_DE_FERRAMENTAS_V1.md",
+        "docs/08_PLANEJAMENTO_E_APRENDIZAGEM_DE_FERRAMENTAS_V1.md",
+        "docs/09_MEMORIA_PERSISTENTE_DE_FERRAMENTAS_V1.md",
+        "docs/architecture/ABS_INTEGRATION_V1.md",
+        "docs/architecture/PROJECT_KNOWLEDGE_V1.md"
+      ]
     },
     {
-      "id": "event:test:6d83cbb42ba7",
+      "id": "event:test:14a1bd14438f",
       "type": "tests_observed",
-      "at": "2026-09-23T18:54:53-03:00",
+      "at": "2026-09-23T23:05:52-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:6d83cbb42ba7"
+      "evidence_id": "evidence:test:14a1bd14438f"
     }
   ]
 }
