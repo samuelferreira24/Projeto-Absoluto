@@ -17,7 +17,7 @@ Projeto Absoluto.
 - PR #70: consolidação da arquitetura documental — merged.
 - PR #72: estado, continuidade e interface — merged.
 - PR #73: auditoria fontes/histórico/Mini-Cérebro/arquivo — merged.
-- Último merge verificado: PR #73, commit `065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb`.
+- Último merge verificado: PR #76, commit `d506d120b69c7330f6580d0172f714bb360645cd`.
 - Handoff detalhado criado em `continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md`.
 - Commit do novo handoff: `d967adad57bcb824366d8db6938fe1daef3632bc`.
 
@@ -38,17 +38,18 @@ Projeto Absoluto.
 - patrimônio histórico foi preservado.
 
 ## Próxima etapa exata
-Auditar referências e órfãos documentais.
+Consolidar a validação de **índices, referências cruzadas e documentos órfãos** após a auditoria de caminhos antigos.
 
-Procurar referências atuais para caminhos antigos, especialmente:
-- `docs/architecture/`
-- `continuidade/06_interface/`
-- `continuidade/02_estado/`
-- `continuidade/04_construcao/`
+A auditoria de referências antigas já foi executada nos PRs #74–#76. Foram removidas cópias comprovadamente redundantes e corrigida a referência obsoleta a `docs/architecture/`.
 
-Também verificar links quebrados, índices desatualizados e documentos órfãos.
+Agora verificar:
+- índices que apontem para arquivos inexistentes;
+- links relativos quebrados;
+- documentos atuais sem ponto de entrada quando deveriam ter um;
+- contradições entre índices e a árvore física;
+- referências históricas que estejam sendo apresentadas como estado atual.
 
-Corrigir somente referências comprovadamente quebradas. Validar depois.
+Corrigir somente problemas comprovados e preservar documentos históricos como históricos.
 
 ## Regra
 Não alterar automaticamente visão, princípios ou decisões do Imperador.
