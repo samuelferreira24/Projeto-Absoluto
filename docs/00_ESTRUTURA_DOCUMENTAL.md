@@ -3,48 +3,51 @@
 ## Governança
 A classificação documental é definida por `docs/00_GOVERNANCA_INFORMACAO.md`.
 
-A documentação é organizada por **função**, não por cronologia. Cada documento deve ter função, autoridade e relação com outras fontes identificáveis.
+A documentação não deve virar uma sequência cronológica de arquivos. Cada documento precisa ter função e autoridade identificáveis.
 
-## Áreas documentais
+## Áreas
+- `01_operacao/` — como operar o que existe.
+- `02_arquitetura/` — arquitetura e contratos.
+- `03_planejamento/` — planejamento e índices documentais.
+- `04_referencia/` — referências técnicas.
+- `90_fontes/` — fontes e materiais de origem.
+- `06_auditoria/` — auditorias e avaliações.
+- `api/` — referência de API.
 
-- `01_operacao/` — como operar o que existe hoje.
-- `02_arquitetura/` — arquitetura, contratos, limites e relações entre componentes.
-- `03_planejamento/` — planejamento, índices e possibilidades de avanço.
-- `04_referencia/` — referências técnicas e manuais estáveis.
-- `06_auditoria/` — auditorias, inventários e avaliações temporais.
-- `90_fontes/` — fontes de origem e materiais preservados.
+## Relação com outras áreas
+- `cerebro/mapas/` = mapas de navegação, capacidades e planejamento do Cérebro.
+- `cerebro/00_estado/` = estado observado e snapshots do Cérebro/ABS; não substitui Project Knowledge.
+- `continuidade/` = transferência entre sessões, não depósito geral de documentos.
+- `99_arquivo/` = patrimônio histórico.
+- `abs_core/` = código atual.
 
-Áreas técnicas específicas:
-- `api/` — contrato/referência da API.
-- `20_interface/` — implementação atual da interface e seus artefatos diretamente associados.
-- `cerebro/` — implementação, conhecimento, mapas e histórico do Cérebro.
-- `continuidade/` — transferência entre sessões/IAs.
-- `99_arquivo/` — patrimônio histórico/legado.
+## Planejamento × mapas
 
-## Consolidação arquitetural
+A auditoria desta zona concluiu que não há necessidade de fundir fisicamente `docs/03_planejamento/` com `cerebro/mapas/`.
 
-A antiga área `docs/architecture/` foi consolidada em `docs/02_arquitetura/`.
+As funções são complementares:
 
-Os documentos migrados mantêm o mesmo conteúdo e blob Git; somente o caminho foi reorganizado para eliminar duas áreas concorrentes para arquitetura.
+- `docs/03_planejamento/` = entrada documental do planejamento e planejamentos específicos que descrevem como avançar;
+- `cerebro/mapas/` = mapas de capacidades, dependências, pendências e rede evolutiva usados para navegação e seleção dinâmica;
+- `cerebro/00_estado/` = estado/snapshots; não é planejamento;
+- `continuidade/` = contexto de retomada; não é planejamento.
 
-A arquitetura também deve ser lida em conjunto com:
-- código atual;
-- testes;
-- contratos/API;
-- especificações do Cérebro quando forem fonte histórica ou de conhecimento;
-- evidências operacionais.
-
-## Relação com o Projeto Absoluto
-
-- Projeto Absoluto = visão, método, princípios e objetivos.
-- Sistema = infraestrutura/meio para ampliar capacidade.
-- ABS = primeiro projeto em construção.
-- futuros projetos podem reutilizar ou substituir capacidades existentes.
-
-Documentação técnica do ABS não deve ser tratada como definição da visão maior.
+Não mover os mapas apenas para eliminar nomes parecidos. O ganho desta etapa é tornar a relação explícita.
 
 ## Regra
+**Classificar antes de mover.** Código operacional só é movido após verificar dependências.
 
-**Classificar antes de mover.**
+## Estado da reorganização em 2026-09-23
 
-Migrações documentais devem preservar conteúdo, referências e histórico. Código operacional só é movido após verificação de dependências.
+A documentação temática de interface foi redistribuída por função:
+- pesquisa → `docs/90_fontes/`;
+- arquitetura → `docs/02_arquitetura/`;
+- planejamento → `docs/03_planejamento/`.
+
+A antiga `docs/architecture/` foi eliminada na migração arquitetural anterior; `docs/02_arquitetura/` é a área canônica.
+
+Snapshots antigos de estado e construção foram reclassificados em `continuidade/99_legado/` ou `continuidade/05_handoffs/` conforme sua função temporal.
+
+O quadro `cerebro/mapas/04_QUADRO_MESTRE_STATUS_ABS_V1_2026-09-22.md` foi reclassificado para `cerebro/00_estado/STATUS_ABS_V1_2026-09-22.md`, pois descreve estado consolidado/snapshot da V1, não um mapa de planejamento.
+
+A próxima zona de auditoria é **fontes × histórico × Mini-Cérebro × 99_arquivo**.
