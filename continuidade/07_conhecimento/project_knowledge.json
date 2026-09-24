@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-24T00:08:04-03:00",
-  "source_revision": "45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9",
+  "generated_at": "2026-09-24T00:08:51-03:00",
+  "source_revision": "c0bb4994753506b435ee148b7b12062e5b2e0e64",
   "components": [
     {
       "id": "component:abs_core",
@@ -12,7 +12,7 @@
     {
       "id": "component:cerebro",
       "kind": "cerebro",
-      "file_count": 47
+      "file_count": 46
     },
     {
       "id": "component:continuity",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9",
-      "commit_subject": "Merge pull request #74 from samuelferreira24/docs/auditoria-referencias-orfaos"
+      "revision": "c0bb4994753506b435ee148b7b12062e5b2e0e64",
+      "commit_subject": "Merge pull request #75 from samuelferreira24/docs/limpeza-status-duplicado"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:186bfd1cc31a"
+        "evidence:repository:ece3c78690ba"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:08:04-03:00"
+      "last_validated": "2026-09-24T00:08:51-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:186bfd1cc31a",
-        "evidence:test:5cca0f4ff6f4"
+        "evidence:repository:ece3c78690ba",
+        "evidence:test:e9724c8a85e5"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:08:04-03:00"
+      "last_validated": "2026-09-24T00:08:51-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,56 +176,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:186bfd1cc31a"
+        "evidence:repository:ece3c78690ba"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:08:04-03:00"
+      "last_validated": "2026-09-24T00:08:51-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:186bfd1cc31a",
+      "id": "evidence:repository:ece3c78690ba",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-24T00:08:04-03:00",
+      "observed_at": "2026-09-24T00:08:51-03:00",
       "status": "observed",
-      "detail": "309 files indexed at revision 45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9"
+      "detail": "308 files indexed at revision c0bb4994753506b435ee148b7b12062e5b2e0e64"
     },
     {
-      "id": "evidence:test:5cca0f4ff6f4",
+      "id": "evidence:test:e9724c8a85e5",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-24T00:08:04-03:00",
+      "observed_at": "2026-09-24T00:08:51-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.55s"
+      "detail": "101 passed in 6.14s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:186bfd1cc31a",
+      "id": "event:repository-scan:ece3c78690ba",
       "type": "repository_scanned",
-      "at": "2026-09-24T00:08:04-03:00",
-      "revision": "45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9",
-      "file_count": 309,
-      "evidence_id": "evidence:repository:186bfd1cc31a"
+      "at": "2026-09-24T00:08:51-03:00",
+      "revision": "c0bb4994753506b435ee148b7b12062e5b2e0e64",
+      "file_count": 308,
+      "evidence_id": "evidence:repository:ece3c78690ba"
     },
     {
-      "id": "event:commit-observed:45ff454cfe8a",
+      "id": "event:commit-observed:c0bb49947535",
       "type": "commit_observed",
-      "at": "2026-09-24T00:08:04-03:00",
-      "revision": "45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9",
+      "at": "2026-09-24T00:08:51-03:00",
+      "revision": "c0bb4994753506b435ee148b7b12062e5b2e0e64",
       "branch": "main",
-      "subject": "Merge pull request #74 from samuelferreira24/docs/auditoria-referencias-orfaos",
+      "subject": "Merge pull request #75 from samuelferreira24/docs/limpeza-status-duplicado",
       "changed_files": []
     },
     {
-      "id": "event:test:5cca0f4ff6f4",
+      "id": "event:test:e9724c8a85e5",
       "type": "tests_observed",
-      "at": "2026-09-24T00:08:04-03:00",
+      "at": "2026-09-24T00:08:51-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:5cca0f4ff6f4"
+      "evidence_id": "evidence:test:e9724c8a85e5"
     }
   ]
 }
