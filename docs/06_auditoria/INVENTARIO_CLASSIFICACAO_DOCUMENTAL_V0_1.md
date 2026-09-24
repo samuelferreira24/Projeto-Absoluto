@@ -114,6 +114,18 @@ Não foi identificada migração física necessária nesta zona. O único arquiv
 
 As áreas de planejamento permanecem separadas por função e agora apontam umas para as outras sem duplicar conteúdo.
 
+## Atualização pós-auditoria — PRs #74–#76
+
+A etapa de referências e órfãos documentais foi executada. Os seguintes casos comprovados foram resolvidos:
+- cópias antigas em áreas de continuidade já migradas para destinos canônicos;
+- referência obsoleta a `docs/architecture/`;
+- quadro de status duplicado em `cerebro/mapas/`;
+- snapshot de transferência duplicado em `cerebro/00_estado/`.
+
+O resultado foi validado contra a árvore atual do `main`. Nenhum código, teste ou fonte-base foi alterado nessa limpeza.
+
+O restante deste documento preserva a classificação e o histórico da fase inicial; não deve ser interpretado como inventário físico em tempo real.
+
 ## Próxima etapa
 
 A próxima auditoria deve ser documento a documento, com pelo menos:
