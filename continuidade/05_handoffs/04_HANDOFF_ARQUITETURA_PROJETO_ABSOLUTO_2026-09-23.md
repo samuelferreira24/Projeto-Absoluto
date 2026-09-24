@@ -16,7 +16,7 @@ Estado verificado no GitHub:
 - PR #72 — merged
 - PR #73 — merged
 - PR #71 — fechado sem merge
-- último merge verificado nesta auditoria: PR #73 → commit `065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb`
+- último merge verificado nesta auditoria: PR #76 → commit `d506d120b69c7330f6580d0172f714bb360645cd`
 
 Não começar novamente. O trabalho de arquitetura de informação já avançou várias etapas.
 
@@ -339,31 +339,21 @@ Depois verificar código/testes relevantes.
 
 ---
 
-## 10. PRÓXIMA ETAPA EXATA
+## 10. ETAPA DE AUDITORIA CONCLUÍDA
 
-A auditoria atual de fontes/histórico/Mini-Cérebro/arquivo terminou.
+A auditoria de referências e órfãos documentais foi executada após o PR #73.
 
-A próxima etapa indicada pelo PR #73 é:
+Foram concluídas as correções comprovadas:
+- PR #74 — remoção de seis cópias antigas já migradas e correção de referência obsoleta a `docs/architecture/`;
+- PR #75 — remoção do quadro de status duplicado de `cerebro/mapas/`;
+- PR #76 — remoção da cópia duplicada do snapshot de transferência em `cerebro/00_estado/`.
 
-### AUDITAR REFERÊNCIAS E ÓRFÃOS DOCUMENTAIS
+Validação final:
+- caminhos antigos auditados não aparecem mais na árvore atual;
+- não restam documentos Markdown/TXT com blob SHA idêntico entre caminhos diferentes;
+- código, testes e cinco fontes-base não foram alterados nessa rodada.
 
-Procurar documentos atuais que ainda apontem para caminhos antigos, especialmente referências como:
-- `docs/architecture/`
-- `continuidade/06_interface/`
-- `continuidade/02_estado/`
-- `continuidade/04_construcao/`
-
-Também procurar:
-- links quebrados;
-- caminhos antigos;
-- documentos órfãos;
-- índices que ainda apontem para arquivos migrados;
-- referências contraditórias.
-
-Regra:
-**corrigir apenas referências comprovadamente quebradas.**
-
-Depois dessa etapa, a organização documental poderá avançar para uma consolidação controlada.
+A próxima etapa é **auditar a consistência dos índices, referências cruzadas e documentos órfãos sem conteúdo duplicado**, corrigindo apenas problemas comprovados.
 
 ---
 
