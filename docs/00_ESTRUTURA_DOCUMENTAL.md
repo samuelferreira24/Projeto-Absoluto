@@ -54,4 +54,4 @@ A auditoria de **fontes × histórico × Mini-Cérebro × 99_arquivo** foi concl
 
 A auditoria posterior de **referências e órfãos** foi concluída nos PRs #74–#76: caminhos antigos foram removidos/corrigidos e duplicações físicas exatas identificadas foram eliminadas com preservação da cópia canônica.
 
-**Próxima zona:** validação de índices, referências cruzadas e documentos órfãos, sem nova migração física até que exista evidência.
+**Zona atual (2026-09-24):** validação de índices, referências cruzadas e documentos órfãos. A árvore física já foi corrigida nas rodadas anteriores; esta etapa verifica se os índices e checkpoints ainda apontam para a estrutura antiga. Nenhuma nova migração física deve ocorrer sem evidência.

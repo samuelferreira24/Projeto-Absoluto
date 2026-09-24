@@ -17,7 +17,7 @@ Projeto Absoluto.
 - PR #70: consolidação da arquitetura documental — merged.
 - PR #72: estado, continuidade e interface — merged.
 - PR #73: auditoria fontes/histórico/Mini-Cérebro/arquivo — merged.
-- Último merge verificado: PR #76, commit `d506d120b69c7330f6580d0172f714bb360645cd`.
+- Último merge antes da rodada atual: PR #80, commit `5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454`.
 - Handoff detalhado criado em `continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md`.
 - Commit do novo handoff: `d967adad57bcb824366d8db6938fe1daef3632bc`.
 
@@ -53,3 +53,8 @@ Corrigir somente problemas comprovados e preservar documentos históricos como h
 
 ## Regra
 Não alterar automaticamente visão, princípios ou decisões do Imperador.
+
+
+## Atualização desta rodada — 2026-09-24
+
+A auditoria de índices começou sobre o `main` pós-PR #80. Foi confirmado que alguns documentos de navegação ainda apontavam para handoffs antigos e que o inventário documental V0.1 estava sendo apresentado como se fosse uma fotografia atual. Esses pontos estão sendo corrigidos sem alterar fontes-base, código ou testes.

@@ -14,8 +14,9 @@ Ela não é um segundo diretório geral de documentação.
 6. `continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md`
 7. `continuidade/07_conhecimento/SESSAO_ATUAL.md`
 8. `cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md`
-9. `continuidade/05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md`
-10. fonte específica conforme a pergunta.
+9. `continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md` — handoff detalhado vigente desta frente.
+10. Handoffs `01–03` são históricos/snapshots; não tratá-los como autoridade atual.
+11. fonte específica conforme a pergunta.
 
 ## O que é continuidade
 - checkpoint;

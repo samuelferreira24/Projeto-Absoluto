@@ -16,7 +16,11 @@ Estado verificado no GitHub:
 - PR #72 — merged
 - PR #73 — merged
 - PR #71 — fechado sem merge
-- último merge verificado nesta auditoria: PR #76 → commit `d506d120b69c7330f6580d0172f714bb360645cd`
+- último merge verificado antes desta rodada: PR #76 → commit `d506d120b69c7330f6580d0172f714bb360645cd`.
+- PR #77 — atualização de checkpoints pós-auditoria — merged.
+- PR #78 — reclassificação do handoff operacional obsoleto — merged.
+- PR #80 — classificação dos handoffs históricos — merged.
+- estado-base desta rodada: `main` em `5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454`.
 
 Não começar novamente. O trabalho de arquitetura de informação já avançou várias etapas.
 
@@ -353,7 +357,7 @@ Validação final:
 - não restam documentos Markdown/TXT com blob SHA idêntico entre caminhos diferentes;
 - código, testes e cinco fontes-base não foram alterados nessa rodada.
 
-A próxima etapa é **auditar a consistência dos índices, referências cruzadas e documentos órfãos sem conteúdo duplicado**, corrigindo apenas problemas comprovados.
+A etapa seguinte desta rodada é **validar a consistência dos índices, referências cruzadas e documentos órfãos sem conteúdo duplicado**. A auditoria já começou sobre o `main` pós-PR #80; os índices canônicos devem ser comparados com a árvore física antes de qualquer nova migração.
 
 ---
 
