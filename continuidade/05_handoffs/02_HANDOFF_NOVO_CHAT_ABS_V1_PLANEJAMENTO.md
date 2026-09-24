@@ -1,3 +1,5 @@
+> **Classificação:** snapshot histórico de continuidade. Não é a autoridade de estado atual. Para continuidade vigente, consulte `continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md` e `continuidade/07_conhecimento/SESSAO_ATUAL.md`.
+
 # HANDOFF — CONSTRUÇÃO DO PROJETO ABSOLUTO / ABS V1
 
 ## 0. MISSÃO DESTE HANDOFF
