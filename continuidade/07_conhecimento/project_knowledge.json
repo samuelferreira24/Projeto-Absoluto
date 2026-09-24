@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-23T23:24:17-03:00",
-  "source_revision": "4df24e7d1090451041d066b84bc4cebd44241c31",
+  "generated_at": "2026-09-24T00:08:04-03:00",
+  "source_revision": "45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9",
   "components": [
     {
       "id": "component:abs_core",
@@ -17,7 +17,7 @@
     {
       "id": "component:continuity",
       "kind": "continuity",
-      "file_count": 24
+      "file_count": 18
     },
     {
       "id": "component:docs",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "4df24e7d1090451041d066b84bc4cebd44241c31",
-      "commit_subject": "docs: atualizar checkpoint de continuidade da sessão"
+      "revision": "45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9",
+      "commit_subject": "Merge pull request #74 from samuelferreira24/docs/auditoria-referencias-orfaos"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:8b05482af557"
+        "evidence:repository:186bfd1cc31a"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T23:24:17-03:00"
+      "last_validated": "2026-09-24T00:08:04-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:8b05482af557",
-        "evidence:test:e185c4a66935"
+        "evidence:repository:186bfd1cc31a",
+        "evidence:test:5cca0f4ff6f4"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T23:24:17-03:00"
+      "last_validated": "2026-09-24T00:08:04-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,58 +176,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:8b05482af557"
+        "evidence:repository:186bfd1cc31a"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-23T23:24:17-03:00"
+      "last_validated": "2026-09-24T00:08:04-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:8b05482af557",
+      "id": "evidence:repository:186bfd1cc31a",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-23T23:24:17-03:00",
+      "observed_at": "2026-09-24T00:08:04-03:00",
       "status": "observed",
-      "detail": "315 files indexed at revision 4df24e7d1090451041d066b84bc4cebd44241c31"
+      "detail": "309 files indexed at revision 45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9"
     },
     {
-      "id": "evidence:test:e185c4a66935",
+      "id": "evidence:test:5cca0f4ff6f4",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-23T23:24:17-03:00",
+      "observed_at": "2026-09-24T00:08:04-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.35s"
+      "detail": "101 passed in 6.55s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:8b05482af557",
+      "id": "event:repository-scan:186bfd1cc31a",
       "type": "repository_scanned",
-      "at": "2026-09-23T23:24:17-03:00",
-      "revision": "4df24e7d1090451041d066b84bc4cebd44241c31",
-      "file_count": 315,
-      "evidence_id": "evidence:repository:8b05482af557"
+      "at": "2026-09-24T00:08:04-03:00",
+      "revision": "45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9",
+      "file_count": 309,
+      "evidence_id": "evidence:repository:186bfd1cc31a"
     },
     {
-      "id": "event:commit-observed:4df24e7d1090",
+      "id": "event:commit-observed:45ff454cfe8a",
       "type": "commit_observed",
-      "at": "2026-09-23T23:24:17-03:00",
-      "revision": "4df24e7d1090451041d066b84bc4cebd44241c31",
+      "at": "2026-09-24T00:08:04-03:00",
+      "revision": "45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9",
       "branch": "main",
-      "subject": "docs: atualizar checkpoint de continuidade da sessão",
-      "changed_files": [
-        "continuidade/07_conhecimento/SESSAO_ATUAL.md"
-      ]
+      "subject": "Merge pull request #74 from samuelferreira24/docs/auditoria-referencias-orfaos",
+      "changed_files": []
     },
     {
-      "id": "event:test:e185c4a66935",
+      "id": "event:test:5cca0f4ff6f4",
       "type": "tests_observed",
-      "at": "2026-09-23T23:24:17-03:00",
+      "at": "2026-09-24T00:08:04-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:e185c4a66935"
+      "evidence_id": "evidence:test:5cca0f4ff6f4"
     }
   ]
 }
