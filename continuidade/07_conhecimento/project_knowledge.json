@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-24T00:37:33-03:00",
-  "source_revision": "5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454",
+  "generated_at": "2026-09-24T00:41:26-03:00",
+  "source_revision": "d248bad33754c087007d91759b5c52a647896022",
   "components": [
     {
       "id": "component:abs_core",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454",
-      "commit_subject": "Merge pull request #80 from samuelferreira24/docs/classificar-handoffs-historicos-v2"
+      "revision": "d248bad33754c087007d91759b5c52a647896022",
+      "commit_subject": "Merge pull request #81 from samuelferreira24/docs/consistencia-indices-2026-09-24"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:8df69d7967a6"
+        "evidence:repository:c2103e3d7617"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:37:33-03:00"
+      "last_validated": "2026-09-24T00:41:26-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:8df69d7967a6",
-        "evidence:test:d8db7f8011cf"
+        "evidence:repository:c2103e3d7617",
+        "evidence:test:58658bd08cdd"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:37:33-03:00"
+      "last_validated": "2026-09-24T00:41:26-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,56 +176,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:8df69d7967a6"
+        "evidence:repository:c2103e3d7617"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:37:33-03:00"
+      "last_validated": "2026-09-24T00:41:26-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:8df69d7967a6",
+      "id": "evidence:repository:c2103e3d7617",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-24T00:37:33-03:00",
+      "observed_at": "2026-09-24T00:41:26-03:00",
       "status": "observed",
-      "detail": "307 files indexed at revision 5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454"
+      "detail": "307 files indexed at revision d248bad33754c087007d91759b5c52a647896022"
     },
     {
-      "id": "evidence:test:d8db7f8011cf",
+      "id": "evidence:test:58658bd08cdd",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-24T00:37:33-03:00",
+      "observed_at": "2026-09-24T00:41:26-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.31s"
+      "detail": "101 passed in 6.29s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:8df69d7967a6",
+      "id": "event:repository-scan:c2103e3d7617",
       "type": "repository_scanned",
-      "at": "2026-09-24T00:37:33-03:00",
-      "revision": "5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454",
+      "at": "2026-09-24T00:41:26-03:00",
+      "revision": "d248bad33754c087007d91759b5c52a647896022",
       "file_count": 307,
-      "evidence_id": "evidence:repository:8df69d7967a6"
+      "evidence_id": "evidence:repository:c2103e3d7617"
     },
     {
-      "id": "event:commit-observed:5c7de8b64fc2",
+      "id": "event:commit-observed:d248bad33754",
       "type": "commit_observed",
-      "at": "2026-09-24T00:37:33-03:00",
-      "revision": "5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454",
+      "at": "2026-09-24T00:41:26-03:00",
+      "revision": "d248bad33754c087007d91759b5c52a647896022",
       "branch": "main",
-      "subject": "Merge pull request #80 from samuelferreira24/docs/classificar-handoffs-historicos-v2",
+      "subject": "Merge pull request #81 from samuelferreira24/docs/consistencia-indices-2026-09-24",
       "changed_files": []
     },
     {
-      "id": "event:test:d8db7f8011cf",
+      "id": "event:test:58658bd08cdd",
       "type": "tests_observed",
-      "at": "2026-09-24T00:37:33-03:00",
+      "at": "2026-09-24T00:41:26-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:d8db7f8011cf"
+      "evidence_id": "evidence:test:58658bd08cdd"
     }
   ]
 }
