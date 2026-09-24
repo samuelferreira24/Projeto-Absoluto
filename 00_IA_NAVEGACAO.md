@@ -12,8 +12,10 @@ Este arquivo é a navegação rápida para qualquer IA, agente ou ferramenta.
 4. `docs/00_MODELO_PROJETO_ABSOLUTO.md` — relação entre Projeto Absoluto, Sistema e projetos.
 5. `00_ESTRUTURA_REPOSITORIO.md` — estrutura física.
 6. Estado vivo: `continuidade/07_conhecimento/project_knowledge.json` e `MAPA_AUTO_ESTADO_PROJETO.md`.
-7. `cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md` — navegação estratégica.
-8. Fonte específica conforme a pergunta.
+7. Retomada detalhada: `continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md`.
+8. Handoffs `01–03` são históricos/snapshots e não substituem o estado vivo.
+9. `cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md` — navegação estratégica.
+10. Fonte específica conforme a pergunta.
 
 
 ## Regra de autoridade
