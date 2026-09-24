@@ -1,7 +1,7 @@
 # MAPA MESTRE ATUAL — PROJETO ABSOLUTO V1
 
 **Status:** referência mestre de navegação do projeto  
-**Data:** 2026-09-20  
+**Data:** 2026-09-23  
 **Objetivo:** impedir perda de contexto, mistura de mapas e uso de documentos históricos como se fossem estado atual.
 
 ---
@@ -60,7 +60,8 @@ Responde:
 É uma **rede dinâmica**, não uma lista de tarefas.
 
 ### NÍVEL 4 — PLANEJAMENTO DINÂMICO
-- `cerebro/mapas/02_QUADRO_PENDENCIAS_CONSTRUCAO_V0_1.md`
+- `docs/03_planejamento/00_INDICE_PLANEJAMENTO.md` — entrada documental;
+- `cerebro/mapas/02_QUADRO_PENDENCIAS_CONSTRUCAO_V0_1.md`;
 - `cerebro/mapas/03_PLANO_REDE_EVOLUTIVA_V0_1.md`
 
 Respondem:
@@ -70,12 +71,13 @@ Respondem:
 - quais capacidades devem ser integradas;
 - quais caminhos podem avançar em paralelo.
 
-### NÍVEL 5 — MEMÓRIA / TRANSFERÊNCIA
+### NÍVEL 5 — ESTADO / MEMÓRIA / TRANSFERÊNCIA
 - `continuidade/07_conhecimento/project_knowledge.json`
 - `continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md`
 - `continuidade/07_conhecimento/SESSAO_ATUAL.md`
-- `cerebro/00_estado/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md`
+- `cerebro/00_estado/STATUS_ABS_V1_2026-09-22.md`
 - `cerebro/00_estado/STATUS_CEREBRO_LIGADO.md`
+- `cerebro/00_estado/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md`
 
 Servem para:
 - continuidade entre conversas/IA;
@@ -113,7 +115,7 @@ Não devem ser usados automaticamente como arquitetura atual.
 | **TABULEIRO COMPLETO 72** | Universo de capacidades e relações | **ATUAL / ESTRATÉGICO** |
 | **QUADRO DE PENDÊNCIAS** | Lacunas e construção | **ATUAL / DINÂMICO** |
 | **PLANO REDE EVOLUTIVA** | Método de execução não linear | **ATUAL / MÉTODO** |
-| **QUADRO MESTRE STATUS V1 (2026-09-22)** | Estado real consolidado da V1 contra auditoria/código/testes | **ATUAL / FECHAMENTO V1** |
+| **STATUS ABS V1 (2026-09-22)** | Snapshot consolidado da V1 contra auditoria/código/testes | **ESTADO / SNAPSHOT** |
 | **ABS FUNDAÇÃO V1** | Contrato da fundação operacional | **ATUAL / OPERACIONAL** |
 | **STATUS CÉREBRO LIGADO** | Estado do Cérebro persistente | **ATUAL / ESTADO** |
 | **TRANSFERÊNCIA V1** | Pacote de continuidade | **SNAPSHOT / HISTÓRICO** |
