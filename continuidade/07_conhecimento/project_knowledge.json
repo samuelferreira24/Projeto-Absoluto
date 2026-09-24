@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-24T00:30:10-03:00",
-  "source_revision": "245f93400c3cdc3f54d9a91c50182b8de82dd60e",
+  "generated_at": "2026-09-24T00:36:48-03:00",
+  "source_revision": "f5a39de0a99d4efa69bd323066d0b1cef98199b6",
   "components": [
     {
       "id": "component:abs_core",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "245f93400c3cdc3f54d9a91c50182b8de82dd60e",
-      "commit_subject": "Merge pull request #77 from samuelferreira24/docs/atualizar-checkpoints-pos-auditoria"
+      "revision": "f5a39de0a99d4efa69bd323066d0b1cef98199b6",
+      "commit_subject": "Merge pull request #78 from samuelferreira24/docs/corrigir-handoff-operacional-obsoleto"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:ce2243d696de"
+        "evidence:repository:2c55edf396c4"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:30:10-03:00"
+      "last_validated": "2026-09-24T00:36:48-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:ce2243d696de",
-        "evidence:test:9b78ffd4e4c1"
+        "evidence:repository:2c55edf396c4",
+        "evidence:test:fec060a8f804"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:30:10-03:00"
+      "last_validated": "2026-09-24T00:36:48-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,56 +176,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:ce2243d696de"
+        "evidence:repository:2c55edf396c4"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:30:10-03:00"
+      "last_validated": "2026-09-24T00:36:48-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:ce2243d696de",
+      "id": "evidence:repository:2c55edf396c4",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-24T00:30:10-03:00",
+      "observed_at": "2026-09-24T00:36:48-03:00",
       "status": "observed",
-      "detail": "307 files indexed at revision 245f93400c3cdc3f54d9a91c50182b8de82dd60e"
+      "detail": "307 files indexed at revision f5a39de0a99d4efa69bd323066d0b1cef98199b6"
     },
     {
-      "id": "evidence:test:9b78ffd4e4c1",
+      "id": "evidence:test:fec060a8f804",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-24T00:30:10-03:00",
+      "observed_at": "2026-09-24T00:36:48-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.10s"
+      "detail": "101 passed in 6.30s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:ce2243d696de",
+      "id": "event:repository-scan:2c55edf396c4",
       "type": "repository_scanned",
-      "at": "2026-09-24T00:30:10-03:00",
-      "revision": "245f93400c3cdc3f54d9a91c50182b8de82dd60e",
+      "at": "2026-09-24T00:36:48-03:00",
+      "revision": "f5a39de0a99d4efa69bd323066d0b1cef98199b6",
       "file_count": 307,
-      "evidence_id": "evidence:repository:ce2243d696de"
+      "evidence_id": "evidence:repository:2c55edf396c4"
     },
     {
-      "id": "event:commit-observed:245f93400c3c",
+      "id": "event:commit-observed:f5a39de0a99d",
       "type": "commit_observed",
-      "at": "2026-09-24T00:30:10-03:00",
-      "revision": "245f93400c3cdc3f54d9a91c50182b8de82dd60e",
+      "at": "2026-09-24T00:36:48-03:00",
+      "revision": "f5a39de0a99d4efa69bd323066d0b1cef98199b6",
       "branch": "main",
-      "subject": "Merge pull request #77 from samuelferreira24/docs/atualizar-checkpoints-pos-auditoria",
+      "subject": "Merge pull request #78 from samuelferreira24/docs/corrigir-handoff-operacional-obsoleto",
       "changed_files": []
     },
     {
-      "id": "event:test:9b78ffd4e4c1",
+      "id": "event:test:fec060a8f804",
       "type": "tests_observed",
-      "at": "2026-09-24T00:30:10-03:00",
+      "at": "2026-09-24T00:36:48-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:9b78ffd4e4c1"
+      "evidence_id": "evidence:test:fec060a8f804"
     }
   ]
 }

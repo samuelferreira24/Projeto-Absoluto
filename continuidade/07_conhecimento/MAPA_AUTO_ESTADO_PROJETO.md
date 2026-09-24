@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 245f93400c3cdc3f54d9a91c50182b8de82dd60e
-Momento da revisão: 2026-09-24T00:30:10-03:00
+Revisão observada: f5a39de0a99d4efa69bd323066d0b1cef98199b6
+Momento da revisão: 2026-09-24T00:36:48-03:00
 
 ## Componentes
 - component:abs_core — abs_core (42 arquivos)
@@ -35,18 +35,18 @@ Momento da revisão: 2026-09-24T00:30:10-03:00
 ## Nós
 
 ## Caminhos
-- PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: evidence:repository:ce2243d696de
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:repository:ce2243d696de, evidence:test:9b78ffd4e4c1
-- PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: evidence:repository:ce2243d696de
+- PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: evidence:repository:2c55edf396c4
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:repository:2c55edf396c4, evidence:test:fec060a8f804
+- PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: evidence:repository:2c55edf396c4
 
 ## Eventos
-- event:repository-scan:ce2243d696de — repository_scanned — revisão: 245f93400c3cdc3f54d9a91c50182b8de82dd60e
-- event:commit-observed:245f93400c3c — commit_observed — revisão: 245f93400c3cdc3f54d9a91c50182b8de82dd60e
-- event:test:9b78ffd4e4c1 — tests_observed — revisão: n/a
+- event:repository-scan:2c55edf396c4 — repository_scanned — revisão: f5a39de0a99d4efa69bd323066d0b1cef98199b6
+- event:commit-observed:f5a39de0a99d — commit_observed — revisão: f5a39de0a99d4efa69bd323066d0b1cef98199b6
+- event:test:fec060a8f804 — tests_observed — revisão: n/a
 
 ## Evidências
-- evidence:repository:ce2243d696de — repository_scan — observed — 307 files indexed at revision 245f93400c3cdc3f54d9a91c50182b8de82dd60e
-- evidence:test:9b78ffd4e4c1 — test — tested — 101 passed in 6.10s
+- evidence:repository:2c55edf396c4 — repository_scan — observed — 307 files indexed at revision f5a39de0a99d4efa69bd323066d0b1cef98199b6
+- evidence:test:fec060a8f804 — test — tested — 101 passed in 6.30s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
