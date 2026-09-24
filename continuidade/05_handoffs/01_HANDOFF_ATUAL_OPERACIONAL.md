@@ -1,4 +1,7 @@
-# HANDOFF ATUAL — PROJETO ABSOLUTO
+# HANDOFF OPERACIONAL — SNAPSHOT DE 2026-09-22
+
+> **Classificação:** snapshot histórico operacional. Este arquivo não é mais o ponto de continuidade vigente. Para o estado atual, use `continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md` e `continuidade/07_conhecimento/SESSAO_ATUAL.md`.
+
 
 Data de referência: 2026-09-22
 Repositório operacional: samuelferreira24/Projeto-Absoluto
@@ -7,7 +10,7 @@ Branch: main
 
 ## 1. FINALIDADE
 
-Este arquivo é o ponto oficial de continuidade para uma nova IA assumir o Projeto Absoluto sem reconstruir o contexto do zero.
+Este arquivo registra o estado operacional observado em 2026-09-22 para preservar histórico e contexto. Ele não deve ser usado como autoridade única sobre o estado atual.
 
 Regra principal: não reconstruir componentes existentes antes de auditar o estado real, os testes e as integrações.
 
@@ -199,7 +202,7 @@ A pergunta central passou de apenas 'o que construir?' para 'como provar que os 
 
 ## 20. REGRA PARA A PRÓXIMA IA
 
-1. Ler este arquivo.
+1. Ler o handoff vigente (`continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md`).
 2. Verificar o estado real de main.
 3. Verificar testes antes de modificar.
 4. Auditar código relevante.
