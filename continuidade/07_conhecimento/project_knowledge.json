@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-24T00:41:26-03:00",
-  "source_revision": "d248bad33754c087007d91759b5c52a647896022",
+  "generated_at": "2026-09-24T00:43:13-03:00",
+  "source_revision": "58cea86c2d7136f8ef1171a37ae59f4294499631",
   "components": [
     {
       "id": "component:abs_core",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "d248bad33754c087007d91759b5c52a647896022",
-      "commit_subject": "Merge pull request #81 from samuelferreira24/docs/consistencia-indices-2026-09-24"
+      "revision": "58cea86c2d7136f8ef1171a37ae59f4294499631",
+      "commit_subject": "Merge pull request #82 from samuelferreira24/docs/finalizar-indices-estado-especificacoes-2026-09-24"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:c2103e3d7617"
+        "evidence:repository:de6160040d8a"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:41:26-03:00"
+      "last_validated": "2026-09-24T00:43:13-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:c2103e3d7617",
-        "evidence:test:58658bd08cdd"
+        "evidence:repository:de6160040d8a",
+        "evidence:test:52ebe839f1b0"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:41:26-03:00"
+      "last_validated": "2026-09-24T00:43:13-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,56 +176,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:c2103e3d7617"
+        "evidence:repository:de6160040d8a"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:41:26-03:00"
+      "last_validated": "2026-09-24T00:43:13-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:c2103e3d7617",
+      "id": "evidence:repository:de6160040d8a",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-24T00:41:26-03:00",
+      "observed_at": "2026-09-24T00:43:13-03:00",
       "status": "observed",
-      "detail": "307 files indexed at revision d248bad33754c087007d91759b5c52a647896022"
+      "detail": "307 files indexed at revision 58cea86c2d7136f8ef1171a37ae59f4294499631"
     },
     {
-      "id": "evidence:test:58658bd08cdd",
+      "id": "evidence:test:52ebe839f1b0",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-24T00:41:26-03:00",
+      "observed_at": "2026-09-24T00:43:13-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.29s"
+      "detail": "101 passed in 6.30s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:c2103e3d7617",
+      "id": "event:repository-scan:de6160040d8a",
       "type": "repository_scanned",
-      "at": "2026-09-24T00:41:26-03:00",
-      "revision": "d248bad33754c087007d91759b5c52a647896022",
+      "at": "2026-09-24T00:43:13-03:00",
+      "revision": "58cea86c2d7136f8ef1171a37ae59f4294499631",
       "file_count": 307,
-      "evidence_id": "evidence:repository:c2103e3d7617"
+      "evidence_id": "evidence:repository:de6160040d8a"
     },
     {
-      "id": "event:commit-observed:d248bad33754",
+      "id": "event:commit-observed:58cea86c2d71",
       "type": "commit_observed",
-      "at": "2026-09-24T00:41:26-03:00",
-      "revision": "d248bad33754c087007d91759b5c52a647896022",
+      "at": "2026-09-24T00:43:13-03:00",
+      "revision": "58cea86c2d7136f8ef1171a37ae59f4294499631",
       "branch": "main",
-      "subject": "Merge pull request #81 from samuelferreira24/docs/consistencia-indices-2026-09-24",
+      "subject": "Merge pull request #82 from samuelferreira24/docs/finalizar-indices-estado-especificacoes-2026-09-24",
       "changed_files": []
     },
     {
-      "id": "event:test:58658bd08cdd",
+      "id": "event:test:52ebe839f1b0",
       "type": "tests_observed",
-      "at": "2026-09-24T00:41:26-03:00",
+      "at": "2026-09-24T00:43:13-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:58658bd08cdd"
+      "evidence_id": "evidence:test:52ebe839f1b0"
     }
   ]
 }
