@@ -50,4 +50,8 @@ Snapshots antigos de estado e construção foram reclassificados em `continuidad
 
 O quadro `cerebro/mapas/04_QUADRO_MESTRE_STATUS_ABS_V1_2026-09-22.md` foi reclassificado para `cerebro/00_estado/STATUS_ABS_V1_2026-09-22.md`, pois descreve estado consolidado/snapshot da V1, não um mapa de planejamento.
 
-A próxima zona de auditoria é **fontes × histórico × Mini-Cérebro × 99_arquivo**.
+A auditoria de **fontes × histórico × Mini-Cérebro × 99_arquivo** foi concluída no PR #73.
+
+A auditoria posterior de **referências e órfãos** foi concluída nos PRs #74–#76: caminhos antigos foram removidos/corrigidos e duplicações físicas exatas identificadas foram eliminadas com preservação da cópia canônica.
+
+**Próxima zona:** validação de índices, referências cruzadas e documentos órfãos, sem nova migração física até que exista evidência.
