@@ -19,6 +19,10 @@ Consultar:
 5. documentação operacional;
 6. snapshots desta área.
 
+## Conteúdo atual
+- `STATUS_ABS_V1_2026-09-22.md` — snapshot consolidado do estado da V1 naquela data.
+- `STATUS_CEREBRO_LIGADO.md` — registro de estado/ligação do Cérebro.
+
 ## Regra
 Estado é uma fotografia verificável de uma situação, não uma especificação de arquitetura.
 

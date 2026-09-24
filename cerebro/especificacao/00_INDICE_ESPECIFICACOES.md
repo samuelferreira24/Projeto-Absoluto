@@ -12,8 +12,8 @@ Orquestração e execução contínua.
 ## 04 — Descoberta
 Mecanismos que permitem descobrir lacunas e reavaliar decisões.
 
-## 05 — Planejamento
-Tabuleiros, pendências e rede evolutiva.
+## 05 — Planejamento relacionado
+Os tabuleiros, pendências e a rede evolutiva são mantidos em `cerebro/mapas/`, não em uma subpasta `05_planejamento/` desta área. Consulte `cerebro/mapas/00_INDICE_MAPAS.md`.
 
 ## 06 — Auditoria
 Auditorias, investigações e validações de fronteira.

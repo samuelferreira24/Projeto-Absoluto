@@ -58,3 +58,5 @@ Não alterar automaticamente visão, princípios ou decisões do Imperador.
 ## Atualização desta rodada — 2026-09-24
 
 A auditoria de índices começou sobre o `main` pós-PR #80. Foi confirmado que alguns documentos de navegação ainda apontavam para handoffs antigos e que o inventário documental V0.1 estava sendo apresentado como se fosse uma fotografia atual. Esses pontos estão sendo corrigidos sem alterar fontes-base, código ou testes.
+
+- PR #81: consistência dos índices e checkpoints — merged em `d248bad33754c087007d91759b5c52a647896022`.
