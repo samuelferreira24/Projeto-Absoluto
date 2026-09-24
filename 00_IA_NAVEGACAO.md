@@ -31,7 +31,7 @@ Para histórico:
 - **Estado atual:** `continuidade/07_conhecimento/`, código e testes.
 - **Conhecimento:** `cerebro/` e Project Knowledge.
 - **Decisões:** `continuidade/03_decisoes/`.
-- **Arquitetura:** `docs/02_arquitetura/`, `docs/architecture/`, especificações do Cérebro.
+- **Arquitetura:** `docs/02_arquitetura/` e especificações do Cérebro.
 - **Planejamento/mapas:** `docs/03_planejamento/`, `cerebro/mapas/`.
 - **Operação:** `docs/01_operacao/`, `scripts/`, `abs_core/`.
 - **Evidências/testes:** `tests/`, CI e Project Knowledge.
