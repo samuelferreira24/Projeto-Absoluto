@@ -1,45 +1,48 @@
-# CONTINUIDADE — PROJETO ABSOLUTO
+# CONTINUIDADE — LEIA PRIMEIRO
 
 ## Função
-Este diretório reúne os documentos necessários para transferir contexto entre sessões e IAs.
+`continuidade/` é a infraestrutura de transferência entre sessões e IAs.
 
-**Não é o depósito geral de toda a documentação do Projeto.**
+Ela não é um segundo diretório geral de documentação.
 
-A governança está em `docs/00_GOVERNANCA_INFORMACAO.md`.
-
-## Ordem de leitura para retomada
+## Ordem de leitura
 1. `AGENTS.md`
 2. `00_IA_NAVEGACAO.md`
 3. `docs/00_GOVERNANCA_INFORMACAO.md`
-4. `07_conhecimento/project_knowledge.json`
-5. `07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md`
-6. `07_conhecimento/SESSAO_ATUAL.md`
-7. fonte específica indicada pelo estado/pergunta.
+4. `docs/00_MODELO_PROJETO_ABSOLUTO.md`
+5. `continuidade/07_conhecimento/project_knowledge.json`
+6. `continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md`
+7. `continuidade/07_conhecimento/SESSAO_ATUAL.md`
+8. `cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md`
+9. `continuidade/05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md`
+10. fonte específica conforme a pergunta.
 
-## Regra de interpretação
-Quando houver conflito:
-**código atual + testes + CI + evidência operacional > continuidade antiga.**
+## O que é continuidade
+- checkpoint;
+- handoff;
+- decisão necessária à retomada;
+- ponte para estado vivo;
+- contexto de sessão;
+- contratos de continuidade.
 
-Project Knowledge representa o estado estruturado observável.
-O mapa automático é sua projeção humana.
-Handoffs e checkpoints preservam contexto de sessão; não substituem estado vivo.
+## O que não é continuidade
+Material temático deve ficar na área funcional correspondente:
+- operação → `docs/01_operacao/`;
+- arquitetura → `docs/02_arquitetura/`;
+- planejamento → `docs/03_planejamento/`;
+- referência → `docs/04_referencia/`;
+- fontes → `docs/90_fontes/`;
+- auditoria → `docs/06_auditoria/`.
 
-## Organização atual
-- `01_contexto/` — contexto necessário à continuidade.
-- `02_estado/` — registros de estado históricos/legados da continuidade; não competir com Project Knowledge.
-- `03_decisoes/` — decisões e correções registradas.
-- `04_construcao/` — pontos de parada e contexto de construção.
-- `05_handoffs/` — handoffs/checkpoints.
-- `06_interface/` — material temático de interface mantido provisoriamente; será classificado antes de eventual migração documental.
-- `07_conhecimento/` — mecanismo atual de conhecimento e projeções.
-- `99_legado/` — snapshots antigos.
+Por isso a antiga `continuidade/06_interface/` foi esvaziada e seus documentos foram classificados por função.
 
-## Regra para continuar
-Antes de criar componente:
-1. localizar o requisito;
-2. verificar se já existe;
-3. verificar integração;
-4. verificar testes/evidências;
-5. construir somente a lacuna comprovada.
+## Estado vivo
+Project Knowledge é o estado estruturado derivado.
+`MAPA_AUTO_ESTADO_PROJETO.md` é sua projeção legível.
+Handoffs são checkpoints; não vencem o estado vivo automaticamente.
+Snapshots antigos devem ser tratados como históricos.
 
-**Não apagar histórico para deixar a árvore limpa.**
+## Regra de sessão
+Uma sessão de IA que produzir decisão, descoberta, resultado, evidência, mudança de arquitetura, pendência ou ponto de retomada que altere o Projeto deve persistir isso antes de encerrar/transferir.
+
+A conversa é temporária. O repositório é a continuidade.
