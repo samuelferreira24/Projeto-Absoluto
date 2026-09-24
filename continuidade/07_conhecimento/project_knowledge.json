@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-24T00:09:22-03:00",
-  "source_revision": "d506d120b69c7330f6580d0172f714bb360645cd",
+  "generated_at": "2026-09-24T00:30:10-03:00",
+  "source_revision": "245f93400c3cdc3f54d9a91c50182b8de82dd60e",
   "components": [
     {
       "id": "component:abs_core",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "d506d120b69c7330f6580d0172f714bb360645cd",
-      "commit_subject": "Merge pull request #76 from samuelferreira24/docs/limpeza-transferencia-snapshot"
+      "revision": "245f93400c3cdc3f54d9a91c50182b8de82dd60e",
+      "commit_subject": "Merge pull request #77 from samuelferreira24/docs/atualizar-checkpoints-pos-auditoria"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:cf23c69297c2"
+        "evidence:repository:ce2243d696de"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:09:22-03:00"
+      "last_validated": "2026-09-24T00:30:10-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:cf23c69297c2",
-        "evidence:test:1073915d3c28"
+        "evidence:repository:ce2243d696de",
+        "evidence:test:9b78ffd4e4c1"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:09:22-03:00"
+      "last_validated": "2026-09-24T00:30:10-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,56 +176,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:cf23c69297c2"
+        "evidence:repository:ce2243d696de"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:09:22-03:00"
+      "last_validated": "2026-09-24T00:30:10-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:cf23c69297c2",
+      "id": "evidence:repository:ce2243d696de",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-24T00:09:22-03:00",
+      "observed_at": "2026-09-24T00:30:10-03:00",
       "status": "observed",
-      "detail": "307 files indexed at revision d506d120b69c7330f6580d0172f714bb360645cd"
+      "detail": "307 files indexed at revision 245f93400c3cdc3f54d9a91c50182b8de82dd60e"
     },
     {
-      "id": "evidence:test:1073915d3c28",
+      "id": "evidence:test:9b78ffd4e4c1",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-24T00:09:22-03:00",
+      "observed_at": "2026-09-24T00:30:10-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.26s"
+      "detail": "101 passed in 6.10s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:cf23c69297c2",
+      "id": "event:repository-scan:ce2243d696de",
       "type": "repository_scanned",
-      "at": "2026-09-24T00:09:22-03:00",
-      "revision": "d506d120b69c7330f6580d0172f714bb360645cd",
+      "at": "2026-09-24T00:30:10-03:00",
+      "revision": "245f93400c3cdc3f54d9a91c50182b8de82dd60e",
       "file_count": 307,
-      "evidence_id": "evidence:repository:cf23c69297c2"
+      "evidence_id": "evidence:repository:ce2243d696de"
     },
     {
-      "id": "event:commit-observed:d506d120b69c",
+      "id": "event:commit-observed:245f93400c3c",
       "type": "commit_observed",
-      "at": "2026-09-24T00:09:22-03:00",
-      "revision": "d506d120b69c7330f6580d0172f714bb360645cd",
+      "at": "2026-09-24T00:30:10-03:00",
+      "revision": "245f93400c3cdc3f54d9a91c50182b8de82dd60e",
       "branch": "main",
-      "subject": "Merge pull request #76 from samuelferreira24/docs/limpeza-transferencia-snapshot",
+      "subject": "Merge pull request #77 from samuelferreira24/docs/atualizar-checkpoints-pos-auditoria",
       "changed_files": []
     },
     {
-      "id": "event:test:1073915d3c28",
+      "id": "event:test:9b78ffd4e4c1",
       "type": "tests_observed",
-      "at": "2026-09-24T00:09:22-03:00",
+      "at": "2026-09-24T00:30:10-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:1073915d3c28"
+      "evidence_id": "evidence:test:9b78ffd4e4c1"
     }
   ]
 }
