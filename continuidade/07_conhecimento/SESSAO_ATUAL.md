@@ -11,34 +11,44 @@ Projeto Absoluto.
 - Outros projetos poderão surgir dentro do Projeto Absoluto e poderão reutilizar, substituir ou não depender do Sistema/ABS.
 - O Imperador está aprendendo a construir enquanto constrói; a arquitetura futura não deve ser presumida como totalmente conhecida.
 
-## Organização concluída nesta etapa
-- PR #69 consolidou governança, modelo conceitual e inventário inicial.
-- PR #70 consolidou a área de arquitetura e eliminou `docs/architecture/`.
-- A auditoria seguinte classificou a concorrência entre estado e continuidade.
-- Documentação temática de interface foi retirada de `continuidade/` e distribuída por função:
-  - pesquisa → `docs/90_fontes/`;
-  - arquitetura → `docs/02_arquitetura/`;
-  - planejamento → `docs/03_planejamento/`.
-- Snapshots antigos de estado/construção foram reclassificados como históricos ou handoffs, sem apagar conteúdo.
+## Estado da reorganização
+- PR #68: Project Knowledge/continuidade — merged.
+- PR #69: governança, modelo conceitual e inventário — merged.
+- PR #70: consolidação da arquitetura documental — merged.
+- PR #72: estado, continuidade e interface — merged.
+- PR #73: auditoria fontes/histórico/Mini-Cérebro/arquivo — merged.
+- Último merge verificado: PR #73, commit `065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb`.
+- Handoff detalhado criado em `continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md`.
+- Commit do novo handoff: `d967adad57bcb824366d8db6938fe1daef3632bc`.
 
-## Autoridade atual
-- visão/direção → fontes autorizadas do Imperador;
-- estado operacional → código + testes + CI + evidências;
-- estado estruturado derivado → Project Knowledge;
-- projeção humana → `MAPA_AUTO_ESTADO_PROJETO.md`;
-- decisões → `continuidade/03_decisoes/`;
-- continuidade → checkpoints/handoffs;
-- histórico → fontes/snapshots/arquivo preservado.
+## O que já foi organizado
+- governança da informação;
+- modelo conceitual Projeto Absoluto → Sistema → projetos/ABS;
+- portas de entrada para IA;
+- autoridade por tipo de informação;
+- Project Knowledge como estado estruturado derivado;
+- distinção entre estado, projeção, decisão, evidência, continuidade e histórico;
+- arquitetura consolidada em `docs/02_arquitetura/`;
+- documentação temática de interface retirada de `continuidade/` e distribuída por função;
+- estado/snapshots antigos reclassificados;
+- planejamento × mapas auditado;
+- fontes × histórico × Mini-Cérebro × arquivo auditados;
+- nenhuma fonte-base foi reescrita;
+- nenhum código foi movido por estética;
+- patrimônio histórico foi preservado.
 
-## Auditoria planejamento × mapas — concluída
-- `docs/03_planejamento/` permanece como entrada documental do planejamento.
-- `cerebro/mapas/` permanece como rede de capacidades, dependências, pendências e caminhos.
-- Não houve necessidade de fundir as áreas nem criar nova camada documental.
-- O quadro de status ABS foi o único item desta zona que precisava de reclassificação física: saiu de `cerebro/mapas/` e foi para `cerebro/00_estado/STATUS_ABS_V1_2026-09-22.md`, preservando o conteúdo.
-- Os índices e referências foram atualizados para impedir nova confusão entre planejamento e estado.
+## Próxima etapa exata
+Auditar referências e órfãos documentais.
 
-## Próxima etapa
-Auditar **fontes × histórico × Mini-Cérebro × 99_arquivo** antes de nova migração física.
+Procurar referências atuais para caminhos antigos, especialmente:
+- `docs/architecture/`
+- `continuidade/06_interface/`
+- `continuidade/02_estado/`
+- `continuidade/04_construcao/`
+
+Também verificar links quebrados, índices desatualizados e documentos órfãos.
+
+Corrigir somente referências comprovadamente quebradas. Validar depois.
 
 ## Regra
 Não alterar automaticamente visão, princípios ou decisões do Imperador.
