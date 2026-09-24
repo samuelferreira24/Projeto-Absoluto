@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-24T00:36:48-03:00",
-  "source_revision": "f5a39de0a99d4efa69bd323066d0b1cef98199b6",
+  "generated_at": "2026-09-24T00:37:33-03:00",
+  "source_revision": "5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454",
   "components": [
     {
       "id": "component:abs_core",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "f5a39de0a99d4efa69bd323066d0b1cef98199b6",
-      "commit_subject": "Merge pull request #78 from samuelferreira24/docs/corrigir-handoff-operacional-obsoleto"
+      "revision": "5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454",
+      "commit_subject": "Merge pull request #80 from samuelferreira24/docs/classificar-handoffs-historicos-v2"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:2c55edf396c4"
+        "evidence:repository:8df69d7967a6"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:36:48-03:00"
+      "last_validated": "2026-09-24T00:37:33-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:2c55edf396c4",
-        "evidence:test:fec060a8f804"
+        "evidence:repository:8df69d7967a6",
+        "evidence:test:d8db7f8011cf"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:36:48-03:00"
+      "last_validated": "2026-09-24T00:37:33-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,56 +176,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:2c55edf396c4"
+        "evidence:repository:8df69d7967a6"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-24T00:36:48-03:00"
+      "last_validated": "2026-09-24T00:37:33-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:2c55edf396c4",
+      "id": "evidence:repository:8df69d7967a6",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-24T00:36:48-03:00",
+      "observed_at": "2026-09-24T00:37:33-03:00",
       "status": "observed",
-      "detail": "307 files indexed at revision f5a39de0a99d4efa69bd323066d0b1cef98199b6"
+      "detail": "307 files indexed at revision 5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454"
     },
     {
-      "id": "evidence:test:fec060a8f804",
+      "id": "evidence:test:d8db7f8011cf",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-24T00:36:48-03:00",
+      "observed_at": "2026-09-24T00:37:33-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.30s"
+      "detail": "101 passed in 6.31s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:2c55edf396c4",
+      "id": "event:repository-scan:8df69d7967a6",
       "type": "repository_scanned",
-      "at": "2026-09-24T00:36:48-03:00",
-      "revision": "f5a39de0a99d4efa69bd323066d0b1cef98199b6",
+      "at": "2026-09-24T00:37:33-03:00",
+      "revision": "5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454",
       "file_count": 307,
-      "evidence_id": "evidence:repository:2c55edf396c4"
+      "evidence_id": "evidence:repository:8df69d7967a6"
     },
     {
-      "id": "event:commit-observed:f5a39de0a99d",
+      "id": "event:commit-observed:5c7de8b64fc2",
       "type": "commit_observed",
-      "at": "2026-09-24T00:36:48-03:00",
-      "revision": "f5a39de0a99d4efa69bd323066d0b1cef98199b6",
+      "at": "2026-09-24T00:37:33-03:00",
+      "revision": "5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454",
       "branch": "main",
-      "subject": "Merge pull request #78 from samuelferreira24/docs/corrigir-handoff-operacional-obsoleto",
+      "subject": "Merge pull request #80 from samuelferreira24/docs/classificar-handoffs-historicos-v2",
       "changed_files": []
     },
     {
-      "id": "event:test:fec060a8f804",
+      "id": "event:test:d8db7f8011cf",
       "type": "tests_observed",
-      "at": "2026-09-24T00:36:48-03:00",
+      "at": "2026-09-24T00:37:33-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:fec060a8f804"
+      "evidence_id": "evidence:test:d8db7f8011cf"
     }
   ]
 }
