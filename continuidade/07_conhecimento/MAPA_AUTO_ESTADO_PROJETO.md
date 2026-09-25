@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 876eb68ded069d4cc5d3c776f0ecb4290a18aa61
-Momento da revisão: 2026-09-25T14:47:13-03:00
+Revisão observada: 08e69969ff20e2a11138255929dda9ed2913c448
+Momento da revisão: 2026-09-25T18:26:36-03:00
 
 ## Componentes
 - component:abs_core — abs_core (46 arquivos)
@@ -11,7 +11,7 @@ Momento da revisão: 2026-09-25T14:47:13-03:00
 - component:continuity — continuity (18 arquivos)
 - component:docs — docs (51 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
-- component:project — project (104 arquivos)
+- component:project — project (105 arquivos)
 - component:tests — tests (42 arquivos)
 
 ## Capacidades
@@ -35,18 +35,18 @@ Momento da revisão: 2026-09-25T14:47:13-03:00
 ## Nós
 
 ## Caminhos
-- PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: evidence:repository:6bd60e1fae1a
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:repository:6bd60e1fae1a, evidence:test:6be8b3d6f30f
-- PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: evidence:repository:6bd60e1fae1a
+- PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: evidence:repository:276d1d4b3997
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:repository:276d1d4b3997, evidence:test:b627de056c78
+- PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: evidence:repository:276d1d4b3997
 
 ## Eventos
-- event:repository-scan:6bd60e1fae1a — repository_scanned — revisão: 876eb68ded069d4cc5d3c776f0ecb4290a18aa61
-- event:commit-observed:876eb68ded06 — commit_observed — revisão: 876eb68ded069d4cc5d3c776f0ecb4290a18aa61
-- event:test:6be8b3d6f30f — tests_observed — revisão: n/a
+- event:repository-scan:276d1d4b3997 — repository_scanned — revisão: 08e69969ff20e2a11138255929dda9ed2913c448
+- event:commit-observed:08e69969ff20 — commit_observed — revisão: 08e69969ff20e2a11138255929dda9ed2913c448
+- event:test:b627de056c78 — tests_observed — revisão: n/a
 
 ## Evidências
-- evidence:repository:6bd60e1fae1a — repository_scan — observed — 318 files indexed at revision 876eb68ded069d4cc5d3c776f0ecb4290a18aa61
-- evidence:test:6be8b3d6f30f — test — tested — 103 passed in 6.33s
+- evidence:repository:276d1d4b3997 — repository_scan — observed — 319 files indexed at revision 08e69969ff20e2a11138255929dda9ed2913c448
+- evidence:test:b627de056c78 — test — tested — 103 passed in 6.93s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
