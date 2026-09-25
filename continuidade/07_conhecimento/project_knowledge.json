@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-25T14:46:20-03:00",
-  "source_revision": "29ef2905299b997affa4faed53113bc0bb3b37a3",
+  "generated_at": "2026-09-25T14:47:13-03:00",
+  "source_revision": "876eb68ded069d4cc5d3c776f0ecb4290a18aa61",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 50
+      "file_count": 51
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -32,12 +32,12 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 103
+      "file_count": 104
     },
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 41
+      "file_count": 42
     }
   ],
   "capabilities": [
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "29ef2905299b997affa4faed53113bc0bb3b37a3",
-      "commit_subject": "feat: integrar verificação e Data Layer ao ciclo de execução"
+      "revision": "876eb68ded069d4cc5d3c776f0ecb4290a18aa61",
+      "commit_subject": "test: validar camadas estruturais da V1 operacional"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:d5e0aacc96f0"
+        "evidence:repository:6bd60e1fae1a"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:46:20-03:00"
+      "last_validated": "2026-09-25T14:47:13-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:d5e0aacc96f0",
-        "evidence:test:7c666501bb50"
+        "evidence:repository:6bd60e1fae1a",
+        "evidence:test:6be8b3d6f30f"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:46:20-03:00"
+      "last_validated": "2026-09-25T14:47:13-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,58 +176,58 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:d5e0aacc96f0"
+        "evidence:repository:6bd60e1fae1a"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:46:20-03:00"
+      "last_validated": "2026-09-25T14:47:13-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:d5e0aacc96f0",
+      "id": "evidence:repository:6bd60e1fae1a",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-25T14:46:20-03:00",
+      "observed_at": "2026-09-25T14:47:13-03:00",
       "status": "observed",
-      "detail": "315 files indexed at revision 29ef2905299b997affa4faed53113bc0bb3b37a3"
+      "detail": "318 files indexed at revision 876eb68ded069d4cc5d3c776f0ecb4290a18aa61"
     },
     {
-      "id": "evidence:test:7c666501bb50",
+      "id": "evidence:test:6be8b3d6f30f",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-25T14:46:20-03:00",
+      "observed_at": "2026-09-25T14:47:13-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.33s"
+      "detail": "103 passed in 6.33s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:d5e0aacc96f0",
+      "id": "event:repository-scan:6bd60e1fae1a",
       "type": "repository_scanned",
-      "at": "2026-09-25T14:46:20-03:00",
-      "revision": "29ef2905299b997affa4faed53113bc0bb3b37a3",
-      "file_count": 315,
-      "evidence_id": "evidence:repository:d5e0aacc96f0"
+      "at": "2026-09-25T14:47:13-03:00",
+      "revision": "876eb68ded069d4cc5d3c776f0ecb4290a18aa61",
+      "file_count": 318,
+      "evidence_id": "evidence:repository:6bd60e1fae1a"
     },
     {
-      "id": "event:commit-observed:29ef2905299b",
+      "id": "event:commit-observed:876eb68ded06",
       "type": "commit_observed",
-      "at": "2026-09-25T14:46:20-03:00",
-      "revision": "29ef2905299b997affa4faed53113bc0bb3b37a3",
+      "at": "2026-09-25T14:47:13-03:00",
+      "revision": "876eb68ded069d4cc5d3c776f0ecb4290a18aa61",
       "branch": "main",
-      "subject": "feat: integrar verificação e Data Layer ao ciclo de execução",
+      "subject": "test: validar camadas estruturais da V1 operacional",
       "changed_files": [
-        "abs_core/orchestrator.py"
+        "tests/test_v1_operational_layers.py"
       ]
     },
     {
-      "id": "event:test:7c666501bb50",
+      "id": "event:test:6be8b3d6f30f",
       "type": "tests_observed",
-      "at": "2026-09-25T14:46:20-03:00",
+      "at": "2026-09-25T14:47:13-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:7c666501bb50"
+      "evidence_id": "evidence:test:6be8b3d6f30f"
     }
   ]
 }
