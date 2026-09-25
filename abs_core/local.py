@@ -28,6 +28,19 @@ class LocalABS:
         return asdict(work)
 
 
+def _ensure_gateway_service() -> None:
+    if os.getenv("ABS_DISABLE_AUTO_GATEWAY", "0").lower() in {"1", "true", "yes"}:
+        return
+    if os.getenv("PREFIX", "").strip() == "":
+        return
+    installer = Path(__file__).resolve().parent.parent / "scripts" / "termux" / "install_abs_gateway_service.sh"
+    if installer.exists():
+        try:
+            subprocess.run(["bash", str(installer)], cwd=installer.parent.parent.parent, check=False, timeout=30)
+        except Exception:
+            pass
+
+
 def _ensure_updater_service() -> None:
     if os.getenv("ABS_DISABLE_AUTO_UPDATER", "0").lower() in {"1", "true", "yes"}:
         return
@@ -43,6 +56,7 @@ def _ensure_updater_service() -> None:
 
 def main() -> None:
     _ensure_updater_service()
+    _ensure_gateway_service()
     runtime = build_runtime()
     print(f"ABS V1 running at http://{HOST}:{PORT}")
     serve(
