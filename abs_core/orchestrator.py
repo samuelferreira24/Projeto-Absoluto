@@ -12,17 +12,14 @@ def _now() -> str:
 
 
 class Orchestrator:
-    def __init__(
-        self,
-        registry: CapabilityRegistry,
-        store: WorkStore,
-        continuity=None,
-        knowledge_runtime=None,
-    ) -> None:
+    def __init__(self, registry: CapabilityRegistry, store: WorkStore, continuity=None,
+                 knowledge_runtime=None, data_layer=None, verifier=None) -> None:
         self.registry = registry
         self.store = store
         self.continuity = continuity
         self.knowledge_runtime = knowledge_runtime
+        self.data_layer = data_layer
+        self.verifier = verifier
 
     def create(self, objective: str, context: dict[str, Any] | None = None) -> Work:
         work = Work(objective, context or {})
@@ -38,26 +35,13 @@ class Orchestrator:
         recorder = self.knowledge_runtime
         if recorder is None or not hasattr(recorder, "record_execution"):
             return
-        path_id = {
-            "echo": "PATH-ABS-ORCHESTRATOR",
-            "orchestrator": "PATH-ABS-ORCHESTRATOR",
-            "codex": "PATH-ABS-CODEX",
-            "internet-http": "PATH-ABS-INTERNET-HTTP",
-        }.get(capability_id)
+        path_id = {"echo": "PATH-ABS-ORCHESTRATOR", "orchestrator": "PATH-ABS-ORCHESTRATOR", "codex": "PATH-ABS-CODEX", "internet-http": "PATH-ABS-INTERNET-HTTP"}.get(capability_id)
         if path_id is None:
             return
         try:
-            recorder.record_execution(
-                path_id=path_id,
-                operation=f"work:{work.id}",
-                status=status,
-                detail=detail,
-                source=f"ABS Orchestrator ({capability_id})",
-            )
+            recorder.record_execution(path_id=path_id, operation=f"work:{work.id}", status=status, detail=detail, source=f"ABS Orchestrator ({capability_id})")
         except Exception as exc:
-            # Knowledge projection failure must not rewrite the outcome of the real work.
-            if hasattr(work, "emit"):
-                work.emit("knowledge.recording_failed", capability_id=capability_id, error=repr(exc))
+            work.emit("knowledge.recording_failed", capability_id=capability_id, error=repr(exc))
 
     def run(self, work_id: str, capability_id: str | None = None, approved: bool = False) -> Work:
         work = self.store.load(work_id)
@@ -67,7 +51,6 @@ class Orchestrator:
             self.store.save(work)
             self._checkpoint()
             raise PermissionError(f"Imperator approval required for capability: {cap.id}")
-
         work.capability_id = cap.id
         work.state = WorkState.RUNNING
         work.emit("work.started", capability_id=cap.id)
@@ -78,44 +61,37 @@ class Orchestrator:
             if session and session.get("thread_id"):
                 execution_context["_codex_thread_id"] = session["thread_id"]
             result = cap.adapter.execute(work.objective, execution_context)
+            verification = self.verifier.verify(result) if self.verifier is not None else None
+            if isinstance(result, dict) and verification is not None:
+                result = {**result, "verification": verification.public()}
             work.result = result
-            work.state = WorkState.COMPLETED
+            work.state = WorkState.COMPLETED if verification is None or verification.accepted else WorkState.FAILED
             if isinstance(result, dict) and result.get("thread_id"):
                 work.sessions[cap.id] = {"thread_id": result["thread_id"]}
             work.provenance.append({
-                "provenance_id": str(uuid.uuid4()),
-                "work_id": work.id,
-                "objective": work.objective,
-                "capability_id": cap.id,
-                "capability_name": cap.name,
-                "session": work.sessions.get(cap.id),
-                "recorded_at": _now(),
-                "state": work.state.value,
+                "provenance_id": str(uuid.uuid4()), "work_id": work.id, "objective": work.objective,
+                "capability_id": cap.id, "capability_name": cap.name, "session": work.sessions.get(cap.id),
+                "recorded_at": _now(), "state": work.state.value,
                 "result_type": result.get("type") if isinstance(result, dict) else type(result).__name__,
-                "context_keys": sorted(work.context.keys()),
-                "mission_id": work.context.get("cerebro_missao_id"),
+                "context_keys": sorted(work.context.keys()), "mission_id": work.context.get("cerebro_missao_id"),
                 "cycle_id": (work.context.get("_execucao") or {}).get("ciclo_id"),
                 "idempotency_key": (work.context.get("_execucao") or {}).get("idempotency_key"),
+                "verification": verification.public() if verification is not None else None,
             })
-            work.emit("work.completed", capability_id=cap.id)
-            self._record_execution(work, cap.id, "operational", "Capability execution completed successfully.")
+            work.emit("work.completed" if work.state == WorkState.COMPLETED else "work.rejected", capability_id=cap.id)
+            self._record_execution(work, cap.id, "operational" if work.state == WorkState.COMPLETED else "verification_failure", "Capability execution and V1 verification completed.")
         except Exception as exc:
             work.state = WorkState.FAILED
             work.result = {"type": "error", "error": str(exc), "error_type": type(exc).__name__}
-            work.provenance.append({
-                "provenance_id": str(uuid.uuid4()),
-                "work_id": work.id,
-                "objective": work.objective,
-                "capability_id": cap.id,
-                "capability_name": cap.name,
-                "recorded_at": _now(),
-                "state": work.state.value,
-                "result_type": "error",
-                "error_type": type(exc).__name__,
-            })
+            work.provenance.append({"provenance_id": str(uuid.uuid4()), "work_id": work.id, "objective": work.objective, "capability_id": cap.id, "capability_name": cap.name, "recorded_at": _now(), "state": work.state.value, "result_type": "error", "error_type": type(exc).__name__})
             work.emit("work.failed", capability_id=cap.id, error=repr(exc))
             self._record_execution(work, cap.id, "failure", f"{type(exc).__name__}: {exc}")
         self.store.save(work)
+        if self.data_layer is not None:
+            try:
+                self.data_layer.record_work_result(work.id, work.objective, work.result, work.state.value)
+            except Exception as exc:
+                work.emit("data_layer.record_failed", error=repr(exc))
         self._checkpoint()
         return work
 
