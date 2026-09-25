@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-25T14:20:03-03:00",
-  "source_revision": "61f9eabaaec4c79cde37e0a6490e25268a2386a3",
+  "generated_at": "2026-09-25T14:41:22-03:00",
+  "source_revision": "a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 48
+      "file_count": 49
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "61f9eabaaec4c79cde37e0a6490e25268a2386a3",
-      "commit_subject": "docs: criar mapa mestre de evolução do ABS"
+      "revision": "a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed",
+      "commit_subject": "docs: salvar auditoria e plano de fechamento da V1 operacional"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:18be3958de6e"
+        "evidence:repository:e2cb92c826eb"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:20:03-03:00"
+      "last_validated": "2026-09-25T14:41:22-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:18be3958de6e",
-        "evidence:test:9dcdbeb4c6e3"
+        "evidence:repository:e2cb92c826eb",
+        "evidence:test:a86bc7be24d5"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:20:03-03:00"
+      "last_validated": "2026-09-25T14:41:22-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,58 +176,58 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:18be3958de6e"
+        "evidence:repository:e2cb92c826eb"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:20:03-03:00"
+      "last_validated": "2026-09-25T14:41:22-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:18be3958de6e",
+      "id": "evidence:repository:e2cb92c826eb",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-25T14:20:03-03:00",
+      "observed_at": "2026-09-25T14:41:22-03:00",
       "status": "observed",
-      "detail": "309 files indexed at revision 61f9eabaaec4c79cde37e0a6490e25268a2386a3"
+      "detail": "310 files indexed at revision a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed"
     },
     {
-      "id": "evidence:test:9dcdbeb4c6e3",
+      "id": "evidence:test:a86bc7be24d5",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-25T14:20:03-03:00",
+      "observed_at": "2026-09-25T14:41:22-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.36s"
+      "detail": "101 passed in 7.01s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:18be3958de6e",
+      "id": "event:repository-scan:e2cb92c826eb",
       "type": "repository_scanned",
-      "at": "2026-09-25T14:20:03-03:00",
-      "revision": "61f9eabaaec4c79cde37e0a6490e25268a2386a3",
-      "file_count": 309,
-      "evidence_id": "evidence:repository:18be3958de6e"
+      "at": "2026-09-25T14:41:22-03:00",
+      "revision": "a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed",
+      "file_count": 310,
+      "evidence_id": "evidence:repository:e2cb92c826eb"
     },
     {
-      "id": "event:commit-observed:61f9eabaaec4",
+      "id": "event:commit-observed:a43b83c2fdc6",
       "type": "commit_observed",
-      "at": "2026-09-25T14:20:03-03:00",
-      "revision": "61f9eabaaec4c79cde37e0a6490e25268a2386a3",
+      "at": "2026-09-25T14:41:22-03:00",
+      "revision": "a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed",
       "branch": "main",
-      "subject": "docs: criar mapa mestre de evolução do ABS",
+      "subject": "docs: salvar auditoria e plano de fechamento da V1 operacional",
       "changed_files": [
-        "docs/03_planejamento/MAPA_MESTRE_EVOLUCAO_ABS_V1_A_INDEPENDENCIA.md"
+        "docs/03_planejamento/AUDITORIA_E_PLANO_FECHAMENTO_ABS_V1_OPERACIONAL_2026-09-25.md"
       ]
     },
     {
-      "id": "event:test:9dcdbeb4c6e3",
+      "id": "event:test:a86bc7be24d5",
       "type": "tests_observed",
-      "at": "2026-09-25T14:20:03-03:00",
+      "at": "2026-09-25T14:41:22-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:9dcdbeb4c6e3"
+      "evidence_id": "evidence:test:a86bc7be24d5"
     }
   ]
 }
