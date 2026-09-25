@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-25T14:17:07-03:00",
-  "source_revision": "a44db1334d200565e85464b241cbd1e9960d6a64",
+  "generated_at": "2026-09-25T14:20:03-03:00",
+  "source_revision": "61f9eabaaec4c79cde37e0a6490e25268a2386a3",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 47
+      "file_count": 48
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "a44db1334d200565e85464b241cbd1e9960d6a64",
-      "commit_subject": "docs: registrar planejamento ABS V1 por horizonte"
+      "revision": "61f9eabaaec4c79cde37e0a6490e25268a2386a3",
+      "commit_subject": "docs: criar mapa mestre de evolução do ABS"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:6d59ec124937"
+        "evidence:repository:18be3958de6e"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:17:07-03:00"
+      "last_validated": "2026-09-25T14:20:03-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:6d59ec124937",
-        "evidence:test:a38e4d775560"
+        "evidence:repository:18be3958de6e",
+        "evidence:test:9dcdbeb4c6e3"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:17:07-03:00"
+      "last_validated": "2026-09-25T14:20:03-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,58 +176,58 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:6d59ec124937"
+        "evidence:repository:18be3958de6e"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:17:07-03:00"
+      "last_validated": "2026-09-25T14:20:03-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:6d59ec124937",
+      "id": "evidence:repository:18be3958de6e",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-25T14:17:07-03:00",
+      "observed_at": "2026-09-25T14:20:03-03:00",
       "status": "observed",
-      "detail": "308 files indexed at revision a44db1334d200565e85464b241cbd1e9960d6a64"
+      "detail": "309 files indexed at revision 61f9eabaaec4c79cde37e0a6490e25268a2386a3"
     },
     {
-      "id": "evidence:test:a38e4d775560",
+      "id": "evidence:test:9dcdbeb4c6e3",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-25T14:17:07-03:00",
+      "observed_at": "2026-09-25T14:20:03-03:00",
       "status": "tested",
-      "detail": "101 passed in 6.29s"
+      "detail": "101 passed in 6.36s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:6d59ec124937",
+      "id": "event:repository-scan:18be3958de6e",
       "type": "repository_scanned",
-      "at": "2026-09-25T14:17:07-03:00",
-      "revision": "a44db1334d200565e85464b241cbd1e9960d6a64",
-      "file_count": 308,
-      "evidence_id": "evidence:repository:6d59ec124937"
+      "at": "2026-09-25T14:20:03-03:00",
+      "revision": "61f9eabaaec4c79cde37e0a6490e25268a2386a3",
+      "file_count": 309,
+      "evidence_id": "evidence:repository:18be3958de6e"
     },
     {
-      "id": "event:commit-observed:a44db1334d20",
+      "id": "event:commit-observed:61f9eabaaec4",
       "type": "commit_observed",
-      "at": "2026-09-25T14:17:07-03:00",
-      "revision": "a44db1334d200565e85464b241cbd1e9960d6a64",
+      "at": "2026-09-25T14:20:03-03:00",
+      "revision": "61f9eabaaec4c79cde37e0a6490e25268a2386a3",
       "branch": "main",
-      "subject": "docs: registrar planejamento ABS V1 por horizonte",
+      "subject": "docs: criar mapa mestre de evolução do ABS",
       "changed_files": [
-        "docs/03_planejamento/PLANO_ABS_V1_CURTO_MEDIO_LONGO_PRAZO.md"
+        "docs/03_planejamento/MAPA_MESTRE_EVOLUCAO_ABS_V1_A_INDEPENDENCIA.md"
       ]
     },
     {
-      "id": "event:test:a38e4d775560",
+      "id": "event:test:9dcdbeb4c6e3",
       "type": "tests_observed",
-      "at": "2026-09-25T14:17:07-03:00",
+      "at": "2026-09-25T14:20:03-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:a38e4d775560"
+      "evidence_id": "evidence:test:9dcdbeb4c6e3"
     }
   ]
 }
