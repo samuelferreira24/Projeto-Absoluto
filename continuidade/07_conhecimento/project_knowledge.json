@@ -1,13 +1,13 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-25T14:41:22-03:00",
-  "source_revision": "a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed",
+  "generated_at": "2026-09-25T14:46:20-03:00",
+  "source_revision": "29ef2905299b997affa4faed53113bc0bb3b37a3",
   "components": [
     {
       "id": "component:abs_core",
       "kind": "abs_core",
-      "file_count": 42
+      "file_count": 46
     },
     {
       "id": "component:cerebro",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 49
+      "file_count": 50
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed",
-      "commit_subject": "docs: salvar auditoria e plano de fechamento da V1 operacional"
+      "revision": "29ef2905299b997affa4faed53113bc0bb3b37a3",
+      "commit_subject": "feat: integrar verificação e Data Layer ao ciclo de execução"
     }
   ],
   "tools": [
@@ -139,11 +139,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:e2cb92c826eb"
+        "evidence:repository:d5e0aacc96f0"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:41:22-03:00"
+      "last_validated": "2026-09-25T14:46:20-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +157,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:e2cb92c826eb",
-        "evidence:test:a86bc7be24d5"
+        "evidence:repository:d5e0aacc96f0",
+        "evidence:test:7c666501bb50"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:41:22-03:00"
+      "last_validated": "2026-09-25T14:46:20-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,58 +176,58 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:e2cb92c826eb"
+        "evidence:repository:d5e0aacc96f0"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T14:41:22-03:00"
+      "last_validated": "2026-09-25T14:46:20-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:e2cb92c826eb",
+      "id": "evidence:repository:d5e0aacc96f0",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-25T14:41:22-03:00",
+      "observed_at": "2026-09-25T14:46:20-03:00",
       "status": "observed",
-      "detail": "310 files indexed at revision a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed"
+      "detail": "315 files indexed at revision 29ef2905299b997affa4faed53113bc0bb3b37a3"
     },
     {
-      "id": "evidence:test:a86bc7be24d5",
+      "id": "evidence:test:7c666501bb50",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-25T14:41:22-03:00",
+      "observed_at": "2026-09-25T14:46:20-03:00",
       "status": "tested",
-      "detail": "101 passed in 7.01s"
+      "detail": "101 passed in 6.33s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:e2cb92c826eb",
+      "id": "event:repository-scan:d5e0aacc96f0",
       "type": "repository_scanned",
-      "at": "2026-09-25T14:41:22-03:00",
-      "revision": "a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed",
-      "file_count": 310,
-      "evidence_id": "evidence:repository:e2cb92c826eb"
+      "at": "2026-09-25T14:46:20-03:00",
+      "revision": "29ef2905299b997affa4faed53113bc0bb3b37a3",
+      "file_count": 315,
+      "evidence_id": "evidence:repository:d5e0aacc96f0"
     },
     {
-      "id": "event:commit-observed:a43b83c2fdc6",
+      "id": "event:commit-observed:29ef2905299b",
       "type": "commit_observed",
-      "at": "2026-09-25T14:41:22-03:00",
-      "revision": "a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed",
+      "at": "2026-09-25T14:46:20-03:00",
+      "revision": "29ef2905299b997affa4faed53113bc0bb3b37a3",
       "branch": "main",
-      "subject": "docs: salvar auditoria e plano de fechamento da V1 operacional",
+      "subject": "feat: integrar verificação e Data Layer ao ciclo de execução",
       "changed_files": [
-        "docs/03_planejamento/AUDITORIA_E_PLANO_FECHAMENTO_ABS_V1_OPERACIONAL_2026-09-25.md"
+        "abs_core/orchestrator.py"
       ]
     },
     {
-      "id": "event:test:a86bc7be24d5",
+      "id": "event:test:7c666501bb50",
       "type": "tests_observed",
-      "at": "2026-09-25T14:41:22-03:00",
+      "at": "2026-09-25T14:46:20-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:a86bc7be24d5"
+      "evidence_id": "evidence:test:7c666501bb50"
     }
   ]
 }
