@@ -8,6 +8,7 @@ from .connections import ConnectionRegistry
 from .orchestrator import Orchestrator
 from .store import WorkStore
 from .data_layer import ABSDataLayer
+from .conversational_tools import ConversationalToolRuntime
 
 
 @dataclass(frozen=True)
