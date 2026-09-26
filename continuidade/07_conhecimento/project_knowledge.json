@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-26T13:23:18-03:00",
-  "source_revision": "4733f5b0f8a8ca02099ee5aa98adc2200d8fc5f4",
+  "generated_at": "2026-09-26T14:49:12-03:00",
+  "source_revision": "eefb3adbc29761bc331cbe0d637a82278321a0e9",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 52
+      "file_count": 53
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -37,7 +37,7 @@
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 45
+      "file_count": 46
     }
   ],
   "capabilities": [
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "4733f5b0f8a8ca02099ee5aa98adc2200d8fc5f4",
-      "commit_subject": "Merge PR #87: strengthen ABS cognitive context"
+      "revision": "eefb3adbc29761bc331cbe0d637a82278321a0e9",
+      "commit_subject": "Merge PR #88: improve Open WebUI gateway compatibility"
     }
   ],
   "tools": [
@@ -145,11 +145,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:689f8424d93d"
+        "evidence:repository:5c978ff56dde"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T13:23:18-03:00"
+      "last_validated": "2026-09-26T14:49:12-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -163,12 +163,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:689f8424d93d",
-        "evidence:test:6bd1410aa1d1"
+        "evidence:repository:5c978ff56dde",
+        "evidence:test:b78668ae9cbd"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T13:23:18-03:00"
+      "last_validated": "2026-09-26T14:49:12-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -182,56 +182,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:689f8424d93d"
+        "evidence:repository:5c978ff56dde"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T13:23:18-03:00"
+      "last_validated": "2026-09-26T14:49:12-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:689f8424d93d",
+      "id": "evidence:repository:5c978ff56dde",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-26T13:23:18-03:00",
+      "observed_at": "2026-09-26T14:49:12-03:00",
       "status": "observed",
-      "detail": "326 files indexed at revision 4733f5b0f8a8ca02099ee5aa98adc2200d8fc5f4"
+      "detail": "328 files indexed at revision eefb3adbc29761bc331cbe0d637a82278321a0e9"
     },
     {
-      "id": "evidence:test:6bd1410aa1d1",
+      "id": "evidence:test:b78668ae9cbd",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-26T13:23:18-03:00",
+      "observed_at": "2026-09-26T14:49:12-03:00",
       "status": "tested",
-      "detail": "111 passed in 6.37s"
+      "detail": "113 passed in 6.36s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:689f8424d93d",
+      "id": "event:repository-scan:5c978ff56dde",
       "type": "repository_scanned",
-      "at": "2026-09-26T13:23:18-03:00",
-      "revision": "4733f5b0f8a8ca02099ee5aa98adc2200d8fc5f4",
-      "file_count": 326,
-      "evidence_id": "evidence:repository:689f8424d93d"
+      "at": "2026-09-26T14:49:12-03:00",
+      "revision": "eefb3adbc29761bc331cbe0d637a82278321a0e9",
+      "file_count": 328,
+      "evidence_id": "evidence:repository:5c978ff56dde"
     },
     {
-      "id": "event:commit-observed:4733f5b0f8a8",
+      "id": "event:commit-observed:eefb3adbc297",
       "type": "commit_observed",
-      "at": "2026-09-26T13:23:18-03:00",
-      "revision": "4733f5b0f8a8ca02099ee5aa98adc2200d8fc5f4",
+      "at": "2026-09-26T14:49:12-03:00",
+      "revision": "eefb3adbc29761bc331cbe0d637a82278321a0e9",
       "branch": "main",
-      "subject": "Merge PR #87: strengthen ABS cognitive context",
+      "subject": "Merge PR #88: improve Open WebUI gateway compatibility",
       "changed_files": []
     },
     {
-      "id": "event:test:6bd1410aa1d1",
+      "id": "event:test:b78668ae9cbd",
       "type": "tests_observed",
-      "at": "2026-09-26T13:23:18-03:00",
+      "at": "2026-09-26T14:49:12-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:6bd1410aa1d1"
+      "evidence_id": "evidence:test:b78668ae9cbd"
     }
   ]
 }
