@@ -1,13 +1,13 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-25T18:26:36-03:00",
-  "source_revision": "08e69969ff20e2a11138255929dda9ed2913c448",
+  "generated_at": "2026-09-26T11:49:12-03:00",
+  "source_revision": "d11da20f827732b956aaf934e5a9567edd53152e",
   "components": [
     {
       "id": "component:abs_core",
       "kind": "abs_core",
-      "file_count": 46
+      "file_count": 47
     },
     {
       "id": "component:cerebro",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 51
+      "file_count": 52
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -37,7 +37,7 @@
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 42
+      "file_count": 43
     }
   ],
   "capabilities": [
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "08e69969ff20e2a11138255929dda9ed2913c448",
-      "commit_subject": "fix: manage ABS auxiliary gateway as a Termux service (#83)"
+      "revision": "d11da20f827732b956aaf934e5a9567edd53152e",
+      "commit_subject": "Merge pull request #85 from samuelferreira24/feat/abs-github-capability"
     }
   ],
   "tools": [
@@ -85,6 +85,12 @@
     {
       "id": "tool:file:abs_core/codex_adapter.py",
       "name": "abs_core/codex_adapter.py",
+      "state": "present",
+      "source": "repository"
+    },
+    {
+      "id": "tool:file:abs_core/github_adapter.py",
+      "name": "abs_core/github_adapter.py",
       "state": "present",
       "source": "repository"
     },
@@ -139,11 +145,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:276d1d4b3997"
+        "evidence:repository:4001805eccf1"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T18:26:36-03:00"
+      "last_validated": "2026-09-26T11:49:12-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -157,12 +163,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:276d1d4b3997",
-        "evidence:test:b627de056c78"
+        "evidence:repository:4001805eccf1",
+        "evidence:test:649802aa819f"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T18:26:36-03:00"
+      "last_validated": "2026-09-26T11:49:12-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -176,59 +182,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:276d1d4b3997"
+        "evidence:repository:4001805eccf1"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-25T18:26:36-03:00"
+      "last_validated": "2026-09-26T11:49:12-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:276d1d4b3997",
+      "id": "evidence:repository:4001805eccf1",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-25T18:26:36-03:00",
+      "observed_at": "2026-09-26T11:49:12-03:00",
       "status": "observed",
-      "detail": "319 files indexed at revision 08e69969ff20e2a11138255929dda9ed2913c448"
+      "detail": "322 files indexed at revision d11da20f827732b956aaf934e5a9567edd53152e"
     },
     {
-      "id": "evidence:test:b627de056c78",
+      "id": "evidence:test:649802aa819f",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-25T18:26:36-03:00",
+      "observed_at": "2026-09-26T11:49:12-03:00",
       "status": "tested",
-      "detail": "103 passed in 6.93s"
+      "detail": "105 passed in 6.35s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:276d1d4b3997",
+      "id": "event:repository-scan:4001805eccf1",
       "type": "repository_scanned",
-      "at": "2026-09-25T18:26:36-03:00",
-      "revision": "08e69969ff20e2a11138255929dda9ed2913c448",
-      "file_count": 319,
-      "evidence_id": "evidence:repository:276d1d4b3997"
+      "at": "2026-09-26T11:49:12-03:00",
+      "revision": "d11da20f827732b956aaf934e5a9567edd53152e",
+      "file_count": 322,
+      "evidence_id": "evidence:repository:4001805eccf1"
     },
     {
-      "id": "event:commit-observed:08e69969ff20",
+      "id": "event:commit-observed:d11da20f8277",
       "type": "commit_observed",
-      "at": "2026-09-25T18:26:36-03:00",
-      "revision": "08e69969ff20e2a11138255929dda9ed2913c448",
+      "at": "2026-09-26T11:49:12-03:00",
+      "revision": "d11da20f827732b956aaf934e5a9567edd53152e",
       "branch": "main",
-      "subject": "fix: manage ABS auxiliary gateway as a Termux service (#83)",
-      "changed_files": [
-        "abs_core/local.py",
-        "scripts/termux/install_abs_gateway_service.sh"
-      ]
+      "subject": "Merge pull request #85 from samuelferreira24/feat/abs-github-capability",
+      "changed_files": []
     },
     {
-      "id": "event:test:b627de056c78",
+      "id": "event:test:649802aa819f",
       "type": "tests_observed",
-      "at": "2026-09-25T18:26:36-03:00",
+      "at": "2026-09-26T11:49:12-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:b627de056c78"
+      "evidence_id": "evidence:test:649802aa819f"
     }
   ]
 }
