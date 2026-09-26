@@ -85,8 +85,25 @@ Primeira experiência prática: Open WebUI → ABS Gateway → ABS → Qwen loca
 Depois: LibreChat → ABS Gateway.
 Posteriormente: AnythingLLM para conhecimento/documentos e Dify para workflows/agentes.
 
+## 9. Restrição encontrada para o primeiro teste
+
+A documentação atual do Open WebUI informa suporte Python 3.11 e 3.12 e recomenda 3.11; Python 3.13 ainda não é suportado. O ambiente conhecido do ABS usa Python 3.14.6.
+
+Portanto, **não instalar Open WebUI diretamente no Python atual do Termux**.
+
+As opções corretas são:
+
+1. executar Open WebUI em um ambiente compatível separado;
+2. usar um nó remoto/VPS quando disponível;
+3. disponibilizar Python 3.11 isolado no Termux somente se isso for tecnicamente seguro e não criar conflito com o ABS;
+4. manter a interface própria/uma interface leve como acesso imediato enquanto a implantação da interface geral é resolvida.
+
+Esta restrição não elimina Open WebUI da arquitetura; apenas muda sua ordem de implantação.
+
 ## Status
 
 AUDITORIA CONCLUÍDA.
 
 A seleção é funcional e arquitetural; não é um ranking geral de qualidade.
+
+**Próxima ação técnica:** resolver o ambiente de execução da primeira interface sem alterar o runtime Python do ABS.
