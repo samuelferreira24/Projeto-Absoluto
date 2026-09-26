@@ -72,12 +72,12 @@ Portanto:
 
 As fontes atuais verificadas independentemente sustentam a existência de mecanismos semelhantes:
 
-- OpenAI Agents SDK: agentes, ferramentas, handoffs, guardrails, sessões e runtime de turnos. citeturn0search5turn0search7
-- OpenAI tool guardrails: validação antes/depois de ferramentas e possibilidade de bloquear execução. citeturn0search4
-- Anthropic: contexto como recurso finito e necessidade de curadoria dinâmica do contexto em loops longos. citeturn0search2
-- Anthropic: ferramentas precisam ser projetadas como contratos entre sistemas determinísticos e agentes não determinísticos. citeturn0search8
+- OpenAI Agents SDK: agentes, ferramentas, handoffs, guardrails, sessões e runtime de turnos. https://openai.github.io/openai-agents-python/
+- OpenAI tool guardrails: validação antes/depois de ferramentas e possibilidade de bloquear execução. https://openai.github.io/openai-agents-python/guardrails/
+- Anthropic: contexto como recurso finito e necessidade de curadoria dinâmica do contexto em loops longos. https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+- Anthropic: ferramentas precisam ser projetadas como contratos entre sistemas determinísticos e agentes não determinísticos. https://www.anthropic.com/engineering/writing-tools-for-agents
 - Microsoft Agent Framework: agentes em workflows, workflows como agentes, checkpoints, retomada, observabilidade e multiagente. citeturn0search1turn0search9
-- Microsoft Agent Framework: HITL e aprovação de ferramentas antes da execução. citeturn0search0turn0search6
+- Microsoft Agent Framework: HITL e aprovação de ferramentas antes da execução. https://learn.microsoft.com/en-us/agent-framework/workflows/human-in-the-loop
 
 Essas fontes sustentam mecanismos, não o molde ABS como superior.
 
