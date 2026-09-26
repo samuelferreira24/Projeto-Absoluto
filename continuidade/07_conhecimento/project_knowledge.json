@@ -1,13 +1,13 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-26T11:49:12-03:00",
-  "source_revision": "d11da20f827732b956aaf934e5a9567edd53152e",
+  "generated_at": "2026-09-26T12:07:26-03:00",
+  "source_revision": "d2a12f116e4b92bafba141a03fa92e5d307784ec",
   "components": [
     {
       "id": "component:abs_core",
       "kind": "abs_core",
-      "file_count": 47
+      "file_count": 48
     },
     {
       "id": "component:cerebro",
@@ -37,7 +37,7 @@
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 43
+      "file_count": 44
     }
   ],
   "capabilities": [
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "d11da20f827732b956aaf934e5a9567edd53152e",
-      "commit_subject": "Merge pull request #85 from samuelferreira24/feat/abs-github-capability"
+      "revision": "d2a12f116e4b92bafba141a03fa92e5d307784ec",
+      "commit_subject": "feat: connect conversational requests to ABS tools"
     }
   ],
   "tools": [
@@ -145,11 +145,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:4001805eccf1"
+        "evidence:repository:09c9b023219e"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T11:49:12-03:00"
+      "last_validated": "2026-09-26T12:07:26-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -163,12 +163,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:4001805eccf1",
-        "evidence:test:649802aa819f"
+        "evidence:repository:09c9b023219e",
+        "evidence:test:c15a97df1989"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T11:49:12-03:00"
+      "last_validated": "2026-09-26T12:07:26-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -182,56 +182,56 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:4001805eccf1"
+        "evidence:repository:09c9b023219e"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T11:49:12-03:00"
+      "last_validated": "2026-09-26T12:07:26-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:4001805eccf1",
+      "id": "evidence:repository:09c9b023219e",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-26T11:49:12-03:00",
+      "observed_at": "2026-09-26T12:07:26-03:00",
       "status": "observed",
-      "detail": "322 files indexed at revision d11da20f827732b956aaf934e5a9567edd53152e"
+      "detail": "324 files indexed at revision d2a12f116e4b92bafba141a03fa92e5d307784ec"
     },
     {
-      "id": "evidence:test:649802aa819f",
+      "id": "evidence:test:c15a97df1989",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-26T11:49:12-03:00",
+      "observed_at": "2026-09-26T12:07:26-03:00",
       "status": "tested",
-      "detail": "105 passed in 6.35s"
+      "detail": "109 passed in 6.40s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:4001805eccf1",
+      "id": "event:repository-scan:09c9b023219e",
       "type": "repository_scanned",
-      "at": "2026-09-26T11:49:12-03:00",
-      "revision": "d11da20f827732b956aaf934e5a9567edd53152e",
-      "file_count": 322,
-      "evidence_id": "evidence:repository:4001805eccf1"
+      "at": "2026-09-26T12:07:26-03:00",
+      "revision": "d2a12f116e4b92bafba141a03fa92e5d307784ec",
+      "file_count": 324,
+      "evidence_id": "evidence:repository:09c9b023219e"
     },
     {
-      "id": "event:commit-observed:d11da20f8277",
+      "id": "event:commit-observed:d2a12f116e4b",
       "type": "commit_observed",
-      "at": "2026-09-26T11:49:12-03:00",
-      "revision": "d11da20f827732b956aaf934e5a9567edd53152e",
+      "at": "2026-09-26T12:07:26-03:00",
+      "revision": "d2a12f116e4b92bafba141a03fa92e5d307784ec",
       "branch": "main",
-      "subject": "Merge pull request #85 from samuelferreira24/feat/abs-github-capability",
+      "subject": "feat: connect conversational requests to ABS tools",
       "changed_files": []
     },
     {
-      "id": "event:test:649802aa819f",
+      "id": "event:test:c15a97df1989",
       "type": "tests_observed",
-      "at": "2026-09-26T11:49:12-03:00",
+      "at": "2026-09-26T12:07:26-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:649802aa819f"
+      "evidence_id": "evidence:test:c15a97df1989"
     }
   ]
 }
