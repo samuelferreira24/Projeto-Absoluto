@@ -52,9 +52,17 @@ def build_registry() -> CapabilityRegistry:
 
     from .codex_adapter import CodexCapability
     from .internet_adapter import InternetHTTPCapability
+    from .github_adapter import GitHubCapability
 
     registry.register(CapabilityRecord("codex", "OpenAI Codex CLI", "external_ai", CodexCapability()))
     registry.register(CapabilityRecord("internet-http", "Internet HTTP", "network", InternetHTTPCapability()))
+    registry.register(CapabilityRecord(
+        "github",
+        "GitHub",
+        "external_service",
+        GitHubCapability(),
+        metadata={"capabilities": ["repository", "issues", "actions", "source-control"]},
+    ))
 
     optional = (
         (".ai_adapters", "ClaudeCapability", "claude", "Anthropic Claude API", "external_ai", "ANTHROPIC_API_KEY"),
@@ -71,8 +79,6 @@ def build_registry() -> CapabilityRegistry:
         except Exception:
             continue
 
-    # One local endpoint can expose one or many model IDs. The adapter remains
-    # generic so the runtime is not tied to Ollama, llama.cpp, LM Studio, etc.
     from .local_ai_adapter import LocalAICapability
     local_specs = os.getenv("ABS_LOCAL_AI_MODELS", "").strip()
     if local_specs:

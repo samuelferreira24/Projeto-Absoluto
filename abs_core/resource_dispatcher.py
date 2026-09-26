@@ -18,6 +18,8 @@ _CONNECTION_TO_CAPABILITY = {
     "gemini-api": "gemini",
     "openai-api": "openai-api",
     "internet-http": "internet-http",
+    "github-api": "github",
+    "github-termux": "github",
 }
 
 
@@ -83,7 +85,6 @@ class ResourceDispatcher:
             if capability is not None:
                 return route, capability
         raise LookupError("no_executable_resource_route_available")
-
 
     def _learn(self, capability_id: str, connection_id: str, work: Work, success: bool, detail: str | None = None) -> None:
         try:
