@@ -150,6 +150,9 @@ class CognitiveRuntime:
             if cap.kind != "test" and not approved and not resource.metadata.get("conversational", False):
                 raise PermissionError(f"Imperator approval required for intelligence: {cap.id}")
             session["messages"].append({"role": "user", "content": message})
+            external_result = self.tool_runtime.execute(message) if self.tool_runtime is not None else None
+            if external_result is not None:
+                session["context"]["external_results"] = [external_result]
             execution_context = {**session["context"], "conversation": {"session_id": sid, "messages": list(session["messages"])} }
             if self.orchestrator is None:
                 self.orchestrator = Orchestrator(self.capabilities, WorkStore(self.store_path), data_layer=self.data_layer)
