@@ -80,6 +80,7 @@ class CognitiveRuntime:
         self.max_history = max_history
         self.store_path = store_path
         self.data_layer = data_layer
+        self.tool_runtime: ConversationalToolRuntime | None = None
         self._lock = threading.RLock()
         self._json = json
         self._conn = sqlite3.connect(store_path, check_same_thread=False)
