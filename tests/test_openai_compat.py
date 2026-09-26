@@ -8,4 +8,4 @@ def test_gateway_stream_method_exists():
 def test_gateway_accepts_openai_tool_fields():
     # The handler reads standard OpenAI-compatible tool fields without
     # requiring the local model itself to implement native function calling.
-    assert "tools" in OpenAICompatHandler.do_POST.__code__.co_names or True
+    assert {"stream", "requested_tools", "tool_choice"}.issubset(set(OpenAICompatHandler.do_POST.__code__.co_varnames))
