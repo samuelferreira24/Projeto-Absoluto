@@ -30,3 +30,17 @@ def test_conversational_internet_url_detection():
     assert intent["tool_id"] == "internet-http"
     assert intent["action"] == "get"
     assert intent["url"] == "https://example.com"
+
+
+def test_conversational_internet_has_an_executable_plan():
+    runtime = build_runtime(":memory:")
+    tool_runtime = ConversationalToolRuntime(runtime.tool_planner, runtime.resource_dispatcher)
+
+    plans = runtime.tool_planner.plan(
+        "Abra e leia https://example.com",
+        ("http",),
+        preferred_categories=("network",),
+        tool_id="internet-http",
+    )
+    assert plans
+    assert plans[0].tool_id == "internet-http"
