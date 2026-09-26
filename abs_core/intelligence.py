@@ -143,17 +143,45 @@ class CognitiveRuntime:
         with self._lock:
             sid = session_id or self.create_session(context=context, preferred_resource=preferred_resource)
             session = self._load(sid)
+
+            incoming_messages = list((context or {}).get("conversation", {}).get("messages") or [])
+            if not session["messages"] and incoming_messages:
+                session["messages"] = [
+                    item for item in incoming_messages
+                    if isinstance(item, dict) and item.get("role") in {"system", "user", "assistant"}
+                ][-self.max_history:]
+
             if context:
-                session["context"].update({k: v for k, v in context.items() if v is not None})
+                session["context"].update({
+                    k: v for k, v in context.items()
+                    if v is not None and k != "conversation"
+                })
+
             resource = self._choose(session, preferred_resource)
             cap = self.capabilities.get(resource.capability_id)
             if cap.kind != "test" and not approved and not resource.metadata.get("conversational", False):
                 raise PermissionError(f"Imperator approval required for intelligence: {cap.id}")
-            session["messages"].append({"role": "user", "content": message})
+
+            if not session["messages"] or not (
+                isinstance(session["messages"][-1], dict)
+                and session["messages"][-1].get("role") == "user"
+                and session["messages"][-1].get("content") == message
+            ):
+                session["messages"].append({"role": "user", "content": message})
+
+            session["context"]["external_results"] = []
             external_result = self.tool_runtime.execute(message) if self.tool_runtime is not None else None
             if external_result is not None:
                 session["context"]["external_results"] = [external_result]
-            execution_context = {**session["context"], "conversation": {"session_id": sid, "messages": list(session["messages"])} }
+
+            session["context"]["_capabilities"] = [
+                {"id": item.id, "name": item.name, "kind": item.kind}
+                for item in self.capabilities.list()
+            ]
+            execution_context = {
+                **session["context"],
+                "conversation": {"session_id": sid, "messages": list(session["messages"])},
+            }
             if self.orchestrator is None:
                 self.orchestrator = Orchestrator(self.capabilities, WorkStore(self.store_path), data_layer=self.data_layer)
             work = self.orchestrator.create(message, execution_context)
