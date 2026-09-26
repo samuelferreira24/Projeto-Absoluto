@@ -169,14 +169,15 @@ class CognitiveRuntime:
             ):
                 session["messages"].append({"role": "user", "content": message})
 
-            # Tool results belong only to the current turn; never leak an old
-            # external result into a later unrelated answer.
             session["context"]["external_results"] = []
             external_result = self.tool_runtime.execute(message) if self.tool_runtime is not None else None
             if external_result is not None:
                 session["context"]["external_results"] = [external_result]
 
-            session["context"]["_capabilities"] = self.capabilities.list()
+            session["context"]["_capabilities"] = [
+                {"id": item.id, "name": item.name, "kind": item.kind}
+                for item in self.capabilities.list()
+            ]
             execution_context = {
                 **session["context"],
                 "conversation": {"session_id": sid, "messages": list(session["messages"])},
