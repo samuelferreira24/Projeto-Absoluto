@@ -22,6 +22,28 @@ class OpenAICompatHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(raw)
 
+    def _send_stream(self, payload: dict[str, Any], model: str) -> None:
+        self.send_response(200)
+        self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+        self.send_header("Cache-Control", "no-cache")
+        self.send_header("Connection", "keep-alive")
+        self.end_headers()
+        response_id = payload["id"]
+        content = payload["choices"][0]["message"].get("content", "")
+        frames = [
+            {"id": response_id, "object": "chat.completion.chunk", "created": payload["created"],
+             "model": model, "choices": [{"index": 0, "delta": {"role": "assistant"}, "finish_reason": None}]},
+            {"id": response_id, "object": "chat.completion.chunk", "created": payload["created"],
+             "model": model, "choices": [{"index": 0, "delta": {"content": content}, "finish_reason": None}]},
+            {"id": response_id, "object": "chat.completion.chunk", "created": payload["created"],
+             "model": model, "choices": [{"index": 0, "delta": {}, "finish_reason": "stop"}]},
+        ]
+        for frame in frames:
+            self.wfile.write(f"data: {json.dumps(frame, ensure_ascii=False)}\n\n".encode("utf-8"))
+            self.wfile.flush()
+        self.wfile.write(b"data: [DONE]\n\n")
+        self.wfile.flush()
+
     def do_GET(self) -> None:
         if self.path == "/v1/models":
             models = []
@@ -46,20 +68,44 @@ class OpenAICompatHandler(BaseHTTPRequestHandler):
             if isinstance(content, list):
                 content = "".join(str(x.get("text", "")) for x in content if isinstance(x, dict))
             model = data.get("model")
+            stream = bool(data.get("stream", False))
+            requested_tools = data.get("tools") or []
+            tool_choice = data.get("tool_choice")
             preferred = model if model in {x.id for x in self.runtime.intelligence.list()} else None
             context = {
                 "conversation": {"messages": messages},
                 "ai_model": data.get("model") if preferred else None,
+                "openai_compat": {
+                    "stream": stream,
+                    "tool_choice": tool_choice,
+                    "tools_requested": [
+                        item.get("function", {}).get("name")
+                        for item in requested_tools
+                        if isinstance(item, dict) and isinstance(item.get("function"), dict)
+                    ],
+                },
             }
             result = self.runtime.cognitive_runtime.turn(str(content), preferred_resource=preferred, context=context, approved=False)
             now = int(time.time())
-            self._send(200, {
+            payload = {
                 "id": f"abs-{result['work_id']}", "object": "chat.completion", "created": now,
                 "model": result["resource"]["id"],
                 "choices": [{"index": 0, "message": {"role": "assistant", "content": result["response"]}, "finish_reason": "stop"}],
                 "usage": {},
-                "abs": {"session_id": result["session_id"], "work_id": result["work_id"], "verification": result.get("verification")},
-            })
+                "abs": {
+                    "session_id": result["session_id"],
+                    "work_id": result["work_id"],
+                    "verification": result.get("verification"),
+                    "tool_calling": {
+                        "requested": bool(requested_tools),
+                        "requested_tools": context["openai_compat"]["tools_requested"],
+                    },
+                },
+            }
+            if stream:
+                self._send_stream(payload, result["resource"]["id"])
+            else:
+                self._send(200, payload)
         except PermissionError as exc:
             self._send(403, {"error": {"message": str(exc), "type": "approval_required"}})
         except (KeyError, ValueError, RuntimeError) as exc:
