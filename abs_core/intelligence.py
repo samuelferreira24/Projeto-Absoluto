@@ -8,6 +8,7 @@ from .connections import ConnectionRegistry
 from .orchestrator import Orchestrator
 from .store import WorkStore
 from .data_layer import ABSDataLayer
+from .conversational_tools import ConversationalToolRuntime
 
 
 @dataclass(frozen=True)
@@ -79,6 +80,7 @@ class CognitiveRuntime:
         self.max_history = max_history
         self.store_path = store_path
         self.data_layer = data_layer
+        self.tool_runtime: ConversationalToolRuntime | None = None
         self._lock = threading.RLock()
         self._json = json
         self._conn = sqlite3.connect(store_path, check_same_thread=False)
@@ -148,6 +150,9 @@ class CognitiveRuntime:
             if cap.kind != "test" and not approved and not resource.metadata.get("conversational", False):
                 raise PermissionError(f"Imperator approval required for intelligence: {cap.id}")
             session["messages"].append({"role": "user", "content": message})
+            external_result = self.tool_runtime.execute(message) if self.tool_runtime is not None else None
+            if external_result is not None:
+                session["context"]["external_results"] = [external_result]
             execution_context = {**session["context"], "conversation": {"session_id": sid, "messages": list(session["messages"])} }
             if self.orchestrator is None:
                 self.orchestrator = Orchestrator(self.capabilities, WorkStore(self.store_path), data_layer=self.data_layer)

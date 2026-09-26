@@ -27,6 +27,10 @@ class LocalAICapability:
             raise RuntimeError("ABS_LOCAL_AI_URL is required for local intelligence.")
 
         messages = list((context.get("conversation") or {}).get("messages") or [])
+        external_results = context.get("external_results") or []
+        if external_results:
+            tool_context = json.dumps(external_results, ensure_ascii=False, indent=2)
+            messages.insert(0, {"role": "system", "content": "O ABS executou uma capacidade externa para este pedido. Use o resultado abaixo como informação factual e responda ao pedido original.\\n\\nRESULTADO DA CAPACIDADE:\\n" + tool_context})
         if not messages:
             messages = [{"role": "user", "content": objective}]
         elif messages[-1].get("content") != objective:

@@ -133,6 +133,8 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
 
     dispatcher = ResourceDispatcher(router, planner, registry, knowledge, learning)
     dispatcher.orchestrator = orchestrator
+    from .conversational_tools import ConversationalToolRuntime
+    cognitive.tool_runtime = ConversationalToolRuntime(planner, dispatcher)
 
     return ABSRuntime(
         registry, orchestrator, resources, interface_runtime, connections, accounts,
