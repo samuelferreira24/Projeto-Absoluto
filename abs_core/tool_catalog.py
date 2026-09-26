@@ -12,6 +12,7 @@ def default_tool_knowledge() -> ToolKnowledgeRegistry:
         ("claude-code", "Claude Code", "code", ["code", "terminal", "debugging"], ["claude-api", "local-network"]),
         ("gemini", "Gemini", "ai", ["reasoning", "multimodal", "long-context"], ["gemini-api"]),
         ("github", "GitHub", "source-control", ["repository", "issues", "actions", "source-control"], ["github-api", "github-termux"]),
+        ("internet-http", "Internet / HTTP", "network", ["web", "http", "api"], ["internet-http"]),
         ("github-copilot", "GitHub Copilot", "code", ["code", "autocomplete"], ["github-api"]),
         ("cursor", "Cursor", "code", ["code", "project-editing"], ["local-network"]),
         ("perplexity", "Perplexity AI", "research", ["research", "web"], ["internet-http"]),
