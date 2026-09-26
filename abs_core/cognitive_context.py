@@ -30,7 +30,15 @@ def _now() -> str:
 def build_system_context(capabilities, external_results=None, *, project_root: str | Path | None = None) -> str:
     capability_lines = []
     for cap in capabilities:
-        capability_lines.append(f"- {cap.id}: {cap.name} ({cap.kind})")
+        if isinstance(cap, dict):
+            cap_id = cap.get("id", "")
+            name = cap.get("name", "")
+            kind = cap.get("kind", "")
+        else:
+            cap_id = cap.id
+            name = cap.name
+            kind = cap.kind
+        capability_lines.append(f"- {cap_id}: {name} ({kind})")
     capabilities_text = "\n".join(capability_lines) or "- nenhuma capacidade registrada"
 
     extra = os.getenv("ABS_SYSTEM_CONTEXT", "").strip()
