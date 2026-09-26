@@ -19,3 +19,14 @@ def test_conversational_github_write_is_not_auto_executed():
     intent = tool_runtime.detect("Crie um commit no GitHub")
     assert intent is not None
     assert intent["action"] == "unsupported_write"
+
+
+def test_conversational_internet_url_detection():
+    runtime = build_runtime(":memory:")
+    tool_runtime = ConversationalToolRuntime(runtime.tool_planner, runtime.resource_dispatcher)
+
+    intent = tool_runtime.detect("Abra e leia https://example.com")
+    assert intent is not None
+    assert intent["tool_id"] == "internet-http"
+    assert intent["action"] == "get"
+    assert intent["url"] == "https://example.com"
