@@ -1,18 +1,13 @@
 from __future__ import annotations
 
-import json
 import os
 from typing import Any
 from .ai_adapters import _post_json
+from .cognitive_context import build_system_context
 
 
 class LocalAICapability:
-    """Local intelligence adapter.
-
-    The endpoint is intentionally generic: any local runtime exposing an
-    OpenAI-compatible /chat/completions endpoint can be used. This keeps the
-    ABS independent from a particular local model runtime.
-    """
+    """Local intelligence adapter."""
 
     id = "local-ai"
     name = "IA local"
@@ -28,12 +23,21 @@ class LocalAICapability:
 
         messages = list((context.get("conversation") or {}).get("messages") or [])
         external_results = context.get("external_results") or []
-        if external_results:
-            tool_context = json.dumps(external_results, ensure_ascii=False, indent=2)
-            messages.insert(0, {"role": "system", "content": "O ABS executou uma capacidade externa para este pedido. Use o resultado abaixo como informação factual e responda ao pedido original.\\n\\nRESULTADO DA CAPACIDADE:\\n" + tool_context})
+        system_context = build_system_context(
+            context.get("_capabilities") or [],
+            external_results,
+        )
+
+        # O contexto do ABS fica separado do histórico da conversa.
+        messages.insert(0, {"role": "system", "content": system_context})
+
         if not messages:
             messages = [{"role": "user", "content": objective}]
-        elif messages[-1].get("content") != objective:
+        elif not (
+            isinstance(messages[-1], dict)
+            and messages[-1].get("role") == "user"
+            and messages[-1].get("content") == objective
+        ):
             messages.append({"role": "user", "content": objective})
 
         endpoint = self.endpoint.rstrip("/")
