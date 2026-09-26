@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-26T14:49:12-03:00",
-  "source_revision": "eefb3adbc29761bc331cbe0d637a82278321a0e9",
+  "generated_at": "2026-09-26T17:37:00-03:00",
+  "source_revision": "8e5d28161e5af6ca1c61c81ef621806bae06ae6a",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 53
+      "file_count": 54
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "eefb3adbc29761bc331cbe0d637a82278321a0e9",
-      "commit_subject": "Merge PR #88: improve Open WebUI gateway compatibility"
+      "revision": "8e5d28161e5af6ca1c61c81ef621806bae06ae6a",
+      "commit_subject": "docs: registrar ataque adversarial final do molde ABS"
     }
   ],
   "tools": [
@@ -145,11 +145,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:5c978ff56dde"
+        "evidence:repository:831a9b39bf00"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T14:49:12-03:00"
+      "last_validated": "2026-09-26T17:37:00-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -163,12 +163,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:5c978ff56dde",
-        "evidence:test:b78668ae9cbd"
+        "evidence:repository:831a9b39bf00",
+        "evidence:test:eb91d8397373"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T14:49:12-03:00"
+      "last_validated": "2026-09-26T17:37:00-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -182,56 +182,58 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:5c978ff56dde"
+        "evidence:repository:831a9b39bf00"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T14:49:12-03:00"
+      "last_validated": "2026-09-26T17:37:00-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:5c978ff56dde",
+      "id": "evidence:repository:831a9b39bf00",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-26T14:49:12-03:00",
+      "observed_at": "2026-09-26T17:37:00-03:00",
       "status": "observed",
-      "detail": "328 files indexed at revision eefb3adbc29761bc331cbe0d637a82278321a0e9"
+      "detail": "329 files indexed at revision 8e5d28161e5af6ca1c61c81ef621806bae06ae6a"
     },
     {
-      "id": "evidence:test:b78668ae9cbd",
+      "id": "evidence:test:eb91d8397373",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-26T14:49:12-03:00",
+      "observed_at": "2026-09-26T17:37:00-03:00",
       "status": "tested",
-      "detail": "113 passed in 6.36s"
+      "detail": "113 passed in 6.39s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:5c978ff56dde",
+      "id": "event:repository-scan:831a9b39bf00",
       "type": "repository_scanned",
-      "at": "2026-09-26T14:49:12-03:00",
-      "revision": "eefb3adbc29761bc331cbe0d637a82278321a0e9",
-      "file_count": 328,
-      "evidence_id": "evidence:repository:5c978ff56dde"
+      "at": "2026-09-26T17:37:00-03:00",
+      "revision": "8e5d28161e5af6ca1c61c81ef621806bae06ae6a",
+      "file_count": 329,
+      "evidence_id": "evidence:repository:831a9b39bf00"
     },
     {
-      "id": "event:commit-observed:eefb3adbc297",
+      "id": "event:commit-observed:8e5d28161e5a",
       "type": "commit_observed",
-      "at": "2026-09-26T14:49:12-03:00",
-      "revision": "eefb3adbc29761bc331cbe0d637a82278321a0e9",
+      "at": "2026-09-26T17:37:00-03:00",
+      "revision": "8e5d28161e5af6ca1c61c81ef621806bae06ae6a",
       "branch": "main",
-      "subject": "Merge PR #88: improve Open WebUI gateway compatibility",
-      "changed_files": []
+      "subject": "docs: registrar ataque adversarial final do molde ABS",
+      "changed_files": [
+        "docs/03_planejamento/pesquisa/ATAQUE_ADVERSARIAL_FINAL_MOLDE_ABS_V0.md"
+      ]
     },
     {
-      "id": "event:test:b78668ae9cbd",
+      "id": "event:test:eb91d8397373",
       "type": "tests_observed",
-      "at": "2026-09-26T14:49:12-03:00",
+      "at": "2026-09-26T17:37:00-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:b78668ae9cbd"
+      "evidence_id": "evidence:test:eb91d8397373"
     }
   ]
 }
