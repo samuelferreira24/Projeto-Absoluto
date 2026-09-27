@@ -21,9 +21,7 @@ def test_adversarial_event_sequences():
                 state=transition(state,e)
                 if state in {"WAIT_AUTH","DISCOVER","OBSERVE","RECOVERY","REPLAN"}:
                     blocked=True
-            if "success" in seq:
-                # Success may terminate only if it is the final effective event.
-                if seq[-1]=="success":
+            if "success" in seq and seq[-1]=="success":
                     assert state=="COMPLETE"
             if blocked and seq[-1]!="success":
                 assert state!="COMPLETE"
