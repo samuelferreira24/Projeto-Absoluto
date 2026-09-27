@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Any, ClassVar
 
-
 MODES = ("DIRECT", "WORKFLOW", "AGENT", "MULTIAGENT", "RESEARCH", "RECOVERY")
 CONTROL = ("OBSERVE", "WAIT_AUTH", "DISCOVER", "BLOCKED", "COMPLETE", "REPLAN")
 
