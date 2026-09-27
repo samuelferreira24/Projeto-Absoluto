@@ -20,3 +20,5 @@ jobs:
       - run: PYTHONPATH=.:${{ github.workspace }}/experimentos/06_prototipo_executavel pytest -q experimentos/06_prototipo_executavel
       - run: PYTHONPATH=.:${{ github.workspace }}/experimentos/07_sandbox_runtime pytest -q experimentos/07_sandbox_runtime
       - run: PYTHONPATH=. pytest -q experimentos/08_persistencia_estado
+      - run: PYTHONPATH=. pytest -q experimentos/09_composicao_verificacao
+      - run: PYTHONPATH=. pytest -q experimentos/10_adversarial
