@@ -3,6 +3,7 @@ import tempfile
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
+
 @dataclass
 class MissionState:
     objective: str
