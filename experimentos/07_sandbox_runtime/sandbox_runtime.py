@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Any, ClassVar
+from typing import Any, ClassVar, ClassVar
 
 from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
 from abs_core.connections import ConnectionRecord, ConnectionRegistry
@@ -33,7 +33,7 @@ class SandboxCapability:
 
 
 class SandboxRuntime:
-    MODE_CAPABILITIES = {
+    MODE_CAPABILITIES: ClassVar = {
         "DIRECT": ("execute",),
         "WORKFLOW": ("workflow",),
         "RESEARCH": ("research",),
