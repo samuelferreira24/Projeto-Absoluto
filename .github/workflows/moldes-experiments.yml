@@ -17,8 +17,8 @@ jobs:
       - run: PYTHONPATH=. pytest -q experimentos/03_sombra_abs
       - run: PYTHONPATH=.:${{ github.workspace }}/experimentos/04_planejamento_sombra pytest -q experimentos/04_planejamento_sombra
       - run: PYTHONPATH=.:${{ github.workspace }}/experimentos/02_validacao_prototipos python experimentos/05_combinatorio/test_invariantes.py
-      - run: PYTHONPATH=.:${{ github.workspace }}/experimentos/06_prototipo_executavel pytest -q experimentos/06_prototipo_executavel
-      - run: PYTHONPATH=.:${{ github.workspace }}/experimentos/07_sandbox_runtime pytest -q experimentos/07_sandbox_runtime
+      - run: PYTHONPATH=. pytest -q experimentos/06_prototipo_executavel
+      - run: PYTHONPATH=. pytest -q experimentos/07_sandbox_runtime
       - run: PYTHONPATH=. pytest -q experimentos/08_persistencia_estado
       - run: PYTHONPATH=. pytest -q experimentos/09_composicao_verificacao
       - run: PYTHONPATH=. pytest -q experimentos/10_adversarial
@@ -28,13 +28,18 @@ jobs:
       - run: PYTHONPATH=. pytest -q experimentos/14_divergencia
       - run: PYTHONPATH=. pytest -q experimentos/15_ambiguidade_objetivo
       - run: PYTHONPATH=. pytest -q experimentos/16_sequencias_adversariais
-
       - run: PYTHONPATH=. pytest -q experimentos/17_benchmark_ab
       - run: PYTHONPATH=. pytest -q experimentos/18_invariantes_metamorficas
       - run: PYTHONPATH=. pytest -q experimentos/19_mutation_testing
+      - run: PYTHONPATH=. pytest -q experimentos/20_composicao_dependencias
+      - run: PYTHONPATH=. pytest -q experimentos/21_falha_parcial
+      - run: PYTHONPATH=. pytest -q experimentos/22_interrupcao_retomada
+      - run: PYTHONPATH=. pytest -q experimentos/23_replan_contexto
+      - run: PYTHONPATH=. pytest -q experimentos/24_concorrencia_estado
+      - run: PYTHONPATH=. pytest -q experimentos/25_divergencia_estrutural
       - name: Compile Python
-        run: python -m compileall -q experimentos/01_moldes_execucao experimentos/02_validacao_prototipos experimentos/03_sombra_abs experimentos/04_planejamento_sombra experimentos/05_combinatorio experimentos/06_prototipo_executavel experimentos/07_sandbox_runtime experimentos/08_persistencia_estado experimentos/09_composicao_verificacao experimentos/10_adversarial experimentos/11_comparativo_integrado experimentos/12_checkpoint_plano experimentos/13_matriz_falhas experimentos/14_divergencia experimentos/15_ambiguidade_objetivo experimentos/16_sequencias_adversariais experimentos/17_benchmark_ab experimentos/18_invariantes_metamorficas experimentos/19_mutation_testing
+        run: python -m compileall -q experimentos
       - name: Ruff static quality
         run: |
           python -m pip install ruff
-          ruff check experimentos/01_moldes_execucao experimentos/02_validacao_prototipos experimentos/03_sombra_abs experimentos/04_planejamento_sombra experimentos/05_combinatorio experimentos/06_prototipo_executavel experimentos/07_sandbox_runtime experimentos/08_persistencia_estado experimentos/09_composicao_verificacao experimentos/10_adversarial experimentos/11_comparativo_integrado experimentos/12_checkpoint_plano experimentos/13_matriz_falhas experimentos/14_divergencia experimentos/15_ambiguidade_objetivo experimentos/16_sequencias_adversariais experimentos/17_benchmark_ab experimentos/18_invariantes_metamorficas
+          ruff check experimentos
