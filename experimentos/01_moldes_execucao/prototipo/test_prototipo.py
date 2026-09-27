@@ -1,4 +1,5 @@
-from moldes import Mission, MoldSelector, MoldRuntime, default_registry
+from moldes import Mission, MoldRuntime, MoldSelector, default_registry
+
 
 def expect(name, actual, expected):
     assert actual == expected, f"{name}: expected {expected!r}, got {actual!r}"
