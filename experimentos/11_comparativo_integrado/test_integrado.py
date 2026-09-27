@@ -1,6 +1,6 @@
+import copy
 import importlib.util
 from pathlib import Path
-import copy
 
 p=Path(__file__).parents[1]/"06_prototipo_executavel"/"prototipo.py"
 spec=importlib.util.spec_from_file_location("proto06", p)
