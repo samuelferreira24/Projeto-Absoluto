@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Any, ClassVar, ClassVar
+from typing import Any, ClassVar
 
 from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
 from abs_core.connections import ConnectionRecord, ConnectionRegistry
