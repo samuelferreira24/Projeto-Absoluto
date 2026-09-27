@@ -151,9 +151,7 @@ class CandidateB:
                 return trace, "COMPLETE"
             if result.status in {"failure", "verification_failure"}:
                 mission.context["recovery_required"] = True
-            elif result.status == "state_changed":
-                pass
-            elif result.status in {"capability_missing", "authorization"}:
+            elif result.status == "state_changed" or result.status in {"capability_missing", "authorization"}:
                 pass
             previous = mode
         return trace, "BLOCKED"
