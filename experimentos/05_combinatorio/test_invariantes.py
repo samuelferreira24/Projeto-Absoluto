@@ -1,5 +1,5 @@
-from itertools import product
 import sys
+from itertools import product
 sys.path.insert(0, "../02_validacao_prototipos")
 from prototipos import ControllerA, Mission, MoldGraphB
 
