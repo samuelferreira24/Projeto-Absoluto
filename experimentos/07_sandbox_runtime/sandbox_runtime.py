@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, ClassVar
 
-from abs_core.capabilities import CapabilityRegistry, CapabilityRecord
-from abs_core.connections import ConnectionRegistry, ConnectionRecord
+from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
+from abs_core.connections import ConnectionRecord, ConnectionRegistry
 from abs_core.resource_router import ResourceRouter, ResourceRouteRequest
 
 
