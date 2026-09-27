@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import ClassVar, Any
+from typing import ClassVar, ClassVar, Any
 
 
 MODES = ("DIRECT", "WORKFLOW", "AGENT", "MULTIAGENT", "RESEARCH", "RECOVERY")
@@ -160,7 +160,7 @@ class MoldGraphB:
             return ["BLOCKED"]
 
         max_complexity = c.get("max_complexity")
-        weights = {"DIRECT":1, "WORKFLOW":2, "RESEARCH":2, "AGENT":3, "MULTIAGENT":4}
+        weights: ClassVar = {"DIRECT":1, "WORKFLOW":2, "RESEARCH":2, "AGENT":3, "MULTIAGENT":4}
         if max_complexity is not None:
             modes = [m for m in modes if weights[m] <= max_complexity]
         return modes or ["BLOCKED"]
