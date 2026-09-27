@@ -64,25 +64,25 @@ def mutated_verification(m):
     return "COMPLETE"
 
 
-def test_mutations_are_detected():
-    cases = [
-        (Mission(recovery_required=True, authorization_required=True), "RECOVERY"),
-        (Mission(authorization_required=True), "WAIT_AUTH"),
-        (Mission(capability_missing=True), "DISCOVER"),
-        (Mission(executor_success=True, goal_achieved=False), "REPLAN"),
-    ]
-    mutants = [
-        mutated_recovery,
-        mutated_auth,
-        mutated_discovery,
-        mutated_verification,
-    ]
-    for mutant in mutants:
-        assert any(mutant(mission) != expected for mission, expected in cases)
+CASES = [
+    (Mission(recovery_required=True, authorization_required=True), "RECOVERY"),
+    (Mission(authorization_required=True), "WAIT_AUTH"),
+    (Mission(capability_missing=True), "DISCOVER"),
+    (Mission(executor_success=True, goal_achieved=False), "REPLAN"),
+]
 
 
 def test_baseline_oracle():
-    assert baseline(Mission(recovery_required=True, authorization_required=True)) == "RECOVERY"
-    assert baseline(Mission(authorization_required=True)) == "WAIT_AUTH"
-    assert baseline(Mission(capability_missing=True)) == "DISCOVER"
-    assert baseline(Mission(executor_success=True, goal_achieved=False)) == "REPLAN"
+    for mission, expected in CASES:
+        assert baseline(mission) == expected
+
+
+def test_each_critical_mutation_is_detected_by_a_specific_case():
+    mutants = {
+        mutated_recovery: CASES[0],
+        mutated_auth: CASES[1],
+        mutated_discovery: CASES[2],
+        mutated_verification: CASES[3],
+    }
+    for mutant, (mission, expected) in mutants.items():
+        assert mutant(mission) != expected
