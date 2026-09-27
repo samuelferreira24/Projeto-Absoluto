@@ -22,3 +22,9 @@ jobs:
       - run: PYTHONPATH=. pytest -q experimentos/08_persistencia_estado
       - run: PYTHONPATH=. pytest -q experimentos/09_composicao_verificacao
       - run: PYTHONPATH=. pytest -q experimentos/10_adversarial
+      - run: PYTHONPATH=. pytest -q experimentos/11_comparativo_integrado
+      - run: PYTHONPATH=. pytest -q experimentos/12_checkpoint_plano
+      - run: PYTHONPATH=. pytest -q experimentos/13_matriz_falhas
+      - run: PYTHONPATH=. pytest -q experimentos/14_divergencia
+      - run: PYTHONPATH=. pytest -q experimentos/15_ambiguidade_objetivo
+      - run: PYTHONPATH=. pytest -q experimentos/16_sequencias_adversariais
