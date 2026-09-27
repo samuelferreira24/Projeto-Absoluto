@@ -28,4 +28,6 @@ jobs:
       - run: PYTHONPATH=. pytest -q experimentos/14_divergencia
       - run: PYTHONPATH=. pytest -q experimentos/15_ambiguidade_objetivo
       - run: PYTHONPATH=. pytest -q experimentos/16_sequencias_adversariais
-\n      - run: PYTHONPATH=. pytest -q experimentos/17_benchmark_ab\n      - run: PYTHONPATH=. pytest -q experimentos/18_invariantes_metamorficas
+
+      - run: PYTHONPATH=. pytest -q experimentos/17_benchmark_ab
+      - run: PYTHONPATH=. pytest -q experimentos/18_invariantes_metamorficas
