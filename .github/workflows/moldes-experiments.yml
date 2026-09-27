@@ -31,8 +31,9 @@ jobs:
 
       - run: PYTHONPATH=. pytest -q experimentos/17_benchmark_ab
       - run: PYTHONPATH=. pytest -q experimentos/18_invariantes_metamorficas
+      - run: PYTHONPATH=. pytest -q experimentos/19_mutation_testing
       - name: Compile Python
-        run: python -m compileall -q experimentos/01_moldes_execucao experimentos/02_validacao_prototipos experimentos/03_sombra_abs experimentos/04_planejamento_sombra experimentos/05_combinatorio experimentos/06_prototipo_executavel experimentos/07_sandbox_runtime experimentos/08_persistencia_estado experimentos/09_composicao_verificacao experimentos/10_adversarial experimentos/11_comparativo_integrado experimentos/12_checkpoint_plano experimentos/13_matriz_falhas experimentos/14_divergencia experimentos/15_ambiguidade_objetivo experimentos/16_sequencias_adversariais experimentos/17_benchmark_ab experimentos/18_invariantes_metamorficas
+        run: python -m compileall -q experimentos/01_moldes_execucao experimentos/02_validacao_prototipos experimentos/03_sombra_abs experimentos/04_planejamento_sombra experimentos/05_combinatorio experimentos/06_prototipo_executavel experimentos/07_sandbox_runtime experimentos/08_persistencia_estado experimentos/09_composicao_verificacao experimentos/10_adversarial experimentos/11_comparativo_integrado experimentos/12_checkpoint_plano experimentos/13_matriz_falhas experimentos/14_divergencia experimentos/15_ambiguidade_objetivo experimentos/16_sequencias_adversariais experimentos/17_benchmark_ab experimentos/18_invariantes_metamorficas experimentos/19_mutation_testing
       - name: Ruff static quality
         run: |
           python -m pip install ruff
