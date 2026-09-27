@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from abs_core.capabilities import CapabilityRegistry
-from abs_core.resource_router import ResourceRouteRequest, ResourceRouter
+from abs_core.resource_router import ResourceRouter, ResourceRouteRequest
 
 
 @dataclass
