@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import ClassVar, ClassVar, Any
+from typing import Any, ClassVar
 
 
 MODES = ("DIRECT", "WORKFLOW", "AGENT", "MULTIAGENT", "RESEARCH", "RECOVERY")
