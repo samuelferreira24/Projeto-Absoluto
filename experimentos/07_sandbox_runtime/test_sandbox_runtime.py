@@ -1,4 +1,4 @@
-from sandbox_runtime import fixture, SandboxRuntime, Mission
+from sandbox_runtime import Mission, SandboxRuntime, fixture
 from abs_core.connections import ConnectionRegistry
 from abs_core.resource_router import ResourceRouter
 
