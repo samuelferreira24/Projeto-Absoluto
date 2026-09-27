@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Any
+from typing import ClassVar, Any
 
 
 MODES = ("DIRECT", "WORKFLOW", "AGENT", "MULTIAGENT", "RESEARCH", "RECOVERY")
@@ -30,7 +30,7 @@ class Event:
 class MoldSelectorA:
     """Prototype A: explicit control state + adaptive mode selection."""
 
-    weights = {"DIRECT": 1, "WORKFLOW": 2, "RESEARCH": 2, "RECOVERY": 2, "AGENT": 3, "MULTIAGENT": 4}
+    weights: ClassVar = {"DIRECT": 1, "WORKFLOW": 2, "RESEARCH": 2, "RECOVERY": 2, "AGENT": 3, "MULTIAGENT": 4}
 
     def choose(self, mission: Mission) -> Decision:
         c = mission.context
