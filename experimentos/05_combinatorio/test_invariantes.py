@@ -1,7 +1,7 @@
 from itertools import product
 import sys
 sys.path.insert(0, "../02_validacao_prototipos")
-from prototipos import ControllerA, MoldGraphB, Mission
+from prototipos import ControllerA, Mission, MoldGraphB
 
 
 def invariant_suite():
