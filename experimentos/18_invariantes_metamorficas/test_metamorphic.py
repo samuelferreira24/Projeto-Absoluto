@@ -6,7 +6,7 @@ spec=importlib.util.spec_from_file_location("proto06",p)
 m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 
 def choose(C,ctx):
-    return C().choose(m.Mission("x",dict(ctx)))
+    return (C().choose(m.Mission("x",dict(ctx))) if hasattr(C(),"choose") else C().next_mode(m.Mission("x",dict(ctx))))
 
 def test_irrelevant_resource_does_not_change_mode():
     base={"defined_steps":True}
