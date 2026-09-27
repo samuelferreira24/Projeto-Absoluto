@@ -1,6 +1,6 @@
-from dataclasses import dataclass, asdict
 import json
 import tempfile
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 @dataclass
