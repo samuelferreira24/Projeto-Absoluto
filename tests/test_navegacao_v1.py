@@ -8,7 +8,7 @@ from pathlib import Path
 from tools.navegacao.index import connect, index_source
 from tools.navegacao.related import related
 from tools.navegacao.navigator import Navigator
-from tools.navegacao.verify import verify_fts, verify_source
+from tools.navegacao.verify import rebuild_fts, verify_fts, verify_source
 from tools.navegacao.search import search, search_symbols
 
 
@@ -149,6 +149,21 @@ class NavigationV1Tests(unittest.TestCase):
                 self.assertIn("ok.md", paths)
                 self.assertNotIn("large.md", paths)
                 self.assertNotIn("link.md", paths)
+            finally:
+                conn.close()
+
+    def test_fts_rebuild_recovers_derived_index(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); repo = root / "repo"; repo.mkdir()
+            (repo / "a.md").write_text("recuperação FTS", encoding="utf-8")
+            conn = connect(root / "index.sqlite")
+            try:
+                index_source(conn, "repo", repo); conn.commit()
+                conn.execute("DELETE FROM documents_fts"); conn.commit()
+                self.assertEqual(search(conn, "recuperação", None, 20), [])
+                rebuild_fts(conn)
+                self.assertTrue(search(conn, "recuperação", None, 20))
+                verify_fts(conn)
             finally:
                 conn.close()
 
