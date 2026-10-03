@@ -228,3 +228,258 @@ sem sacrificar autoridade, histórico, evidência, estado atual, independência 
 - Microsoft Agent Framework — Durable Extension — https://learn.microsoft.com/en-us/agent-framework/integrations/durable-extension
 - GitHub Repositories — https://docs.github.com/en/repositories
 - GitHub Content Design Principles — https://docs.github.com/en/contributing/writing-for-github-docs/content-design-principles
+
+## 20. Simulações comparativas com o uso real do repositório
+
+A hipótese foi testada contra situações que já aparecem no trabalho do Projeto, em vez de comparar arquiteturas apenas em abstrato.
+
+### Modelos comparados
+
+M1 — Linha do tempo documental: um documento cronológico como fonte principal.
+
+M2 — Event Sourcing: eventos como fonte primária e estado reconstruído a partir deles.
+
+M3 — Knowledge Graph: nós e relações sem uma disciplina específica de proveniência.
+
+M4 — Grafo de Proveniência: entidades, atividades, agentes, derivação, tempo e origem.
+
+M5 — Grafo de Proveniência Temporal Nativo do Git:
+- Git como histórico durável de alterações;
+- eventos observáveis do repositório;
+- relações semânticas explícitas em registro separado;
+- temporalidade e autoridade nas relações;
+- estado/checkpoints como projeções;
+- índices/mapas derivados;
+- travessia para frente e para trás;
+- validação das relações;
+- sem banco de grafo obrigatório.
+
+### Simulação 01 — Nova IA entra no projeto
+
+Situação: uma IA nova recebe somente o repositório e precisa descobrir estado atual, decisões, pesquisas, evidências e ponto de retomada.
+
+M1 consegue localizar uma narrativa, mas depende de manutenção manual e pode perder fontes.
+
+M2 consegue reconstruir eventos, mas não possui naturalmente a separação entre decisão humana, pesquisa, evidência e documentação.
+
+M3 recupera relações se elas estiverem completas, mas não define por si só autoridade, proveniência nem validade temporal.
+
+M4 recupera origem e relações com boa precisão, mas precisa de integração específica com Git e com a estrutura documental.
+
+M5 utiliza os mapas e estado já existentes, segue relações explícitas e pode voltar às fontes originais.
+
+Resultado: M5 PASS.
+
+### Simulação 02 — Começar pelo estado atual e voltar à origem
+
+Situação: o estado atual indica uma capacidade ou decisão. Pergunta: “como chegamos aqui?”
+
+O caminho desejado é:
+
+estado → artefato/arquivo → alteração → commit → evento/decisão/fonte relacionada → origem
+
+Git já fornece uma linhagem forte para commits e arquivos. git log permite seguir histórico, inclusive por caminho e além de renome em casos suportados. citeturn2search1
+
+Resultado: M5 PASS.
+
+### Simulação 03 — Começar por uma decisão e avançar até o presente
+
+Situação: uma decisão antiga precisa ser seguida para descobrir quais mudanças e resultados ela originou.
+
+Uma simples timeline exige leitura sequencial. Um grafo permite seguir relações de consequência, mas somente se essas relações forem explícitas e não inventadas.
+
+Resultado: M5 PASS.
+
+### Simulação 04 — Decisão substituída
+
+Situação: uma decisão antiga deixa de ser vigente.
+
+O modelo precisa preservar decisão original, período de validade, sucessora e estado atual.
+
+ADRs são uma referência importante porque registram contexto, decisão, consequências e ciclo de vida; a coleção forma um log de decisões. citeturn1search4turn1search6
+
+Resultado: M5 PASS.
+
+### Simulação 05 — Pesquisa → evidência → decisão → implementação → teste
+
+Situação: uma pesquisa influencia uma decisão, que gera implementação, que produz teste.
+
+PROV fornece justamente um vocabulário para entidades, atividades, agentes, derivação e tempo. citeturn0search0turn0search1
+
+Resultado: M4 e M5 PASS; M5 é mais adequado ao repositório porque mantém as fontes originais e Git como infraestrutura de histórico.
+
+### Simulação 06 — Branch, merge e evolução de arquivos
+
+Situação: trabalho ocorre em branches e depois é integrado.
+
+O histórico do Git já é um grafo, não uma lista linear. O modelo não deve tentar copiar esse histórico para outro banco como nova fonte de verdade.
+
+Resultado: M5 PASS.
+
+### Simulação 07 — IA produz hipótese
+
+Situação: uma IA sugere uma relação causal que não está explicitamente comprovada.
+
+O sistema não pode promover automaticamente “IA inferiu X” para “Projeto sabe X”.
+
+A proveniência deve registrar a origem da afirmação e manter sua autoridade distinta. PROV trata proveniência como informação sobre entidades, atividades e agentes envolvidos na produção de algo. citeturn0search0
+
+Resultado: M5 PASS quando a relação possui origem/autoridade explícitas.
+
+### Simulação 08 — Falha e recuperação
+
+Situação: uma execução falha e é necessário recuperar o último estado válido.
+
+Checkpoints são adequados para preservar estado operacional recuperável; Microsoft Agent Framework documenta captura e retomada de checkpoints para workflows longos e recuperação após interrupções. citeturn0search2turn0search3
+
+Resultado: M5 PASS, tratando checkpoint como estado operacional e não como substituto do histórico.
+
+### Simulação 09 — Encontrar informação sem ler todo o repositório
+
+Situação: “Por que estamos usando esta estrutura?”
+
+A resposta deve começar em um nó atual, seguir relações e recuperar apenas as fontes relevantes.
+
+A organização documental também deve preservar a distinção entre referência, how-to e explicação; Diátaxis recomenda que cada forma atenda uma necessidade diferente e que a referência descreva o sistema de forma precisa. citeturn1search1turn1search2
+
+Resultado: M5 PASS.
+
+### Simulação 10 — Relação incorreta ou cíclica
+
+Situação: uma relação de precedência/derivação cria um ciclo impossível.
+
+A especificação de constraints do W3C PROV trata explicitamente de ordenação e validação de provenance e recomenda detectar ciclos inconsistentes. citeturn2search5turn2search2
+
+Resultado: M5 PASS porque a implementação inclui validação de relações de ordem estrita.
+
+## 21. Resultado das simulações
+
+As simulações eliminaram progressivamente:
+- timeline puro;
+- event sourcing puro;
+- knowledge graph puro;
+- grafo de proveniência isolado.
+
+O modelo que melhor se ajustou ao uso real foi:
+
+Grafo de Proveniência Temporal Nativo do Git + relações semânticas explícitas + estado/checkpoints + projeções derivadas.
+
+Ele não é um banco de dados de grafo obrigatório. É uma camada lógica sobre as fontes existentes.
+
+## 22. Modelo selecionado
+
+Fonte primária: Git + arquivos/fontes persistentes do Projeto.
+
+Git continua sendo a fonte do histórico de alterações do código e dos arquivos versionados.
+
+A camada de trajetória representa:
+- nós;
+- relações;
+- autoridade;
+- origem da relação;
+- temporalidade;
+- validade;
+- status;
+- proveniência.
+
+Relações automáticas/observadas:
+- commit → precedes → commit;
+- commit → changed → arquivo;
+- evento → generated → evidência;
+- commit → observed_by → evento.
+
+Relações semânticas explícitas:
+- pesquisa → informs → decisão;
+- decisão → supersedes → decisão;
+- handoff → points_to → estado;
+- resultado → derived_from → evidência;
+- objetivo → led_to → proposta.
+
+A segunda classe nunca deve ser inventada silenciosamente por uma IA.
+
+## 23. Forma de armazenamento escolhida
+
+Não foi adotado um banco de grafo externo.
+
+A primeira implementação usa:
+continuidade/07_conhecimento/trajectory_registry.json
+
+para relações semânticas explícitas, enquanto:
+project_knowledge.json
+
+continua sendo uma projeção derivada do estado observável.
+
+Isso mantém o repositório portátil, versionável e utilizável offline.
+
+A implementação de travessia está em:
+abs_core/trajectory.py
+
+Ela permite:
+- forward;
+- backward;
+- ancestors;
+- descendants;
+- filtragem por tipos de relação;
+- validação de relações;
+- detecção de ciclos em relações de ordem estrita.
+
+## 24. Invariantes do modelo
+
+1. Git continua sendo fonte do histórico Git.
+2. Estado atual não substitui histórico.
+3. Handoff não substitui fontes.
+4. Relação inferida não vira fato automaticamente.
+5. Decisão humana não pode ser promovida ou alterada pela projeção automática.
+6. Relações de ordem estrita não podem formar ciclos.
+7. Uma relação deve possuir origem identificável.
+8. Temporalidade deve poder distinguir presente de histórico.
+9. Projeções podem ser regeneradas.
+10. O modelo deve funcionar sem banco de grafo externo.
+11. O modelo deve permanecer portátil no repositório.
+12. A nova camada deve complementar, não duplicar, Git, decisões, evidências e documentos.
+
+## 25. Resultado arquitetural
+
+A ideia inicial — “guardar uma linha do começo ao fim” — foi refinada para:
+
+“preservar uma estrutura de proveniência temporal navegável, capaz de reconstruir trajetórias em ambas as direções a partir das fontes duráveis do repositório.”
+
+Portanto, origem → presente e presente → origem não são dois históricos diferentes. São duas consultas sobre a mesma estrutura de trajetória.
+
+## 26. Limites atuais
+
+A implementação inicial ainda não tenta inferir automaticamente toda a história semântica do Projeto.
+
+Isso é deliberado.
+
+Git permite observar com alta confiabilidade commits, parentesco, alterações, arquivos e revisões.
+
+Mas Git não sabe, por si só, que “esta pesquisa foi a causa daquela decisão” ou que “esta conversa foi a origem daquela arquitetura”.
+
+Essas relações precisam de registro explícito, evidência ou uma inferência marcada como tal.
+
+A camada atual fornece a infraestrutura para registrar e navegar essas relações sem falsificar causalidade.
+
+## 27. Próxima evolução
+
+O próximo teste relevante é alimentar a camada com casos reais adicionais do Projeto e verificar se uma IA consegue responder, de forma rastreável:
+1. Como chegamos neste estado?
+2. O que originou esta decisão?
+3. O que esta decisão produziu?
+4. Qual decisão substituiu esta?
+5. Qual evidência sustenta esta afirmação?
+6. O que mudou desde este ponto?
+7. Qual era o estado imediatamente anterior?
+8. Qual é a fonte primária?
+
+A resposta deve conter caminhos de recuperação e não apenas uma narrativa gerada.
+
+## 28. Estado da pesquisa
+
+Conclusão: modelo selecionado após simulações comparativas.
+
+Implementação inicial: realizada na branch trajectory-provenance-v1.
+
+Validação: testes específicos adicionados para travessia bidirecional, ciclos, integração com Git, registro semântico e projeção.
+
+Status epistemológico: arquitetura selecionada e implementada; a validação empírica deve continuar com casos reais do Projeto antes de considerar a camada definitiva.

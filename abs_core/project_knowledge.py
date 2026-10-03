@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-SCHEMA_VERSION = "1.3"
+SCHEMA_VERSION = "1.4"
 DEFAULT_OUTPUT = Path(os.getenv("PA_KNOWLEDGE_DIR", "continuidade/07_conhecimento"))
 EXCLUDED = {".git", ".venv", "__pycache__", ".pytest_cache", "node_modules"}
 
@@ -76,6 +76,10 @@ class Relation:
     at: str | None = None
     source_ref: str | None = None
     note: str = ""
+    authority: str = "derived_observation"
+    temporal: str = "current"
+    valid_from: str | None = None
+    valid_until: str | None = None
 
 
 @dataclass
@@ -127,7 +131,19 @@ class RepositoryScanner:
         "source:handoff": ("continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md", "handoff", "continuity", "current"),
         "source:navigation": ("00_IA_NAVEGACAO.md", "navigation", "project_governance", "current"),
         "source:history": ("99_arquivo/README.md", "history_archive", "historical_archive", "historical"),
+        "source:trajectory-registry": ("continuidade/07_conhecimento/trajectory_registry.json", "trajectory_registry", "project_governance", "current"),
     }
+
+    def _load_trajectory_registry(self) -> list[dict[str, Any]]:
+        path = self.root / "continuidade/07_conhecimento/trajectory_registry.json"
+        if not path.is_file():
+            return []
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return []
+        relations = payload.get("relations", [])
+        return [dict(item) for item in relations if isinstance(item, dict)]
 
     def _scan_knowledge_sources(self) -> list[KnowledgeSource]:
         records: list[KnowledgeSource] = []
@@ -258,6 +274,20 @@ class RepositoryScanner:
         state_id = digest((revision or "unversioned") + manifest)[:12]
         k = ProjectKnowledge(generated_at=observed_at, source_revision=revision)
         k.knowledge_sources = self._scan_knowledge_sources()
+        for item in self._load_trajectory_registry():
+            k.relations.append(Relation(
+                id=str(item.get("id")),
+                source=str(item.get("source")),
+                relation=str(item.get("relation")),
+                target=str(item.get("target")),
+                status=str(item.get("status", "asserted")),
+                source_ref=item.get("source_ref"),
+                note=str(item.get("note", "")),
+                authority=str(item.get("authority", "project_governance")),
+                temporal=str(item.get("temporal", "current")),
+                valid_from=item.get("valid_from"),
+                valid_until=item.get("valid_until"),
+            ))
 
         kinds = sorted({f["kind"] for f in files})
         k.components = [
@@ -312,6 +342,10 @@ class RepositoryScanner:
             )
 
         history = self.git_history()
+        changed_paths = {path for commit in history for path in commit["changed_files"]}
+        for path in sorted(changed_paths):
+            k.nodes.append({"id": "file:" + path, "kind": "file", "path": path})
+
         for commit in history:
             k.nodes.append({
                 "id": commit["id"], "kind": "commit", "at": commit["at"],
@@ -336,6 +370,11 @@ class RepositoryScanner:
                 "authority": source.authority, "temporal": source.temporal,
                 "status": source.status,
             })
+
+        for relation in k.relations:
+            for node_id in (relation.source, relation.target):
+                if not any(node.get("id") == node_id for node in k.nodes):
+                    k.nodes.append({"id": node_id, "kind": "trajectory_endpoint"})
 
         for evidence in k.evidence:
             k.nodes.append({
@@ -508,6 +547,8 @@ class KnowledgeStore:
             f"- {r.source} — {r.relation} → {r.target} — {r.status}"
             for r in k.relations
         ]
+        lines += ["", "## Trajetória"]
+        lines += ["- validação: " + ("PASS" if not validate_trajectory(k) else "FAIL")]
         lines += ["", "## Evidências"]
         lines += [
             f"- {e.id} — {e.kind} — {e.status} — {e.detail}"
@@ -523,6 +564,18 @@ class KnowledgeStore:
             "",
         ]
         return "\n".join(lines)
+
+
+def validate_trajectory(knowledge: ProjectKnowledge) -> list[dict[str, str]]:
+    from .trajectory import TrajectoryGraph
+    graph = TrajectoryGraph(knowledge.nodes, [asdict(r) for r in knowledge.relations])
+    return [asdict(issue) for issue in graph.validate()]
+
+
+def trace_trajectory(knowledge: ProjectKnowledge, start: str, *, direction: str = "backward", max_depth: int = 8, relation_types: list[str] | None = None) -> list[list[str]]:
+    from .trajectory import TrajectoryGraph
+    graph = TrajectoryGraph(knowledge.nodes, [asdict(r) for r in knowledge.relations])
+    return graph.trace(start, direction=direction, max_depth=max_depth, relation_types=relation_types)
 
 
 def evaluate_paths(knowledge: ProjectKnowledge) -> ProjectKnowledge:
