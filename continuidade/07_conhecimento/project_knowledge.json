@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T17:19:56-03:00",
-  "source_revision": "3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
+  "generated_at": "2026-10-03T18:21:43-03:00",
+  "source_revision": "cda7b62cf7384714d54019066a9eeb49bf8350bd",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,12 +32,12 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 105
+      "file_count": 112
     },
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 48
+      "file_count": 49
     }
   ],
   "capabilities": [
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
-      "commit_subject": "Registrar materialização de agentes, idempotência e conflitos"
+      "revision": "cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "commit_subject": "Implementar navegação e pesquisa V1"
     }
   ],
   "tools": [
@@ -3245,6 +3245,11 @@
       "path": "tests/test_local.py"
     },
     {
+      "id": "file:tests/test_navegacao_v1.py",
+      "kind": "file",
+      "path": "tests/test_navegacao_v1.py"
+    },
+    {
       "id": "file:tests/test_node_integration.py",
       "kind": "file",
       "path": "tests/test_node_integration.py"
@@ -3393,6 +3398,41 @@
       "id": "file:tools/documentos/fill_contents.py",
       "kind": "file",
       "path": "tools/documentos/fill_contents.py"
+    },
+    {
+      "id": "file:tools/navegacao/README.md",
+      "kind": "file",
+      "path": "tools/navegacao/README.md"
+    },
+    {
+      "id": "file:tools/navegacao/__init__.py",
+      "kind": "file",
+      "path": "tools/navegacao/__init__.py"
+    },
+    {
+      "id": "file:tools/navegacao/history.py",
+      "kind": "file",
+      "path": "tools/navegacao/history.py"
+    },
+    {
+      "id": "file:tools/navegacao/index.py",
+      "kind": "file",
+      "path": "tools/navegacao/index.py"
+    },
+    {
+      "id": "file:tools/navegacao/inspect.py",
+      "kind": "file",
+      "path": "tools/navegacao/inspect.py"
+    },
+    {
+      "id": "file:tools/navegacao/related.py",
+      "kind": "file",
+      "path": "tools/navegacao/related.py"
+    },
+    {
+      "id": "file:tools/navegacao/search.py",
+      "kind": "file",
+      "path": "tools/navegacao/search.py"
     },
     {
       "id": "file:web/index.html",
@@ -6872,6 +6912,20 @@
       "sha": "3022ea8cf7cfa4abb31520c5ce58aadf8735dd38"
     },
     {
+      "id": "commit:82513b61ee579c0d1dd01bf0a69430ac7d01adca",
+      "kind": "commit",
+      "at": "2026-10-03T20:20:15Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "82513b61ee579c0d1dd01bf0a69430ac7d01adca"
+    },
+    {
+      "id": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "kind": "commit",
+      "at": "2026-10-03T18:21:43-03:00",
+      "subject": "Implementar navegação e pesquisa V1",
+      "sha": "cda7b62cf7384714d54019066a9eeb49bf8350bd"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -6984,23 +7038,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:63cbb18fb087",
+      "id": "evidence:repository:26c6029e5266",
       "kind": "evidence",
-      "at": "2026-10-03T17:19:56-03:00",
+      "at": "2026-10-03T18:21:43-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:63cbb18fb087",
+      "id": "event:repository-scan:26c6029e5266",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-03T17:19:56-03:00"
+      "at": "2026-10-03T18:21:43-03:00"
     },
     {
-      "id": "event:commit-observed:3022ea8cf7cf",
+      "id": "event:commit-observed:cda7b62cf738",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-03T17:19:56-03:00"
+      "at": "2026-10-03T18:21:43-03:00"
     }
   ],
   "paths": [
@@ -7035,11 +7089,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:0ef416949bcd"
+        "evidence:test:0862e5e1d987"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T17:19:56-03:00"
+      "last_validated": "2026-10-03T18:21:43-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7062,20 +7116,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:63cbb18fb087",
+      "id": "evidence:repository:26c6029e5266",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T17:19:56-03:00",
+      "observed_at": "2026-10-03T18:21:43-03:00",
       "status": "observed",
-      "detail": "345 files indexed at revision 3022ea8cf7cfa4abb31520c5ce58aadf8735dd38"
+      "detail": "353 files indexed at revision cda7b62cf7384714d54019066a9eeb49bf8350bd"
     },
     {
-      "id": "evidence:test:0ef416949bcd",
+      "id": "evidence:test:0862e5e1d987",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T17:19:56-03:00",
+      "observed_at": "2026-10-03T18:21:43-03:00",
       "status": "tested",
-      "detail": "130 passed in 6.83s"
+      "detail": "133 passed in 6.93s"
     }
   ],
   "decisions": [
@@ -7178,30 +7232,38 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:63cbb18fb087",
+      "id": "event:repository-scan:26c6029e5266",
       "type": "repository_scanned",
-      "at": "2026-10-03T17:19:56-03:00",
-      "revision": "3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
-      "file_count": 345,
-      "evidence_id": "evidence:repository:63cbb18fb087"
+      "at": "2026-10-03T18:21:43-03:00",
+      "revision": "cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "file_count": 353,
+      "evidence_id": "evidence:repository:26c6029e5266"
     },
     {
-      "id": "event:commit-observed:3022ea8cf7cf",
+      "id": "event:commit-observed:cda7b62cf738",
       "type": "commit_observed",
-      "at": "2026-10-03T17:19:56-03:00",
-      "revision": "3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
+      "at": "2026-10-03T18:21:43-03:00",
+      "revision": "cda7b62cf7384714d54019066a9eeb49bf8350bd",
       "branch": "main",
-      "subject": "Registrar materialização de agentes, idempotência e conflitos",
+      "subject": "Implementar navegação e pesquisa V1",
       "changed_files": [
-        "continuidade/07_conhecimento/closure_registry.json"
+        ".github/workflows/project-knowledge-tests.yml",
+        "tests/test_navegacao_v1.py",
+        "tools/navegacao/README.md",
+        "tools/navegacao/__init__.py",
+        "tools/navegacao/history.py",
+        "tools/navegacao/index.py",
+        "tools/navegacao/inspect.py",
+        "tools/navegacao/related.py",
+        "tools/navegacao/search.py"
       ]
     },
     {
-      "id": "event:test:0ef416949bcd",
+      "id": "event:test:0862e5e1d987",
       "type": "tests_observed",
-      "at": "2026-10-03T17:19:56-03:00",
+      "at": "2026-10-03T18:21:43-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:0ef416949bcd"
+      "evidence_id": "evidence:test:0862e5e1d987"
     }
   ],
   "knowledge_sources": [
@@ -7257,7 +7319,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "d792c9abc43fd77237a6183a6ee57696fbf93d4699ec399edb8061d545945d07"
+      "sha256": "1925010a7df557e80f45cf3767d7e130260b1fab49baf570b951ba69a485ef4b"
     },
     {
       "id": "source:session",
@@ -27382,12 +27444,194 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:63cbb18fb087",
-      "source": "event:repository-scan:63cbb18fb087",
-      "relation": "generated",
-      "target": "evidence:repository:63cbb18fb087",
+      "id": "rel:commit-precedes:3022ea8cf7cf:82513b61ee57",
+      "source": "commit:3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
+      "relation": "precedes",
+      "target": "commit:82513b61ee579c0d1dd01bf0a69430ac7d01adca",
       "status": "asserted",
-      "at": "2026-10-03T17:19:56-03:00",
+      "at": "2026-10-03T20:20:15Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:82513b61ee57:032adc3624d7",
+      "source": "commit:82513b61ee579c0d1dd01bf0a69430ac7d01adca",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-03T20:20:15Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:82513b61ee57:d64178c49886",
+      "source": "commit:82513b61ee579c0d1dd01bf0a69430ac7d01adca",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-03T20:20:15Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:82513b61ee57:cda7b62cf738",
+      "source": "commit:82513b61ee579c0d1dd01bf0a69430ac7d01adca",
+      "relation": "precedes",
+      "target": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cda7b62cf738:04d710161e6d",
+      "source": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "relation": "changed",
+      "target": "file:.github/workflows/project-knowledge-tests.yml",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cda7b62cf738:0de40b6a8d0b",
+      "source": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "relation": "changed",
+      "target": "file:tests/test_navegacao_v1.py",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cda7b62cf738:ea154fe4316e",
+      "source": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "relation": "changed",
+      "target": "file:tools/navegacao/README.md",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cda7b62cf738:6bc2093f4d29",
+      "source": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "relation": "changed",
+      "target": "file:tools/navegacao/__init__.py",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cda7b62cf738:96d23c5c6a8e",
+      "source": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "relation": "changed",
+      "target": "file:tools/navegacao/history.py",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cda7b62cf738:529da1ea90d5",
+      "source": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "relation": "changed",
+      "target": "file:tools/navegacao/index.py",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cda7b62cf738:97869700429c",
+      "source": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "relation": "changed",
+      "target": "file:tools/navegacao/inspect.py",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cda7b62cf738:5b417e57aeee",
+      "source": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "relation": "changed",
+      "target": "file:tools/navegacao/related.py",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cda7b62cf738:b2afb65f6454",
+      "source": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
+      "relation": "changed",
+      "target": "file:tools/navegacao/search.py",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:26c6029e5266",
+      "source": "event:repository-scan:26c6029e5266",
+      "relation": "generated",
+      "target": "evidence:repository:26c6029e5266",
+      "status": "asserted",
+      "at": "2026-10-03T18:21:43-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -27396,12 +27640,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:3022ea8cf7cf",
-      "source": "commit:3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
+      "id": "rel:scan-commit:cda7b62cf738",
+      "source": "commit:cda7b62cf7384714d54019066a9eeb49bf8350bd",
       "relation": "observed_by",
-      "target": "event:repository-scan:63cbb18fb087",
+      "target": "event:repository-scan:26c6029e5266",
       "status": "asserted",
-      "at": "2026-10-03T17:19:56-03:00",
+      "at": "2026-10-03T18:21:43-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
