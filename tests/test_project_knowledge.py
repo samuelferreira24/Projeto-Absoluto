@@ -121,6 +121,19 @@ def test_projection_includes_runtime_categories_and_path_evidence(tmp_path: Path
     assert "evidências:" in projection
 
 
+def test_capability_registry_is_projected_into_knowledge(tmp_path: Path):
+    registry = tmp_path / "continuidade/07_conhecimento/capability_registry.json"
+    registry.parent.mkdir(parents=True, exist_ok=True)
+    registry.write_text(
+        '{"capabilities":[{"id":"capability:01","name":"Visão","status":"governança","category":"A","evidence":["planning"]}]}',
+        encoding="utf-8",
+    )
+    knowledge = RepositoryScanner(tmp_path).scan()
+    item = next(x for x in knowledge.capabilities if x["id"] == "capability:01")
+    assert item["state"] == "governança"
+    assert item["source"] == "capability_registry"
+
+
 def test_capability_discovery_expands_paths_without_manual_map_edit(tmp_path: Path):
     (tmp_path / "abs_core").mkdir()
     (tmp_path / "abs_core" / "internet_adapter.py").write_text("x", encoding="utf-8")
