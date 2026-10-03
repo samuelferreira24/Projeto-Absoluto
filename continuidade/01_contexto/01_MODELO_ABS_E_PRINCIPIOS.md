@@ -2,7 +2,9 @@
 
 ## Relação central
 
-Imperador → Vontade/Visão → Projeto Absoluto → Sistema + Império → realização da visão.
+Imperador → Vontade/Visão → Projeto Absoluto → Sistema Absoluto (ecossistema de capacidades) → ABS em construção (operador/orquestrador) → execução/resultado → Império e novos ciclos.
+
+O **Sistema Absoluto/ABS geral** é o ecossistema aberto de recursos e capacidades. O **ABS em construção** é a infraestrutura de operação desse ecossistema. Quando o contexto disser apenas “ABS”, a documentação deve deixar claro qual dos dois sentidos está sendo usado.
 
 Onde estiver a visão do Imperador, é onde Sistema e Império crescem.
 
