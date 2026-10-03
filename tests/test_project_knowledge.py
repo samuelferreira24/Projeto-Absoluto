@@ -150,6 +150,7 @@ def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
         "continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md",
         "00_IA_NAVEGACAO.md",
         "99_arquivo/README.md",
+        "continuidade/07_conhecimento/trajectory_registry.json",
     }
     for rel in required:
         path = tmp_path / rel
