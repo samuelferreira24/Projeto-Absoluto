@@ -142,7 +142,7 @@
     {
       "id": "capability:34",
       "name": "Registro de agentes",
-      "closure_status": "not_closed",
+      "closure_status": "materialized_not_end_to_end",
       "required_closure": "catálogo de agentes com identidade, responsabilidade, política e estado",
       "evidence_required": [
         "implementation",
@@ -150,7 +150,16 @@
         "integration",
         "test_or_operational_evidence"
       ],
-      "authority_required": true
+      "authority_required": true,
+      "implementation_refs": [
+        "abs_core/agent_registry.py",
+        "tests/test_control_boundaries.py"
+      ],
+      "remaining": [
+        "runtime integration",
+        "durable/operational evidence",
+        "end-to-end test"
+      ]
     },
     {
       "id": "capability:35",
@@ -207,7 +216,7 @@
     {
       "id": "capability:44",
       "name": "Idempotência",
-      "closure_status": "not_closed",
+      "closure_status": "materialized_not_end_to_end",
       "required_closure": "execuções repetidas seguras ou deduplicadas quando aplicável",
       "evidence_required": [
         "implementation",
@@ -215,7 +224,16 @@
         "integration",
         "test_or_operational_evidence"
       ],
-      "authority_required": true
+      "authority_required": true,
+      "implementation_refs": [
+        "abs_core/idempotency.py",
+        "tests/test_control_boundaries.py"
+      ],
+      "remaining": [
+        "runtime integration",
+        "durable/operational evidence",
+        "end-to-end test"
+      ]
     },
     {
       "id": "capability:45",
@@ -285,7 +303,7 @@
     {
       "id": "capability:64",
       "name": "Detecção de conflitos",
-      "closure_status": "not_closed",
+      "closure_status": "materialized_not_end_to_end",
       "required_closure": "detecção e tratamento de conflitos entre instruções/estado/recursos",
       "evidence_required": [
         "implementation",
@@ -293,7 +311,16 @@
         "integration",
         "test_or_operational_evidence"
       ],
-      "authority_required": true
+      "authority_required": true,
+      "implementation_refs": [
+        "abs_core/conflicts.py",
+        "tests/test_control_boundaries.py"
+      ],
+      "remaining": [
+        "runtime integration",
+        "durable/operational evidence",
+        "end-to-end test"
+      ]
     },
     {
       "id": "capability:65",
@@ -469,5 +496,13 @@
       "state": "Project Knowledge has evidence layer, but granular decision/research evidence is incomplete",
       "action": "do not promote documentation to evidence automatically"
     }
-  ]
+  ],
+  "summary": {
+    "newly_materialized": [
+      "capability:34",
+      "capability:44",
+      "capability:64"
+    ],
+    "note": "Materialização não equivale a fechamento operacional."
+  }
 }
