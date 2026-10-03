@@ -1,13 +1,13 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T17:12:27-03:00",
-  "source_revision": "3978d269453c9f5f786eafa051637663954af252",
+  "generated_at": "2026-10-03T17:19:56-03:00",
+  "source_revision": "3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
   "components": [
     {
       "id": "component:abs_core",
       "kind": "abs_core",
-      "file_count": 50
+      "file_count": 53
     },
     {
       "id": "component:cerebro",
@@ -37,7 +37,7 @@
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 47
+      "file_count": 48
     }
   ],
   "capabilities": [
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "3978d269453c9f5f786eafa051637663954af252",
-      "commit_subject": "Integrar registro de fechamento ao inventário de capacidades"
+      "revision": "3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
+      "commit_subject": "Registrar materialização de agentes, idempotência e conflitos"
     }
   ],
   "tools": [
@@ -1835,6 +1835,11 @@
       "path": "abs_core/adapters.py"
     },
     {
+      "id": "file:abs_core/agent_registry.py",
+      "kind": "file",
+      "path": "abs_core/agent_registry.py"
+    },
+    {
       "id": "file:abs_core/ai_adapters.py",
       "kind": "file",
       "path": "abs_core/ai_adapters.py"
@@ -1870,6 +1875,11 @@
       "path": "abs_core/cognitive_context.py"
     },
     {
+      "id": "file:abs_core/conflicts.py",
+      "kind": "file",
+      "path": "abs_core/conflicts.py"
+    },
+    {
       "id": "file:abs_core/connections.py",
       "kind": "file",
       "path": "abs_core/connections.py"
@@ -1893,6 +1903,11 @@
       "id": "file:abs_core/github_adapter.py",
       "kind": "file",
       "path": "abs_core/github_adapter.py"
+    },
+    {
+      "id": "file:abs_core/idempotency.py",
+      "kind": "file",
+      "path": "abs_core/idempotency.py"
     },
     {
       "id": "file:abs_core/integration.py",
@@ -3183,6 +3198,11 @@
       "id": "file:tests/test_continuity.py",
       "kind": "file",
       "path": "tests/test_continuity.py"
+    },
+    {
+      "id": "file:tests/test_control_boundaries.py",
+      "kind": "file",
+      "path": "tests/test_control_boundaries.py"
     },
     {
       "id": "file:tests/test_conversational_tools.py",
@@ -6810,6 +6830,48 @@
       "sha": "3978d269453c9f5f786eafa051637663954af252"
     },
     {
+      "id": "commit:bfc7dd3b7d422a26ecce35565960d9cd7cae7a3c",
+      "kind": "commit",
+      "at": "2026-10-03T20:12:45Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "bfc7dd3b7d422a26ecce35565960d9cd7cae7a3c"
+    },
+    {
+      "id": "commit:19059e5ee7f17acaed2813d0acf17785d4c011b1",
+      "kind": "commit",
+      "at": "2026-10-03T17:19:28-03:00",
+      "subject": "Implementar fronteira de idempotency",
+      "sha": "19059e5ee7f17acaed2813d0acf17785d4c011b1"
+    },
+    {
+      "id": "commit:577189f046c86d02e4db800f5e8fd08c241297b2",
+      "kind": "commit",
+      "at": "2026-10-03T17:19:31-03:00",
+      "subject": "Implementar fronteira de conflicts",
+      "sha": "577189f046c86d02e4db800f5e8fd08c241297b2"
+    },
+    {
+      "id": "commit:dc56469f7734f3db08b65f41c3f919d7f7ff8492",
+      "kind": "commit",
+      "at": "2026-10-03T17:19:34-03:00",
+      "subject": "Implementar fronteira de agent_registry",
+      "sha": "dc56469f7734f3db08b65f41c3f919d7f7ff8492"
+    },
+    {
+      "id": "commit:c72198c46781009f568844851595ff08874ee989",
+      "kind": "commit",
+      "at": "2026-10-03T17:19:42-03:00",
+      "subject": "Implementar fronteira de test_control_boundaries",
+      "sha": "c72198c46781009f568844851595ff08874ee989"
+    },
+    {
+      "id": "commit:3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
+      "kind": "commit",
+      "at": "2026-10-03T17:19:56-03:00",
+      "subject": "Registrar materialização de agentes, idempotência e conflitos",
+      "sha": "3022ea8cf7cfa4abb31520c5ce58aadf8735dd38"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -6922,23 +6984,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:d829768737cd",
+      "id": "evidence:repository:63cbb18fb087",
       "kind": "evidence",
-      "at": "2026-10-03T17:12:27-03:00",
+      "at": "2026-10-03T17:19:56-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:d829768737cd",
+      "id": "event:repository-scan:63cbb18fb087",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-03T17:12:27-03:00"
+      "at": "2026-10-03T17:19:56-03:00"
     },
     {
-      "id": "event:commit-observed:3978d269453c",
+      "id": "event:commit-observed:3022ea8cf7cf",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-03T17:12:27-03:00"
+      "at": "2026-10-03T17:19:56-03:00"
     }
   ],
   "paths": [
@@ -6973,11 +7035,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:8f1060017fd2"
+        "evidence:test:0ef416949bcd"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T17:12:27-03:00"
+      "last_validated": "2026-10-03T17:19:56-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7000,20 +7062,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:d829768737cd",
+      "id": "evidence:repository:63cbb18fb087",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T17:12:27-03:00",
+      "observed_at": "2026-10-03T17:19:56-03:00",
       "status": "observed",
-      "detail": "341 files indexed at revision 3978d269453c9f5f786eafa051637663954af252"
+      "detail": "345 files indexed at revision 3022ea8cf7cfa4abb31520c5ce58aadf8735dd38"
     },
     {
-      "id": "evidence:test:8f1060017fd2",
+      "id": "evidence:test:0ef416949bcd",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T17:12:27-03:00",
+      "observed_at": "2026-10-03T17:19:56-03:00",
       "status": "tested",
-      "detail": "127 passed in 6.73s"
+      "detail": "130 passed in 6.83s"
     }
   ],
   "decisions": [
@@ -7116,30 +7178,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:d829768737cd",
+      "id": "event:repository-scan:63cbb18fb087",
       "type": "repository_scanned",
-      "at": "2026-10-03T17:12:27-03:00",
-      "revision": "3978d269453c9f5f786eafa051637663954af252",
-      "file_count": 341,
-      "evidence_id": "evidence:repository:d829768737cd"
+      "at": "2026-10-03T17:19:56-03:00",
+      "revision": "3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
+      "file_count": 345,
+      "evidence_id": "evidence:repository:63cbb18fb087"
     },
     {
-      "id": "event:commit-observed:3978d269453c",
+      "id": "event:commit-observed:3022ea8cf7cf",
       "type": "commit_observed",
-      "at": "2026-10-03T17:12:27-03:00",
-      "revision": "3978d269453c9f5f786eafa051637663954af252",
+      "at": "2026-10-03T17:19:56-03:00",
+      "revision": "3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
       "branch": "main",
-      "subject": "Integrar registro de fechamento ao inventário de capacidades",
+      "subject": "Registrar materialização de agentes, idempotência e conflitos",
       "changed_files": [
-        "docs/02_arquitetura/INVENTARIO_CAPACIDADES_ABS_V1.md"
+        "continuidade/07_conhecimento/closure_registry.json"
       ]
     },
     {
-      "id": "event:test:8f1060017fd2",
+      "id": "event:test:0ef416949bcd",
       "type": "tests_observed",
-      "at": "2026-10-03T17:12:27-03:00",
+      "at": "2026-10-03T17:19:56-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:8f1060017fd2"
+      "evidence_id": "evidence:test:0ef416949bcd"
     }
   ],
   "knowledge_sources": [
@@ -7195,7 +7257,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "5a14aa07535ba101fecf62830d410ac5e327d2667f2ed6de7b7ee36bfeae6abc"
+      "sha256": "d792c9abc43fd77237a6183a6ee57696fbf93d4699ec399edb8061d545945d07"
     },
     {
       "id": "source:session",
@@ -27138,12 +27200,194 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:d829768737cd",
-      "source": "event:repository-scan:d829768737cd",
-      "relation": "generated",
-      "target": "evidence:repository:d829768737cd",
+      "id": "rel:commit-precedes:3978d269453c:bfc7dd3b7d42",
+      "source": "commit:3978d269453c9f5f786eafa051637663954af252",
+      "relation": "precedes",
+      "target": "commit:bfc7dd3b7d422a26ecce35565960d9cd7cae7a3c",
       "status": "asserted",
-      "at": "2026-10-03T17:12:27-03:00",
+      "at": "2026-10-03T20:12:45Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bfc7dd3b7d42:032adc3624d7",
+      "source": "commit:bfc7dd3b7d422a26ecce35565960d9cd7cae7a3c",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-03T20:12:45Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bfc7dd3b7d42:d64178c49886",
+      "source": "commit:bfc7dd3b7d422a26ecce35565960d9cd7cae7a3c",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-03T20:12:45Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:bfc7dd3b7d42:19059e5ee7f1",
+      "source": "commit:bfc7dd3b7d422a26ecce35565960d9cd7cae7a3c",
+      "relation": "precedes",
+      "target": "commit:19059e5ee7f17acaed2813d0acf17785d4c011b1",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:19059e5ee7f1:11305d8d9a4f",
+      "source": "commit:19059e5ee7f17acaed2813d0acf17785d4c011b1",
+      "relation": "changed",
+      "target": "file:abs_core/idempotency.py",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:19059e5ee7f1:577189f046c8",
+      "source": "commit:19059e5ee7f17acaed2813d0acf17785d4c011b1",
+      "relation": "precedes",
+      "target": "commit:577189f046c86d02e4db800f5e8fd08c241297b2",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:31-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:577189f046c8:cec6989c5d60",
+      "source": "commit:577189f046c86d02e4db800f5e8fd08c241297b2",
+      "relation": "changed",
+      "target": "file:abs_core/conflicts.py",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:31-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:577189f046c8:dc56469f7734",
+      "source": "commit:577189f046c86d02e4db800f5e8fd08c241297b2",
+      "relation": "precedes",
+      "target": "commit:dc56469f7734f3db08b65f41c3f919d7f7ff8492",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:34-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:dc56469f7734:ed6b386e71af",
+      "source": "commit:dc56469f7734f3db08b65f41c3f919d7f7ff8492",
+      "relation": "changed",
+      "target": "file:abs_core/agent_registry.py",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:34-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:dc56469f7734:c72198c46781",
+      "source": "commit:dc56469f7734f3db08b65f41c3f919d7f7ff8492",
+      "relation": "precedes",
+      "target": "commit:c72198c46781009f568844851595ff08874ee989",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:42-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c72198c46781:c195c0537d0a",
+      "source": "commit:c72198c46781009f568844851595ff08874ee989",
+      "relation": "changed",
+      "target": "file:tests/test_control_boundaries.py",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:42-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c72198c46781:3022ea8cf7cf",
+      "source": "commit:c72198c46781009f568844851595ff08874ee989",
+      "relation": "precedes",
+      "target": "commit:3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:56-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3022ea8cf7cf:726cd2501fc2",
+      "source": "commit:3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/closure_registry.json",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:56-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:63cbb18fb087",
+      "source": "event:repository-scan:63cbb18fb087",
+      "relation": "generated",
+      "target": "evidence:repository:63cbb18fb087",
+      "status": "asserted",
+      "at": "2026-10-03T17:19:56-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -27152,12 +27396,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:3978d269453c",
-      "source": "commit:3978d269453c9f5f786eafa051637663954af252",
+      "id": "rel:scan-commit:3022ea8cf7cf",
+      "source": "commit:3022ea8cf7cfa4abb31520c5ce58aadf8735dd38",
       "relation": "observed_by",
-      "target": "event:repository-scan:d829768737cd",
+      "target": "event:repository-scan:63cbb18fb087",
       "status": "asserted",
-      "at": "2026-10-03T17:12:27-03:00",
+      "at": "2026-10-03T17:19:56-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
