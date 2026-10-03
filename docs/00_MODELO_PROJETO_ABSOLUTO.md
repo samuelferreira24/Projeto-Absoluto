@@ -4,7 +4,7 @@
 
 O Projeto Absoluto é o projeto maior: a visão, o método, os princípios, os objetivos e a direção que o Imperador pretende transformar em realidade.
 
-O Projeto Absoluto não é sinônimo de aplicativo, sistema, IA, repositório ou ABS.
+O Projeto Absoluto não é sinônimo de aplicativo, IA, repositório ou de uma implementação específica do ABS. O nome ABS pode designar o Sistema Absoluto como ecossistema ou, por contexto, o ABS em construção que o opera.
 
 A implementação completa ainda está em descoberta e construção. O Imperador possui a visão e está aprendendo a transformar essa visão em execução enquanto constrói.
 
