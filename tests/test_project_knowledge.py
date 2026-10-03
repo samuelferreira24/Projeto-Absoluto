@@ -224,3 +224,15 @@ def test_trajectory_projection_is_present(tmp_path: Path):
     projection = Path(result["map"]).read_text(encoding="utf-8")
 
     assert "## Relações de trajetória" in projection
+
+
+def test_projection_tolerates_missing_path_evidence(tmp_path: Path):
+    from abs_core.project_knowledge import PathRecord, ProjectKnowledge
+
+    knowledge = ProjectKnowledge()
+    knowledge.paths = [
+        PathRecord("PATH-X", "test", "a", "b", "observed", evidence=[None, "evidence:test"])
+    ]
+    result = KnowledgeStore(tmp_path).write(knowledge)
+    projection = Path(result["map"]).read_text(encoding="utf-8")
+    assert "evidence:test" in projection
