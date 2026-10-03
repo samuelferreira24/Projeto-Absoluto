@@ -35,13 +35,20 @@ def verify_fts(conn: sqlite3.Connection) -> None:
     conn.execute("INSERT INTO documents_fts(documents_fts) VALUES ('integrity-check')")
 
 
+def rebuild_fts(conn: sqlite3.Connection) -> None:
+    conn.execute("INSERT INTO documents_fts(documents_fts) VALUES ('rebuild')")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Verify indexed source provenance and FTS integrity.")
     parser.add_argument("--db", required=True, type=Path)
     parser.add_argument("--source")
+    parser.add_argument("--rebuild", action="store_true", help="rebuild the derived FTS index before verification")
     args = parser.parse_args()
     conn = sqlite3.connect(args.db)
     try:
+        if args.rebuild:
+            rebuild_fts(conn)
         verify_fts(conn)
         rows = verify_source(conn, args.source)
     finally:
