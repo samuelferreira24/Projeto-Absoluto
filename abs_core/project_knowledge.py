@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-SCHEMA_VERSION = "1.1"
+SCHEMA_VERSION = "1.2"
 DEFAULT_OUTPUT = Path(os.getenv("PA_KNOWLEDGE_DIR", "continuidade/07_conhecimento"))
 EXCLUDED = {".git", ".venv", "__pycache__", ".pytest_cache", "node_modules"}
 
@@ -54,6 +54,17 @@ class PathRecord:
     last_validated: str | None = None
 
 
+
+@dataclass
+class KnowledgeSource:
+    id: str
+    path: str
+    layer: str
+    authority: str
+    temporal: str
+    status: str
+    sha256: str | None = None
+
 @dataclass
 class ProjectKnowledge:
     schema_version: str = SCHEMA_VERSION
@@ -69,6 +80,7 @@ class ProjectKnowledge:
     evidence: list[Evidence] = field(default_factory=list)
     decisions: list[dict[str, Any]] = field(default_factory=list)
     events: list[dict[str, Any]] = field(default_factory=list)
+    knowledge_sources: list[KnowledgeSource] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         data = asdict(self)
@@ -77,8 +89,40 @@ class ProjectKnowledge:
         return data
 
 
+
+def sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
 class RepositoryScanner:
     """Discover repository facts without treating every Python module as a capability."""
+
+
+    KNOWLEDGE_SOURCES = {
+        "source:vision": ("continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md", "vision_principles", "human_authority", "current"),
+        "source:decisions": ("continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md", "decisions", "human_authority", "current"),
+        "source:research": ("docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md", "research", "research_reference", "current"),
+        "source:evidence": ("continuidade/07_conhecimento/03_CONTRATO_DE_PROVA.md", "evidence_contract", "project_governance", "current"),
+        "source:state": ("continuidade/07_conhecimento/project_knowledge.json", "derived_state", "derived_observation", "current"),
+        "source:session": ("continuidade/07_conhecimento/SESSAO_ATUAL.md", "session_state", "continuity", "current"),
+        "source:handoff": ("continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md", "handoff", "continuity", "current"),
+        "source:navigation": ("00_IA_NAVEGACAO.md", "navigation", "project_governance", "current"),
+        "source:history": ("99_arquivo/README.md", "history_archive", "historical_archive", "historical"),
+    }
+
+    def _scan_knowledge_sources(self) -> list[KnowledgeSource]:
+        records: list[KnowledgeSource] = []
+        for source_id, (rel, layer, authority, temporal) in self.KNOWLEDGE_SOURCES.items():
+            path = self.root / rel
+            if not path.is_file():
+                records.append(KnowledgeSource(source_id, rel, layer, authority, temporal, "missing"))
+            else:
+                records.append(KnowledgeSource(source_id, rel, layer, authority, temporal, "present", sha256_file(path)))
+        return records
 
     CAPABILITY_FILES = {
         "abs_core/orchestrator.py": ("orchestrator", "ABS orchestration"),
@@ -173,6 +217,7 @@ class RepositoryScanner:
         manifest = json.dumps(files, sort_keys=True, separators=(",", ":"))
         state_id = digest((revision or "unversioned") + manifest)[:12]
         k = ProjectKnowledge(generated_at=observed_at, source_revision=revision)
+        k.knowledge_sources = self._scan_knowledge_sources()
 
         kinds = sorted({f["kind"] for f in files})
         k.components = [
