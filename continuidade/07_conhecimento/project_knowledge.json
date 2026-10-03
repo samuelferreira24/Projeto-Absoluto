@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T15:10:59-03:00",
-  "source_revision": "b5c6202420df4414a4b89f4f3bc4a266f6bb414a",
+  "generated_at": "2026-10-03T15:15:34-03:00",
+  "source_revision": "dc686f309a31b8fdf571508d9f1482eedf98907b",
   "components": [
     {
       "id": "component:abs_core",
@@ -17,7 +17,7 @@
     {
       "id": "component:continuity",
       "kind": "continuity",
-      "file_count": 18
+      "file_count": 19
     },
     {
       "id": "component:docs",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "b5c6202420df4414a4b89f4f3bc4a266f6bb414a",
-      "commit_subject": "docs: preserve conceptual knowledge in continuity layer"
+      "revision": "dc686f309a31b8fdf571508d9f1482eedf98907b",
+      "commit_subject": "docs: record complete context synchronization checkpoint"
     }
   ],
   "tools": [
@@ -145,11 +145,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:8f29744e25f0"
+        "evidence:repository:8003d980acea"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T15:10:59-03:00"
+      "last_validated": "2026-10-03T15:15:34-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -163,12 +163,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:8f29744e25f0",
-        "evidence:test:4690886a9895"
+        "evidence:repository:8003d980acea",
+        "evidence:test:828bcf564c74"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T15:10:59-03:00"
+      "last_validated": "2026-10-03T15:15:34-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -182,58 +182,58 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:8f29744e25f0"
+        "evidence:repository:8003d980acea"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T15:10:59-03:00"
+      "last_validated": "2026-10-03T15:15:34-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:8f29744e25f0",
+      "id": "evidence:repository:8003d980acea",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T15:10:59-03:00",
+      "observed_at": "2026-10-03T15:15:34-03:00",
       "status": "observed",
-      "detail": "329 files indexed at revision b5c6202420df4414a4b89f4f3bc4a266f6bb414a"
+      "detail": "330 files indexed at revision dc686f309a31b8fdf571508d9f1482eedf98907b"
     },
     {
-      "id": "evidence:test:4690886a9895",
+      "id": "evidence:test:828bcf564c74",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T15:10:59-03:00",
+      "observed_at": "2026-10-03T15:15:34-03:00",
       "status": "tested",
-      "detail": "113 passed in 6.34s"
+      "detail": "113 passed in 6.20s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:8f29744e25f0",
+      "id": "event:repository-scan:8003d980acea",
       "type": "repository_scanned",
-      "at": "2026-10-03T15:10:59-03:00",
-      "revision": "b5c6202420df4414a4b89f4f3bc4a266f6bb414a",
-      "file_count": 329,
-      "evidence_id": "evidence:repository:8f29744e25f0"
+      "at": "2026-10-03T15:15:34-03:00",
+      "revision": "dc686f309a31b8fdf571508d9f1482eedf98907b",
+      "file_count": 330,
+      "evidence_id": "evidence:repository:8003d980acea"
     },
     {
-      "id": "event:commit-observed:b5c6202420df",
+      "id": "event:commit-observed:dc686f309a31",
       "type": "commit_observed",
-      "at": "2026-10-03T15:10:59-03:00",
-      "revision": "b5c6202420df4414a4b89f4f3bc4a266f6bb414a",
+      "at": "2026-10-03T15:15:34-03:00",
+      "revision": "dc686f309a31b8fdf571508d9f1482eedf98907b",
       "branch": "main",
-      "subject": "docs: preserve conceptual knowledge in continuity layer",
+      "subject": "docs: record complete context synchronization checkpoint",
       "changed_files": [
-        "continuidade/07_conhecimento/00_LEIA_PRIMEIRO.md"
+        "continuidade/07_conhecimento/SESSAO_ATUAL.md"
       ]
     },
     {
-      "id": "event:test:4690886a9895",
+      "id": "event:test:828bcf564c74",
       "type": "tests_observed",
-      "at": "2026-10-03T15:10:59-03:00",
+      "at": "2026-10-03T15:15:34-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:4690886a9895"
+      "evidence_id": "evidence:test:828bcf564c74"
     }
   ]
 }
