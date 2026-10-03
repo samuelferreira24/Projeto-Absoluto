@@ -495,7 +495,7 @@ class KnowledgeStore:
         ]
         lines += ["", "## Caminhos"]
         lines += [
-            f"- {p.id} — {p.objective} — estado: {p.state} — evidências: {', '.join(p.evidence) or 'nenhuma'}"
+            f"- {p.id} — {p.objective} — estado: {p.state} — evidências: {', '.join(str(x) for x in p.evidence if x) or 'nenhuma'}"
             for p in k.paths
         ]
         lines += ["", "## Eventos"]
