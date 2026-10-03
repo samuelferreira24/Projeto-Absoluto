@@ -446,6 +446,24 @@ class RepositoryScanner:
                     }
                 )
 
+        capability_registry_path = self.root / "continuidade/07_conhecimento/capability_registry.json"
+        if capability_registry_path.is_file():
+            try:
+                capability_registry = json.loads(capability_registry_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                capability_registry = {}
+            for item in capability_registry.get("capabilities", []):
+                if not isinstance(item, dict) or not item.get("id"):
+                    continue
+                k.capabilities.append({
+                    "id": item["id"],
+                    "name": item.get("name", item["id"]),
+                    "state": item.get("status", "planned"),
+                    "source": "capability_registry",
+                    "category": item.get("category"),
+                    "evidence": item.get("evidence", []),
+                })
+
         paths = {f["path"] for f in files}
         for capability_id, (path_id, objective, origin, destination) in self.CAPABILITY_PATHS.items():
             module = next(
