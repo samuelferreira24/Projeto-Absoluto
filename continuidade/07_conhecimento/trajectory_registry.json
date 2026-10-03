@@ -57,15 +57,6 @@
       "source_ref": "continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md"
     },
     {
-      "id": "traj:handoff-points-research",
-      "source": "source:handoff",
-      "relation": "points_to",
-      "target": "source:research",
-      "status": "asserted",
-      "authority": "continuity",
-      "source_ref": "continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md"
-    },
-    {
       "id": "traj:handoff-points-state",
       "source": "source:handoff",
       "relation": "points_to",
