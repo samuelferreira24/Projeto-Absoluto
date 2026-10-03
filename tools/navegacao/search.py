@@ -2,13 +2,19 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sqlite3
 from pathlib import Path
 
 
-def safe_match_query(query: str) -> str:\n    """Converte linguagem livre em uma consulta FTS segura quando necessário."""\n    try:\n        tokens = re.findall(r"[\\wÀ-ÿ]+", query, flags=re.UNICODE)\n        return " OR ".join(f'"{token.replace(chr(34), chr(34)+chr(34))}"' for token in tokens) or query\n    except Exception:\n        return query\n\n\ndef search(conn: sqlite3.Connection, query: str, source: str | None, limit: int):
+def safe_match_query(query: str) -> str:
+    tokens = re.findall(r"[\wÀ-ÿ]+", query, flags=re.UNICODE)
+    return " OR ".join(f'"{token.replace(chr(34), chr(34) + chr(34))}"' for token in tokens) or query
+
+
+def _search_raw(conn: sqlite3.Connection, query: str, source: str | None, limit: int):
     if source:
-        rows = conn.execute(
+        return conn.execute(
             """SELECT d.id, d.source_id, d.path, d.title, d.root,
                       snippet(documents_fts, 2, '[', ']', '…', 32),
                       bm25(documents_fts), d.latest_commit, d.latest_commit_date
@@ -17,17 +23,22 @@ def safe_match_query(query: str) -> str:\n    """Converte linguagem livre em uma
                ORDER BY bm25(documents_fts) LIMIT ?""",
             (query, source, limit),
         ).fetchall()
-    else:
-        rows = conn.execute(
-            """SELECT d.id, d.source_id, d.path, d.title, d.root,
-                      snippet(documents_fts, 2, '[', ']', '…', 32),
-                      bm25(documents_fts), d.latest_commit, d.latest_commit_date
-               FROM documents_fts JOIN documents d ON d.id=documents_fts.rowid
-               WHERE documents_fts MATCH ?
-               ORDER BY bm25(documents_fts) LIMIT ?""",
-            (query, limit),
-        ).fetchall()
-    return rows
+    return conn.execute(
+        """SELECT d.id, d.source_id, d.path, d.title, d.root,
+                  snippet(documents_fts, 2, '[', ']', '…', 32),
+                  bm25(documents_fts), d.latest_commit, d.latest_commit_date
+           FROM documents_fts JOIN documents d ON d.id=documents_fts.rowid
+           WHERE documents_fts MATCH ?
+           ORDER BY bm25(documents_fts) LIMIT ?""",
+        (query, limit),
+    ).fetchall()
+
+
+def search(conn: sqlite3.Connection, query: str, source: str | None, limit: int):
+    try:
+        return _search_raw(conn, query, source, limit)
+    except sqlite3.OperationalError:
+        return _search_raw(conn, safe_match_query(query), source, limit)
 
 
 def search_symbols(conn: sqlite3.Connection, query: str, source: str | None, limit: int):
