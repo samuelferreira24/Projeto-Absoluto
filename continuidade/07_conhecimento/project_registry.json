@@ -150,6 +150,11 @@
       "id": "registry:project-knowledge",
       "path": "continuidade/07_conhecimento/project_knowledge.json",
       "scope": "estado derivado observável"
+    },
+    {
+      "id": "registry:closure",
+      "path": "continuidade/07_conhecimento/closure_registry.json",
+      "scope": "fechamento das capacidades parciais, planejadas e relações semânticas abertas"
     }
   ],
   "separation_rules": [
@@ -173,7 +178,8 @@
     "componentes físicos do abs_core identificados",
     "decisões explícitas registradas",
     "continuidade e trajetória registradas",
-    "separação entre atual, referência e histórico"
+    "separação entre atual, referência e histórico",
+    "registro explícito de todas as lacunas restantes e seus critérios de fechamento"
   ],
   "open_semantic_dimensions": [
     "genealogia decisão → evidência → implementação → resultado",
