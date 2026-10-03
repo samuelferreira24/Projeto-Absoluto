@@ -71,5 +71,7 @@ A pesquisa de trajetória bidirecional concluiu que o repositório deve preserva
 
 Referência: `docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md`.
 
+O inventário operacional das 72 capacidades está em `continuidade/07_conhecimento/capability_registry.json`, com índice humano em `docs/02_arquitetura/INVENTARIO_CAPACIDADES_ABS_V1.md`.
+
 O Project Knowledge agora projeta relações de trajetória observáveis. Isso não substitui Git, decisões, evidências ou fontes primárias.
 A implementação operacional está em `abs_core/trajectory.py`, com relações semânticas explícitas em `continuidade/07_conhecimento/trajectory_registry.json`; a travessia pode ser feita para frente ou para trás e é validada antes da projeção.
