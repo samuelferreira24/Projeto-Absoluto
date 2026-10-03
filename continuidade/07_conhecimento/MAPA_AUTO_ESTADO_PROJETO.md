@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28
-Momento da revisão: 2026-10-03T16:48:37-03:00
+Revisão observada: f8e6dfa76a91d5de985180d64881645757577126
+Momento da revisão: 2026-10-03T16:49:16-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -32,6 +32,78 @@ Momento da revisão: 2026-10-03T16:48:37-03:00
 - capability:codex — Codex code engineering — estado: observed
 - capability:internet-http — Internet HTTP — estado: observed
 - capability:orchestrator — ABS orchestration — estado: observed
+- capability:01 — Visão — estado: governança
+- capability:02 — Propósito e objetivos — estado: governança
+- capability:03 — Princípios — estado: governança
+- capability:04 — Identidade do Projeto — estado: governança
+- capability:05 — Governança — estado: governança
+- capability:06 — Critérios de decisão — estado: governança
+- capability:07 — Cérebro — estado: parcial
+- capability:08 — Conhecimento estruturado — estado: operacional
+- capability:09 — Memória temporal — estado: parcial
+- capability:10 — Histórico — estado: operacional
+- capability:11 — Grafo de relações — estado: operacional
+- capability:12 — Proveniência — estado: operacional
+- capability:13 — Pesquisa contínua — estado: parcial
+- capability:14 — Recuperação contextual — estado: operacional
+- capability:15 — Experiência — estado: parcial
+- capability:16 — Aprendizado — estado: parcial
+- capability:17 — Sabedoria operacional — estado: parcial
+- capability:18 — Arquitetura — estado: operacional
+- capability:19 — Fundação — estado: operacional
+- capability:20 — Estado — estado: operacional
+- capability:21 — Contratos e interfaces — estado: operacional
+- capability:22 — Integração — estado: operacional
+- capability:23 — Testes — estado: operacional
+- capability:24 — Verificação — estado: operacional
+- capability:25 — Validação — estado: parcial
+- capability:26 — Observabilidade — estado: parcial
+- capability:27 — Auditoria — estado: parcial
+- capability:28 — Evolução arquitetural — estado: parcial
+- capability:29 — Continuidade entre IAs — estado: operacional
+- capability:30 — Contexto transferível — estado: operacional
+- capability:31 — Estado transferível — estado: operacional
+- capability:32 — Handoff — estado: operacional
+- capability:33 — Portabilidade — estado: operacional
+- capability:34 — Registro de agentes — estado: parcial
+- capability:35 — Multi-IA — estado: parcial
+- capability:36 — Orquestração — estado: operacional
+- capability:37 — Delegação — estado: operacional
+- capability:38 — Supervisão — estado: parcial
+- capability:39 — Meta-supervisão — estado: parcial
+- capability:40 — Auditoria independente — estado: parcial
+- capability:41 — Automação — estado: operacional
+- capability:42 — Eventos — estado: operacional
+- capability:43 — Ledger/histórico operacional — estado: operacional
+- capability:44 — Idempotência — estado: parcial
+- capability:45 — Filas e processamento futuro — estado: parcial
+- capability:46 — Monitoramento — estado: parcial
+- capability:47 — Detecção de oportunidades — estado: planejada
+- capability:48 — Execução contínua — estado: parcial
+- capability:49 — Operação 24/7 — estado: planejada
+- capability:50 — Controle de recursos — estado: operacional
+- capability:51 — GitHub — estado: operacional
+- capability:52 — Outras plataformas — estado: parcial
+- capability:53 — Contas e sessões — estado: operacional
+- capability:54 — APIs — estado: operacional
+- capability:55 — Ferramentas externas — estado: operacional
+- capability:56 — Interfaces de comando — estado: operacional
+- capability:57 — Adaptadores — estado: operacional
+- capability:58 — Padrões de interoperabilidade — estado: parcial
+- capability:59 — Segurança — estado: operacional
+- capability:60 — Permissões — estado: operacional
+- capability:61 — Níveis de autonomia — estado: operacional
+- capability:62 — Escalonamento humano — estado: operacional
+- capability:63 — Controle de ações de alto impacto — estado: operacional
+- capability:64 — Detecção de conflitos — estado: parcial
+- capability:65 — Red team / desafio independente — estado: parcial
+- capability:66 — Recuperação e continuidade operacional — estado: operacional
+- capability:67 — Novas capacidades — estado: parcial
+- capability:68 — Novos recursos — estado: parcial
+- capability:69 — Sistemas derivados — estado: parcial
+- capability:70 — Escala — estado: parcial
+- capability:71 — Capacidades ainda desconhecidas — estado: planejada
+- capability:72 — Oportunidades descobertas durante a construção — estado: planejada
 
 ## Recursos
 - resource:repository — Projeto-Absoluto — estado: observed
@@ -998,6 +1070,9 @@ Momento da revisão: 2026-10-03T16:48:37-03:00
 - commit:ae2b1833c08a0aad6b2012fb2f46baac30925279 — None — estado: unknown
 - commit:257053c7e8fda19efa6f5589de9537b6debf6201 — None — estado: unknown
 - commit:2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28 — None — estado: unknown
+- commit:5737e9134c55e6156e163095c4982dda3686e852 — None — estado: unknown
+- commit:6e59b46c819cf4819f6bbd322a3ba938e50018cf — None — estado: unknown
+- commit:f8e6dfa76a91d5de985180d64881645757577126 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1010,19 +1085,19 @@ Momento da revisão: 2026-10-03T16:48:37-03:00
 - source:history — None — estado: unknown
 - source:trajectory-registry — None — estado: unknown
 - source:capability-registry — None — estado: unknown
-- evidence:repository:d2de00514b4c — None — estado: unknown
-- event:repository-scan:d2de00514b4c — None — estado: unknown
-- event:commit-observed:2b10e5b04da8 — None — estado: unknown
+- evidence:repository:244832b3284e — None — estado: unknown
+- event:repository-scan:244832b3284e — None — estado: unknown
+- event:commit-observed:f8e6dfa76a91 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:9bfa34076f0b
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:e5ccd91eb3ab
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:d2de00514b4c — repository_scanned — revisão: 2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28
-- event:commit-observed:2b10e5b04da8 — commit_observed — revisão: 2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28
-- event:test:9bfa34076f0b — tests_observed — revisão: n/a
+- event:repository-scan:244832b3284e — repository_scanned — revisão: f8e6dfa76a91d5de985180d64881645757577126
+- event:commit-observed:f8e6dfa76a91 — commit_observed — revisão: f8e6dfa76a91d5de985180d64881645757577126
+- event:test:e5ccd91eb3ab — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -2395,15 +2470,22 @@ Momento da revisão: 2026-10-03T16:48:37-03:00
 - commit:ae2b1833c08a0aad6b2012fb2f46baac30925279 — precedes → commit:257053c7e8fda19efa6f5589de9537b6debf6201 — asserted
 - commit:257053c7e8fda19efa6f5589de9537b6debf6201 — changed → file:00_IA_NAVEGACAO.md — asserted
 - commit:257053c7e8fda19efa6f5589de9537b6debf6201 — precedes → commit:2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28 — asserted
-- event:repository-scan:d2de00514b4c — generated → evidence:repository:d2de00514b4c — asserted
-- commit:2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28 — observed_by → event:repository-scan:d2de00514b4c — asserted
+- commit:2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28 — precedes → commit:5737e9134c55e6156e163095c4982dda3686e852 — asserted
+- commit:5737e9134c55e6156e163095c4982dda3686e852 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:5737e9134c55e6156e163095c4982dda3686e852 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:5737e9134c55e6156e163095c4982dda3686e852 — precedes → commit:6e59b46c819cf4819f6bbd322a3ba938e50018cf — asserted
+- commit:6e59b46c819cf4819f6bbd322a3ba938e50018cf — changed → file:abs_core/project_knowledge.py — asserted
+- commit:6e59b46c819cf4819f6bbd322a3ba938e50018cf — precedes → commit:f8e6dfa76a91d5de985180d64881645757577126 — asserted
+- commit:f8e6dfa76a91d5de985180d64881645757577126 — changed → file:tests/test_project_knowledge.py — asserted
+- event:repository-scan:244832b3284e — generated → evidence:repository:244832b3284e — asserted
+- commit:f8e6dfa76a91d5de985180d64881645757577126 — observed_by → event:repository-scan:244832b3284e — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:d2de00514b4c — repository_scan — observed — 337 files indexed at revision 2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28
-- evidence:test:9bfa34076f0b — test — tested — 125 passed in 6.73s
+- evidence:repository:244832b3284e — repository_scan — observed — 337 files indexed at revision f8e6dfa76a91d5de985180d64881645757577126
+- evidence:test:e5ccd91eb3ab — test — tested — 126 passed in 6.76s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
