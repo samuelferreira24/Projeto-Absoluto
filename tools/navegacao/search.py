@@ -6,7 +6,7 @@ import sqlite3
 from pathlib import Path
 
 
-def search(conn: sqlite3.Connection, query: str, source: str | None, limit: int):
+def safe_match_query(query: str) -> str:\n    """Converte linguagem livre em uma consulta FTS segura quando necessário."""\n    try:\n        tokens = re.findall(r"[\\wÀ-ÿ]+", query, flags=re.UNICODE)\n        return " OR ".join(f'"{token.replace(chr(34), chr(34)+chr(34))}"' for token in tokens) or query\n    except Exception:\n        return query\n\n\ndef search(conn: sqlite3.Connection, query: str, source: str | None, limit: int):
     if source:
         rows = conn.execute(
             """SELECT d.id, d.source_id, d.path, d.title, d.root,
