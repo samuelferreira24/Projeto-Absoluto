@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T16:49:16-03:00",
-  "source_revision": "f8e6dfa76a91d5de985180d64881645757577126",
+  "generated_at": "2026-10-03T16:50:06-03:00",
+  "source_revision": "d50c8ee13824a0f8d760c1f57901144206d82bb1",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "f8e6dfa76a91d5de985180d64881645757577126",
-      "commit_subject": "test: validar projecao do inventario de capacidades"
+      "revision": "d50c8ee13824a0f8d760c1f57901144206d82bb1",
+      "commit_subject": "docs: completar inventario fisico do ABS Core"
     }
   ],
   "tools": [
@@ -6657,6 +6657,20 @@
       "sha": "f8e6dfa76a91d5de985180d64881645757577126"
     },
     {
+      "id": "commit:950679f30c71fa6713e03618a09a0c5922069f72",
+      "kind": "commit",
+      "at": "2026-10-03T19:49:36Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "950679f30c71fa6713e03618a09a0c5922069f72"
+    },
+    {
+      "id": "commit:d50c8ee13824a0f8d760c1f57901144206d82bb1",
+      "kind": "commit",
+      "at": "2026-10-03T16:50:06-03:00",
+      "subject": "docs: completar inventario fisico do ABS Core",
+      "sha": "d50c8ee13824a0f8d760c1f57901144206d82bb1"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -6753,23 +6767,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:244832b3284e",
+      "id": "evidence:repository:fd5fc73ed242",
       "kind": "evidence",
-      "at": "2026-10-03T16:49:16-03:00",
+      "at": "2026-10-03T16:50:06-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:244832b3284e",
+      "id": "event:repository-scan:fd5fc73ed242",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-03T16:49:16-03:00"
+      "at": "2026-10-03T16:50:06-03:00"
     },
     {
-      "id": "event:commit-observed:f8e6dfa76a91",
+      "id": "event:commit-observed:d50c8ee13824",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-03T16:49:16-03:00"
+      "at": "2026-10-03T16:50:06-03:00"
     }
   ],
   "paths": [
@@ -6804,11 +6818,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:e5ccd91eb3ab"
+        "evidence:test:d236ec9a0e54"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T16:49:16-03:00"
+      "last_validated": "2026-10-03T16:50:06-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -6831,49 +6845,49 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:244832b3284e",
+      "id": "evidence:repository:fd5fc73ed242",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T16:49:16-03:00",
+      "observed_at": "2026-10-03T16:50:06-03:00",
       "status": "observed",
-      "detail": "337 files indexed at revision f8e6dfa76a91d5de985180d64881645757577126"
+      "detail": "337 files indexed at revision d50c8ee13824a0f8d760c1f57901144206d82bb1"
     },
     {
-      "id": "evidence:test:e5ccd91eb3ab",
+      "id": "evidence:test:d236ec9a0e54",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T16:49:16-03:00",
+      "observed_at": "2026-10-03T16:50:06-03:00",
       "status": "tested",
-      "detail": "126 passed in 6.76s"
+      "detail": "126 passed in 6.78s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:244832b3284e",
+      "id": "event:repository-scan:fd5fc73ed242",
       "type": "repository_scanned",
-      "at": "2026-10-03T16:49:16-03:00",
-      "revision": "f8e6dfa76a91d5de985180d64881645757577126",
+      "at": "2026-10-03T16:50:06-03:00",
+      "revision": "d50c8ee13824a0f8d760c1f57901144206d82bb1",
       "file_count": 337,
-      "evidence_id": "evidence:repository:244832b3284e"
+      "evidence_id": "evidence:repository:fd5fc73ed242"
     },
     {
-      "id": "event:commit-observed:f8e6dfa76a91",
+      "id": "event:commit-observed:d50c8ee13824",
       "type": "commit_observed",
-      "at": "2026-10-03T16:49:16-03:00",
-      "revision": "f8e6dfa76a91d5de985180d64881645757577126",
+      "at": "2026-10-03T16:50:06-03:00",
+      "revision": "d50c8ee13824a0f8d760c1f57901144206d82bb1",
       "branch": "main",
-      "subject": "test: validar projecao do inventario de capacidades",
+      "subject": "docs: completar inventario fisico do ABS Core",
       "changed_files": [
-        "tests/test_project_knowledge.py"
+        "docs/02_arquitetura/INVENTARIO_CAPACIDADES_ABS_V1.md"
       ]
     },
     {
-      "id": "event:test:e5ccd91eb3ab",
+      "id": "event:test:d236ec9a0e54",
       "type": "tests_observed",
-      "at": "2026-10-03T16:49:16-03:00",
+      "at": "2026-10-03T16:50:06-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:e5ccd91eb3ab"
+      "evidence_id": "evidence:test:d236ec9a0e54"
     }
   ],
   "knowledge_sources": [
@@ -6929,7 +6943,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "332c920eb3b1c67f1958517dfaa74375ab1c3da3c6008cf450fa6bb1c0c9c158"
+      "sha256": "1fdcae80bc03458549bf6388de8497fd86cf64f79ef4c48ca748f0a787e2ac3a"
     },
     {
       "id": "source:session",
@@ -26266,12 +26280,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:244832b3284e",
-      "source": "event:repository-scan:244832b3284e",
-      "relation": "generated",
-      "target": "evidence:repository:244832b3284e",
+      "id": "rel:commit-precedes:f8e6dfa76a91:950679f30c71",
+      "source": "commit:f8e6dfa76a91d5de985180d64881645757577126",
+      "relation": "precedes",
+      "target": "commit:950679f30c71fa6713e03618a09a0c5922069f72",
       "status": "asserted",
-      "at": "2026-10-03T16:49:16-03:00",
+      "at": "2026-10-03T19:49:36Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:950679f30c71:032adc3624d7",
+      "source": "commit:950679f30c71fa6713e03618a09a0c5922069f72",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-03T19:49:36Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:950679f30c71:d64178c49886",
+      "source": "commit:950679f30c71fa6713e03618a09a0c5922069f72",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-03T19:49:36Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:950679f30c71:d50c8ee13824",
+      "source": "commit:950679f30c71fa6713e03618a09a0c5922069f72",
+      "relation": "precedes",
+      "target": "commit:d50c8ee13824a0f8d760c1f57901144206d82bb1",
+      "status": "asserted",
+      "at": "2026-10-03T16:50:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d50c8ee13824:d8c6481ced3e",
+      "source": "commit:d50c8ee13824a0f8d760c1f57901144206d82bb1",
+      "relation": "changed",
+      "target": "file:docs/02_arquitetura/INVENTARIO_CAPACIDADES_ABS_V1.md",
+      "status": "asserted",
+      "at": "2026-10-03T16:50:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:fd5fc73ed242",
+      "source": "event:repository-scan:fd5fc73ed242",
+      "relation": "generated",
+      "target": "evidence:repository:fd5fc73ed242",
+      "status": "asserted",
+      "at": "2026-10-03T16:50:06-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -26280,12 +26364,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:f8e6dfa76a91",
-      "source": "commit:f8e6dfa76a91d5de985180d64881645757577126",
+      "id": "rel:scan-commit:d50c8ee13824",
+      "source": "commit:d50c8ee13824a0f8d760c1f57901144206d82bb1",
       "relation": "observed_by",
-      "target": "event:repository-scan:244832b3284e",
+      "target": "event:repository-scan:fd5fc73ed242",
       "status": "asserted",
-      "at": "2026-10-03T16:49:16-03:00",
+      "at": "2026-10-03T16:50:06-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
