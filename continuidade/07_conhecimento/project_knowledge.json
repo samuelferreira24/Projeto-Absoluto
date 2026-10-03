@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T17:04:28-03:00",
-  "source_revision": "847f6a89699532310fc09100e189aea2e1539f22",
+  "generated_at": "2026-10-03T17:05:40-03:00",
+  "source_revision": "d114e3f816ecc6497c0083acdbc65bc8aceeb936",
   "components": [
     {
       "id": "component:abs_core",
@@ -17,12 +17,12 @@
     {
       "id": "component:continuity",
       "kind": "continuity",
-      "file_count": 22
+      "file_count": 23
     },
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 57
+      "file_count": 58
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "847f6a89699532310fc09100e189aea2e1539f22",
-      "commit_subject": "fix: corrigir referencias do registro de decisoes"
+      "revision": "d114e3f816ecc6497c0083acdbc65bc8aceeb936",
+      "commit_subject": "chore: atualizar contagem do inventario estrutural"
     }
   ],
   "tools": [
@@ -2595,6 +2595,11 @@
       "path": "continuidade/07_conhecimento/project_knowledge.json"
     },
     {
+      "id": "file:continuidade/07_conhecimento/project_registry.json",
+      "kind": "file",
+      "path": "continuidade/07_conhecimento/project_registry.json"
+    },
+    {
       "id": "file:continuidade/07_conhecimento/trajectory_registry.json",
       "kind": "file",
       "path": "continuidade/07_conhecimento/trajectory_registry.json"
@@ -2638,6 +2643,11 @@
       "id": "file:docs/00_GOVERNANCA_INFORMACAO.md",
       "kind": "file",
       "path": "docs/00_GOVERNANCA_INFORMACAO.md"
+    },
+    {
+      "id": "file:docs/00_GOVERNANCA_INVENTARIO_PROJETO_V1.md",
+      "kind": "file",
+      "path": "docs/00_GOVERNANCA_INVENTARIO_PROJETO_V1.md"
     },
     {
       "id": "file:docs/00_MODELO_PROJETO_ABSOLUTO.md",
@@ -6697,6 +6707,55 @@
       "sha": "847f6a89699532310fc09100e189aea2e1539f22"
     },
     {
+      "id": "commit:2f167d271a8f1f08b2d113854d98773e81d58e8f",
+      "kind": "commit",
+      "at": "2026-10-03T20:04:44Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "2f167d271a8f1f08b2d113854d98773e81d58e8f"
+    },
+    {
+      "id": "commit:598d4be9a321638cdbd909e4c374ba55bcfebc0d",
+      "kind": "commit",
+      "at": "2026-10-03T17:04:48-03:00",
+      "subject": "docs: criar inventario estrutural completo do projeto",
+      "sha": "598d4be9a321638cdbd909e4c374ba55bcfebc0d"
+    },
+    {
+      "id": "commit:e8ac78b8ef930b3cacb4833af8e1e01d5c4944fd",
+      "kind": "commit",
+      "at": "2026-10-03T17:05:03-03:00",
+      "subject": "docs: documentar modelo completo de objetos do projeto",
+      "sha": "e8ac78b8ef930b3cacb4833af8e1e01d5c4944fd"
+    },
+    {
+      "id": "commit:35b7c386df418ae5e089a927051e9352dae349fa",
+      "kind": "commit",
+      "at": "2026-10-03T17:05:09-03:00",
+      "subject": "feat: integrar registros semanticos do projeto ao Project Knowledge",
+      "sha": "35b7c386df418ae5e089a927051e9352dae349fa"
+    },
+    {
+      "id": "commit:1fdeda5d7427766e79716b3e85c679019171b80a",
+      "kind": "commit",
+      "at": "2026-10-03T17:05:15-03:00",
+      "subject": "test: validar registros semanticos do projeto",
+      "sha": "1fdeda5d7427766e79716b3e85c679019171b80a"
+    },
+    {
+      "id": "commit:5d991f83c62d69d423235c23c4c4131a6f0e21bc",
+      "kind": "commit",
+      "at": "2026-10-03T17:05:20-03:00",
+      "subject": "docs: ligar navegacao ao inventario estrutural completo",
+      "sha": "5d991f83c62d69d423235c23c4c4131a6f0e21bc"
+    },
+    {
+      "id": "commit:d114e3f816ecc6497c0083acdbc65bc8aceeb936",
+      "kind": "commit",
+      "at": "2026-10-03T17:05:40-03:00",
+      "subject": "chore: atualizar contagem do inventario estrutural",
+      "sha": "d114e3f816ecc6497c0083acdbc65bc8aceeb936"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -6793,23 +6852,39 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:2a4b51f0a492",
+      "id": "source:decision-registry",
+      "kind": "knowledge_source",
+      "path": "continuidade/07_conhecimento/decision_registry.json",
+      "authority": "human_authority",
+      "temporal": "current",
+      "status": "present"
+    },
+    {
+      "id": "source:project-registry",
+      "kind": "knowledge_source",
+      "path": "continuidade/07_conhecimento/project_registry.json",
+      "authority": "project_governance",
+      "temporal": "current",
+      "status": "present"
+    },
+    {
+      "id": "evidence:repository:251c4b07c7e2",
       "kind": "evidence",
-      "at": "2026-10-03T17:04:28-03:00",
+      "at": "2026-10-03T17:05:40-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:2a4b51f0a492",
+      "id": "event:repository-scan:251c4b07c7e2",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-03T17:04:28-03:00"
+      "at": "2026-10-03T17:05:40-03:00"
     },
     {
-      "id": "event:commit-observed:847f6a896995",
+      "id": "event:commit-observed:d114e3f816ec",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-03T17:04:28-03:00"
+      "at": "2026-10-03T17:05:40-03:00"
     }
   ],
   "paths": [
@@ -6844,11 +6919,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:47716569ff08"
+        "evidence:test:102b8fe7472b"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T17:04:28-03:00"
+      "last_validated": "2026-10-03T17:05:40-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -6871,49 +6946,146 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:2a4b51f0a492",
+      "id": "evidence:repository:251c4b07c7e2",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T17:04:28-03:00",
+      "observed_at": "2026-10-03T17:05:40-03:00",
       "status": "observed",
-      "detail": "338 files indexed at revision 847f6a89699532310fc09100e189aea2e1539f22"
+      "detail": "340 files indexed at revision d114e3f816ecc6497c0083acdbc65bc8aceeb936"
     },
     {
-      "id": "evidence:test:47716569ff08",
+      "id": "evidence:test:102b8fe7472b",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T17:04:28-03:00",
+      "observed_at": "2026-10-03T17:05:40-03:00",
       "status": "tested",
-      "detail": "126 passed in 6.75s"
+      "detail": "127 passed in 6.50s"
     }
   ],
-  "decisions": [],
-  "events": [
+  "decisions": [
     {
-      "id": "event:repository-scan:2a4b51f0a492",
-      "type": "repository_scanned",
-      "at": "2026-10-03T17:04:28-03:00",
-      "revision": "847f6a89699532310fc09100e189aea2e1539f22",
-      "file_count": 338,
-      "evidence_id": "evidence:repository:2a4b51f0a492"
-    },
-    {
-      "id": "event:commit-observed:847f6a896995",
-      "type": "commit_observed",
-      "at": "2026-10-03T17:04:28-03:00",
-      "revision": "847f6a89699532310fc09100e189aea2e1539f22",
-      "branch": "main",
-      "subject": "fix: corrigir referencias do registro de decisoes",
-      "changed_files": [
-        "continuidade/07_conhecimento/decision_registry.json"
+      "id": "decision:abs-not-mars",
+      "title": "ABS não é Marte",
+      "kind": "identity_correction",
+      "status": "established",
+      "origin_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#ABS-não-é-Marte",
+      "consequence_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#ABS-não-é-Marte",
+      "supersedes": [],
+      "evidence_refs": [
+        "source:decisions"
       ]
     },
     {
-      "id": "event:test:47716569ff08",
+      "id": "decision:abs-not-cerebro",
+      "title": "ABS não é Cérebro",
+      "kind": "identity_correction",
+      "status": "established",
+      "origin_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#ABS-não-é-Cérebro",
+      "consequence_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#ABS-não-é-Cérebro",
+      "supersedes": [],
+      "evidence_refs": [
+        "source:decisions"
+      ]
+    },
+    {
+      "id": "decision:abs-general-vs-construction",
+      "title": "Distinção entre ABS geral e ABS em construção",
+      "kind": "architecture_identity",
+      "status": "established",
+      "origin_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#Distinção-entre-ABS-geral-e-ABS-em-construção",
+      "consequence_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#Distinção-entre-ABS-geral-e-ABS-em-construção",
+      "supersedes": [],
+      "evidence_refs": [
+        "source:decisions"
+      ]
+    },
+    {
+      "id": "decision:android-not-abs",
+      "title": "Android não é ABS",
+      "kind": "identity_correction",
+      "status": "established",
+      "origin_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#Android-não-é-ABS",
+      "consequence_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#Android-não-é-ABS",
+      "supersedes": [],
+      "evidence_refs": [
+        "source:decisions"
+      ]
+    },
+    {
+      "id": "decision:system-not-ai",
+      "title": "Sistema não é IA",
+      "kind": "architecture_identity",
+      "status": "established",
+      "origin_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#Sistema-não-é-IA",
+      "consequence_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#Sistema-não-é-IA",
+      "supersedes": [],
+      "evidence_refs": [
+        "source:decisions"
+      ]
+    },
+    {
+      "id": "decision:legacy-not-trash",
+      "title": "Sistema antigo não é lixo",
+      "kind": "historical_policy",
+      "status": "established",
+      "origin_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#Sistema-antigo-não-é-lixo",
+      "consequence_ref": "continuidade/03_decisoes_CORRECOES_E_REGRAS.md#Sistema-antigo-não-é-lixo",
+      "supersedes": [],
+      "evidence_refs": [
+        "source:decisions"
+      ]
+    },
+    {
+      "id": "decision:mini-brain-not-brain",
+      "title": "Mini-Cérebro não substitui Cérebro",
+      "kind": "architecture_identity",
+      "status": "established",
+      "origin_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#Mini-Cérebro-não-substitui-Cérebro",
+      "consequence_ref": "continuidade/03_decisoes_CORRECOES_E_REGRAS.md#Mini-Cérebro-não-substitui-Cérebro",
+      "supersedes": [],
+      "evidence_refs": [
+        "source:decisions"
+      ]
+    },
+    {
+      "id": "decision:investigation-vs-construction",
+      "title": "Construção e investigação são distintas",
+      "kind": "process_policy",
+      "status": "established",
+      "origin_ref": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md#Construção-e-investigação",
+      "consequence_ref": "continuidade/03_decisoes_CORRECOES_E_REGRAS.md#Construção-e-investigação",
+      "supersedes": [],
+      "evidence_refs": [
+        "source:decisions"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "event:repository-scan:251c4b07c7e2",
+      "type": "repository_scanned",
+      "at": "2026-10-03T17:05:40-03:00",
+      "revision": "d114e3f816ecc6497c0083acdbc65bc8aceeb936",
+      "file_count": 340,
+      "evidence_id": "evidence:repository:251c4b07c7e2"
+    },
+    {
+      "id": "event:commit-observed:d114e3f816ec",
+      "type": "commit_observed",
+      "at": "2026-10-03T17:05:40-03:00",
+      "revision": "d114e3f816ecc6497c0083acdbc65bc8aceeb936",
+      "branch": "main",
+      "subject": "chore: atualizar contagem do inventario estrutural",
+      "changed_files": [
+        "continuidade/07_conhecimento/project_registry.json"
+      ]
+    },
+    {
+      "id": "event:test:102b8fe7472b",
       "type": "tests_observed",
-      "at": "2026-10-03T17:04:28-03:00",
+      "at": "2026-10-03T17:05:40-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:47716569ff08"
+      "evidence_id": "evidence:test:102b8fe7472b"
     }
   ],
   "knowledge_sources": [
@@ -6969,7 +7141,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "49840276eac0ee3345e3951401f8f9f48f5bc0fb80e6f0e779793c01751ceb9a"
+      "sha256": "46fed237e094818d09c21be176f4bfb991d27871117490aa93a95f6ea8288dd2"
     },
     {
       "id": "source:session",
@@ -6996,7 +7168,7 @@
       "authority": "project_governance",
       "temporal": "current",
       "status": "present",
-      "sha256": "e031bffcd14b16472713258ca04b2b2e9f737b53c915c227e6d98fe07502d757"
+      "sha256": "fbc26f2c3dff49d9578bc6453ee45a7b598f41e87cacaa99001664a916220df2"
     },
     {
       "id": "source:history",
@@ -7024,6 +7196,24 @@
       "temporal": "current",
       "status": "present",
       "sha256": "d938303c4f7891296287423db592a4bbc644fa27f7e5385768ab4cdf2f4a979d"
+    },
+    {
+      "id": "source:decision-registry",
+      "path": "continuidade/07_conhecimento/decision_registry.json",
+      "layer": "decision_registry",
+      "authority": "human_authority",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "56c139af515f91b663812fb198f2fe7b0502ebf6f411a7771019bcd8f8d56e2b"
+    },
+    {
+      "id": "source:project-registry",
+      "path": "continuidade/07_conhecimento/project_registry.json",
+      "layer": "project_registry",
+      "authority": "project_governance",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "b8673d63da9f817e7bcb29a6cddc54c3bd4730c3e7126c87529ee5b21795826d"
     }
   ],
   "relations": [
@@ -26474,12 +26664,222 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:2a4b51f0a492",
-      "source": "event:repository-scan:2a4b51f0a492",
-      "relation": "generated",
-      "target": "evidence:repository:2a4b51f0a492",
+      "id": "rel:commit-precedes:847f6a896995:2f167d271a8f",
+      "source": "commit:847f6a89699532310fc09100e189aea2e1539f22",
+      "relation": "precedes",
+      "target": "commit:2f167d271a8f1f08b2d113854d98773e81d58e8f",
       "status": "asserted",
-      "at": "2026-10-03T17:04:28-03:00",
+      "at": "2026-10-03T20:04:44Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2f167d271a8f:032adc3624d7",
+      "source": "commit:2f167d271a8f1f08b2d113854d98773e81d58e8f",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-03T20:04:44Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2f167d271a8f:d64178c49886",
+      "source": "commit:2f167d271a8f1f08b2d113854d98773e81d58e8f",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-03T20:04:44Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:2f167d271a8f:598d4be9a321",
+      "source": "commit:2f167d271a8f1f08b2d113854d98773e81d58e8f",
+      "relation": "precedes",
+      "target": "commit:598d4be9a321638cdbd909e4c374ba55bcfebc0d",
+      "status": "asserted",
+      "at": "2026-10-03T17:04:48-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:598d4be9a321:6ee99128e000",
+      "source": "commit:598d4be9a321638cdbd909e4c374ba55bcfebc0d",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_registry.json",
+      "status": "asserted",
+      "at": "2026-10-03T17:04:48-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:598d4be9a321:e8ac78b8ef93",
+      "source": "commit:598d4be9a321638cdbd909e4c374ba55bcfebc0d",
+      "relation": "precedes",
+      "target": "commit:e8ac78b8ef930b3cacb4833af8e1e01d5c4944fd",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:03-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e8ac78b8ef93:899861900a29",
+      "source": "commit:e8ac78b8ef930b3cacb4833af8e1e01d5c4944fd",
+      "relation": "changed",
+      "target": "file:docs/00_GOVERNANCA_INVENTARIO_PROJETO_V1.md",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:03-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:e8ac78b8ef93:35b7c386df41",
+      "source": "commit:e8ac78b8ef930b3cacb4833af8e1e01d5c4944fd",
+      "relation": "precedes",
+      "target": "commit:35b7c386df418ae5e089a927051e9352dae349fa",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:09-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:35b7c386df41:0494dc56ffe7",
+      "source": "commit:35b7c386df418ae5e089a927051e9352dae349fa",
+      "relation": "changed",
+      "target": "file:abs_core/project_knowledge.py",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:09-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:35b7c386df41:1fdeda5d7427",
+      "source": "commit:35b7c386df418ae5e089a927051e9352dae349fa",
+      "relation": "precedes",
+      "target": "commit:1fdeda5d7427766e79716b3e85c679019171b80a",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:15-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1fdeda5d7427:0ca5291c110c",
+      "source": "commit:1fdeda5d7427766e79716b3e85c679019171b80a",
+      "relation": "changed",
+      "target": "file:tests/test_project_knowledge.py",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:15-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:1fdeda5d7427:5d991f83c62d",
+      "source": "commit:1fdeda5d7427766e79716b3e85c679019171b80a",
+      "relation": "precedes",
+      "target": "commit:5d991f83c62d69d423235c23c4c4131a6f0e21bc",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:5d991f83c62d:55b2c60454c3",
+      "source": "commit:5d991f83c62d69d423235c23c4c4131a6f0e21bc",
+      "relation": "changed",
+      "target": "file:00_IA_NAVEGACAO.md",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:5d991f83c62d:d114e3f816ec",
+      "source": "commit:5d991f83c62d69d423235c23c4c4131a6f0e21bc",
+      "relation": "precedes",
+      "target": "commit:d114e3f816ecc6497c0083acdbc65bc8aceeb936",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:40-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d114e3f816ec:6ee99128e000",
+      "source": "commit:d114e3f816ecc6497c0083acdbc65bc8aceeb936",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_registry.json",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:40-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:251c4b07c7e2",
+      "source": "event:repository-scan:251c4b07c7e2",
+      "relation": "generated",
+      "target": "evidence:repository:251c4b07c7e2",
+      "status": "asserted",
+      "at": "2026-10-03T17:05:40-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -26488,12 +26888,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:847f6a896995",
-      "source": "commit:847f6a89699532310fc09100e189aea2e1539f22",
+      "id": "rel:scan-commit:d114e3f816ec",
+      "source": "commit:d114e3f816ecc6497c0083acdbc65bc8aceeb936",
       "relation": "observed_by",
-      "target": "event:repository-scan:2a4b51f0a492",
+      "target": "event:repository-scan:251c4b07c7e2",
       "status": "asserted",
-      "at": "2026-10-03T17:04:28-03:00",
+      "at": "2026-10-03T17:05:40-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
