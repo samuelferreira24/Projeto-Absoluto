@@ -372,7 +372,6 @@ class KnowledgeStore:
             for x in k.knowledge_sources
         ]
         lines += ["", "## Componentes"]
-        ]
         lines += [
             f"- {x['id']} — {x['kind']} ({x['file_count']} arquivos)"
             for x in k.components
