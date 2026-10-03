@@ -71,3 +71,25 @@ Em particular:
 - **ABS V1** = primeira versão operacional do ABS em construção.
 
 A finalidade da camada de conhecimento é permitir que uma nova IA reconstrua também o **entendimento operacional necessário para continuar o trabalho**, e não apenas uma fotografia dos arquivos existentes.
+
+
+## Aplicação prática da arquitetura de preservação — 2026-10-03
+
+A arquitetura deixou de ser somente documentação.
+
+O `abs_core.project_knowledge` agora registra automaticamente as **camadas de continuidade** como fontes observáveis, incluindo:
+- visão/princípios;
+- decisões;
+- pesquisa;
+- contrato de evidência;
+- estado derivado;
+- estado de sessão;
+- handoff;
+- navegação;
+- arquivo histórico.
+
+Cada fonte registrada possui, quando disponível, **caminho, camada, autoridade, temporalidade, presença e hash SHA-256**. Isso cria uma ponte verificável entre a pesquisa de continuidade e o Project Knowledge.
+
+A automação não promove interpretação para autoridade humana. Ela observa e indexa; decisões continuam sendo registradas na fonte de decisões e estado técnico continua sendo derivado de evidências.
+
+Os testes agora verificam que essas camadas continuam presentes e expostas na projeção automática. Uma regressão que reduza novamente a continuidade a um único handoff deve falhar na validação.
