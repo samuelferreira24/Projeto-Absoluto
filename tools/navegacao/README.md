@@ -81,6 +81,7 @@ python -m tools.navegacao.inspect --db .abs-navigation/index.sqlite \
 ```bash
 python -m tools.navegacao.verify --db .abs-navigation/index.sqlite
 python -m tools.navegacao.verify --db .abs-navigation/index.sqlite --source projeto-absoluto
+python -m tools.navegacao.verify --db .abs-navigation/index.sqlite --rebuild
 ```
 
 A verificação compara SHA-256 do conteúdo indexado com a fonte atual. Se houver alteração externa, o resultado é marcado como `hash_mismatch`; se a fonte desapareceu, `missing`.
