@@ -71,7 +71,8 @@ A pesquisa de trajetória bidirecional concluiu que o repositório deve preserva
 
 Referência: `docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md`.
 
-O inventário estrutural de todo o Projeto está em `continuidade/07_conhecimento/project_registry.json` e o modelo de objetos em `docs/00_GOVERNANCA_INVENTARIO_PROJETO_V1.md`. O inventário de decisões explícitas está em `continuidade/07_conhecimento/decision_registry.json`.
+O inventário estrutural de todo o Projeto está em `continuidade/07_conhecimento/project_registry.json
+- `continuidade/07_conhecimento/closure_registry.json` — fechamento controlado das lacunas restantes.` e o modelo de objetos em `docs/00_GOVERNANCA_INVENTARIO_PROJETO_V1.md`. O inventário de decisões explícitas está em `continuidade/07_conhecimento/decision_registry.json`.
 
 O inventário operacional das 72 capacidades está em `continuidade/07_conhecimento/capability_registry.json`, com índice humano em `docs/02_arquitetura/INVENTARIO_CAPACIDADES_ABS_V1.md`.
 
