@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 7153a3bb9b05b0f4e7609a280a94ed60cb96e581
-Momento da revisão: 2026-10-03T16:11:54-03:00
+Revisão observada: a2ad07b4038ce58a722e1ff0686686a28032b540
+Momento da revisão: 2026-10-03T16:35:39-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -16,15 +16,16 @@ Momento da revisão: 2026-10-03T16:11:54-03:00
 - source:handoff — handoff — continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md — present — autoridade: continuity — temporalidade: current
 - source:navigation — navigation — 00_IA_NAVEGACAO.md — present — autoridade: project_governance — temporalidade: current
 - source:history — history_archive — 99_arquivo/README.md — present — autoridade: historical_archive — temporalidade: historical
+- source:trajectory-registry — trajectory_registry — continuidade/07_conhecimento/trajectory_registry.json — present — autoridade: project_governance — temporalidade: current
 
 ## Componentes
-- component:abs_core — abs_core (49 arquivos)
+- component:abs_core — abs_core (50 arquivos)
 - component:cerebro — cerebro (45 arquivos)
-- component:continuity — continuity (19 arquivos)
+- component:continuity — continuity (20 arquivos)
 - component:docs — docs (56 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
 - component:project — project (105 arquivos)
-- component:tests — tests (46 arquivos)
+- component:tests — tests (47 arquivos)
 
 ## Capacidades
 - capability:codex — Codex code engineering — estado: observed
@@ -46,6 +47,486 @@ Momento da revisão: 2026-10-03T16:11:54-03:00
 - tool:file:abs_core/tool_planner.py — abs_core/tool_planner.py — estado: present
 
 ## Nós
+- file:"\360\237\221\224 Consultoria_ Projeto Comercial & Automa\303\247\303\243o _ OpenHands Cloud (1).mht" — None — estado: unknown
+- file:"docs/90_fontes/\360\237\221\224 Consultoria_ Projeto Comercial & Automa\303\247\303\243o _ OpenHands Cloud (1).mht" — None — estado: unknown
+- file:.github/workflows/abs-core.yml — None — estado: unknown
+- file:.github/workflows/project-knowledge-tests.yml — None — estado: unknown
+- file:.github/workflows/project-knowledge.yml — None — estado: unknown
+- file:.gitignore — None — estado: unknown
+- file:00_ESTRUTURA_REPOSITORIO.md — None — estado: unknown
+- file:00_IA_NAVEGACAO.md — None — estado: unknown
+- file:20_interface/01_ARQUITETURA_INTERFACE_EVOLUTIVA_V1.md — None — estado: unknown
+- file:20_interface/02_RECURSOS_CONEXOES_INTERFACE_V1.md — None — estado: unknown
+- file:20_interface/README.md — None — estado: unknown
+- file:20_interface/VERSOES.md — None — estado: unknown
+- file:20_interface/web/index.html — None — estado: unknown
+- file:20_interface/web/manifest.webmanifest — None — estado: unknown
+- file:20_interface/web/spatial-environment-p0.html — None — estado: unknown
+- file:20_interface/web/sw.js — None — estado: unknown
+- file:50_frentes/01_automacao/.gitkeep — None — estado: unknown
+- file:50_frentes/02_comercial/.gitkeep — None — estado: unknown
+- file:50_frentes/03_metas_pessoais/.gitkeep — None — estado: unknown
+- file:50_frentes/README.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/00-COMECE-AQUI/FUSAO.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/00-COMECE-AQUI/LEIA-PRIMEIRO.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/AUDITORIA-E-CAMINHO.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/INSTRUCOES-PERMANENTES.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/O-IMPERIO.html — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/O-IMPERIO.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/PLANTA-DO-SISTEMA.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/conceito-de-memoria-HERDADO.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/visao-sistema-proprio-HERDADO.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/app/icon-192.png — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/app/icon-512.png — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/app/index.html — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/app/manifest.json — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/app/sw.js — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/gitignore.txt — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/nativo/NATIVO.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/nativo/capacitor.config.json — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/nativo/package.json — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/arranque.sh — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/base.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/coletor.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/especialistas.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/executor.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/governanca.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/jetro.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/ligar.sh — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/motor.sh — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/orquestrador.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/ponte.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/rodar-coleta.sh — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente-nucleo.json — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente-operacao.json — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/workflows/build-android.yml — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/COMO-USAR-A-PLANILHA.txt — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/FECHAMENTO_V3.xlsx — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/PESQUISA-CLIENTE.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/PLANO-COMERCIAL.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/QUESTIONARIO-40-PERGUNTAS.html — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/QUESTIONARIO-40-PERGUNTAS.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/fechamento_v3.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/logo_pinheiro.png — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/04-migracao/INSTALAR-NO-TERMUX.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/04-migracao/PARA-OPENHANDS-CLOUD.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/04-migracao/como-usar-o-app-HERDADO.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/DECISOES-REJEITADAS.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/LINHA-DO-TEMPO.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/DECISOES-REJEITADAS--bugs.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/DECISOES-REJEITADAS--cliente.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/LEIA-PRIMEIRO--bugs.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/LEIA-PRIMEIRO--cliente.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/LINHA-DO-TEMPO--bugs.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/LINHA-DO-TEMPO--cliente.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/ORIGEM--bugs.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/01-relatorio-de-estado-08set.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/02-analise-estrategica-08set.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/documentos/AUDITORIA-v1.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/documentos/ESPECIFICACAO.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/planilhas/FECHAMENTO_SETEMBRO.xlsx — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/planilhas/PAINEL_UNICO.xlsx — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/planilhas/extrair.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/planilhas/gerar.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/planilhas/mensal.py — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v1.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v2.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v3.md — None — estado: unknown
+- file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v4.md — None — estado: unknown
+- file:99_arquivo/README.md — None — estado: unknown
+- file:ABS-LOCAL-V1.md — None — estado: unknown
+- file:ABS-UPDATE-MANAGER-V1.md — None — estado: unknown
+- file:AGENTS.md — None — estado: unknown
+- file:Conversaweb.mht — None — estado: unknown
+- file:ESTRUTURA_REPOSITORIOS.md — None — estado: unknown
+- file:HANDOFF_ATUAL.md — None — estado: unknown
+- file:MANUAL_DE_USO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/00-COMECE-AQUI/FUSAO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/00-COMECE-AQUI/LEIA-PRIMEIRO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/01-projeto/AUDITORIA-E-CAMINHO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/01-projeto/INSTRUCOES-PERMANENTES.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/01-projeto/O-IMPERIO.html — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/01-projeto/O-IMPERIO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/01-projeto/PLANTA-DO-SISTEMA.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/01-projeto/conceito-de-memoria-HERDADO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/01-projeto/visao-sistema-proprio-HERDADO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/app/icon-192.png — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/app/icon-512.png — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/app/index.html — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/app/manifest.json — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/app/sw.js — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/gitignore.txt — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/nativo/NATIVO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/nativo/capacitor.config.json — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/nativo/package.json — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/arranque.sh — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/base.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/coletor.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/especialistas.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/executor.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/governanca.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/jetro.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/ligar.sh — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/motor.sh — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/orquestrador.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/ponte.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/rodar-coleta.sh — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente-nucleo.json — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente-operacao.json — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/02-sistema/workflows/build-android.yml — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/03-cliente/COMO-USAR-A-PLANILHA.txt — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/03-cliente/FECHAMENTO_V3.xlsx — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/03-cliente/PESQUISA-CLIENTE.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/03-cliente/PLANO-COMERCIAL.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/03-cliente/QUESTIONARIO-40-PERGUNTAS.html — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/03-cliente/QUESTIONARIO-40-PERGUNTAS.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/03-cliente/fechamento_v3.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/03-cliente/logo_pinheiro.png — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/04-migracao/INSTALAR-NO-TERMUX.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/04-migracao/PARA-OPENHANDS-CLOUD.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/04-migracao/como-usar-o-app-HERDADO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/05-historico/DECISOES-REJEITADAS.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/05-historico/LINHA-DO-TEMPO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/05-historico/originais/DECISOES-REJEITADAS--bugs.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/05-historico/originais/DECISOES-REJEITADAS--cliente.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/05-historico/originais/LEIA-PRIMEIRO--bugs.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/05-historico/originais/LEIA-PRIMEIRO--cliente.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/05-historico/originais/LINHA-DO-TEMPO--bugs.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/05-historico/originais/LINHA-DO-TEMPO--cliente.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/05-historico/originais/ORIGEM--bugs.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/01-relatorio-de-estado-08set.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/02-analise-estrategica-08set.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/documentos/AUDITORIA-v1.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/documentos/ESPECIFICACAO.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/planilhas/FECHAMENTO_SETEMBRO.xlsx — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/planilhas/PAINEL_UNICO.xlsx — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/planilhas/extrair.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/planilhas/gerar.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/planilhas/mensal.py — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v1.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v2.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v3.md — None — estado: unknown
+- file:O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v4.md — None — estado: unknown
+- file:Pesquisa_Representacao_Armazenamento_Informacao_IA_Projeto_Absoluto_v1.docx — None — estado: unknown
+- file:Projeto_Absoluto_EBOOK_HUMANO_V10_ATUALIZADO.docx — None — estado: unknown
+- file:Projeto_Absoluto_MEMORIA_IA_V10_ATUALIZADO.docx — None — estado: unknown
+- file:README.md — None — estado: unknown
+- file:Relatorio_Contribuicao_Desta_Conta_Com_Original_Preservado.pdf — None — estado: unknown
+- file:Relatorio_Contribuicao_Desta_Conta_ORIGINAL_INTEGRAL_MAIS_CONTRIBUICAO_V6_3.pdf — None — estado: unknown
+- file:Relatorio_Diagnostico_Completo_da_Conversa.docx — None — estado: unknown
+- file:TERMUX-SERVICE.md — None — estado: unknown
+- file:TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md — None — estado: unknown
+- file:Transcricao_Conversa.txt — None — estado: unknown
+- file:Visao_Geral.md — None — estado: unknown
+- file:abs_core/README.md — None — estado: unknown
+- file:abs_core/__init__.py — None — estado: unknown
+- file:abs_core/accounts.py — None — estado: unknown
+- file:abs_core/adapters.py — None — estado: unknown
+- file:abs_core/ai_adapters.py — None — estado: unknown
+- file:abs_core/api.py — None — estado: unknown
+- file:abs_core/bridge.py — None — estado: unknown
+- file:abs_core/capabilities.py — None — estado: unknown
+- file:abs_core/cli.py — None — estado: unknown
+- file:abs_core/codex_adapter.py — None — estado: unknown
+- file:abs_core/cognitive_context.py — None — estado: unknown
+- file:abs_core/connections.py — None — estado: unknown
+- file:abs_core/continuity.py — None — estado: unknown
+- file:abs_core/conversational_tools.py — None — estado: unknown
+- file:abs_core/data_layer.py — None — estado: unknown
+- file:abs_core/github_adapter.py — None — estado: unknown
+- file:abs_core/integration.py — None — estado: unknown
+- file:abs_core/intelligence.py — None — estado: unknown
+- file:abs_core/interface_runtime.py — None — estado: unknown
+- file:abs_core/internet_adapter.py — None — estado: unknown
+- file:abs_core/local.py — None — estado: unknown
+- file:abs_core/local_ai_adapter.py — None — estado: unknown
+- file:abs_core/models.py — None — estado: unknown
+- file:abs_core/node_gateway.py — None — estado: unknown
+- file:abs_core/nodes.py — None — estado: unknown
+- file:abs_core/openai_adapter.py — None — estado: unknown
+- file:abs_core/openai_compat.py — None — estado: unknown
+- file:abs_core/openrouter_adapter.py — None — estado: unknown
+- file:abs_core/orchestrator.py — None — estado: unknown
+- file:abs_core/path_evaluator.py — None — estado: unknown
+- file:abs_core/project_knowledge.py — None — estado: unknown
+- file:abs_core/project_knowledge_runtime.py — None — estado: unknown
+- file:abs_core/resource_dispatcher.py — None — estado: unknown
+- file:abs_core/resource_router.py — None — estado: unknown
+- file:abs_core/resource_selection.py — None — estado: unknown
+- file:abs_core/resources.py — None — estado: unknown
+- file:abs_core/runtime.py — None — estado: unknown
+- file:abs_core/server.py — None — estado: unknown
+- file:abs_core/store.py — None — estado: unknown
+- file:abs_core/tool_catalog.py — None — estado: unknown
+- file:abs_core/tool_discovery.py — None — estado: unknown
+- file:abs_core/tool_knowledge.py — None — estado: unknown
+- file:abs_core/tool_knowledge_store.py — None — estado: unknown
+- file:abs_core/tool_learning.py — None — estado: unknown
+- file:abs_core/tool_planner.py — None — estado: unknown
+- file:abs_core/trajectory.py — None — estado: unknown
+- file:abs_core/transports.py — None — estado: unknown
+- file:abs_core/update_daemon.py — None — estado: unknown
+- file:abs_core/update_manager.py — None — estado: unknown
+- file:abs_core/verification.py — None — estado: unknown
+- file:automacao/.gitkeep — None — estado: unknown
+- file:cerebro/00_estado/00_README.md — None — estado: unknown
+- file:cerebro/00_estado/STATUS_ABS_V1_2026-09-22.md — None — estado: unknown
+- file:cerebro/00_estado/STATUS_CEREBRO_LIGADO.md — None — estado: unknown
+- file:cerebro/00_estado/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md — None — estado: unknown
+- file:cerebro/INDICE_MESTRE_PROJETO_ABSOLUTO_V1.md — None — estado: unknown
+- file:cerebro/README.md — None — estado: unknown
+- file:cerebro/STATUS_CEREBRO_LIGADO.md — None — estado: unknown
+- file:cerebro/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md — None — estado: unknown
+- file:cerebro/abs_core_executor.py — None — estado: unknown
+- file:cerebro/ciclo_continuo.py — None — estado: unknown
+- file:cerebro/data/00_INDICE_DADOS.md — None — estado: unknown
+- file:cerebro/data/01_conhecimento/CONTINUIDADE_PROJETO_ABSOLUTO_V1.md — None — estado: unknown
+- file:cerebro/data/01_conhecimento/REGISTRO_CONTINUIDADE_PROJETO_ABSOLUTO_2026-09-19.md — None — estado: unknown
+- file:cerebro/data/conhecimento/CONTINUIDADE_PROJETO_ABSOLUTO_V1.md — None — estado: unknown
+- file:cerebro/data/conhecimento/REGISTRO_CONTINUIDADE_PROJETO_ABSOLUTO_2026-09-19.md — None — estado: unknown
+- file:cerebro/especificacao/00_INDICE_ESPECIFICACOES.md — None — estado: unknown
+- file:cerebro/especificacao/01_estado/ATUALIZACAO_COMPLETA_CEREBRO_2026-09-19.md — None — estado: unknown
+- file:cerebro/especificacao/02_integracao/DOIS_CEREBROS_EXECUCAO_FASE_0_V1.md — None — estado: unknown
+- file:cerebro/especificacao/03_execucao/ORQUESTRACAO_EXECUCAO_CONTINUA_V0_2.md — None — estado: unknown
+- file:cerebro/especificacao/04_descoberta/MECANISMO_DESCOBERTA_E_REAVALIACAO_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/05_planejamento/PLANO_EXECUCAO_REDE_EVOLUTIVA_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/05_planejamento/QUADRO_PENDENCIAS_E_CONSTRUCAO_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/05_planejamento/TABULEIRO_COMPLETO_EXECUCAO_PROJETO_ABSOLUTO_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/06_auditoria/AUDITORIA_HISTORICA_SISTEMA_INVENTARIO_LINHA_TEMPO_V1.md — None — estado: unknown
+- file:cerebro/especificacao/06_auditoria/AUDITORIA_NOMENCLATURA_STATUS_SUBPROJETOS_V1.md — None — estado: unknown
+- file:cerebro/especificacao/06_auditoria/AUDITORIA_PRE_CONSTRUCAO_FECHAMENTO_INVESTIGACAO_V1.md — None — estado: unknown
+- file:cerebro/especificacao/06_auditoria/INVESTIGACAO_PROFUNDA_CEREBRO_DIRETO_FRONTEIRA_CONSTRUCAO_V1.md — None — estado: unknown
+- file:cerebro/especificacao/07_historico/MATRIZ_CONHECIMENTO_HISTORICO_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/07_historico/RECONSTRUCAO_CAUSAL_COMMITS_SISTEMA_V2.md — None — estado: unknown
+- file:cerebro/especificacao/07_historico/RECONSTRUCAO_CAUSAL_EXPERIMENTOS_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/07_historico/RECONSTRUCAO_HISTORICA_EVOLUCAO_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/07_historico/RECONSTRUCAO_SEMANTICA_DESCOBERTAS_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/07_historico/RECUPERACAO_HISTORICA_TOTAL_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/07_historico/RESULTADOS_OPERACIONAIS_RECUPERADOS_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/ATUALIZACAO_COMPLETA_CEREBRO_2026-09-19.md — None — estado: unknown
+- file:cerebro/especificacao/AUDITORIA_HISTORICA_SISTEMA_INVENTARIO_LINHA_TEMPO_V1.md — None — estado: unknown
+- file:cerebro/especificacao/AUDITORIA_PRE_CONSTRUCAO_FECHAMENTO_INVESTIGACAO_V1.md — None — estado: unknown
+- file:cerebro/especificacao/AUDITORIA_QUADRO_MAIOR_REPOSITORIOS_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/DOIS_CEREBROS_EXECUCAO_FASE_0_V1.md — None — estado: unknown
+- file:cerebro/especificacao/INVESTIGACAO_PROFUNDA_CEREBRO_DIRETO_FRONTEIRA_CONSTRUCAO_V1.md — None — estado: unknown
+- file:cerebro/especificacao/MATRIZ_CONHECIMENTO_HISTORICO_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/MECANISMO_DESCOBERTA_E_REAVALIACAO_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/ORQUESTRACAO_EXECUCAO_CONTINUA_V0_2.md — None — estado: unknown
+- file:cerebro/especificacao/PLANO_EXECUCAO_REDE_EVOLUTIVA_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/QUADRO_PENDENCIAS_E_CONSTRUCAO_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/RECONSTRUCAO_CAUSAL_COMMITS_SISTEMA_V2.md — None — estado: unknown
+- file:cerebro/especificacao/RECONSTRUCAO_CAUSAL_EXPERIMENTOS_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/RECONSTRUCAO_HISTORICA_EVOLUCAO_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/RECONSTRUCAO_SEMANTICA_DESCOBERTAS_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/RECUPERACAO_HISTORICA_TOTAL_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/RESULTADOS_OPERACIONAIS_RECUPERADOS_SISTEMA_V1.md — None — estado: unknown
+- file:cerebro/especificacao/TABULEIRO_COMPLETO_EXECUCAO_PROJETO_ABSOLUTO_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/legado_reintegrado/CONTRATO_CONTINUIDADE_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/legado_reintegrado/CONTRATO_INTEGRACAO_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/legado_reintegrado/CONTROLES_SEGURANCA_EXECUCAO_AUTONOMA_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/legado_reintegrado/CONTROLE_IDENTIDADE_AUTORIZACAO_TELEMETRIA_AGENTES_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/legado_reintegrado/IDENTIDADE_EVENTOS_V0_1.md — None — estado: unknown
+- file:cerebro/especificacao/legado_reintegrado/RUNTIME_CONTINUO_V0_1.md — None — estado: unknown
+- file:cerebro/estado.py — None — estado: unknown
+- file:cerebro/mapas/00_INDICE_MAPAS.md — None — estado: unknown
+- file:cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md — None — estado: unknown
+- file:cerebro/mapas/01_TABULEIRO_72_CAPACIDADES_V0_1.md — None — estado: unknown
+- file:cerebro/mapas/02_QUADRO_PENDENCIAS_CONSTRUCAO_V0_1.md — None — estado: unknown
+- file:cerebro/mapas/03_PLANO_REDE_EVOLUTIVA_V0_1.md — None — estado: unknown
+- file:cerebro/mapas/04_QUADRO_MESTRE_STATUS_ABS_V1_2026-09-22.md — None — estado: unknown
+- file:cerebro/orquestrador.py — None — estado: unknown
+- file:cerebro/runtime.py — None — estado: unknown
+- file:cerebro/temporal.py — None — estado: unknown
+- file:cerebro/tests/00_README.md — None — estado: unknown
+- file:cerebro/tests/test_estado.py — None — estado: unknown
+- file:cerebro/tests/test_orquestrador.py — None — estado: unknown
+- file:cerebro/tests/test_servico_execucao.py — None — estado: unknown
+- file:cerebro/tests/test_temporal.py — None — estado: unknown
+- file:comercial/.gitkeep — None — estado: unknown
+- file:continuidade/00_LEIA_PRIMEIRO.md — None — estado: unknown
+- file:continuidade/01_ESTADO_ATUAL_PROJETO.md — None — estado: unknown
+- file:continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — None — estado: unknown
+- file:continuidade/01_contexto/02_HISTORICO_SISTEMA_ANTIGO_E_MINI_CEREBRO.md — None — estado: unknown
+- file:continuidade/02_MODELO_ABS_E_PRINCIPIOS.md — None — estado: unknown
+- file:continuidade/02_estado/01_ESTADO_ATUAL_PROJETO.md — None — estado: unknown
+- file:continuidade/03_HISTORICO_SISTEMA_ANTIGO_E_MINI_CEREBRO.md — None — estado: unknown
+- file:continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md — None — estado: unknown
+- file:continuidade/04_PONTO_EXATO_DE_PARADA.md — None — estado: unknown
+- file:continuidade/04_construcao/01_PONTO_EXATO_DE_PARADA.md — None — estado: unknown
+- file:continuidade/04_construcao/02_HANDOFF_CONSTRUCAO_ABS_V1.md — None — estado: unknown
+- file:continuidade/05_DECISOES_CORRECOES_E_REGRAS.md — None — estado: unknown
+- file:continuidade/05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md — None — estado: unknown
+- file:continuidade/05_handoffs/02_HANDOFF_NOVO_CHAT_ABS_V1_PLANEJAMENTO.md — None — estado: unknown
+- file:continuidade/05_handoffs/03_HANDOFF_CONSTRUCAO_ABS_V1_SNAPSHOT_2026-09-21.md — None — estado: unknown
+- file:continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md — None — estado: unknown
+- file:continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md — None — estado: unknown
+- file:continuidade/06_HANDOFF_CONSTRUCAO_ABS_V1.md — None — estado: unknown
+- file:continuidade/06_interface/01_PESQUISA_REFERENCIAL_INTERFACE_ADAPTATIVA.md — None — estado: unknown
+- file:continuidade/06_interface/02_DEFINICAO_INTERFACE_ADAPTATIVA_ABS.md — None — estado: unknown
+- file:continuidade/06_interface/03_PLANEJAMENTO_ATUAL_INTERFACE_ABS_P0.md — None — estado: unknown
+- file:continuidade/07_HANDOFF_NOVO_CHAT_ABS_V1.md — None — estado: unknown
+- file:continuidade/07_conhecimento/00_LEIA_PRIMEIRO.md — None — estado: unknown
+- file:continuidade/07_conhecimento/01_MODELO_DADOS_E_PATHS.md — None — estado: unknown
+- file:continuidade/07_conhecimento/02_ORIENTACAO_NOVA_IA.md — None — estado: unknown
+- file:continuidade/07_conhecimento/03_CONTRATO_DE_PROVA.md — None — estado: unknown
+- file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — None — estado: unknown
+- file:continuidade/07_conhecimento/SESSAO_ATUAL.md — None — estado: unknown
+- file:continuidade/07_conhecimento/project_knowledge.json — None — estado: unknown
+- file:continuidade/07_conhecimento/trajectory_registry.json — None — estado: unknown
+- file:continuidade/99_legado/ESTADO_ATUAL_PROJETO_SNAPSHOT_2026-09-19.md — None — estado: unknown
+- file:continuidade/99_legado/PONTO_DE_CONTINUIDADE_V1.md — None — estado: unknown
+- file:continuidade/99_legado/PONTO_EXATO_DE_PARADA_SNAPSHOT.md — None — estado: unknown
+- file:continuuidade/PONTO_DE_CONTINUIDADE_V1.md — None — estado: unknown
+- file:dashboard.md — None — estado: unknown
+- file:docs/.gitkeep — None — estado: unknown
+- file:docs/00_ESTRUTURA_DOCUMENTAL.md — None — estado: unknown
+- file:docs/00_GOVERNANCA_INFORMACAO.md — None — estado: unknown
+- file:docs/00_MODELO_PROJETO_ABSOLUTO.md — None — estado: unknown
+- file:docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md — None — estado: unknown
+- file:docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md — None — estado: unknown
+- file:docs/01_operacao/ABS-LOCAL-V1.md — None — estado: unknown
+- file:docs/01_operacao/ABS-UPDATE-MANAGER-V1.md — None — estado: unknown
+- file:docs/01_operacao/INSTALACAO_INTERFACE_ABS_V1.md — None — estado: unknown
+- file:docs/01_operacao/MANUAL_DE_USO.md — None — estado: unknown
+- file:docs/01_operacao/TERMUX-SERVICE.md — None — estado: unknown
+- file:docs/01_operacao/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md — None — estado: unknown
+- file:docs/01_operacao/Visao_Geral.md — None — estado: unknown
+- file:docs/01_operacao/dashboard.md — None — estado: unknown
+- file:docs/02_arquitetura/ABS-CAPACIDADES-FUNDACAO-V1.md — None — estado: unknown
+- file:docs/02_arquitetura/ABS-GITHUB-TERMUX-BRIDGE-V1.md — None — estado: unknown
+- file:docs/02_arquitetura/ABS-GITHUB-TERMUX-TASK-TEMPLATE.md — None — estado: unknown
+- file:docs/02_arquitetura/ABS_INTEGRATION_V1.md — None — estado: unknown
+- file:docs/02_arquitetura/CONHECIMENTO_E_DESCOBERTA_DE_FERRAMENTAS_V1.md — None — estado: unknown
+- file:docs/02_arquitetura/CONTROLE_DE_EVOLUCAO_PELA_INTERFACE.md — None — estado: unknown
+- file:docs/02_arquitetura/EVOLUCAO_AUTONOMA_ASSISTIDA_ABS.md — None — estado: unknown
+- file:docs/02_arquitetura/INTERFACE_ADAPTATIVA_ABS_V0_1.md — None — estado: unknown
+- file:docs/02_arquitetura/MEMORIA_PERSISTENTE_DE_FERRAMENTAS_V1.md — None — estado: unknown
+- file:docs/02_arquitetura/PLANEJAMENTO_E_APRENDIZAGEM_DE_FERRAMENTAS_V1.md — None — estado: unknown
+- file:docs/02_arquitetura/PROJECT_KNOWLEDGE_V1.md — None — estado: unknown
+- file:docs/02_arquitetura/README.md — None — estado: unknown
+- file:docs/02_arquitetura/ROTEAMENTO_DE_RECURSOS_V1.md — None — estado: unknown
+- file:docs/03_planejamento/00_INDICE_PLANEJAMENTO.md — None — estado: unknown
+- file:docs/03_planejamento/AUDITORIA_E_PLANO_FECHAMENTO_ABS_V1_OPERACIONAL_2026-09-25.md — None — estado: unknown
+- file:docs/03_planejamento/GUIA_MANUAL_FECHAMENTO_V1.md — None — estado: unknown
+- file:docs/03_planejamento/GUIA_MANUAL_FECHAMENTO_V1_ATUAL.md — None — estado: unknown
+- file:docs/03_planejamento/INTEGRACAO_OPENWEBUI_GATEWAY_ABS.md — None — estado: unknown
+- file:docs/03_planejamento/INTERFACE_ADAPTATIVA_ABS_P0.md — None — estado: unknown
+- file:docs/03_planejamento/MAPA_MESTRE_EVOLUCAO_ABS_V1_A_INDEPENDENCIA.md — None — estado: unknown
+- file:docs/03_planejamento/PLANO_ABS_INTEGRACAO_GITHUB.md — None — estado: unknown
+- file:docs/03_planejamento/PLANO_ABS_V1_CURTO_MEDIO_LONGO_PRAZO.md — None — estado: unknown
+- file:docs/03_planejamento/Plano_Projeto.md — None — estado: unknown
+- file:docs/03_planejamento/pesquisa/ATAQUE_ADVERSARIAL_FINAL_MOLDE_ABS_V0.md — None — estado: unknown
+- file:docs/04_EVOLUCAO_AUTONOMA_ASSISTIDA_ABS.md — None — estado: unknown
+- file:docs/04_referencia/MANUAL_CEREBRO_MINI_CEREBRO_COOPERACAO_V1.md — None — estado: unknown
+- file:docs/05_CONTROLE_DE_EVOLUCAO_PELA_INTERFACE.md — None — estado: unknown
+- file:docs/06_ROTEAMENTO_DE_RECURSOS_V1.md — None — estado: unknown
+- file:docs/06_auditoria/AUDITORIA_ESTADO_CONTINUIDADE_2026-09-23.md — None — estado: unknown
+- file:docs/06_auditoria/AUDITORIA_FONTES_HISTORICO_MINI_CEREBRO_2026-09-24.md — None — estado: unknown
+- file:docs/06_auditoria/AUDITORIA_SENIOR_ABS_V1_2026-09-22.md — None — estado: unknown
+- file:docs/06_auditoria/AUDITORIA_SENIOR_ARQUITETURA_INFORMACAO_2026-09-23.md — None — estado: unknown
+- file:docs/06_auditoria/INVENTARIO_ARQUIVOS_DOCUMENTAIS_V0_1.md — None — estado: unknown
+- file:docs/06_auditoria/INVENTARIO_CLASSIFICACAO_DOCUMENTAL_V0_1.md — None — estado: unknown
+- file:docs/06_auditoria/MIGRACAO_DOCUMENTAL_2026-09-23.md — None — estado: unknown
+- file:docs/07_CONHECIMENTO_E_DESCOBERTA_DE_FERRAMENTAS_V1.md — None — estado: unknown
+- file:docs/08_PLANEJAMENTO_E_APRENDIZAGEM_DE_FERRAMENTAS_V1.md — None — estado: unknown
+- file:docs/09_MEMORIA_PERSISTENTE_DE_FERRAMENTAS_V1.md — None — estado: unknown
+- file:docs/90_fontes/2026-09-19_TRANSFERENCIA_ESTADO_SNAPSHOT.md — None — estado: unknown
+- file:docs/90_fontes/Conversaweb.mht — None — estado: unknown
+- file:docs/90_fontes/INTERFACE_ADAPTATIVA_PESQUISA_2026-09-22.md — None — estado: unknown
+- file:docs/90_fontes/Pesquisa_Representacao_Armazenamento_Informacao_IA_Projeto_Absoluto_v1.docx — None — estado: unknown
+- file:docs/90_fontes/Projeto_Absoluto_EBOOK_HUMANO_V10_ATUALIZADO.docx — None — estado: unknown
+- file:docs/90_fontes/Projeto_Absoluto_MEMORIA_IA_V10_ATUALIZADO.docx — None — estado: unknown
+- file:docs/90_fontes/Relatorio_Contribuicao_Desta_Conta_Com_Original_Preservado.pdf — None — estado: unknown
+- file:docs/90_fontes/Relatorio_Contribuicao_Desta_Conta_ORIGINAL_INTEGRAL_MAIS_CONTRIBUICAO_V6_3.pdf — None — estado: unknown
+- file:docs/90_fontes/Relatorio_Diagnostico_Completo_da_Conversa.docx — None — estado: unknown
+- file:docs/90_fontes/Transcricao_Conversa.txt — None — estado: unknown
+- file:docs/ABS-CAPACIDADES-FUNDACAO-V1.md — None — estado: unknown
+- file:docs/ABS-GITHUB-TERMUX-BRIDGE-V1.md — None — estado: unknown
+- file:docs/ABS-GITHUB-TERMUX-TASK-TEMPLATE.md — None — estado: unknown
+- file:docs/Plano_Projeto.md — None — estado: unknown
+- file:docs/api/openapi.json — None — estado: unknown
+- file:docs/architecture/ABS_INTEGRATION_V1.md — None — estado: unknown
+- file:docs/architecture/PROJECT_KNOWLEDGE_V1.md — None — estado: unknown
+- file:extract_text.py — None — estado: unknown
+- file:fill_contents.py — None — estado: unknown
+- file:manual/MANUAL_CEREBRO_MINI_CEREBRO_COOPERACAO_V1.md — None — estado: unknown
+- file:metas_pessoais/.gitkeep — None — estado: unknown
+- file:mini-cerebro/00_INDICE.md — None — estado: unknown
+- file:mini-cerebro/README.md — None — estado: unknown
+- file:mini-cerebro/investigacoes/00_INDICE.md — None — estado: unknown
+- file:mini-cerebro/investigacoes/PRIMEIRA_RECONSTRUCAO_SISTEMA_ABSOLUTO_ZIP_V1.md — None — estado: unknown
+- file:mini-cerebro/mini_cerebro/__init__.py — None — estado: unknown
+- file:mini-cerebro/mini_cerebro/__main__.py — None — estado: unknown
+- file:mini-cerebro/mini_cerebro/core.py — None — estado: unknown
+- file:mini-cerebro/mini_cerebro/github_source.py — None — estado: unknown
+- file:mini-cerebro/mini_cerebro/schema.sql — None — estado: unknown
+- file:mini-cerebro/mini_cerebro/server.py — None — estado: unknown
+- file:mini-cerebro/tests/00_README.md — None — estado: unknown
+- file:mini-cerebro/tests/test_core.py — None — estado: unknown
+- file:pyproject.toml — None — estado: unknown
+- file:scripts/00_README.md — None — estado: unknown
+- file:scripts/abs_v1_acceptance.py — None — estado: unknown
+- file:scripts/project_knowledge_sync.py — None — estado: unknown
+- file:scripts/start_abs.sh — None — estado: unknown
+- file:scripts/termux/boot-start-services.sh — None — estado: unknown
+- file:scripts/termux/install_abs_gateway_service.sh — None — estado: unknown
+- file:scripts/termux/install_abs_service.sh — None — estado: unknown
+- file:scripts/termux/install_abs_services.sh — None — estado: unknown
+- file:scripts/termux/install_abs_update_manager.sh — None — estado: unknown
+- file:scripts/termux/install_abs_updater_service.sh — None — estado: unknown
+- file:tests/00_README.md — None — estado: unknown
+- file:tests/test_accounts.py — None — estado: unknown
+- file:tests/test_accounts_api.py — None — estado: unknown
+- file:tests/test_ai_adapters.py — None — estado: unknown
+- file:tests/test_cerebro_abs_core_convergence.py — None — estado: unknown
+- file:tests/test_ciclo_continuo.py — None — estado: unknown
+- file:tests/test_codex_cli_adapter.py — None — estado: unknown
+- file:tests/test_cognitive_context.py — None — estado: unknown
+- file:tests/test_cognitive_runtime.py — None — estado: unknown
+- file:tests/test_connections.py — None — estado: unknown
+- file:tests/test_connections_api.py — None — estado: unknown
+- file:tests/test_continuity.py — None — estado: unknown
+- file:tests/test_conversational_tools.py — None — estado: unknown
+- file:tests/test_execution_knowledge_e2e.py — None — estado: unknown
+- file:tests/test_github_capability.py — None — estado: unknown
+- file:tests/test_interface_runtime.py — None — estado: unknown
+- file:tests/test_interface_runtime_api.py — None — estado: unknown
+- file:tests/test_interface_v1.py — None — estado: unknown
+- file:tests/test_internet_adapter.py — None — estado: unknown
+- file:tests/test_local.py — None — estado: unknown
+- file:tests/test_node_integration.py — None — estado: unknown
+- file:tests/test_openai_adapter.py — None — estado: unknown
+- file:tests/test_openai_compat.py — None — estado: unknown
+- file:tests/test_path_evaluator.py — None — estado: unknown
+- file:tests/test_project_knowledge.py — None — estado: unknown
+- file:tests/test_project_knowledge_runtime.py — None — estado: unknown
+- file:tests/test_resource_dispatcher.py — None — estado: unknown
+- file:tests/test_resource_router.py — None — estado: unknown
+- file:tests/test_resource_selection_api.py — None — estado: unknown
+- file:tests/test_runtime_bootstrap.py — None — estado: unknown
+- file:tests/test_self_operation_path.py — None — estado: unknown
+- file:tests/test_tool_catalog.py — None — estado: unknown
+- file:tests/test_tool_discovery.py — None — estado: unknown
+- file:tests/test_tool_knowledge.py — None — estado: unknown
+- file:tests/test_tool_knowledge_api.py — None — estado: unknown
+- file:tests/test_tool_knowledge_store.py — None — estado: unknown
+- file:tests/test_tool_learning_persistence_api.py — None — estado: unknown
+- file:tests/test_tool_learning_planning_regressions.py — None — estado: unknown
+- file:tests/test_tool_planner_api.py — None — estado: unknown
+- file:tests/test_tool_planner_learning.py — None — estado: unknown
+- file:tests/test_trajectory.py — None — estado: unknown
+- file:tests/test_update_api.py — None — estado: unknown
+- file:tests/test_update_daemon.py — None — estado: unknown
+- file:tests/test_update_manager.py — None — estado: unknown
+- file:tests/test_update_manager_runtime_state.py — None — estado: unknown
+- file:tests/test_v1_operational_layers.py — None — estado: unknown
+- file:tests/test_vertical_slice.py — None — estado: unknown
+- file:tools/00_README.md — None — estado: unknown
+- file:tools/documentos/extract_text.py — None — estado: unknown
+- file:tools/documentos/fill_contents.py — None — estado: unknown
+- file:web/index.html — None — estado: unknown
 - commit:8c75cbfc3f5fbbf2727ac1b5dcaf36a5c9099da6 — None — estado: unknown
 - commit:ff684851adf7a3f27a6ae765d9745d110fe22e0e — None — estado: unknown
 - commit:3c486b0df523aedbda38596ebd1e798596f39ff5 — None — estado: unknown
@@ -499,6 +980,9 @@ Momento da revisão: 2026-10-03T16:11:54-03:00
 - commit:a8f749a0027c7ec4247d3e84ec547ac93076212a — None — estado: unknown
 - commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — None — estado: unknown
 - commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — None — estado: unknown
+- commit:a1ae5c1cf2d3ad1f3361ce07df340521cf229a9d — None — estado: unknown
+- commit:f6c53f5255d3f38861ea1458dcefbed0baa9d718 — None — estado: unknown
+- commit:a2ad07b4038ce58a722e1ff0686686a28032b540 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -509,21 +993,30 @@ Momento da revisão: 2026-10-03T16:11:54-03:00
 - source:handoff — None — estado: unknown
 - source:navigation — None — estado: unknown
 - source:history — None — estado: unknown
-- evidence:repository:cf021cd91817 — None — estado: unknown
-- event:repository-scan:cf021cd91817 — None — estado: unknown
-- event:commit-observed:7153a3bb9b05 — None — estado: unknown
+- source:trajectory-registry — None — estado: unknown
+- evidence:repository:4d41c2881e12 — None — estado: unknown
+- event:repository-scan:4d41c2881e12 — None — estado: unknown
+- event:commit-observed:a2ad07b4038c — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:d4f9836c91b1
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:e88d3b0026e1
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:cf021cd91817 — repository_scanned — revisão: 7153a3bb9b05b0f4e7609a280a94ed60cb96e581
-- event:commit-observed:7153a3bb9b05 — commit_observed — revisão: 7153a3bb9b05b0f4e7609a280a94ed60cb96e581
-- event:test:d4f9836c91b1 — tests_observed — revisão: n/a
+- event:repository-scan:4d41c2881e12 — repository_scanned — revisão: a2ad07b4038ce58a722e1ff0686686a28032b540
+- event:commit-observed:a2ad07b4038c — commit_observed — revisão: a2ad07b4038ce58a722e1ff0686686a28032b540
+- event:test:e88d3b0026e1 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
+- source:research — informs → source:trajectory-research — asserted
+- source:trajectory-research — informs → source:navigation — asserted
+- source:trajectory-research — informs → source:state — asserted
+- source:navigation — points_to → source:state — asserted
+- source:navigation — points_to → source:handoff — asserted
+- source:handoff — points_to → source:decisions — asserted
+- source:handoff — points_to → source:research — asserted
+- source:handoff — points_to → source:state — asserted
 - commit:8c75cbfc3f5fbbf2727ac1b5dcaf36a5c9099da6 — changed → file:README.md — asserted
 - commit:8c75cbfc3f5fbbf2727ac1b5dcaf36a5c9099da6 — precedes → commit:ff684851adf7a3f27a6ae765d9745d110fe22e0e — asserted
 - commit:ff684851adf7a3f27a6ae765d9745d110fe22e0e — changed → file:"\360\237\221\224 Consultoria_ Projeto Comercial & Automa\303\247\303\243o _ OpenHands Cloud (1).mht" — asserted
@@ -1849,12 +2342,27 @@ Momento da revisão: 2026-10-03T16:11:54-03:00
 - commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — precedes → commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — asserted
 - commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — changed → file:abs_core/project_knowledge.py — asserted
 - commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — changed → file:tests/test_project_knowledge.py — asserted
-- event:repository-scan:cf021cd91817 — generated → evidence:repository:cf021cd91817 — asserted
-- commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — observed_by → event:repository-scan:cf021cd91817 — asserted
+- commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — precedes → commit:a1ae5c1cf2d3ad1f3361ce07df340521cf229a9d — asserted
+- commit:a1ae5c1cf2d3ad1f3361ce07df340521cf229a9d — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:a1ae5c1cf2d3ad1f3361ce07df340521cf229a9d — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:a1ae5c1cf2d3ad1f3361ce07df340521cf229a9d — precedes → commit:f6c53f5255d3f38861ea1458dcefbed0baa9d718 — asserted
+- commit:f6c53f5255d3f38861ea1458dcefbed0baa9d718 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:f6c53f5255d3f38861ea1458dcefbed0baa9d718 — changed → file:abs_core/trajectory.py — asserted
+- commit:f6c53f5255d3f38861ea1458dcefbed0baa9d718 — changed → file:continuidade/07_conhecimento/trajectory_registry.json — asserted
+- commit:f6c53f5255d3f38861ea1458dcefbed0baa9d718 — changed → file:docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md — asserted
+- commit:f6c53f5255d3f38861ea1458dcefbed0baa9d718 — changed → file:tests/test_project_knowledge.py — asserted
+- commit:f6c53f5255d3f38861ea1458dcefbed0baa9d718 — changed → file:tests/test_trajectory.py — asserted
+- commit:f6c53f5255d3f38861ea1458dcefbed0baa9d718 — precedes → commit:a2ad07b4038ce58a722e1ff0686686a28032b540 — asserted
+- commit:a2ad07b4038ce58a722e1ff0686686a28032b540 — changed → file:00_IA_NAVEGACAO.md — asserted
+- event:repository-scan:4d41c2881e12 — generated → evidence:repository:4d41c2881e12 — asserted
+- commit:a2ad07b4038ce58a722e1ff0686686a28032b540 — observed_by → event:repository-scan:4d41c2881e12 — asserted
+
+## Trajetória
+- validação: PASS
 
 ## Evidências
-- evidence:repository:cf021cd91817 — repository_scan — observed — 332 files indexed at revision 7153a3bb9b05b0f4e7609a280a94ed60cb96e581
-- evidence:test:d4f9836c91b1 — test — tested — 119 passed in 6.40s
+- evidence:repository:4d41c2881e12 — repository_scan — observed — 335 files indexed at revision a2ad07b4038ce58a722e1ff0686686a28032b540
+- evidence:test:e88d3b0026e1 — test — tested — 124 passed in 6.73s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
