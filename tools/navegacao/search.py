@@ -8,30 +8,44 @@ from pathlib import Path
 
 def search(conn: sqlite3.Connection, query: str, source: str | None, limit: int):
     if source:
-        sql = """
-            SELECT d.id, d.source_id, d.path, d.title, d.root,
-                   snippet(documents_fts, 2, '[', ']', '…', 24),
-                   bm25(documents_fts)
-            FROM documents_fts
-            JOIN documents d ON d.id = documents_fts.rowid
-            WHERE documents_fts MATCH ? AND d.source_id = ?
-            ORDER BY bm25(documents_fts)
-            LIMIT ?
-        """
-        args = (query, source, limit)
+        rows = conn.execute(
+            """SELECT d.id, d.source_id, d.path, d.title, d.root,
+                      snippet(documents_fts, 2, '[', ']', '…', 32),
+                      bm25(documents_fts), d.latest_commit, d.latest_commit_date
+               FROM documents_fts JOIN documents d ON d.id=documents_fts.rowid
+               WHERE documents_fts MATCH ? AND d.source_id=?
+               ORDER BY bm25(documents_fts) LIMIT ?""",
+            (query, source, limit),
+        ).fetchall()
     else:
-        sql = """
-            SELECT d.id, d.source_id, d.path, d.title, d.root,
-                   snippet(documents_fts, 2, '[', ']', '…', 24),
-                   bm25(documents_fts)
-            FROM documents_fts
-            JOIN documents d ON d.id = documents_fts.rowid
-            WHERE documents_fts MATCH ?
-            ORDER BY bm25(documents_fts)
-            LIMIT ?
-        """
-        args = (query, limit)
-    return conn.execute(sql, args).fetchall()
+        rows = conn.execute(
+            """SELECT d.id, d.source_id, d.path, d.title, d.root,
+                      snippet(documents_fts, 2, '[', ']', '…', 32),
+                      bm25(documents_fts), d.latest_commit, d.latest_commit_date
+               FROM documents_fts JOIN documents d ON d.id=documents_fts.rowid
+               WHERE documents_fts MATCH ?
+               ORDER BY bm25(documents_fts) LIMIT ?""",
+            (query, limit),
+        ).fetchall()
+    return rows
+
+
+def search_symbols(conn: sqlite3.Connection, query: str, source: str | None, limit: int):
+    if source:
+        return conn.execute(
+            """SELECT s.kind, s.name, d.source_id, d.path, s.line
+               FROM symbols s JOIN documents d ON d.id=s.document_id
+               WHERE (s.name LIKE ? OR s.kind LIKE ?) AND d.source_id=?
+               ORDER BY s.name LIMIT ?""",
+            (f"%{query}%", f"%{query}%", source, limit),
+        ).fetchall()
+    return conn.execute(
+        """SELECT s.kind, s.name, d.source_id, d.path, s.line
+           FROM symbols s JOIN documents d ON d.id=s.document_id
+           WHERE (s.name LIKE ? OR s.kind LIKE ?)
+           ORDER BY s.name LIMIT ?""",
+        (f"%{query}%", f"%{query}%", limit),
+    ).fetchall()
 
 
 def main() -> int:
@@ -39,35 +53,38 @@ def main() -> int:
     parser.add_argument("--db", required=True, type=Path)
     parser.add_argument("--source")
     parser.add_argument("--limit", type=int, default=20)
+    parser.add_argument("--symbols", action="store_true")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("query", nargs="+")
     args = parser.parse_args()
-
     query = " ".join(args.query)
     conn = sqlite3.connect(args.db)
     try:
-        rows = search(conn, query, args.source, args.limit)
+        if args.symbols:
+            rows = search_symbols(conn, query, args.source, args.limit)
+            results = [
+                {"kind": r[0], "name": r[1], "source": r[2], "path": r[3], "line": r[4]}
+                for r in rows
+            ]
+        else:
+            rows = search(conn, query, args.source, args.limit)
+            results = [
+                {"id": r[0], "source": r[1], "path": r[2], "title": r[3],
+                 "root": r[4], "snippet": r[5], "rank": r[6],
+                 "latest_commit": r[7], "latest_commit_date": r[8]}
+                for r in rows
+            ]
     finally:
         conn.close()
-
-    results = [
-        {
-            "id": r[0],
-            "source": r[1],
-            "path": r[2],
-            "title": r[3],
-            "root": r[4],
-            "snippet": r[5],
-            "rank": r[6],
-        }
-        for r in rows
-    ]
     if args.json:
         print(json.dumps(results, ensure_ascii=False, indent=2))
     else:
         for item in results:
-            print(f"[{item['source']}] {item['path']}")
-            print(f"  {item['snippet']}")
+            if args.symbols:
+                print(f"[{item['source']}] {item['kind']} {item['name']} @ {item['path']}:{item['line']}")
+            else:
+                print(f"[{item['source']}] {item['path']}")
+                print(f"  {item['snippet']}")
     return 0
 
 
