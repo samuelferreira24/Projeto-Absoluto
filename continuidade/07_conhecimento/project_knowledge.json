@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T16:47:40-03:00",
-  "source_revision": "5740bf11d76726f389674b5363f01e9d208089f1",
+  "generated_at": "2026-10-03T16:48:37-03:00",
+  "source_revision": "2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 56
+      "file_count": 57
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "5740bf11d76726f389674b5363f01e9d208089f1",
-      "commit_subject": "docs: criar inventario das 72 capacidades"
+      "revision": "2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28",
+      "commit_subject": "docs: integrar inventario de capacidades ao mapa mestre"
     }
   ],
   "tools": [
@@ -1911,6 +1911,11 @@
       "id": "file:docs/02_arquitetura/INTERFACE_ADAPTATIVA_ABS_V0_1.md",
       "kind": "file",
       "path": "docs/02_arquitetura/INTERFACE_ADAPTATIVA_ABS_V0_1.md"
+    },
+    {
+      "id": "file:docs/02_arquitetura/INVENTARIO_CAPACIDADES_ABS_V1.md",
+      "kind": "file",
+      "path": "docs/02_arquitetura/INVENTARIO_CAPACIDADES_ABS_V1.md"
     },
     {
       "id": "file:docs/02_arquitetura/MEMORIA_PERSISTENTE_DE_FERRAMENTAS_V1.md",
@@ -5772,6 +5777,48 @@
       "sha": "5740bf11d76726f389674b5363f01e9d208089f1"
     },
     {
+      "id": "commit:0f4cf6deb990e7c481043e98f972e923121b61f9",
+      "kind": "commit",
+      "at": "2026-10-03T19:47:56Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "0f4cf6deb990e7c481043e98f972e923121b61f9"
+    },
+    {
+      "id": "commit:1387d1e49c103f85b3878357b436ef13faf28abc",
+      "kind": "commit",
+      "at": "2026-10-03T16:48:06-03:00",
+      "subject": "docs: catalogar capacidades do ABS V1",
+      "sha": "1387d1e49c103f85b3878357b436ef13faf28abc"
+    },
+    {
+      "id": "commit:281835e27d0df0319b6dc0b4264124004ccf4a98",
+      "kind": "commit",
+      "at": "2026-10-03T16:48:24-03:00",
+      "subject": "feat: registrar inventario de capacidades no Project Knowledge",
+      "sha": "281835e27d0df0319b6dc0b4264124004ccf4a98"
+    },
+    {
+      "id": "commit:ae2b1833c08a0aad6b2012fb2f46baac30925279",
+      "kind": "commit",
+      "at": "2026-10-03T16:48:29-03:00",
+      "subject": "test: incluir inventario de capacidades na continuidade",
+      "sha": "ae2b1833c08a0aad6b2012fb2f46baac30925279"
+    },
+    {
+      "id": "commit:257053c7e8fda19efa6f5589de9537b6debf6201",
+      "kind": "commit",
+      "at": "2026-10-03T16:48:35-03:00",
+      "subject": "docs: ligar navegacao ao inventario de capacidades",
+      "sha": "257053c7e8fda19efa6f5589de9537b6debf6201"
+    },
+    {
+      "id": "commit:2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28",
+      "kind": "commit",
+      "at": "2026-10-03T16:48:37-03:00",
+      "subject": "docs: integrar inventario de capacidades ao mapa mestre",
+      "sha": "2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -5860,23 +5907,31 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:247e2c57bfc1",
+      "id": "source:capability-registry",
+      "kind": "knowledge_source",
+      "path": "continuidade/07_conhecimento/capability_registry.json",
+      "authority": "project_governance",
+      "temporal": "current",
+      "status": "present"
+    },
+    {
+      "id": "evidence:repository:d2de00514b4c",
       "kind": "evidence",
-      "at": "2026-10-03T16:47:40-03:00",
+      "at": "2026-10-03T16:48:37-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:247e2c57bfc1",
+      "id": "event:repository-scan:d2de00514b4c",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-03T16:47:40-03:00"
+      "at": "2026-10-03T16:48:37-03:00"
     },
     {
-      "id": "event:commit-observed:5740bf11d767",
+      "id": "event:commit-observed:2b10e5b04da8",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-03T16:47:40-03:00"
+      "at": "2026-10-03T16:48:37-03:00"
     }
   ],
   "paths": [
@@ -5911,11 +5966,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:d5f5d01f8ad3"
+        "evidence:test:9bfa34076f0b"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T16:47:40-03:00"
+      "last_validated": "2026-10-03T16:48:37-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -5938,49 +5993,47 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:247e2c57bfc1",
+      "id": "evidence:repository:d2de00514b4c",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T16:47:40-03:00",
+      "observed_at": "2026-10-03T16:48:37-03:00",
       "status": "observed",
-      "detail": "336 files indexed at revision 5740bf11d76726f389674b5363f01e9d208089f1"
+      "detail": "337 files indexed at revision 2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28"
     },
     {
-      "id": "evidence:test:d5f5d01f8ad3",
+      "id": "evidence:test:9bfa34076f0b",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T16:47:40-03:00",
+      "observed_at": "2026-10-03T16:48:37-03:00",
       "status": "tested",
-      "detail": "125 passed in 6.72s"
+      "detail": "125 passed in 6.73s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:247e2c57bfc1",
+      "id": "event:repository-scan:d2de00514b4c",
       "type": "repository_scanned",
-      "at": "2026-10-03T16:47:40-03:00",
-      "revision": "5740bf11d76726f389674b5363f01e9d208089f1",
-      "file_count": 336,
-      "evidence_id": "evidence:repository:247e2c57bfc1"
+      "at": "2026-10-03T16:48:37-03:00",
+      "revision": "2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28",
+      "file_count": 337,
+      "evidence_id": "evidence:repository:d2de00514b4c"
     },
     {
-      "id": "event:commit-observed:5740bf11d767",
+      "id": "event:commit-observed:2b10e5b04da8",
       "type": "commit_observed",
-      "at": "2026-10-03T16:47:40-03:00",
-      "revision": "5740bf11d76726f389674b5363f01e9d208089f1",
+      "at": "2026-10-03T16:48:37-03:00",
+      "revision": "2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28",
       "branch": "main",
-      "subject": "docs: criar inventario das 72 capacidades",
-      "changed_files": [
-        "continuidade/07_conhecimento/capability_registry.json"
-      ]
+      "subject": "docs: integrar inventario de capacidades ao mapa mestre",
+      "changed_files": []
     },
     {
-      "id": "event:test:d5f5d01f8ad3",
+      "id": "event:test:9bfa34076f0b",
       "type": "tests_observed",
-      "at": "2026-10-03T16:47:40-03:00",
+      "at": "2026-10-03T16:48:37-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:d5f5d01f8ad3"
+      "evidence_id": "evidence:test:9bfa34076f0b"
     }
   ],
   "knowledge_sources": [
@@ -6036,7 +6089,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "9ef38a5cc1685d5d73ae8d3cfdec84495e84a659127822a1c1878fd458ae75b2"
+      "sha256": "4d1fc14e70fada9b38279cb212c9236c694af9e7fe8a3634f46e44256d06224f"
     },
     {
       "id": "source:session",
@@ -6063,7 +6116,7 @@
       "authority": "project_governance",
       "temporal": "current",
       "status": "present",
-      "sha256": "e1f2a3e284d58c3f422e5d018e5cb710716b7c06dd8d10c0e9c474b7a9b79b73"
+      "sha256": "e031bffcd14b16472713258ca04b2b2e9f737b53c915c227e6d98fe07502d757"
     },
     {
       "id": "source:history",
@@ -6082,6 +6135,15 @@
       "temporal": "current",
       "status": "present",
       "sha256": "5aea9a1f2cc6dcf2a3346b19c97c7ca6c6165ccb131393d2d93254c060ca0a35"
+    },
+    {
+      "id": "source:capability-registry",
+      "path": "continuidade/07_conhecimento/capability_registry.json",
+      "layer": "capability_registry",
+      "authority": "project_governance",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "d938303c4f7891296287423db592a4bbc644fa27f7e5385768ab4cdf2f4a979d"
     }
   ],
   "relations": [
@@ -25098,12 +25160,180 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:247e2c57bfc1",
-      "source": "event:repository-scan:247e2c57bfc1",
-      "relation": "generated",
-      "target": "evidence:repository:247e2c57bfc1",
+      "id": "rel:commit-precedes:5740bf11d767:0f4cf6deb990",
+      "source": "commit:5740bf11d76726f389674b5363f01e9d208089f1",
+      "relation": "precedes",
+      "target": "commit:0f4cf6deb990e7c481043e98f972e923121b61f9",
       "status": "asserted",
-      "at": "2026-10-03T16:47:40-03:00",
+      "at": "2026-10-03T19:47:56Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:0f4cf6deb990:032adc3624d7",
+      "source": "commit:0f4cf6deb990e7c481043e98f972e923121b61f9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-03T19:47:56Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:0f4cf6deb990:d64178c49886",
+      "source": "commit:0f4cf6deb990e7c481043e98f972e923121b61f9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-03T19:47:56Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:0f4cf6deb990:1387d1e49c10",
+      "source": "commit:0f4cf6deb990e7c481043e98f972e923121b61f9",
+      "relation": "precedes",
+      "target": "commit:1387d1e49c103f85b3878357b436ef13faf28abc",
+      "status": "asserted",
+      "at": "2026-10-03T16:48:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1387d1e49c10:d8c6481ced3e",
+      "source": "commit:1387d1e49c103f85b3878357b436ef13faf28abc",
+      "relation": "changed",
+      "target": "file:docs/02_arquitetura/INVENTARIO_CAPACIDADES_ABS_V1.md",
+      "status": "asserted",
+      "at": "2026-10-03T16:48:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:1387d1e49c10:281835e27d0d",
+      "source": "commit:1387d1e49c103f85b3878357b436ef13faf28abc",
+      "relation": "precedes",
+      "target": "commit:281835e27d0df0319b6dc0b4264124004ccf4a98",
+      "status": "asserted",
+      "at": "2026-10-03T16:48:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:281835e27d0d:0494dc56ffe7",
+      "source": "commit:281835e27d0df0319b6dc0b4264124004ccf4a98",
+      "relation": "changed",
+      "target": "file:abs_core/project_knowledge.py",
+      "status": "asserted",
+      "at": "2026-10-03T16:48:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:281835e27d0d:ae2b1833c08a",
+      "source": "commit:281835e27d0df0319b6dc0b4264124004ccf4a98",
+      "relation": "precedes",
+      "target": "commit:ae2b1833c08a0aad6b2012fb2f46baac30925279",
+      "status": "asserted",
+      "at": "2026-10-03T16:48:29-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ae2b1833c08a:0ca5291c110c",
+      "source": "commit:ae2b1833c08a0aad6b2012fb2f46baac30925279",
+      "relation": "changed",
+      "target": "file:tests/test_project_knowledge.py",
+      "status": "asserted",
+      "at": "2026-10-03T16:48:29-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:ae2b1833c08a:257053c7e8fd",
+      "source": "commit:ae2b1833c08a0aad6b2012fb2f46baac30925279",
+      "relation": "precedes",
+      "target": "commit:257053c7e8fda19efa6f5589de9537b6debf6201",
+      "status": "asserted",
+      "at": "2026-10-03T16:48:35-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:257053c7e8fd:55b2c60454c3",
+      "source": "commit:257053c7e8fda19efa6f5589de9537b6debf6201",
+      "relation": "changed",
+      "target": "file:00_IA_NAVEGACAO.md",
+      "status": "asserted",
+      "at": "2026-10-03T16:48:35-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:257053c7e8fd:2b10e5b04da8",
+      "source": "commit:257053c7e8fda19efa6f5589de9537b6debf6201",
+      "relation": "precedes",
+      "target": "commit:2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28",
+      "status": "asserted",
+      "at": "2026-10-03T16:48:37-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:d2de00514b4c",
+      "source": "event:repository-scan:d2de00514b4c",
+      "relation": "generated",
+      "target": "evidence:repository:d2de00514b4c",
+      "status": "asserted",
+      "at": "2026-10-03T16:48:37-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -25112,12 +25342,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:5740bf11d767",
-      "source": "commit:5740bf11d76726f389674b5363f01e9d208089f1",
+      "id": "rel:scan-commit:2b10e5b04da8",
+      "source": "commit:2b10e5b04da8f11bbe079a4d05f0d079ae0cbe28",
       "relation": "observed_by",
-      "target": "event:repository-scan:247e2c57bfc1",
+      "target": "event:repository-scan:d2de00514b4c",
       "status": "asserted",
-      "at": "2026-10-03T16:47:40-03:00",
+      "at": "2026-10-03T16:48:37-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
