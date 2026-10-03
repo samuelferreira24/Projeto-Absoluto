@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-09-26T17:37:00-03:00",
-  "source_revision": "8e5d28161e5af6ca1c61c81ef621806bae06ae6a",
+  "generated_at": "2026-10-03T15:05:42-03:00",
+  "source_revision": "915584fb1786ebb2d3cf36a3da8bcd9429ec048c",
   "components": [
     {
       "id": "component:abs_core",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "8e5d28161e5af6ca1c61c81ef621806bae06ae6a",
-      "commit_subject": "docs: registrar ataque adversarial final do molde ABS"
+      "revision": "915584fb1786ebb2d3cf36a3da8bcd9429ec048c",
+      "commit_subject": "docs: record clarified ABS hierarchy in session state"
     }
   ],
   "tools": [
@@ -145,11 +145,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:831a9b39bf00"
+        "evidence:repository:26bb3ffe841d"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T17:37:00-03:00"
+      "last_validated": "2026-10-03T15:05:42-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -163,12 +163,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:831a9b39bf00",
-        "evidence:test:eb91d8397373"
+        "evidence:repository:26bb3ffe841d",
+        "evidence:test:6bd4b27959d7"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T17:37:00-03:00"
+      "last_validated": "2026-10-03T15:05:42-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -182,58 +182,58 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:831a9b39bf00"
+        "evidence:repository:26bb3ffe841d"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-09-26T17:37:00-03:00"
+      "last_validated": "2026-10-03T15:05:42-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:831a9b39bf00",
+      "id": "evidence:repository:26bb3ffe841d",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-09-26T17:37:00-03:00",
+      "observed_at": "2026-10-03T15:05:42-03:00",
       "status": "observed",
-      "detail": "329 files indexed at revision 8e5d28161e5af6ca1c61c81ef621806bae06ae6a"
+      "detail": "329 files indexed at revision 915584fb1786ebb2d3cf36a3da8bcd9429ec048c"
     },
     {
-      "id": "evidence:test:eb91d8397373",
+      "id": "evidence:test:6bd4b27959d7",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-09-26T17:37:00-03:00",
+      "observed_at": "2026-10-03T15:05:42-03:00",
       "status": "tested",
-      "detail": "113 passed in 6.39s"
+      "detail": "113 passed in 6.19s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:831a9b39bf00",
+      "id": "event:repository-scan:26bb3ffe841d",
       "type": "repository_scanned",
-      "at": "2026-09-26T17:37:00-03:00",
-      "revision": "8e5d28161e5af6ca1c61c81ef621806bae06ae6a",
+      "at": "2026-10-03T15:05:42-03:00",
+      "revision": "915584fb1786ebb2d3cf36a3da8bcd9429ec048c",
       "file_count": 329,
-      "evidence_id": "evidence:repository:831a9b39bf00"
+      "evidence_id": "evidence:repository:26bb3ffe841d"
     },
     {
-      "id": "event:commit-observed:8e5d28161e5a",
+      "id": "event:commit-observed:915584fb1786",
       "type": "commit_observed",
-      "at": "2026-09-26T17:37:00-03:00",
-      "revision": "8e5d28161e5af6ca1c61c81ef621806bae06ae6a",
+      "at": "2026-10-03T15:05:42-03:00",
+      "revision": "915584fb1786ebb2d3cf36a3da8bcd9429ec048c",
       "branch": "main",
-      "subject": "docs: registrar ataque adversarial final do molde ABS",
+      "subject": "docs: record clarified ABS hierarchy in session state",
       "changed_files": [
-        "docs/03_planejamento/pesquisa/ATAQUE_ADVERSARIAL_FINAL_MOLDE_ABS_V0.md"
+        "continuidade/07_conhecimento/SESSAO_ATUAL.md"
       ]
     },
     {
-      "id": "event:test:eb91d8397373",
+      "id": "event:test:6bd4b27959d7",
       "type": "tests_observed",
-      "at": "2026-09-26T17:37:00-03:00",
+      "at": "2026-10-03T15:05:42-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:eb91d8397373"
+      "evidence_id": "evidence:test:6bd4b27959d7"
     }
   ]
 }
