@@ -165,6 +165,8 @@ def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
         "99_arquivo/README.md",
         "continuidade/07_conhecimento/trajectory_registry.json",
         "continuidade/07_conhecimento/capability_registry.json",
+        "continuidade/07_conhecimento/decision_registry.json",
+        "continuidade/07_conhecimento/project_registry.json",
     }
     for rel in required:
         path = tmp_path / rel
@@ -172,13 +174,24 @@ def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
         path.write_text(rel, encoding="utf-8")
     knowledge = RepositoryScanner(tmp_path).scan()
     sources = {item.id: item for item in knowledge.knowledge_sources}
-    assert len(sources) == 12
+    assert len(sources) == 14
     assert all(item.status == "present" for item in sources.values())
     assert sources["source:decisions"].authority == "human_authority"
     assert sources["source:history"].temporal == "historical"
     assert sources["source:research"].layer == "research"
     assert sources["source:handoff"].layer == "handoff"
     assert all(item.sha256 for item in sources.values())
+
+
+def test_decision_registry_is_projected_into_knowledge(tmp_path: Path):
+    registry = tmp_path / "continuidade/07_conhecimento/decision_registry.json"
+    registry.parent.mkdir(parents=True, exist_ok=True)
+    registry.write_text(
+        '{"decisions":[{"id":"decision:test","title":"Teste","status":"established"}]}',
+        encoding="utf-8",
+    )
+    knowledge = RepositoryScanner(tmp_path).scan()
+    assert knowledge.decisions[0]["id"] == "decision:test"
 
 
 def test_projection_exposes_continuity_layers(tmp_path: Path):
