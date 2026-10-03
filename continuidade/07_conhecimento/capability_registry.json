@@ -1,0 +1,830 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Inventário das 72 capacidades do tabuleiro. Classifica o estado conhecido sem transformar planejamento em capacidade comprovada.",
+  "source": "cerebro/mapas/01_TABULEIRO_72_CAPACIDADES_V0_1.md",
+  "status_definitions": {
+    "governança": "autoridade/direção do Projeto; não é feature do ABS",
+    "operacional": "há implementação e evidência suficiente para considerar a capacidade presente",
+    "parcial": "há materialização, mas ainda falta fechamento end-to-end",
+    "planejada": "a capacidade ainda não está materializada ou é exploratória"
+  },
+  "capabilities": [
+    {
+      "id": "capability:01",
+      "name": "Visão",
+      "category": "A",
+      "label": "Direção e identidade",
+      "status": "governança",
+      "evidence": [
+        "planning"
+      ]
+    },
+    {
+      "id": "capability:02",
+      "name": "Propósito e objetivos",
+      "category": "A",
+      "label": "Direção e identidade",
+      "status": "governança",
+      "evidence": [
+        "planning"
+      ]
+    },
+    {
+      "id": "capability:03",
+      "name": "Princípios",
+      "category": "A",
+      "label": "Direção e identidade",
+      "status": "governança",
+      "evidence": [
+        "planning"
+      ]
+    },
+    {
+      "id": "capability:04",
+      "name": "Identidade do Projeto",
+      "category": "A",
+      "label": "Direção e identidade",
+      "status": "governança",
+      "evidence": [
+        "planning"
+      ]
+    },
+    {
+      "id": "capability:05",
+      "name": "Governança",
+      "category": "A",
+      "label": "Direção e identidade",
+      "status": "governança",
+      "evidence": [
+        "planning"
+      ]
+    },
+    {
+      "id": "capability:06",
+      "name": "Critérios de decisão",
+      "category": "A",
+      "label": "Direção e identidade",
+      "status": "governança",
+      "evidence": [
+        "planning"
+      ]
+    },
+    {
+      "id": "capability:07",
+      "name": "Cérebro",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:08",
+      "name": "Conhecimento estruturado",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:09",
+      "name": "Memória temporal",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:10",
+      "name": "Histórico",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:11",
+      "name": "Grafo de relações",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:12",
+      "name": "Proveniência",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:13",
+      "name": "Pesquisa contínua",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:14",
+      "name": "Recuperação contextual",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:15",
+      "name": "Experiência",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:16",
+      "name": "Aprendizado",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:17",
+      "name": "Sabedoria operacional",
+      "category": "B",
+      "label": "Conhecimento e inteligência",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:18",
+      "name": "Arquitetura",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:19",
+      "name": "Fundação",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:20",
+      "name": "Estado",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:21",
+      "name": "Contratos e interfaces",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:22",
+      "name": "Integração",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:23",
+      "name": "Testes",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:24",
+      "name": "Verificação",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:25",
+      "name": "Validação",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:26",
+      "name": "Observabilidade",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:27",
+      "name": "Auditoria",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:28",
+      "name": "Evolução arquitetural",
+      "category": "C",
+      "label": "Construção e engenharia",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:29",
+      "name": "Continuidade entre IAs",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:30",
+      "name": "Contexto transferível",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:31",
+      "name": "Estado transferível",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:32",
+      "name": "Handoff",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:33",
+      "name": "Portabilidade",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:34",
+      "name": "Registro de agentes",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:35",
+      "name": "Multi-IA",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:36",
+      "name": "Orquestração",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:37",
+      "name": "Delegação",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:38",
+      "name": "Supervisão",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:39",
+      "name": "Meta-supervisão",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:40",
+      "name": "Auditoria independente",
+      "category": "D",
+      "label": "Continuidade entre inteligências",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:41",
+      "name": "Automação",
+      "category": "E",
+      "label": "Automação e operação",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:42",
+      "name": "Eventos",
+      "category": "E",
+      "label": "Automação e operação",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:43",
+      "name": "Ledger/histórico operacional",
+      "category": "E",
+      "label": "Automação e operação",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:44",
+      "name": "Idempotência",
+      "category": "E",
+      "label": "Automação e operação",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:45",
+      "name": "Filas e processamento futuro",
+      "category": "E",
+      "label": "Automação e operação",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:46",
+      "name": "Monitoramento",
+      "category": "E",
+      "label": "Automação e operação",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:47",
+      "name": "Detecção de oportunidades",
+      "category": "E",
+      "label": "Automação e operação",
+      "status": "planejada",
+      "evidence": [
+        "planning"
+      ]
+    },
+    {
+      "id": "capability:48",
+      "name": "Execução contínua",
+      "category": "E",
+      "label": "Automação e operação",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:49",
+      "name": "Operação 24/7",
+      "category": "E",
+      "label": "Automação e operação",
+      "status": "planejada",
+      "evidence": [
+        "planning"
+      ]
+    },
+    {
+      "id": "capability:50",
+      "name": "Controle de recursos",
+      "category": "E",
+      "label": "Automação e operação",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:51",
+      "name": "GitHub",
+      "category": "F",
+      "label": "Integração externa",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:52",
+      "name": "Outras plataformas",
+      "category": "F",
+      "label": "Integração externa",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:53",
+      "name": "Contas e sessões",
+      "category": "F",
+      "label": "Integração externa",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:54",
+      "name": "APIs",
+      "category": "F",
+      "label": "Integração externa",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:55",
+      "name": "Ferramentas externas",
+      "category": "F",
+      "label": "Integração externa",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:56",
+      "name": "Interfaces de comando",
+      "category": "F",
+      "label": "Integração externa",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:57",
+      "name": "Adaptadores",
+      "category": "F",
+      "label": "Integração externa",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:58",
+      "name": "Padrões de interoperabilidade",
+      "category": "F",
+      "label": "Integração externa",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:59",
+      "name": "Segurança",
+      "category": "G",
+      "label": "Proteção e controle",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:60",
+      "name": "Permissões",
+      "category": "G",
+      "label": "Proteção e controle",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:61",
+      "name": "Níveis de autonomia",
+      "category": "G",
+      "label": "Proteção e controle",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:62",
+      "name": "Escalonamento humano",
+      "category": "G",
+      "label": "Proteção e controle",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:63",
+      "name": "Controle de ações de alto impacto",
+      "category": "G",
+      "label": "Proteção e controle",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:64",
+      "name": "Detecção de conflitos",
+      "category": "G",
+      "label": "Proteção e controle",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:65",
+      "name": "Red team / desafio independente",
+      "category": "G",
+      "label": "Proteção e controle",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:66",
+      "name": "Recuperação e continuidade operacional",
+      "category": "G",
+      "label": "Proteção e controle",
+      "status": "operacional",
+      "evidence": [
+        "implementation",
+        "tests",
+        "project_knowledge"
+      ]
+    },
+    {
+      "id": "capability:67",
+      "name": "Novas capacidades",
+      "category": "H",
+      "label": "Expansão",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:68",
+      "name": "Novos recursos",
+      "category": "H",
+      "label": "Expansão",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:69",
+      "name": "Sistemas derivados",
+      "category": "H",
+      "label": "Expansão",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:70",
+      "name": "Escala",
+      "category": "H",
+      "label": "Expansão",
+      "status": "parcial",
+      "evidence": [
+        "documentation",
+        "implementation_or_tests"
+      ]
+    },
+    {
+      "id": "capability:71",
+      "name": "Capacidades ainda desconhecidas",
+      "category": "H",
+      "label": "Expansão",
+      "status": "planejada",
+      "evidence": [
+        "planning"
+      ]
+    },
+    {
+      "id": "capability:72",
+      "name": "Oportunidades descobertas durante a construção",
+      "category": "H",
+      "label": "Expansão",
+      "status": "planejada",
+      "evidence": [
+        "planning"
+      ]
+    }
+  ]
+}
