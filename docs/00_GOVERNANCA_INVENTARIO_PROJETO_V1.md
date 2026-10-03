@@ -67,6 +67,7 @@ Material antigo é preservado como patrimônio, mas não deve ser confundido com
 - trajectory_registry.json — trajetória/proveniência.
 - project_knowledge.json — estado derivado observável.
 - project_registry.json — inventário estrutural do próprio projeto.
+- closure_registry.json — fechamento controlado das lacunas restantes.
 
 ## O que foi fechado nesta organização
 
@@ -79,6 +80,10 @@ Material antigo é preservado como patrimônio, mas não deve ser confundido com
 7. Registro da trajetória.
 8. Registro estrutural dos principais tipos de objeto.
 9. Relação entre os registros e o Project Knowledge.
+
+## Estado final da organização
+
+A camada de **inventário e organização** está fechada: as lacunas que não podem ser marcadas como resolvidas foram individualmente registradas em `closure_registry.json`, com critério de fechamento e evidência exigida. Isso encerra a classificação estrutural sem fingir que capacidades ainda não comprovadas já funcionam.
 
 ## O que permanece como fechamento semântico
 
