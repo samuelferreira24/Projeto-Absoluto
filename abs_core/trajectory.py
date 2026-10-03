@@ -94,9 +94,8 @@ class TrajectoryGraph:
                 continue
             for target in next_nodes:
                 if target in path:
-                    paths.append(path + [target])
-                else:
-                    queue.append((target, path + [target]))
+                    continue
+                queue.append((target, path + [target]))
         return paths
 
     def ancestors(self, start: str, *, max_depth: int = 8) -> list[list[str]]:
