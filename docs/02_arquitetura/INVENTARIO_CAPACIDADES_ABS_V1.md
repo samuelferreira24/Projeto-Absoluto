@@ -10,6 +10,9 @@ A fonte quantitativa das 72 capacidades do tabuleiro é:
 O registro machine-readable é:
 `continuidade/07_conhecimento/capability_registry.json`
 
+O registro de fechamento das lacunas é:
+`continuidade/07_conhecimento/closure_registry.json`
+
 ## Regra de classificação
 
 - **governança** — pertence à direção/autoridade do Projeto, não é feature do ABS.
@@ -178,7 +181,11 @@ Uma capacidade só passa de **parcial** para **operacional** quando houver, conf
 
 Não basta existir um arquivo com o nome da capacidade.
 
-## 10. Regra de fechamento
+## 10. Estado do inventário
+
+As 72 capacidades estão classificadas. As 27 parciais e 4 planejadas agora possuem rastreamento individual de fechamento em `closure_registry.json`. Portanto, o **inventário está organizado e fechado como catálogo**; a implementação das capacidades ainda abertas permanece explicitamente separada do catálogo.
+
+## 11. Regra de fechamento
 
 O trabalho de organização deve seguir:
 
@@ -187,7 +194,7 @@ O trabalho de organização deve seguir:
 A próxima lacuna estrutural identificada fora deste inventário é a granularidade da proveniência semântica: decisões, evidências, implementações e resultados ainda precisam de entidades e relações específicas para que perguntas como “qual decisão foi substituída?” sejam respondidas sem depender de documentos amplos.
 
 
-## 11. Inventário físico do `abs_core`
+## 12. Inventário físico do `abs_core`
 
 O inventário físico é separado da lista conceitual de capacidades. Cada módulo possui uma função principal:
 
