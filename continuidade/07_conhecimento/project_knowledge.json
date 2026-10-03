@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T18:25:54-03:00",
-  "source_revision": "a80599a57c0c5be69469a077cf454dd418b95c29",
+  "generated_at": "2026-10-03T18:32:59-03:00",
+  "source_revision": "518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 58
+      "file_count": 59
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "a80599a57c0c5be69469a077cf454dd418b95c29",
-      "commit_subject": "Otimizar Navegação e Pesquisa V1 (#97)"
+      "revision": "518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
+      "commit_subject": "docs: registrar pesquisa arquitetural da navegação V2 (#98)"
     }
   ],
   "tools": [
@@ -2848,6 +2848,11 @@
       "id": "file:docs/03_planejamento/pesquisa/ATAQUE_ADVERSARIAL_FINAL_MOLDE_ABS_V0.md",
       "kind": "file",
       "path": "docs/03_planejamento/pesquisa/ATAQUE_ADVERSARIAL_FINAL_MOLDE_ABS_V0.md"
+    },
+    {
+      "id": "file:docs/03_planejamento/pesquisa/PESQUISA_NAVEGACAO_V2.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/pesquisa/PESQUISA_NAVEGACAO_V2.md"
     },
     {
       "id": "file:docs/04_EVOLUCAO_AUTONOMA_ASSISTIDA_ABS.md",
@@ -6940,6 +6945,20 @@
       "sha": "a80599a57c0c5be69469a077cf454dd418b95c29"
     },
     {
+      "id": "commit:f800f1469fc0078eb8c41625d5f106d91b8478b1",
+      "kind": "commit",
+      "at": "2026-10-03T21:26:11Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "f800f1469fc0078eb8c41625d5f106d91b8478b1"
+    },
+    {
+      "id": "commit:518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
+      "kind": "commit",
+      "at": "2026-10-03T18:32:59-03:00",
+      "subject": "docs: registrar pesquisa arquitetural da navegação V2 (#98)",
+      "sha": "518f23da332e81df9e4f13b7e1b2b014a4d4fae9"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7052,23 +7071,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:87371127077b",
+      "id": "evidence:repository:9e5583d07a8e",
       "kind": "evidence",
-      "at": "2026-10-03T18:25:54-03:00",
+      "at": "2026-10-03T18:32:59-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:87371127077b",
+      "id": "event:repository-scan:9e5583d07a8e",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-03T18:25:54-03:00"
+      "at": "2026-10-03T18:32:59-03:00"
     },
     {
-      "id": "event:commit-observed:a80599a57c0c",
+      "id": "event:commit-observed:518f23da332e",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-03T18:25:54-03:00"
+      "at": "2026-10-03T18:32:59-03:00"
     }
   ],
   "paths": [
@@ -7103,11 +7122,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:1c36a00fe241"
+        "evidence:test:857c9206e6bc"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T18:25:54-03:00"
+      "last_validated": "2026-10-03T18:32:59-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7130,20 +7149,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:87371127077b",
+      "id": "evidence:repository:9e5583d07a8e",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T18:25:54-03:00",
+      "observed_at": "2026-10-03T18:32:59-03:00",
       "status": "observed",
-      "detail": "353 files indexed at revision a80599a57c0c5be69469a077cf454dd418b95c29"
+      "detail": "354 files indexed at revision 518f23da332e81df9e4f13b7e1b2b014a4d4fae9"
     },
     {
-      "id": "evidence:test:1c36a00fe241",
+      "id": "evidence:test:857c9206e6bc",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T18:25:54-03:00",
+      "observed_at": "2026-10-03T18:32:59-03:00",
       "status": "tested",
-      "detail": "136 passed in 6.91s"
+      "detail": "136 passed in 6.92s"
     }
   ],
   "decisions": [
@@ -7246,35 +7265,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:87371127077b",
+      "id": "event:repository-scan:9e5583d07a8e",
       "type": "repository_scanned",
-      "at": "2026-10-03T18:25:54-03:00",
-      "revision": "a80599a57c0c5be69469a077cf454dd418b95c29",
-      "file_count": 353,
-      "evidence_id": "evidence:repository:87371127077b"
+      "at": "2026-10-03T18:32:59-03:00",
+      "revision": "518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
+      "file_count": 354,
+      "evidence_id": "evidence:repository:9e5583d07a8e"
     },
     {
-      "id": "event:commit-observed:a80599a57c0c",
+      "id": "event:commit-observed:518f23da332e",
       "type": "commit_observed",
-      "at": "2026-10-03T18:25:54-03:00",
-      "revision": "a80599a57c0c5be69469a077cf454dd418b95c29",
+      "at": "2026-10-03T18:32:59-03:00",
+      "revision": "518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
       "branch": "main",
-      "subject": "Otimizar Navegação e Pesquisa V1 (#97)",
+      "subject": "docs: registrar pesquisa arquitetural da navegação V2 (#98)",
       "changed_files": [
-        "tests/test_navegacao_v1.py",
-        "tools/navegacao/README.md",
-        "tools/navegacao/history.py",
-        "tools/navegacao/index.py",
-        "tools/navegacao/related.py",
-        "tools/navegacao/search.py"
+        "docs/03_planejamento/pesquisa/PESQUISA_NAVEGACAO_V2.md"
       ]
     },
     {
-      "id": "event:test:1c36a00fe241",
+      "id": "event:test:857c9206e6bc",
       "type": "tests_observed",
-      "at": "2026-10-03T18:25:54-03:00",
+      "at": "2026-10-03T18:32:59-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:1c36a00fe241"
+      "evidence_id": "evidence:test:857c9206e6bc"
     }
   ],
   "knowledge_sources": [
@@ -7330,7 +7344,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "d18e1b12724347ced2949f1bf9346feefc178635c8c513ae2bb126cc564f4be1"
+      "sha256": "9014bb505773eda03781d6ad6fa09915c765a9dcce940c5b55cf5718d1734489"
     },
     {
       "id": "source:session",
@@ -27777,12 +27791,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:87371127077b",
-      "source": "event:repository-scan:87371127077b",
-      "relation": "generated",
-      "target": "evidence:repository:87371127077b",
+      "id": "rel:commit-precedes:a80599a57c0c:f800f1469fc0",
+      "source": "commit:a80599a57c0c5be69469a077cf454dd418b95c29",
+      "relation": "precedes",
+      "target": "commit:f800f1469fc0078eb8c41625d5f106d91b8478b1",
       "status": "asserted",
-      "at": "2026-10-03T18:25:54-03:00",
+      "at": "2026-10-03T21:26:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f800f1469fc0:032adc3624d7",
+      "source": "commit:f800f1469fc0078eb8c41625d5f106d91b8478b1",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-03T21:26:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f800f1469fc0:d64178c49886",
+      "source": "commit:f800f1469fc0078eb8c41625d5f106d91b8478b1",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-03T21:26:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f800f1469fc0:518f23da332e",
+      "source": "commit:f800f1469fc0078eb8c41625d5f106d91b8478b1",
+      "relation": "precedes",
+      "target": "commit:518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
+      "status": "asserted",
+      "at": "2026-10-03T18:32:59-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:518f23da332e:696f87d209f4",
+      "source": "commit:518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/pesquisa/PESQUISA_NAVEGACAO_V2.md",
+      "status": "asserted",
+      "at": "2026-10-03T18:32:59-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:9e5583d07a8e",
+      "source": "event:repository-scan:9e5583d07a8e",
+      "relation": "generated",
+      "target": "evidence:repository:9e5583d07a8e",
+      "status": "asserted",
+      "at": "2026-10-03T18:32:59-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -27791,12 +27875,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:a80599a57c0c",
-      "source": "commit:a80599a57c0c5be69469a077cf454dd418b95c29",
+      "id": "rel:scan-commit:518f23da332e",
+      "source": "commit:518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
       "relation": "observed_by",
-      "target": "event:repository-scan:87371127077b",
+      "target": "event:repository-scan:9e5583d07a8e",
       "status": "asserted",
-      "at": "2026-10-03T18:25:54-03:00",
+      "at": "2026-10-03T18:32:59-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
