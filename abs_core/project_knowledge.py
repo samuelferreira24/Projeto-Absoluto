@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-SCHEMA_VERSION = "1.2"
+SCHEMA_VERSION = "1.3"
 DEFAULT_OUTPUT = Path(os.getenv("PA_KNOWLEDGE_DIR", "continuidade/07_conhecimento"))
 EXCLUDED = {".git", ".venv", "__pycache__", ".pytest_cache", "node_modules"}
 
@@ -65,6 +65,19 @@ class KnowledgeSource:
     status: str
     sha256: str | None = None
 
+
+@dataclass
+class Relation:
+    id: str
+    source: str
+    relation: str
+    target: str
+    status: str = "asserted"
+    at: str | None = None
+    source_ref: str | None = None
+    note: str = ""
+
+
 @dataclass
 class ProjectKnowledge:
     schema_version: str = SCHEMA_VERSION
@@ -81,6 +94,7 @@ class ProjectKnowledge:
     decisions: list[dict[str, Any]] = field(default_factory=list)
     events: list[dict[str, Any]] = field(default_factory=list)
     knowledge_sources: list[KnowledgeSource] = field(default_factory=list)
+    relations: list[Relation] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         data = asdict(self)
@@ -180,6 +194,31 @@ class RepositoryScanner:
     def commit_subject(self) -> str | None:
         return self._git("show", "-s", "--format=%s", "HEAD")
 
+    def git_history(self) -> list[dict[str, Any]]:
+        raw = self._git(
+            "log",
+            "--reverse",
+            "--format=@@@%x1f%H%x1f%P%x1f%cI%x1f%s",
+            "--name-only",
+        ) or ""
+        commits: list[dict[str, Any]] = []
+        current: dict[str, Any] | None = None
+        for line in raw.splitlines():
+            if line.startswith("@@@\x1f"):
+                _, sha, parents, at, subject = line.split("\x1f", 4)
+                current = {
+                    "id": "commit:" + sha,
+                    "sha": sha,
+                    "parents": parents.split() if parents else [],
+                    "at": at,
+                    "subject": subject,
+                    "changed_files": [],
+                }
+                commits.append(current)
+            elif line.strip() and current is not None:
+                current["changed_files"].append(line.strip())
+        return commits
+
     def scan_files(self) -> list[dict[str, Any]]:
         out: list[dict[str, Any]] = []
         for path in sorted(self.root.rglob("*")):
@@ -270,6 +309,63 @@ class RepositoryScanner:
                     "changed_files": changed,
                 }
             )
+
+        history = self.git_history()
+        for commit in history:
+            k.nodes.append({
+                "id": commit["id"], "kind": "commit", "at": commit["at"],
+                "subject": commit["subject"], "sha": commit["sha"],
+            })
+            for parent in commit["parents"]:
+                k.relations.append(Relation(
+                    id=f"rel:commit-precedes:{parent[:12]}:{commit['sha'][:12]}",
+                    source="commit:" + parent, relation="precedes", target=commit["id"],
+                    at=commit["at"], source_ref="git",
+                ))
+            for path in commit["changed_files"]:
+                k.relations.append(Relation(
+                    id=f"rel:commit-changed:{commit['sha'][:12]}:{digest(path)[:12]}",
+                    source=commit["id"], relation="changed", target="file:" + path,
+                    at=commit["at"], source_ref="git",
+                ))
+
+        for source in k.knowledge_sources:
+            k.nodes.append({
+                "id": source.id, "kind": "knowledge_source", "path": source.path,
+                "authority": source.authority, "temporal": source.temporal,
+                "status": source.status,
+            })
+
+        for evidence in k.evidence:
+            k.nodes.append({
+                "id": evidence.id, "kind": "evidence", "at": evidence.observed_at,
+                "status": evidence.status, "source": evidence.source,
+            })
+
+        for event in k.events:
+            k.nodes.append({
+                "id": event["id"], "kind": "event", "type": event["type"],
+                "at": event.get("at"),
+            })
+            evidence_id = event.get("evidence_id")
+            if evidence_id:
+                k.relations.append(Relation(
+                    id=f"rel:event-evidence:{event['id']}",
+                    source=event["id"], relation="generated", target=evidence_id,
+                    at=event.get("at"), source_ref="repository-observation",
+                ))
+
+        if revision:
+            scan_event = next(
+                (e for e in k.events if e["id"].startswith("event:repository-scan:")),
+                None,
+            )
+            if scan_event:
+                k.relations.append(Relation(
+                    id=f"rel:scan-commit:{revision[:12]}",
+                    source="commit:" + revision, relation="observed_by",
+                    target=scan_event["id"], at=observed_at, source_ref="git",
+                ))
         k.resources = [
             {
                 "id": "resource:repository",
@@ -405,6 +501,11 @@ class KnowledgeStore:
         lines += [
             f"- {e['id']} — {e['type']} — revisão: {e.get('revision', 'n/a')}"
             for e in k.events
+        ]
+        lines += ["", "## Relações de trajetória"]
+        lines += [
+            f"- {r.source} — {r.relation} → {r.target} — {r.status}"
+            for r in k.relations
         ]
         lines += ["", "## Evidências"]
         lines += [
