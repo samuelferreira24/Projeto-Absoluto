@@ -32,13 +32,18 @@ PROJETO ABSOLUTO
 
 Essa representação é conceitual. Ela não exige que cada camada tenha um repositório separado.
 
-## 3. ABS
+## 3. ABS e Sistema Absoluto
 
-O ABS é o primeiro projeto que o Imperador está tentando construir dentro do Projeto Absoluto.
+O termo **ABS** possui dois usos relacionados que não devem ser confundidos:
 
-ABS não representa todo o Projeto Absoluto.
+1. **Sistema Absoluto / ABS geral** — o ecossistema aberto de capacidades e recursos à disposição do Imperador. Não é uma lista fechada e não depende de um fornecedor, modelo, ferramenta, servidor, dispositivo ou interface específicos.
+2. **ABS em construção** — o sistema que está sendo construído para operar/orquestrar o ABS geral, selecionando, combinando, autorizando, executando, verificando e registrando o uso de capacidades conforme a direção do Imperador.
 
-ABS V1 é o segundo protótipo do ABS e deve ser tratado como uma versão do primeiro projeto, não como a definição permanente do ABS.
+Portanto, o ABS em construção **não é todo o ecossistema** e nenhum de seus componentes individuais é o ABS inteiro.
+
+O ABS V1 é a primeira versão operacional do **ABS em construção**. Não é a definição permanente do Sistema Absoluto nem do ecossistema de capacidades.
+
+A arquitetura do ABS em construção deve permanecer aberta para substituição, expansão ou abandono de componentes, sem transformar qualquer fornecedor, modelo, ferramenta, interface ou infraestrutura em identidade do ABS.
 
 O ABS poderá evoluir para V2, V3 e versões posteriores. A arquitetura deve permanecer aberta para substituição, expansão ou abandono de componentes.
 
