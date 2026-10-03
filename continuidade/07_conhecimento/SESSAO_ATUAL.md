@@ -135,3 +135,33 @@ Uma nova IA deve conseguir entender, sem depender desta conversa:
 10. onde a construção deve continuar.
 
 A conversa pode terminar; esse entendimento não pode terminar com ela.
+
+
+## Atualização crítica de continuidade — 2026-10-03 — sincronização integral de contexto
+
+A organização desta sessão não deve ser interpretada como uma simples correção da definição do ABS.
+
+Foi realizada uma preservação ampla do contexto recuperável do trabalho, incluindo:
+- entendimento conceitual;
+- distinção ABS geral / ABS em construção / ABS V1;
+- decisões e correções de governança;
+- pesquisas arquiteturais;
+- famílias de moldes investigadas;
+- experimentos e simulações 01–30;
+- ataques adversariais e invariantes reforçados;
+- estado do ABS Core/Cérebro/interface;
+- Open WebUI como canal substituível;
+- estado da infraestrutura VPS/Coolify;
+- bloqueio conhecido do Code Server;
+- regras de não reconstrução;
+- método PP + BN + AV;
+- evolução e independência;
+- estado epistemológico e limites das conclusões;
+- ponto exato para retomada da construção.
+
+O handoff vigente consolidado é:
+`continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md`
+
+Esse handoff existe para impedir que outra IA tenha de reconstruir o entendimento apenas lendo commits ou documentos isolados.
+
+A construção do ABS em construção deve continuar a partir desse estado, sem reiniciar a organização documental salvo quando surgir nova evidência ou uma mudança real de estado.
