@@ -245,11 +245,13 @@ Essa diferença é uma das principais fronteiras atuais.
 
 # 7. FOCO ATUAL
 
-O foco atual não é reconstruir tudo.
+A organização documental desta rodada não é o objetivo final. Ela é uma preparação para retomar a construção.
 
-O foco é:
+O foco atual desta etapa é:
 
-> **transformar o conjunto atual de ABS + Cérebro + patrimônio histórico em um sistema coerente de continuidade e construção.**
+> **preservar conhecimento + entendimento + estado + evidências + decisões + histórico suficientes para que a construção do ABS em construção continue sem depender desta conversa.**
+
+Depois da consolidação automática, o foco volta para a construção do ABS em construção, usando o estado real e as capacidades já verificadas.
 
 A frente principal atual é:
 
