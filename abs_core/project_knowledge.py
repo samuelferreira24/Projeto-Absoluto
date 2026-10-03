@@ -133,6 +133,8 @@ class RepositoryScanner:
         "source:history": ("99_arquivo/README.md", "history_archive", "historical_archive", "historical"),
         "source:trajectory-registry": ("continuidade/07_conhecimento/trajectory_registry.json", "trajectory_registry", "project_governance", "current"),
         "source:capability-registry": ("continuidade/07_conhecimento/capability_registry.json", "capability_registry", "project_governance", "current"),
+        "source:decision-registry": ("continuidade/07_conhecimento/decision_registry.json", "decision_registry", "human_authority", "current"),
+        "source:project-registry": ("continuidade/07_conhecimento/project_registry.json", "project_registry", "project_governance", "current"),
     }
 
     def _load_trajectory_registry(self) -> list[dict[str, Any]]:
@@ -463,6 +465,18 @@ class RepositoryScanner:
                     "category": item.get("category"),
                     "evidence": item.get("evidence", []),
                 })
+
+        decision_registry_path = self.root / "continuidade/07_conhecimento/decision_registry.json"
+        if decision_registry_path.is_file():
+            try:
+                decision_registry = json.loads(decision_registry_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                decision_registry = {}
+            k.decisions = [
+                dict(item)
+                for item in decision_registry.get("decisions", [])
+                if isinstance(item, dict) and item.get("id")
+            ]
 
         paths = {f["path"] for f in files}
         for capability_id, (path_id, objective, origin, destination) in self.CAPABILITY_PATHS.items():
