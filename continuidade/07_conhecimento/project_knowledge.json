@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T16:35:39-03:00",
-  "source_revision": "a2ad07b4038ce58a722e1ff0686686a28032b540",
+  "generated_at": "2026-10-03T16:42:24-03:00",
+  "source_revision": "d6bf8c5f94b3fb751e187a078ede689be36aa033",
   "components": [
     {
       "id": "component:abs_core",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "a2ad07b4038ce58a722e1ff0686686a28032b540",
-      "commit_subject": "docs: expose trajectory implementation in AI navigation"
+      "revision": "d6bf8c5f94b3fb751e187a078ede689be36aa033",
+      "commit_subject": "test: prevent repeated paths in cyclic traversal"
     }
   ],
   "tools": [
@@ -5725,6 +5725,34 @@
       "sha": "a2ad07b4038ce58a722e1ff0686686a28032b540"
     },
     {
+      "id": "commit:11a11e3cd6afc868f6829957075c9bffc20d8a41",
+      "kind": "commit",
+      "at": "2026-10-03T19:35:55Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "11a11e3cd6afc868f6829957075c9bffc20d8a41"
+    },
+    {
+      "id": "commit:73a909902fd39769e898ca593de626504c3f4501",
+      "kind": "commit",
+      "at": "2026-10-03T16:42:12-03:00",
+      "subject": "fix: remove semantic trajectory cycle in navigation registry",
+      "sha": "73a909902fd39769e898ca593de626504c3f4501"
+    },
+    {
+      "id": "commit:f896dfb45d48b5e0797ba6e45dc3ff88e47909eb",
+      "kind": "commit",
+      "at": "2026-10-03T16:42:20-03:00",
+      "subject": "fix: make trajectory traversal cycle-safe",
+      "sha": "f896dfb45d48b5e0797ba6e45dc3ff88e47909eb"
+    },
+    {
+      "id": "commit:d6bf8c5f94b3fb751e187a078ede689be36aa033",
+      "kind": "commit",
+      "at": "2026-10-03T16:42:24-03:00",
+      "subject": "test: prevent repeated paths in cyclic traversal",
+      "sha": "d6bf8c5f94b3fb751e187a078ede689be36aa033"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -5813,23 +5841,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:4d41c2881e12",
+      "id": "evidence:repository:08034d730810",
       "kind": "evidence",
-      "at": "2026-10-03T16:35:39-03:00",
+      "at": "2026-10-03T16:42:24-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:4d41c2881e12",
+      "id": "event:repository-scan:08034d730810",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-03T16:35:39-03:00"
+      "at": "2026-10-03T16:42:24-03:00"
     },
     {
-      "id": "event:commit-observed:a2ad07b4038c",
+      "id": "event:commit-observed:d6bf8c5f94b3",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-03T16:35:39-03:00"
+      "at": "2026-10-03T16:42:24-03:00"
     }
   ],
   "paths": [
@@ -5864,11 +5892,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:e88d3b0026e1"
+        "evidence:test:c05721ff6ca6"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T16:35:39-03:00"
+      "last_validated": "2026-10-03T16:42:24-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -5891,49 +5919,49 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:4d41c2881e12",
+      "id": "evidence:repository:08034d730810",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T16:35:39-03:00",
+      "observed_at": "2026-10-03T16:42:24-03:00",
       "status": "observed",
-      "detail": "335 files indexed at revision a2ad07b4038ce58a722e1ff0686686a28032b540"
+      "detail": "335 files indexed at revision d6bf8c5f94b3fb751e187a078ede689be36aa033"
     },
     {
-      "id": "evidence:test:e88d3b0026e1",
+      "id": "evidence:test:c05721ff6ca6",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T16:35:39-03:00",
+      "observed_at": "2026-10-03T16:42:24-03:00",
       "status": "tested",
-      "detail": "124 passed in 6.73s"
+      "detail": "125 passed in 6.96s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:4d41c2881e12",
+      "id": "event:repository-scan:08034d730810",
       "type": "repository_scanned",
-      "at": "2026-10-03T16:35:39-03:00",
-      "revision": "a2ad07b4038ce58a722e1ff0686686a28032b540",
+      "at": "2026-10-03T16:42:24-03:00",
+      "revision": "d6bf8c5f94b3fb751e187a078ede689be36aa033",
       "file_count": 335,
-      "evidence_id": "evidence:repository:4d41c2881e12"
+      "evidence_id": "evidence:repository:08034d730810"
     },
     {
-      "id": "event:commit-observed:a2ad07b4038c",
+      "id": "event:commit-observed:d6bf8c5f94b3",
       "type": "commit_observed",
-      "at": "2026-10-03T16:35:39-03:00",
-      "revision": "a2ad07b4038ce58a722e1ff0686686a28032b540",
+      "at": "2026-10-03T16:42:24-03:00",
+      "revision": "d6bf8c5f94b3fb751e187a078ede689be36aa033",
       "branch": "main",
-      "subject": "docs: expose trajectory implementation in AI navigation",
+      "subject": "test: prevent repeated paths in cyclic traversal",
       "changed_files": [
-        "00_IA_NAVEGACAO.md"
+        "tests/test_trajectory.py"
       ]
     },
     {
-      "id": "event:test:e88d3b0026e1",
+      "id": "event:test:c05721ff6ca6",
       "type": "tests_observed",
-      "at": "2026-10-03T16:35:39-03:00",
+      "at": "2026-10-03T16:42:24-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:e88d3b0026e1"
+      "evidence_id": "evidence:test:c05721ff6ca6"
     }
   ],
   "knowledge_sources": [
@@ -5989,7 +6017,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "291f697f543f2919a3113eeed5e6a375c291933ae83539f48a3fdfe7cf333137"
+      "sha256": "eb9d5487913add156c2b178cf221f86ac69979a3d8a75c6ece23cc0fa74986c8"
     },
     {
       "id": "source:session",
@@ -6034,7 +6062,7 @@
       "authority": "project_governance",
       "temporal": "current",
       "status": "present",
-      "sha256": "0ec50fe22f21086fc064d0d9dc8ccc517e312d45bb85973ae120435bd4d7c73f"
+      "sha256": "5aea9a1f2cc6dcf2a3346b19c97c7ca6c6165ccb131393d2d93254c060ca0a35"
     }
   ],
   "relations": [
@@ -6113,20 +6141,6 @@
       "source": "source:handoff",
       "relation": "points_to",
       "target": "source:decisions",
-      "status": "asserted",
-      "at": null,
-      "source_ref": "continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md",
-      "note": "",
-      "authority": "continuity",
-      "temporal": "current",
-      "valid_from": null,
-      "valid_until": null
-    },
-    {
-      "id": "traj:handoff-points-research",
-      "source": "source:handoff",
-      "relation": "points_to",
-      "target": "source:research",
       "status": "asserted",
       "at": null,
       "source_ref": "continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md",
@@ -24869,12 +24883,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:4d41c2881e12",
-      "source": "event:repository-scan:4d41c2881e12",
-      "relation": "generated",
-      "target": "evidence:repository:4d41c2881e12",
+      "id": "rel:commit-precedes:a2ad07b4038c:11a11e3cd6af",
+      "source": "commit:a2ad07b4038ce58a722e1ff0686686a28032b540",
+      "relation": "precedes",
+      "target": "commit:11a11e3cd6afc868f6829957075c9bffc20d8a41",
       "status": "asserted",
-      "at": "2026-10-03T16:35:39-03:00",
+      "at": "2026-10-03T19:35:55Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:11a11e3cd6af:032adc3624d7",
+      "source": "commit:11a11e3cd6afc868f6829957075c9bffc20d8a41",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-03T19:35:55Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:11a11e3cd6af:d64178c49886",
+      "source": "commit:11a11e3cd6afc868f6829957075c9bffc20d8a41",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-03T19:35:55Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:11a11e3cd6af:73a909902fd3",
+      "source": "commit:11a11e3cd6afc868f6829957075c9bffc20d8a41",
+      "relation": "precedes",
+      "target": "commit:73a909902fd39769e898ca593de626504c3f4501",
+      "status": "asserted",
+      "at": "2026-10-03T16:42:12-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:73a909902fd3:9431c6b1637d",
+      "source": "commit:73a909902fd39769e898ca593de626504c3f4501",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/trajectory_registry.json",
+      "status": "asserted",
+      "at": "2026-10-03T16:42:12-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:73a909902fd3:f896dfb45d48",
+      "source": "commit:73a909902fd39769e898ca593de626504c3f4501",
+      "relation": "precedes",
+      "target": "commit:f896dfb45d48b5e0797ba6e45dc3ff88e47909eb",
+      "status": "asserted",
+      "at": "2026-10-03T16:42:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f896dfb45d48:75874caa8219",
+      "source": "commit:f896dfb45d48b5e0797ba6e45dc3ff88e47909eb",
+      "relation": "changed",
+      "target": "file:abs_core/trajectory.py",
+      "status": "asserted",
+      "at": "2026-10-03T16:42:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f896dfb45d48:d6bf8c5f94b3",
+      "source": "commit:f896dfb45d48b5e0797ba6e45dc3ff88e47909eb",
+      "relation": "precedes",
+      "target": "commit:d6bf8c5f94b3fb751e187a078ede689be36aa033",
+      "status": "asserted",
+      "at": "2026-10-03T16:42:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d6bf8c5f94b3:72e08cc5719c",
+      "source": "commit:d6bf8c5f94b3fb751e187a078ede689be36aa033",
+      "relation": "changed",
+      "target": "file:tests/test_trajectory.py",
+      "status": "asserted",
+      "at": "2026-10-03T16:42:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:08034d730810",
+      "source": "event:repository-scan:08034d730810",
+      "relation": "generated",
+      "target": "evidence:repository:08034d730810",
+      "status": "asserted",
+      "at": "2026-10-03T16:42:24-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -24883,12 +25023,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:a2ad07b4038c",
-      "source": "commit:a2ad07b4038ce58a722e1ff0686686a28032b540",
+      "id": "rel:scan-commit:d6bf8c5f94b3",
+      "source": "commit:d6bf8c5f94b3fb751e187a078ede689be36aa033",
       "relation": "observed_by",
-      "target": "event:repository-scan:4d41c2881e12",
+      "target": "event:repository-scan:08034d730810",
       "status": "asserted",
-      "at": "2026-10-03T16:35:39-03:00",
+      "at": "2026-10-03T16:42:24-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
