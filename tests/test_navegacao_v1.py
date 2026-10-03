@@ -7,6 +7,8 @@ from pathlib import Path
 
 from tools.navegacao.index import connect, index_source
 from tools.navegacao.related import related
+from tools.navegacao.navigator import Navigator
+from tools.navegacao.verify import rebuild_fts, verify_fts, verify_source
 from tools.navegacao.search import search, search_symbols
 
 
@@ -98,6 +100,70 @@ class NavigationV1Tests(unittest.TestCase):
                 self.assertEqual(index_source(conn, "repo", repo), (2, 0))
                 rows = conn.execute("SELECT latest_commit, latest_commit_date FROM documents").fetchall()
                 self.assertTrue(all(row[0] and row[1] for row in rows))
+            finally:
+                conn.close()
+
+    def test_navigator_facade_combines_first_hop_without_inventing_edges(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); repo = root / "repo"; repo.mkdir()
+            (repo / "a.py").write_text("import json\nclass Navigator:\n    def search(self): return json.loads('{}')\n", encoding="utf-8")
+            conn = connect(root / "index.sqlite")
+            try:
+                index_source(conn, "repo", repo); conn.commit()
+            finally:
+                conn.close()
+            nav = Navigator(root / "index.sqlite")
+            result = nav.navigate("Navigator", limit=10)
+            self.assertTrue(result["results"])
+            self.assertTrue(result["symbols"])
+            self.assertIsInstance(result["relations"], list)
+
+    def test_provenance_verification_detects_source_change(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); repo = root / "repo"; repo.mkdir()
+            target = repo / "a.md"; target.write_text("original", encoding="utf-8")
+            conn = connect(root / "index.sqlite")
+            try:
+                index_source(conn, "repo", repo); conn.commit()
+                verify_fts(conn)
+                self.assertEqual(verify_source(conn, "repo")[0]["status"], "ok")
+                target.write_text("alterado fora do indexador", encoding="utf-8")
+                self.assertEqual(verify_source(conn, "repo")[0]["status"], "hash_mismatch")
+            finally:
+                conn.close()
+
+    def test_symlink_and_oversized_files_are_not_indexed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); repo = root / "repo"; repo.mkdir()
+            (repo / "ok.md").write_text("ok", encoding="utf-8")
+            large = repo / "large.md"
+            large.write_bytes(b"x" * (5 * 1024 * 1024 + 1))
+            try:
+                (repo / "link.md").symlink_to(repo / "ok.md")
+            except (OSError, NotImplementedError):
+                pass
+            conn = connect(root / "index.sqlite")
+            try:
+                index_source(conn, "repo", repo); conn.commit()
+                paths = {r[0] for r in conn.execute("SELECT path FROM documents").fetchall()}
+                self.assertIn("ok.md", paths)
+                self.assertNotIn("large.md", paths)
+                self.assertNotIn("link.md", paths)
+            finally:
+                conn.close()
+
+    def test_fts_rebuild_recovers_derived_index(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); repo = root / "repo"; repo.mkdir()
+            (repo / "a.md").write_text("recuperação FTS", encoding="utf-8")
+            conn = connect(root / "index.sqlite")
+            try:
+                index_source(conn, "repo", repo); conn.commit()
+                conn.execute("DELETE FROM documents_fts"); conn.commit()
+                self.assertEqual(search(conn, "recuperação", None, 20), [])
+                rebuild_fts(conn)
+                self.assertTrue(search(conn, "recuperação", None, 20))
+                verify_fts(conn)
             finally:
                 conn.close()
 

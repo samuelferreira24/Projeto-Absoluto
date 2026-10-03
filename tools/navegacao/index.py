@@ -10,6 +10,8 @@ from pathlib import Path
 
 DEFAULT_EXCLUDES = {".git", "__pycache__", ".venv", "node_modules", ".pytest_cache",
     ".mypy_cache", ".ruff_cache", ".tox", ".idea", ".vscode"}
+MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024
+
 TEXT_EXTENSIONS = {".md", ".markdown", ".txt", ".json", ".jsonl", ".yaml", ".yml",
     ".toml", ".ini", ".cfg", ".py", ".js", ".ts", ".tsx", ".jsx", ".sh", ".bash",
     ".zsh", ".html", ".css", ".scss", ".sql", ".xml", ".csv", ".gitignore", ".gitattributes"}
@@ -28,6 +30,8 @@ def connect(db: Path) -> sqlite3.Connection:
     conn.execute("PRAGMA foreign_keys=ON")
     conn.execute("PRAGMA busy_timeout=5000")
     conn.executescript("""
+        CREATE TABLE IF NOT EXISTS navigation_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+        INSERT OR IGNORE INTO navigation_meta(key, value) VALUES ('schema_version', '2');
         CREATE TABLE IF NOT EXISTS documents (
             id INTEGER PRIMARY KEY, source_id TEXT NOT NULL, root TEXT NOT NULL,
             path TEXT NOT NULL, title TEXT NOT NULL, extension TEXT NOT NULL,
@@ -120,6 +124,8 @@ def refresh_structure(conn, doc_id, content, suffix):
                      (doc_id, relation_type, target))
 
 def upsert_document(conn, source_id, root, path, git_meta):
+    if path.is_symlink() or path.stat().st_size > MAX_FILE_SIZE_BYTES:
+        return False
     data = path.read_bytes()
     if b"\x00" in data[:8192]:
         return False
@@ -154,15 +160,19 @@ def upsert_document(conn, source_id, root, path, git_meta):
 def index_source(conn, source_id: str, root: Path):
     changed, seen = 0, set()
     git_meta = git_metadata_map(root)
-    paths = sorted((p for p in root.rglob("*") if p.is_file()),
+    paths = sorted((p for p in root.rglob("*") if p.is_file() and not p.is_symlink()),
                    key=lambda p: p.relative_to(root).as_posix())
     for path in paths:
         rel_parts = path.relative_to(root).parts
         if any(part in DEFAULT_EXCLUDES for part in rel_parts) or not is_text_file(path):
             continue
         rel = path.relative_to(root).as_posix()
-        seen.add(rel)
         try:
+            if path.stat().st_size > MAX_FILE_SIZE_BYTES:
+                continue
+        except OSError:
+            continue
+        seen.add(rel)
             changed += int(upsert_document(conn, source_id, root, path, git_meta))
         except (OSError, UnicodeError):
             continue
