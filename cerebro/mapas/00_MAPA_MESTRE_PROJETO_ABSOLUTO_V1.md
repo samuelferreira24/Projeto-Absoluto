@@ -128,17 +128,21 @@ Não devem ser usados automaticamente como arquitetura atual.
 
 # 4. O QUE É O PROJETO ABSOLUTO
 
-A visão maior permanece:
+A relação maior deve ser lida assim:
 
-**Imperador → Visão → Projeto Absoluto → projetos + Sistema + Império**
+**Imperador → Visão → Projeto Absoluto → Sistema Absoluto/ABS geral + ABS em construção + outros projetos + Império**
 
 O Projeto Absoluto é o nível maior de visão, método, princípios, objetivos e direção.
-O **Sistema é uma peça de infraestrutura/capacidade** criada para ajudar o Imperador a pesquisar, aprender, planejar, construir, testar e executar.
-O **ABS é o primeiro projeto em construção** dentro do Projeto Absoluto. ABS não é sinônimo de Sistema.
 
-Definição de trabalho do ABS:
+O **Sistema Absoluto (ABS geral)** é o ecossistema aberto de capacidades e recursos que o Imperador pode utilizar, combinar, substituir ou ampliar. Ele não é limitado a uma lista fixa de IAs, agentes, modelos, ferramentas, APIs, servidores, dispositivos ou serviços.
 
-> ABS é o primeiro projeto que o Imperador está tentando construir para realizar sua visão. Sua forma não é definitiva; futuras versões podem substituir, expandir ou abandonar componentes conforme a aprendizagem e as evidências.
+O **ABS em construção** é o sistema que está sendo construído para operar/orquestrar o ecossistema ABS geral sob autoridade do Imperador.
+
+Definição de trabalho:
+
+> O ABS geral é o ecossistema de capacidades e recursos; o ABS em construção é o operador/orquestrador desse ecossistema. A V1 corresponde à primeira versão operacional do ABS em construção, não à definição permanente de todo o Sistema Absoluto.
+
+Quando “ABS” aparecer sem qualificador, o contexto deve deixar explícito qual dos dois níveis está sendo referido.
 
 O ABS não é definido por:
 - Android;
