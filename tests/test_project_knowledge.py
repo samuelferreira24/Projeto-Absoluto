@@ -151,6 +151,7 @@ def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
         "00_IA_NAVEGACAO.md",
         "99_arquivo/README.md",
         "continuidade/07_conhecimento/trajectory_registry.json",
+        "continuidade/07_conhecimento/capability_registry.json",
     }
     for rel in required:
         path = tmp_path / rel
@@ -158,7 +159,7 @@ def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
         path.write_text(rel, encoding="utf-8")
     knowledge = RepositoryScanner(tmp_path).scan()
     sources = {item.id: item for item in knowledge.knowledge_sources}
-    assert len(sources) == 11
+    assert len(sources) == 12
     assert all(item.status == "present" for item in sources.values())
     assert sources["source:decisions"].authority == "human_authority"
     assert sources["source:history"].temporal == "historical"
