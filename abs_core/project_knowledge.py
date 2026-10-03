@@ -132,6 +132,7 @@ class RepositoryScanner:
         "source:navigation": ("00_IA_NAVEGACAO.md", "navigation", "project_governance", "current"),
         "source:history": ("99_arquivo/README.md", "history_archive", "historical_archive", "historical"),
         "source:trajectory-registry": ("continuidade/07_conhecimento/trajectory_registry.json", "trajectory_registry", "project_governance", "current"),
+        "source:capability-registry": ("continuidade/07_conhecimento/capability_registry.json", "capability_registry", "project_governance", "current"),
     }
 
     def _load_trajectory_registry(self) -> list[dict[str, Any]]:
