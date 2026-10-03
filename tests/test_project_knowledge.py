@@ -143,6 +143,7 @@ def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
         "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
         "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md",
         "docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md",
+        "docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md",
         "continuidade/07_conhecimento/03_CONTRATO_DE_PROVA.md",
         "continuidade/07_conhecimento/project_knowledge.json",
         "continuidade/07_conhecimento/SESSAO_ATUAL.md",
@@ -156,7 +157,7 @@ def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
         path.write_text(rel, encoding="utf-8")
     knowledge = RepositoryScanner(tmp_path).scan()
     sources = {item.id: item for item in knowledge.knowledge_sources}
-    assert len(sources) == 9
+    assert len(sources) == 10
     assert all(item.status == "present" for item in sources.values())
     assert sources["source:decisions"].authority == "human_authority"
     assert sources["source:history"].temporal == "historical"
