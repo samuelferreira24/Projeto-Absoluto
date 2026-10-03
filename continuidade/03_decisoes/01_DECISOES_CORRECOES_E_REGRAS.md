@@ -36,9 +36,9 @@ Mini-Cérebro = investigação histórica.
 
 Cérebro = conhecimento/estado/operação atual do ABS.
 
-### Construção foi deliberadamente adiada
+### Construção e investigação
 
-A investigação histórica deve alimentar a decisão de construção.
+A investigação histórica alimenta a construção, mas não substitui a construção. A organização documental é uma etapa de suporte à continuidade; quando as fontes canônicas e o estado estiverem consolidados, a construção do ABS em construção prossegue a partir do estado real, sem reiniciar o trabalho.
 
 ## Regras de trabalho
 
