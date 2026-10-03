@@ -59,3 +59,15 @@ Ainda não é uma integração completa com a API do GitHub para PRs/issues nem 
 3. promoção operacional baseada em execução real.
 4. integração direta com o daemon de atualização.
 5. descoberta/validação automática de novas ferramentas e caminhos.
+
+
+## Regra adicional de continuidade — 2026-10-03
+
+O conhecimento persistente não deve registrar apenas arquivos e capacidades observáveis. Quando o Imperador estabelece uma distinção conceitual necessária para orientar a construção, ela deve permanecer recuperável nas fontes canônicas.
+
+Em particular:
+- **ABS geral / Sistema Absoluto** = ecossistema aberto de capacidades e recursos;
+- **ABS em construção** = operador/orquestrador desse ecossistema;
+- **ABS V1** = primeira versão operacional do ABS em construção.
+
+A finalidade da camada de conhecimento é permitir que uma nova IA reconstrua também o **entendimento operacional necessário para continuar o trabalho**, e não apenas uma fotografia dos arquivos existentes.
