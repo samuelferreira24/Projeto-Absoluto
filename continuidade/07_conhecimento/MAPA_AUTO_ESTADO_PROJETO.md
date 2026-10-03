@@ -2,13 +2,14 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: a4c6c156ab2199154ae077132b7fbb0de3238241
-Momento da revisão: 2026-10-03T15:28:41-03:00
+Revisão observada: 7153a3bb9b05b0f4e7609a280a94ed60cb96e581
+Momento da revisão: 2026-10-03T16:11:54-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
 - source:decisions — decisions — continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md — present — autoridade: human_authority — temporalidade: current
 - source:research — research — docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md — present — autoridade: research_reference — temporalidade: current
+- source:trajectory-research — trajectory_research — docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md — present — autoridade: research_reference — temporalidade: current
 - source:evidence — evidence_contract — continuidade/07_conhecimento/03_CONTRATO_DE_PROVA.md — present — autoridade: project_governance — temporalidade: current
 - source:state — derived_state — continuidade/07_conhecimento/project_knowledge.json — present — autoridade: derived_observation — temporalidade: current
 - source:session — session_state — continuidade/07_conhecimento/SESSAO_ATUAL.md — present — autoridade: continuity — temporalidade: current
@@ -20,7 +21,7 @@ Momento da revisão: 2026-10-03T15:28:41-03:00
 - component:abs_core — abs_core (49 arquivos)
 - component:cerebro — cerebro (45 arquivos)
 - component:continuity — continuity (19 arquivos)
-- component:docs — docs (55 arquivos)
+- component:docs — docs (56 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
 - component:project — project (105 arquivos)
 - component:tests — tests (46 arquivos)
@@ -45,20 +46,1815 @@ Momento da revisão: 2026-10-03T15:28:41-03:00
 - tool:file:abs_core/tool_planner.py — abs_core/tool_planner.py — estado: present
 
 ## Nós
+- commit:8c75cbfc3f5fbbf2727ac1b5dcaf36a5c9099da6 — None — estado: unknown
+- commit:ff684851adf7a3f27a6ae765d9745d110fe22e0e — None — estado: unknown
+- commit:3c486b0df523aedbda38596ebd1e798596f39ff5 — None — estado: unknown
+- commit:66457a988e45d1dedb36e26ec7cc68dec4bbf1ac — None — estado: unknown
+- commit:e3e7bc7244f4d505035d6c3b58b87af18cb680b8 — None — estado: unknown
+- commit:ad1933db0949ec75038a284bb2040528ab0aa8da — None — estado: unknown
+- commit:54165eccb4d966423cbe2a126c65e738576f6d5f — None — estado: unknown
+- commit:214edaf82ec9cd39e6cbbee27603988cb41e7da0 — None — estado: unknown
+- commit:b009802c465215c7007fc6d6759fed7317b682bb — None — estado: unknown
+- commit:9d82812a5bc902bcf3a9ca2eae8041e539d1612a — None — estado: unknown
+- commit:399d8797466a9e50b63deafa5d0bb3e992629d4f — None — estado: unknown
+- commit:781b325c4f587b77a3e31d7434da4bd48ae7ec27 — None — estado: unknown
+- commit:f48a567216eb7289d9e1ecffc50f7591128a5245 — None — estado: unknown
+- commit:f874a87a93d4edc15113f3ec2360e695f51adcdd — None — estado: unknown
+- commit:19f2caa9e4058ec0d7d6af101ce14eb1395e6b99 — None — estado: unknown
+- commit:df60b504c7bdc74c2d919a65c29f4580ee26eb13 — None — estado: unknown
+- commit:623c8c45dd23f016d425ca0e52808a3f8fa90278 — None — estado: unknown
+- commit:4fe4148549fbba2323b88045e0ed202c27fe64d6 — None — estado: unknown
+- commit:ea099b9ee5878bc7aea1f6b8a635f70951a8f75f — None — estado: unknown
+- commit:769aaafc5f89d7c30ae338a82269ce76e1708b36 — None — estado: unknown
+- commit:1bb125734d3e8cbb38bc6dfc8fc954754729ffe8 — None — estado: unknown
+- commit:22f81d45b66d41298d448130ca512c905b1d04d1 — None — estado: unknown
+- commit:9da148fda4bd7f1f45402d0dccf39e160eabc919 — None — estado: unknown
+- commit:d16447612ed14167c2da647bbff9a0893a6f12cc — None — estado: unknown
+- commit:da5a92a97709296c9ca8f10750f9ef28ddfce012 — None — estado: unknown
+- commit:3c0153ceb84310b1f4552099d62f657f65170040 — None — estado: unknown
+- commit:fb6119d74d1397422610b72ba5a2924f15850369 — None — estado: unknown
+- commit:97010f179509af604b3e0ad889230cbbca110fab — None — estado: unknown
+- commit:673da9ece8a98209689f810030078431e5e8b616 — None — estado: unknown
+- commit:e37055e0b5bf004b82d2afa3b8893a32dabc7bd5 — None — estado: unknown
+- commit:285ede2dcd8cd596223493c2f7bd7347d86d5958 — None — estado: unknown
+- commit:5f209673b59522a61efbf6e32c3c16fd6dc34dc1 — None — estado: unknown
+- commit:958476848b5111cdac02efa6206f2fb32f550624 — None — estado: unknown
+- commit:9cafdb838fb3a251dc1e4f6ea79bb665a07046db — None — estado: unknown
+- commit:10f096953e2b4f7a569a6246e7052f0511fa7470 — None — estado: unknown
+- commit:c27a51033e9d9209cec6db14e335af7b26f64e05 — None — estado: unknown
+- commit:fa3c2176016565ab1a6bffe96553bed39921a579 — None — estado: unknown
+- commit:5401cd9a9c474033708ebe0bd09d31005767f261 — None — estado: unknown
+- commit:e459e856482c4ef9dd7eb78439cde31597a8c669 — None — estado: unknown
+- commit:532731c4eb2682cbbd5218fd1e5d73c54a6be527 — None — estado: unknown
+- commit:90dc8a7a606ece55e4090476d89d2e609a0f13c1 — None — estado: unknown
+- commit:a522415484097d7b50eda5feebdcbf4146317fae — None — estado: unknown
+- commit:d470985ffdf78786f6fce7d5dd4b71534973a683 — None — estado: unknown
+- commit:a2d4f4ae5a67cdce176088978f1e7ef080b6346f — None — estado: unknown
+- commit:d8da7093f92135133796d5bd2e5c7c47a1db82bc — None — estado: unknown
+- commit:06c70fb601afc6ecb65dadac7ae0fa52c5f247f8 — None — estado: unknown
+- commit:d6839a2c6102800f7a29e9556c87575ef0b9ef45 — None — estado: unknown
+- commit:60f84340a48b12ccf1fd788e8d69cb57caf4fa4b — None — estado: unknown
+- commit:8ee950c551c2c7a83fb98c5eb6d4e1eaeb82f203 — None — estado: unknown
+- commit:fa30b88dbe1ba936ec3d10f0759aeeb7fa8fc168 — None — estado: unknown
+- commit:754d21f6b49081ac6ce089eaa86193961246f843 — None — estado: unknown
+- commit:ce68ef4488d76f20ddd5b508b6895332ebe06795 — None — estado: unknown
+- commit:8787526fdef6bfecbf6b29a18b72877473c8a292 — None — estado: unknown
+- commit:e7d06076aac88cfd83d60cc63b11a83d60538e13 — None — estado: unknown
+- commit:90ec0f74cb4e133afc06011039374de95fd22116 — None — estado: unknown
+- commit:616f4a8e5a0c6d8b6195d1071177fc2cb82a18dd — None — estado: unknown
+- commit:157af48b0a6118fc3233934115307bb97514cd2f — None — estado: unknown
+- commit:b8e3bc7f942efc3e357d0979c1c9e2ac3a26ad8a — None — estado: unknown
+- commit:cd1c9a462d51f331412e802d005adf8a806b3750 — None — estado: unknown
+- commit:17840dd94d75a13a701179da50f1368c1101c0f3 — None — estado: unknown
+- commit:0a15c6c9f65c312841837d1694cdfa2d31d869ef — None — estado: unknown
+- commit:669bd17e31cc869d8a2b2e4dd4681985e6a4b078 — None — estado: unknown
+- commit:a0fbfe03a2cc0e0375de454ba0401cf0373716a7 — None — estado: unknown
+- commit:0c9de188690412051689ff5f58bb0a20d3e86280 — None — estado: unknown
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — None — estado: unknown
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — None — estado: unknown
+- commit:cf91e3a75bc28384eca2d5bb22015c2b288dabee — None — estado: unknown
+- commit:b78fca2834e36132fa5cdaef6f5480602d1da91a — None — estado: unknown
+- commit:11e139732bbb257116c9458b73ac29c9a7840d85 — None — estado: unknown
+- commit:fb131887d5df614e392027f96f944dffb5babb97 — None — estado: unknown
+- commit:a84edee718ce0c102489263cf007287907f627a6 — None — estado: unknown
+- commit:e090eee0d8e7ff6b273a8828f3bdcab1f0a16d86 — None — estado: unknown
+- commit:ed6650a91cf540f7252411ae7d85ee9558aae1ab — None — estado: unknown
+- commit:846b46eca08e07ffd405cf65e6049eaf3b273b50 — None — estado: unknown
+- commit:5b00ee2a840ee2a27897721c546b96865438306d — None — estado: unknown
+- commit:410de55cfa6167e4d414fafae46ac133761059a9 — None — estado: unknown
+- commit:fb07ecbf2518ca5e82d513d7b7c44c4ff4ca2b6e — None — estado: unknown
+- commit:82571ca7e79a44522402640e46aa76d8243a2313 — None — estado: unknown
+- commit:a36c660fd4999cb6611987b7339ad1e7fe0bbae1 — None — estado: unknown
+- commit:f9787475f9c4282c81694ceadfbc6e7b284ccac5 — None — estado: unknown
+- commit:aebf1455744488cb9d3af3e652c0a7bb7f2e0fbd — None — estado: unknown
+- commit:3e233abbc3e5f9aa55c530eaee1e74e14864faeb — None — estado: unknown
+- commit:420c0d9d2b87e2a24e470a1622e37674f38bfaee — None — estado: unknown
+- commit:d6f4cc87395ecedfd42a3dbaf0bf07bc44e9e0eb — None — estado: unknown
+- commit:9e50ab950d28957585125814e16ca0cf4ba1fd20 — None — estado: unknown
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — None — estado: unknown
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — None — estado: unknown
+- commit:bb0fec66dd2228640af797d718e33596f4b15c29 — None — estado: unknown
+- commit:256f6647eba85eb767379bbdeca870ea6b5cf477 — None — estado: unknown
+- commit:c39341ddd065b16c7e9db642d4a8be0ed78e9338 — None — estado: unknown
+- commit:dec0f5abfd00b9178114906693f5974826f5fa9a — None — estado: unknown
+- commit:a300e73cdff863376745dbc544a44b6b6329c128 — None — estado: unknown
+- commit:df090c39a31e667590bcf8833785797ec4989111 — None — estado: unknown
+- commit:683b674c89526622423356be25fc0929bfc94925 — None — estado: unknown
+- commit:9b26b61e0afa81f462d2132d6d5d41e33133a094 — None — estado: unknown
+- commit:6a553b4b88d15cabd8b898ffbd12c0dbc3099eb6 — None — estado: unknown
+- commit:dac4ad3999807e223d2a4cb8c5040151b3fe76ea — None — estado: unknown
+- commit:3dbf644b6f6ee845ebbcba7a1602ec96bb1ab34d — None — estado: unknown
+- commit:642cfe87cd96300af7ee580af7bd44d18e5b3811 — None — estado: unknown
+- commit:c8bf1e299967785736805474ea2b676c649fae0b — None — estado: unknown
+- commit:40307f669d919440c09af6523a12884f8ef19503 — None — estado: unknown
+- commit:7758ecf679de2cfdcb0f2b3c86d39ad0aa5ca3dd — None — estado: unknown
+- commit:f83276ec5809d4b4d0c53d46f1702715500f89b6 — None — estado: unknown
+- commit:713b7b9571b1946a0d2e513eaa9fa88c4cb114f0 — None — estado: unknown
+- commit:25fbcb4559db4d7cc9a4f51289311070e88f7da7 — None — estado: unknown
+- commit:02a1ff341821c42cddd3700738b7557014fa08b7 — None — estado: unknown
+- commit:7eda9286faf415165eeef8a82610ea83c73a3131 — None — estado: unknown
+- commit:fb7a1bbd2436a229887e45d7be4ae24149ae1c28 — None — estado: unknown
+- commit:18312dbb3742b262baf44cbeb970d4e5483dd26c — None — estado: unknown
+- commit:5edf01a802877e51cb793744de122545d4a435c0 — None — estado: unknown
+- commit:0c77d4f42dff04e19563b975121b5869e89556ea — None — estado: unknown
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — None — estado: unknown
+- commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — None — estado: unknown
+- commit:fad2cee9a3e415a7e148ad4ee53562f4b2374064 — None — estado: unknown
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — None — estado: unknown
+- commit:34b7a107891ad69fa16ae022e70f5e4437f3f580 — None — estado: unknown
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — None — estado: unknown
+- commit:c79038d8824464344c4f1bb01b1c09ff42aca7d7 — None — estado: unknown
+- commit:65dac305fdce7bca18cd54829378250748a8517e — None — estado: unknown
+- commit:2e908b94cb3b3ddf5514d6fc1d2d84a2a90967df — None — estado: unknown
+- commit:a52f6711b824ff4d52e2e2aae674cc16fce343ad — None — estado: unknown
+- commit:15c3e305f7117e8e107a2a4b1bb3457c4ff88da0 — None — estado: unknown
+- commit:9caf541ab9bf597a1c5daa6bc9e172200509270c — None — estado: unknown
+- commit:ffbbc1f66a816fed770299a31299d5272d69fca4 — None — estado: unknown
+- commit:95a08aa593a85edf8bbad4b5a97ffbe07eaea967 — None — estado: unknown
+- commit:d33b4081551f732b73df78d3bf2834074f9afb40 — None — estado: unknown
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — None — estado: unknown
+- commit:07719805a741f96d4fe41e408a88f2cc6e188126 — None — estado: unknown
+- commit:7dc93e9fef70563a7ede01d0ee60433d4188e76f — None — estado: unknown
+- commit:8a9b5102474449a3e0b2e51e454822e91fb2cc54 — None — estado: unknown
+- commit:21e125b625f6ba0b604f939a7fc7a3b2e101b463 — None — estado: unknown
+- commit:e3f5d1a264f831c01fea95a607cc0fbe134953dc — None — estado: unknown
+- commit:8d35e122220bb33317a69b9e8a0b51bf416169b7 — None — estado: unknown
+- commit:87f0da7c35e1df4662a333cb640b46270aaedcf3 — None — estado: unknown
+- commit:9205077eaeef262927249d0f308f680cde900a5c — None — estado: unknown
+- commit:1455db821023265d610b4347d83478242bdc9509 — None — estado: unknown
+- commit:188ffff054fde2f64577869271fbdaa3147723da — None — estado: unknown
+- commit:e8398a0d6498a2f6995866cb66940e44d57306d1 — None — estado: unknown
+- commit:cd8e584f80ee0037d28b94b03c0940ec7f1d0ace — None — estado: unknown
+- commit:15dc3075b7e40ffc07e62affed1d5d1d29f9a262 — None — estado: unknown
+- commit:3d19f7739fd9d58129ec2e0f4b99de1e30cb5969 — None — estado: unknown
+- commit:9eed2db114c2820c12b724caaa1927351ce9f1be — None — estado: unknown
+- commit:ebb09ca50fe30811e3f4cd85d2990f6958016671 — None — estado: unknown
+- commit:ff4050a9f1124e4c44ceb19698b6b981ca3f98f7 — None — estado: unknown
+- commit:b3c529a397d7ff22b01c98e121050a62d73343eb — None — estado: unknown
+- commit:0f34fcb667ed0c2bacd06700ae9917c8533c1dbf — None — estado: unknown
+- commit:4ed0cac6f70622fe67d5dd9bb7654fe77a502b1b — None — estado: unknown
+- commit:20f9c134e3d01f0482195703488bae344a27a11d — None — estado: unknown
+- commit:3a8eec4420ae9ca50db58e1385d6ed9819c19e4f — None — estado: unknown
+- commit:dba5a7c65496a2e2aee3536fa48e687be9437394 — None — estado: unknown
+- commit:f17cc23e622b3083b9269a3bd85d0f071414d873 — None — estado: unknown
+- commit:693da3c90d0d6808b8d9738d3320e382b7dc90e7 — None — estado: unknown
+- commit:3c4fc437e63306a44dd91560a1101bf95b6b29ef — None — estado: unknown
+- commit:1e60eb75e7cd2cd67487bc326e2ece8744981dc8 — None — estado: unknown
+- commit:6c12cfe155903b782fa79f768e529dae5f04583c — None — estado: unknown
+- commit:8c3fa43b3bd4ac068de8a1a9f20659fbdaaa4fc3 — None — estado: unknown
+- commit:bdcfec2004f124e000df8f792669c35482137a21 — None — estado: unknown
+- commit:f9bca6927a41cba990e870b31055419274ec87ac — None — estado: unknown
+- commit:698b7f957fbc45fcded4a36fc3563f5c442a2b6d — None — estado: unknown
+- commit:58ebaa9326baa47bf119c6278d6ce0c79a03fae8 — None — estado: unknown
+- commit:3d1316d4b0f3ac2f23fd506b004b67a2d8466a2c — None — estado: unknown
+- commit:93aba206e4f5c967862285129010293ba06c9f30 — None — estado: unknown
+- commit:655692d579847705bc15d7a33128132803d33c37 — None — estado: unknown
+- commit:b86e53196d6df8a4e74c89a966e57959f25fcec1 — None — estado: unknown
+- commit:e495df880fc28a2ae9631f7d4211d51411e20b92 — None — estado: unknown
+- commit:98333563467d2ef7d9d55ecee1ff0413bbe1c368 — None — estado: unknown
+- commit:e62846748cd0ebbf4dc9035863ab986ee8ff8672 — None — estado: unknown
+- commit:b67e2d2302e3ce2816abd92b73e3bb30cfcd52c6 — None — estado: unknown
+- commit:69595abfd711a7a8dfec53d72eb3983687251778 — None — estado: unknown
+- commit:f6959a02b3bf51719fd209658f4f396291ad7049 — None — estado: unknown
+- commit:a96880cc040fa8a41ea08a0c48517ce5d13feed8 — None — estado: unknown
+- commit:c4181a6ff040bd79de08a90c33c73f27e2672bc2 — None — estado: unknown
+- commit:45ab5e6b0d7ec08efbef65433ab845641db11b9a — None — estado: unknown
+- commit:e4c05a0791b5e2f2d53195eb75ea0a732374595e — None — estado: unknown
+- commit:5b6ff02dfe74dc9e6ca65900ddf711e0c942e6d6 — None — estado: unknown
+- commit:0a1595ea0c106828993c4bdbc84819bc2a75f569 — None — estado: unknown
+- commit:98ec1159841db50e6765061f27d7900c9c83221f — None — estado: unknown
+- commit:22731aa135fd2b63f927e0e6055f2ef9b556f93f — None — estado: unknown
+- commit:22f94a24a9b0a4c3c04578581301cb309f0d5f01 — None — estado: unknown
+- commit:41266064376153e9e5eec86e9f443eae6dc531c5 — None — estado: unknown
+- commit:2dbec135af342c5e72fc61918bd01fbe25b107e3 — None — estado: unknown
+- commit:80e6a102d9f0eaabc2dc89559437ca1280ca54ca — None — estado: unknown
+- commit:af7913828a8a9be0534db4af70a30f80fc808ced — None — estado: unknown
+- commit:b18341d5f75047b4dc7d2bafceeeec3f88867ca3 — None — estado: unknown
+- commit:3086f4953bf48546df33c9dec1083f7f137245ae — None — estado: unknown
+- commit:414426054be4cb4a133469f597e1c6aee36046c1 — None — estado: unknown
+- commit:8e1a3e0fd56a5e331a8e4e0dea3fddb33cef536b — None — estado: unknown
+- commit:ed6893edffcf9cdb8526560f56f6e39c35e2e9cc — None — estado: unknown
+- commit:ad64a806177703e6993596b8bb66c0fb8a2bec69 — None — estado: unknown
+- commit:aaeb208b49502b1ae162987ceeb0b18e3d669c74 — None — estado: unknown
+- commit:0c011a49bd3cf0e20d3c3bdda9ed71bef90a8454 — None — estado: unknown
+- commit:cafb6e2cb3f1b3f25d938e186b69b4a8bd892879 — None — estado: unknown
+- commit:c5aecb843902667be058c189dc06bdbc44dddd1e — None — estado: unknown
+- commit:6e4a27e89958e0d01db075ede087774411e10850 — None — estado: unknown
+- commit:f78584337dddaf10a44787ac32bcf458a1918a80 — None — estado: unknown
+- commit:b7711a4069f8023bc6b0f864671416f4d14765ff — None — estado: unknown
+- commit:4da97e9f5ab54ddd4eadab1f2cb559609af8a309 — None — estado: unknown
+- commit:6e8ff459c732f0901a068fb89d72cc85b41d9085 — None — estado: unknown
+- commit:edef7cbc4d541a67ab6fb5cd2258367a25dac12c — None — estado: unknown
+- commit:e1e114223af3d487e834ab72b742e189ce714a7e — None — estado: unknown
+- commit:fa69e9700da68d9984503fe92cf775187bf10f16 — None — estado: unknown
+- commit:7a61d762af26802bde8d0cc6ad636f53ee4e2d7d — None — estado: unknown
+- commit:11d5872a1f4a7a97603a9b42c3e87ceffe3a0798 — None — estado: unknown
+- commit:10bf4babff681742659e05115031b109579315f0 — None — estado: unknown
+- commit:30d76eff3e15165ae44fdf55946bacbc78d8dc93 — None — estado: unknown
+- commit:12a79cd6a3549b73e067efb5214ecc2a1417893d — None — estado: unknown
+- commit:db174bf3f93b136a9a8388c99d0b732f7ac9305c — None — estado: unknown
+- commit:eda1b0a0f68eeb17fdfeafb4df74d2ffd3535cab — None — estado: unknown
+- commit:5fe83c46108e8a3a451476b2c3741830dfc0b962 — None — estado: unknown
+- commit:b68a8577c1b798f1163df408930ddbe1b7a577cd — None — estado: unknown
+- commit:08a706596407bdacb3ed597d882166861e776dd6 — None — estado: unknown
+- commit:7a8d6bcf4721397357bee638af67dcec71873118 — None — estado: unknown
+- commit:23238fb5b509835082a8836d0d607746d98875c5 — None — estado: unknown
+- commit:dda234894e8116b978fc7b684020efec15d384a1 — None — estado: unknown
+- commit:df302ba4a5099f28b3a5867b2dab90b3f26943d8 — None — estado: unknown
+- commit:36dfc3370baca9d9c3820056907b629d27e463a7 — None — estado: unknown
+- commit:7971671203275643eda5c9d41f7f113c04f4d273 — None — estado: unknown
+- commit:e2068473be7b68009664a07fd305441646d29e75 — None — estado: unknown
+- commit:4c6a3e22400e5831d28220507b82bda06dbd7fdd — None — estado: unknown
+- commit:415ae32f456740c5e6c17252cad4ff7433ce9229 — None — estado: unknown
+- commit:c7ad9f6bb9e24702dab187ec438ec31620de2783 — None — estado: unknown
+- commit:7395074c6c35bbddef8ffaf0515ec44a56acdd39 — None — estado: unknown
+- commit:654f1b3528136820014e9095b3935d0d2f4458de — None — estado: unknown
+- commit:52c561e974e54d4e1ceb0719d0d2169638e782d0 — None — estado: unknown
+- commit:1b8173e99c05aedfb3073bca62c73bfebfcd11d0 — None — estado: unknown
+- commit:ceba99dcffe91edf2980dcd434695f0dc8e7e4d8 — None — estado: unknown
+- commit:d49686f9f8b61d0b943dda4ba1f3c8ddb184d8aa — None — estado: unknown
+- commit:28962b861b572e93ad71cfc0169fe7f060c87367 — None — estado: unknown
+- commit:5c7a0058fd59c4c01de0babefc1f2da1f6c9f5e1 — None — estado: unknown
+- commit:0b269ff34ade29f3ad3b83ff7ee19432796ef47a — None — estado: unknown
+- commit:50c8e7d73ba9f9d967972185bb9b2a529e8652ec — None — estado: unknown
+- commit:6e6d724fac36dea5d5b1944cb979b9cb8d8b23b2 — None — estado: unknown
+- commit:496fff666535b7fd2f5b065fbdc55391c62e37de — None — estado: unknown
+- commit:283c8a1fcca50003f27283c916bc4975abd0b7f0 — None — estado: unknown
+- commit:faf55b5813c7dba54f07a050de4bd807a8fc664c — None — estado: unknown
+- commit:8f3922b4f0ffb11bfb27d83b79544eb563ea07af — None — estado: unknown
+- commit:a6b6bcf54960429c9e8e95e0afc3d0d199636d2d — None — estado: unknown
+- commit:7fa7c3049fcde8c64c944a0d33f5c26b9eebb2db — None — estado: unknown
+- commit:c813dca9d727223e0e668edbd8d4cd8edc8248c6 — None — estado: unknown
+- commit:dbc6cf7900adf25d1b58e712d4522dcc75353670 — None — estado: unknown
+- commit:104d23bbd4da4e78ea4b5889fe58857b18326451 — None — estado: unknown
+- commit:fbd19401fbb47a648549573bbf85cde72d29530b — None — estado: unknown
+- commit:00491d53dc99482b09e58c27326885f6799b6b9b — None — estado: unknown
+- commit:2c7b7a52c31620264e6c3191827d403c68c70411 — None — estado: unknown
+- commit:b8db054591da6f93c54db247e5c606a8cb661f9d — None — estado: unknown
+- commit:78f57d309290ab3785c1e52e05dd0890b5aca045 — None — estado: unknown
+- commit:3e61b47bb569997c93cc6c7bafdbfa59aeadd289 — None — estado: unknown
+- commit:c1e349107e4d31a55ebec00eaa2d6ef07aec749f — None — estado: unknown
+- commit:1bc2bad52ee6de2f3c8ea2a323f854417c546c10 — None — estado: unknown
+- commit:9ec0030d8e19ffd521948ccfed57591c9b0a5e91 — None — estado: unknown
+- commit:b189318a87c93a337d78e73083c4d5ba564abaac — None — estado: unknown
+- commit:f1754d48a247d38bb53fdc5fa9bd86dd0be3511e — None — estado: unknown
+- commit:cbc79587d98eaef77697075673fa79f9e09f84c9 — None — estado: unknown
+- commit:ae8fdf75987bc7c3ea16de983d5f2b5f493d9636 — None — estado: unknown
+- commit:d1c6f59997c22d6d63af260c867a928ccb58725f — None — estado: unknown
+- commit:0ccd7ff90ec6be0175a65f06edd07090f08a1495 — None — estado: unknown
+- commit:4b48894d7d0e8a2d6ce7814420c9fdc651d95a49 — None — estado: unknown
+- commit:3074a18e4e01b7cb533703c2babad55a9a7c8ba7 — None — estado: unknown
+- commit:e5bdf198e1dc855d464e57ceb69d32de3e8f7b00 — None — estado: unknown
+- commit:a68487776baf8fe73e10ab58c893e2c209e02451 — None — estado: unknown
+- commit:0634f035bec806265d4560ce2ffcecf9f9b5c8b6 — None — estado: unknown
+- commit:76b944ef9858b2eb71318a4f2e7b681bd0093f99 — None — estado: unknown
+- commit:2cdccf02e18d6a497a98f53524007160a4c8db9f — None — estado: unknown
+- commit:2325e9adb394e325ea21e0bc0d80edc72b815dfd — None — estado: unknown
+- commit:ecfc3ee855ccc4a48f32e2398cc771cbe8159258 — None — estado: unknown
+- commit:4f39a145de300e0bb3e5b537843615d67cc1323d — None — estado: unknown
+- commit:d0ab9d339e93010694aa593845fdfb5726b2e56d — None — estado: unknown
+- commit:7cb323f43e41310504e40afb3030500774b99844 — None — estado: unknown
+- commit:bbaf7034db69f9da17536e7d5a71cf2df5d9c207 — None — estado: unknown
+- commit:2f6f9899b55fd34763f90017e0230024dc5ffd2b — None — estado: unknown
+- commit:ca65ed29a4aafd9eb064dc33352eafde627fc5a9 — None — estado: unknown
+- commit:0dd6d54cda5b412faf852e0499feb221a528e821 — None — estado: unknown
+- commit:9e0ceb26f49f6efe9f0d94168ee1f60e9ebf6115 — None — estado: unknown
+- commit:3d8782b55e41acf02cd01cdb7fe184195a78792b — None — estado: unknown
+- commit:588a3ccf964ba5d9c1f7e849bcfb74750c443832 — None — estado: unknown
+- commit:38a5ecfa7cd3f88ba27a04f53f4e00e2a266270d — None — estado: unknown
+- commit:d8c297a2c915afc7b3887a1949845d50c5a63c07 — None — estado: unknown
+- commit:d387167c718e19893af2c0a9416bd1aff58ceba6 — None — estado: unknown
+- commit:c16528ce6f3b51004af7b648ffa69fe0cd2ef8d9 — None — estado: unknown
+- commit:fb66e00fe3707a3cd9075213e30dc844e1257d35 — None — estado: unknown
+- commit:3f574f542aabfa9e50f37ce6b71eff0844baa958 — None — estado: unknown
+- commit:7f1c2927a6f355e3a3962d0dcb3769da43bff536 — None — estado: unknown
+- commit:231111ff6db67c078ef38e5a41ca5185db09ef71 — None — estado: unknown
+- commit:9794538f8a6244406e94776dd6534dee41c6602b — None — estado: unknown
+- commit:6f7972c2805859014ea5e78c08f4b461c7a5a18e — None — estado: unknown
+- commit:a6c05690ed353d72242fea8477bc22b447965ced — None — estado: unknown
+- commit:e7902c110b1ec33ea63fda28da8dd567c7d7ed8a — None — estado: unknown
+- commit:b04c92caf586721fde85f9bc4966b2ef906084bf — None — estado: unknown
+- commit:d8325011dcc2dfd6a98919dd5e09234d00246be7 — None — estado: unknown
+- commit:abad2093d5eb2282b9760baefb2cdbcd738424ce — None — estado: unknown
+- commit:f33ebe7f03431b92caac04afef6b1429ca839bbf — None — estado: unknown
+- commit:c2a24ea68de47154db78d03e958d83bb68e380ca — None — estado: unknown
+- commit:c4e5a751295e8e84b5065d0b5817361a7882205f — None — estado: unknown
+- commit:e3555e87dc82f1623f49b8c8057401e9ce16ed08 — None — estado: unknown
+- commit:7ec3cdb922cec63df642aa2d36f73297a4af3642 — None — estado: unknown
+- commit:719e8eef2f9cb5c48fb998304ef4066e9ef4ef92 — None — estado: unknown
+- commit:685f19c7357ecfd89d731b77afb77f7dc1870f93 — None — estado: unknown
+- commit:ce793e2774827283b6f73506a52d8b5d398e8086 — None — estado: unknown
+- commit:68109c5d45a4ce0b3d8632ca1d1aa77562989e37 — None — estado: unknown
+- commit:8ce03495556bf560c995eab0117d997478b60361 — None — estado: unknown
+- commit:23e305690b25f9c0d0e722bf16cec8a11c44d135 — None — estado: unknown
+- commit:fb8cdc92655998cd9335e9df85fc71d58ce6363b — None — estado: unknown
+- commit:732e47e218b1086b8af1b055b3d4e80358ac1c39 — None — estado: unknown
+- commit:8c32e9f6c7d4c6a4c26275493297c7c3aa423f13 — None — estado: unknown
+- commit:e185f10af5a61417820f1891c113e32d9bd1bc3e — None — estado: unknown
+- commit:8c8e9cf873ad21811c1b91fcb7e5e4490fe42cd9 — None — estado: unknown
+- commit:64e03931eb6b588201ea91f62c6c99f04944dd47 — None — estado: unknown
+- commit:2322d35e925ab3b3920c861b82bbd17f7dc4a28a — None — estado: unknown
+- commit:1cdda5467281b5f707333e44484240d6764feff2 — None — estado: unknown
+- commit:7e54c8027c522e59b23683aee5958ff67057d298 — None — estado: unknown
+- commit:b99ef11ab636f84651910b462c1ce0fb6fb490f9 — None — estado: unknown
+- commit:81e7a9923e1a1982beb9504ad7b750300e5f708d — None — estado: unknown
+- commit:567ae4428fa359b8e8aea8428641e4dfeeb60ef8 — None — estado: unknown
+- commit:8370ad9c0ec867017938847b57e095eeae6b98c5 — None — estado: unknown
+- commit:d8f1b9414c4b16b3a379f424ee828f51d635ee6f — None — estado: unknown
+- commit:649ddb1d6670588e1330e3c99797b7e8d6fe28e5 — None — estado: unknown
+- commit:2de69dae1a251ffddbfe7050f9fea1ae7f5bff44 — None — estado: unknown
+- commit:78381dfc1c078a8477ea336978ffe4b37ac36c1c — None — estado: unknown
+- commit:62e12192b0054cd26a8d70bfd97c76b0e31b0d28 — None — estado: unknown
+- commit:0aa2b0aed12a2046cc6ba0a6fc8da11c97303e77 — None — estado: unknown
+- commit:14e8706d939900c3138f2a46dbbd569441ca5516 — None — estado: unknown
+- commit:3e8187466a988e4559adc380ff3c5a27a2c26dc7 — None — estado: unknown
+- commit:2ff3449a2cbe386a948e2fb3b49216262fb089ca — None — estado: unknown
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — None — estado: unknown
+- commit:554640a1d663c593e3c373d29c1b1eebfefbfc39 — None — estado: unknown
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — None — estado: unknown
+- commit:d0020d89da5284605eb2e0f9a5cddd041481b853 — None — estado: unknown
+- commit:065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb — None — estado: unknown
+- commit:8619e21b032faff4cdde01dce8a8576ec48be068 — None — estado: unknown
+- commit:d967adad57bcb824366d8db6938fe1daef3632bc — None — estado: unknown
+- commit:4df24e7d1090451041d066b84bc4cebd44241c31 — None — estado: unknown
+- commit:38e77220f2bf050044c62a0faaf16b348fe7f788 — None — estado: unknown
+- commit:9560ab0b2d8ac923698188a15a7f0f6a1e72cbee — None — estado: unknown
+- commit:45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9 — None — estado: unknown
+- commit:0f31cd3d81a94a80ec3b5f6db6db2aec44063f4f — None — estado: unknown
+- commit:304ce800fe039efd391742bc37cf61e6c9b15827 — None — estado: unknown
+- commit:c0bb4994753506b435ee148b7b12062e5b2e0e64 — None — estado: unknown
+- commit:0067bcd118930a9e4a80dbfd1c6393f120752807 — None — estado: unknown
+- commit:740f200c3ec363243f11a5edc1255b1ad597a0fa — None — estado: unknown
+- commit:d506d120b69c7330f6580d0172f714bb360645cd — None — estado: unknown
+- commit:3c90ab7dd0afa8c2ac52f2fb63e95fd763cfe4cf — None — estado: unknown
+- commit:67972dc06de16bdca55ef098bd6500122a0bc3b0 — None — estado: unknown
+- commit:76e686ffe26a2f5aab4b7ef23eea7279adbf1219 — None — estado: unknown
+- commit:ec5676a8727e520491cf8ca1949661afbd28e7f0 — None — estado: unknown
+- commit:173aa58fccd982cfa0c64c89598250b67eb73c79 — None — estado: unknown
+- commit:245f93400c3cdc3f54d9a91c50182b8de82dd60e — None — estado: unknown
+- commit:aeac1933075838281d7593baa60fad25696848f7 — None — estado: unknown
+- commit:db0a20b573035b66466b484634d9282b4d743b72 — None — estado: unknown
+- commit:f5a39de0a99d4efa69bd323066d0b1cef98199b6 — None — estado: unknown
+- commit:313d05b0b4c4098cd15c991f479b466872f8f43a — None — estado: unknown
+- commit:8308c7e5a5779ed831ee36767710ae7cb4973a43 — None — estado: unknown
+- commit:7c201485aefc3ed84aef1a2aa575043f6ae09a97 — None — estado: unknown
+- commit:5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454 — None — estado: unknown
+- commit:7d8152fe14c01ef47cb6a3251deda8bb4d32c74e — None — estado: unknown
+- commit:5617f5dcb76175f6d87649e46589b8e1ec124aab — None — estado: unknown
+- commit:d248bad33754c087007d91759b5c52a647896022 — None — estado: unknown
+- commit:2a06e785c1e14d6446d6c418a600e8c01b2bbe6f — None — estado: unknown
+- commit:dfa5f4afdee3a7b8fae6096fdbee4d0ba337a23b — None — estado: unknown
+- commit:58cea86c2d7136f8ef1171a37ae59f4294499631 — None — estado: unknown
+- commit:b9fa1a218e6e2599da1684e0b41605e2f714bcfb — None — estado: unknown
+- commit:a44db1334d200565e85464b241cbd1e9960d6a64 — None — estado: unknown
+- commit:12cd4b85ecbe9bdb0dc1f3f4427e7e1c42594f84 — None — estado: unknown
+- commit:61f9eabaaec4c79cde37e0a6490e25268a2386a3 — None — estado: unknown
+- commit:7c691ff965cfc2f184f502b79a126dfece56cf8e — None — estado: unknown
+- commit:a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed — None — estado: unknown
+- commit:55efe193759dcf0b53453b48afb5651a67f1b1c7 — None — estado: unknown
+- commit:cf4e51b5a17be9ee8b39b4c986dc746bd8d1ddf0 — None — estado: unknown
+- commit:570f22150d5976dd491018d5cdc37c3aade13b97 — None — estado: unknown
+- commit:09a2113675b942f4569fa9648a7983d73cd3aaaa — None — estado: unknown
+- commit:94b7a748da4a476d0914f29156a8f9e8f275b381 — None — estado: unknown
+- commit:2a69471e36e0220f4569414a8fc31bd0a041950d — None — estado: unknown
+- commit:9dfb027437595578dda1441b45702e33203af779 — None — estado: unknown
+- commit:219c2033e0a24f414ae4d9690dd418c852862c11 — None — estado: unknown
+- commit:29ef2905299b997affa4faed53113bc0bb3b37a3 — None — estado: unknown
+- commit:779d4323fc7a999f4f723aafafd8c9e49ad75052 — None — estado: unknown
+- commit:d33c990537ac4fa4c5037be52a1168dea1c5d495 — None — estado: unknown
+- commit:4caf7fdace6deee8a726ca690cc64781960d5502 — None — estado: unknown
+- commit:876eb68ded069d4cc5d3c776f0ecb4290a18aa61 — None — estado: unknown
+- commit:2a02285e181cbe9a4b15c6ea983a7571a6bfd7bf — None — estado: unknown
+- commit:08e69969ff20e2a11138255929dda9ed2913c448 — None — estado: unknown
+- commit:70aa13e52dfbcf9e24690b63f5c8ee0da23f6e0e — None — estado: unknown
+- commit:223ebe2c54a99bcc2deab0c64a8b9283835f5102 — None — estado: unknown
+- commit:380b9b1d270b55be34eabcd1bf4f4a0714a7aa73 — None — estado: unknown
+- commit:94b672080625f816889d1af4d318fc7de2d93c6e — None — estado: unknown
+- commit:0670cb8d0e22ecf322f34cd6197bc98073920cd4 — None — estado: unknown
+- commit:229d98f09d03e24b4f7d99b55d1f0e1d654b0e13 — None — estado: unknown
+- commit:0af9d9d0983787b25e460f303ba750f50e6cfc6d — None — estado: unknown
+- commit:d11da20f827732b956aaf934e5a9567edd53152e — None — estado: unknown
+- commit:3874cc0714464a30c1f45dd7d923c4e43f74fd55 — None — estado: unknown
+- commit:133aa984a0beeaf49aad138694c7a938dfdb32fe — None — estado: unknown
+- commit:547f2af8d9d378bc1180269fb9f5094d5ed68bf7 — None — estado: unknown
+- commit:a36cfb0447818fbe32e8c39bde8cdaf9b25b099d — None — estado: unknown
+- commit:135c51409790b8768d7a88c92a35d6a74c8fe314 — None — estado: unknown
+- commit:286c59d20860505a0c85dd8da3476fb02b473a6f — None — estado: unknown
+- commit:53bb9435b173e3a08f648bf519a306abaa93c7fc — None — estado: unknown
+- commit:98214146f9bb60bd2d84bf812f53aa06230ad360 — None — estado: unknown
+- commit:d1bec3af337c275a4aa2e54d07331dfb4f8bb3ab — None — estado: unknown
+- commit:43273942dda3a93ee0253cead7f8f1a9c23b188b — None — estado: unknown
+- commit:dcda74e05ee45485adb2e8e7a73945d59ff4ceea — None — estado: unknown
+- commit:09a7b3c0edbf86e69c9e17c29c09960d6c232f07 — None — estado: unknown
+- commit:681548f9c656a4925de40d7d7340a6320b7b420e — None — estado: unknown
+- commit:309af5bfefc1933f9b60ff5638d427929b58c541 — None — estado: unknown
+- commit:d2a12f116e4b92bafba141a03fa92e5d307784ec — None — estado: unknown
+- commit:31a6dd80bdd950a55266fa9fb4c56a74ce3da40b — None — estado: unknown
+- commit:b0aa87a313ec68191f724ca299d1934697f9674a — None — estado: unknown
+- commit:e20fd164e7167d29809b76233245fb0a0d94016d — None — estado: unknown
+- commit:b89491c14dff8794f1a335a0cc78721bd200d91a — None — estado: unknown
+- commit:e4bab5466059a862c5753923331ef404b3e5114e — None — estado: unknown
+- commit:4c61252fa76f410369027bd9a327678ee4729889 — None — estado: unknown
+- commit:0e0324f0ff6fdbfffbf83a8f05bb2f0eec79d9c6 — None — estado: unknown
+- commit:4733f5b0f8a8ca02099ee5aa98adc2200d8fc5f4 — None — estado: unknown
+- commit:1928fcca0c78b9d8815fb0cb20a401c5c75b2aae — None — estado: unknown
+- commit:3d29cc8d1e9ecbb2c1a9ddc9a35a6b1590b8cf40 — None — estado: unknown
+- commit:272471fb52a9bb0f823ede5c7b9aafa747843818 — None — estado: unknown
+- commit:ae7962e05134152250472305b6b46add488ca50a — None — estado: unknown
+- commit:142e4ebfcc6aed02141584dc1ece4c74f1a96f1c — None — estado: unknown
+- commit:eefb3adbc29761bc331cbe0d637a82278321a0e9 — None — estado: unknown
+- commit:6066a8b8dbaf6f0702d40364abb1cfddd413efb2 — None — estado: unknown
+- commit:8e5d28161e5af6ca1c61c81ef621806bae06ae6a — None — estado: unknown
+- commit:1d2dd9e870bed1fc91e41a80a9e6338cbd995660 — None — estado: unknown
+- commit:9a356497aeb460d82ee3d2478d550858181f7931 — None — estado: unknown
+- commit:e603cc6324019d9c64d2666e68098345c37fa976 — None — estado: unknown
+- commit:eeffb69abc05a81cec3cfde6ef679c887bc35c35 — None — estado: unknown
+- commit:ffe9dacb481fd9498e092d1ff65a65e50a0f7a10 — None — estado: unknown
+- commit:86654847567774b6105706d92ee13215ad97cd02 — None — estado: unknown
+- commit:335b42334d22696e5402759a7b386c45df5500f9 — None — estado: unknown
+- commit:4f067206ac5c07e1863bd3d87c50a72b73fc83b4 — None — estado: unknown
+- commit:915584fb1786ebb2d3cf36a3da8bcd9429ec048c — None — estado: unknown
+- commit:15447e505206f14c7dc5b0cf067ce759b33dfb9b — None — estado: unknown
+- commit:337fe5000ac1fc9780ff26921cb120d2e515c98e — None — estado: unknown
+- commit:c82976720069c08cb978aa3818ecfecde7e6a923 — None — estado: unknown
+- commit:d1d634ee28586f8ceffca3ff8e531476289a503f — None — estado: unknown
+- commit:b5c6202420df4414a4b89f4f3bc4a266f6bb414a — None — estado: unknown
+- commit:57d93c77b6cb72a57568e35b116eef3e68a5d01c — None — estado: unknown
+- commit:b9f8ebc33613a48983e96005852f2cb4a58193e8 — None — estado: unknown
+- commit:dcf12c7f8cd2ebdb4cc4e9dc8a825afaa1b722b9 — None — estado: unknown
+- commit:dc686f309a31b8fdf571508d9f1482eedf98907b — None — estado: unknown
+- commit:28cd326dc42e688a503e1c9c55a41e43033a19dc — None — estado: unknown
+- commit:9c4a3b2fcfbb64fec16b3786948a84b6102dc8c7 — None — estado: unknown
+- commit:fe6a0d9900141e4c786b59ae4e4a92fd754df2c2 — None — estado: unknown
+- commit:3144c3dcdb17e65fa338b6a2f6d3eef9483c61b4 — None — estado: unknown
+- commit:6d01af27feba4c9bf68485981598d7264b459ba3 — None — estado: unknown
+- commit:9f461ebc679124033a8366085d1030e5b3771d3d — None — estado: unknown
+- commit:b1bf3c5847a7fba76f19a9460a48f3bd5b252235 — None — estado: unknown
+- commit:57b9c6d9cc92f71eb022579ace3715f930c7b05d — None — estado: unknown
+- commit:2bee9bb2fdd75fdf6664951e37809785b26cc89c — None — estado: unknown
+- commit:da90c7554ccc4c3f4f0ed5099c4e8f727913db76 — None — estado: unknown
+- commit:b2ebf8c2a1a9ed70e1fe0f259a851e7fad747d82 — None — estado: unknown
+- commit:e4e1317d44889eb6dcf13c3d27b6d55167593226 — None — estado: unknown
+- commit:a4c6c156ab2199154ae077132b7fbb0de3238241 — None — estado: unknown
+- commit:a8f749a0027c7ec4247d3e84ec547ac93076212a — None — estado: unknown
+- commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — None — estado: unknown
+- commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — None — estado: unknown
+- source:vision — None — estado: unknown
+- source:decisions — None — estado: unknown
+- source:research — None — estado: unknown
+- source:trajectory-research — None — estado: unknown
+- source:evidence — None — estado: unknown
+- source:state — None — estado: unknown
+- source:session — None — estado: unknown
+- source:handoff — None — estado: unknown
+- source:navigation — None — estado: unknown
+- source:history — None — estado: unknown
+- evidence:repository:cf021cd91817 — None — estado: unknown
+- event:repository-scan:cf021cd91817 — None — estado: unknown
+- event:commit-observed:7153a3bb9b05 — None — estado: unknown
 
 ## Caminhos
-- PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: evidence:repository:11a1a781e9b5
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:repository:11a1a781e9b5, evidence:test:01acc21a3a66
-- PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: evidence:repository:11a1a781e9b5
+- PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:d4f9836c91b1
+- PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:11a1a781e9b5 — repository_scanned — revisão: a4c6c156ab2199154ae077132b7fbb0de3238241
-- event:commit-observed:a4c6c156ab21 — commit_observed — revisão: a4c6c156ab2199154ae077132b7fbb0de3238241
-- event:test:01acc21a3a66 — tests_observed — revisão: n/a
+- event:repository-scan:cf021cd91817 — repository_scanned — revisão: 7153a3bb9b05b0f4e7609a280a94ed60cb96e581
+- event:commit-observed:7153a3bb9b05 — commit_observed — revisão: 7153a3bb9b05b0f4e7609a280a94ed60cb96e581
+- event:test:d4f9836c91b1 — tests_observed — revisão: n/a
+
+## Relações de trajetória
+- commit:8c75cbfc3f5fbbf2727ac1b5dcaf36a5c9099da6 — changed → file:README.md — asserted
+- commit:8c75cbfc3f5fbbf2727ac1b5dcaf36a5c9099da6 — precedes → commit:ff684851adf7a3f27a6ae765d9745d110fe22e0e — asserted
+- commit:ff684851adf7a3f27a6ae765d9745d110fe22e0e — changed → file:"\360\237\221\224 Consultoria_ Projeto Comercial & Automa\303\247\303\243o _ OpenHands Cloud (1).mht" — asserted
+- commit:ff684851adf7a3f27a6ae765d9745d110fe22e0e — precedes → commit:3c486b0df523aedbda38596ebd1e798596f39ff5 — asserted
+- commit:3c486b0df523aedbda38596ebd1e798596f39ff5 — changed → file:MANUAL_DE_USO.md — asserted
+- commit:3c486b0df523aedbda38596ebd1e798596f39ff5 — changed → file:dashboard.md — asserted
+- commit:3c486b0df523aedbda38596ebd1e798596f39ff5 — changed → file:extract_text.py — asserted
+- commit:ff684851adf7a3f27a6ae765d9745d110fe22e0e — precedes → commit:66457a988e45d1dedb36e26ec7cc68dec4bbf1ac — asserted
+- commit:3c486b0df523aedbda38596ebd1e798596f39ff5 — precedes → commit:66457a988e45d1dedb36e26ec7cc68dec4bbf1ac — asserted
+- commit:66457a988e45d1dedb36e26ec7cc68dec4bbf1ac — precedes → commit:e3e7bc7244f4d505035d6c3b58b87af18cb680b8 — asserted
+- commit:e3e7bc7244f4d505035d6c3b58b87af18cb680b8 — changed → file:automacao/.gitkeep — asserted
+- commit:e3e7bc7244f4d505035d6c3b58b87af18cb680b8 — changed → file:comercial/.gitkeep — asserted
+- commit:e3e7bc7244f4d505035d6c3b58b87af18cb680b8 — changed → file:docs/.gitkeep — asserted
+- commit:e3e7bc7244f4d505035d6c3b58b87af18cb680b8 — changed → file:metas_pessoais/.gitkeep — asserted
+- commit:e3e7bc7244f4d505035d6c3b58b87af18cb680b8 — precedes → commit:ad1933db0949ec75038a284bb2040528ab0aa8da — asserted
+- commit:ad1933db0949ec75038a284bb2040528ab0aa8da — changed → file:MANUAL_DE_USO.md — asserted
+- commit:ad1933db0949ec75038a284bb2040528ab0aa8da — changed → file:automacao/.gitkeep — asserted
+- commit:ad1933db0949ec75038a284bb2040528ab0aa8da — changed → file:comercial/.gitkeep — asserted
+- commit:ad1933db0949ec75038a284bb2040528ab0aa8da — changed → file:dashboard.md — asserted
+- commit:ad1933db0949ec75038a284bb2040528ab0aa8da — changed → file:docs/.gitkeep — asserted
+- commit:ad1933db0949ec75038a284bb2040528ab0aa8da — changed → file:fill_contents.py — asserted
+- commit:ad1933db0949ec75038a284bb2040528ab0aa8da — changed → file:metas_pessoais/.gitkeep — asserted
+- commit:ad1933db0949ec75038a284bb2040528ab0aa8da — precedes → commit:54165eccb4d966423cbe2a126c65e738576f6d5f — asserted
+- commit:54165eccb4d966423cbe2a126c65e738576f6d5f — changed → file:Visao_Geral.md — asserted
+- commit:54165eccb4d966423cbe2a126c65e738576f6d5f — precedes → commit:214edaf82ec9cd39e6cbbee27603988cb41e7da0 — asserted
+- commit:214edaf82ec9cd39e6cbbee27603988cb41e7da0 — changed → file:Visao_Geral.md — asserted
+- commit:214edaf82ec9cd39e6cbbee27603988cb41e7da0 — precedes → commit:b009802c465215c7007fc6d6759fed7317b682bb — asserted
+- commit:b009802c465215c7007fc6d6759fed7317b682bb — changed → file:Visao_Geral.md — asserted
+- commit:b009802c465215c7007fc6d6759fed7317b682bb — precedes → commit:9d82812a5bc902bcf3a9ca2eae8041e539d1612a — asserted
+- commit:9d82812a5bc902bcf3a9ca2eae8041e539d1612a — changed → file:Transcricao_Conversa.txt — asserted
+- commit:9d82812a5bc902bcf3a9ca2eae8041e539d1612a — precedes → commit:399d8797466a9e50b63deafa5d0bb3e992629d4f — asserted
+- commit:399d8797466a9e50b63deafa5d0bb3e992629d4f — changed → file:Conversaweb.mht — asserted
+- commit:399d8797466a9e50b63deafa5d0bb3e992629d4f — precedes → commit:781b325c4f587b77a3e31d7434da4bd48ae7ec27 — asserted
+- commit:781b325c4f587b77a3e31d7434da4bd48ae7ec27 — changed → file:Transcricao_Conversa.txt — asserted
+- commit:781b325c4f587b77a3e31d7434da4bd48ae7ec27 — precedes → commit:f48a567216eb7289d9e1ecffc50f7591128a5245 — asserted
+- commit:f48a567216eb7289d9e1ecffc50f7591128a5245 — changed → file:Transcricao_Conversa.txt — asserted
+- commit:f48a567216eb7289d9e1ecffc50f7591128a5245 — precedes → commit:f874a87a93d4edc15113f3ec2360e695f51adcdd — asserted
+- commit:f874a87a93d4edc15113f3ec2360e695f51adcdd — changed → file:docs/Plano_Projeto.md — asserted
+- commit:f874a87a93d4edc15113f3ec2360e695f51adcdd — precedes → commit:19f2caa9e4058ec0d7d6af101ce14eb1395e6b99 — asserted
+- commit:19f2caa9e4058ec0d7d6af101ce14eb1395e6b99 — changed → file:Pesquisa_Representacao_Armazenamento_Informacao_IA_Projeto_Absoluto_v1.docx — asserted
+- commit:19f2caa9e4058ec0d7d6af101ce14eb1395e6b99 — changed → file:Relatorio_Contribuicao_Desta_Conta_Com_Original_Preservado.pdf — asserted
+- commit:19f2caa9e4058ec0d7d6af101ce14eb1395e6b99 — precedes → commit:df60b504c7bdc74c2d919a65c29f4580ee26eb13 — asserted
+- commit:df60b504c7bdc74c2d919a65c29f4580ee26eb13 — changed → file:Relatorio_Contribuicao_Desta_Conta_ORIGINAL_INTEGRAL_MAIS_CONTRIBUICAO_V6_3.pdf — asserted
+- commit:df60b504c7bdc74c2d919a65c29f4580ee26eb13 — precedes → commit:623c8c45dd23f016d425ca0e52808a3f8fa90278 — asserted
+- commit:623c8c45dd23f016d425ca0e52808a3f8fa90278 — changed → file:Projeto_Absoluto_EBOOK_HUMANO_V10_ATUALIZADO.docx — asserted
+- commit:623c8c45dd23f016d425ca0e52808a3f8fa90278 — changed → file:Projeto_Absoluto_MEMORIA_IA_V10_ATUALIZADO.docx — asserted
+- commit:623c8c45dd23f016d425ca0e52808a3f8fa90278 — changed → file:Relatorio_Diagnostico_Completo_da_Conversa.docx — asserted
+- commit:623c8c45dd23f016d425ca0e52808a3f8fa90278 — precedes → commit:4fe4148549fbba2323b88045e0ed202c27fe64d6 — asserted
+- commit:4fe4148549fbba2323b88045e0ed202c27fe64d6 — changed → file:cerebro/temporal.py — asserted
+- commit:4fe4148549fbba2323b88045e0ed202c27fe64d6 — precedes → commit:ea099b9ee5878bc7aea1f6b8a635f70951a8f75f — asserted
+- commit:ea099b9ee5878bc7aea1f6b8a635f70951a8f75f — changed → file:cerebro/tests/test_temporal.py — asserted
+- commit:ea099b9ee5878bc7aea1f6b8a635f70951a8f75f — precedes → commit:769aaafc5f89d7c30ae338a82269ce76e1708b36 — asserted
+- commit:769aaafc5f89d7c30ae338a82269ce76e1708b36 — changed → file:cerebro/estado.py — asserted
+- commit:769aaafc5f89d7c30ae338a82269ce76e1708b36 — precedes → commit:1bb125734d3e8cbb38bc6dfc8fc954754729ffe8 — asserted
+- commit:1bb125734d3e8cbb38bc6dfc8fc954754729ffe8 — changed → file:cerebro/tests/test_estado.py — asserted
+- commit:1bb125734d3e8cbb38bc6dfc8fc954754729ffe8 — precedes → commit:22f81d45b66d41298d448130ca512c905b1d04d1 — asserted
+- commit:22f81d45b66d41298d448130ca512c905b1d04d1 — changed → file:cerebro/especificacao/QUADRO_PENDENCIAS_E_CONSTRUCAO_V0_1.md — asserted
+- commit:22f81d45b66d41298d448130ca512c905b1d04d1 — precedes → commit:9da148fda4bd7f1f45402d0dccf39e160eabc919 — asserted
+- commit:9da148fda4bd7f1f45402d0dccf39e160eabc919 — changed → file:cerebro/especificacao/PLANO_EXECUCAO_REDE_EVOLUTIVA_V0_1.md — asserted
+- commit:9da148fda4bd7f1f45402d0dccf39e160eabc919 — precedes → commit:d16447612ed14167c2da647bbff9a0893a6f12cc — asserted
+- commit:d16447612ed14167c2da647bbff9a0893a6f12cc — changed → file:cerebro/especificacao/TABULEIRO_COMPLETO_EXECUCAO_PROJETO_ABSOLUTO_V0_1.md — asserted
+- commit:d16447612ed14167c2da647bbff9a0893a6f12cc — precedes → commit:da5a92a97709296c9ca8f10750f9ef28ddfce012 — asserted
+- commit:da5a92a97709296c9ca8f10750f9ef28ddfce012 — changed → file:cerebro/orquestrador.py — asserted
+- commit:da5a92a97709296c9ca8f10750f9ef28ddfce012 — precedes → commit:3c0153ceb84310b1f4552099d62f657f65170040 — asserted
+- commit:3c0153ceb84310b1f4552099d62f657f65170040 — changed → file:cerebro/tests/test_orquestrador.py — asserted
+- commit:3c0153ceb84310b1f4552099d62f657f65170040 — precedes → commit:fb6119d74d1397422610b72ba5a2924f15850369 — asserted
+- commit:fb6119d74d1397422610b72ba5a2924f15850369 — changed → file:cerebro/runtime.py — asserted
+- commit:fb6119d74d1397422610b72ba5a2924f15850369 — precedes → commit:97010f179509af604b3e0ad889230cbbca110fab — asserted
+- commit:97010f179509af604b3e0ad889230cbbca110fab — changed → file:cerebro/runtime.py — asserted
+- commit:97010f179509af604b3e0ad889230cbbca110fab — precedes → commit:673da9ece8a98209689f810030078431e5e8b616 — asserted
+- commit:673da9ece8a98209689f810030078431e5e8b616 — changed → file:cerebro/especificacao/ORQUESTRACAO_EXECUCAO_CONTINUA_V0_2.md — asserted
+- commit:673da9ece8a98209689f810030078431e5e8b616 — precedes → commit:e37055e0b5bf004b82d2afa3b8893a32dabc7bd5 — asserted
+- commit:e37055e0b5bf004b82d2afa3b8893a32dabc7bd5 — changed → file:cerebro/tests/test_servico_execucao.py — asserted
+- commit:e37055e0b5bf004b82d2afa3b8893a32dabc7bd5 — precedes → commit:285ede2dcd8cd596223493c2f7bd7347d86d5958 — asserted
+- commit:285ede2dcd8cd596223493c2f7bd7347d86d5958 — changed → file:cerebro/especificacao/MECANISMO_DESCOBERTA_E_REAVALIACAO_V0_1.md — asserted
+- commit:285ede2dcd8cd596223493c2f7bd7347d86d5958 — precedes → commit:5f209673b59522a61efbf6e32c3c16fd6dc34dc1 — asserted
+- commit:5f209673b59522a61efbf6e32c3c16fd6dc34dc1 — changed → file:cerebro/especificacao/AUDITORIA_QUADRO_MAIOR_REPOSITORIOS_V0_1.md — asserted
+- commit:5f209673b59522a61efbf6e32c3c16fd6dc34dc1 — precedes → commit:958476848b5111cdac02efa6206f2fb32f550624 — asserted
+- commit:958476848b5111cdac02efa6206f2fb32f550624 — changed → file:cerebro/especificacao/AUDITORIA_QUADRO_MAIOR_REPOSITORIOS_V0_1.md — asserted
+- commit:958476848b5111cdac02efa6206f2fb32f550624 — precedes → commit:9cafdb838fb3a251dc1e4f6ea79bb665a07046db — asserted
+- commit:9cafdb838fb3a251dc1e4f6ea79bb665a07046db — changed → file:cerebro/especificacao/ATUALIZACAO_COMPLETA_CEREBRO_2026-09-19.md — asserted
+- commit:9cafdb838fb3a251dc1e4f6ea79bb665a07046db — precedes → commit:10f096953e2b4f7a569a6246e7052f0511fa7470 — asserted
+- commit:10f096953e2b4f7a569a6246e7052f0511fa7470 — changed → file:cerebro/STATUS_CEREBRO_LIGADO.md — asserted
+- commit:10f096953e2b4f7a569a6246e7052f0511fa7470 — precedes → commit:c27a51033e9d9209cec6db14e335af7b26f64e05 — asserted
+- commit:c27a51033e9d9209cec6db14e335af7b26f64e05 — changed → file:cerebro/especificacao/DOIS_CEREBROS_EXECUCAO_FASE_0_V1.md — asserted
+- commit:c27a51033e9d9209cec6db14e335af7b26f64e05 — precedes → commit:fa3c2176016565ab1a6bffe96553bed39921a579 — asserted
+- commit:fa3c2176016565ab1a6bffe96553bed39921a579 — changed → file:cerebro/especificacao/AUDITORIA_HISTORICA_SISTEMA_INVENTARIO_LINHA_TEMPO_V1.md — asserted
+- commit:fa3c2176016565ab1a6bffe96553bed39921a579 — precedes → commit:5401cd9a9c474033708ebe0bd09d31005767f261 — asserted
+- commit:5401cd9a9c474033708ebe0bd09d31005767f261 — changed → file:cerebro/especificacao/RECONSTRUCAO_HISTORICA_EVOLUCAO_SISTEMA_V1.md — asserted
+- commit:5401cd9a9c474033708ebe0bd09d31005767f261 — precedes → commit:e459e856482c4ef9dd7eb78439cde31597a8c669 — asserted
+- commit:e459e856482c4ef9dd7eb78439cde31597a8c669 — changed → file:cerebro/especificacao/RECONSTRUCAO_SEMANTICA_DESCOBERTAS_SISTEMA_V1.md — asserted
+- commit:e459e856482c4ef9dd7eb78439cde31597a8c669 — precedes → commit:532731c4eb2682cbbd5218fd1e5d73c54a6be527 — asserted
+- commit:532731c4eb2682cbbd5218fd1e5d73c54a6be527 — changed → file:cerebro/especificacao/MATRIZ_CONHECIMENTO_HISTORICO_SISTEMA_V1.md — asserted
+- commit:532731c4eb2682cbbd5218fd1e5d73c54a6be527 — precedes → commit:90dc8a7a606ece55e4090476d89d2e609a0f13c1 — asserted
+- commit:90dc8a7a606ece55e4090476d89d2e609a0f13c1 — changed → file:cerebro/especificacao/RECUPERACAO_HISTORICA_TOTAL_SISTEMA_V1.md — asserted
+- commit:90dc8a7a606ece55e4090476d89d2e609a0f13c1 — precedes → commit:a522415484097d7b50eda5feebdcbf4146317fae — asserted
+- commit:a522415484097d7b50eda5feebdcbf4146317fae — changed → file:cerebro/especificacao/RECONSTRUCAO_CAUSAL_EXPERIMENTOS_SISTEMA_V1.md — asserted
+- commit:a522415484097d7b50eda5feebdcbf4146317fae — precedes → commit:d470985ffdf78786f6fce7d5dd4b71534973a683 — asserted
+- commit:d470985ffdf78786f6fce7d5dd4b71534973a683 — changed → file:cerebro/especificacao/RECONSTRUCAO_CAUSAL_COMMITS_SISTEMA_V2.md — asserted
+- commit:d470985ffdf78786f6fce7d5dd4b71534973a683 — precedes → commit:a2d4f4ae5a67cdce176088978f1e7ef080b6346f — asserted
+- commit:a2d4f4ae5a67cdce176088978f1e7ef080b6346f — changed → file:cerebro/especificacao/RESULTADOS_OPERACIONAIS_RECUPERADOS_SISTEMA_V1.md — asserted
+- commit:a2d4f4ae5a67cdce176088978f1e7ef080b6346f — precedes → commit:d8da7093f92135133796d5bd2e5c7c47a1db82bc — asserted
+- commit:d8da7093f92135133796d5bd2e5c7c47a1db82bc — changed → file:cerebro/especificacao/AUDITORIA_PRE_CONSTRUCAO_FECHAMENTO_INVESTIGACAO_V1.md — asserted
+- commit:d8da7093f92135133796d5bd2e5c7c47a1db82bc — precedes → commit:06c70fb601afc6ecb65dadac7ae0fa52c5f247f8 — asserted
+- commit:06c70fb601afc6ecb65dadac7ae0fa52c5f247f8 — changed → file:cerebro/especificacao/INVESTIGACAO_PROFUNDA_CEREBRO_DIRETO_FRONTEIRA_CONSTRUCAO_V1.md — asserted
+- commit:06c70fb601afc6ecb65dadac7ae0fa52c5f247f8 — precedes → commit:d6839a2c6102800f7a29e9556c87575ef0b9ef45 — asserted
+- commit:d6839a2c6102800f7a29e9556c87575ef0b9ef45 — changed → file:cerebro/especificacao/INVESTIGACAO_PROFUNDA_CEREBRO_DIRETO_FRONTEIRA_CONSTRUCAO_V1.md — asserted
+- commit:d6839a2c6102800f7a29e9556c87575ef0b9ef45 — precedes → commit:60f84340a48b12ccf1fd788e8d69cb57caf4fa4b — asserted
+- commit:60f84340a48b12ccf1fd788e8d69cb57caf4fa4b — changed → file:mini-cerebro/README.md — asserted
+- commit:60f84340a48b12ccf1fd788e8d69cb57caf4fa4b — changed → file:mini-cerebro/mini_cerebro/__init__.py — asserted
+- commit:60f84340a48b12ccf1fd788e8d69cb57caf4fa4b — changed → file:mini-cerebro/mini_cerebro/__main__.py — asserted
+- commit:60f84340a48b12ccf1fd788e8d69cb57caf4fa4b — changed → file:mini-cerebro/mini_cerebro/core.py — asserted
+- commit:60f84340a48b12ccf1fd788e8d69cb57caf4fa4b — changed → file:mini-cerebro/mini_cerebro/schema.sql — asserted
+- commit:60f84340a48b12ccf1fd788e8d69cb57caf4fa4b — changed → file:mini-cerebro/mini_cerebro/server.py — asserted
+- commit:60f84340a48b12ccf1fd788e8d69cb57caf4fa4b — changed → file:mini-cerebro/tests/test_core.py — asserted
+- commit:60f84340a48b12ccf1fd788e8d69cb57caf4fa4b — precedes → commit:8ee950c551c2c7a83fb98c5eb6d4e1eaeb82f203 — asserted
+- commit:8ee950c551c2c7a83fb98c5eb6d4e1eaeb82f203 — changed → file:mini-cerebro/mini_cerebro/github_source.py — asserted
+- commit:8ee950c551c2c7a83fb98c5eb6d4e1eaeb82f203 — precedes → commit:fa30b88dbe1ba936ec3d10f0759aeeb7fa8fc168 — asserted
+- commit:fa30b88dbe1ba936ec3d10f0759aeeb7fa8fc168 — changed → file:mini-cerebro/mini_cerebro/__main__.py — asserted
+- commit:fa30b88dbe1ba936ec3d10f0759aeeb7fa8fc168 — precedes → commit:754d21f6b49081ac6ce089eaa86193961246f843 — asserted
+- commit:754d21f6b49081ac6ce089eaa86193961246f843 — changed → file:mini-cerebro/mini_cerebro/core.py — asserted
+- commit:754d21f6b49081ac6ce089eaa86193961246f843 — precedes → commit:ce68ef4488d76f20ddd5b508b6895332ebe06795 — asserted
+- commit:ce68ef4488d76f20ddd5b508b6895332ebe06795 — changed → file:mini-cerebro/investigacoes/PRIMEIRA_RECONSTRUCAO_SISTEMA_ABSOLUTO_ZIP_V1.md — asserted
+- commit:ce68ef4488d76f20ddd5b508b6895332ebe06795 — precedes → commit:8787526fdef6bfecbf6b29a18b72877473c8a292 — asserted
+- commit:8787526fdef6bfecbf6b29a18b72877473c8a292 — changed → file:continuidade/00_LEIA_PRIMEIRO.md — asserted
+- commit:8787526fdef6bfecbf6b29a18b72877473c8a292 — precedes → commit:e7d06076aac88cfd83d60cc63b11a83d60538e13 — asserted
+- commit:e7d06076aac88cfd83d60cc63b11a83d60538e13 — changed → file:continuidade/01_ESTADO_ATUAL_PROJETO.md — asserted
+- commit:e7d06076aac88cfd83d60cc63b11a83d60538e13 — precedes → commit:90ec0f74cb4e133afc06011039374de95fd22116 — asserted
+- commit:90ec0f74cb4e133afc06011039374de95fd22116 — changed → file:continuidade/02_MODELO_ABS_E_PRINCIPIOS.md — asserted
+- commit:90ec0f74cb4e133afc06011039374de95fd22116 — precedes → commit:616f4a8e5a0c6d8b6195d1071177fc2cb82a18dd — asserted
+- commit:616f4a8e5a0c6d8b6195d1071177fc2cb82a18dd — changed → file:continuidade/03_HISTORICO_SISTEMA_ANTIGO_E_MINI_CEREBRO.md — asserted
+- commit:616f4a8e5a0c6d8b6195d1071177fc2cb82a18dd — precedes → commit:157af48b0a6118fc3233934115307bb97514cd2f — asserted
+- commit:157af48b0a6118fc3233934115307bb97514cd2f — changed → file:continuidade/04_PONTO_EXATO_DE_PARADA.md — asserted
+- commit:157af48b0a6118fc3233934115307bb97514cd2f — precedes → commit:b8e3bc7f942efc3e357d0979c1c9e2ac3a26ad8a — asserted
+- commit:b8e3bc7f942efc3e357d0979c1c9e2ac3a26ad8a — changed → file:continuidade/05_DECISOES_CORRECOES_E_REGRAS.md — asserted
+- commit:b8e3bc7f942efc3e357d0979c1c9e2ac3a26ad8a — precedes → commit:cd1c9a462d51f331412e802d005adf8a806b3750 — asserted
+- commit:cd1c9a462d51f331412e802d005adf8a806b3750 — changed → file:cerebro/data/conhecimento/REGISTRO_CONTINUIDADE_PROJETO_ABSOLUTO_2026-09-19.md — asserted
+- commit:cd1c9a462d51f331412e802d005adf8a806b3750 — precedes → commit:17840dd94d75a13a701179da50f1368c1101c0f3 — asserted
+- commit:17840dd94d75a13a701179da50f1368c1101c0f3 — changed → file:continuuidade/PONTO_DE_CONTINUIDADE_V1.md — asserted
+- commit:17840dd94d75a13a701179da50f1368c1101c0f3 — precedes → commit:0a15c6c9f65c312841837d1694cdfa2d31d869ef — asserted
+- commit:0a15c6c9f65c312841837d1694cdfa2d31d869ef — changed → file:cerebro/data/conhecimento/CONTINUIDADE_PROJETO_ABSOLUTO_V1.md — asserted
+- commit:0a15c6c9f65c312841837d1694cdfa2d31d869ef — precedes → commit:669bd17e31cc869d8a2b2e4dd4681985e6a4b078 — asserted
+- commit:669bd17e31cc869d8a2b2e4dd4681985e6a4b078 — changed → file:TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md — asserted
+- commit:669bd17e31cc869d8a2b2e4dd4681985e6a4b078 — precedes → commit:a0fbfe03a2cc0e0375de454ba0401cf0373716a7 — asserted
+- commit:a0fbfe03a2cc0e0375de454ba0401cf0373716a7 — changed → file:cerebro/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md — asserted
+- commit:a0fbfe03a2cc0e0375de454ba0401cf0373716a7 — precedes → commit:0c9de188690412051689ff5f58bb0a20d3e86280 — asserted
+- commit:0c9de188690412051689ff5f58bb0a20d3e86280 — changed → file:manual/MANUAL_CEREBRO_MINI_CEREBRO_COOPERACAO_V1.md — asserted
+- commit:0c9de188690412051689ff5f58bb0a20d3e86280 — precedes → commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/00-COMECE-AQUI/FUSAO.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/00-COMECE-AQUI/LEIA-PRIMEIRO.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/01-projeto/AUDITORIA-E-CAMINHO.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/01-projeto/INSTRUCOES-PERMANENTES.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/01-projeto/O-IMPERIO.html — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/01-projeto/O-IMPERIO.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/01-projeto/PLANTA-DO-SISTEMA.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/01-projeto/conceito-de-memoria-HERDADO.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/01-projeto/visao-sistema-proprio-HERDADO.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/app/icon-192.png — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/app/icon-512.png — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/app/index.html — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/app/manifest.json — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/app/sw.js — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/gitignore.txt — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/nativo/NATIVO.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/nativo/capacitor.config.json — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/nativo/package.json — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/arranque.sh — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/base.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/coletor.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/especialistas.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/executor.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/governanca.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/jetro.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/ligar.sh — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/motor.sh — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/orquestrador.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/ponte.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/rodar-coleta.sh — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente-nucleo.json — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente-operacao.json — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/02-sistema/workflows/build-android.yml — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/03-cliente/COMO-USAR-A-PLANILHA.txt — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/03-cliente/FECHAMENTO_V3.xlsx — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/03-cliente/PESQUISA-CLIENTE.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/03-cliente/PLANO-COMERCIAL.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/03-cliente/QUESTIONARIO-40-PERGUNTAS.html — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/03-cliente/QUESTIONARIO-40-PERGUNTAS.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/03-cliente/fechamento_v3.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/03-cliente/logo_pinheiro.png — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/04-migracao/INSTALAR-NO-TERMUX.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/04-migracao/PARA-OPENHANDS-CLOUD.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/04-migracao/como-usar-o-app-HERDADO.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/05-historico/DECISOES-REJEITADAS.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/05-historico/LINHA-DO-TEMPO.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/05-historico/originais/DECISOES-REJEITADAS--bugs.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/05-historico/originais/DECISOES-REJEITADAS--cliente.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/05-historico/originais/LEIA-PRIMEIRO--bugs.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/05-historico/originais/LEIA-PRIMEIRO--cliente.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/05-historico/originais/LINHA-DO-TEMPO--bugs.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/05-historico/originais/LINHA-DO-TEMPO--cliente.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/05-historico/originais/ORIGEM--bugs.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/01-relatorio-de-estado-08set.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/02-analise-estrategica-08set.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/documentos/AUDITORIA-v1.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/documentos/ESPECIFICACAO.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/planilhas/FECHAMENTO_SETEMBRO.xlsx — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/planilhas/PAINEL_UNICO.xlsx — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/planilhas/extrair.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/planilhas/gerar.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/planilhas/mensal.py — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v1.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v2.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v3.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — changed → file:O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v4.md — asserted
+- commit:5412ee43fa45e6fffe3b4b8a285eb6dd8907252f — precedes → commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:.github/workflows/abs-core.yml — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:abs_core/__init__.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:abs_core/adapters.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:abs_core/api.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:abs_core/capabilities.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:abs_core/cli.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:abs_core/codex_adapter.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:abs_core/models.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:abs_core/orchestrator.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:abs_core/server.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:abs_core/store.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:docs/ABS-CAPACIDADES-FUNDACAO-V1.md — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:pyproject.toml — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:tests/test_vertical_slice.py — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — changed → file:web/index.html — asserted
+- commit:7211e07a4cd5a6b4b5799311e65b4f9b912989a8 — precedes → commit:cf91e3a75bc28384eca2d5bb22015c2b288dabee — asserted
+- commit:cf91e3a75bc28384eca2d5bb22015c2b288dabee — changed → file:.github/workflows/abs-core.yml — asserted
+- commit:cf91e3a75bc28384eca2d5bb22015c2b288dabee — changed → file:abs_core/codex_adapter.py — asserted
+- commit:cf91e3a75bc28384eca2d5bb22015c2b288dabee — changed → file:docs/ABS-CAPACIDADES-FUNDACAO-V1.md — asserted
+- commit:cf91e3a75bc28384eca2d5bb22015c2b288dabee — changed → file:pyproject.toml — asserted
+- commit:cf91e3a75bc28384eca2d5bb22015c2b288dabee — changed → file:tests/test_codex_cli_adapter.py — asserted
+- commit:cf91e3a75bc28384eca2d5bb22015c2b288dabee — precedes → commit:b78fca2834e36132fa5cdaef6f5480602d1da91a — asserted
+- commit:b78fca2834e36132fa5cdaef6f5480602d1da91a — changed → file:abs_core/cli.py — asserted
+- commit:b78fca2834e36132fa5cdaef6f5480602d1da91a — precedes → commit:11e139732bbb257116c9458b73ac29c9a7840d85 — asserted
+- commit:11e139732bbb257116c9458b73ac29c9a7840d85 — changed → file:abs_core/orchestrator.py — asserted
+- commit:11e139732bbb257116c9458b73ac29c9a7840d85 — precedes → commit:fb131887d5df614e392027f96f944dffb5babb97 — asserted
+- commit:fb131887d5df614e392027f96f944dffb5babb97 — changed → file:abs_core/codex_adapter.py — asserted
+- commit:fb131887d5df614e392027f96f944dffb5babb97 — precedes → commit:a84edee718ce0c102489263cf007287907f627a6 — asserted
+- commit:a84edee718ce0c102489263cf007287907f627a6 — changed → file:abs_core/codex_adapter.py — asserted
+- commit:a84edee718ce0c102489263cf007287907f627a6 — precedes → commit:e090eee0d8e7ff6b273a8828f3bdcab1f0a16d86 — asserted
+- commit:e090eee0d8e7ff6b273a8828f3bdcab1f0a16d86 — changed → file:abs_core/bridge.py — asserted
+- commit:e090eee0d8e7ff6b273a8828f3bdcab1f0a16d86 — precedes → commit:ed6650a91cf540f7252411ae7d85ee9558aae1ab — asserted
+- commit:ed6650a91cf540f7252411ae7d85ee9558aae1ab — changed → file:docs/ABS-GITHUB-TERMUX-BRIDGE-V1.md — asserted
+- commit:ed6650a91cf540f7252411ae7d85ee9558aae1ab — precedes → commit:846b46eca08e07ffd405cf65e6049eaf3b273b50 — asserted
+- commit:846b46eca08e07ffd405cf65e6049eaf3b273b50 — changed → file:docs/ABS-GITHUB-TERMUX-TASK-TEMPLATE.md — asserted
+- commit:846b46eca08e07ffd405cf65e6049eaf3b273b50 — precedes → commit:5b00ee2a840ee2a27897721c546b96865438306d — asserted
+- commit:5b00ee2a840ee2a27897721c546b96865438306d — changed → file:abs_core/local.py — asserted
+- commit:5b00ee2a840ee2a27897721c546b96865438306d — precedes → commit:410de55cfa6167e4d414fafae46ac133761059a9 — asserted
+- commit:410de55cfa6167e4d414fafae46ac133761059a9 — changed → file:scripts/start_abs.sh — asserted
+- commit:410de55cfa6167e4d414fafae46ac133761059a9 — precedes → commit:fb07ecbf2518ca5e82d513d7b7c44c4ff4ca2b6e — asserted
+- commit:fb07ecbf2518ca5e82d513d7b7c44c4ff4ca2b6e — changed → file:ABS-LOCAL-V1.md — asserted
+- commit:fb07ecbf2518ca5e82d513d7b7c44c4ff4ca2b6e — precedes → commit:82571ca7e79a44522402640e46aa76d8243a2313 — asserted
+- commit:82571ca7e79a44522402640e46aa76d8243a2313 — changed → file:pyproject.toml — asserted
+- commit:82571ca7e79a44522402640e46aa76d8243a2313 — precedes → commit:a36c660fd4999cb6611987b7339ad1e7fe0bbae1 — asserted
+- commit:a36c660fd4999cb6611987b7339ad1e7fe0bbae1 — changed → file:tests/test_local.py — asserted
+- commit:a36c660fd4999cb6611987b7339ad1e7fe0bbae1 — precedes → commit:f9787475f9c4282c81694ceadfbc6e7b284ccac5 — asserted
+- commit:f9787475f9c4282c81694ceadfbc6e7b284ccac5 — changed → file:abs_core/store.py — asserted
+- commit:f9787475f9c4282c81694ceadfbc6e7b284ccac5 — precedes → commit:aebf1455744488cb9d3af3e652c0a7bb7f2e0fbd — asserted
+- commit:aebf1455744488cb9d3af3e652c0a7bb7f2e0fbd — changed → file:scripts/termux/install_abs_service.sh — asserted
+- commit:aebf1455744488cb9d3af3e652c0a7bb7f2e0fbd — precedes → commit:3e233abbc3e5f9aa55c530eaee1e74e14864faeb — asserted
+- commit:3e233abbc3e5f9aa55c530eaee1e74e14864faeb — changed → file:scripts/termux/boot-start-services.sh — asserted
+- commit:3e233abbc3e5f9aa55c530eaee1e74e14864faeb — precedes → commit:420c0d9d2b87e2a24e470a1622e37674f38bfaee — asserted
+- commit:420c0d9d2b87e2a24e470a1622e37674f38bfaee — changed → file:TERMUX-SERVICE.md — asserted
+- commit:420c0d9d2b87e2a24e470a1622e37674f38bfaee — precedes → commit:d6f4cc87395ecedfd42a3dbaf0bf07bc44e9e0eb — asserted
+- commit:d6f4cc87395ecedfd42a3dbaf0bf07bc44e9e0eb — changed → file:ABS-UPDATE-MANAGER-V1.md — asserted
+- commit:d6f4cc87395ecedfd42a3dbaf0bf07bc44e9e0eb — changed → file:abs_core/local.py — asserted
+- commit:d6f4cc87395ecedfd42a3dbaf0bf07bc44e9e0eb — changed → file:abs_core/update_manager.py — asserted
+- commit:d6f4cc87395ecedfd42a3dbaf0bf07bc44e9e0eb — changed → file:pyproject.toml — asserted
+- commit:d6f4cc87395ecedfd42a3dbaf0bf07bc44e9e0eb — changed → file:scripts/termux/install_abs_update_manager.sh — asserted
+- commit:d6f4cc87395ecedfd42a3dbaf0bf07bc44e9e0eb — changed → file:tests/test_update_manager.py — asserted
+- commit:d6f4cc87395ecedfd42a3dbaf0bf07bc44e9e0eb — precedes → commit:9e50ab950d28957585125814e16ca0cf4ba1fd20 — asserted
+- commit:9e50ab950d28957585125814e16ca0cf4ba1fd20 — changed → file:cerebro/INDICE_MESTRE_PROJETO_ABSOLUTO_V1.md — asserted
+- commit:9e50ab950d28957585125814e16ca0cf4ba1fd20 — precedes → commit:95c5953794f4047929ff9151407cc22b1d2750b2 — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:ESTRUTURA_REPOSITORIOS.md — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:continuidade/99_legado/PONTO_DE_CONTINUIDADE_V1.md — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/00_ESTRUTURA_DOCUMENTAL.md — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/01_operacao/ABS-LOCAL-V1.md — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/01_operacao/ABS-UPDATE-MANAGER-V1.md — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/01_operacao/MANUAL_DE_USO.md — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/01_operacao/TERMUX-SERVICE.md — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/01_operacao/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/01_operacao/Visao_Geral.md — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/01_operacao/dashboard.md — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/90_fontes/Conversaweb.mht — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/90_fontes/Pesquisa_Representacao_Armazenamento_Informacao_IA_Projeto_Absoluto_v1.docx — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/90_fontes/Projeto_Absoluto_EBOOK_HUMANO_V10_ATUALIZADO.docx — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/90_fontes/Projeto_Absoluto_MEMORIA_IA_V10_ATUALIZADO.docx — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/90_fontes/Relatorio_Contribuicao_Desta_Conta_Com_Original_Preservado.pdf — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/90_fontes/Relatorio_Contribuicao_Desta_Conta_ORIGINAL_INTEGRAL_MAIS_CONTRIBUICAO_V6_3.pdf — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/90_fontes/Relatorio_Diagnostico_Completo_da_Conversa.docx — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:docs/90_fontes/Transcricao_Conversa.txt — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:"docs/90_fontes/\360\237\221\224 Consultoria_ Projeto Comercial & Automa\303\247\303\243o _ OpenHands Cloud (1).mht" — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:tools/documentos/extract_text.py — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — changed → file:tools/documentos/fill_contents.py — asserted
+- commit:95c5953794f4047929ff9151407cc22b1d2750b2 — precedes → commit:29f4879326b1e161f7941e949137440c3228fb1c — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/00_INDICE_ESPECIFICACOES.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/01_estado/ATUALIZACAO_COMPLETA_CEREBRO_2026-09-19.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/02_integracao/DOIS_CEREBROS_EXECUCAO_FASE_0_V1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/03_execucao/ORQUESTRACAO_EXECUCAO_CONTINUA_V0_2.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/04_descoberta/MECANISMO_DESCOBERTA_E_REAVALIACAO_V0_1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/05_planejamento/PLANO_EXECUCAO_REDE_EVOLUTIVA_V0_1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/05_planejamento/QUADRO_PENDENCIAS_E_CONSTRUCAO_V0_1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/05_planejamento/TABULEIRO_COMPLETO_EXECUCAO_PROJETO_ABSOLUTO_V0_1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/06_auditoria/AUDITORIA_HISTORICA_SISTEMA_INVENTARIO_LINHA_TEMPO_V1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/06_auditoria/AUDITORIA_PRE_CONSTRUCAO_FECHAMENTO_INVESTIGACAO_V1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/06_auditoria/INVESTIGACAO_PROFUNDA_CEREBRO_DIRETO_FRONTEIRA_CONSTRUCAO_V1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/07_historico/MATRIZ_CONHECIMENTO_HISTORICO_SISTEMA_V1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/07_historico/RECONSTRUCAO_CAUSAL_COMMITS_SISTEMA_V2.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/07_historico/RECONSTRUCAO_CAUSAL_EXPERIMENTOS_SISTEMA_V1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/07_historico/RECONSTRUCAO_HISTORICA_EVOLUCAO_SISTEMA_V1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/07_historico/RECONSTRUCAO_SEMANTICA_DESCOBERTAS_SISTEMA_V1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/07_historico/RECUPERACAO_HISTORICA_TOTAL_SISTEMA_V1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — changed → file:cerebro/especificacao/07_historico/RESULTADOS_OPERACIONAIS_RECUPERADOS_SISTEMA_V1.md — asserted
+- commit:29f4879326b1e161f7941e949137440c3228fb1c — precedes → commit:bb0fec66dd2228640af797d718e33596f4b15c29 — asserted
+- commit:bb0fec66dd2228640af797d718e33596f4b15c29 — changed → file:docs/02_arquitetura/ABS-CAPACIDADES-FUNDACAO-V1.md — asserted
+- commit:bb0fec66dd2228640af797d718e33596f4b15c29 — changed → file:docs/02_arquitetura/ABS-GITHUB-TERMUX-BRIDGE-V1.md — asserted
+- commit:bb0fec66dd2228640af797d718e33596f4b15c29 — changed → file:docs/02_arquitetura/ABS-GITHUB-TERMUX-TASK-TEMPLATE.md — asserted
+- commit:bb0fec66dd2228640af797d718e33596f4b15c29 — changed → file:docs/03_planejamento/Plano_Projeto.md — asserted
+- commit:bb0fec66dd2228640af797d718e33596f4b15c29 — precedes → commit:256f6647eba85eb767379bbdeca870ea6b5cf477 — asserted
+- commit:256f6647eba85eb767379bbdeca870ea6b5cf477 — changed → file:cerebro/data/00_INDICE_DADOS.md — asserted
+- commit:256f6647eba85eb767379bbdeca870ea6b5cf477 — changed → file:cerebro/data/01_conhecimento/CONTINUIDADE_PROJETO_ABSOLUTO_V1.md — asserted
+- commit:256f6647eba85eb767379bbdeca870ea6b5cf477 — changed → file:cerebro/data/01_conhecimento/REGISTRO_CONTINUIDADE_PROJETO_ABSOLUTO_2026-09-19.md — asserted
+- commit:256f6647eba85eb767379bbdeca870ea6b5cf477 — precedes → commit:c39341ddd065b16c7e9db642d4a8be0ed78e9338 — asserted
+- commit:c39341ddd065b16c7e9db642d4a8be0ed78e9338 — changed → file:cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md — asserted
+- commit:c39341ddd065b16c7e9db642d4a8be0ed78e9338 — changed → file:cerebro/mapas/01_TABULEIRO_72_CAPACIDADES_V0_1.md — asserted
+- commit:c39341ddd065b16c7e9db642d4a8be0ed78e9338 — changed → file:cerebro/mapas/02_QUADRO_PENDENCIAS_CONSTRUCAO_V0_1.md — asserted
+- commit:c39341ddd065b16c7e9db642d4a8be0ed78e9338 — changed → file:cerebro/mapas/03_PLANO_REDE_EVOLUTIVA_V0_1.md — asserted
+- commit:c39341ddd065b16c7e9db642d4a8be0ed78e9338 — precedes → commit:dec0f5abfd00b9178114906693f5974826f5fa9a — asserted
+- commit:dec0f5abfd00b9178114906693f5974826f5fa9a — changed → file:cerebro/especificacao/06_auditoria/AUDITORIA_NOMENCLATURA_STATUS_SUBPROJETOS_V1.md — asserted
+- commit:dec0f5abfd00b9178114906693f5974826f5fa9a — changed → file:docs/03_planejamento/00_INDICE_PLANEJAMENTO.md — asserted
+- commit:dec0f5abfd00b9178114906693f5974826f5fa9a — changed → file:docs/03_planejamento/Plano_Projeto.md — asserted
+- commit:dec0f5abfd00b9178114906693f5974826f5fa9a — changed → file:docs/90_fontes/2026-09-19_TRANSFERENCIA_ESTADO_SNAPSHOT.md — asserted
+- commit:dec0f5abfd00b9178114906693f5974826f5fa9a — precedes → commit:a300e73cdff863376745dbc544a44b6b6329c128 — asserted
+- commit:a300e73cdff863376745dbc544a44b6b6329c128 — changed → file:docs/04_referencia/MANUAL_CEREBRO_MINI_CEREBRO_COOPERACAO_V1.md — asserted
+- commit:a300e73cdff863376745dbc544a44b6b6329c128 — precedes → commit:df090c39a31e667590bcf8833785797ec4989111 — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/00-COMECE-AQUI/FUSAO.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/00-COMECE-AQUI/LEIA-PRIMEIRO.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/AUDITORIA-E-CAMINHO.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/INSTRUCOES-PERMANENTES.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/O-IMPERIO.html — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/O-IMPERIO.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/PLANTA-DO-SISTEMA.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/conceito-de-memoria-HERDADO.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/01-projeto/visao-sistema-proprio-HERDADO.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/app/icon-192.png — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/app/icon-512.png — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/app/index.html — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/app/manifest.json — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/app/sw.js — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/gitignore.txt — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/nativo/NATIVO.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/nativo/capacitor.config.json — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/nativo/package.json — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/arranque.sh — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/base.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/coletor.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/especialistas.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/executor.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/governanca.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/jetro.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/ligar.sh — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/motor.sh — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/orquestrador.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/ponte.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/rodar-coleta.sh — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente-nucleo.json — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente-operacao.json — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/termux/semente.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/02-sistema/workflows/build-android.yml — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/COMO-USAR-A-PLANILHA.txt — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/FECHAMENTO_V3.xlsx — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/PESQUISA-CLIENTE.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/PLANO-COMERCIAL.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/QUESTIONARIO-40-PERGUNTAS.html — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/QUESTIONARIO-40-PERGUNTAS.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/fechamento_v3.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/03-cliente/logo_pinheiro.png — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/04-migracao/INSTALAR-NO-TERMUX.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/04-migracao/PARA-OPENHANDS-CLOUD.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/04-migracao/como-usar-o-app-HERDADO.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/DECISOES-REJEITADAS.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/LINHA-DO-TEMPO.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/DECISOES-REJEITADAS--bugs.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/DECISOES-REJEITADAS--cliente.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/LEIA-PRIMEIRO--bugs.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/LEIA-PRIMEIRO--cliente.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/LINHA-DO-TEMPO--bugs.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/LINHA-DO-TEMPO--cliente.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/05-historico/originais/ORIGEM--bugs.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/01-relatorio-de-estado-08set.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/02-analise-estrategica-08set.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/documentos/AUDITORIA-v1.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/documentos/ESPECIFICACAO.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/planilhas/FECHAMENTO_SETEMBRO.xlsx — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/planilhas/PAINEL_UNICO.xlsx — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/planilhas/extrair.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/planilhas/gerar.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/planilhas/mensal.py — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v1.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v2.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v3.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — changed → file:99_arquivo/O-IMPERIO-COMPLETO-claude/99-superado/questionarios/v4.md — asserted
+- commit:df090c39a31e667590bcf8833785797ec4989111 — precedes → commit:683b674c89526622423356be25fc0929bfc94925 — asserted
+- commit:683b674c89526622423356be25fc0929bfc94925 — changed → file:99_arquivo/README.md — asserted
+- commit:683b674c89526622423356be25fc0929bfc94925 — changed → file:cerebro/00_estado/STATUS_CEREBRO_LIGADO.md — asserted
+- commit:683b674c89526622423356be25fc0929bfc94925 — changed → file:cerebro/00_estado/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md — asserted
+- commit:683b674c89526622423356be25fc0929bfc94925 — changed → file:cerebro/README.md — asserted
+- commit:683b674c89526622423356be25fc0929bfc94925 — changed → file:mini-cerebro/00_INDICE.md — asserted
+- commit:683b674c89526622423356be25fc0929bfc94925 — precedes → commit:9b26b61e0afa81f462d2132d6d5d41e33133a094 — asserted
+- commit:9b26b61e0afa81f462d2132d6d5d41e33133a094 — changed → file:ESTRUTURA_REPOSITORIOS.md — asserted
+- commit:9b26b61e0afa81f462d2132d6d5d41e33133a094 — changed → file:README.md — asserted
+- commit:9b26b61e0afa81f462d2132d6d5d41e33133a094 — precedes → commit:6a553b4b88d15cabd8b898ffbd12c0dbc3099eb6 — asserted
+- commit:6a553b4b88d15cabd8b898ffbd12c0dbc3099eb6 — changed → file:cerebro/README.md — asserted
+- commit:6a553b4b88d15cabd8b898ffbd12c0dbc3099eb6 — changed → file:docs/03_planejamento/00_INDICE_PLANEJAMENTO.md — asserted
+- commit:6a553b4b88d15cabd8b898ffbd12c0dbc3099eb6 — precedes → commit:dac4ad3999807e223d2a4cb8c5040151b3fe76ea — asserted
+- commit:dac4ad3999807e223d2a4cb8c5040151b3fe76ea — changed → file:50_frentes/01_automacao/.gitkeep — asserted
+- commit:dac4ad3999807e223d2a4cb8c5040151b3fe76ea — changed → file:50_frentes/02_comercial/.gitkeep — asserted
+- commit:dac4ad3999807e223d2a4cb8c5040151b3fe76ea — changed → file:50_frentes/03_metas_pessoais/.gitkeep — asserted
+- commit:dac4ad3999807e223d2a4cb8c5040151b3fe76ea — changed → file:50_frentes/README.md — asserted
+- commit:dac4ad3999807e223d2a4cb8c5040151b3fe76ea — precedes → commit:3dbf644b6f6ee845ebbcba7a1602ec96bb1ab34d — asserted
+- commit:3dbf644b6f6ee845ebbcba7a1602ec96bb1ab34d — changed → file:00_ESTRUTURA_REPOSITORIO.md — asserted
+- commit:3dbf644b6f6ee845ebbcba7a1602ec96bb1ab34d — changed → file:20_interface/README.md — asserted
+- commit:3dbf644b6f6ee845ebbcba7a1602ec96bb1ab34d — changed → file:20_interface/web/index.html — asserted
+- commit:3dbf644b6f6ee845ebbcba7a1602ec96bb1ab34d — changed → file:README.md — asserted
+- commit:3dbf644b6f6ee845ebbcba7a1602ec96bb1ab34d — precedes → commit:642cfe87cd96300af7ee580af7bd44d18e5b3811 — asserted
+- commit:642cfe87cd96300af7ee580af7bd44d18e5b3811 — changed → file:00_ESTRUTURA_REPOSITORIO.md — asserted
+- commit:642cfe87cd96300af7ee580af7bd44d18e5b3811 — precedes → commit:c8bf1e299967785736805474ea2b676c649fae0b — asserted
+- commit:c8bf1e299967785736805474ea2b676c649fae0b — changed → file:00_IA_NAVEGACAO.md — asserted
+- commit:c8bf1e299967785736805474ea2b676c649fae0b — precedes → commit:40307f669d919440c09af6523a12884f8ef19503 — asserted
+- commit:40307f669d919440c09af6523a12884f8ef19503 — changed → file:docs/00_ESTRUTURA_DOCUMENTAL.md — asserted
+- commit:40307f669d919440c09af6523a12884f8ef19503 — precedes → commit:7758ecf679de2cfdcb0f2b3c86d39ad0aa5ca3dd — asserted
+- commit:7758ecf679de2cfdcb0f2b3c86d39ad0aa5ca3dd — changed → file:ESTRUTURA_REPOSITORIOS.md — asserted
+- commit:7758ecf679de2cfdcb0f2b3c86d39ad0aa5ca3dd — precedes → commit:f83276ec5809d4b4d0c53d46f1702715500f89b6 — asserted
+- commit:f83276ec5809d4b4d0c53d46f1702715500f89b6 — changed → file:README.md — asserted
+- commit:f83276ec5809d4b4d0c53d46f1702715500f89b6 — precedes → commit:713b7b9571b1946a0d2e513eaa9fa88c4cb114f0 — asserted
+- commit:713b7b9571b1946a0d2e513eaa9fa88c4cb114f0 — changed → file:cerebro/mapas/00_INDICE_MAPAS.md — asserted
+- commit:713b7b9571b1946a0d2e513eaa9fa88c4cb114f0 — changed → file:mini-cerebro/investigacoes/00_INDICE.md — asserted
+- commit:713b7b9571b1946a0d2e513eaa9fa88c4cb114f0 — precedes → commit:25fbcb4559db4d7cc9a4f51289311070e88f7da7 — asserted
+- commit:25fbcb4559db4d7cc9a4f51289311070e88f7da7 — changed → file:README.md — asserted
+- commit:25fbcb4559db4d7cc9a4f51289311070e88f7da7 — precedes → commit:02a1ff341821c42cddd3700738b7557014fa08b7 — asserted
+- commit:02a1ff341821c42cddd3700738b7557014fa08b7 — changed → file:abs_core/README.md — asserted
+- commit:02a1ff341821c42cddd3700738b7557014fa08b7 — changed → file:cerebro/00_estado/00_README.md — asserted
+- commit:02a1ff341821c42cddd3700738b7557014fa08b7 — changed → file:cerebro/tests/00_README.md — asserted
+- commit:02a1ff341821c42cddd3700738b7557014fa08b7 — changed → file:mini-cerebro/tests/00_README.md — asserted
+- commit:02a1ff341821c42cddd3700738b7557014fa08b7 — changed → file:scripts/00_README.md — asserted
+- commit:02a1ff341821c42cddd3700738b7557014fa08b7 — changed → file:tests/00_README.md — asserted
+- commit:02a1ff341821c42cddd3700738b7557014fa08b7 — changed → file:tools/00_README.md — asserted
+- commit:02a1ff341821c42cddd3700738b7557014fa08b7 — precedes → commit:7eda9286faf415165eeef8a82610ea83c73a3131 — asserted
+- commit:7eda9286faf415165eeef8a82610ea83c73a3131 — changed → file:abs_core/cli.py — asserted
+- commit:7eda9286faf415165eeef8a82610ea83c73a3131 — changed → file:abs_core/continuity.py — asserted
+- commit:7eda9286faf415165eeef8a82610ea83c73a3131 — changed → file:abs_core/store.py — asserted
+- commit:7eda9286faf415165eeef8a82610ea83c73a3131 — changed → file:tests/test_continuity.py — asserted
+- commit:7eda9286faf415165eeef8a82610ea83c73a3131 — precedes → commit:fb7a1bbd2436a229887e45d7be4ae24149ae1c28 — asserted
+- commit:fb7a1bbd2436a229887e45d7be4ae24149ae1c28 — changed → file:abs_core/codex_adapter.py — asserted
+- commit:fb7a1bbd2436a229887e45d7be4ae24149ae1c28 — precedes → commit:18312dbb3742b262baf44cbeb970d4e5483dd26c — asserted
+- commit:18312dbb3742b262baf44cbeb970d4e5483dd26c — changed → file:continuidade/06_HANDOFF_CONSTRUCAO_ABS_V1.md — asserted
+- commit:18312dbb3742b262baf44cbeb970d4e5483dd26c — precedes → commit:5edf01a802877e51cb793744de122545d4a435c0 — asserted
+- commit:5edf01a802877e51cb793744de122545d4a435c0 — changed → file:cerebro/abs_core_executor.py — asserted
+- commit:5edf01a802877e51cb793744de122545d4a435c0 — changed → file:cerebro/ciclo_continuo.py — asserted
+- commit:5edf01a802877e51cb793744de122545d4a435c0 — changed → file:tests/test_cerebro_abs_core_convergence.py — asserted
+- commit:5edf01a802877e51cb793744de122545d4a435c0 — precedes → commit:0c77d4f42dff04e19563b975121b5869e89556ea — asserted
+- commit:0c77d4f42dff04e19563b975121b5869e89556ea — changed → file:20_interface/web/index.html — asserted
+- commit:0c77d4f42dff04e19563b975121b5869e89556ea — changed → file:abs_core/api.py — asserted
+- commit:0c77d4f42dff04e19563b975121b5869e89556ea — changed → file:tests/test_interface_v1.py — asserted
+- commit:0c77d4f42dff04e19563b975121b5869e89556ea — precedes → commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — asserted
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — changed → file:20_interface/README.md — asserted
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — changed → file:20_interface/web/index.html — asserted
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — changed → file:20_interface/web/manifest.webmanifest — asserted
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — changed → file:20_interface/web/sw.js — asserted
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — changed → file:abs_core/api.py — asserted
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — changed → file:abs_core/local.py — asserted
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — changed → file:abs_core/resources.py — asserted
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — changed → file:abs_core/server.py — asserted
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — changed → file:tests/test_interface_v1.py — asserted
+- commit:11a2f6c389dffa4fb0772e9a1fa60f67d2fd173d — precedes → commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — asserted
+- commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — changed → file:20_interface/01_ARQUITETURA_INTERFACE_EVOLUTIVA_V1.md — asserted
+- commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — changed → file:20_interface/README.md — asserted
+- commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — changed → file:20_interface/web/index.html — asserted
+- commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — changed → file:abs_core/api.py — asserted
+- commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — changed → file:abs_core/interface_runtime.py — asserted
+- commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — changed → file:abs_core/local.py — asserted
+- commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — changed → file:abs_core/server.py — asserted
+- commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — changed → file:tests/test_interface_runtime.py — asserted
+- commit:1280cb4016b7e49a783660d5f44ed71634da6c36 — precedes → commit:fad2cee9a3e415a7e148ad4ee53562f4b2374064 — asserted
+- commit:fad2cee9a3e415a7e148ad4ee53562f4b2374064 — changed → file:tests/test_interface_runtime_api.py — asserted
+- commit:fad2cee9a3e415a7e148ad4ee53562f4b2374064 — precedes → commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:20_interface/01_ARQUITETURA_INTERFACE_EVOLUTIVA_V1.md — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:20_interface/02_RECURSOS_CONEXOES_INTERFACE_V1.md — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:20_interface/web/index.html — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:abs_core/ai_adapters.py — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:abs_core/api.py — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:abs_core/connections.py — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:abs_core/local.py — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:abs_core/server.py — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:docs/04_EVOLUCAO_AUTONOMA_ASSISTIDA_ABS.md — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:tests/test_ai_adapters.py — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:tests/test_connections.py — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — changed → file:tests/test_connections_api.py — asserted
+- commit:ed934be83f2e1d01bd54c7108e2258f9356930c3 — precedes → commit:34b7a107891ad69fa16ae022e70f5e4437f3f580 — asserted
+- commit:34b7a107891ad69fa16ae022e70f5e4437f3f580 — changed → file:20_interface/web/index.html — asserted
+- commit:34b7a107891ad69fa16ae022e70f5e4437f3f580 — changed → file:abs_core/api.py — asserted
+- commit:34b7a107891ad69fa16ae022e70f5e4437f3f580 — changed → file:docs/05_CONTROLE_DE_EVOLUCAO_PELA_INTERFACE.md — asserted
+- commit:34b7a107891ad69fa16ae022e70f5e4437f3f580 — changed → file:tests/test_update_api.py — asserted
+- commit:34b7a107891ad69fa16ae022e70f5e4437f3f580 — precedes → commit:5576a7c20042bef4069d6d384b231fea179d36af — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:abs_core/api.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:abs_core/resource_router.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:abs_core/resource_selection.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:abs_core/server.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:abs_core/tool_catalog.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:abs_core/tool_discovery.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:abs_core/tool_knowledge.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:docs/06_ROTEAMENTO_DE_RECURSOS_V1.md — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:docs/07_CONHECIMENTO_E_DESCOBERTA_DE_FERRAMENTAS_V1.md — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:tests/test_resource_router.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:tests/test_resource_selection_api.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:tests/test_tool_catalog.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:tests/test_tool_discovery.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:tests/test_tool_knowledge.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — changed → file:tests/test_tool_knowledge_api.py — asserted
+- commit:5576a7c20042bef4069d6d384b231fea179d36af — precedes → commit:c79038d8824464344c4f1bb01b1c09ff42aca7d7 — asserted
+- commit:c79038d8824464344c4f1bb01b1c09ff42aca7d7 — changed → file:abs_core/api.py — asserted
+- commit:c79038d8824464344c4f1bb01b1c09ff42aca7d7 — changed → file:abs_core/tool_learning.py — asserted
+- commit:c79038d8824464344c4f1bb01b1c09ff42aca7d7 — changed → file:abs_core/tool_planner.py — asserted
+- commit:c79038d8824464344c4f1bb01b1c09ff42aca7d7 — changed → file:docs/08_PLANEJAMENTO_E_APRENDIZAGEM_DE_FERRAMENTAS_V1.md — asserted
+- commit:c79038d8824464344c4f1bb01b1c09ff42aca7d7 — changed → file:tests/test_tool_planner_api.py — asserted
+- commit:c79038d8824464344c4f1bb01b1c09ff42aca7d7 — changed → file:tests/test_tool_planner_learning.py — asserted
+- commit:c79038d8824464344c4f1bb01b1c09ff42aca7d7 — precedes → commit:65dac305fdce7bca18cd54829378250748a8517e — asserted
+- commit:65dac305fdce7bca18cd54829378250748a8517e — changed → file:abs_core/server.py — asserted
+- commit:65dac305fdce7bca18cd54829378250748a8517e — changed → file:abs_core/tool_knowledge_store.py — asserted
+- commit:65dac305fdce7bca18cd54829378250748a8517e — changed → file:abs_core/tool_learning.py — asserted
+- commit:65dac305fdce7bca18cd54829378250748a8517e — changed → file:docs/09_MEMORIA_PERSISTENTE_DE_FERRAMENTAS_V1.md — asserted
+- commit:65dac305fdce7bca18cd54829378250748a8517e — changed → file:tests/test_tool_knowledge_store.py — asserted
+- commit:65dac305fdce7bca18cd54829378250748a8517e — precedes → commit:2e908b94cb3b3ddf5514d6fc1d2d84a2a90967df — asserted
+- commit:2e908b94cb3b3ddf5514d6fc1d2d84a2a90967df — changed → file:abs_core/api.py — asserted
+- commit:2e908b94cb3b3ddf5514d6fc1d2d84a2a90967df — changed → file:abs_core/tool_knowledge.py — asserted
+- commit:2e908b94cb3b3ddf5514d6fc1d2d84a2a90967df — changed → file:abs_core/tool_planner.py — asserted
+- commit:2e908b94cb3b3ddf5514d6fc1d2d84a2a90967df — changed → file:tests/test_tool_learning_planning_regressions.py — asserted
+- commit:2e908b94cb3b3ddf5514d6fc1d2d84a2a90967df — precedes → commit:a52f6711b824ff4d52e2e2aae674cc16fce343ad — asserted
+- commit:a52f6711b824ff4d52e2e2aae674cc16fce343ad — changed → file:abs_core/cli.py — asserted
+- commit:a52f6711b824ff4d52e2e2aae674cc16fce343ad — changed → file:abs_core/openai_adapter.py — asserted
+- commit:a52f6711b824ff4d52e2e2aae674cc16fce343ad — changed → file:abs_core/server.py — asserted
+- commit:a52f6711b824ff4d52e2e2aae674cc16fce343ad — changed → file:tests/test_openai_adapter.py — asserted
+- commit:a52f6711b824ff4d52e2e2aae674cc16fce343ad — precedes → commit:15c3e305f7117e8e107a2a4b1bb3457c4ff88da0 — asserted
+- commit:15c3e305f7117e8e107a2a4b1bb3457c4ff88da0 — changed → file:abs_core/api.py — asserted
+- commit:15c3e305f7117e8e107a2a4b1bb3457c4ff88da0 — changed → file:abs_core/server.py — asserted
+- commit:15c3e305f7117e8e107a2a4b1bb3457c4ff88da0 — changed → file:tests/test_tool_learning_persistence_api.py — asserted
+- commit:15c3e305f7117e8e107a2a4b1bb3457c4ff88da0 — precedes → commit:9caf541ab9bf597a1c5daa6bc9e172200509270c — asserted
+- commit:9caf541ab9bf597a1c5daa6bc9e172200509270c — changed → file:abs_core/api.py — asserted
+- commit:9caf541ab9bf597a1c5daa6bc9e172200509270c — changed → file:abs_core/resource_dispatcher.py — asserted
+- commit:9caf541ab9bf597a1c5daa6bc9e172200509270c — changed → file:abs_core/server.py — asserted
+- commit:9caf541ab9bf597a1c5daa6bc9e172200509270c — changed → file:tests/test_resource_dispatcher.py — asserted
+- commit:9caf541ab9bf597a1c5daa6bc9e172200509270c — precedes → commit:ffbbc1f66a816fed770299a31299d5272d69fca4 — asserted
+- commit:ffbbc1f66a816fed770299a31299d5272d69fca4 — changed → file:abs_core/cli.py — asserted
+- commit:ffbbc1f66a816fed770299a31299d5272d69fca4 — changed → file:abs_core/internet_adapter.py — asserted
+- commit:ffbbc1f66a816fed770299a31299d5272d69fca4 — changed → file:abs_core/resource_dispatcher.py — asserted
+- commit:ffbbc1f66a816fed770299a31299d5272d69fca4 — changed → file:abs_core/server.py — asserted
+- commit:ffbbc1f66a816fed770299a31299d5272d69fca4 — changed → file:tests/test_internet_adapter.py — asserted
+- commit:ffbbc1f66a816fed770299a31299d5272d69fca4 — precedes → commit:95a08aa593a85edf8bbad4b5a97ffbe07eaea967 — asserted
+- commit:95a08aa593a85edf8bbad4b5a97ffbe07eaea967 — changed → file:20_interface/web/index.html — asserted
+- commit:95a08aa593a85edf8bbad4b5a97ffbe07eaea967 — changed → file:tests/test_interface_v1.py — asserted
+- commit:95a08aa593a85edf8bbad4b5a97ffbe07eaea967 — precedes → commit:d33b4081551f732b73df78d3bf2834074f9afb40 — asserted
+- commit:d33b4081551f732b73df78d3bf2834074f9afb40 — changed → file:docs/01_operacao/INSTALACAO_INTERFACE_ABS_V1.md — asserted
+- commit:d33b4081551f732b73df78d3bf2834074f9afb40 — changed → file:docs/01_operacao/TERMUX-SERVICE.md — asserted
+- commit:d33b4081551f732b73df78d3bf2834074f9afb40 — precedes → commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — asserted
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — changed → file:20_interface/01_ARQUITETURA_INTERFACE_EVOLUTIVA_V1.md — asserted
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — changed → file:20_interface/README.md — asserted
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — changed → file:20_interface/web/index.html — asserted
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — changed → file:abs_core/accounts.py — asserted
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — changed → file:abs_core/api.py — asserted
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — changed → file:abs_core/local.py — asserted
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — changed → file:abs_core/server.py — asserted
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — changed → file:tests/test_accounts.py — asserted
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — changed → file:tests/test_accounts_api.py — asserted
+- commit:05c0a7429f1d5b1200bc10c801200b7b1f4b434a — precedes → commit:07719805a741f96d4fe41e408a88f2cc6e188126 — asserted
+- commit:07719805a741f96d4fe41e408a88f2cc6e188126 — changed → file:20_interface/web/index.html — asserted
+- commit:07719805a741f96d4fe41e408a88f2cc6e188126 — changed → file:abs_core/accounts.py — asserted
+- commit:07719805a741f96d4fe41e408a88f2cc6e188126 — changed → file:tests/test_accounts.py — asserted
+- commit:07719805a741f96d4fe41e408a88f2cc6e188126 — changed → file:tests/test_accounts_api.py — asserted
+- commit:07719805a741f96d4fe41e408a88f2cc6e188126 — precedes → commit:7dc93e9fef70563a7ede01d0ee60433d4188e76f — asserted
+- commit:7dc93e9fef70563a7ede01d0ee60433d4188e76f — changed → file:.gitignore — asserted
+- commit:7dc93e9fef70563a7ede01d0ee60433d4188e76f — changed → file:abs_core/update_manager.py — asserted
+- commit:7dc93e9fef70563a7ede01d0ee60433d4188e76f — changed → file:tests/test_update_manager.py — asserted
+- commit:7dc93e9fef70563a7ede01d0ee60433d4188e76f — changed → file:tests/test_update_manager_runtime_state.py — asserted
+- commit:7dc93e9fef70563a7ede01d0ee60433d4188e76f — precedes → commit:8a9b5102474449a3e0b2e51e454822e91fb2cc54 — asserted
+- commit:8a9b5102474449a3e0b2e51e454822e91fb2cc54 — changed → file:20_interface/01_ARQUITETURA_INTERFACE_EVOLUTIVA_V1.md — asserted
+- commit:8a9b5102474449a3e0b2e51e454822e91fb2cc54 — changed → file:20_interface/README.md — asserted
+- commit:8a9b5102474449a3e0b2e51e454822e91fb2cc54 — changed → file:20_interface/web/index.html — asserted
+- commit:8a9b5102474449a3e0b2e51e454822e91fb2cc54 — changed → file:tests/test_interface_v1.py — asserted
+- commit:8a9b5102474449a3e0b2e51e454822e91fb2cc54 — precedes → commit:21e125b625f6ba0b604f939a7fc7a3b2e101b463 — asserted
+- commit:21e125b625f6ba0b604f939a7fc7a3b2e101b463 — changed → file:docs/01_operacao/INSTALACAO_INTERFACE_ABS_V1.md — asserted
+- commit:21e125b625f6ba0b604f939a7fc7a3b2e101b463 — precedes → commit:e3f5d1a264f831c01fea95a607cc0fbe134953dc — asserted
+- commit:e3f5d1a264f831c01fea95a607cc0fbe134953dc — changed → file:20_interface/web/sw.js — asserted
+- commit:e3f5d1a264f831c01fea95a607cc0fbe134953dc — precedes → commit:8d35e122220bb33317a69b9e8a0b51bf416169b7 — asserted
+- commit:8d35e122220bb33317a69b9e8a0b51bf416169b7 — changed → file:20_interface/web/index.html — asserted
+- commit:8d35e122220bb33317a69b9e8a0b51bf416169b7 — changed → file:20_interface/web/sw.js — asserted
+- commit:8d35e122220bb33317a69b9e8a0b51bf416169b7 — changed → file:tests/test_interface_v1.py — asserted
+- commit:8d35e122220bb33317a69b9e8a0b51bf416169b7 — precedes → commit:87f0da7c35e1df4662a333cb640b46270aaedcf3 — asserted
+- commit:87f0da7c35e1df4662a333cb640b46270aaedcf3 — changed → file:20_interface/web/index.html — asserted
+- commit:87f0da7c35e1df4662a333cb640b46270aaedcf3 — precedes → commit:9205077eaeef262927249d0f308f680cde900a5c — asserted
+- commit:9205077eaeef262927249d0f308f680cde900a5c — changed → file:20_interface/web/index.html — asserted
+- commit:9205077eaeef262927249d0f308f680cde900a5c — precedes → commit:1455db821023265d610b4347d83478242bdc9509 — asserted
+- commit:1455db821023265d610b4347d83478242bdc9509 — changed → file:20_interface/web/sw.js — asserted
+- commit:1455db821023265d610b4347d83478242bdc9509 — precedes → commit:188ffff054fde2f64577869271fbdaa3147723da — asserted
+- commit:188ffff054fde2f64577869271fbdaa3147723da — changed → file:20_interface/01_ARQUITETURA_INTERFACE_EVOLUTIVA_V1.md — asserted
+- commit:188ffff054fde2f64577869271fbdaa3147723da — precedes → commit:e8398a0d6498a2f6995866cb66940e44d57306d1 — asserted
+- commit:e8398a0d6498a2f6995866cb66940e44d57306d1 — changed → file:tests/test_interface_v1.py — asserted
+- commit:e8398a0d6498a2f6995866cb66940e44d57306d1 — precedes → commit:cd8e584f80ee0037d28b94b03c0940ec7f1d0ace — asserted
+- commit:cd8e584f80ee0037d28b94b03c0940ec7f1d0ace — changed → file:20_interface/web/index.html — asserted
+- commit:cd8e584f80ee0037d28b94b03c0940ec7f1d0ace — precedes → commit:15dc3075b7e40ffc07e62affed1d5d1d29f9a262 — asserted
+- commit:15dc3075b7e40ffc07e62affed1d5d1d29f9a262 — changed → file:20_interface/web/index.html — asserted
+- commit:15dc3075b7e40ffc07e62affed1d5d1d29f9a262 — precedes → commit:3d19f7739fd9d58129ec2e0f4b99de1e30cb5969 — asserted
+- commit:3d19f7739fd9d58129ec2e0f4b99de1e30cb5969 — changed → file:20_interface/web/index.html — asserted
+- commit:3d19f7739fd9d58129ec2e0f4b99de1e30cb5969 — precedes → commit:9eed2db114c2820c12b724caaa1927351ce9f1be — asserted
+- commit:9eed2db114c2820c12b724caaa1927351ce9f1be — changed → file:20_interface/web/index.html — asserted
+- commit:9eed2db114c2820c12b724caaa1927351ce9f1be — precedes → commit:ebb09ca50fe30811e3f4cd85d2990f6958016671 — asserted
+- commit:ebb09ca50fe30811e3f4cd85d2990f6958016671 — changed → file:20_interface/web/sw.js — asserted
+- commit:ebb09ca50fe30811e3f4cd85d2990f6958016671 — precedes → commit:ff4050a9f1124e4c44ceb19698b6b981ca3f98f7 — asserted
+- commit:ff4050a9f1124e4c44ceb19698b6b981ca3f98f7 — changed → file:tests/test_interface_v1.py — asserted
+- commit:ff4050a9f1124e4c44ceb19698b6b981ca3f98f7 — precedes → commit:b3c529a397d7ff22b01c98e121050a62d73343eb — asserted
+- commit:b3c529a397d7ff22b01c98e121050a62d73343eb — changed → file:20_interface/01_ARQUITETURA_INTERFACE_EVOLUTIVA_V1.md — asserted
+- commit:b3c529a397d7ff22b01c98e121050a62d73343eb — precedes → commit:0f34fcb667ed0c2bacd06700ae9917c8533c1dbf — asserted
+- commit:0f34fcb667ed0c2bacd06700ae9917c8533c1dbf — changed → file:tests/test_interface_v1.py — asserted
+- commit:0f34fcb667ed0c2bacd06700ae9917c8533c1dbf — precedes → commit:4ed0cac6f70622fe67d5dd9bb7654fe77a502b1b — asserted
+- commit:4ed0cac6f70622fe67d5dd9bb7654fe77a502b1b — changed → file:20_interface/web/sw.js — asserted
+- commit:4ed0cac6f70622fe67d5dd9bb7654fe77a502b1b — precedes → commit:20f9c134e3d01f0482195703488bae344a27a11d — asserted
+- commit:20f9c134e3d01f0482195703488bae344a27a11d — changed → file:20_interface/web/sw.js — asserted
+- commit:20f9c134e3d01f0482195703488bae344a27a11d — precedes → commit:3a8eec4420ae9ca50db58e1385d6ed9819c19e4f — asserted
+- commit:3a8eec4420ae9ca50db58e1385d6ed9819c19e4f — changed → file:20_interface/web/index.html — asserted
+- commit:3a8eec4420ae9ca50db58e1385d6ed9819c19e4f — precedes → commit:dba5a7c65496a2e2aee3536fa48e687be9437394 — asserted
+- commit:dba5a7c65496a2e2aee3536fa48e687be9437394 — changed → file:abs_core/api.py — asserted
+- commit:dba5a7c65496a2e2aee3536fa48e687be9437394 — precedes → commit:f17cc23e622b3083b9269a3bd85d0f071414d873 — asserted
+- commit:f17cc23e622b3083b9269a3bd85d0f071414d873 — changed → file:abs_core/update_daemon.py — asserted
+- commit:f17cc23e622b3083b9269a3bd85d0f071414d873 — precedes → commit:693da3c90d0d6808b8d9738d3320e382b7dc90e7 — asserted
+- commit:693da3c90d0d6808b8d9738d3320e382b7dc90e7 — changed → file:scripts/termux/install_abs_updater_service.sh — asserted
+- commit:693da3c90d0d6808b8d9738d3320e382b7dc90e7 — precedes → commit:3c4fc437e63306a44dd91560a1101bf95b6b29ef — asserted
+- commit:3c4fc437e63306a44dd91560a1101bf95b6b29ef — changed → file:scripts/termux/install_abs_services.sh — asserted
+- commit:3c4fc437e63306a44dd91560a1101bf95b6b29ef — precedes → commit:1e60eb75e7cd2cd67487bc326e2ece8744981dc8 — asserted
+- commit:1e60eb75e7cd2cd67487bc326e2ece8744981dc8 — changed → file:abs_core/update_manager.py — asserted
+- commit:1e60eb75e7cd2cd67487bc326e2ece8744981dc8 — precedes → commit:6c12cfe155903b782fa79f768e529dae5f04583c — asserted
+- commit:6c12cfe155903b782fa79f768e529dae5f04583c — changed → file:tests/test_update_manager.py — asserted
+- commit:6c12cfe155903b782fa79f768e529dae5f04583c — precedes → commit:8c3fa43b3bd4ac068de8a1a9f20659fbdaaa4fc3 — asserted
+- commit:8c3fa43b3bd4ac068de8a1a9f20659fbdaaa4fc3 — changed → file:abs_core/update_daemon.py — asserted
+- commit:8c3fa43b3bd4ac068de8a1a9f20659fbdaaa4fc3 — precedes → commit:bdcfec2004f124e000df8f792669c35482137a21 — asserted
+- commit:bdcfec2004f124e000df8f792669c35482137a21 — changed → file:abs_core/local.py — asserted
+- commit:bdcfec2004f124e000df8f792669c35482137a21 — precedes → commit:f9bca6927a41cba990e870b31055419274ec87ac — asserted
+- commit:f9bca6927a41cba990e870b31055419274ec87ac — changed → file:abs_core/update_daemon.py — asserted
+- commit:f9bca6927a41cba990e870b31055419274ec87ac — precedes → commit:698b7f957fbc45fcded4a36fc3563f5c442a2b6d — asserted
+- commit:698b7f957fbc45fcded4a36fc3563f5c442a2b6d — changed → file:tests/test_update_daemon.py — asserted
+- commit:698b7f957fbc45fcded4a36fc3563f5c442a2b6d — precedes → commit:58ebaa9326baa47bf119c6278d6ce0c79a03fae8 — asserted
+- commit:58ebaa9326baa47bf119c6278d6ce0c79a03fae8 — changed → file:.gitignore — asserted
+- commit:bdcfec2004f124e000df8f792669c35482137a21 — precedes → commit:3d1316d4b0f3ac2f23fd506b004b67a2d8466a2c — asserted
+- commit:58ebaa9326baa47bf119c6278d6ce0c79a03fae8 — precedes → commit:3d1316d4b0f3ac2f23fd506b004b67a2d8466a2c — asserted
+- commit:3d1316d4b0f3ac2f23fd506b004b67a2d8466a2c — precedes → commit:93aba206e4f5c967862285129010293ba06c9f30 — asserted
+- commit:93aba206e4f5c967862285129010293ba06c9f30 — changed → file:HANDOFF_ATUAL.md — asserted
+- commit:93aba206e4f5c967862285129010293ba06c9f30 — precedes → commit:655692d579847705bc15d7a33128132803d33c37 — asserted
+- commit:655692d579847705bc15d7a33128132803d33c37 — changed → file:continuidade/07_HANDOFF_NOVO_CHAT_ABS_V1.md — asserted
+- commit:655692d579847705bc15d7a33128132803d33c37 — changed → file:docs/06_auditoria/AUDITORIA_SENIOR_ABS_V1_2026-09-22.md — asserted
+- commit:655692d579847705bc15d7a33128132803d33c37 — precedes → commit:b86e53196d6df8a4e74c89a966e57959f25fcec1 — asserted
+- commit:b86e53196d6df8a4e74c89a966e57959f25fcec1 — changed → file:continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — asserted
+- commit:b86e53196d6df8a4e74c89a966e57959f25fcec1 — precedes → commit:e495df880fc28a2ae9631f7d4211d51411e20b92 — asserted
+- commit:e495df880fc28a2ae9631f7d4211d51411e20b92 — changed → file:continuidade/01_contexto/02_HISTORICO_SISTEMA_ANTIGO_E_MINI_CEREBRO.md — asserted
+- commit:e495df880fc28a2ae9631f7d4211d51411e20b92 — precedes → commit:98333563467d2ef7d9d55ecee1ff0413bbe1c368 — asserted
+- commit:98333563467d2ef7d9d55ecee1ff0413bbe1c368 — changed → file:continuidade/02_estado/01_ESTADO_ATUAL_PROJETO.md — asserted
+- commit:98333563467d2ef7d9d55ecee1ff0413bbe1c368 — precedes → commit:e62846748cd0ebbf4dc9035863ab986ee8ff8672 — asserted
+- commit:e62846748cd0ebbf4dc9035863ab986ee8ff8672 — changed → file:continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md — asserted
+- commit:e62846748cd0ebbf4dc9035863ab986ee8ff8672 — precedes → commit:b67e2d2302e3ce2816abd92b73e3bb30cfcd52c6 — asserted
+- commit:b67e2d2302e3ce2816abd92b73e3bb30cfcd52c6 — changed → file:continuidade/04_construcao/01_PONTO_EXATO_DE_PARADA.md — asserted
+- commit:b67e2d2302e3ce2816abd92b73e3bb30cfcd52c6 — precedes → commit:69595abfd711a7a8dfec53d72eb3983687251778 — asserted
+- commit:69595abfd711a7a8dfec53d72eb3983687251778 — changed → file:continuidade/04_construcao/02_HANDOFF_CONSTRUCAO_ABS_V1.md — asserted
+- commit:69595abfd711a7a8dfec53d72eb3983687251778 — precedes → commit:f6959a02b3bf51719fd209658f4f396291ad7049 — asserted
+- commit:f6959a02b3bf51719fd209658f4f396291ad7049 — changed → file:continuidade/05_handoffs/02_HANDOFF_NOVO_CHAT_ABS_V1_PLANEJAMENTO.md — asserted
+- commit:f6959a02b3bf51719fd209658f4f396291ad7049 — precedes → commit:a96880cc040fa8a41ea08a0c48517ce5d13feed8 — asserted
+- commit:a96880cc040fa8a41ea08a0c48517ce5d13feed8 — changed → file:continuidade/05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md — asserted
+- commit:a96880cc040fa8a41ea08a0c48517ce5d13feed8 — precedes → commit:c4181a6ff040bd79de08a90c33c73f27e2672bc2 — asserted
+- commit:c4181a6ff040bd79de08a90c33c73f27e2672bc2 — changed → file:continuidade/02_MODELO_ABS_E_PRINCIPIOS.md — asserted
+- commit:c4181a6ff040bd79de08a90c33c73f27e2672bc2 — precedes → commit:45ab5e6b0d7ec08efbef65433ab845641db11b9a — asserted
+- commit:45ab5e6b0d7ec08efbef65433ab845641db11b9a — changed → file:continuidade/03_HISTORICO_SISTEMA_ANTIGO_E_MINI_CEREBRO.md — asserted
+- commit:45ab5e6b0d7ec08efbef65433ab845641db11b9a — precedes → commit:e4c05a0791b5e2f2d53195eb75ea0a732374595e — asserted
+- commit:e4c05a0791b5e2f2d53195eb75ea0a732374595e — changed → file:continuidade/01_ESTADO_ATUAL_PROJETO.md — asserted
+- commit:e4c05a0791b5e2f2d53195eb75ea0a732374595e — precedes → commit:5b6ff02dfe74dc9e6ca65900ddf711e0c942e6d6 — asserted
+- commit:5b6ff02dfe74dc9e6ca65900ddf711e0c942e6d6 — changed → file:continuidade/05_DECISOES_CORRECOES_E_REGRAS.md — asserted
+- commit:5b6ff02dfe74dc9e6ca65900ddf711e0c942e6d6 — precedes → commit:0a1595ea0c106828993c4bdbc84819bc2a75f569 — asserted
+- commit:0a1595ea0c106828993c4bdbc84819bc2a75f569 — changed → file:continuidade/04_PONTO_EXATO_DE_PARADA.md — asserted
+- commit:0a1595ea0c106828993c4bdbc84819bc2a75f569 — precedes → commit:98ec1159841db50e6765061f27d7900c9c83221f — asserted
+- commit:98ec1159841db50e6765061f27d7900c9c83221f — changed → file:continuidade/06_HANDOFF_CONSTRUCAO_ABS_V1.md — asserted
+- commit:98ec1159841db50e6765061f27d7900c9c83221f — precedes → commit:22731aa135fd2b63f927e0e6055f2ef9b556f93f — asserted
+- commit:22731aa135fd2b63f927e0e6055f2ef9b556f93f — changed → file:continuidade/07_HANDOFF_NOVO_CHAT_ABS_V1.md — asserted
+- commit:22731aa135fd2b63f927e0e6055f2ef9b556f93f — precedes → commit:22f94a24a9b0a4c3c04578581301cb309f0d5f01 — asserted
+- commit:22f94a24a9b0a4c3c04578581301cb309f0d5f01 — changed → file:HANDOFF_ATUAL.md — asserted
+- commit:22f94a24a9b0a4c3c04578581301cb309f0d5f01 — precedes → commit:41266064376153e9e5eec86e9f443eae6dc531c5 — asserted
+- commit:41266064376153e9e5eec86e9f443eae6dc531c5 — changed → file:continuidade/00_LEIA_PRIMEIRO.md — asserted
+- commit:41266064376153e9e5eec86e9f443eae6dc531c5 — precedes → commit:2dbec135af342c5e72fc61918bd01fbe25b107e3 — asserted
+- commit:2dbec135af342c5e72fc61918bd01fbe25b107e3 — changed → file:continuidade/06_interface/01_PESQUISA_REFERENCIAL_INTERFACE_ADAPTATIVA.md — asserted
+- commit:2dbec135af342c5e72fc61918bd01fbe25b107e3 — precedes → commit:80e6a102d9f0eaabc2dc89559437ca1280ca54ca — asserted
+- commit:80e6a102d9f0eaabc2dc89559437ca1280ca54ca — changed → file:continuidade/06_interface/02_DEFINICAO_INTERFACE_ADAPTATIVA_ABS.md — asserted
+- commit:80e6a102d9f0eaabc2dc89559437ca1280ca54ca — precedes → commit:af7913828a8a9be0534db4af70a30f80fc808ced — asserted
+- commit:af7913828a8a9be0534db4af70a30f80fc808ced — changed → file:continuidade/06_interface/03_PLANEJAMENTO_ATUAL_INTERFACE_ABS_P0.md — asserted
+- commit:af7913828a8a9be0534db4af70a30f80fc808ced — precedes → commit:b18341d5f75047b4dc7d2bafceeeec3f88867ca3 — asserted
+- commit:b18341d5f75047b4dc7d2bafceeeec3f88867ca3 — changed → file:continuidade/06_interface/02_DEFINICAO_INTERFACE_ADAPTATIVA_ABS.md — asserted
+- commit:b18341d5f75047b4dc7d2bafceeeec3f88867ca3 — precedes → commit:3086f4953bf48546df33c9dec1083f7f137245ae — asserted
+- commit:3086f4953bf48546df33c9dec1083f7f137245ae — changed → file:abs_core/orchestrator.py — asserted
+- commit:3086f4953bf48546df33c9dec1083f7f137245ae — changed → file:abs_core/resource_dispatcher.py — asserted
+- commit:3086f4953bf48546df33c9dec1083f7f137245ae — changed → file:abs_core/tool_knowledge.py — asserted
+- commit:3086f4953bf48546df33c9dec1083f7f137245ae — changed → file:abs_core/tool_planner.py — asserted
+- commit:3086f4953bf48546df33c9dec1083f7f137245ae — changed → file:tests/test_resource_dispatcher.py — asserted
+- commit:3086f4953bf48546df33c9dec1083f7f137245ae — changed → file:tests/test_vertical_slice.py — asserted
+- commit:3086f4953bf48546df33c9dec1083f7f137245ae — precedes → commit:414426054be4cb4a133469f597e1c6aee36046c1 — asserted
+- commit:414426054be4cb4a133469f597e1c6aee36046c1 — changed → file:cerebro/abs_core_executor.py — asserted
+- commit:414426054be4cb4a133469f597e1c6aee36046c1 — precedes → commit:8e1a3e0fd56a5e331a8e4e0dea3fddb33cef536b — asserted
+- commit:8e1a3e0fd56a5e331a8e4e0dea3fddb33cef536b — changed → file:tests/test_cerebro_abs_core_convergence.py — asserted
+- commit:8e1a3e0fd56a5e331a8e4e0dea3fddb33cef536b — precedes → commit:ed6893edffcf9cdb8526560f56f6e39c35e2e9cc — asserted
+- commit:ed6893edffcf9cdb8526560f56f6e39c35e2e9cc — changed → file:cerebro/mapas/04_QUADRO_MESTRE_STATUS_ABS_V1_2026-09-22.md — asserted
+- commit:ed6893edffcf9cdb8526560f56f6e39c35e2e9cc — precedes → commit:ad64a806177703e6993596b8bb66c0fb8a2bec69 — asserted
+- commit:ad64a806177703e6993596b8bb66c0fb8a2bec69 — changed → file:cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md — asserted
+- commit:ad64a806177703e6993596b8bb66c0fb8a2bec69 — precedes → commit:aaeb208b49502b1ae162987ceeb0b18e3d669c74 — asserted
+- commit:aaeb208b49502b1ae162987ceeb0b18e3d669c74 — changed → file:cerebro/abs_core_executor.py — asserted
+- commit:aaeb208b49502b1ae162987ceeb0b18e3d669c74 — precedes → commit:0c011a49bd3cf0e20d3c3bdda9ed71bef90a8454 — asserted
+- commit:0c011a49bd3cf0e20d3c3bdda9ed71bef90a8454 — changed → file:abs_core/tool_discovery.py — asserted
+- commit:0c011a49bd3cf0e20d3c3bdda9ed71bef90a8454 — precedes → commit:cafb6e2cb3f1b3f25d938e186b69b4a8bd892879 — asserted
+- commit:cafb6e2cb3f1b3f25d938e186b69b4a8bd892879 — changed → file:abs_core/tool_discovery.py — asserted
+- commit:cafb6e2cb3f1b3f25d938e186b69b4a8bd892879 — precedes → commit:c5aecb843902667be058c189dc06bdbc44dddd1e — asserted
+- commit:c5aecb843902667be058c189dc06bdbc44dddd1e — changed → file:tests/test_tool_discovery.py — asserted
+- commit:c5aecb843902667be058c189dc06bdbc44dddd1e — precedes → commit:6e4a27e89958e0d01db075ede087774411e10850 — asserted
+- commit:6e4a27e89958e0d01db075ede087774411e10850 — changed → file:abs_core/orchestrator.py — asserted
+- commit:6e4a27e89958e0d01db075ede087774411e10850 — precedes → commit:f78584337dddaf10a44787ac32bcf458a1918a80 — asserted
+- commit:f78584337dddaf10a44787ac32bcf458a1918a80 — changed → file:cerebro/ciclo_continuo.py — asserted
+- commit:f78584337dddaf10a44787ac32bcf458a1918a80 — precedes → commit:b7711a4069f8023bc6b0f864671416f4d14765ff — asserted
+- commit:b7711a4069f8023bc6b0f864671416f4d14765ff — changed → file:tests/test_ciclo_continuo.py — asserted
+- commit:b7711a4069f8023bc6b0f864671416f4d14765ff — precedes → commit:4da97e9f5ab54ddd4eadab1f2cb559609af8a309 — asserted
+- commit:4da97e9f5ab54ddd4eadab1f2cb559609af8a309 — changed → file:cerebro/mapas/04_QUADRO_MESTRE_STATUS_ABS_V1_2026-09-22.md — asserted
+- commit:4da97e9f5ab54ddd4eadab1f2cb559609af8a309 — precedes → commit:6e8ff459c732f0901a068fb89d72cc85b41d9085 — asserted
+- commit:6e8ff459c732f0901a068fb89d72cc85b41d9085 — changed → file:20_interface/VERSOES.md — asserted
+- commit:6e8ff459c732f0901a068fb89d72cc85b41d9085 — changed → file:20_interface/web/index.html — asserted
+- commit:6e8ff459c732f0901a068fb89d72cc85b41d9085 — precedes → commit:edef7cbc4d541a67ab6fb5cd2258367a25dac12c — asserted
+- commit:edef7cbc4d541a67ab6fb5cd2258367a25dac12c — changed → file:20_interface/web/spatial-environment-p0.html — asserted
+- commit:edef7cbc4d541a67ab6fb5cd2258367a25dac12c — precedes → commit:e1e114223af3d487e834ab72b742e189ce714a7e — asserted
+- commit:e1e114223af3d487e834ab72b742e189ce714a7e — changed → file:abs_core/api.py — asserted
+- commit:e1e114223af3d487e834ab72b742e189ce714a7e — precedes → commit:fa69e9700da68d9984503fe92cf775187bf10f16 — asserted
+- commit:fa69e9700da68d9984503fe92cf775187bf10f16 — changed → file:20_interface/web/spatial-environment-p0.html — asserted
+- commit:fa69e9700da68d9984503fe92cf775187bf10f16 — precedes → commit:7a61d762af26802bde8d0cc6ad636f53ee4e2d7d — asserted
+- commit:7a61d762af26802bde8d0cc6ad636f53ee4e2d7d — changed → file:abs_core/intelligence.py — asserted
+- commit:7a61d762af26802bde8d0cc6ad636f53ee4e2d7d — precedes → commit:11d5872a1f4a7a97603a9b42c3e87ceffe3a0798 — asserted
+- commit:11d5872a1f4a7a97603a9b42c3e87ceffe3a0798 — changed → file:abs_core/local_ai_adapter.py — asserted
+- commit:11d5872a1f4a7a97603a9b42c3e87ceffe3a0798 — precedes → commit:10bf4babff681742659e05115031b109579315f0 — asserted
+- commit:10bf4babff681742659e05115031b109579315f0 — changed → file:tests/test_cognitive_runtime.py — asserted
+- commit:10bf4babff681742659e05115031b109579315f0 — precedes → commit:30d76eff3e15165ae44fdf55946bacbc78d8dc93 — asserted
+- commit:30d76eff3e15165ae44fdf55946bacbc78d8dc93 — changed → file:abs_core/server.py — asserted
+- commit:30d76eff3e15165ae44fdf55946bacbc78d8dc93 — precedes → commit:12a79cd6a3549b73e067efb5214ecc2a1417893d — asserted
+- commit:12a79cd6a3549b73e067efb5214ecc2a1417893d — changed → file:abs_core/api.py — asserted
+- commit:12a79cd6a3549b73e067efb5214ecc2a1417893d — precedes → commit:db174bf3f93b136a9a8388c99d0b732f7ac9305c — asserted
+- commit:db174bf3f93b136a9a8388c99d0b732f7ac9305c — changed → file:abs_core/intelligence.py — asserted
+- commit:db174bf3f93b136a9a8388c99d0b732f7ac9305c — precedes → commit:eda1b0a0f68eeb17fdfeafb4df74d2ffd3535cab — asserted
+- commit:eda1b0a0f68eeb17fdfeafb4df74d2ffd3535cab — changed → file:abs_core/server.py — asserted
+- commit:eda1b0a0f68eeb17fdfeafb4df74d2ffd3535cab — precedes → commit:5fe83c46108e8a3a451476b2c3741830dfc0b962 — asserted
+- commit:5fe83c46108e8a3a451476b2c3741830dfc0b962 — changed → file:tests/test_cognitive_runtime.py — asserted
+- commit:5fe83c46108e8a3a451476b2c3741830dfc0b962 — precedes → commit:b68a8577c1b798f1163df408930ddbe1b7a577cd — asserted
+- commit:b68a8577c1b798f1163df408930ddbe1b7a577cd — changed → file:abs_core/intelligence.py — asserted
+- commit:b68a8577c1b798f1163df408930ddbe1b7a577cd — precedes → commit:08a706596407bdacb3ed597d882166861e776dd6 — asserted
+- commit:08a706596407bdacb3ed597d882166861e776dd6 — changed → file:20_interface/web/index.html — asserted
+- commit:08a706596407bdacb3ed597d882166861e776dd6 — precedes → commit:7a8d6bcf4721397357bee638af67dcec71873118 — asserted
+- commit:7a8d6bcf4721397357bee638af67dcec71873118 — changed → file:tests/test_cognitive_runtime.py — asserted
+- commit:7a8d6bcf4721397357bee638af67dcec71873118 — precedes → commit:23238fb5b509835082a8836d0d607746d98875c5 — asserted
+- commit:23238fb5b509835082a8836d0d607746d98875c5 — changed → file:abs_core/intelligence.py — asserted
+- commit:fa69e9700da68d9984503fe92cf775187bf10f16 — precedes → commit:dda234894e8116b978fc7b684020efec15d384a1 — asserted
+- commit:23238fb5b509835082a8836d0d607746d98875c5 — precedes → commit:dda234894e8116b978fc7b684020efec15d384a1 — asserted
+- commit:dda234894e8116b978fc7b684020efec15d384a1 — precedes → commit:df302ba4a5099f28b3a5867b2dab90b3f26943d8 — asserted
+- commit:df302ba4a5099f28b3a5867b2dab90b3f26943d8 — changed → file:abs_core/codex_adapter.py — asserted
+- commit:df302ba4a5099f28b3a5867b2dab90b3f26943d8 — changed → file:abs_core/local.py — asserted
+- commit:df302ba4a5099f28b3a5867b2dab90b3f26943d8 — changed → file:abs_core/runtime.py — asserted
+- commit:df302ba4a5099f28b3a5867b2dab90b3f26943d8 — changed → file:abs_core/server.py — asserted
+- commit:df302ba4a5099f28b3a5867b2dab90b3f26943d8 — changed → file:tests/test_self_operation_path.py — asserted
+- commit:dda234894e8116b978fc7b684020efec15d384a1 — precedes → commit:36dfc3370baca9d9c3820056907b629d27e463a7 — asserted
+- commit:df302ba4a5099f28b3a5867b2dab90b3f26943d8 — precedes → commit:36dfc3370baca9d9c3820056907b629d27e463a7 — asserted
+- commit:36dfc3370baca9d9c3820056907b629d27e463a7 — precedes → commit:7971671203275643eda5c9d41f7f113c04f4d273 — asserted
+- commit:7971671203275643eda5c9d41f7f113c04f4d273 — changed → file:abs_core/api.py — asserted
+- commit:7971671203275643eda5c9d41f7f113c04f4d273 — precedes → commit:e2068473be7b68009664a07fd305441646d29e75 — asserted
+- commit:e2068473be7b68009664a07fd305441646d29e75 — changed → file:abs_core/api.py — asserted
+- commit:e2068473be7b68009664a07fd305441646d29e75 — precedes → commit:4c6a3e22400e5831d28220507b82bda06dbd7fdd — asserted
+- commit:4c6a3e22400e5831d28220507b82bda06dbd7fdd — changed → file:abs_core/integration.py — asserted
+- commit:4c6a3e22400e5831d28220507b82bda06dbd7fdd — precedes → commit:415ae32f456740c5e6c17252cad4ff7433ce9229 — asserted
+- commit:415ae32f456740c5e6c17252cad4ff7433ce9229 — changed → file:docs/api/openapi.json — asserted
+- commit:415ae32f456740c5e6c17252cad4ff7433ce9229 — precedes → commit:c7ad9f6bb9e24702dab187ec438ec31620de2783 — asserted
+- commit:c7ad9f6bb9e24702dab187ec438ec31620de2783 — changed → file:docs/architecture/ABS_INTEGRATION_V1.md — asserted
+- commit:c7ad9f6bb9e24702dab187ec438ec31620de2783 — precedes → commit:7395074c6c35bbddef8ffaf0515ec44a56acdd39 — asserted
+- commit:7395074c6c35bbddef8ffaf0515ec44a56acdd39 — changed → file:tests/test_runtime_bootstrap.py — asserted
+- commit:36dfc3370baca9d9c3820056907b629d27e463a7 — precedes → commit:654f1b3528136820014e9095b3935d0d2f4458de — asserted
+- commit:7395074c6c35bbddef8ffaf0515ec44a56acdd39 — precedes → commit:654f1b3528136820014e9095b3935d0d2f4458de — asserted
+- commit:654f1b3528136820014e9095b3935d0d2f4458de — precedes → commit:52c561e974e54d4e1ceb0719d0d2169638e782d0 — asserted
+- commit:52c561e974e54d4e1ceb0719d0d2169638e782d0 — changed → file:abs_core/nodes.py — asserted
+- commit:52c561e974e54d4e1ceb0719d0d2169638e782d0 — precedes → commit:1b8173e99c05aedfb3073bca62c73bfebfcd11d0 — asserted
+- commit:1b8173e99c05aedfb3073bca62c73bfebfcd11d0 — changed → file:abs_core/transports.py — asserted
+- commit:1b8173e99c05aedfb3073bca62c73bfebfcd11d0 — precedes → commit:ceba99dcffe91edf2980dcd434695f0dc8e7e4d8 — asserted
+- commit:ceba99dcffe91edf2980dcd434695f0dc8e7e4d8 — changed → file:abs_core/node_gateway.py — asserted
+- commit:ceba99dcffe91edf2980dcd434695f0dc8e7e4d8 — precedes → commit:d49686f9f8b61d0b943dda4ba1f3c8ddb184d8aa — asserted
+- commit:d49686f9f8b61d0b943dda4ba1f3c8ddb184d8aa — changed → file:tests/test_node_integration.py — asserted
+- commit:d49686f9f8b61d0b943dda4ba1f3c8ddb184d8aa — precedes → commit:28962b861b572e93ad71cfc0169fe7f060c87367 — asserted
+- commit:28962b861b572e93ad71cfc0169fe7f060c87367 — changed → file:cerebro/especificacao/legado_reintegrado/CONTRATO_INTEGRACAO_V0_1.md — asserted
+- commit:28962b861b572e93ad71cfc0169fe7f060c87367 — precedes → commit:5c7a0058fd59c4c01de0babefc1f2da1f6c9f5e1 — asserted
+- commit:5c7a0058fd59c4c01de0babefc1f2da1f6c9f5e1 — changed → file:cerebro/especificacao/legado_reintegrado/CONTRATO_CONTINUIDADE_V0_1.md — asserted
+- commit:5c7a0058fd59c4c01de0babefc1f2da1f6c9f5e1 — precedes → commit:0b269ff34ade29f3ad3b83ff7ee19432796ef47a — asserted
+- commit:0b269ff34ade29f3ad3b83ff7ee19432796ef47a — changed → file:cerebro/especificacao/legado_reintegrado/CONTROLES_SEGURANCA_EXECUCAO_AUTONOMA_V0_1.md — asserted
+- commit:0b269ff34ade29f3ad3b83ff7ee19432796ef47a — precedes → commit:50c8e7d73ba9f9d967972185bb9b2a529e8652ec — asserted
+- commit:50c8e7d73ba9f9d967972185bb9b2a529e8652ec — changed → file:cerebro/especificacao/legado_reintegrado/CONTROLE_IDENTIDADE_AUTORIZACAO_TELEMETRIA_AGENTES_V0_1.md — asserted
+- commit:50c8e7d73ba9f9d967972185bb9b2a529e8652ec — precedes → commit:6e6d724fac36dea5d5b1944cb979b9cb8d8b23b2 — asserted
+- commit:6e6d724fac36dea5d5b1944cb979b9cb8d8b23b2 — changed → file:cerebro/especificacao/legado_reintegrado/IDENTIDADE_EVENTOS_V0_1.md — asserted
+- commit:6e6d724fac36dea5d5b1944cb979b9cb8d8b23b2 — precedes → commit:496fff666535b7fd2f5b065fbdc55391c62e37de — asserted
+- commit:496fff666535b7fd2f5b065fbdc55391c62e37de — changed → file:cerebro/especificacao/legado_reintegrado/RUNTIME_CONTINUO_V0_1.md — asserted
+- commit:654f1b3528136820014e9095b3935d0d2f4458de — precedes → commit:283c8a1fcca50003f27283c916bc4975abd0b7f0 — asserted
+- commit:496fff666535b7fd2f5b065fbdc55391c62e37de — precedes → commit:283c8a1fcca50003f27283c916bc4975abd0b7f0 — asserted
+- commit:283c8a1fcca50003f27283c916bc4975abd0b7f0 — precedes → commit:faf55b5813c7dba54f07a050de4bd807a8fc664c — asserted
+- commit:faf55b5813c7dba54f07a050de4bd807a8fc664c — changed → file:AGENTS.md — asserted
+- commit:faf55b5813c7dba54f07a050de4bd807a8fc664c — precedes → commit:8f3922b4f0ffb11bfb27d83b79544eb563ea07af — asserted
+- commit:8f3922b4f0ffb11bfb27d83b79544eb563ea07af — changed → file:continuidade/07_conhecimento/00_LEIA_PRIMEIRO.md — asserted
+- commit:8f3922b4f0ffb11bfb27d83b79544eb563ea07af — precedes → commit:a6b6bcf54960429c9e8e95e0afc3d0d199636d2d — asserted
+- commit:a6b6bcf54960429c9e8e95e0afc3d0d199636d2d — changed → file:continuidade/07_conhecimento/01_MODELO_DADOS_E_PATHS.md — asserted
+- commit:a6b6bcf54960429c9e8e95e0afc3d0d199636d2d — precedes → commit:7fa7c3049fcde8c64c944a0d33f5c26b9eebb2db — asserted
+- commit:7fa7c3049fcde8c64c944a0d33f5c26b9eebb2db — changed → file:continuidade/07_conhecimento/02_ORIENTACAO_NOVA_IA.md — asserted
+- commit:7fa7c3049fcde8c64c944a0d33f5c26b9eebb2db — precedes → commit:c813dca9d727223e0e668edbd8d4cd8edc8248c6 — asserted
+- commit:c813dca9d727223e0e668edbd8d4cd8edc8248c6 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:c813dca9d727223e0e668edbd8d4cd8edc8248c6 — precedes → commit:dbc6cf7900adf25d1b58e712d4522dcc75353670 — asserted
+- commit:dbc6cf7900adf25d1b58e712d4522dcc75353670 — changed → file:tests/test_project_knowledge.py — asserted
+- commit:dbc6cf7900adf25d1b58e712d4522dcc75353670 — precedes → commit:104d23bbd4da4e78ea4b5889fe58857b18326451 — asserted
+- commit:104d23bbd4da4e78ea4b5889fe58857b18326451 — changed → file:scripts/project_knowledge_sync.py — asserted
+- commit:104d23bbd4da4e78ea4b5889fe58857b18326451 — precedes → commit:fbd19401fbb47a648549573bbf85cde72d29530b — asserted
+- commit:fbd19401fbb47a648549573bbf85cde72d29530b — changed → file:.github/workflows/project-knowledge.yml — asserted
+- commit:fbd19401fbb47a648549573bbf85cde72d29530b — precedes → commit:00491d53dc99482b09e58c27326885f6799b6b9b — asserted
+- commit:00491d53dc99482b09e58c27326885f6799b6b9b — changed → file:docs/architecture/PROJECT_KNOWLEDGE_V1.md — asserted
+- commit:00491d53dc99482b09e58c27326885f6799b6b9b — precedes → commit:2c7b7a52c31620264e6c3191827d403c68c70411 — asserted
+- commit:2c7b7a52c31620264e6c3191827d403c68c70411 — changed → file:abs_core/integration.py — asserted
+- commit:2c7b7a52c31620264e6c3191827d403c68c70411 — precedes → commit:b8db054591da6f93c54db247e5c606a8cb661f9d — asserted
+- commit:b8db054591da6f93c54db247e5c606a8cb661f9d — changed → file:abs_core/local.py — asserted
+- commit:b8db054591da6f93c54db247e5c606a8cb661f9d — precedes → commit:78f57d309290ab3785c1e52e05dd0890b5aca045 — asserted
+- commit:78f57d309290ab3785c1e52e05dd0890b5aca045 — changed → file:abs_core/server.py — asserted
+- commit:78f57d309290ab3785c1e52e05dd0890b5aca045 — precedes → commit:3e61b47bb569997c93cc6c7bafdbfa59aeadd289 — asserted
+- commit:3e61b47bb569997c93cc6c7bafdbfa59aeadd289 — changed → file:abs_core/local.py — asserted
+- commit:3e61b47bb569997c93cc6c7bafdbfa59aeadd289 — precedes → commit:c1e349107e4d31a55ebec00eaa2d6ef07aec749f — asserted
+- commit:c1e349107e4d31a55ebec00eaa2d6ef07aec749f — changed → file:continuidade/07_conhecimento/03_CONTRATO_DE_PROVA.md — asserted
+- commit:c1e349107e4d31a55ebec00eaa2d6ef07aec749f — precedes → commit:1bc2bad52ee6de2f3c8ea2a323f854417c546c10 — asserted
+- commit:1bc2bad52ee6de2f3c8ea2a323f854417c546c10 — changed → file:abs_core/path_evaluator.py — asserted
+- commit:1bc2bad52ee6de2f3c8ea2a323f854417c546c10 — precedes → commit:9ec0030d8e19ffd521948ccfed57591c9b0a5e91 — asserted
+- commit:9ec0030d8e19ffd521948ccfed57591c9b0a5e91 — changed → file:tests/test_path_evaluator.py — asserted
+- commit:9ec0030d8e19ffd521948ccfed57591c9b0a5e91 — precedes → commit:b189318a87c93a337d78e73083c4d5ba564abaac — asserted
+- commit:b189318a87c93a337d78e73083c4d5ba564abaac — changed → file:abs_core/project_knowledge_runtime.py — asserted
+- commit:b189318a87c93a337d78e73083c4d5ba564abaac — precedes → commit:f1754d48a247d38bb53fdc5fa9bd86dd0be3511e — asserted
+- commit:f1754d48a247d38bb53fdc5fa9bd86dd0be3511e — changed → file:tests/test_project_knowledge_runtime.py — asserted
+- commit:f1754d48a247d38bb53fdc5fa9bd86dd0be3511e — precedes → commit:cbc79587d98eaef77697075673fa79f9e09f84c9 — asserted
+- commit:cbc79587d98eaef77697075673fa79f9e09f84c9 — changed → file:.github/workflows/project-knowledge-tests.yml — asserted
+- commit:cbc79587d98eaef77697075673fa79f9e09f84c9 — precedes → commit:ae8fdf75987bc7c3ea16de983d5f2b5f493d9636 — asserted
+- commit:ae8fdf75987bc7c3ea16de983d5f2b5f493d9636 — changed → file:scripts/project_knowledge_sync.py — asserted
+- commit:ae8fdf75987bc7c3ea16de983d5f2b5f493d9636 — precedes → commit:d1c6f59997c22d6d63af260c867a928ccb58725f — asserted
+- commit:d1c6f59997c22d6d63af260c867a928ccb58725f — changed → file:continuidade/07_conhecimento/02_ORIENTACAO_NOVA_IA.md — asserted
+- commit:d1c6f59997c22d6d63af260c867a928ccb58725f — precedes → commit:0ccd7ff90ec6be0175a65f06edd07090f08a1495 — asserted
+- commit:0ccd7ff90ec6be0175a65f06edd07090f08a1495 — changed → file:abs_core/intelligence.py — asserted
+- commit:0ccd7ff90ec6be0175a65f06edd07090f08a1495 — precedes → commit:4b48894d7d0e8a2d6ce7814420c9fdc651d95a49 — asserted
+- commit:4b48894d7d0e8a2d6ce7814420c9fdc651d95a49 — precedes → commit:3074a18e4e01b7cb533703c2babad55a9a7c8ba7 — asserted
+- commit:3074a18e4e01b7cb533703c2babad55a9a7c8ba7 — changed → file:tests/test_codex_cli_adapter.py — asserted
+- commit:3074a18e4e01b7cb533703c2babad55a9a7c8ba7 — precedes → commit:e5bdf198e1dc855d464e57ceb69d32de3e8f7b00 — asserted
+- commit:e5bdf198e1dc855d464e57ceb69d32de3e8f7b00 — changed → file:abs_core/intelligence.py — asserted
+- commit:e5bdf198e1dc855d464e57ceb69d32de3e8f7b00 — precedes → commit:a68487776baf8fe73e10ab58c893e2c209e02451 — asserted
+- commit:a68487776baf8fe73e10ab58c893e2c209e02451 — changed → file:abs_core/runtime.py — asserted
+- commit:a68487776baf8fe73e10ab58c893e2c209e02451 — precedes → commit:0634f035bec806265d4560ce2ffcecf9f9b5c8b6 — asserted
+- commit:0634f035bec806265d4560ce2ffcecf9f9b5c8b6 — changed → file:abs_core/runtime.py — asserted
+- commit:0634f035bec806265d4560ce2ffcecf9f9b5c8b6 — precedes → commit:76b944ef9858b2eb71318a4f2e7b681bd0093f99 — asserted
+- commit:76b944ef9858b2eb71318a4f2e7b681bd0093f99 — changed → file:abs_core/path_evaluator.py — asserted
+- commit:76b944ef9858b2eb71318a4f2e7b681bd0093f99 — precedes → commit:2cdccf02e18d6a497a98f53524007160a4c8db9f — asserted
+- commit:2cdccf02e18d6a497a98f53524007160a4c8db9f — changed → file:abs_core/project_knowledge.py — asserted
+- commit:2cdccf02e18d6a497a98f53524007160a4c8db9f — precedes → commit:2325e9adb394e325ea21e0bc0d80edc72b815dfd — asserted
+- commit:2325e9adb394e325ea21e0bc0d80edc72b815dfd — changed → file:abs_core/project_knowledge_runtime.py — asserted
+- commit:2325e9adb394e325ea21e0bc0d80edc72b815dfd — precedes → commit:ecfc3ee855ccc4a48f32e2398cc771cbe8159258 — asserted
+- commit:ecfc3ee855ccc4a48f32e2398cc771cbe8159258 — changed → file:scripts/project_knowledge_sync.py — asserted
+- commit:ecfc3ee855ccc4a48f32e2398cc771cbe8159258 — precedes → commit:4f39a145de300e0bb3e5b537843615d67cc1323d — asserted
+- commit:4f39a145de300e0bb3e5b537843615d67cc1323d — changed → file:.github/workflows/project-knowledge.yml — asserted
+- commit:4f39a145de300e0bb3e5b537843615d67cc1323d — precedes → commit:d0ab9d339e93010694aa593845fdfb5726b2e56d — asserted
+- commit:d0ab9d339e93010694aa593845fdfb5726b2e56d — changed → file:tests/test_project_knowledge.py — asserted
+- commit:d0ab9d339e93010694aa593845fdfb5726b2e56d — precedes → commit:7cb323f43e41310504e40afb3030500774b99844 — asserted
+- commit:7cb323f43e41310504e40afb3030500774b99844 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:7cb323f43e41310504e40afb3030500774b99844 — precedes → commit:bbaf7034db69f9da17536e7d5a71cf2df5d9c207 — asserted
+- commit:bbaf7034db69f9da17536e7d5a71cf2df5d9c207 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:bbaf7034db69f9da17536e7d5a71cf2df5d9c207 — precedes → commit:2f6f9899b55fd34763f90017e0230024dc5ffd2b — asserted
+- commit:2f6f9899b55fd34763f90017e0230024dc5ffd2b — changed → file:tests/test_project_knowledge.py — asserted
+- commit:2f6f9899b55fd34763f90017e0230024dc5ffd2b — precedes → commit:ca65ed29a4aafd9eb064dc33352eafde627fc5a9 — asserted
+- commit:ca65ed29a4aafd9eb064dc33352eafde627fc5a9 — precedes → commit:0dd6d54cda5b412faf852e0499feb221a528e821 — asserted
+- commit:0dd6d54cda5b412faf852e0499feb221a528e821 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:0dd6d54cda5b412faf852e0499feb221a528e821 — precedes → commit:9e0ceb26f49f6efe9f0d94168ee1f60e9ebf6115 — asserted
+- commit:9e0ceb26f49f6efe9f0d94168ee1f60e9ebf6115 — changed → file:tests/test_project_knowledge.py — asserted
+- commit:9e0ceb26f49f6efe9f0d94168ee1f60e9ebf6115 — precedes → commit:3d8782b55e41acf02cd01cdb7fe184195a78792b — asserted
+- commit:3d8782b55e41acf02cd01cdb7fe184195a78792b — changed → file:abs_core/project_knowledge.py — asserted
+- commit:3d8782b55e41acf02cd01cdb7fe184195a78792b — precedes → commit:588a3ccf964ba5d9c1f7e849bcfb74750c443832 — asserted
+- commit:588a3ccf964ba5d9c1f7e849bcfb74750c443832 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:588a3ccf964ba5d9c1f7e849bcfb74750c443832 — precedes → commit:38a5ecfa7cd3f88ba27a04f53f4e00e2a266270d — asserted
+- commit:38a5ecfa7cd3f88ba27a04f53f4e00e2a266270d — changed → file:tests/test_project_knowledge.py — asserted
+- commit:38a5ecfa7cd3f88ba27a04f53f4e00e2a266270d — precedes → commit:d8c297a2c915afc7b3887a1949845d50c5a63c07 — asserted
+- commit:d8c297a2c915afc7b3887a1949845d50c5a63c07 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:d8c297a2c915afc7b3887a1949845d50c5a63c07 — precedes → commit:d387167c718e19893af2c0a9416bd1aff58ceba6 — asserted
+- commit:d387167c718e19893af2c0a9416bd1aff58ceba6 — changed → file:tests/test_project_knowledge.py — asserted
+- commit:d387167c718e19893af2c0a9416bd1aff58ceba6 — precedes → commit:c16528ce6f3b51004af7b648ffa69fe0cd2ef8d9 — asserted
+- commit:c16528ce6f3b51004af7b648ffa69fe0cd2ef8d9 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:c16528ce6f3b51004af7b648ffa69fe0cd2ef8d9 — precedes → commit:fb66e00fe3707a3cd9075213e30dc844e1257d35 — asserted
+- commit:fb66e00fe3707a3cd9075213e30dc844e1257d35 — changed → file:tests/test_project_knowledge.py — asserted
+- commit:fb66e00fe3707a3cd9075213e30dc844e1257d35 — precedes → commit:3f574f542aabfa9e50f37ce6b71eff0844baa958 — asserted
+- commit:3f574f542aabfa9e50f37ce6b71eff0844baa958 — precedes → commit:7f1c2927a6f355e3a3962d0dcb3769da43bff536 — asserted
+- commit:7f1c2927a6f355e3a3962d0dcb3769da43bff536 — precedes → commit:231111ff6db67c078ef38e5a41ca5185db09ef71 — asserted
+- commit:231111ff6db67c078ef38e5a41ca5185db09ef71 — changed → file:tests/test_project_knowledge.py — asserted
+- commit:231111ff6db67c078ef38e5a41ca5185db09ef71 — precedes → commit:9794538f8a6244406e94776dd6534dee41c6602b — asserted
+- commit:9794538f8a6244406e94776dd6534dee41c6602b — changed → file:continuidade/07_conhecimento/00_LEIA_PRIMEIRO.md — asserted
+- commit:283c8a1fcca50003f27283c916bc4975abd0b7f0 — precedes → commit:6f7972c2805859014ea5e78c08f4b461c7a5a18e — asserted
+- commit:9794538f8a6244406e94776dd6534dee41c6602b — precedes → commit:6f7972c2805859014ea5e78c08f4b461c7a5a18e — asserted
+- commit:6f7972c2805859014ea5e78c08f4b461c7a5a18e — precedes → commit:a6c05690ed353d72242fea8477bc22b447965ced — asserted
+- commit:a6c05690ed353d72242fea8477bc22b447965ced — precedes → commit:e7902c110b1ec33ea63fda28da8dd567c7d7ed8a — asserted
+- commit:e7902c110b1ec33ea63fda28da8dd567c7d7ed8a — changed → file:scripts/project_knowledge_sync.py — asserted
+- commit:e7902c110b1ec33ea63fda28da8dd567c7d7ed8a — precedes → commit:b04c92caf586721fde85f9bc4966b2ef906084bf — asserted
+- commit:b04c92caf586721fde85f9bc4966b2ef906084bf — changed → file:abs_core/project_knowledge_runtime.py — asserted
+- commit:b04c92caf586721fde85f9bc4966b2ef906084bf — precedes → commit:d8325011dcc2dfd6a98919dd5e09234d00246be7 — asserted
+- commit:d8325011dcc2dfd6a98919dd5e09234d00246be7 — changed → file:tests/test_project_knowledge_runtime.py — asserted
+- commit:d8325011dcc2dfd6a98919dd5e09234d00246be7 — precedes → commit:abad2093d5eb2282b9760baefb2cdbcd738424ce — asserted
+- commit:abad2093d5eb2282b9760baefb2cdbcd738424ce — changed → file:.github/workflows/project-knowledge.yml — asserted
+- commit:abad2093d5eb2282b9760baefb2cdbcd738424ce — precedes → commit:f33ebe7f03431b92caac04afef6b1429ca839bbf — asserted
+- commit:f33ebe7f03431b92caac04afef6b1429ca839bbf — changed → file:.github/workflows/project-knowledge.yml — asserted
+- commit:f33ebe7f03431b92caac04afef6b1429ca839bbf — precedes → commit:c2a24ea68de47154db78d03e958d83bb68e380ca — asserted
+- commit:c2a24ea68de47154db78d03e958d83bb68e380ca — changed → file:abs_core/orchestrator.py — asserted
+- commit:c2a24ea68de47154db78d03e958d83bb68e380ca — precedes → commit:c4e5a751295e8e84b5065d0b5817361a7882205f — asserted
+- commit:c4e5a751295e8e84b5065d0b5817361a7882205f — changed → file:abs_core/orchestrator.py — asserted
+- commit:c4e5a751295e8e84b5065d0b5817361a7882205f — precedes → commit:e3555e87dc82f1623f49b8c8057401e9ce16ed08 — asserted
+- commit:e3555e87dc82f1623f49b8c8057401e9ce16ed08 — changed → file:abs_core/project_knowledge_runtime.py — asserted
+- commit:e3555e87dc82f1623f49b8c8057401e9ce16ed08 — precedes → commit:7ec3cdb922cec63df642aa2d36f73297a4af3642 — asserted
+- commit:7ec3cdb922cec63df642aa2d36f73297a4af3642 — changed → file:abs_core/runtime.py — asserted
+- commit:7ec3cdb922cec63df642aa2d36f73297a4af3642 — precedes → commit:719e8eef2f9cb5c48fb998304ef4066e9ef4ef92 — asserted
+- commit:719e8eef2f9cb5c48fb998304ef4066e9ef4ef92 — changed → file:tests/test_execution_knowledge_e2e.py — asserted
+- commit:719e8eef2f9cb5c48fb998304ef4066e9ef4ef92 — precedes → commit:685f19c7357ecfd89d731b77afb77f7dc1870f93 — asserted
+- commit:685f19c7357ecfd89d731b77afb77f7dc1870f93 — changed → file:abs_core/runtime.py — asserted
+- commit:685f19c7357ecfd89d731b77afb77f7dc1870f93 — precedes → commit:ce793e2774827283b6f73506a52d8b5d398e8086 — asserted
+- commit:ce793e2774827283b6f73506a52d8b5d398e8086 — changed → file:abs_core/orchestrator.py — asserted
+- commit:ce793e2774827283b6f73506a52d8b5d398e8086 — precedes → commit:68109c5d45a4ce0b3d8632ca1d1aa77562989e37 — asserted
+- commit:68109c5d45a4ce0b3d8632ca1d1aa77562989e37 — changed → file:.github/workflows/project-knowledge.yml — asserted
+- commit:68109c5d45a4ce0b3d8632ca1d1aa77562989e37 — precedes → commit:8ce03495556bf560c995eab0117d997478b60361 — asserted
+- commit:8ce03495556bf560c995eab0117d997478b60361 — changed → file:AGENTS.md — asserted
+- commit:8ce03495556bf560c995eab0117d997478b60361 — precedes → commit:23e305690b25f9c0d0e722bf16cec8a11c44d135 — asserted
+- commit:23e305690b25f9c0d0e722bf16cec8a11c44d135 — changed → file:continuidade/07_conhecimento/02_ORIENTACAO_NOVA_IA.md — asserted
+- commit:23e305690b25f9c0d0e722bf16cec8a11c44d135 — precedes → commit:fb8cdc92655998cd9335e9df85fc71d58ce6363b — asserted
+- commit:fb8cdc92655998cd9335e9df85fc71d58ce6363b — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:fb8cdc92655998cd9335e9df85fc71d58ce6363b — precedes → commit:732e47e218b1086b8af1b055b3d4e80358ac1c39 — asserted
+- commit:732e47e218b1086b8af1b055b3d4e80358ac1c39 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:732e47e218b1086b8af1b055b3d4e80358ac1c39 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:732e47e218b1086b8af1b055b3d4e80358ac1c39 — precedes → commit:8c32e9f6c7d4c6a4c26275493297c7c3aa423f13 — asserted
+- commit:8c32e9f6c7d4c6a4c26275493297c7c3aa423f13 — changed → file:docs/06_auditoria/AUDITORIA_SENIOR_ARQUITETURA_INFORMACAO_2026-09-23.md — asserted
+- commit:8c32e9f6c7d4c6a4c26275493297c7c3aa423f13 — precedes → commit:e185f10af5a61417820f1891c113e32d9bd1bc3e — asserted
+- commit:e185f10af5a61417820f1891c113e32d9bd1bc3e — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:e185f10af5a61417820f1891c113e32d9bd1bc3e — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:e185f10af5a61417820f1891c113e32d9bd1bc3e — precedes → commit:8c8e9cf873ad21811c1b91fcb7e5e4490fe42cd9 — asserted
+- commit:8c8e9cf873ad21811c1b91fcb7e5e4490fe42cd9 — changed → file:docs/00_GOVERNANCA_INFORMACAO.md — asserted
+- commit:8c8e9cf873ad21811c1b91fcb7e5e4490fe42cd9 — precedes → commit:64e03931eb6b588201ea91f62c6c99f04944dd47 — asserted
+- commit:64e03931eb6b588201ea91f62c6c99f04944dd47 — changed → file:00_IA_NAVEGACAO.md — asserted
+- commit:64e03931eb6b588201ea91f62c6c99f04944dd47 — precedes → commit:2322d35e925ab3b3920c861b82bbd17f7dc4a28a — asserted
+- commit:2322d35e925ab3b3920c861b82bbd17f7dc4a28a — changed → file:00_ESTRUTURA_REPOSITORIO.md — asserted
+- commit:2322d35e925ab3b3920c861b82bbd17f7dc4a28a — precedes → commit:1cdda5467281b5f707333e44484240d6764feff2 — asserted
+- commit:1cdda5467281b5f707333e44484240d6764feff2 — changed → file:docs/00_ESTRUTURA_DOCUMENTAL.md — asserted
+- commit:1cdda5467281b5f707333e44484240d6764feff2 — precedes → commit:7e54c8027c522e59b23683aee5958ff67057d298 — asserted
+- commit:7e54c8027c522e59b23683aee5958ff67057d298 — changed → file:continuidade/00_LEIA_PRIMEIRO.md — asserted
+- commit:7e54c8027c522e59b23683aee5958ff67057d298 — precedes → commit:b99ef11ab636f84651910b462c1ce0fb6fb490f9 — asserted
+- commit:b99ef11ab636f84651910b462c1ce0fb6fb490f9 — changed → file:docs/00_MODELO_PROJETO_ABSOLUTO.md — asserted
+- commit:b99ef11ab636f84651910b462c1ce0fb6fb490f9 — precedes → commit:81e7a9923e1a1982beb9504ad7b750300e5f708d — asserted
+- commit:81e7a9923e1a1982beb9504ad7b750300e5f708d — changed → file:docs/06_auditoria/INVENTARIO_CLASSIFICACAO_DOCUMENTAL_V0_1.md — asserted
+- commit:81e7a9923e1a1982beb9504ad7b750300e5f708d — precedes → commit:567ae4428fa359b8e8aea8428641e4dfeeb60ef8 — asserted
+- commit:567ae4428fa359b8e8aea8428641e4dfeeb60ef8 — changed → file:00_IA_NAVEGACAO.md — asserted
+- commit:567ae4428fa359b8e8aea8428641e4dfeeb60ef8 — precedes → commit:8370ad9c0ec867017938847b57e095eeae6b98c5 — asserted
+- commit:8370ad9c0ec867017938847b57e095eeae6b98c5 — changed → file:docs/00_GOVERNANCA_INFORMACAO.md — asserted
+- commit:8370ad9c0ec867017938847b57e095eeae6b98c5 — precedes → commit:d8f1b9414c4b16b3a379f424ee828f51d635ee6f — asserted
+- commit:d8f1b9414c4b16b3a379f424ee828f51d635ee6f — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:d8f1b9414c4b16b3a379f424ee828f51d635ee6f — precedes → commit:649ddb1d6670588e1330e3c99797b7e8d6fe28e5 — asserted
+- commit:649ddb1d6670588e1330e3c99797b7e8d6fe28e5 — changed → file:AGENTS.md — asserted
+- commit:649ddb1d6670588e1330e3c99797b7e8d6fe28e5 — precedes → commit:2de69dae1a251ffddbfe7050f9fea1ae7f5bff44 — asserted
+- commit:2de69dae1a251ffddbfe7050f9fea1ae7f5bff44 — changed → file:cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md — asserted
+- commit:2de69dae1a251ffddbfe7050f9fea1ae7f5bff44 — precedes → commit:78381dfc1c078a8477ea336978ffe4b37ac36c1c — asserted
+- commit:78381dfc1c078a8477ea336978ffe4b37ac36c1c — changed → file:docs/06_auditoria/INVENTARIO_ARQUIVOS_DOCUMENTAIS_V0_1.md — asserted
+- commit:78381dfc1c078a8477ea336978ffe4b37ac36c1c — precedes → commit:62e12192b0054cd26a8d70bfd97c76b0e31b0d28 — asserted
+- commit:62e12192b0054cd26a8d70bfd97c76b0e31b0d28 — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:62e12192b0054cd26a8d70bfd97c76b0e31b0d28 — precedes → commit:0aa2b0aed12a2046cc6ba0a6fc8da11c97303e77 — asserted
+- commit:0aa2b0aed12a2046cc6ba0a6fc8da11c97303e77 — changed → file:cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md — asserted
+- commit:0aa2b0aed12a2046cc6ba0a6fc8da11c97303e77 — precedes → commit:14e8706d939900c3138f2a46dbbd569441ca5516 — asserted
+- commit:14e8706d939900c3138f2a46dbbd569441ca5516 — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:e185f10af5a61417820f1891c113e32d9bd1bc3e — precedes → commit:3e8187466a988e4559adc380ff3c5a27a2c26dc7 — asserted
+- commit:14e8706d939900c3138f2a46dbbd569441ca5516 — precedes → commit:3e8187466a988e4559adc380ff3c5a27a2c26dc7 — asserted
+- commit:3e8187466a988e4559adc380ff3c5a27a2c26dc7 — precedes → commit:2ff3449a2cbe386a948e2fb3b49216262fb089ca — asserted
+- commit:2ff3449a2cbe386a948e2fb3b49216262fb089ca — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:2ff3449a2cbe386a948e2fb3b49216262fb089ca — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:2ff3449a2cbe386a948e2fb3b49216262fb089ca — precedes → commit:421f3c08304a7ac1c8e155292962c23763eaec7e — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/00_ESTRUTURA_DOCUMENTAL.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/02_arquitetura/ABS_INTEGRATION_V1.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/02_arquitetura/CONHECIMENTO_E_DESCOBERTA_DE_FERRAMENTAS_V1.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/02_arquitetura/CONTROLE_DE_EVOLUCAO_PELA_INTERFACE.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/02_arquitetura/EVOLUCAO_AUTONOMA_ASSISTIDA_ABS.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/02_arquitetura/MEMORIA_PERSISTENTE_DE_FERRAMENTAS_V1.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/02_arquitetura/PLANEJAMENTO_E_APRENDIZAGEM_DE_FERRAMENTAS_V1.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/02_arquitetura/PROJECT_KNOWLEDGE_V1.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/02_arquitetura/README.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/02_arquitetura/ROTEAMENTO_DE_RECURSOS_V1.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/06_auditoria/INVENTARIO_CLASSIFICACAO_DOCUMENTAL_V0_1.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — changed → file:docs/06_auditoria/MIGRACAO_DOCUMENTAL_2026-09-23.md — asserted
+- commit:421f3c08304a7ac1c8e155292962c23763eaec7e — precedes → commit:554640a1d663c593e3c373d29c1b1eebfefbfc39 — asserted
+- commit:554640a1d663c593e3c373d29c1b1eebfefbfc39 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:554640a1d663c593e3c373d29c1b1eebfefbfc39 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:554640a1d663c593e3c373d29c1b1eebfefbfc39 — precedes → commit:1f329e166d048480e7396cee706fc3f0a82453a8 — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:cerebro/00_estado/00_README.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:cerebro/00_estado/STATUS_ABS_V1_2026-09-22.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:cerebro/mapas/00_INDICE_MAPAS.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:continuidade/00_LEIA_PRIMEIRO.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:continuidade/05_handoffs/03_HANDOFF_CONSTRUCAO_ABS_V1_SNAPSHOT_2026-09-21.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:continuidade/99_legado/ESTADO_ATUAL_PROJETO_SNAPSHOT_2026-09-19.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:continuidade/99_legado/PONTO_EXATO_DE_PARADA_SNAPSHOT.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:docs/00_ESTRUTURA_DOCUMENTAL.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:docs/02_arquitetura/INTERFACE_ADAPTATIVA_ABS_V0_1.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:docs/03_planejamento/00_INDICE_PLANEJAMENTO.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:docs/03_planejamento/INTERFACE_ADAPTATIVA_ABS_P0.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:docs/06_auditoria/AUDITORIA_ESTADO_CONTINUIDADE_2026-09-23.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:docs/06_auditoria/INVENTARIO_CLASSIFICACAO_DOCUMENTAL_V0_1.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — changed → file:docs/90_fontes/INTERFACE_ADAPTATIVA_PESQUISA_2026-09-22.md — asserted
+- commit:1f329e166d048480e7396cee706fc3f0a82453a8 — precedes → commit:d0020d89da5284605eb2e0f9a5cddd041481b853 — asserted
+- commit:d0020d89da5284605eb2e0f9a5cddd041481b853 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:d0020d89da5284605eb2e0f9a5cddd041481b853 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:d0020d89da5284605eb2e0f9a5cddd041481b853 — precedes → commit:065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb — asserted
+- commit:065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb — changed → file:docs/06_auditoria/AUDITORIA_FONTES_HISTORICO_MINI_CEREBRO_2026-09-24.md — asserted
+- commit:065a60d0ac57a5ebbb4ecab06f6ac4742a9022eb — precedes → commit:8619e21b032faff4cdde01dce8a8576ec48be068 — asserted
+- commit:8619e21b032faff4cdde01dce8a8576ec48be068 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:8619e21b032faff4cdde01dce8a8576ec48be068 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:8619e21b032faff4cdde01dce8a8576ec48be068 — precedes → commit:d967adad57bcb824366d8db6938fe1daef3632bc — asserted
+- commit:d967adad57bcb824366d8db6938fe1daef3632bc — changed → file:continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md — asserted
+- commit:d967adad57bcb824366d8db6938fe1daef3632bc — precedes → commit:4df24e7d1090451041d066b84bc4cebd44241c31 — asserted
+- commit:4df24e7d1090451041d066b84bc4cebd44241c31 — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:4df24e7d1090451041d066b84bc4cebd44241c31 — precedes → commit:38e77220f2bf050044c62a0faaf16b348fe7f788 — asserted
+- commit:38e77220f2bf050044c62a0faaf16b348fe7f788 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:38e77220f2bf050044c62a0faaf16b348fe7f788 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:38e77220f2bf050044c62a0faaf16b348fe7f788 — precedes → commit:9560ab0b2d8ac923698188a15a7f0f6a1e72cbee — asserted
+- commit:9560ab0b2d8ac923698188a15a7f0f6a1e72cbee — changed → file:00_IA_NAVEGACAO.md — asserted
+- commit:9560ab0b2d8ac923698188a15a7f0f6a1e72cbee — changed → file:continuidade/02_estado/01_ESTADO_ATUAL_PROJETO.md — asserted
+- commit:9560ab0b2d8ac923698188a15a7f0f6a1e72cbee — changed → file:continuidade/04_construcao/01_PONTO_EXATO_DE_PARADA.md — asserted
+- commit:9560ab0b2d8ac923698188a15a7f0f6a1e72cbee — changed → file:continuidade/04_construcao/02_HANDOFF_CONSTRUCAO_ABS_V1.md — asserted
+- commit:9560ab0b2d8ac923698188a15a7f0f6a1e72cbee — changed → file:continuidade/06_interface/01_PESQUISA_REFERENCIAL_INTERFACE_ADAPTATIVA.md — asserted
+- commit:9560ab0b2d8ac923698188a15a7f0f6a1e72cbee — changed → file:continuidade/06_interface/02_DEFINICAO_INTERFACE_ADAPTATIVA_ABS.md — asserted
+- commit:9560ab0b2d8ac923698188a15a7f0f6a1e72cbee — changed → file:continuidade/06_interface/03_PLANEJAMENTO_ATUAL_INTERFACE_ABS_P0.md — asserted
+- commit:38e77220f2bf050044c62a0faaf16b348fe7f788 — precedes → commit:45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9 — asserted
+- commit:9560ab0b2d8ac923698188a15a7f0f6a1e72cbee — precedes → commit:45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9 — asserted
+- commit:45ff454cfe8ad1cf4e44b168f1d0a4b9fc66b0d9 — precedes → commit:0f31cd3d81a94a80ec3b5f6db6db2aec44063f4f — asserted
+- commit:0f31cd3d81a94a80ec3b5f6db6db2aec44063f4f — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:0f31cd3d81a94a80ec3b5f6db6db2aec44063f4f — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:0f31cd3d81a94a80ec3b5f6db6db2aec44063f4f — precedes → commit:304ce800fe039efd391742bc37cf61e6c9b15827 — asserted
+- commit:304ce800fe039efd391742bc37cf61e6c9b15827 — changed → file:cerebro/mapas/04_QUADRO_MESTRE_STATUS_ABS_V1_2026-09-22.md — asserted
+- commit:0f31cd3d81a94a80ec3b5f6db6db2aec44063f4f — precedes → commit:c0bb4994753506b435ee148b7b12062e5b2e0e64 — asserted
+- commit:304ce800fe039efd391742bc37cf61e6c9b15827 — precedes → commit:c0bb4994753506b435ee148b7b12062e5b2e0e64 — asserted
+- commit:c0bb4994753506b435ee148b7b12062e5b2e0e64 — precedes → commit:0067bcd118930a9e4a80dbfd1c6393f120752807 — asserted
+- commit:0067bcd118930a9e4a80dbfd1c6393f120752807 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:0067bcd118930a9e4a80dbfd1c6393f120752807 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:c0bb4994753506b435ee148b7b12062e5b2e0e64 — precedes → commit:740f200c3ec363243f11a5edc1255b1ad597a0fa — asserted
+- commit:740f200c3ec363243f11a5edc1255b1ad597a0fa — changed → file:cerebro/00_estado/TRANSFERENCIA_PROJETO_ABSOLUTO_ESTADO_ATUAL_V1.md — asserted
+- commit:0067bcd118930a9e4a80dbfd1c6393f120752807 — precedes → commit:d506d120b69c7330f6580d0172f714bb360645cd — asserted
+- commit:740f200c3ec363243f11a5edc1255b1ad597a0fa — precedes → commit:d506d120b69c7330f6580d0172f714bb360645cd — asserted
+- commit:d506d120b69c7330f6580d0172f714bb360645cd — precedes → commit:3c90ab7dd0afa8c2ac52f2fb63e95fd763cfe4cf — asserted
+- commit:3c90ab7dd0afa8c2ac52f2fb63e95fd763cfe4cf — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:3c90ab7dd0afa8c2ac52f2fb63e95fd763cfe4cf — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:3c90ab7dd0afa8c2ac52f2fb63e95fd763cfe4cf — precedes → commit:67972dc06de16bdca55ef098bd6500122a0bc3b0 — asserted
+- commit:67972dc06de16bdca55ef098bd6500122a0bc3b0 — changed → file:continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md — asserted
+- commit:67972dc06de16bdca55ef098bd6500122a0bc3b0 — precedes → commit:76e686ffe26a2f5aab4b7ef23eea7279adbf1219 — asserted
+- commit:76e686ffe26a2f5aab4b7ef23eea7279adbf1219 — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:76e686ffe26a2f5aab4b7ef23eea7279adbf1219 — precedes → commit:ec5676a8727e520491cf8ca1949661afbd28e7f0 — asserted
+- commit:ec5676a8727e520491cf8ca1949661afbd28e7f0 — changed → file:docs/00_ESTRUTURA_DOCUMENTAL.md — asserted
+- commit:ec5676a8727e520491cf8ca1949661afbd28e7f0 — precedes → commit:173aa58fccd982cfa0c64c89598250b67eb73c79 — asserted
+- commit:173aa58fccd982cfa0c64c89598250b67eb73c79 — changed → file:docs/06_auditoria/INVENTARIO_CLASSIFICACAO_DOCUMENTAL_V0_1.md — asserted
+- commit:3c90ab7dd0afa8c2ac52f2fb63e95fd763cfe4cf — precedes → commit:245f93400c3cdc3f54d9a91c50182b8de82dd60e — asserted
+- commit:173aa58fccd982cfa0c64c89598250b67eb73c79 — precedes → commit:245f93400c3cdc3f54d9a91c50182b8de82dd60e — asserted
+- commit:245f93400c3cdc3f54d9a91c50182b8de82dd60e — precedes → commit:aeac1933075838281d7593baa60fad25696848f7 — asserted
+- commit:aeac1933075838281d7593baa60fad25696848f7 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:aeac1933075838281d7593baa60fad25696848f7 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:aeac1933075838281d7593baa60fad25696848f7 — precedes → commit:db0a20b573035b66466b484634d9282b4d743b72 — asserted
+- commit:db0a20b573035b66466b484634d9282b4d743b72 — changed → file:continuidade/05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md — asserted
+- commit:aeac1933075838281d7593baa60fad25696848f7 — precedes → commit:f5a39de0a99d4efa69bd323066d0b1cef98199b6 — asserted
+- commit:db0a20b573035b66466b484634d9282b4d743b72 — precedes → commit:f5a39de0a99d4efa69bd323066d0b1cef98199b6 — asserted
+- commit:f5a39de0a99d4efa69bd323066d0b1cef98199b6 — precedes → commit:313d05b0b4c4098cd15c991f479b466872f8f43a — asserted
+- commit:313d05b0b4c4098cd15c991f479b466872f8f43a — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:313d05b0b4c4098cd15c991f479b466872f8f43a — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:313d05b0b4c4098cd15c991f479b466872f8f43a — precedes → commit:8308c7e5a5779ed831ee36767710ae7cb4973a43 — asserted
+- commit:8308c7e5a5779ed831ee36767710ae7cb4973a43 — changed → file:continuidade/05_handoffs/02_HANDOFF_NOVO_CHAT_ABS_V1_PLANEJAMENTO.md — asserted
+- commit:8308c7e5a5779ed831ee36767710ae7cb4973a43 — precedes → commit:7c201485aefc3ed84aef1a2aa575043f6ae09a97 — asserted
+- commit:7c201485aefc3ed84aef1a2aa575043f6ae09a97 — changed → file:continuidade/05_handoffs/03_HANDOFF_CONSTRUCAO_ABS_V1_SNAPSHOT_2026-09-21.md — asserted
+- commit:313d05b0b4c4098cd15c991f479b466872f8f43a — precedes → commit:5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454 — asserted
+- commit:7c201485aefc3ed84aef1a2aa575043f6ae09a97 — precedes → commit:5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454 — asserted
+- commit:5c7de8b64fc2cb8fe58dfd4c4e4c7c5f9b3e1454 — precedes → commit:7d8152fe14c01ef47cb6a3251deda8bb4d32c74e — asserted
+- commit:7d8152fe14c01ef47cb6a3251deda8bb4d32c74e — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:7d8152fe14c01ef47cb6a3251deda8bb4d32c74e — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:7d8152fe14c01ef47cb6a3251deda8bb4d32c74e — precedes → commit:5617f5dcb76175f6d87649e46589b8e1ec124aab — asserted
+- commit:5617f5dcb76175f6d87649e46589b8e1ec124aab — changed → file:00_IA_NAVEGACAO.md — asserted
+- commit:5617f5dcb76175f6d87649e46589b8e1ec124aab — changed → file:continuidade/00_LEIA_PRIMEIRO.md — asserted
+- commit:5617f5dcb76175f6d87649e46589b8e1ec124aab — changed → file:continuidade/05_handoffs/04_HANDOFF_ARQUITETURA_PROJETO_ABSOLUTO_2026-09-23.md — asserted
+- commit:5617f5dcb76175f6d87649e46589b8e1ec124aab — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:5617f5dcb76175f6d87649e46589b8e1ec124aab — changed → file:docs/00_ESTRUTURA_DOCUMENTAL.md — asserted
+- commit:5617f5dcb76175f6d87649e46589b8e1ec124aab — changed → file:docs/06_auditoria/INVENTARIO_ARQUIVOS_DOCUMENTAIS_V0_1.md — asserted
+- commit:7d8152fe14c01ef47cb6a3251deda8bb4d32c74e — precedes → commit:d248bad33754c087007d91759b5c52a647896022 — asserted
+- commit:5617f5dcb76175f6d87649e46589b8e1ec124aab — precedes → commit:d248bad33754c087007d91759b5c52a647896022 — asserted
+- commit:d248bad33754c087007d91759b5c52a647896022 — precedes → commit:2a06e785c1e14d6446d6c418a600e8c01b2bbe6f — asserted
+- commit:2a06e785c1e14d6446d6c418a600e8c01b2bbe6f — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:2a06e785c1e14d6446d6c418a600e8c01b2bbe6f — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:2a06e785c1e14d6446d6c418a600e8c01b2bbe6f — precedes → commit:dfa5f4afdee3a7b8fae6096fdbee4d0ba337a23b — asserted
+- commit:dfa5f4afdee3a7b8fae6096fdbee4d0ba337a23b — changed → file:cerebro/00_estado/00_README.md — asserted
+- commit:dfa5f4afdee3a7b8fae6096fdbee4d0ba337a23b — changed → file:cerebro/especificacao/00_INDICE_ESPECIFICACOES.md — asserted
+- commit:dfa5f4afdee3a7b8fae6096fdbee4d0ba337a23b — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:2a06e785c1e14d6446d6c418a600e8c01b2bbe6f — precedes → commit:58cea86c2d7136f8ef1171a37ae59f4294499631 — asserted
+- commit:dfa5f4afdee3a7b8fae6096fdbee4d0ba337a23b — precedes → commit:58cea86c2d7136f8ef1171a37ae59f4294499631 — asserted
+- commit:58cea86c2d7136f8ef1171a37ae59f4294499631 — precedes → commit:b9fa1a218e6e2599da1684e0b41605e2f714bcfb — asserted
+- commit:b9fa1a218e6e2599da1684e0b41605e2f714bcfb — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:b9fa1a218e6e2599da1684e0b41605e2f714bcfb — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:b9fa1a218e6e2599da1684e0b41605e2f714bcfb — precedes → commit:a44db1334d200565e85464b241cbd1e9960d6a64 — asserted
+- commit:a44db1334d200565e85464b241cbd1e9960d6a64 — changed → file:docs/03_planejamento/PLANO_ABS_V1_CURTO_MEDIO_LONGO_PRAZO.md — asserted
+- commit:a44db1334d200565e85464b241cbd1e9960d6a64 — precedes → commit:12cd4b85ecbe9bdb0dc1f3f4427e7e1c42594f84 — asserted
+- commit:12cd4b85ecbe9bdb0dc1f3f4427e7e1c42594f84 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:12cd4b85ecbe9bdb0dc1f3f4427e7e1c42594f84 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:12cd4b85ecbe9bdb0dc1f3f4427e7e1c42594f84 — precedes → commit:61f9eabaaec4c79cde37e0a6490e25268a2386a3 — asserted
+- commit:61f9eabaaec4c79cde37e0a6490e25268a2386a3 — changed → file:docs/03_planejamento/MAPA_MESTRE_EVOLUCAO_ABS_V1_A_INDEPENDENCIA.md — asserted
+- commit:61f9eabaaec4c79cde37e0a6490e25268a2386a3 — precedes → commit:7c691ff965cfc2f184f502b79a126dfece56cf8e — asserted
+- commit:7c691ff965cfc2f184f502b79a126dfece56cf8e — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:7c691ff965cfc2f184f502b79a126dfece56cf8e — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:7c691ff965cfc2f184f502b79a126dfece56cf8e — precedes → commit:a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed — asserted
+- commit:a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed — changed → file:docs/03_planejamento/AUDITORIA_E_PLANO_FECHAMENTO_ABS_V1_OPERACIONAL_2026-09-25.md — asserted
+- commit:a43b83c2fdc6f4f81a51374cc0b39bb42b11e5ed — precedes → commit:55efe193759dcf0b53453b48afb5651a67f1b1c7 — asserted
+- commit:55efe193759dcf0b53453b48afb5651a67f1b1c7 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:55efe193759dcf0b53453b48afb5651a67f1b1c7 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:55efe193759dcf0b53453b48afb5651a67f1b1c7 — precedes → commit:cf4e51b5a17be9ee8b39b4c986dc746bd8d1ddf0 — asserted
+- commit:cf4e51b5a17be9ee8b39b4c986dc746bd8d1ddf0 — changed → file:abs_core/openrouter_adapter.py — asserted
+- commit:cf4e51b5a17be9ee8b39b4c986dc746bd8d1ddf0 — precedes → commit:570f22150d5976dd491018d5cdc37c3aade13b97 — asserted
+- commit:570f22150d5976dd491018d5cdc37c3aade13b97 — changed → file:abs_core/data_layer.py — asserted
+- commit:570f22150d5976dd491018d5cdc37c3aade13b97 — precedes → commit:09a2113675b942f4569fa9648a7983d73cd3aaaa — asserted
+- commit:09a2113675b942f4569fa9648a7983d73cd3aaaa — changed → file:abs_core/verification.py — asserted
+- commit:09a2113675b942f4569fa9648a7983d73cd3aaaa — precedes → commit:94b7a748da4a476d0914f29156a8f9e8f275b381 — asserted
+- commit:94b7a748da4a476d0914f29156a8f9e8f275b381 — changed → file:abs_core/openai_compat.py — asserted
+- commit:94b7a748da4a476d0914f29156a8f9e8f275b381 — precedes → commit:2a69471e36e0220f4569414a8fc31bd0a041950d — asserted
+- commit:2a69471e36e0220f4569414a8fc31bd0a041950d — changed → file:docs/03_planejamento/GUIA_MANUAL_FECHAMENTO_V1.md — asserted
+- commit:2a69471e36e0220f4569414a8fc31bd0a041950d — precedes → commit:9dfb027437595578dda1441b45702e33203af779 — asserted
+- commit:9dfb027437595578dda1441b45702e33203af779 — changed → file:abs_core/runtime.py — asserted
+- commit:9dfb027437595578dda1441b45702e33203af779 — precedes → commit:219c2033e0a24f414ae4d9690dd418c852862c11 — asserted
+- commit:219c2033e0a24f414ae4d9690dd418c852862c11 — changed → file:abs_core/intelligence.py — asserted
+- commit:219c2033e0a24f414ae4d9690dd418c852862c11 — precedes → commit:29ef2905299b997affa4faed53113bc0bb3b37a3 — asserted
+- commit:29ef2905299b997affa4faed53113bc0bb3b37a3 — changed → file:abs_core/orchestrator.py — asserted
+- commit:29ef2905299b997affa4faed53113bc0bb3b37a3 — precedes → commit:779d4323fc7a999f4f723aafafd8c9e49ad75052 — asserted
+- commit:779d4323fc7a999f4f723aafafd8c9e49ad75052 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:779d4323fc7a999f4f723aafafd8c9e49ad75052 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:779d4323fc7a999f4f723aafafd8c9e49ad75052 — precedes → commit:d33c990537ac4fa4c5037be52a1168dea1c5d495 — asserted
+- commit:d33c990537ac4fa4c5037be52a1168dea1c5d495 — changed → file:scripts/abs_v1_acceptance.py — asserted
+- commit:d33c990537ac4fa4c5037be52a1168dea1c5d495 — precedes → commit:4caf7fdace6deee8a726ca690cc64781960d5502 — asserted
+- commit:4caf7fdace6deee8a726ca690cc64781960d5502 — changed → file:docs/03_planejamento/GUIA_MANUAL_FECHAMENTO_V1_ATUAL.md — asserted
+- commit:4caf7fdace6deee8a726ca690cc64781960d5502 — precedes → commit:876eb68ded069d4cc5d3c776f0ecb4290a18aa61 — asserted
+- commit:876eb68ded069d4cc5d3c776f0ecb4290a18aa61 — changed → file:tests/test_v1_operational_layers.py — asserted
+- commit:876eb68ded069d4cc5d3c776f0ecb4290a18aa61 — precedes → commit:2a02285e181cbe9a4b15c6ea983a7571a6bfd7bf — asserted
+- commit:2a02285e181cbe9a4b15c6ea983a7571a6bfd7bf — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:2a02285e181cbe9a4b15c6ea983a7571a6bfd7bf — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:2a02285e181cbe9a4b15c6ea983a7571a6bfd7bf — precedes → commit:08e69969ff20e2a11138255929dda9ed2913c448 — asserted
+- commit:08e69969ff20e2a11138255929dda9ed2913c448 — changed → file:abs_core/local.py — asserted
+- commit:08e69969ff20e2a11138255929dda9ed2913c448 — changed → file:scripts/termux/install_abs_gateway_service.sh — asserted
+- commit:08e69969ff20e2a11138255929dda9ed2913c448 — precedes → commit:70aa13e52dfbcf9e24690b63f5c8ee0da23f6e0e — asserted
+- commit:70aa13e52dfbcf9e24690b63f5c8ee0da23f6e0e — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:70aa13e52dfbcf9e24690b63f5c8ee0da23f6e0e — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:70aa13e52dfbcf9e24690b63f5c8ee0da23f6e0e — precedes → commit:223ebe2c54a99bcc2deab0c64a8b9283835f5102 — asserted
+- commit:223ebe2c54a99bcc2deab0c64a8b9283835f5102 — changed → file:abs_core/github_adapter.py — asserted
+- commit:223ebe2c54a99bcc2deab0c64a8b9283835f5102 — precedes → commit:380b9b1d270b55be34eabcd1bf4f4a0714a7aa73 — asserted
+- commit:380b9b1d270b55be34eabcd1bf4f4a0714a7aa73 — changed → file:abs_core/runtime.py — asserted
+- commit:380b9b1d270b55be34eabcd1bf4f4a0714a7aa73 — precedes → commit:94b672080625f816889d1af4d318fc7de2d93c6e — asserted
+- commit:94b672080625f816889d1af4d318fc7de2d93c6e — changed → file:abs_core/resource_dispatcher.py — asserted
+- commit:94b672080625f816889d1af4d318fc7de2d93c6e — precedes → commit:0670cb8d0e22ecf322f34cd6197bc98073920cd4 — asserted
+- commit:0670cb8d0e22ecf322f34cd6197bc98073920cd4 — changed → file:abs_core/tool_catalog.py — asserted
+- commit:0670cb8d0e22ecf322f34cd6197bc98073920cd4 — precedes → commit:229d98f09d03e24b4f7d99b55d1f0e1d654b0e13 — asserted
+- commit:229d98f09d03e24b4f7d99b55d1f0e1d654b0e13 — changed → file:tests/test_github_capability.py — asserted
+- commit:229d98f09d03e24b4f7d99b55d1f0e1d654b0e13 — precedes → commit:0af9d9d0983787b25e460f303ba750f50e6cfc6d — asserted
+- commit:0af9d9d0983787b25e460f303ba750f50e6cfc6d — changed → file:docs/03_planejamento/PLANO_ABS_INTEGRACAO_GITHUB.md — asserted
+- commit:70aa13e52dfbcf9e24690b63f5c8ee0da23f6e0e — precedes → commit:d11da20f827732b956aaf934e5a9567edd53152e — asserted
+- commit:0af9d9d0983787b25e460f303ba750f50e6cfc6d — precedes → commit:d11da20f827732b956aaf934e5a9567edd53152e — asserted
+- commit:d11da20f827732b956aaf934e5a9567edd53152e — precedes → commit:3874cc0714464a30c1f45dd7d923c4e43f74fd55 — asserted
+- commit:3874cc0714464a30c1f45dd7d923c4e43f74fd55 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:3874cc0714464a30c1f45dd7d923c4e43f74fd55 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:3874cc0714464a30c1f45dd7d923c4e43f74fd55 — precedes → commit:133aa984a0beeaf49aad138694c7a938dfdb32fe — asserted
+- commit:133aa984a0beeaf49aad138694c7a938dfdb32fe — changed → file:abs_core/conversational_tools.py — asserted
+- commit:133aa984a0beeaf49aad138694c7a938dfdb32fe — precedes → commit:547f2af8d9d378bc1180269fb9f5094d5ed68bf7 — asserted
+- commit:547f2af8d9d378bc1180269fb9f5094d5ed68bf7 — changed → file:abs_core/intelligence.py — asserted
+- commit:547f2af8d9d378bc1180269fb9f5094d5ed68bf7 — precedes → commit:a36cfb0447818fbe32e8c39bde8cdaf9b25b099d — asserted
+- commit:a36cfb0447818fbe32e8c39bde8cdaf9b25b099d — changed → file:abs_core/intelligence.py — asserted
+- commit:a36cfb0447818fbe32e8c39bde8cdaf9b25b099d — precedes → commit:135c51409790b8768d7a88c92a35d6a74c8fe314 — asserted
+- commit:135c51409790b8768d7a88c92a35d6a74c8fe314 — precedes → commit:286c59d20860505a0c85dd8da3476fb02b473a6f — asserted
+- commit:286c59d20860505a0c85dd8da3476fb02b473a6f — changed → file:abs_core/intelligence.py — asserted
+- commit:286c59d20860505a0c85dd8da3476fb02b473a6f — precedes → commit:53bb9435b173e3a08f648bf519a306abaa93c7fc — asserted
+- commit:53bb9435b173e3a08f648bf519a306abaa93c7fc — changed → file:abs_core/runtime.py — asserted
+- commit:53bb9435b173e3a08f648bf519a306abaa93c7fc — precedes → commit:98214146f9bb60bd2d84bf812f53aa06230ad360 — asserted
+- commit:98214146f9bb60bd2d84bf812f53aa06230ad360 — changed → file:abs_core/local_ai_adapter.py — asserted
+- commit:98214146f9bb60bd2d84bf812f53aa06230ad360 — precedes → commit:d1bec3af337c275a4aa2e54d07331dfb4f8bb3ab — asserted
+- commit:d1bec3af337c275a4aa2e54d07331dfb4f8bb3ab — changed → file:tests/test_conversational_tools.py — asserted
+- commit:d1bec3af337c275a4aa2e54d07331dfb4f8bb3ab — precedes → commit:43273942dda3a93ee0253cead7f8f1a9c23b188b — asserted
+- commit:43273942dda3a93ee0253cead7f8f1a9c23b188b — changed → file:abs_core/conversational_tools.py — asserted
+- commit:43273942dda3a93ee0253cead7f8f1a9c23b188b — precedes → commit:dcda74e05ee45485adb2e8e7a73945d59ff4ceea — asserted
+- commit:dcda74e05ee45485adb2e8e7a73945d59ff4ceea — changed → file:abs_core/conversational_tools.py — asserted
+- commit:dcda74e05ee45485adb2e8e7a73945d59ff4ceea — precedes → commit:09a7b3c0edbf86e69c9e17c29c09960d6c232f07 — asserted
+- commit:09a7b3c0edbf86e69c9e17c29c09960d6c232f07 — changed → file:tests/test_conversational_tools.py — asserted
+- commit:09a7b3c0edbf86e69c9e17c29c09960d6c232f07 — precedes → commit:681548f9c656a4925de40d7d7340a6320b7b420e — asserted
+- commit:681548f9c656a4925de40d7d7340a6320b7b420e — changed → file:abs_core/tool_catalog.py — asserted
+- commit:681548f9c656a4925de40d7d7340a6320b7b420e — precedes → commit:309af5bfefc1933f9b60ff5638d427929b58c541 — asserted
+- commit:309af5bfefc1933f9b60ff5638d427929b58c541 — changed → file:tests/test_conversational_tools.py — asserted
+- commit:3874cc0714464a30c1f45dd7d923c4e43f74fd55 — precedes → commit:d2a12f116e4b92bafba141a03fa92e5d307784ec — asserted
+- commit:309af5bfefc1933f9b60ff5638d427929b58c541 — precedes → commit:d2a12f116e4b92bafba141a03fa92e5d307784ec — asserted
+- commit:d2a12f116e4b92bafba141a03fa92e5d307784ec — precedes → commit:31a6dd80bdd950a55266fa9fb4c56a74ce3da40b — asserted
+- commit:31a6dd80bdd950a55266fa9fb4c56a74ce3da40b — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:31a6dd80bdd950a55266fa9fb4c56a74ce3da40b — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:31a6dd80bdd950a55266fa9fb4c56a74ce3da40b — precedes → commit:b0aa87a313ec68191f724ca299d1934697f9674a — asserted
+- commit:b0aa87a313ec68191f724ca299d1934697f9674a — changed → file:abs_core/cognitive_context.py — asserted
+- commit:b0aa87a313ec68191f724ca299d1934697f9674a — precedes → commit:e20fd164e7167d29809b76233245fb0a0d94016d — asserted
+- commit:e20fd164e7167d29809b76233245fb0a0d94016d — changed → file:abs_core/local_ai_adapter.py — asserted
+- commit:e20fd164e7167d29809b76233245fb0a0d94016d — precedes → commit:b89491c14dff8794f1a335a0cc78721bd200d91a — asserted
+- commit:b89491c14dff8794f1a335a0cc78721bd200d91a — changed → file:abs_core/intelligence.py — asserted
+- commit:b89491c14dff8794f1a335a0cc78721bd200d91a — precedes → commit:e4bab5466059a862c5753923331ef404b3e5114e — asserted
+- commit:e4bab5466059a862c5753923331ef404b3e5114e — changed → file:abs_core/intelligence.py — asserted
+- commit:e4bab5466059a862c5753923331ef404b3e5114e — precedes → commit:4c61252fa76f410369027bd9a327678ee4729889 — asserted
+- commit:4c61252fa76f410369027bd9a327678ee4729889 — changed → file:tests/test_cognitive_context.py — asserted
+- commit:4c61252fa76f410369027bd9a327678ee4729889 — precedes → commit:0e0324f0ff6fdbfffbf83a8f05bb2f0eec79d9c6 — asserted
+- commit:0e0324f0ff6fdbfffbf83a8f05bb2f0eec79d9c6 — changed → file:abs_core/cognitive_context.py — asserted
+- commit:31a6dd80bdd950a55266fa9fb4c56a74ce3da40b — precedes → commit:4733f5b0f8a8ca02099ee5aa98adc2200d8fc5f4 — asserted
+- commit:0e0324f0ff6fdbfffbf83a8f05bb2f0eec79d9c6 — precedes → commit:4733f5b0f8a8ca02099ee5aa98adc2200d8fc5f4 — asserted
+- commit:4733f5b0f8a8ca02099ee5aa98adc2200d8fc5f4 — precedes → commit:1928fcca0c78b9d8815fb0cb20a401c5c75b2aae — asserted
+- commit:1928fcca0c78b9d8815fb0cb20a401c5c75b2aae — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:1928fcca0c78b9d8815fb0cb20a401c5c75b2aae — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:1928fcca0c78b9d8815fb0cb20a401c5c75b2aae — precedes → commit:3d29cc8d1e9ecbb2c1a9ddc9a35a6b1590b8cf40 — asserted
+- commit:3d29cc8d1e9ecbb2c1a9ddc9a35a6b1590b8cf40 — changed → file:abs_core/openai_compat.py — asserted
+- commit:3d29cc8d1e9ecbb2c1a9ddc9a35a6b1590b8cf40 — precedes → commit:272471fb52a9bb0f823ede5c7b9aafa747843818 — asserted
+- commit:272471fb52a9bb0f823ede5c7b9aafa747843818 — changed → file:tests/test_openai_compat.py — asserted
+- commit:272471fb52a9bb0f823ede5c7b9aafa747843818 — precedes → commit:ae7962e05134152250472305b6b46add488ca50a — asserted
+- commit:ae7962e05134152250472305b6b46add488ca50a — changed → file:tests/test_openai_compat.py — asserted
+- commit:ae7962e05134152250472305b6b46add488ca50a — precedes → commit:142e4ebfcc6aed02141584dc1ece4c74f1a96f1c — asserted
+- commit:142e4ebfcc6aed02141584dc1ece4c74f1a96f1c — changed → file:docs/03_planejamento/INTEGRACAO_OPENWEBUI_GATEWAY_ABS.md — asserted
+- commit:1928fcca0c78b9d8815fb0cb20a401c5c75b2aae — precedes → commit:eefb3adbc29761bc331cbe0d637a82278321a0e9 — asserted
+- commit:142e4ebfcc6aed02141584dc1ece4c74f1a96f1c — precedes → commit:eefb3adbc29761bc331cbe0d637a82278321a0e9 — asserted
+- commit:eefb3adbc29761bc331cbe0d637a82278321a0e9 — precedes → commit:6066a8b8dbaf6f0702d40364abb1cfddd413efb2 — asserted
+- commit:6066a8b8dbaf6f0702d40364abb1cfddd413efb2 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:6066a8b8dbaf6f0702d40364abb1cfddd413efb2 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:6066a8b8dbaf6f0702d40364abb1cfddd413efb2 — precedes → commit:8e5d28161e5af6ca1c61c81ef621806bae06ae6a — asserted
+- commit:8e5d28161e5af6ca1c61c81ef621806bae06ae6a — changed → file:docs/03_planejamento/pesquisa/ATAQUE_ADVERSARIAL_FINAL_MOLDE_ABS_V0.md — asserted
+- commit:8e5d28161e5af6ca1c61c81ef621806bae06ae6a — precedes → commit:1d2dd9e870bed1fc91e41a80a9e6338cbd995660 — asserted
+- commit:1d2dd9e870bed1fc91e41a80a9e6338cbd995660 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:1d2dd9e870bed1fc91e41a80a9e6338cbd995660 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:1d2dd9e870bed1fc91e41a80a9e6338cbd995660 — precedes → commit:9a356497aeb460d82ee3d2478d550858181f7931 — asserted
+- commit:9a356497aeb460d82ee3d2478d550858181f7931 — changed → file:docs/00_MODELO_PROJETO_ABSOLUTO.md — asserted
+- commit:9a356497aeb460d82ee3d2478d550858181f7931 — precedes → commit:e603cc6324019d9c64d2666e68098345c37fa976 — asserted
+- commit:e603cc6324019d9c64d2666e68098345c37fa976 — changed → file:docs/00_GOVERNANCA_INFORMACAO.md — asserted
+- commit:e603cc6324019d9c64d2666e68098345c37fa976 — precedes → commit:eeffb69abc05a81cec3cfde6ef679c887bc35c35 — asserted
+- commit:eeffb69abc05a81cec3cfde6ef679c887bc35c35 — changed → file:docs/00_MODELO_PROJETO_ABSOLUTO.md — asserted
+- commit:eeffb69abc05a81cec3cfde6ef679c887bc35c35 — precedes → commit:ffe9dacb481fd9498e092d1ff65a65e50a0f7a10 — asserted
+- commit:ffe9dacb481fd9498e092d1ff65a65e50a0f7a10 — changed → file:continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — asserted
+- commit:ffe9dacb481fd9498e092d1ff65a65e50a0f7a10 — precedes → commit:86654847567774b6105706d92ee13215ad97cd02 — asserted
+- commit:86654847567774b6105706d92ee13215ad97cd02 — changed → file:continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md — asserted
+- commit:86654847567774b6105706d92ee13215ad97cd02 — precedes → commit:335b42334d22696e5402759a7b386c45df5500f9 — asserted
+- commit:335b42334d22696e5402759a7b386c45df5500f9 — changed → file:AGENTS.md — asserted
+- commit:335b42334d22696e5402759a7b386c45df5500f9 — precedes → commit:4f067206ac5c07e1863bd3d87c50a72b73fc83b4 — asserted
+- commit:4f067206ac5c07e1863bd3d87c50a72b73fc83b4 — changed → file:cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md — asserted
+- commit:4f067206ac5c07e1863bd3d87c50a72b73fc83b4 — precedes → commit:915584fb1786ebb2d3cf36a3da8bcd9429ec048c — asserted
+- commit:915584fb1786ebb2d3cf36a3da8bcd9429ec048c — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:915584fb1786ebb2d3cf36a3da8bcd9429ec048c — precedes → commit:15447e505206f14c7dc5b0cf067ce759b33dfb9b — asserted
+- commit:15447e505206f14c7dc5b0cf067ce759b33dfb9b — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:15447e505206f14c7dc5b0cf067ce759b33dfb9b — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:15447e505206f14c7dc5b0cf067ce759b33dfb9b — precedes → commit:337fe5000ac1fc9780ff26921cb120d2e515c98e — asserted
+- commit:337fe5000ac1fc9780ff26921cb120d2e515c98e — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:337fe5000ac1fc9780ff26921cb120d2e515c98e — precedes → commit:c82976720069c08cb978aa3818ecfecde7e6a923 — asserted
+- commit:c82976720069c08cb978aa3818ecfecde7e6a923 — changed → file:continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md — asserted
+- commit:c82976720069c08cb978aa3818ecfecde7e6a923 — precedes → commit:d1d634ee28586f8ceffca3ff8e531476289a503f — asserted
+- commit:d1d634ee28586f8ceffca3ff8e531476289a503f — changed → file:cerebro/mapas/00_MAPA_MESTRE_PROJETO_ABSOLUTO_V1.md — asserted
+- commit:d1d634ee28586f8ceffca3ff8e531476289a503f — precedes → commit:b5c6202420df4414a4b89f4f3bc4a266f6bb414a — asserted
+- commit:b5c6202420df4414a4b89f4f3bc4a266f6bb414a — changed → file:continuidade/07_conhecimento/00_LEIA_PRIMEIRO.md — asserted
+- commit:b5c6202420df4414a4b89f4f3bc4a266f6bb414a — precedes → commit:57d93c77b6cb72a57568e35b116eef3e68a5d01c — asserted
+- commit:57d93c77b6cb72a57568e35b116eef3e68a5d01c — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:57d93c77b6cb72a57568e35b116eef3e68a5d01c — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:57d93c77b6cb72a57568e35b116eef3e68a5d01c — precedes → commit:b9f8ebc33613a48983e96005852f2cb4a58193e8 — asserted
+- commit:b9f8ebc33613a48983e96005852f2cb4a58193e8 — changed → file:continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md — asserted
+- commit:b9f8ebc33613a48983e96005852f2cb4a58193e8 — precedes → commit:dcf12c7f8cd2ebdb4cc4e9dc8a825afaa1b722b9 — asserted
+- commit:dcf12c7f8cd2ebdb4cc4e9dc8a825afaa1b722b9 — changed → file:00_IA_NAVEGACAO.md — asserted
+- commit:dcf12c7f8cd2ebdb4cc4e9dc8a825afaa1b722b9 — precedes → commit:dc686f309a31b8fdf571508d9f1482eedf98907b — asserted
+- commit:dc686f309a31b8fdf571508d9f1482eedf98907b — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:dc686f309a31b8fdf571508d9f1482eedf98907b — precedes → commit:28cd326dc42e688a503e1c9c55a41e43033a19dc — asserted
+- commit:28cd326dc42e688a503e1c9c55a41e43033a19dc — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:28cd326dc42e688a503e1c9c55a41e43033a19dc — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:28cd326dc42e688a503e1c9c55a41e43033a19dc — precedes → commit:9c4a3b2fcfbb64fec16b3786948a84b6102dc8c7 — asserted
+- commit:9c4a3b2fcfbb64fec16b3786948a84b6102dc8c7 — changed → file:docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md — asserted
+- commit:9c4a3b2fcfbb64fec16b3786948a84b6102dc8c7 — precedes → commit:fe6a0d9900141e4c786b59ae4e4a92fd754df2c2 — asserted
+- commit:fe6a0d9900141e4c786b59ae4e4a92fd754df2c2 — changed → file:00_IA_NAVEGACAO.md — asserted
+- commit:fe6a0d9900141e4c786b59ae4e4a92fd754df2c2 — precedes → commit:3144c3dcdb17e65fa338b6a2f6d3eef9483c61b4 — asserted
+- commit:3144c3dcdb17e65fa338b6a2f6d3eef9483c61b4 — changed → file:docs/00_GOVERNANCA_INFORMACAO.md — asserted
+- commit:3144c3dcdb17e65fa338b6a2f6d3eef9483c61b4 — precedes → commit:6d01af27feba4c9bf68485981598d7264b459ba3 — asserted
+- commit:6d01af27feba4c9bf68485981598d7264b459ba3 — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
+- commit:6d01af27feba4c9bf68485981598d7264b459ba3 — precedes → commit:9f461ebc679124033a8366085d1030e5b3771d3d — asserted
+- commit:9f461ebc679124033a8366085d1030e5b3771d3d — changed → file:continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md — asserted
+- commit:9f461ebc679124033a8366085d1030e5b3771d3d — precedes → commit:b1bf3c5847a7fba76f19a9460a48f3bd5b252235 — asserted
+- commit:b1bf3c5847a7fba76f19a9460a48f3bd5b252235 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:b1bf3c5847a7fba76f19a9460a48f3bd5b252235 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:b1bf3c5847a7fba76f19a9460a48f3bd5b252235 — precedes → commit:57b9c6d9cc92f71eb022579ace3715f930c7b05d — asserted
+- commit:57b9c6d9cc92f71eb022579ace3715f930c7b05d — changed → file:abs_core/project_knowledge.py — asserted
+- commit:57b9c6d9cc92f71eb022579ace3715f930c7b05d — precedes → commit:2bee9bb2fdd75fdf6664951e37809785b26cc89c — asserted
+- commit:2bee9bb2fdd75fdf6664951e37809785b26cc89c — changed → file:tests/test_project_knowledge.py — asserted
+- commit:2bee9bb2fdd75fdf6664951e37809785b26cc89c — precedes → commit:da90c7554ccc4c3f4f0ed5099c4e8f727913db76 — asserted
+- commit:da90c7554ccc4c3f4f0ed5099c4e8f727913db76 — changed → file:cerebro/especificacao/legado_reintegrado/CONTRATO_CONTINUIDADE_V0_1.md — asserted
+- commit:da90c7554ccc4c3f4f0ed5099c4e8f727913db76 — precedes → commit:b2ebf8c2a1a9ed70e1fe0f259a851e7fad747d82 — asserted
+- commit:b2ebf8c2a1a9ed70e1fe0f259a851e7fad747d82 — changed → file:continuidade/07_conhecimento/00_LEIA_PRIMEIRO.md — asserted
+- commit:b2ebf8c2a1a9ed70e1fe0f259a851e7fad747d82 — precedes → commit:e4e1317d44889eb6dcf13c3d27b6d55167593226 — asserted
+- commit:e4e1317d44889eb6dcf13c3d27b6d55167593226 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:e4e1317d44889eb6dcf13c3d27b6d55167593226 — precedes → commit:a4c6c156ab2199154ae077132b7fbb0de3238241 — asserted
+- commit:a4c6c156ab2199154ae077132b7fbb0de3238241 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:a4c6c156ab2199154ae077132b7fbb0de3238241 — precedes → commit:a8f749a0027c7ec4247d3e84ec547ac93076212a — asserted
+- commit:a8f749a0027c7ec4247d3e84ec547ac93076212a — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:a8f749a0027c7ec4247d3e84ec547ac93076212a — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:a8f749a0027c7ec4247d3e84ec547ac93076212a — precedes → commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — asserted
+- commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — changed → file:.github/workflows/project-knowledge-tests.yml — asserted
+- commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — changed → file:00_IA_NAVEGACAO.md — asserted
+- commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — changed → file:docs/00_GOVERNANCA_INFORMACAO.md — asserted
+- commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — changed → file:docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md — asserted
+- commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — changed → file:tests/test_project_knowledge.py — asserted
+- commit:80e1ba0fc7503eabaf8316aece1da675039f1420 — precedes → commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — asserted
+- commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — changed → file:abs_core/project_knowledge.py — asserted
+- commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — changed → file:tests/test_project_knowledge.py — asserted
+- event:repository-scan:cf021cd91817 — generated → evidence:repository:cf021cd91817 — asserted
+- commit:7153a3bb9b05b0f4e7609a280a94ed60cb96e581 — observed_by → event:repository-scan:cf021cd91817 — asserted
 
 ## Evidências
-- evidence:repository:11a1a781e9b5 — repository_scan — observed — 331 files indexed at revision a4c6c156ab2199154ae077132b7fbb0de3238241
-- evidence:test:01acc21a3a66 — test — tested — 115 passed in 6.51s
+- evidence:repository:cf021cd91817 — repository_scan — observed — 332 files indexed at revision 7153a3bb9b05b0f4e7609a280a94ed60cb96e581
+- evidence:test:d4f9836c91b1 — test — tested — 119 passed in 6.40s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
