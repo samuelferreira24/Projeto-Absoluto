@@ -157,7 +157,7 @@ def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
         path.write_text(rel, encoding="utf-8")
     knowledge = RepositoryScanner(tmp_path).scan()
     sources = {item.id: item for item in knowledge.knowledge_sources}
-    assert len(sources) == 10
+    assert len(sources) == 11
     assert all(item.status == "present" for item in sources.values())
     assert sources["source:decisions"].authority == "human_authority"
     assert sources["source:history"].temporal == "historical"
@@ -193,7 +193,7 @@ def test_trajectory_schema_exposes_relations_and_git_lineage(tmp_path: Path):
     knowledge = RepositoryScanner(tmp_path).scan()
     data = knowledge.to_dict()
 
-    assert data["schema_version"] == "1.3"
+    assert data["schema_version"] == "1.4"
     assert data["relations"]
     assert any(r["relation"] == "precedes" for r in data["relations"])
     assert any(
