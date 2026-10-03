@@ -165,3 +165,13 @@ O handoff vigente consolidado é:
 Esse handoff existe para impedir que outra IA tenha de reconstruir o entendimento apenas lendo commits ou documentos isolados.
 
 A construção do ABS em construção deve continuar a partir desse estado, sem reiniciar a organização documental salvo quando surgir nova evidência ou uma mudança real de estado.
+
+
+## Atualização — 2026-10-03 — pesquisa de preservação de contexto
+Foi concluída uma pesquisa específica sobre como preservar o entendimento de uma IA e transferi-lo entre sessões. A conclusão corrige a interpretação anterior: o handoff atual é válido, mas não deve ser tratado como preservação integral.
+
+Referência: `docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md`.
+
+Modelo adotado: **conhecimento + decisões + pesquisas + evidências + estado + memória/experiências + histórico + artefatos + checkpoints + handoff + mapas + proveniência**. A conversa permanece temporária. O handoff funciona como ponte para as fontes, não como fonte universal.
+
+Esta pesquisa passa a ser referência para futuras operações de continuidade e para a evolução do Cérebro/Project Knowledge.
