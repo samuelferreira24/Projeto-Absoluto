@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
+import re
 import sqlite3
+import subprocess
 from pathlib import Path
 
 
@@ -10,19 +13,17 @@ DEFAULT_EXCLUDES = {
     ".git", "__pycache__", ".venv", "node_modules", ".pytest_cache",
     ".mypy_cache", ".ruff_cache", ".tox", ".idea", ".vscode",
 }
-
 TEXT_EXTENSIONS = {
     ".md", ".markdown", ".txt", ".json", ".jsonl", ".yaml", ".yml",
     ".toml", ".ini", ".cfg", ".py", ".js", ".ts", ".tsx", ".jsx",
     ".sh", ".bash", ".zsh", ".html", ".css", ".scss", ".sql",
     ".xml", ".csv", ".gitignore", ".gitattributes",
 }
+CODE_EXTENSIONS = {".py", ".js", ".ts", ".tsx", ".jsx"}
 
 
 def is_text_file(path: Path) -> bool:
-    if path.name in {".gitignore", ".gitattributes"}:
-        return True
-    return path.suffix.lower() in TEXT_EXTENSIONS
+    return path.name in {".gitignore", ".gitattributes"} or path.suffix.lower() in TEXT_EXTENSIONS
 
 
 def digest(data: bytes) -> str:
@@ -45,22 +46,114 @@ def connect(db: Path) -> sqlite3.Connection:
             content_sha256 TEXT NOT NULL,
             size_bytes INTEGER NOT NULL,
             content TEXT NOT NULL,
+            latest_commit TEXT,
+            latest_commit_date TEXT,
             UNIQUE(source_id, path)
         );
+        CREATE INDEX IF NOT EXISTS idx_documents_source_path ON documents(source_id, path);
 
-        CREATE INDEX IF NOT EXISTS idx_documents_source_path
-            ON documents(source_id, path);
+        CREATE TABLE IF NOT EXISTS symbols (
+            id INTEGER PRIMARY KEY,
+            document_id INTEGER NOT NULL REFERENCES documents(id) ON DELETE CASCADE,
+            kind TEXT NOT NULL,
+            name TEXT NOT NULL,
+            line INTEGER,
+            UNIQUE(document_id, kind, name, line)
+        );
+        CREATE INDEX IF NOT EXISTS idx_symbols_name ON symbols(name);
+
+        CREATE TABLE IF NOT EXISTS relations (
+            id INTEGER PRIMARY KEY,
+            source_document_id INTEGER NOT NULL REFERENCES documents(id) ON DELETE CASCADE,
+            relation_type TEXT NOT NULL,
+            target TEXT NOT NULL,
+            UNIQUE(source_document_id, relation_type, target)
+        );
+        CREATE INDEX IF NOT EXISTS idx_relations_target ON relations(target);
 
         CREATE VIRTUAL TABLE IF NOT EXISTS documents_fts USING fts5(
-            title,
-            path,
-            content,
-            source_id UNINDEXED,
-            content='documents',
-            content_rowid='id'
+            title, path, content, source_id UNINDEXED,
+            content='documents', content_rowid='id'
+        );
+        CREATE VIRTUAL TABLE IF NOT EXISTS symbols_fts USING fts5(
+            name, kind, path, source_id UNINDEXED,
+            content='',
         );
     """)
     return conn
+
+
+def git_metadata(root: Path, rel: str) -> tuple[str | None, str | None]:
+    try:
+        out = subprocess.check_output(
+            ["git", "-C", str(root), "log", "-1", "--format=%H%x09%cI", "--", rel],
+            text=True, stderr=subprocess.DEVNULL, timeout=5,
+        ).strip()
+        if not out:
+            return None, None
+        sha, _, date = out.partition("\t")
+        return sha or None, date or None
+    except (OSError, subprocess.SubprocessError):
+        return None, None
+
+
+def extract_symbols(content: str, suffix: str):
+    found = []
+    if suffix == ".py":
+        try:
+            tree = ast.parse(content)
+            for node in ast.walk(tree):
+                if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                    found.append(("function", node.name, node.lineno))
+                elif isinstance(node, ast.ClassDef):
+                    found.append(("class", node.name, node.lineno))
+                elif isinstance(node, ast.Module):
+                    continue
+        except SyntaxError:
+            pass
+    elif suffix in {".js", ".ts", ".tsx", ".jsx"}:
+        patterns = [
+            ("function", r"\bfunction\s+([A-Za-z_$][\w$]*)"),
+            ("class", r"\bclass\s+([A-Za-z_$][\w$]*)"),
+            ("function", r"\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*(?:async\s*)?\("),
+        ]
+        for kind, pattern in patterns:
+            for m in re.finditer(pattern, content):
+                found.append((kind, m.group(1), content.count("\n", 0, m.start()) + 1))
+    return found
+
+
+def extract_relations(content: str, suffix: str):
+    found = []
+    if suffix == ".py":
+        try:
+            tree = ast.parse(content)
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Import):
+                    found.extend(("imports", alias.name) for alias in node.names)
+                elif isinstance(node, ast.ImportFrom) and node.module:
+                    found.append(("imports", node.module))
+        except SyntaxError:
+            pass
+    elif suffix in {".js", ".ts", ".tsx", ".jsx"}:
+        for m in re.finditer(r"""(?:import\s+.*?\s+from\s+|require\(\s*|import\(\s*)['"]([^'"]+)['"]""", content):
+            found.append(("imports", m.group(1)))
+    return found
+
+
+def refresh_structure(conn: sqlite3.Connection, doc_id: int, content: str, suffix: str) -> None:
+    conn.execute("DELETE FROM symbols WHERE document_id=?", (doc_id,))
+    conn.execute("DELETE FROM relations WHERE source_document_id=?", (doc_id,))
+    for kind, name, line in extract_symbols(content, suffix):
+        conn.execute(
+            "INSERT OR IGNORE INTO symbols(document_id, kind, name, line) VALUES (?, ?, ?, ?)",
+            (doc_id, kind, name, line),
+        )
+    for relation_type, target in extract_relations(content, suffix):
+        conn.execute(
+            "INSERT OR IGNORE INTO relations(source_document_id, relation_type, target) VALUES (?, ?, ?)",
+            (doc_id, relation_type, target),
+        )
 
 
 def upsert_document(conn: sqlite3.Connection, source_id: str, root: Path, path: Path) -> bool:
@@ -83,21 +176,22 @@ def upsert_document(conn: sqlite3.Connection, source_id: str, root: Path, path: 
 
     title = path.name
     ext = path.suffix.lower() or path.name
+    commit, commit_date = git_metadata(root, rel)
     if old:
         doc_id = old[0]
         conn.execute(
-            """UPDATE documents SET root=?, title=?, extension=?,
-               content_sha256=?, size_bytes=?, content=?
-               WHERE id=?""",
-            (str(root), title, ext, sha, len(data), content, doc_id),
+            """UPDATE documents SET root=?, title=?, extension=?, content_sha256=?,
+               size_bytes=?, content=?, latest_commit=?, latest_commit_date=? WHERE id=?""",
+            (str(root), title, ext, sha, len(data), content, commit, commit_date, doc_id),
         )
         conn.execute("DELETE FROM documents_fts WHERE rowid=?", (doc_id,))
     else:
         cur = conn.execute(
             """INSERT INTO documents
-               (source_id, root, path, title, extension, content_sha256, size_bytes, content)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-            (source_id, str(root), rel, title, ext, sha, len(data), content),
+               (source_id, root, path, title, extension, content_sha256, size_bytes,
+                content, latest_commit, latest_commit_date)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (source_id, str(root), rel, title, ext, sha, len(data), content, commit, commit_date),
         )
         doc_id = cur.lastrowid
 
@@ -105,6 +199,7 @@ def upsert_document(conn: sqlite3.Connection, source_id: str, root: Path, path: 
         "INSERT INTO documents_fts(rowid, title, path, content, source_id) VALUES (?, ?, ?, ?, ?)",
         (doc_id, title, rel, content, source_id),
     )
+    refresh_structure(conn, doc_id, content, ext)
     return True
 
 
@@ -114,9 +209,8 @@ def index_source(conn: sqlite3.Connection, source_id: str, root: Path) -> tuple[
     for path in root.rglob("*"):
         if not path.is_file():
             continue
-        if any(part in DEFAULT_EXCLUDES for part in path.relative_to(root).parts):
-            continue
-        if not is_text_file(path):
+        rel_parts = path.relative_to(root).parts
+        if any(part in DEFAULT_EXCLUDES for part in rel_parts) or not is_text_file(path):
             continue
         rel = path.relative_to(root).as_posix()
         seen.add(rel)
@@ -125,9 +219,7 @@ def index_source(conn: sqlite3.Connection, source_id: str, root: Path) -> tuple[
         except (OSError, UnicodeError):
             continue
 
-    rows = conn.execute(
-        "SELECT id, path FROM documents WHERE source_id=?", (source_id,)
-    ).fetchall()
+    rows = conn.execute("SELECT id, path FROM documents WHERE source_id=?", (source_id,)).fetchall()
     removed = 0
     for doc_id, rel in rows:
         if rel not in seen:
@@ -140,13 +232,8 @@ def index_source(conn: sqlite3.Connection, source_id: str, root: Path) -> tuple[
 def main() -> int:
     parser = argparse.ArgumentParser(description="Index multiple repositories for navigation.")
     parser.add_argument("--db", required=True, type=Path)
-    parser.add_argument(
-        "--repo", action="append", required=True,
-        metavar="SOURCE_ID=PATH",
-        help="Repository source, e.g. projeto-absoluto=/workspace/Projeto-Absoluto",
-    )
+    parser.add_argument("--repo", action="append", required=True, metavar="SOURCE_ID=PATH")
     args = parser.parse_args()
-
     conn = connect(args.db)
     totals = [0, 0]
     try:
@@ -163,7 +250,6 @@ def main() -> int:
         conn.commit()
     finally:
         conn.close()
-
     print(f"indexed_changed={totals[0]} removed={totals[1]}")
     return 0
 
