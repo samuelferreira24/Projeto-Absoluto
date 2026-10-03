@@ -1,0 +1,473 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Registro de fechamento das dimensões ainda não comprovadas do inventário do Projeto Absoluto. Não altera estado operacional sem evidência.",
+  "rule": "Só fechar quando houver implementação identificável, contrato, integração, prova, autoridade, persistência/proveniência quando necessária e recuperação quando necessária.",
+  "capability_statuses": {
+    "operational": 35,
+    "partial": 27,
+    "governance": 6,
+    "planned": 4
+  },
+  "partial_capabilities": [
+    {
+      "id": "capability:07",
+      "name": "Cérebro",
+      "closure_status": "not_closed",
+      "required_closure": "integração operacional completa no ciclo Work/contexto/execução",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:09",
+      "name": "Memória temporal",
+      "closure_status": "not_closed",
+      "required_closure": "persistência temporal recuperável e comprovada no ciclo operacional",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:13",
+      "name": "Pesquisa contínua",
+      "closure_status": "not_closed",
+      "required_closure": "mecanismo operacional contínuo com registro de fontes/resultados",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:15",
+      "name": "Experiência",
+      "closure_status": "not_closed",
+      "required_closure": "registro estruturado de experiências/resultados reutilizáveis",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:16",
+      "name": "Aprendizado",
+      "closure_status": "not_closed",
+      "required_closure": "mudança comprovável de comportamento/conhecimento a partir de experiência",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:17",
+      "name": "Sabedoria operacional",
+      "closure_status": "not_closed",
+      "required_closure": "regras/conhecimento operacional derivados e verificáveis",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:25",
+      "name": "Validação",
+      "closure_status": "not_closed",
+      "required_closure": "validação end-to-end de resultado, além de verificação estrutural",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:26",
+      "name": "Observabilidade",
+      "closure_status": "not_closed",
+      "required_closure": "telemetria/estado/erros consultáveis de forma consolidada",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:27",
+      "name": "Auditoria",
+      "closure_status": "not_closed",
+      "required_closure": "trilha auditável de ações, autorizações e resultados",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:28",
+      "name": "Evolução arquitetural",
+      "closure_status": "not_closed",
+      "required_closure": "mudança arquitetural controlada com prova, rollback e histórico",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:34",
+      "name": "Registro de agentes",
+      "closure_status": "not_closed",
+      "required_closure": "catálogo de agentes com identidade, responsabilidade, política e estado",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:35",
+      "name": "Multi-IA",
+      "closure_status": "not_closed",
+      "required_closure": "composição/seleção entre inteligências com política e fallback comprovados",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:38",
+      "name": "Supervisão",
+      "closure_status": "not_closed",
+      "required_closure": "supervisão operacional com autoridade e critérios explícitos",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:39",
+      "name": "Meta-supervisão",
+      "closure_status": "not_closed",
+      "required_closure": "supervisão da supervisão com limites e escalonamento",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:40",
+      "name": "Auditoria independente",
+      "closure_status": "not_closed",
+      "required_closure": "verificação por caminho independente do executor",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:44",
+      "name": "Idempotência",
+      "closure_status": "not_closed",
+      "required_closure": "execuções repetidas seguras ou deduplicadas quando aplicável",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:45",
+      "name": "Filas e processamento futuro",
+      "closure_status": "not_closed",
+      "required_closure": "fila/durabilidade/reprocessamento ou contrato equivalente",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:46",
+      "name": "Monitoramento",
+      "closure_status": "not_closed",
+      "required_closure": "monitoramento contínuo com detecção e registro de estados",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:48",
+      "name": "Execução contínua",
+      "closure_status": "not_closed",
+      "required_closure": "execução persistente com retomada após interrupção",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:52",
+      "name": "Outras plataformas",
+      "closure_status": "not_closed",
+      "required_closure": "integrações externas adicionais além das já comprovadas",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:58",
+      "name": "Padrões de interoperabilidade",
+      "closure_status": "not_closed",
+      "required_closure": "contratos interoperáveis comprovados entre componentes/sistemas",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:64",
+      "name": "Detecção de conflitos",
+      "closure_status": "not_closed",
+      "required_closure": "detecção e tratamento de conflitos entre instruções/estado/recursos",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:65",
+      "name": "Red team / desafio independente",
+      "closure_status": "not_closed",
+      "required_closure": "desafio independente repetível com registro de achados e correções",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:67",
+      "name": "Novas capacidades",
+      "closure_status": "not_closed",
+      "required_closure": "descoberta → especificação → implementação → teste → registro",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:68",
+      "name": "Novos recursos",
+      "closure_status": "not_closed",
+      "required_closure": "descoberta → avaliação → registro → autorização → integração",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:69",
+      "name": "Sistemas derivados",
+      "closure_status": "not_closed",
+      "required_closure": "criação/registro/controle de sistemas derivados sem perder proveniência",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    },
+    {
+      "id": "capability:70",
+      "name": "Escala",
+      "closure_status": "not_closed",
+      "required_closure": "escala comprovada de execução/recursos/nós sem perder controle",
+      "evidence_required": [
+        "implementation",
+        "contract",
+        "integration",
+        "test_or_operational_evidence"
+      ],
+      "authority_required": true
+    }
+  ],
+  "planned_capabilities": [
+    {
+      "id": "capability:47",
+      "name": "Detecção de oportunidades",
+      "status": "planned",
+      "closure_status": "not_started"
+    },
+    {
+      "id": "capability:49",
+      "name": "Operação 24/7",
+      "status": "planned",
+      "closure_status": "not_started"
+    },
+    {
+      "id": "capability:71",
+      "name": "Capacidades ainda desconhecidas",
+      "status": "planned",
+      "closure_status": "not_started"
+    },
+    {
+      "id": "capability:72",
+      "name": "Oportunidades descobertas durante a construção",
+      "status": "planned",
+      "closure_status": "not_started"
+    }
+  ],
+  "semantic_relations": [
+    {
+      "id": "closure:decision-evidence",
+      "relation": "decision → evidence",
+      "status": "partially_registered",
+      "required": "evidence entity specific to each decision"
+    },
+    {
+      "id": "closure:evidence-implementation",
+      "relation": "evidence → implementation",
+      "status": "partially_registered",
+      "required": "specific file/commit/test/result reference"
+    },
+    {
+      "id": "closure:implementation-result",
+      "relation": "implementation → result",
+      "status": "partially_registered",
+      "required": "operational/test result reference"
+    },
+    {
+      "id": "closure:result-superseding-decision",
+      "relation": "result → superseding decision",
+      "status": "not_registered",
+      "required": "explicit decision relation when applicable"
+    },
+    {
+      "id": "closure:research-evidence",
+      "relation": "research → evidence",
+      "status": "partially_registered",
+      "required": "specific evidence records rather than broad source documents"
+    },
+    {
+      "id": "closure:artifact-context",
+      "relation": "artifact → decision/capability/component",
+      "status": "not_registered",
+      "required": "semantic ownership/produced-by relation"
+    },
+    {
+      "id": "closure:agent-context",
+      "relation": "agent → model/policy/tool/responsibility",
+      "status": "not_registered",
+      "required": "agent record with explicit operational identity"
+    },
+    {
+      "id": "closure:external-resource",
+      "relation": "resource → environment/node/service",
+      "status": "partially_registered",
+      "required": "live/observed external resource identity"
+    },
+    {
+      "id": "closure:external-state",
+      "relation": "external environment → live state",
+      "status": "not_registered",
+      "required": "fresh observation/checkpoint with timestamp"
+    }
+  ],
+  "project_objects_without_fabrication": [
+    {
+      "type": "agent",
+      "state": "no_canonical_registry_with_proven_entities_found",
+      "action": "do_not_invent; register only when an operational agent identity exists"
+    },
+    {
+      "type": "model",
+      "state": "resources/adapters exist but model identities are not uniformly canonicalized",
+      "action": "do not infer provider/model identity beyond explicit source"
+    },
+    {
+      "type": "environment",
+      "state": "code defines environment/node concepts; external live inventory is separate",
+      "action": "register observed environments only"
+    },
+    {
+      "type": "artifact",
+      "state": "repository contains many artifacts but semantic ownership is incomplete",
+      "action": "use file/commit/test references until dedicated relations are proven"
+    },
+    {
+      "type": "evidence",
+      "state": "Project Knowledge has evidence layer, but granular decision/research evidence is incomplete",
+      "action": "do not promote documentation to evidence automatically"
+    }
+  ]
+}
