@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0",
+  "generated_scope": "Projeto Absoluto — inventário estrutural completo",
+  "principle": "O projeto é maior que capacidades. Capacidades são uma dimensão entre componentes, recursos, ferramentas, agentes, conhecimento, decisões, pesquisas, evidências, estados, eventos, artefatos, ambientes, interfaces, infraestrutura e histórico.",
+  "object_types": [
+    "vision",
+    "principle",
+    "decision",
+    "research",
+    "evidence",
+    "capability",
+    "component",
+    "agent",
+    "model",
+    "tool",
+    "resource",
+    "node",
+    "environment",
+    "interface",
+    "artifact",
+    "plan",
+    "map",
+    "state",
+    "event",
+    "test",
+    "source",
+    "handoff",
+    "archive",
+    "infrastructure",
+    "service",
+    "external_system"
+  ],
+  "canonical_zones": [
+    {
+      "id": "zone:governance",
+      "path": "00_IA_NAVEGACAO.md + docs/00_*",
+      "function": "governança, identidade, navegação e modelo",
+      "status": "canonical"
+    },
+    {
+      "id": "zone:core",
+      "path": "abs_core/",
+      "function": "implementação operacional atual do ABS em construção",
+      "status": "canonical"
+    },
+    {
+      "id": "zone:brain",
+      "path": "cerebro/",
+      "function": "especificação, mapas, estado e legado reintegrado do Cérebro",
+      "status": "active_reference"
+    },
+    {
+      "id": "zone:continuity",
+      "path": "continuidade/",
+      "function": "continuidade, estado, decisões, handoffs e conhecimento observável",
+      "status": "canonical"
+    },
+    {
+      "id": "zone:docs",
+      "path": "docs/",
+      "function": "documentação por função: operação, arquitetura, planejamento, referência, fontes e auditoria",
+      "status": "canonical"
+    },
+    {
+      "id": "zone:interface",
+      "path": "20_interface/",
+      "function": "interface atual e evolução da interface",
+      "status": "canonical"
+    },
+    {
+      "id": "zone:fronts",
+      "path": "50_frentes/",
+      "function": "frentes de expansão/projetos ainda abertas",
+      "status": "active_empty_or_sparse"
+    },
+    {
+      "id": "zone:archive",
+      "path": "99_arquivo/",
+      "function": "patrimônio histórico, material herdado e superado",
+      "status": "historical"
+    },
+    {
+      "id": "zone:mini-brain",
+      "path": "mini-cerebro/",
+      "function": "investigação histórica/mini-cérebro",
+      "status": "historical_reference"
+    },
+    {
+      "id": "zone:tests",
+      "path": "tests/ + cerebro/tests/",
+      "function": "prova automatizada",
+      "status": "canonical"
+    },
+    {
+      "id": "zone:ci",
+      "path": ".github/",
+      "function": "validação e automação de integração",
+      "status": "canonical"
+    },
+    {
+      "id": "zone:scripts",
+      "path": "scripts/",
+      "function": "bootstrap, sincronização e operação auxiliar",
+      "status": "canonical"
+    },
+    {
+      "id": "zone:tools",
+      "path": "tools/",
+      "function": "utilitários documentais",
+      "status": "support"
+    },
+    {
+      "id": "zone:api",
+      "path": "docs/api/",
+      "function": "contrato OpenAPI",
+      "status": "reference"
+    }
+  ],
+  "counts": {
+    ".github": 3,
+    "abs_core": 50,
+    "cerebro": 45,
+    "continuidade": 22,
+    "docs": 57,
+    "20_interface": 8,
+    "50_frentes": 4,
+    "99_arquivo": 68,
+    "mini-cerebro": 12,
+    "tests": 47,
+    "scripts": 10,
+    "tools": 3
+  },
+  "registries": [
+    {
+      "id": "registry:capabilities",
+      "path": "continuidade/07_conhecimento/capability_registry.json",
+      "scope": "72 capacidades"
+    },
+    {
+      "id": "registry:decisions",
+      "path": "continuidade/07_conhecimento/decision_registry.json",
+      "scope": "decisões explícitas"
+    },
+    {
+      "id": "registry:trajectory",
+      "path": "continuidade/07_conhecimento/trajectory_registry.json",
+      "scope": "relações de proveniência"
+    },
+    {
+      "id": "registry:project-knowledge",
+      "path": "continuidade/07_conhecimento/project_knowledge.json",
+      "scope": "estado derivado observável"
+    }
+  ],
+  "separation_rules": [
+    "capability != component",
+    "capability != tool",
+    "tool != resource",
+    "resource != model",
+    "model != agent",
+    "agent != orchestrator",
+    "research != decision",
+    "documentation != evidence",
+    "state != history",
+    "handoff != memory",
+    "interface != system identity",
+    "archive != current state"
+  ],
+  "closed_dimensions": [
+    "estrutura física principal",
+    "zonas canônicas",
+    "72 capacidades catalogadas",
+    "componentes físicos do abs_core identificados",
+    "decisões explícitas registradas",
+    "continuidade e trajetória registradas",
+    "separação entre atual, referência e histórico"
+  ],
+  "open_semantic_dimensions": [
+    "genealogia decisão → evidência → implementação → resultado",
+    "catálogo semântico de agentes/modelos/recursos externos além do que já é observado pelo runtime",
+    "relação pesquisa → evidência específica",
+    "relação artefato → capacidade/componente/decisão",
+    "estado vivo de ambientes externos (VPS, serviços e contas) dentro do mesmo modelo",
+    "fechamento end-to-end das 27 capacidades parciais"
+  ]
+}
