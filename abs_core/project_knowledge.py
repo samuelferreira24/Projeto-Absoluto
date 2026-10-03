@@ -365,7 +365,13 @@ class KnowledgeStore:
             f"Revisão observada: {k.source_revision or 'desconhecida'}",
             f"Momento da revisão: {k.generated_at}",
             "",
-            "## Componentes",
+            "## Camadas de continuidade",
+        ]
+        lines += [
+            f"- {x.id} — {x.layer} — {x.path} — {x.status} — autoridade: {x.authority} — temporalidade: {x.temporal}"
+            for x in k.knowledge_sources
+        ]
+        lines += ["", "## Componentes"]
         ]
         lines += [
             f"- {x['id']} — {x['kind']} ({x['file_count']} arquivos)"
