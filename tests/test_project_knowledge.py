@@ -128,3 +128,48 @@ def test_capability_discovery_expands_paths_without_manual_map_edit(tmp_path: Pa
     path = next(p for p in k.paths if p.id == "PATH-ABS-INTERNET-HTTP")
     assert path.state == "observed"
     assert "abs_core/internet_adapter.py" in path.tools
+
+
+def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "orchestrator.py").write_text("x", encoding="utf-8")
+    (tmp_path / "continuidade/01_contexto").mkdir(parents=True)
+    (tmp_path / "continuidade/03_decisoes").mkdir(parents=True)
+    (tmp_path / "continuidade/07_conhecimento").mkdir(parents=True)
+    (tmp_path / "continuidade/05_handoffs").mkdir(parents=True)
+    (tmp_path / "docs/00_governanca").mkdir(parents=True)
+    (tmp_path / "99_arquivo").mkdir()
+    required = {
+        "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
+        "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md",
+        "docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md",
+        "continuidade/07_conhecimento/03_CONTRATO_DE_PROVA.md",
+        "continuidade/07_conhecimento/project_knowledge.json",
+        "continuidade/07_conhecimento/SESSAO_ATUAL.md",
+        "continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md",
+        "00_IA_NAVEGACAO.md",
+        "99_arquivo/README.md",
+    }
+    for rel in required:
+        path = tmp_path / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(rel, encoding="utf-8")
+    knowledge = RepositoryScanner(tmp_path).scan()
+    sources = {item.id: item for item in knowledge.knowledge_sources}
+    assert len(sources) == 9
+    assert all(item.status == "present" for item in sources.values())
+    assert sources["source:decisions"].authority == "human_authority"
+    assert sources["source:history"].temporal == "historical"
+    assert sources["source:research"].layer == "research"
+    assert sources["source:handoff"].layer == "handoff"
+    assert all(item.sha256 for item in sources.values())
+
+
+def test_projection_exposes_continuity_layers(tmp_path: Path):
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "orchestrator.py").write_text("x", encoding="utf-8")
+    result = synchronize(tmp_path, tmp_path / "knowledge")
+    projection = Path(result["map"]).read_text(encoding="utf-8")
+    assert "## Camadas de continuidade" in projection
+    assert "source:handoff" in projection
+    assert "source:decisions" in projection
