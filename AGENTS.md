@@ -12,9 +12,10 @@ Antes de construir, descubra o estado atual do Projeto. Não dependa da memória
 
 ## Regras
 
-- Projeto Absoluto é maior que ABS.
-- ABS é o primeiro projeto em construção dentro do Projeto Absoluto.
-- O Sistema é uma peça/infraestrutura do Projeto Absoluto criada para ampliar a capacidade de pesquisar, aprender, planejar, construir, testar e executar; ele não é sinônimo de ABS.
+- Projeto Absoluto é maior que o Sistema Absoluto/ABS.
+- Sistema Absoluto (ABS geral) é o ecossistema aberto de capacidades e recursos usado pelo Imperador.
+- ABS em construção é o sistema operador/orquestrador que está sendo construído para operar esse ecossistema sob autoridade do Imperador.
+- Quando “ABS” aparecer sem qualificador, verificar pelo contexto qual desses dois níveis está sendo referido.
 - Verificar antes de construir.
 - Mapa não é implementação.
 - Hipótese não é decisão.
