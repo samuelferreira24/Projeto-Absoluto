@@ -57,3 +57,11 @@ Para histórico:
 
 ## Regra de segurança
 Não alterar, mover ou excluir arquivo apenas por inferência. Antes de reorganizar, verificar função, referências, dependências e testes.
+
+
+## Referência de preservação de contexto — 2026-10-03
+A pesquisa profissional sobre continuidade concluiu que **handoff não é memória inteira**. A preservação deve usar camadas relacionadas: conhecimento, decisões, pesquisas, evidências, estado, memória de experiências, histórico, artefatos, checkpoints, handoff, mapas e proveniência.
+
+Referência canônica: `docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md`.
+
+Regra de recuperação: nova IA → mapa → estado → decisões → evidências → fontes profundas → trabalho. O handoff é ponte de entrada e não substitui as fontes originais.
