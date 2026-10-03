@@ -185,3 +185,79 @@ O trabalho de organização deve seguir:
 **identificar → classificar → separar → verificar → integrar → testar → registrar → só então marcar como operacional.**
 
 A próxima lacuna estrutural identificada fora deste inventário é a granularidade da proveniência semântica: decisões, evidências, implementações e resultados ainda precisam de entidades e relações específicas para que perguntas como “qual decisão foi substituída?” sejam respondidas sem depender de documentos amplos.
+
+
+## 11. Inventário físico do `abs_core`
+
+O inventário físico é separado da lista conceitual de capacidades. Cada módulo possui uma função principal:
+
+### Fundamentos
+- `models.py` — entidades de Work/estado.
+- `capabilities.py` — contrato e registro de capacidades.
+- `store.py` — persistência de Work.
+- `data_layer.py` — camada de dados.
+- `runtime.py` — composition root.
+- `api.py` / `server.py` — superfície HTTP.
+- `cli.py` — superfície CLI.
+
+### Execução e inteligência
+- `orchestrator.py` — ciclo de Work e execução.
+- `intelligence.py` — registro de recursos de inteligência e runtime cognitivo.
+- `cognitive_context.py` — contexto do sistema para inteligência.
+- `adapters.py` — capacidade de teste/limites de adaptadores.
+- `codex_adapter.py` — Codex.
+- `ai_adapters.py` — Claude/Gemini.
+- `openai_adapter.py` — OpenAI.
+- `openrouter_adapter.py` — OpenRouter.
+- `local_ai_adapter.py` — IA local.
+- `internet_adapter.py` — HTTP.
+- `github_adapter.py` — GitHub.
+
+### Recursos, ferramentas e roteamento
+- `resources.py` — dispositivos/recursos.
+- `connections.py` — conexões.
+- `resource_selection.py` — seleção.
+- `resource_router.py` — roteamento.
+- `resource_dispatcher.py` — despacho.
+- `tool_catalog.py` — catálogo inicial.
+- `tool_discovery.py` — descoberta.
+- `tool_knowledge.py` — conhecimento de ferramentas.
+- `tool_knowledge_store.py` — persistência desse conhecimento.
+- `tool_planner.py` — planejamento de ferramentas.
+- `tool_learning.py` — aprendizado de uso.
+- `conversational_tools.py` — uso de ferramentas pela camada conversacional.
+
+### Continuidade, conhecimento e trajetória
+- `continuity.py` — checkpoint operacional.
+- `project_knowledge.py` — conhecimento observável do repositório.
+- `project_knowledge_runtime.py` — evidência de execução.
+- `trajectory.py` — travessia de proveniência.
+- `path_evaluator.py` — avaliação de caminhos.
+
+### Operação e evolução
+- `update_manager.py` — atualização, health check e rollback.
+- `update_daemon.py` — atualização contínua.
+- `verification.py` — verificação de resultados.
+- `integration.py` — integração.
+- `bridge.py` — ponte GitHub → Work.
+- `node_gateway.py` — transporte de Work para nós.
+- `transports.py` — transportes.
+- `nodes.py` — registro/modelo de nós.
+- `accounts.py` — contas.
+- `interface_runtime.py` — runtime da interface.
+- `local.py` — operações locais.
+
+### Compatibilidade / fronteiras
+- `openai_compat.py` — superfície compatível com APIs de inteligência.
+- `README.md` — documentação local do pacote.
+- `__init__.py` — identidade do pacote.
+
+### Regra de separação
+
+Um módulo não deve ser considerado uma capacidade por existir. Ele é um **componente que implementa, suporta, integra, observa ou expõe uma capacidade**.
+
+A relação correta é:
+
+`capacidade → componentes → contratos → evidência → estado`
+
+Isso evita transformar a árvore de arquivos em uma arquitetura falsa.
