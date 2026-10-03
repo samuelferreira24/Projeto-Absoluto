@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T16:42:24-03:00",
-  "source_revision": "d6bf8c5f94b3fb751e187a078ede689be36aa033",
+  "generated_at": "2026-10-03T16:47:40-03:00",
+  "source_revision": "5740bf11d76726f389674b5363f01e9d208089f1",
   "components": [
     {
       "id": "component:abs_core",
@@ -17,7 +17,7 @@
     {
       "id": "component:continuity",
       "kind": "continuity",
-      "file_count": 20
+      "file_count": 21
     },
     {
       "id": "component:docs",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "d6bf8c5f94b3fb751e187a078ede689be36aa033",
-      "commit_subject": "test: prevent repeated paths in cyclic traversal"
+      "revision": "5740bf11d76726f389674b5363f01e9d208089f1",
+      "commit_subject": "docs: criar inventario das 72 capacidades"
     }
   ],
   "tools": [
@@ -1761,6 +1761,11 @@
       "id": "file:continuidade/07_conhecimento/SESSAO_ATUAL.md",
       "kind": "file",
       "path": "continuidade/07_conhecimento/SESSAO_ATUAL.md"
+    },
+    {
+      "id": "file:continuidade/07_conhecimento/capability_registry.json",
+      "kind": "file",
+      "path": "continuidade/07_conhecimento/capability_registry.json"
     },
     {
       "id": "file:continuidade/07_conhecimento/project_knowledge.json",
@@ -5753,6 +5758,20 @@
       "sha": "d6bf8c5f94b3fb751e187a078ede689be36aa033"
     },
     {
+      "id": "commit:939acae55eec8833a62eceada16345e91beb00e9",
+      "kind": "commit",
+      "at": "2026-10-03T19:42:41Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "939acae55eec8833a62eceada16345e91beb00e9"
+    },
+    {
+      "id": "commit:5740bf11d76726f389674b5363f01e9d208089f1",
+      "kind": "commit",
+      "at": "2026-10-03T16:47:40-03:00",
+      "subject": "docs: criar inventario das 72 capacidades",
+      "sha": "5740bf11d76726f389674b5363f01e9d208089f1"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -5841,23 +5860,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:08034d730810",
+      "id": "evidence:repository:247e2c57bfc1",
       "kind": "evidence",
-      "at": "2026-10-03T16:42:24-03:00",
+      "at": "2026-10-03T16:47:40-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:08034d730810",
+      "id": "event:repository-scan:247e2c57bfc1",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-03T16:42:24-03:00"
+      "at": "2026-10-03T16:47:40-03:00"
     },
     {
-      "id": "event:commit-observed:d6bf8c5f94b3",
+      "id": "event:commit-observed:5740bf11d767",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-03T16:42:24-03:00"
+      "at": "2026-10-03T16:47:40-03:00"
     }
   ],
   "paths": [
@@ -5892,11 +5911,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:c05721ff6ca6"
+        "evidence:test:d5f5d01f8ad3"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T16:42:24-03:00"
+      "last_validated": "2026-10-03T16:47:40-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -5919,49 +5938,49 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:08034d730810",
+      "id": "evidence:repository:247e2c57bfc1",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T16:42:24-03:00",
+      "observed_at": "2026-10-03T16:47:40-03:00",
       "status": "observed",
-      "detail": "335 files indexed at revision d6bf8c5f94b3fb751e187a078ede689be36aa033"
+      "detail": "336 files indexed at revision 5740bf11d76726f389674b5363f01e9d208089f1"
     },
     {
-      "id": "evidence:test:c05721ff6ca6",
+      "id": "evidence:test:d5f5d01f8ad3",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T16:42:24-03:00",
+      "observed_at": "2026-10-03T16:47:40-03:00",
       "status": "tested",
-      "detail": "125 passed in 6.96s"
+      "detail": "125 passed in 6.72s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:08034d730810",
+      "id": "event:repository-scan:247e2c57bfc1",
       "type": "repository_scanned",
-      "at": "2026-10-03T16:42:24-03:00",
-      "revision": "d6bf8c5f94b3fb751e187a078ede689be36aa033",
-      "file_count": 335,
-      "evidence_id": "evidence:repository:08034d730810"
+      "at": "2026-10-03T16:47:40-03:00",
+      "revision": "5740bf11d76726f389674b5363f01e9d208089f1",
+      "file_count": 336,
+      "evidence_id": "evidence:repository:247e2c57bfc1"
     },
     {
-      "id": "event:commit-observed:d6bf8c5f94b3",
+      "id": "event:commit-observed:5740bf11d767",
       "type": "commit_observed",
-      "at": "2026-10-03T16:42:24-03:00",
-      "revision": "d6bf8c5f94b3fb751e187a078ede689be36aa033",
+      "at": "2026-10-03T16:47:40-03:00",
+      "revision": "5740bf11d76726f389674b5363f01e9d208089f1",
       "branch": "main",
-      "subject": "test: prevent repeated paths in cyclic traversal",
+      "subject": "docs: criar inventario das 72 capacidades",
       "changed_files": [
-        "tests/test_trajectory.py"
+        "continuidade/07_conhecimento/capability_registry.json"
       ]
     },
     {
-      "id": "event:test:c05721ff6ca6",
+      "id": "event:test:d5f5d01f8ad3",
       "type": "tests_observed",
-      "at": "2026-10-03T16:42:24-03:00",
+      "at": "2026-10-03T16:47:40-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:c05721ff6ca6"
+      "evidence_id": "evidence:test:d5f5d01f8ad3"
     }
   ],
   "knowledge_sources": [
@@ -6017,7 +6036,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "eb9d5487913add156c2b178cf221f86ac69979a3d8a75c6ece23cc0fa74986c8"
+      "sha256": "9ef38a5cc1685d5d73ae8d3cfdec84495e84a659127822a1c1878fd458ae75b2"
     },
     {
       "id": "source:session",
@@ -25009,12 +25028,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:08034d730810",
-      "source": "event:repository-scan:08034d730810",
-      "relation": "generated",
-      "target": "evidence:repository:08034d730810",
+      "id": "rel:commit-precedes:d6bf8c5f94b3:939acae55eec",
+      "source": "commit:d6bf8c5f94b3fb751e187a078ede689be36aa033",
+      "relation": "precedes",
+      "target": "commit:939acae55eec8833a62eceada16345e91beb00e9",
       "status": "asserted",
-      "at": "2026-10-03T16:42:24-03:00",
+      "at": "2026-10-03T19:42:41Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:939acae55eec:032adc3624d7",
+      "source": "commit:939acae55eec8833a62eceada16345e91beb00e9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-03T19:42:41Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:939acae55eec:d64178c49886",
+      "source": "commit:939acae55eec8833a62eceada16345e91beb00e9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-03T19:42:41Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:939acae55eec:5740bf11d767",
+      "source": "commit:939acae55eec8833a62eceada16345e91beb00e9",
+      "relation": "precedes",
+      "target": "commit:5740bf11d76726f389674b5363f01e9d208089f1",
+      "status": "asserted",
+      "at": "2026-10-03T16:47:40-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:5740bf11d767:03d9061b519e",
+      "source": "commit:5740bf11d76726f389674b5363f01e9d208089f1",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/capability_registry.json",
+      "status": "asserted",
+      "at": "2026-10-03T16:47:40-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:247e2c57bfc1",
+      "source": "event:repository-scan:247e2c57bfc1",
+      "relation": "generated",
+      "target": "evidence:repository:247e2c57bfc1",
+      "status": "asserted",
+      "at": "2026-10-03T16:47:40-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -25023,12 +25112,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:d6bf8c5f94b3",
-      "source": "commit:d6bf8c5f94b3fb751e187a078ede689be36aa033",
+      "id": "rel:scan-commit:5740bf11d767",
+      "source": "commit:5740bf11d76726f389674b5363f01e9d208089f1",
       "relation": "observed_by",
-      "target": "event:repository-scan:08034d730810",
+      "target": "event:repository-scan:247e2c57bfc1",
       "status": "asserted",
-      "at": "2026-10-03T16:42:24-03:00",
+      "at": "2026-10-03T16:47:40-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
