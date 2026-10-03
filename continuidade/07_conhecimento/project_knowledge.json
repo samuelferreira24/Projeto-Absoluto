@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T16:50:06-03:00",
-  "source_revision": "d50c8ee13824a0f8d760c1f57901144206d82bb1",
+  "generated_at": "2026-10-03T17:04:28-03:00",
+  "source_revision": "847f6a89699532310fc09100e189aea2e1539f22",
   "components": [
     {
       "id": "component:abs_core",
@@ -17,7 +17,7 @@
     {
       "id": "component:continuity",
       "kind": "continuity",
-      "file_count": 21
+      "file_count": 22
     },
     {
       "id": "component:docs",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "d50c8ee13824a0f8d760c1f57901144206d82bb1",
-      "commit_subject": "docs: completar inventario fisico do ABS Core"
+      "revision": "847f6a89699532310fc09100e189aea2e1539f22",
+      "commit_subject": "fix: corrigir referencias do registro de decisoes"
     }
   ],
   "tools": [
@@ -2583,6 +2583,11 @@
       "id": "file:continuidade/07_conhecimento/capability_registry.json",
       "kind": "file",
       "path": "continuidade/07_conhecimento/capability_registry.json"
+    },
+    {
+      "id": "file:continuidade/07_conhecimento/decision_registry.json",
+      "kind": "file",
+      "path": "continuidade/07_conhecimento/decision_registry.json"
     },
     {
       "id": "file:continuidade/07_conhecimento/project_knowledge.json",
@@ -6671,6 +6676,27 @@
       "sha": "d50c8ee13824a0f8d760c1f57901144206d82bb1"
     },
     {
+      "id": "commit:b8e078a9fc7e0e1286cb463508c068f420d28af8",
+      "kind": "commit",
+      "at": "2026-10-03T19:50:26Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "b8e078a9fc7e0e1286cb463508c068f420d28af8"
+    },
+    {
+      "id": "commit:c0de9b07099580461282b79c49f0b81ab63c868c",
+      "kind": "commit",
+      "at": "2026-10-03T17:04:23-03:00",
+      "subject": "docs: registrar decisoes semanticas do projeto",
+      "sha": "c0de9b07099580461282b79c49f0b81ab63c868c"
+    },
+    {
+      "id": "commit:847f6a89699532310fc09100e189aea2e1539f22",
+      "kind": "commit",
+      "at": "2026-10-03T17:04:28-03:00",
+      "subject": "fix: corrigir referencias do registro de decisoes",
+      "sha": "847f6a89699532310fc09100e189aea2e1539f22"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -6767,23 +6793,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:fd5fc73ed242",
+      "id": "evidence:repository:2a4b51f0a492",
       "kind": "evidence",
-      "at": "2026-10-03T16:50:06-03:00",
+      "at": "2026-10-03T17:04:28-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:fd5fc73ed242",
+      "id": "event:repository-scan:2a4b51f0a492",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-03T16:50:06-03:00"
+      "at": "2026-10-03T17:04:28-03:00"
     },
     {
-      "id": "event:commit-observed:d50c8ee13824",
+      "id": "event:commit-observed:847f6a896995",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-03T16:50:06-03:00"
+      "at": "2026-10-03T17:04:28-03:00"
     }
   ],
   "paths": [
@@ -6818,11 +6844,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:d236ec9a0e54"
+        "evidence:test:47716569ff08"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T16:50:06-03:00"
+      "last_validated": "2026-10-03T17:04:28-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -6845,49 +6871,49 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:fd5fc73ed242",
+      "id": "evidence:repository:2a4b51f0a492",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T16:50:06-03:00",
+      "observed_at": "2026-10-03T17:04:28-03:00",
       "status": "observed",
-      "detail": "337 files indexed at revision d50c8ee13824a0f8d760c1f57901144206d82bb1"
+      "detail": "338 files indexed at revision 847f6a89699532310fc09100e189aea2e1539f22"
     },
     {
-      "id": "evidence:test:d236ec9a0e54",
+      "id": "evidence:test:47716569ff08",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T16:50:06-03:00",
+      "observed_at": "2026-10-03T17:04:28-03:00",
       "status": "tested",
-      "detail": "126 passed in 6.78s"
+      "detail": "126 passed in 6.75s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:fd5fc73ed242",
+      "id": "event:repository-scan:2a4b51f0a492",
       "type": "repository_scanned",
-      "at": "2026-10-03T16:50:06-03:00",
-      "revision": "d50c8ee13824a0f8d760c1f57901144206d82bb1",
-      "file_count": 337,
-      "evidence_id": "evidence:repository:fd5fc73ed242"
+      "at": "2026-10-03T17:04:28-03:00",
+      "revision": "847f6a89699532310fc09100e189aea2e1539f22",
+      "file_count": 338,
+      "evidence_id": "evidence:repository:2a4b51f0a492"
     },
     {
-      "id": "event:commit-observed:d50c8ee13824",
+      "id": "event:commit-observed:847f6a896995",
       "type": "commit_observed",
-      "at": "2026-10-03T16:50:06-03:00",
-      "revision": "d50c8ee13824a0f8d760c1f57901144206d82bb1",
+      "at": "2026-10-03T17:04:28-03:00",
+      "revision": "847f6a89699532310fc09100e189aea2e1539f22",
       "branch": "main",
-      "subject": "docs: completar inventario fisico do ABS Core",
+      "subject": "fix: corrigir referencias do registro de decisoes",
       "changed_files": [
-        "docs/02_arquitetura/INVENTARIO_CAPACIDADES_ABS_V1.md"
+        "continuidade/07_conhecimento/decision_registry.json"
       ]
     },
     {
-      "id": "event:test:d236ec9a0e54",
+      "id": "event:test:47716569ff08",
       "type": "tests_observed",
-      "at": "2026-10-03T16:50:06-03:00",
+      "at": "2026-10-03T17:04:28-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:d236ec9a0e54"
+      "evidence_id": "evidence:test:47716569ff08"
     }
   ],
   "knowledge_sources": [
@@ -6943,7 +6969,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "1fdcae80bc03458549bf6388de8497fd86cf64f79ef4c48ca748f0a787e2ac3a"
+      "sha256": "49840276eac0ee3345e3951401f8f9f48f5bc0fb80e6f0e779793c01751ceb9a"
     },
     {
       "id": "source:session",
@@ -26350,12 +26376,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:fd5fc73ed242",
-      "source": "event:repository-scan:fd5fc73ed242",
-      "relation": "generated",
-      "target": "evidence:repository:fd5fc73ed242",
+      "id": "rel:commit-precedes:d50c8ee13824:b8e078a9fc7e",
+      "source": "commit:d50c8ee13824a0f8d760c1f57901144206d82bb1",
+      "relation": "precedes",
+      "target": "commit:b8e078a9fc7e0e1286cb463508c068f420d28af8",
       "status": "asserted",
-      "at": "2026-10-03T16:50:06-03:00",
+      "at": "2026-10-03T19:50:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b8e078a9fc7e:032adc3624d7",
+      "source": "commit:b8e078a9fc7e0e1286cb463508c068f420d28af8",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-03T19:50:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b8e078a9fc7e:d64178c49886",
+      "source": "commit:b8e078a9fc7e0e1286cb463508c068f420d28af8",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-03T19:50:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b8e078a9fc7e:c0de9b070995",
+      "source": "commit:b8e078a9fc7e0e1286cb463508c068f420d28af8",
+      "relation": "precedes",
+      "target": "commit:c0de9b07099580461282b79c49f0b81ab63c868c",
+      "status": "asserted",
+      "at": "2026-10-03T17:04:23-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c0de9b070995:75f891004325",
+      "source": "commit:c0de9b07099580461282b79c49f0b81ab63c868c",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/decision_registry.json",
+      "status": "asserted",
+      "at": "2026-10-03T17:04:23-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c0de9b070995:847f6a896995",
+      "source": "commit:c0de9b07099580461282b79c49f0b81ab63c868c",
+      "relation": "precedes",
+      "target": "commit:847f6a89699532310fc09100e189aea2e1539f22",
+      "status": "asserted",
+      "at": "2026-10-03T17:04:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:847f6a896995:75f891004325",
+      "source": "commit:847f6a89699532310fc09100e189aea2e1539f22",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/decision_registry.json",
+      "status": "asserted",
+      "at": "2026-10-03T17:04:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:2a4b51f0a492",
+      "source": "event:repository-scan:2a4b51f0a492",
+      "relation": "generated",
+      "target": "evidence:repository:2a4b51f0a492",
+      "status": "asserted",
+      "at": "2026-10-03T17:04:28-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -26364,12 +26488,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:d50c8ee13824",
-      "source": "commit:d50c8ee13824a0f8d760c1f57901144206d82bb1",
+      "id": "rel:scan-commit:847f6a896995",
+      "source": "commit:847f6a89699532310fc09100e189aea2e1539f22",
       "relation": "observed_by",
-      "target": "event:repository-scan:fd5fc73ed242",
+      "target": "event:repository-scan:2a4b51f0a492",
       "status": "asserted",
-      "at": "2026-10-03T16:50:06-03:00",
+      "at": "2026-10-03T17:04:28-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
