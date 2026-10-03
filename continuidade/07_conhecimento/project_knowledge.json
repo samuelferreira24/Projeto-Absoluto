@@ -1,8 +1,8 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T15:19:38-03:00",
-  "source_revision": "9f461ebc679124033a8366085d1030e5b3771d3d",
+  "generated_at": "2026-10-03T15:28:41-03:00",
+  "source_revision": "a4c6c156ab2199154ae077132b7fbb0de3238241",
   "components": [
     {
       "id": "component:abs_core",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "9f461ebc679124033a8366085d1030e5b3771d3d",
-      "commit_subject": "docs: registrar arquitetura de preservação de contexto"
+      "revision": "a4c6c156ab2199154ae077132b7fbb0de3238241",
+      "commit_subject": "fix: corrigir projeção das camadas de continuidade"
     }
   ],
   "tools": [
@@ -145,11 +145,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:1be436cbc18f"
+        "evidence:repository:11a1a781e9b5"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T15:19:38-03:00"
+      "last_validated": "2026-10-03T15:28:41-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -163,12 +163,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:1be436cbc18f",
-        "evidence:test:2f5be2f57997"
+        "evidence:repository:11a1a781e9b5",
+        "evidence:test:01acc21a3a66"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T15:19:38-03:00"
+      "last_validated": "2026-10-03T15:28:41-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -182,58 +182,141 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:1be436cbc18f"
+        "evidence:repository:11a1a781e9b5"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T15:19:38-03:00"
+      "last_validated": "2026-10-03T15:28:41-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:1be436cbc18f",
+      "id": "evidence:repository:11a1a781e9b5",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T15:19:38-03:00",
+      "observed_at": "2026-10-03T15:28:41-03:00",
       "status": "observed",
-      "detail": "331 files indexed at revision 9f461ebc679124033a8366085d1030e5b3771d3d"
+      "detail": "331 files indexed at revision a4c6c156ab2199154ae077132b7fbb0de3238241"
     },
     {
-      "id": "evidence:test:2f5be2f57997",
+      "id": "evidence:test:01acc21a3a66",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T15:19:38-03:00",
+      "observed_at": "2026-10-03T15:28:41-03:00",
       "status": "tested",
-      "detail": "113 passed in 6.40s"
+      "detail": "115 passed in 6.51s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:1be436cbc18f",
+      "id": "event:repository-scan:11a1a781e9b5",
       "type": "repository_scanned",
-      "at": "2026-10-03T15:19:38-03:00",
-      "revision": "9f461ebc679124033a8366085d1030e5b3771d3d",
+      "at": "2026-10-03T15:28:41-03:00",
+      "revision": "a4c6c156ab2199154ae077132b7fbb0de3238241",
       "file_count": 331,
-      "evidence_id": "evidence:repository:1be436cbc18f"
+      "evidence_id": "evidence:repository:11a1a781e9b5"
     },
     {
-      "id": "event:commit-observed:9f461ebc6791",
+      "id": "event:commit-observed:a4c6c156ab21",
       "type": "commit_observed",
-      "at": "2026-10-03T15:19:38-03:00",
-      "revision": "9f461ebc679124033a8366085d1030e5b3771d3d",
+      "at": "2026-10-03T15:28:41-03:00",
+      "revision": "a4c6c156ab2199154ae077132b7fbb0de3238241",
       "branch": "main",
-      "subject": "docs: registrar arquitetura de preservação de contexto",
+      "subject": "fix: corrigir projeção das camadas de continuidade",
       "changed_files": [
-        "continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md"
+        "abs_core/project_knowledge.py"
       ]
     },
     {
-      "id": "event:test:2f5be2f57997",
+      "id": "event:test:01acc21a3a66",
       "type": "tests_observed",
-      "at": "2026-10-03T15:19:38-03:00",
+      "at": "2026-10-03T15:28:41-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:2f5be2f57997"
+      "evidence_id": "evidence:test:01acc21a3a66"
+    }
+  ],
+  "knowledge_sources": [
+    {
+      "id": "source:vision",
+      "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
+      "layer": "vision_principles",
+      "authority": "human_authority",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "bca93c3294e76eb2f697d750ab9741425ebc806fdfc7da061bbf2562977ddec0"
+    },
+    {
+      "id": "source:decisions",
+      "path": "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md",
+      "layer": "decisions",
+      "authority": "human_authority",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "cf9828004bcda810d3c94adc15f870f5f3f547cbd967cfaa4432fa4962a7da31"
+    },
+    {
+      "id": "source:research",
+      "path": "docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md",
+      "layer": "research",
+      "authority": "research_reference",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "e0e9407f390c19295e69ce925a5dddf840575657fc8207c51b6116ee427a2cc4"
+    },
+    {
+      "id": "source:evidence",
+      "path": "continuidade/07_conhecimento/03_CONTRATO_DE_PROVA.md",
+      "layer": "evidence_contract",
+      "authority": "project_governance",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "9114417146b9316dee481223f147fc9381c9090ff01e050bae99face759e41ab"
+    },
+    {
+      "id": "source:state",
+      "path": "continuidade/07_conhecimento/project_knowledge.json",
+      "layer": "derived_state",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "a9b76514f37f3dbac62df03ab26e959252a5fc2c8e8cc5ca106b29b26edde556"
+    },
+    {
+      "id": "source:session",
+      "path": "continuidade/07_conhecimento/SESSAO_ATUAL.md",
+      "layer": "session_state",
+      "authority": "continuity",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "a9f0fee9afe130bf40907124b7557c993a40ea1dcc6bc142e0aaef7679f2b6d8"
+    },
+    {
+      "id": "source:handoff",
+      "path": "continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md",
+      "layer": "handoff",
+      "authority": "continuity",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "7252f3b844289a48018ab4426174966c6f28f8aa1e64126d73938437f4d96f2e"
+    },
+    {
+      "id": "source:navigation",
+      "path": "00_IA_NAVEGACAO.md",
+      "layer": "navigation",
+      "authority": "project_governance",
+      "temporal": "current",
+      "status": "present",
+      "sha256": "c346b5ef58e7bb77f873d1ab4d9009536223a9cdd0c56f43dfff2945a583bdc9"
+    },
+    {
+      "id": "source:history",
+      "path": "99_arquivo/README.md",
+      "layer": "history_archive",
+      "authority": "historical_archive",
+      "temporal": "historical",
+      "status": "present",
+      "sha256": "7ccd503821036a0206a5b605b275f758e10b8c042a1f4cf399dda91e6e1f1634"
     }
   ]
 }

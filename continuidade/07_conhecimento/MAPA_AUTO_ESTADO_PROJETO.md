@@ -2,8 +2,19 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 9f461ebc679124033a8366085d1030e5b3771d3d
-Momento da revisão: 2026-10-03T15:19:38-03:00
+Revisão observada: a4c6c156ab2199154ae077132b7fbb0de3238241
+Momento da revisão: 2026-10-03T15:28:41-03:00
+
+## Camadas de continuidade
+- source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
+- source:decisions — decisions — continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md — present — autoridade: human_authority — temporalidade: current
+- source:research — research — docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md — present — autoridade: research_reference — temporalidade: current
+- source:evidence — evidence_contract — continuidade/07_conhecimento/03_CONTRATO_DE_PROVA.md — present — autoridade: project_governance — temporalidade: current
+- source:state — derived_state — continuidade/07_conhecimento/project_knowledge.json — present — autoridade: derived_observation — temporalidade: current
+- source:session — session_state — continuidade/07_conhecimento/SESSAO_ATUAL.md — present — autoridade: continuity — temporalidade: current
+- source:handoff — handoff — continuidade/05_handoffs/05_HANDOFF_ATUAL_COMPLETO_2026-10-03.md — present — autoridade: continuity — temporalidade: current
+- source:navigation — navigation — 00_IA_NAVEGACAO.md — present — autoridade: project_governance — temporalidade: current
+- source:history — history_archive — 99_arquivo/README.md — present — autoridade: historical_archive — temporalidade: historical
 
 ## Componentes
 - component:abs_core — abs_core (49 arquivos)
@@ -36,18 +47,18 @@ Momento da revisão: 2026-10-03T15:19:38-03:00
 ## Nós
 
 ## Caminhos
-- PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: evidence:repository:1be436cbc18f
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:repository:1be436cbc18f, evidence:test:2f5be2f57997
-- PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: evidence:repository:1be436cbc18f
+- PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: evidence:repository:11a1a781e9b5
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:repository:11a1a781e9b5, evidence:test:01acc21a3a66
+- PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: evidence:repository:11a1a781e9b5
 
 ## Eventos
-- event:repository-scan:1be436cbc18f — repository_scanned — revisão: 9f461ebc679124033a8366085d1030e5b3771d3d
-- event:commit-observed:9f461ebc6791 — commit_observed — revisão: 9f461ebc679124033a8366085d1030e5b3771d3d
-- event:test:2f5be2f57997 — tests_observed — revisão: n/a
+- event:repository-scan:11a1a781e9b5 — repository_scanned — revisão: a4c6c156ab2199154ae077132b7fbb0de3238241
+- event:commit-observed:a4c6c156ab21 — commit_observed — revisão: a4c6c156ab2199154ae077132b7fbb0de3238241
+- event:test:01acc21a3a66 — tests_observed — revisão: n/a
 
 ## Evidências
-- evidence:repository:1be436cbc18f — repository_scan — observed — 331 files indexed at revision 9f461ebc679124033a8366085d1030e5b3771d3d
-- evidence:test:2f5be2f57997 — test — tested — 113 passed in 6.40s
+- evidence:repository:11a1a781e9b5 — repository_scan — observed — 331 files indexed at revision a4c6c156ab2199154ae077132b7fbb0de3238241
+- evidence:test:01acc21a3a66 — test — tested — 115 passed in 6.51s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
