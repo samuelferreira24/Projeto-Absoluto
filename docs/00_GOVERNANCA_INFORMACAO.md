@@ -189,3 +189,16 @@ A reorganização só será concluída quando uma nova IA puder, sem depender da
 - descobrir onde cada tipo de informação deve ser registrado.
 
 **Organização concluída = recuperação confiável, não apenas pastas bonitas.**
+
+
+## 18. Preservação de contexto e continuidade — referência arquitetural
+A pesquisa `docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md` estabelece uma correção importante: **handoff é camada de transferência, não memória inteira do Projeto**.
+
+A continuidade deve ligar, conforme a necessidade:
+**visão/conhecimento → decisões → pesquisa/evidências → estado → memória/experiência → artefatos → checkpoint → handoff → nova sessão**.
+
+Cada camada mantém sua função e autoridade. Handoffs devem apontar para fontes canônicas e não competir com estado vivo, pesquisas, decisões ou histórico.
+
+O fechamento de uma sessão relevante deve preservar, conforme o caso, conhecimento, decisão, evidência, estado, artefatos, checkpoint e handoff. A conversa não é armazenamento persistente.
+
+Critério profissional: uma nova IA deve conseguir reconstruir o trabalho sem acesso à conversa anterior e sem depender de um único documento-resumo.
