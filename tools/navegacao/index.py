@@ -167,8 +167,12 @@ def index_source(conn, source_id: str, root: Path):
         if any(part in DEFAULT_EXCLUDES for part in rel_parts) or not is_text_file(path):
             continue
         rel = path.relative_to(root).as_posix()
-        seen.add(rel)
         try:
+            if path.stat().st_size > MAX_FILE_SIZE_BYTES:
+                continue
+        except OSError:
+            continue
+        seen.add(rel)
             changed += int(upsert_document(conn, source_id, root, path, git_meta))
         except (OSError, UnicodeError):
             continue
