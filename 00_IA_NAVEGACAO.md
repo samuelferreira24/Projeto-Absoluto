@@ -65,3 +65,10 @@ A pesquisa profissional sobre continuidade concluiu que **handoff não é memór
 Referência canônica: `docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md`.
 
 Regra de recuperação: nova IA → mapa → estado → decisões → evidências → fontes profundas → trabalho. O handoff é ponte de entrada e não substitui as fontes originais.
+
+## Trajetória e proveniência — referência arquitetural
+A pesquisa de trajetória bidirecional concluiu que o repositório deve preservar relações explícitas entre eventos, commits, fontes, evidências e estados, permitindo navegação origem → presente e presente → origem.
+
+Referência: `docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md`.
+
+O Project Knowledge agora projeta relações de trajetória observáveis. Isso não substitui Git, decisões, evidências ou fontes primárias.

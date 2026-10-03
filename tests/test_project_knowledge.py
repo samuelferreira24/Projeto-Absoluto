@@ -143,6 +143,7 @@ def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
         "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
         "continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md",
         "docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md",
+        "docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md",
         "continuidade/07_conhecimento/03_CONTRATO_DE_PROVA.md",
         "continuidade/07_conhecimento/project_knowledge.json",
         "continuidade/07_conhecimento/SESSAO_ATUAL.md",
@@ -156,7 +157,7 @@ def test_continuity_layers_are_observed_with_provenance(tmp_path: Path):
         path.write_text(rel, encoding="utf-8")
     knowledge = RepositoryScanner(tmp_path).scan()
     sources = {item.id: item for item in knowledge.knowledge_sources}
-    assert len(sources) == 9
+    assert len(sources) == 10
     assert all(item.status == "present" for item in sources.values())
     assert sources["source:decisions"].authority == "human_authority"
     assert sources["source:history"].temporal == "historical"
@@ -173,3 +174,53 @@ def test_projection_exposes_continuity_layers(tmp_path: Path):
     assert "## Camadas de continuidade" in projection
     assert "source:handoff" in projection
     assert "source:decisions" in projection
+
+
+def test_trajectory_schema_exposes_relations_and_git_lineage(tmp_path: Path):
+    import subprocess
+    (tmp_path / "abs_core").mkdir()
+    file_path = tmp_path / "abs_core" / "orchestrator.py"
+    file_path.write_text("v1", encoding="utf-8")
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "config", "user.email", "test@example.invalid"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "config", "user.name", "Test"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "add", "."], cwd=tmp_path, check=True)
+    subprocess.run(["git", "commit", "-qm", "origin"], cwd=tmp_path, check=True)
+    file_path.write_text("v2", encoding="utf-8")
+    subprocess.run(["git", "add", "."], cwd=tmp_path, check=True)
+    subprocess.run(["git", "commit", "-qm", "change"], cwd=tmp_path, check=True)
+
+    knowledge = RepositoryScanner(tmp_path).scan()
+    data = knowledge.to_dict()
+
+    assert data["schema_version"] == "1.3"
+    assert data["relations"]
+    assert any(r["relation"] == "precedes" for r in data["relations"])
+    assert any(
+        r["relation"] == "changed" and r["target"] == "file:abs_core/orchestrator.py"
+        for r in data["relations"]
+    )
+
+
+def test_trajectory_links_observation_to_evidence(tmp_path: Path):
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "orchestrator.py").write_text("x", encoding="utf-8")
+    knowledge = RepositoryScanner(tmp_path).scan()
+
+    event_ids = {e["id"] for e in knowledge.events if e.get("evidence_id")}
+    linked = {
+        r.source for r in knowledge.relations
+        if r.relation == "generated"
+    }
+
+    assert event_ids
+    assert event_ids <= linked
+
+
+def test_trajectory_projection_is_present(tmp_path: Path):
+    (tmp_path / "abs_core").mkdir()
+    (tmp_path / "abs_core" / "orchestrator.py").write_text("x", encoding="utf-8")
+    result = synchronize(tmp_path, tmp_path / "knowledge")
+    projection = Path(result["map"]).read_text(encoding="utf-8")
+
+    assert "## Relações de trajetória" in projection
