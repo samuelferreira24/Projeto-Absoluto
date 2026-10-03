@@ -202,3 +202,13 @@ Cada camada mantém sua função e autoridade. Handoffs devem apontar para fonte
 O fechamento de uma sessão relevante deve preservar, conforme o caso, conhecimento, decisão, evidência, estado, artefatos, checkpoint e handoff. A conversa não é armazenamento persistente.
 
 Critério profissional: uma nova IA deve conseguir reconstruir o trabalho sem acesso à conversa anterior e sem depender de um único documento-resumo.
+
+## 19. Trajetória e proveniência bidirecional
+A continuidade não deve representar apenas camadas isoladas. Quando houver relação observável entre objetos, ela pode ser registrada como trajetória: precede, changed, generated, informed, led_to, validated_by, superseded_by ou outra relação explicitamente suportada.
+
+A trajetória é uma camada de navegação/proveniência sobre as fontes existentes. Não é uma nova autoridade e não deve inventar relações causais.
+
+O estado atual continua sendo uma projeção observável; o histórico continua sendo histórico; decisões humanas continuam sob autoridade do Imperador.
+
+A referência arquitetural desta evolução é:
+`docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md`.
