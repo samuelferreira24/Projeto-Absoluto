@@ -60,3 +60,16 @@ Não alterar automaticamente visão, princípios ou decisões do Imperador.
 A auditoria de índices começou sobre o `main` pós-PR #80. Foi confirmado que alguns documentos de navegação ainda apontavam para handoffs antigos e que o inventário documental V0.1 estava sendo apresentado como se fosse uma fotografia atual. Esses pontos estão sendo corrigidos sem alterar fontes-base, código ou testes.
 
 - PR #81: consistência dos índices e checkpoints — merged em `d248bad33754c087007d91759b5c52a647896022`.
+
+
+## Atualização semântica — 2026-10-03
+
+A definição conceitual foi refinada pelo Imperador e incorporada às fontes canônicas:
+
+- **Sistema Absoluto / ABS geral** = ecossistema aberto de capacidades e recursos.
+- **ABS em construção** = sistema operador/orquestrador desse ecossistema.
+- O ABS em construção não é o ecossistema inteiro nem é definido por uma IA, modelo, ferramenta, servidor, dispositivo, interface ou arquitetura específica.
+- **ABS V1** refere-se à primeira versão operacional do ABS em construção.
+- A partir desta atualização, documentos novos devem desambiguar “ABS geral” e “ABS em construção” quando houver risco de confusão.
+
+Esta atualização é semântica e não autoriza alteração de visão, princípios ou decisões além da distinção acima.
