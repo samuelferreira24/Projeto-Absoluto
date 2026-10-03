@@ -1,8 +1,8 @@
 {
   "schema_version": "1.1",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T15:05:42-03:00",
-  "source_revision": "915584fb1786ebb2d3cf36a3da8bcd9429ec048c",
+  "generated_at": "2026-10-03T15:10:59-03:00",
+  "source_revision": "b5c6202420df4414a4b89f4f3bc4a266f6bb414a",
   "components": [
     {
       "id": "component:abs_core",
@@ -71,8 +71,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "915584fb1786ebb2d3cf36a3da8bcd9429ec048c",
-      "commit_subject": "docs: record clarified ABS hierarchy in session state"
+      "revision": "b5c6202420df4414a4b89f4f3bc4a266f6bb414a",
+      "commit_subject": "docs: preserve conceptual knowledge in continuity layer"
     }
   ],
   "tools": [
@@ -145,11 +145,11 @@
         "abs_core/orchestrator.py"
       ],
       "evidence": [
-        "evidence:repository:26bb3ffe841d"
+        "evidence:repository:8f29744e25f0"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T15:05:42-03:00"
+      "last_validated": "2026-10-03T15:10:59-03:00"
     },
     {
       "id": "PATH-ABS-CODEX",
@@ -163,12 +163,12 @@
         "abs_core/codex_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:26bb3ffe841d",
-        "evidence:test:6bd4b27959d7"
+        "evidence:repository:8f29744e25f0",
+        "evidence:test:4690886a9895"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T15:05:42-03:00"
+      "last_validated": "2026-10-03T15:10:59-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -182,58 +182,58 @@
         "abs_core/internet_adapter.py"
       ],
       "evidence": [
-        "evidence:repository:26bb3ffe841d"
+        "evidence:repository:8f29744e25f0"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T15:05:42-03:00"
+      "last_validated": "2026-10-03T15:10:59-03:00"
     }
   ],
   "evidence": [
     {
-      "id": "evidence:repository:26bb3ffe841d",
+      "id": "evidence:repository:8f29744e25f0",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T15:05:42-03:00",
+      "observed_at": "2026-10-03T15:10:59-03:00",
       "status": "observed",
-      "detail": "329 files indexed at revision 915584fb1786ebb2d3cf36a3da8bcd9429ec048c"
+      "detail": "329 files indexed at revision b5c6202420df4414a4b89f4f3bc4a266f6bb414a"
     },
     {
-      "id": "evidence:test:6bd4b27959d7",
+      "id": "evidence:test:4690886a9895",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T15:05:42-03:00",
+      "observed_at": "2026-10-03T15:10:59-03:00",
       "status": "tested",
-      "detail": "113 passed in 6.19s"
+      "detail": "113 passed in 6.34s"
     }
   ],
   "decisions": [],
   "events": [
     {
-      "id": "event:repository-scan:26bb3ffe841d",
+      "id": "event:repository-scan:8f29744e25f0",
       "type": "repository_scanned",
-      "at": "2026-10-03T15:05:42-03:00",
-      "revision": "915584fb1786ebb2d3cf36a3da8bcd9429ec048c",
+      "at": "2026-10-03T15:10:59-03:00",
+      "revision": "b5c6202420df4414a4b89f4f3bc4a266f6bb414a",
       "file_count": 329,
-      "evidence_id": "evidence:repository:26bb3ffe841d"
+      "evidence_id": "evidence:repository:8f29744e25f0"
     },
     {
-      "id": "event:commit-observed:915584fb1786",
+      "id": "event:commit-observed:b5c6202420df",
       "type": "commit_observed",
-      "at": "2026-10-03T15:05:42-03:00",
-      "revision": "915584fb1786ebb2d3cf36a3da8bcd9429ec048c",
+      "at": "2026-10-03T15:10:59-03:00",
+      "revision": "b5c6202420df4414a4b89f4f3bc4a266f6bb414a",
       "branch": "main",
-      "subject": "docs: record clarified ABS hierarchy in session state",
+      "subject": "docs: preserve conceptual knowledge in continuity layer",
       "changed_files": [
-        "continuidade/07_conhecimento/SESSAO_ATUAL.md"
+        "continuidade/07_conhecimento/00_LEIA_PRIMEIRO.md"
       ]
     },
     {
-      "id": "event:test:6bd4b27959d7",
+      "id": "event:test:4690886a9895",
       "type": "tests_observed",
-      "at": "2026-10-03T15:05:42-03:00",
+      "at": "2026-10-03T15:10:59-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:6bd4b27959d7"
+      "evidence_id": "evidence:test:4690886a9895"
     }
   ]
 }
