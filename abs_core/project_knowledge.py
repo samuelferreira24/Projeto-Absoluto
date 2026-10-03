@@ -120,6 +120,7 @@ class RepositoryScanner:
         "source:vision": ("continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md", "vision_principles", "human_authority", "current"),
         "source:decisions": ("continuidade/03_decisoes/01_DECISOES_CORRECOES_E_REGRAS.md", "decisions", "human_authority", "current"),
         "source:research": ("docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md", "research", "research_reference", "current"),
+        "source:trajectory-research": ("docs/00_governanca/PESQUISA_TRAJETORIA_PROVENIENCIA_BIDIRECIONAL_V1.md", "trajectory_research", "research_reference", "current"),
         "source:evidence": ("continuidade/07_conhecimento/03_CONTRATO_DE_PROVA.md", "evidence_contract", "project_governance", "current"),
         "source:state": ("continuidade/07_conhecimento/project_knowledge.json", "derived_state", "derived_observation", "current"),
         "source:session": ("continuidade/07_conhecimento/SESSAO_ATUAL.md", "session_state", "continuity", "current"),
