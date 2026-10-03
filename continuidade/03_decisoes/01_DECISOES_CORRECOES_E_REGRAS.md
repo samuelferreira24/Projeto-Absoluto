@@ -8,7 +8,15 @@ Marte é uma possibilidade atual da visão. A visão do Imperador pode mudar.
 
 ### ABS não é Cérebro
 
-Cérebro é uma capacidade/estrutura que pode fazer parte do Sistema.
+Cérebro é uma capacidade/estrutura que pode fazer parte do ABS em construção e/ou do ecossistema do Sistema Absoluto. Ele não define sozinho a identidade do ABS.
+
+### Distinção entre ABS geral e ABS em construção
+
+O **Sistema Absoluto (ABS geral)** é o ecossistema aberto de capacidades e recursos.
+
+O **ABS em construção** é o sistema operador/orquestrador criado para operar esse ecossistema sob autoridade do Imperador.
+
+Não tratar esses dois níveis como se fossem entidades concorrentes ou como se um componente específico fosse o ABS inteiro.
 
 ### Android não é ABS
 
