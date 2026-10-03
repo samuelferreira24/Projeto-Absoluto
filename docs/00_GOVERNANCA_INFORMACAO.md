@@ -14,7 +14,7 @@ A organização física é consequência dessa classificação, não o contrári
 ## 3. Modelo do Projeto
 O modelo conceitual está em `docs/00_MODELO_PROJETO_ABSOLUTO.md`.
 
-A distinção fundamental é: Projeto Absoluto = visão/método/objetivos; Sistema = meio para ampliar capacidade de execução; ABS = primeiro projeto em construção; futuros projetos podem reutilizar ou substituir capacidades do Sistema.
+A distinção fundamental é: Projeto Absoluto = visão/método/objetivos; Sistema Absoluto (ABS geral) = ecossistema aberto de capacidades e recursos; ABS em construção = sistema operador/orquestrador desse ecossistema. Novos documentos devem desambiguar qual dos dois sentidos de ABS está sendo usado.
 
 Os arquivos-base da visão original são fontes de origem e não devem ser reescritos como se fossem documentação técnica do ABS.
 
