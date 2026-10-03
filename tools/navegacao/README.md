@@ -1,42 +1,50 @@
 # Navegação e Pesquisa V1
 
-Camada independente de navegação sobre múltiplas fontes. A V1 foi desenhada para funcionar sem depender do ABS em construção.
+Camada independente do ABS em construção. Pode ser usada diretamente por uma IA/operador e posteriormente pelo ABS.
 
-## Fontes
+## O que a V1 já faz
 
-Uma instância pode indexar qualquer quantidade de repositórios. Cada documento mantém `source_id`, raiz, caminho e tipo temporal/origem. O caso inicial previsto é:
+- **Busca lexical:** SQLite FTS5 + BM25, snippets e filtros.
+- **Busca estrutural:** símbolos de Python/JS/TS/TSX/JSX e imports/dependências.
+- **Navegação de objeto:** inspeção de um arquivo com conteúdo, hash, estado temporal, símbolos e relações.
+- **Navegação relacional:** encontrar documentos que importam/referenciam um alvo.
+- **Navegação temporal:** SHA/data do último commit e pesquisa Git por alteração.
+- **Múltiplas fontes:** qualquer quantidade de repositórios no mesmo índice, preservando `source_id`.
+
+## Fontes iniciais
 
 - `projeto-absoluto`
 - `sistema`
 
-## Capacidades V1
-
-- índice local SQLite;
-- FTS5 com BM25;
-- busca por texto, caminho e fonte;
-- snippets/highlights;
-- filtros por repositório;
-- navegação por caminho;
-- atualização incremental por SHA do conteúdo;
-- metadados para estado/origem/histórico;
-- contrato preparado para adicionar busca semântica, símbolos e grafo sem trocar a interface de pesquisa.
-
-## Uso
+## Comandos
 
 ```bash
 python -m tools.navegacao.index --db .abs-navigation/index.sqlite \
   --repo projeto-absoluto=/caminho/Projeto-Absoluto \
   --repo sistema=/caminho/Sistema
 
-python -m tools.navegacao.search --db .abs-navigation/index.sqlite \
-  "memória temporal"
+python -m tools.navegacao.search --db .abs-navigation/index.sqlite "memória temporal"
+python -m tools.navegacao.search --db .abs-navigation/index.sqlite --source sistema "memória"
+python -m tools.navegacao.search --db .abs-navigation/index.sqlite --symbols "executor"
+
+python -m tools.navegacao.inspect --db .abs-navigation/index.sqlite \
+  --source projeto-absoluto --path docs/00_MODELO_PROJETO_ABSOLUTO.md
+
+python -m tools.navegacao.related --db .abs-navigation/index.sqlite "abs_core"
+
+python -m tools.navegacao.history --repo /caminho/Projeto-Absoluto "memória"
 ```
 
-Para limitar a uma fonte:
+## Princípios
 
-```bash
-python -m tools.navegacao.search --db .abs-navigation/index.sqlite \
-  --source sistema "memória"
-```
+- não modifica as fontes;
+- preserva origem;
+- é idempotente;
+- pode ser apagada e reconstruída;
+- não confunde índice com verdade;
+- camadas avançadas são opcionais;
+- não depende de uma IA, modelo, banco vetorial ou fornecedor.
 
-A V1 não altera os repositórios-fonte. O índice é derivado e pode ser reconstruído.
+## Limites deliberados
+
+A V1 **não finge ter compreensão semântica**. Busca por significado/embeddings, grafo semântico mais profundo, pesquisa web/conectores e ranking híbrido podem ser adicionados como camadas posteriores e testadas contra casos reais. Isso preserva qualidade e evita introduzir um modelo/serviço como dependência obrigatória.
