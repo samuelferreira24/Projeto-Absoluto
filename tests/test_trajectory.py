@@ -72,3 +72,16 @@ def test_projection_contains_bidirectional_trajectory(tmp_path: Path):
     projection = Path(result["map"]).read_text(encoding="utf-8")
     assert "## Trajetória" in projection
     assert "## Relações de trajetória" in projection
+
+
+def test_non_strict_cycles_do_not_repeat_paths():
+    graph = TrajectoryGraph(
+        [{"id": "A"}, {"id": "B"}, {"id": "C"}],
+        [
+            {"id": "r1", "source": "A", "relation": "points_to", "target": "B"},
+            {"id": "r2", "source": "B", "relation": "points_to", "target": "C"},
+            {"id": "r3", "source": "C", "relation": "points_to", "target": "A"},
+        ],
+    )
+    paths = graph.trace("A", direction="forward", max_depth=8)
+    assert all(len(path) == len(set(path)) for path in paths)
