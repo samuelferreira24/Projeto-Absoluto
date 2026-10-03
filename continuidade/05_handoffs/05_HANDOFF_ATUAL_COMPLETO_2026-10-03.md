@@ -782,3 +782,21 @@ Uma nova IA deve assumir:
 >
 > O próximo passo é construir, testar e provar capacidades reais.
 
+
+
+---
+
+# 19. REFERÊNCIA ARQUITETURAL DE PRESERVAÇÃO DE CONTEXTO
+
+A pesquisa realizada após a criação deste handoff corrigiu um ponto importante: **este handoff não é a memória inteira do Projeto**.
+
+A referência canônica é:
+`docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.md`
+
+A preservação profissional deve ser entendida como uma rede de camadas:
+
+**visão/conhecimento → decisões → pesquisa/evidências → estado → memória/experiência → histórico → artefatos → checkpoints → handoff → nova sessão**
+
+O handoff serve para transferência rápida e navegação. Não substitui as pesquisas originais, o estado vivo, decisões, evidências, código, testes, histórico ou artefatos.
+
+O critério de continuidade passa a ser: uma nova IA deve conseguir reconstruir o contexto e continuar o trabalho sem depender da conversa anterior e sem confiar em um único resumo.
