@@ -1,3 +1,4 @@
+# CI validates the complete project-knowledge and navigation test surface.
 name: Project Knowledge Tests
 
 on:
