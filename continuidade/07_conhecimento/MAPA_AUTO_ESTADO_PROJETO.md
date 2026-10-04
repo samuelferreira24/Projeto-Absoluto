@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 35e21d56251c780dd91749bc8ecb0ab9c6a00c21
-Momento da revisão: 2026-10-04T01:48:40-03:00
+Revisão observada: e2f9eeb168bd8de979f42f93ad5ec4573814a982
+Momento da revisão: 2026-10-04T01:49:30-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -1130,6 +1130,8 @@ Momento da revisão: 2026-10-04T01:48:40-03:00
 - commit:aad577154ebc9f01ae487df2e10e78baf7c4a820 — None — estado: unknown
 - commit:0938b0b3c7cd61fb7606f8f9aa7c0966cc49a9b5 — None — estado: unknown
 - commit:35e21d56251c780dd91749bc8ecb0ab9c6a00c21 — None — estado: unknown
+- commit:c018490b2585233a77bf4022ab568e4235ed264f — None — estado: unknown
+- commit:e2f9eeb168bd8de979f42f93ad5ec4573814a982 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1144,19 +1146,19 @@ Momento da revisão: 2026-10-04T01:48:40-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:c7c3c602e1cb — None — estado: unknown
-- event:repository-scan:c7c3c602e1cb — None — estado: unknown
-- event:commit-observed:35e21d56251c — None — estado: unknown
+- evidence:repository:789ef751b0a5 — None — estado: unknown
+- event:repository-scan:789ef751b0a5 — None — estado: unknown
+- event:commit-observed:e2f9eeb168bd — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:ddd0b8bd6f7e
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:60ec9924e15a
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:c7c3c602e1cb — repository_scanned — revisão: 35e21d56251c780dd91749bc8ecb0ab9c6a00c21
-- event:commit-observed:35e21d56251c — commit_observed — revisão: 35e21d56251c780dd91749bc8ecb0ab9c6a00c21
-- event:test:ddd0b8bd6f7e — tests_observed — revisão: n/a
+- event:repository-scan:789ef751b0a5 — repository_scanned — revisão: e2f9eeb168bd8de979f42f93ad5ec4573814a982
+- event:commit-observed:e2f9eeb168bd — commit_observed — revisão: e2f9eeb168bd8de979f42f93ad5ec4573814a982
+- event:test:60ec9924e15a — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -2632,15 +2634,20 @@ Momento da revisão: 2026-10-04T01:48:40-03:00
 - commit:0938b0b3c7cd61fb7606f8f9aa7c0966cc49a9b5 — changed → file:.github/workflows/project-knowledge-tests.yml — asserted
 - commit:0938b0b3c7cd61fb7606f8f9aa7c0966cc49a9b5 — precedes → commit:35e21d56251c780dd91749bc8ecb0ab9c6a00c21 — asserted
 - commit:35e21d56251c780dd91749bc8ecb0ab9c6a00c21 — changed → file:tools/navegacao/index.py — asserted
-- event:repository-scan:c7c3c602e1cb — generated → evidence:repository:c7c3c602e1cb — asserted
-- commit:35e21d56251c780dd91749bc8ecb0ab9c6a00c21 — observed_by → event:repository-scan:c7c3c602e1cb — asserted
+- commit:35e21d56251c780dd91749bc8ecb0ab9c6a00c21 — precedes → commit:c018490b2585233a77bf4022ab568e4235ed264f — asserted
+- commit:c018490b2585233a77bf4022ab568e4235ed264f — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:c018490b2585233a77bf4022ab568e4235ed264f — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:c018490b2585233a77bf4022ab568e4235ed264f — precedes → commit:e2f9eeb168bd8de979f42f93ad5ec4573814a982 — asserted
+- commit:e2f9eeb168bd8de979f42f93ad5ec4573814a982 — changed → file:.github/workflows/project-knowledge-tests.yml — asserted
+- event:repository-scan:789ef751b0a5 — generated → evidence:repository:789ef751b0a5 — asserted
+- commit:e2f9eeb168bd8de979f42f93ad5ec4573814a982 — observed_by → event:repository-scan:789ef751b0a5 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:c7c3c602e1cb — repository_scan — observed — 357 files indexed at revision 35e21d56251c780dd91749bc8ecb0ab9c6a00c21
-- evidence:test:ddd0b8bd6f7e — test — tested — 146 passed in 7.09s
+- evidence:repository:789ef751b0a5 — repository_scan — observed — 357 files indexed at revision e2f9eeb168bd8de979f42f93ad5ec4573814a982
+- evidence:test:60ec9924e15a — test — tested — 146 passed in 7.18s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
