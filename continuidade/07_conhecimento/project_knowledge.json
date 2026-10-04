@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-03T18:32:59-03:00",
-  "source_revision": "518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
+  "generated_at": "2026-10-04T01:48:40-03:00",
+  "source_revision": "35e21d56251c780dd91749bc8ecb0ab9c6a00c21",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,12 +32,12 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 112
+      "file_count": 114
     },
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 49
+      "file_count": 50
     }
   ],
   "capabilities": [
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
-      "commit_subject": "docs: registrar pesquisa arquitetural da navegação V2 (#98)"
+      "revision": "35e21d56251c780dd91749bc8ecb0ab9c6a00c21",
+      "commit_subject": "Fix: corrigir indentação do indexador de navegação"
     }
   ],
   "tools": [
@@ -3255,6 +3255,11 @@
       "path": "tests/test_navegacao_v1.py"
     },
     {
+      "id": "file:tests/test_navegacao_v2.py",
+      "kind": "file",
+      "path": "tests/test_navegacao_v2.py"
+    },
+    {
       "id": "file:tests/test_node_integration.py",
       "kind": "file",
       "path": "tests/test_node_integration.py"
@@ -3430,6 +3435,11 @@
       "path": "tools/navegacao/inspect.py"
     },
     {
+      "id": "file:tools/navegacao/navigator.py",
+      "kind": "file",
+      "path": "tools/navegacao/navigator.py"
+    },
+    {
       "id": "file:tools/navegacao/related.py",
       "kind": "file",
       "path": "tools/navegacao/related.py"
@@ -3438,6 +3448,11 @@
       "id": "file:tools/navegacao/search.py",
       "kind": "file",
       "path": "tools/navegacao/search.py"
+    },
+    {
+      "id": "file:tools/navegacao/verify.py",
+      "kind": "file",
+      "path": "tools/navegacao/verify.py"
     },
     {
       "id": "file:web/index.html",
@@ -6959,6 +6974,34 @@
       "sha": "518f23da332e81df9e4f13b7e1b2b014a4d4fae9"
     },
     {
+      "id": "commit:1b1ff217e23fc345c2b7f6ef64a022019238e9c2",
+      "kind": "commit",
+      "at": "2026-10-03T21:33:20Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "1b1ff217e23fc345c2b7f6ef64a022019238e9c2"
+    },
+    {
+      "id": "commit:aad577154ebc9f01ae487df2e10e78baf7c4a820",
+      "kind": "commit",
+      "at": "2026-10-04T01:46:46-03:00",
+      "subject": "Navegação V2 — integração final (#100)",
+      "sha": "aad577154ebc9f01ae487df2e10e78baf7c4a820"
+    },
+    {
+      "id": "commit:0938b0b3c7cd61fb7606f8f9aa7c0966cc49a9b5",
+      "kind": "commit",
+      "at": "2026-10-04T01:48:18-03:00",
+      "subject": "CI: incluir testes de navegação V2",
+      "sha": "0938b0b3c7cd61fb7606f8f9aa7c0966cc49a9b5"
+    },
+    {
+      "id": "commit:35e21d56251c780dd91749bc8ecb0ab9c6a00c21",
+      "kind": "commit",
+      "at": "2026-10-04T01:48:40-03:00",
+      "subject": "Fix: corrigir indentação do indexador de navegação",
+      "sha": "35e21d56251c780dd91749bc8ecb0ab9c6a00c21"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7071,23 +7114,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:9e5583d07a8e",
+      "id": "evidence:repository:c7c3c602e1cb",
       "kind": "evidence",
-      "at": "2026-10-03T18:32:59-03:00",
+      "at": "2026-10-04T01:48:40-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:9e5583d07a8e",
+      "id": "event:repository-scan:c7c3c602e1cb",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-03T18:32:59-03:00"
+      "at": "2026-10-04T01:48:40-03:00"
     },
     {
-      "id": "event:commit-observed:518f23da332e",
+      "id": "event:commit-observed:35e21d56251c",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-03T18:32:59-03:00"
+      "at": "2026-10-04T01:48:40-03:00"
     }
   ],
   "paths": [
@@ -7122,11 +7165,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:857c9206e6bc"
+        "evidence:test:ddd0b8bd6f7e"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-03T18:32:59-03:00"
+      "last_validated": "2026-10-04T01:48:40-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7149,20 +7192,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:9e5583d07a8e",
+      "id": "evidence:repository:c7c3c602e1cb",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-03T18:32:59-03:00",
+      "observed_at": "2026-10-04T01:48:40-03:00",
       "status": "observed",
-      "detail": "354 files indexed at revision 518f23da332e81df9e4f13b7e1b2b014a4d4fae9"
+      "detail": "357 files indexed at revision 35e21d56251c780dd91749bc8ecb0ab9c6a00c21"
     },
     {
-      "id": "evidence:test:857c9206e6bc",
+      "id": "evidence:test:ddd0b8bd6f7e",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-03T18:32:59-03:00",
+      "observed_at": "2026-10-04T01:48:40-03:00",
       "status": "tested",
-      "detail": "136 passed in 6.92s"
+      "detail": "146 passed in 7.09s"
     }
   ],
   "decisions": [
@@ -7265,30 +7308,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:9e5583d07a8e",
+      "id": "event:repository-scan:c7c3c602e1cb",
       "type": "repository_scanned",
-      "at": "2026-10-03T18:32:59-03:00",
-      "revision": "518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
-      "file_count": 354,
-      "evidence_id": "evidence:repository:9e5583d07a8e"
+      "at": "2026-10-04T01:48:40-03:00",
+      "revision": "35e21d56251c780dd91749bc8ecb0ab9c6a00c21",
+      "file_count": 357,
+      "evidence_id": "evidence:repository:c7c3c602e1cb"
     },
     {
-      "id": "event:commit-observed:518f23da332e",
+      "id": "event:commit-observed:35e21d56251c",
       "type": "commit_observed",
-      "at": "2026-10-03T18:32:59-03:00",
-      "revision": "518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
+      "at": "2026-10-04T01:48:40-03:00",
+      "revision": "35e21d56251c780dd91749bc8ecb0ab9c6a00c21",
       "branch": "main",
-      "subject": "docs: registrar pesquisa arquitetural da navegação V2 (#98)",
+      "subject": "Fix: corrigir indentação do indexador de navegação",
       "changed_files": [
-        "docs/03_planejamento/pesquisa/PESQUISA_NAVEGACAO_V2.md"
+        "tools/navegacao/index.py"
       ]
     },
     {
-      "id": "event:test:857c9206e6bc",
+      "id": "event:test:ddd0b8bd6f7e",
       "type": "tests_observed",
-      "at": "2026-10-03T18:32:59-03:00",
+      "at": "2026-10-04T01:48:40-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:857c9206e6bc"
+      "evidence_id": "evidence:test:ddd0b8bd6f7e"
     }
   ],
   "knowledge_sources": [
@@ -7344,7 +7387,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "9014bb505773eda03781d6ad6fa09915c765a9dcce940c5b55cf5718d1734489"
+      "sha256": "164b42bca2ac7485d97cea1b0cec614158fa746cc25900ef9fe7997994f9c2d1"
     },
     {
       "id": "source:session",
@@ -27861,12 +27904,194 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:9e5583d07a8e",
-      "source": "event:repository-scan:9e5583d07a8e",
-      "relation": "generated",
-      "target": "evidence:repository:9e5583d07a8e",
+      "id": "rel:commit-precedes:518f23da332e:1b1ff217e23f",
+      "source": "commit:518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
+      "relation": "precedes",
+      "target": "commit:1b1ff217e23fc345c2b7f6ef64a022019238e9c2",
       "status": "asserted",
-      "at": "2026-10-03T18:32:59-03:00",
+      "at": "2026-10-03T21:33:20Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1b1ff217e23f:032adc3624d7",
+      "source": "commit:1b1ff217e23fc345c2b7f6ef64a022019238e9c2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-03T21:33:20Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1b1ff217e23f:d64178c49886",
+      "source": "commit:1b1ff217e23fc345c2b7f6ef64a022019238e9c2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-03T21:33:20Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:1b1ff217e23f:aad577154ebc",
+      "source": "commit:1b1ff217e23fc345c2b7f6ef64a022019238e9c2",
+      "relation": "precedes",
+      "target": "commit:aad577154ebc9f01ae487df2e10e78baf7c4a820",
+      "status": "asserted",
+      "at": "2026-10-04T01:46:46-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:aad577154ebc:b7f417940543",
+      "source": "commit:aad577154ebc9f01ae487df2e10e78baf7c4a820",
+      "relation": "changed",
+      "target": "file:tests/test_navegacao_v2.py",
+      "status": "asserted",
+      "at": "2026-10-04T01:46:46-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:aad577154ebc:ea154fe4316e",
+      "source": "commit:aad577154ebc9f01ae487df2e10e78baf7c4a820",
+      "relation": "changed",
+      "target": "file:tools/navegacao/README.md",
+      "status": "asserted",
+      "at": "2026-10-04T01:46:46-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:aad577154ebc:529da1ea90d5",
+      "source": "commit:aad577154ebc9f01ae487df2e10e78baf7c4a820",
+      "relation": "changed",
+      "target": "file:tools/navegacao/index.py",
+      "status": "asserted",
+      "at": "2026-10-04T01:46:46-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:aad577154ebc:0823e29c41cb",
+      "source": "commit:aad577154ebc9f01ae487df2e10e78baf7c4a820",
+      "relation": "changed",
+      "target": "file:tools/navegacao/navigator.py",
+      "status": "asserted",
+      "at": "2026-10-04T01:46:46-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:aad577154ebc:4d33691ff2cc",
+      "source": "commit:aad577154ebc9f01ae487df2e10e78baf7c4a820",
+      "relation": "changed",
+      "target": "file:tools/navegacao/verify.py",
+      "status": "asserted",
+      "at": "2026-10-04T01:46:46-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:aad577154ebc:0938b0b3c7cd",
+      "source": "commit:aad577154ebc9f01ae487df2e10e78baf7c4a820",
+      "relation": "precedes",
+      "target": "commit:0938b0b3c7cd61fb7606f8f9aa7c0966cc49a9b5",
+      "status": "asserted",
+      "at": "2026-10-04T01:48:18-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:0938b0b3c7cd:04d710161e6d",
+      "source": "commit:0938b0b3c7cd61fb7606f8f9aa7c0966cc49a9b5",
+      "relation": "changed",
+      "target": "file:.github/workflows/project-knowledge-tests.yml",
+      "status": "asserted",
+      "at": "2026-10-04T01:48:18-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:0938b0b3c7cd:35e21d56251c",
+      "source": "commit:0938b0b3c7cd61fb7606f8f9aa7c0966cc49a9b5",
+      "relation": "precedes",
+      "target": "commit:35e21d56251c780dd91749bc8ecb0ab9c6a00c21",
+      "status": "asserted",
+      "at": "2026-10-04T01:48:40-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:35e21d56251c:529da1ea90d5",
+      "source": "commit:35e21d56251c780dd91749bc8ecb0ab9c6a00c21",
+      "relation": "changed",
+      "target": "file:tools/navegacao/index.py",
+      "status": "asserted",
+      "at": "2026-10-04T01:48:40-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:c7c3c602e1cb",
+      "source": "event:repository-scan:c7c3c602e1cb",
+      "relation": "generated",
+      "target": "evidence:repository:c7c3c602e1cb",
+      "status": "asserted",
+      "at": "2026-10-04T01:48:40-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -27875,12 +28100,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:518f23da332e",
-      "source": "commit:518f23da332e81df9e4f13b7e1b2b014a4d4fae9",
+      "id": "rel:scan-commit:35e21d56251c",
+      "source": "commit:35e21d56251c780dd91749bc8ecb0ab9c6a00c21",
       "relation": "observed_by",
-      "target": "event:repository-scan:9e5583d07a8e",
+      "target": "event:repository-scan:c7c3c602e1cb",
       "status": "asserted",
-      "at": "2026-10-03T18:32:59-03:00",
+      "at": "2026-10-04T01:48:40-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
