@@ -57,6 +57,15 @@ jobs:
                   p.write_text(s.replace(old, new))
           PY
 
+      - name: Reapply ABS hub customization
+        run: |
+          mkdir -p apps/android/abs-browser/app/src/main/java/org/mozilla/reference/browser
+          mkdir -p apps/android/abs-browser/app/src/main/res/layout
+          cp apps/android/abs-browser-custom/HubActivity.kt apps/android/abs-browser/app/src/main/java/org/mozilla/reference/browser/HubActivity.kt
+          cp apps/android/abs-browser-custom/activity_hub.xml apps/android/abs-browser/app/src/main/res/layout/activity_hub.xml
+          cp apps/android/abs-browser-custom/AndroidManifest.xml apps/android/abs-browser/app/src/main/AndroidManifest.xml
+          cp apps/android/abs-browser-custom/strings.xml apps/android/abs-browser/app/src/main/res/values/strings.xml
+
       - name: Build ABS Browser nightly APK
         working-directory: apps/android/abs-browser
         run: |
