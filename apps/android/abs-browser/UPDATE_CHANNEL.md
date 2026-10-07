@@ -1,16 +1,24 @@
 # ABS Android Update Channel
 
-The installed APK will use the Android package identity owned by Projeto Absoluto.
+## Pipeline
 
-Target flow:
+The ABS Browser branch now has a manual release pipeline that fetches the Mozilla Reference Browser source, applies the ABS package identity, builds the APK, calculates SHA-256, publishes the APK as a GitHub Actions artifact, and generates `update/latest.json`.
 
-GitHub source -> CI build -> signed ABS APK -> update manifest/server -> installed ABS app
+## Remaining requirement
 
-Required for real in-app updates:
-- stable release signing key (never committed)
-- monotonically increasing Android versionCode
-- HTTPS update endpoint
-- update manifest with version, versionCode, APK URL and SHA-256
-- Android package installer confirmation for normal devices
+Real Android updates require the same signing key for every release. The private key must never be committed. It must be supplied as a GitHub Actions secret and used by the release workflow.
 
-The first bootstrap build deliberately does not pretend to have silent/system-level installation privileges.
+Normal Android installations require user confirmation. Silent installation requires special device privileges and is not assumed.
+
+## Manifest contract
+
+```json
+{
+  "appId": "org.projetoabsoluto.abs.browser",
+  "versionName": "0.1.0",
+  "versionCode": 1,
+  "apkUrl": "...",
+  "sha256": "...",
+  "mandatory": false
+}
+```
