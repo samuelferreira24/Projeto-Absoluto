@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.card.MaterialCardView
+import org.projetoabsoluto.abs.browser.settings.SettingsActivity
 
 class HubActivity : AppCompatActivity() {
 
@@ -261,7 +262,7 @@ class HubActivity : AppCompatActivity() {
         when (action) {
             Action.BROWSER -> startActivity(Intent(this, BrowserActivity::class.java))
             Action.WEB_APP -> openWebApp()
-            Action.SETTINGS -> startActivity(Intent(this, settings.SettingsActivity::class.java))
+            Action.SETTINGS -> startActivity(Intent(this, SettingsActivity::class.java))
         }
     }
 
