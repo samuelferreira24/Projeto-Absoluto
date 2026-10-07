@@ -24,7 +24,8 @@ class HubActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val intent = Intent(Intent.ACTION_VIEW).apply {
+            val intent = Intent(this, IntentReceiverActivity::class.java).apply {
+                action = Intent.ACTION_VIEW
                 data = android.net.Uri.parse(url)
                 putExtra(BrowserActivity.EXTRA_ABS_APP_WEB, true)
             }
