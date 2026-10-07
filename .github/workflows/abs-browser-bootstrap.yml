@@ -71,7 +71,19 @@ jobs:
         working-directory: apps/android/abs-browser
         run: |
           chmod +x ./gradlew
-          ./gradlew :app:assembleNightly --no-daemon --stacktrace
+          ./gradlew :app:assembleNightly --no-daemon --stacktrace -PlocalProperties.autosignReleaseWithDebugKey=true
+
+      - name: Verify APK signature and alignment
+        working-directory: apps/android/abs-browser
+        run: |
+          APK="$(find app/build/outputs/apk -type f -name '*.apk' | head -n 1)"
+          test -n "$APK"
+          APKSIGNER="$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -n 1)"
+          ZIPALIGN="$(find "$ANDROID_HOME/build-tools" -name zipalign | sort -V | tail -n 1)"
+          test -x "$APKSIGNER"
+          test -x "$ZIPALIGN"
+          "$APKSIGNER" verify --verbose "$APK"
+          "$ZIPALIGN" -c -P 4 -v 4 "$APK"
 
       - name: Locate APK
         id: apk
