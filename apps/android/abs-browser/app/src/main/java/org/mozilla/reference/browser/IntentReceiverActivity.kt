@@ -27,7 +27,10 @@ class IntentReceiverActivity : Activity() {
         // do not want to propagate this flag from the launcher activity to the browser.
         intent.flags = intent.flags and Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS.inv()
 
-        if (intent.action == Intent.ACTION_MAIN && intent.data == null) {\n            startActivity(Intent(this, HubActivity::class.java))\n            finish()\n            return\n        }\n\n        val utils = components.utils\n\n        val processor = utils.intentProcessors.firstOrNull { it.process(intent) }\n
+        val utils = components.utils
+
+        val processor = utils.intentProcessors.firstOrNull { it.process(intent) }
+
         val className =
             if (processor in utils.externalIntentProcessors) {
                 ExternalAppBrowserActivity::class
