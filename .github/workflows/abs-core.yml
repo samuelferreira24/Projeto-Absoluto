@@ -2,7 +2,7 @@ name: ABS Core
 # Foundation suite plus real two-repository navigation validation.
 on:
   push:
-    branches: ["main", "abs/capability-foundation-v1", "codex-cli-integration"]
+    branches: ["main", "abs/capability-foundation-v1", "codex-cli-integration", "feat/navegacao-conhecimento-verificavel"]
   pull_request:
     branches: ["main"]
 jobs:
