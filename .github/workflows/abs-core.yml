@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: samuelferreira24/Sistema
-          path: ../Sistema
+          path: Sistema
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -23,5 +23,5 @@ jobs:
           python -m tools.navegacao.validate_real \
             --db /tmp/abs-navigation-real.sqlite \
             --repo projeto-absoluto=$GITHUB_WORKSPACE \
-            --repo sistema=$GITHUB_WORKSPACE/../Sistema \
+            --repo sistema=$GITHUB_WORKSPACE/Sistema \
             --report /tmp/abs-navigation-real.json
