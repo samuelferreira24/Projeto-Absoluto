@@ -12,6 +12,7 @@ from .index import connect, index_source
 from .investigate import investigate
 from .verify import verify_fts, verify_source
 from .search import search, search_symbols
+from .index import DEFAULT_EXCLUDES, MAX_FILE_SIZE_BYTES, is_text_file
 
 QUERY_MATRIX = [
     ("file", "navigator.py"),
@@ -54,6 +55,23 @@ def _adversarial(conn: sqlite3.Connection) -> list[dict]:
         })
     return results
 
+def _snapshot_indexable_files(original: Path, target: Path) -> None:
+    for path in original.rglob("*"):
+        if not path.is_file() or path.is_symlink():
+            continue
+        rel_parts = path.relative_to(original).parts
+        if any(part in DEFAULT_EXCLUDES for part in rel_parts) or not is_text_file(path):
+            continue
+        try:
+            if path.stat().st_size > MAX_FILE_SIZE_BYTES:
+                continue
+            destination = target / path.relative_to(original)
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(path.read_bytes())
+        except (OSError, UnicodeError):
+            continue
+
+
 def _lifecycle_probe(repositories: dict[str, Path]) -> dict:
     """Exercise update, deletion and external-mutation detection on disposable copies."""
     with tempfile.TemporaryDirectory(prefix="navigation-lifecycle-") as raw:
@@ -61,7 +79,8 @@ def _lifecycle_probe(repositories: dict[str, Path]) -> dict:
         copies = {}
         for source, original in repositories.items():
             target = root / source
-            shutil.copytree(original, target, ignore_dangling_symlinks=True)
+            target.mkdir(parents=True, exist_ok=True)
+            _snapshot_indexable_files(original, target)
             copies[source] = target
 
         probe_source = next(iter(copies))
