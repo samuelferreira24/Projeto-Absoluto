@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-07T15:59:59-03:00",
-  "source_revision": "e70567f088d25dcd001d50d2b6dfd790386f222c",
+  "generated_at": "2026-10-07T16:08:26-03:00",
+  "source_revision": "5c7037ebf895d34fddac0d625b08f988e55f8714",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "e70567f088d25dcd001d50d2b6dfd790386f222c",
-      "commit_subject": "Merge pull request #108 from samuelferreira24/abs-integracao-navegacao"
+      "revision": "5c7037ebf895d34fddac0d625b08f988e55f8714",
+      "commit_subject": "fix: restaurar roteador conversacional apos integracao de navegacao"
     }
   ],
   "tools": [
@@ -7458,6 +7458,83 @@
       "sha": "e70567f088d25dcd001d50d2b6dfd790386f222c"
     },
     {
+      "id": "commit:a32ed064b88d8fd76e224dcb3121d910a9ad6fab",
+      "kind": "commit",
+      "at": "2026-10-07T19:00:19Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "a32ed064b88d8fd76e224dcb3121d910a9ad6fab"
+    },
+    {
+      "id": "commit:e5921c6f759d277bf13207f7457c232400cc42e9",
+      "kind": "commit",
+      "at": "2026-10-07T16:00:36-03:00",
+      "subject": "feat: selecionar navegacao em objetivos de conhecimento do projeto",
+      "sha": "e5921c6f759d277bf13207f7457c232400cc42e9"
+    },
+    {
+      "id": "commit:a07a34edcf1ce9f17f539987be8294bb83dd7fc3",
+      "kind": "commit",
+      "at": "2026-10-07T16:00:41-03:00",
+      "subject": "feat: conectar navegacao ao runtime conversacional do ABS",
+      "sha": "a07a34edcf1ce9f17f539987be8294bb83dd7fc3"
+    },
+    {
+      "id": "commit:daa9456bd429495cdb26a818eecb7c5658d094ef",
+      "kind": "commit",
+      "at": "2026-10-07T16:00:49-03:00",
+      "subject": "test: provar selecao conversacional da navegacao",
+      "sha": "daa9456bd429495cdb26a818eecb7c5658d094ef"
+    },
+    {
+      "id": "commit:7f4a1b5d3afca27d135995b987eb955441a7a79f",
+      "kind": "commit",
+      "at": "2026-10-07T16:02:55-03:00",
+      "subject": "fix: corrigir regexes do roteador conversacional",
+      "sha": "7f4a1b5d3afca27d135995b987eb955441a7a79f"
+    },
+    {
+      "id": "commit:3b6e00194bf9d017d67fed95312253dbd4267130",
+      "kind": "commit",
+      "at": "2026-10-07T16:03:43-03:00",
+      "subject": "fix: corrigir indentacao da regex do roteador",
+      "sha": "3b6e00194bf9d017d67fed95312253dbd4267130"
+    },
+    {
+      "id": "commit:f7db01ed3fd0da3065ca6efd1741a8b3b4b93ab1",
+      "kind": "commit",
+      "at": "2026-10-07T16:04:34-03:00",
+      "subject": "fix: corrigir indentacao do regex de URL",
+      "sha": "f7db01ed3fd0da3065ca6efd1741a8b3b4b93ab1"
+    },
+    {
+      "id": "commit:0eecadd9973ce6ea07a7ab8c611f0fe4957193fb",
+      "kind": "commit",
+      "at": "2026-10-07T16:06:00-03:00",
+      "subject": "fix: fechar regex de busca do roteador conversacional",
+      "sha": "0eecadd9973ce6ea07a7ab8c611f0fe4957193fb"
+    },
+    {
+      "id": "commit:92599147e6ab011bf15fb37e977460e2732938f2",
+      "kind": "commit",
+      "at": "2026-10-07T16:07:17-03:00",
+      "subject": "fix: simplificar regex de busca conversacional",
+      "sha": "92599147e6ab011bf15fb37e977460e2732938f2"
+    },
+    {
+      "id": "commit:a67c2307b769243a46eb34426b642402ed0bed6b",
+      "kind": "commit",
+      "at": "2026-10-07T16:07:23-03:00",
+      "subject": "fix: substituir regex quebrada de busca conversacional",
+      "sha": "a67c2307b769243a46eb34426b642402ed0bed6b"
+    },
+    {
+      "id": "commit:5c7037ebf895d34fddac0d625b08f988e55f8714",
+      "kind": "commit",
+      "at": "2026-10-07T16:08:26-03:00",
+      "subject": "fix: restaurar roteador conversacional apos integracao de navegacao",
+      "sha": "5c7037ebf895d34fddac0d625b08f988e55f8714"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7570,23 +7647,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:090e616a532d",
+      "id": "evidence:repository:df02d9780e83",
       "kind": "evidence",
-      "at": "2026-10-07T15:59:59-03:00",
+      "at": "2026-10-07T16:08:26-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:090e616a532d",
+      "id": "event:repository-scan:df02d9780e83",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-07T15:59:59-03:00"
+      "at": "2026-10-07T16:08:26-03:00"
     },
     {
-      "id": "event:commit-observed:e70567f088d2",
+      "id": "event:commit-observed:5c7037ebf895",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-07T15:59:59-03:00"
+      "at": "2026-10-07T16:08:26-03:00"
     }
   ],
   "paths": [
@@ -7621,11 +7698,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:b2d4db59de54"
+        "evidence:test:5dfd9b5ff6c8"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-07T15:59:59-03:00"
+      "last_validated": "2026-10-07T16:08:26-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7648,20 +7725,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:090e616a532d",
+      "id": "evidence:repository:df02d9780e83",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-07T15:59:59-03:00",
+      "observed_at": "2026-10-07T16:08:26-03:00",
       "status": "observed",
-      "detail": "374 files indexed at revision e70567f088d25dcd001d50d2b6dfd790386f222c"
+      "detail": "374 files indexed at revision 5c7037ebf895d34fddac0d625b08f988e55f8714"
     },
     {
-      "id": "evidence:test:b2d4db59de54",
+      "id": "evidence:test:5dfd9b5ff6c8",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-07T15:59:59-03:00",
+      "observed_at": "2026-10-07T16:08:26-03:00",
       "status": "tested",
-      "detail": "159 passed in 6.96s"
+      "detail": "160 passed in 6.40s"
     }
   ],
   "decisions": [
@@ -7764,28 +7841,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:090e616a532d",
+      "id": "event:repository-scan:df02d9780e83",
       "type": "repository_scanned",
-      "at": "2026-10-07T15:59:59-03:00",
-      "revision": "e70567f088d25dcd001d50d2b6dfd790386f222c",
+      "at": "2026-10-07T16:08:26-03:00",
+      "revision": "5c7037ebf895d34fddac0d625b08f988e55f8714",
       "file_count": 374,
-      "evidence_id": "evidence:repository:090e616a532d"
+      "evidence_id": "evidence:repository:df02d9780e83"
     },
     {
-      "id": "event:commit-observed:e70567f088d2",
+      "id": "event:commit-observed:5c7037ebf895",
       "type": "commit_observed",
-      "at": "2026-10-07T15:59:59-03:00",
-      "revision": "e70567f088d25dcd001d50d2b6dfd790386f222c",
+      "at": "2026-10-07T16:08:26-03:00",
+      "revision": "5c7037ebf895d34fddac0d625b08f988e55f8714",
       "branch": "main",
-      "subject": "Merge pull request #108 from samuelferreira24/abs-integracao-navegacao",
-      "changed_files": []
+      "subject": "fix: restaurar roteador conversacional apos integracao de navegacao",
+      "changed_files": [
+        "abs_core/conversational_tools.py"
+      ]
     },
     {
-      "id": "event:test:b2d4db59de54",
+      "id": "event:test:5dfd9b5ff6c8",
       "type": "tests_observed",
-      "at": "2026-10-07T15:59:59-03:00",
+      "at": "2026-10-07T16:08:26-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:b2d4db59de54"
+      "evidence_id": "evidence:test:5dfd9b5ff6c8"
     }
   ],
   "knowledge_sources": [
@@ -7841,7 +7920,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "36bfea5ae544c50648c35f469b756f86db299c52d57ceb94c639f2769225fef5"
+      "sha256": "8d1b4a33af9e37e9245bfbbae7772085ffa1a70bfdb9b86ad5bfefe6dcf4be48"
     },
     {
       "id": "source:session",
@@ -30108,12 +30187,320 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:090e616a532d",
-      "source": "event:repository-scan:090e616a532d",
-      "relation": "generated",
-      "target": "evidence:repository:090e616a532d",
+      "id": "rel:commit-precedes:e70567f088d2:a32ed064b88d",
+      "source": "commit:e70567f088d25dcd001d50d2b6dfd790386f222c",
+      "relation": "precedes",
+      "target": "commit:a32ed064b88d8fd76e224dcb3121d910a9ad6fab",
       "status": "asserted",
-      "at": "2026-10-07T15:59:59-03:00",
+      "at": "2026-10-07T19:00:19Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a32ed064b88d:032adc3624d7",
+      "source": "commit:a32ed064b88d8fd76e224dcb3121d910a9ad6fab",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-07T19:00:19Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a32ed064b88d:d64178c49886",
+      "source": "commit:a32ed064b88d8fd76e224dcb3121d910a9ad6fab",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-07T19:00:19Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a32ed064b88d:e5921c6f759d",
+      "source": "commit:a32ed064b88d8fd76e224dcb3121d910a9ad6fab",
+      "relation": "precedes",
+      "target": "commit:e5921c6f759d277bf13207f7457c232400cc42e9",
+      "status": "asserted",
+      "at": "2026-10-07T16:00:36-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e5921c6f759d:4f750608d7c9",
+      "source": "commit:e5921c6f759d277bf13207f7457c232400cc42e9",
+      "relation": "changed",
+      "target": "file:abs_core/conversational_tools.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:00:36-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:e5921c6f759d:a07a34edcf1c",
+      "source": "commit:e5921c6f759d277bf13207f7457c232400cc42e9",
+      "relation": "precedes",
+      "target": "commit:a07a34edcf1ce9f17f539987be8294bb83dd7fc3",
+      "status": "asserted",
+      "at": "2026-10-07T16:00:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a07a34edcf1c:7e20f933dbaf",
+      "source": "commit:a07a34edcf1ce9f17f539987be8294bb83dd7fc3",
+      "relation": "changed",
+      "target": "file:abs_core/runtime.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:00:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a07a34edcf1c:daa9456bd429",
+      "source": "commit:a07a34edcf1ce9f17f539987be8294bb83dd7fc3",
+      "relation": "precedes",
+      "target": "commit:daa9456bd429495cdb26a818eecb7c5658d094ef",
+      "status": "asserted",
+      "at": "2026-10-07T16:00:49-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:daa9456bd429:8c69118a2174",
+      "source": "commit:daa9456bd429495cdb26a818eecb7c5658d094ef",
+      "relation": "changed",
+      "target": "file:tests/test_abs_navigation_integration.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:00:49-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:daa9456bd429:7f4a1b5d3afc",
+      "source": "commit:daa9456bd429495cdb26a818eecb7c5658d094ef",
+      "relation": "precedes",
+      "target": "commit:7f4a1b5d3afca27d135995b987eb955441a7a79f",
+      "status": "asserted",
+      "at": "2026-10-07T16:02:55-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7f4a1b5d3afc:4f750608d7c9",
+      "source": "commit:7f4a1b5d3afca27d135995b987eb955441a7a79f",
+      "relation": "changed",
+      "target": "file:abs_core/conversational_tools.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:02:55-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:7f4a1b5d3afc:3b6e00194bf9",
+      "source": "commit:7f4a1b5d3afca27d135995b987eb955441a7a79f",
+      "relation": "precedes",
+      "target": "commit:3b6e00194bf9d017d67fed95312253dbd4267130",
+      "status": "asserted",
+      "at": "2026-10-07T16:03:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3b6e00194bf9:4f750608d7c9",
+      "source": "commit:3b6e00194bf9d017d67fed95312253dbd4267130",
+      "relation": "changed",
+      "target": "file:abs_core/conversational_tools.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:03:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:3b6e00194bf9:f7db01ed3fd0",
+      "source": "commit:3b6e00194bf9d017d67fed95312253dbd4267130",
+      "relation": "precedes",
+      "target": "commit:f7db01ed3fd0da3065ca6efd1741a8b3b4b93ab1",
+      "status": "asserted",
+      "at": "2026-10-07T16:04:34-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f7db01ed3fd0:4f750608d7c9",
+      "source": "commit:f7db01ed3fd0da3065ca6efd1741a8b3b4b93ab1",
+      "relation": "changed",
+      "target": "file:abs_core/conversational_tools.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:04:34-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f7db01ed3fd0:0eecadd9973c",
+      "source": "commit:f7db01ed3fd0da3065ca6efd1741a8b3b4b93ab1",
+      "relation": "precedes",
+      "target": "commit:0eecadd9973ce6ea07a7ab8c611f0fe4957193fb",
+      "status": "asserted",
+      "at": "2026-10-07T16:06:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:0eecadd9973c:4f750608d7c9",
+      "source": "commit:0eecadd9973ce6ea07a7ab8c611f0fe4957193fb",
+      "relation": "changed",
+      "target": "file:abs_core/conversational_tools.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:06:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:0eecadd9973c:92599147e6ab",
+      "source": "commit:0eecadd9973ce6ea07a7ab8c611f0fe4957193fb",
+      "relation": "precedes",
+      "target": "commit:92599147e6ab011bf15fb37e977460e2732938f2",
+      "status": "asserted",
+      "at": "2026-10-07T16:07:17-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:92599147e6ab:a67c2307b769",
+      "source": "commit:92599147e6ab011bf15fb37e977460e2732938f2",
+      "relation": "precedes",
+      "target": "commit:a67c2307b769243a46eb34426b642402ed0bed6b",
+      "status": "asserted",
+      "at": "2026-10-07T16:07:23-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a67c2307b769:4f750608d7c9",
+      "source": "commit:a67c2307b769243a46eb34426b642402ed0bed6b",
+      "relation": "changed",
+      "target": "file:abs_core/conversational_tools.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:07:23-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a67c2307b769:5c7037ebf895",
+      "source": "commit:a67c2307b769243a46eb34426b642402ed0bed6b",
+      "relation": "precedes",
+      "target": "commit:5c7037ebf895d34fddac0d625b08f988e55f8714",
+      "status": "asserted",
+      "at": "2026-10-07T16:08:26-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:5c7037ebf895:4f750608d7c9",
+      "source": "commit:5c7037ebf895d34fddac0d625b08f988e55f8714",
+      "relation": "changed",
+      "target": "file:abs_core/conversational_tools.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:08:26-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:df02d9780e83",
+      "source": "event:repository-scan:df02d9780e83",
+      "relation": "generated",
+      "target": "evidence:repository:df02d9780e83",
+      "status": "asserted",
+      "at": "2026-10-07T16:08:26-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -30122,12 +30509,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:e70567f088d2",
-      "source": "commit:e70567f088d25dcd001d50d2b6dfd790386f222c",
+      "id": "rel:scan-commit:5c7037ebf895",
+      "source": "commit:5c7037ebf895d34fddac0d625b08f988e55f8714",
       "relation": "observed_by",
-      "target": "event:repository-scan:090e616a532d",
+      "target": "event:repository-scan:df02d9780e83",
       "status": "asserted",
-      "at": "2026-10-07T15:59:59-03:00",
+      "at": "2026-10-07T16:08:26-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
