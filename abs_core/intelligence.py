@@ -241,4 +241,6 @@ class CognitiveRuntime:
                 self.data_layer.record_conversation(sid, session["messages"])
             return {"session_id": sid, "work_id": work.id, "work_state": work.state.value,
                     "provenance": work.provenance, "resource": resource.public(),
-                    "response": final_response, "result": result, "message_count": len(session["messages"])}
+                    "response": final_response, "result": result,
+                    "fallback_attempts": fallback_attempts,
+                    "message_count": len(session["messages"])}
