@@ -118,22 +118,27 @@ class CognitiveRuntime:
             rows = self._conn.execute("SELECT id, created_at, updated_at, preferred_resource FROM cognitive_sessions ORDER BY updated_at DESC").fetchall()
         return [{"id": r[0], "created_at": r[1], "updated_at": r[2], "preferred_resource": r[3]} for r in rows]
 
-    def _choose(self, session: dict[str, Any], preferred_resource: str | None = None) -> IntelligenceResource:
+    def _rank_resources(self, session: dict[str, Any], preferred_resource: str | None = None) -> list[IntelligenceResource]:
         preferred = preferred_resource or session.get("preferred_resource")
         resources = [r for r in self.intelligence.list() if r.status not in {"offline", "planned"}]
-        if preferred:
-            try:
-                chosen = self.intelligence.get(preferred)
-                if chosen.status not in {"offline", "planned"}:
-                    return chosen
-            except KeyError:
-                pass
-        if not resources:
-            raise RuntimeError("no_intelligence_resource_available")
+        if session.get("context", {}).get("offline") is True:
+            resources = [r for r in resources if r.local]
+        required = tuple(session.get("context", {}).get("required_capabilities") or ())
+
         def score(resource: IntelligenceResource) -> tuple[float, str]:
             availability = {"configured": 30.0, "available": 20.0, "degraded": 5.0}.get(resource.status, 0.0)
-            return (availability + resource.priority, resource.id)
-        return sorted(resources, key=lambda item: (-score(item)[0], score(item)[1]))[0]
+            capability_match = sum(1.0 for item in required if item in resource.capabilities)
+            locality = 20.0 if session.get("context", {}).get("offline") is True and resource.local else 0.0
+            preferred_bonus = 1000.0 if preferred == resource.id else 0.0
+            return (preferred_bonus + capability_match * 100.0 + locality + availability + resource.priority, resource.id)
+
+        return sorted(resources, key=lambda item: (-score(item)[0], score(item)[1]))
+
+    def _choose(self, session: dict[str, Any], preferred_resource: str | None = None) -> IntelligenceResource:
+        resources = self._rank_resources(session, preferred_resource)
+        if not resources:
+            raise RuntimeError("no_intelligence_resource_available")
+        return resources[0]
 
     def turn(self, message: str, *, session_id: str | None = None, preferred_resource: str | None = None,
              context: dict[str, Any] | None = None, approved: bool = False) -> dict[str, Any]:
