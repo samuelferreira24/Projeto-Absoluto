@@ -55,3 +55,71 @@ def test_orchestrator_failed_execution_promotes_path_to_degraded(tmp_path):
         item["kind"] == "execution" and item["status"] == "failure"
         for item in data["evidence"]
     )
+
+
+def test_v1_acceptance_crosses_navigation_intelligence_verification_and_memory(tmp_path):
+    from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
+    from abs_core.conversational_tools import ConversationalToolRuntime
+    from abs_core.data_layer import ABSDataLayer
+    from abs_core.intelligence import CognitiveRuntime, IntelligenceRegistry, IntelligenceResource
+    from abs_core.navigation_adapter import KnowledgeNavigationCapability
+    from abs_core.orchestrator import Orchestrator
+    from abs_core.verification import ResultVerifier
+
+    source = tmp_path / "source"
+    source.mkdir()
+    (source / "architecture.md").write_text(
+        "# Architecture\nThe verification boundary is explicit.\n",
+        encoding="utf-8",
+    )
+    db_path = tmp_path / "abs.db"
+    registry = CapabilityRegistry()
+    navigation = KnowledgeNavigationCapability(
+        db_path=tmp_path / "nav.sqlite",
+        sources={"projeto-absoluto": source},
+    )
+    registry.register(CapabilityRecord(
+        "knowledge-navigation", navigation.name, navigation.kind, navigation,
+    ))
+    registry.register(CapabilityRecord("fake-chat", "Fake Chat", "test", EchoCapability()))
+
+    intelligence = IntelligenceRegistry()
+    intelligence.register(IntelligenceResource(
+        id="intelligence:fake-chat",
+        capability_id="fake-chat",
+        name="Fake Chat",
+        source="local",
+        local=True,
+        capabilities=("conversation", "reasoning"),
+        status="available",
+    ))
+    data_layer = ABSDataLayer(db_path)
+    orchestrator = Orchestrator(
+        registry,
+        WorkStore(db_path),
+        data_layer=data_layer,
+        verifier=ResultVerifier(),
+    )
+    cognitive = CognitiveRuntime(
+        registry,
+        intelligence,
+        orchestrator,
+        store_path=str(db_path),
+        data_layer=data_layer,
+    )
+    cognitive.tool_runtime = ConversationalToolRuntime(
+        planner=None,
+        dispatcher=None,
+        capabilities=registry,
+        orchestrator=orchestrator,
+    )
+
+    result = cognitive.turn("Onde está implementada a verificação no projeto?", approved=True)
+
+    assert result["work_state"] == "completed"
+    assert result["result"]["verification"]["accepted"] is True
+    assert result["result"]["final_response"]
+    assert result["result"]["type"] == "echo"
+    assert result["provenance"]
+    assert data_layer.search(kind="work_result", limit=10)
+    assert data_layer.search(kind="conversation", query=result["session_id"], limit=10)
