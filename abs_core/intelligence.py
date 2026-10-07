@@ -189,12 +189,51 @@ class CognitiveRuntime:
             }
             if self.orchestrator is None:
                 self.orchestrator = Orchestrator(self.capabilities, WorkStore(self.store_path), data_layer=self.data_layer)
-            work = self.orchestrator.create(message, execution_context)
-            work = self.orchestrator.run(work.id, resource.capability_id, approved=(approved or resource.metadata.get("conversational", False)))
-            result = work.result
-            final_response = result.get("final_response") if isinstance(result, dict) else result
+            ranked_resources = self._rank_resources(session, preferred_resource)
+            if not ranked_resources:
+                raise RuntimeError("no_intelligence_resource_available")
+
+            work = None
+            result = None
+            fallback_attempts: list[dict[str, Any]] = []
+            for candidate in ranked_resources:
+                candidate_cap = self.capabilities.get(candidate.capability_id)
+                if (
+                    candidate_cap.kind != "test"
+                    and not approved
+                    and not candidate.metadata.get("conversational", False)
+                ):
+                    if candidate is ranked_resources[0]:
+                        raise PermissionError(
+                            f"Imperator approval required for intelligence: {candidate_cap.id}"
+                        )
+                    continue
+                candidate_work = self.orchestrator.create(
+                    message,
+                    {**execution_context, "ai_resource": candidate.public()},
+                )
+                candidate_work = self.orchestrator.run(
+                    candidate_work.id,
+                    candidate.capability_id,
+                    approved=(approved or candidate.metadata.get("conversational", False)),
+                )
+                candidate_result = candidate_work.result
+                fallback_attempts.append({
+                    "resource": candidate.public(),
+                    "work_id": candidate_work.id,
+                    "state": candidate_work.state.value,
+                })
+                work = candidate_work
+                result = candidate_result
+                if candidate_work.state.value != "failed":
+                    resource = candidate
+                    break
+            if work is None or result is None:
+                raise RuntimeError("no_approved_intelligence_resource_available")
             if work.state.value == "failed":
                 final_response = result.get("error", "intelligence_execution_failed") if isinstance(result, dict) else str(result)
+            else:
+                final_response = result.get("final_response") if isinstance(result, dict) else result
             session["messages"].append({"role": "assistant", "content": final_response})
             session["preferred_resource"] = preferred_resource or session.get("preferred_resource")
             self._save(session)
