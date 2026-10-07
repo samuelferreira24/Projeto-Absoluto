@@ -43,7 +43,11 @@
         android:name=".BrowserApplication"
         tools:ignore="UnusedAttribute">
 
-        <activity android:name=".HubActivity"\n            android:exported="true"\n            android:theme="@style/AppThemeNotActionBar" />\n\n        <activity android:name=".BrowserActivity"
+        <activity android:name=".HubActivity"
+            android:exported="true"
+            android:theme="@style/AppThemeNotActionBar" />
+
+        <activity android:name=".BrowserActivity"
             android:launchMode="singleTask"
             android:resizeableActivity="true"
             android:supportsPictureInPicture="true"
