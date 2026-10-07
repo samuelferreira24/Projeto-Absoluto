@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-04T01:49:30-03:00",
-  "source_revision": "e2f9eeb168bd8de979f42f93ad5ec4573814a982",
+  "generated_at": "2026-10-07T13:37:58-03:00",
+  "source_revision": "1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 59
+      "file_count": 60
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "e2f9eeb168bd8de979f42f93ad5ec4573814a982",
-      "commit_subject": "CI: validar navegação V2 após correção"
+      "revision": "1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
+      "commit_subject": "Encerrar Navegação e Pesquisa V2 (#102)"
     }
   ],
   "tools": [
@@ -2848,6 +2848,11 @@
       "id": "file:docs/03_planejamento/pesquisa/ATAQUE_ADVERSARIAL_FINAL_MOLDE_ABS_V0.md",
       "kind": "file",
       "path": "docs/03_planejamento/pesquisa/ATAQUE_ADVERSARIAL_FINAL_MOLDE_ABS_V0.md"
+    },
+    {
+      "id": "file:docs/03_planejamento/pesquisa/ENCERRAMENTO_NAVEGACAO_V2.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/pesquisa/ENCERRAMENTO_NAVEGACAO_V2.md"
     },
     {
       "id": "file:docs/03_planejamento/pesquisa/PESQUISA_NAVEGACAO_V2.md",
@@ -7016,6 +7021,20 @@
       "sha": "e2f9eeb168bd8de979f42f93ad5ec4573814a982"
     },
     {
+      "id": "commit:b64900b09af14d5735ce9df330bb5581065e0ba4",
+      "kind": "commit",
+      "at": "2026-10-04T04:49:49Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "b64900b09af14d5735ce9df330bb5581065e0ba4"
+    },
+    {
+      "id": "commit:1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
+      "kind": "commit",
+      "at": "2026-10-07T13:37:58-03:00",
+      "subject": "Encerrar Navegação e Pesquisa V2 (#102)",
+      "sha": "1f0b620873d984c01ac7e9f89abdf3ccab065bb8"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7128,23 +7147,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:789ef751b0a5",
+      "id": "evidence:repository:fa643a92ad77",
       "kind": "evidence",
-      "at": "2026-10-04T01:49:30-03:00",
+      "at": "2026-10-07T13:37:58-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:789ef751b0a5",
+      "id": "event:repository-scan:fa643a92ad77",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-04T01:49:30-03:00"
+      "at": "2026-10-07T13:37:58-03:00"
     },
     {
-      "id": "event:commit-observed:e2f9eeb168bd",
+      "id": "event:commit-observed:1f0b620873d9",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-04T01:49:30-03:00"
+      "at": "2026-10-07T13:37:58-03:00"
     }
   ],
   "paths": [
@@ -7179,11 +7198,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:60ec9924e15a"
+        "evidence:test:c733fa996ead"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-04T01:49:30-03:00"
+      "last_validated": "2026-10-07T13:37:58-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7206,20 +7225,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:789ef751b0a5",
+      "id": "evidence:repository:fa643a92ad77",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-04T01:49:30-03:00",
+      "observed_at": "2026-10-07T13:37:58-03:00",
       "status": "observed",
-      "detail": "357 files indexed at revision e2f9eeb168bd8de979f42f93ad5ec4573814a982"
+      "detail": "358 files indexed at revision 1f0b620873d984c01ac7e9f89abdf3ccab065bb8"
     },
     {
-      "id": "evidence:test:60ec9924e15a",
+      "id": "evidence:test:c733fa996ead",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-04T01:49:30-03:00",
+      "observed_at": "2026-10-07T13:37:58-03:00",
       "status": "tested",
-      "detail": "146 passed in 7.18s"
+      "detail": "146 passed in 7.05s"
     }
   ],
   "decisions": [
@@ -7322,30 +7341,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:789ef751b0a5",
+      "id": "event:repository-scan:fa643a92ad77",
       "type": "repository_scanned",
-      "at": "2026-10-04T01:49:30-03:00",
-      "revision": "e2f9eeb168bd8de979f42f93ad5ec4573814a982",
-      "file_count": 357,
-      "evidence_id": "evidence:repository:789ef751b0a5"
+      "at": "2026-10-07T13:37:58-03:00",
+      "revision": "1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
+      "file_count": 358,
+      "evidence_id": "evidence:repository:fa643a92ad77"
     },
     {
-      "id": "event:commit-observed:e2f9eeb168bd",
+      "id": "event:commit-observed:1f0b620873d9",
       "type": "commit_observed",
-      "at": "2026-10-04T01:49:30-03:00",
-      "revision": "e2f9eeb168bd8de979f42f93ad5ec4573814a982",
+      "at": "2026-10-07T13:37:58-03:00",
+      "revision": "1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
       "branch": "main",
-      "subject": "CI: validar navegação V2 após correção",
+      "subject": "Encerrar Navegação e Pesquisa V2 (#102)",
       "changed_files": [
-        ".github/workflows/project-knowledge-tests.yml"
+        "docs/03_planejamento/pesquisa/ENCERRAMENTO_NAVEGACAO_V2.md"
       ]
     },
     {
-      "id": "event:test:60ec9924e15a",
+      "id": "event:test:c733fa996ead",
       "type": "tests_observed",
-      "at": "2026-10-04T01:49:30-03:00",
+      "at": "2026-10-07T13:37:58-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:60ec9924e15a"
+      "evidence_id": "evidence:test:c733fa996ead"
     }
   ],
   "knowledge_sources": [
@@ -7401,7 +7420,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "ff9b080165a221224303e7084cf8062c25a8e87cb695d8bab61b1e55144bd86d"
+      "sha256": "4845e5148f4f15de1820963e4134c97e39f247a85a7b0ed02fea4cf57a76d4de"
     },
     {
       "id": "source:session",
@@ -28170,12 +28189,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:789ef751b0a5",
-      "source": "event:repository-scan:789ef751b0a5",
-      "relation": "generated",
-      "target": "evidence:repository:789ef751b0a5",
+      "id": "rel:commit-precedes:e2f9eeb168bd:b64900b09af1",
+      "source": "commit:e2f9eeb168bd8de979f42f93ad5ec4573814a982",
+      "relation": "precedes",
+      "target": "commit:b64900b09af14d5735ce9df330bb5581065e0ba4",
       "status": "asserted",
-      "at": "2026-10-04T01:49:30-03:00",
+      "at": "2026-10-04T04:49:49Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b64900b09af1:032adc3624d7",
+      "source": "commit:b64900b09af14d5735ce9df330bb5581065e0ba4",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-04T04:49:49Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b64900b09af1:d64178c49886",
+      "source": "commit:b64900b09af14d5735ce9df330bb5581065e0ba4",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-04T04:49:49Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b64900b09af1:1f0b620873d9",
+      "source": "commit:b64900b09af14d5735ce9df330bb5581065e0ba4",
+      "relation": "precedes",
+      "target": "commit:1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
+      "status": "asserted",
+      "at": "2026-10-07T13:37:58-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1f0b620873d9:9cfb4e29622c",
+      "source": "commit:1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/pesquisa/ENCERRAMENTO_NAVEGACAO_V2.md",
+      "status": "asserted",
+      "at": "2026-10-07T13:37:58-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:fa643a92ad77",
+      "source": "event:repository-scan:fa643a92ad77",
+      "relation": "generated",
+      "target": "evidence:repository:fa643a92ad77",
+      "status": "asserted",
+      "at": "2026-10-07T13:37:58-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -28184,12 +28273,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:e2f9eeb168bd",
-      "source": "commit:e2f9eeb168bd8de979f42f93ad5ec4573814a982",
+      "id": "rel:scan-commit:1f0b620873d9",
+      "source": "commit:1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
       "relation": "observed_by",
-      "target": "event:repository-scan:789ef751b0a5",
+      "target": "event:repository-scan:fa643a92ad77",
       "status": "asserted",
-      "at": "2026-10-04T01:49:30-03:00",
+      "at": "2026-10-07T13:37:58-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
