@@ -1,0 +1,56 @@
+name: Moldes Experiments
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["experimento-02-validacao-prototipos"]
+jobs:
+  experiments:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -U pip pytest
+      - run: python experimentos/01_moldes_execucao/test_moldes_execucao.py
+      - run: PYTHONPATH=. pytest -q experimentos/03_sombra_abs
+      - run: PYTHONPATH=.:${{ github.workspace }}/experimentos/04_planejamento_sombra pytest -q experimentos/04_planejamento_sombra
+      - run: PYTHONPATH=.:${{ github.workspace }}/experimentos/02_validacao_prototipos python experimentos/05_combinatorio/test_invariantes.py
+      - run: PYTHONPATH=. pytest -q experimentos/06_prototipo_executavel
+      - run: PYTHONPATH=. pytest -q experimentos/07_sandbox_runtime
+      - run: PYTHONPATH=. pytest -q experimentos/08_persistencia_estado
+      - run: PYTHONPATH=. pytest -q experimentos/09_composicao_verificacao
+      - run: PYTHONPATH=. pytest -q experimentos/10_adversarial
+      - run: PYTHONPATH=. pytest -q experimentos/11_comparativo_integrado
+      - run: PYTHONPATH=. pytest -q experimentos/12_checkpoint_plano
+      - run: PYTHONPATH=. pytest -q experimentos/13_matriz_falhas
+      - run: PYTHONPATH=. pytest -q experimentos/14_divergencia
+      - run: PYTHONPATH=. pytest -q experimentos/15_ambiguidade_objetivo
+      - run: PYTHONPATH=. pytest -q experimentos/16_sequencias_adversariais
+      - run: PYTHONPATH=. pytest -q experimentos/17_benchmark_ab
+      - run: PYTHONPATH=. pytest -q experimentos/18_invariantes_metamorficas
+      - run: PYTHONPATH=. pytest -q experimentos/19_mutation_testing
+      - run: PYTHONPATH=. pytest -q experimentos/20_composicao_dependencias
+      - run: PYTHONPATH=. pytest -q experimentos/21_falha_parcial
+      - run: PYTHONPATH=. pytest -q experimentos/22_interrupcao_retomada
+      - run: PYTHONPATH=. pytest -q experimentos/23_replan_contexto
+      - run: PYTHONPATH=. pytest -q experimentos/24_concorrencia_estado
+      - run: PYTHONPATH=. pytest -q experimentos/25_divergencia_estrutural
+      - run: PYTHONPATH=. pytest -q experimentos/26_grafo_composicao
+      - run: PYTHONPATH=. pytest -q experimentos/27_efeitos_idempotencia
+      - run: PYTHONPATH=. pytest -q experimentos/28_verificacao_semantica
+      - run: PYTHONPATH=. pytest -q experimentos/29_seletor_complexidade
+      - run: PYTHONPATH=. pytest -q experimentos/30_descoberta_capacidade
+      - name: Compile Python
+        run: python -m compileall -q experimentos
+      - name: Ruff static quality
+        run: |
+          python -m pip install ruff
+          ruff check experimentos
+      - name: Compile Python
+        run: python -m compileall -q experimentos
+      - name: Ruff static quality
+        run: |
+          python -m pip install ruff
+          ruff check experimentos
