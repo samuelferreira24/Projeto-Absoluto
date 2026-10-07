@@ -93,7 +93,7 @@ jobs:
           TMP="$GITHUB_WORKSPACE/projeto-absoluto/.navigation-real-validation.txt"
           DB="$GITHUB_WORKSPACE/projeto-absoluto/.abs-navigation/index.sqlite"
 
-          printf 'navigation-real-validation-v1\n' > "$TMP"
+          printf 'navrealvalidationuniquex1\n' > "$TMP"
           python -m tools.navegacao.index --db "$DB" \
             --repo projeto-absoluto="$GITHUB_WORKSPACE/projeto-absoluto" \
             --repo sistema="$GITHUB_WORKSPACE/sistema"
@@ -102,10 +102,10 @@ jobs:
           from pathlib import Path
           from tools.navegacao.navigator import Navigator
           nav = Navigator(Path(".abs-navigation/index.sqlite"))
-          assert nav.search("navigation-real-validation-v1", source="projeto-absoluto")
+          assert nav.search("navrealvalidationuniquex1", source="projeto-absoluto")
           PY
 
-          printf 'navigation-real-validation-v2\n' > "$TMP"
+          printf 'navrealvalidationuniquex2\n' > "$TMP"
           python -m tools.navegacao.index --db "$DB" \
             --repo projeto-absoluto="$GITHUB_WORKSPACE/projeto-absoluto" \
             --repo sistema="$GITHUB_WORKSPACE/sistema"
@@ -114,8 +114,8 @@ jobs:
           from pathlib import Path
           from tools.navegacao.navigator import Navigator
           nav = Navigator(Path(".abs-navigation/index.sqlite"))
-          assert nav.search("navigation-real-validation-v2", source="projeto-absoluto")
-          assert not nav.search("navigation-real-validation-v1", source="projeto-absoluto")
+          assert nav.search("navrealvalidationuniquex2", source="projeto-absoluto")
+          assert not nav.search("navrealvalidationuniquex1", source="projeto-absoluto")
           PY
 
           rm "$TMP"
@@ -127,7 +127,7 @@ jobs:
           from pathlib import Path
           from tools.navegacao.navigator import Navigator
           nav = Navigator(Path(".abs-navigation/index.sqlite"))
-          assert not nav.search("navigation-real-validation-v2", source="projeto-absoluto")
+          assert not nav.search("navrealvalidationuniquex2", source="projeto-absoluto")
           print("REAL_INCREMENTAL_DELETE_PASS")
           PY
 
