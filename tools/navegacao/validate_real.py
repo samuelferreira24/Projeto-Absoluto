@@ -7,6 +7,7 @@ import sqlite3
 import tempfile
 from pathlib import Path
 
+from .agent import dispatch
 from .coverage import all_coverage
 from .index import connect, index_source
 from .investigate import investigate
@@ -154,6 +155,9 @@ def validate(db: Path, repositories: dict[str, Path], *, strict: bool = False) -
         coverage = all_coverage(conn)
         query_matrix = _query_matrix(conn)
         adversarial = _adversarial(conn)
+        agent_investigation = dispatch(conn, {"action": "investigate", "question": "como a proveniência é verificada?", "limit": 8, "inspect_limit": 4})
+        agent_coverage = dispatch(conn, {"action": "coverage"})
+        agent_protocol_ok = bool(agent_investigation.get("evidence")) and bool(agent_coverage.get("result"))
 
         coverage_ok = all(
             item["filesystem"]["unindexed_candidates"] == 0
@@ -189,6 +193,7 @@ def validate(db: Path, repositories: dict[str, Path], *, strict: bool = False) -
         "provenance": {"checked": len(provenance), "invalid": len(bad)},
         "query_matrix": query_matrix,
         "adversarial": adversarial,
+        "agent_protocol": {"investigation_evidence": len(agent_investigation.get("evidence", [])), "coverage_sources": len(agent_coverage.get("result", [])), "pass": agent_protocol_ok},
         "lifecycle": lifecycle,
     }
 
