@@ -66,8 +66,6 @@ class HubActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.statusBarColor = Color.rgb(5, 9, 16)
-        window.navigationBarColor = Color.rgb(5, 9, 16)
         setContentView(R.layout.activity_hub)
         buildHub()
     }
