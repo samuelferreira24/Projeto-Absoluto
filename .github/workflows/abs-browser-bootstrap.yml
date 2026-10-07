@@ -57,6 +57,20 @@ jobs:
                   p.write_text(s.replace(old, new))
           PY
 
+      - name: Configure prototype signing in Gradle
+        working-directory: apps/android/abs-browser
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("app/build.gradle")
+          s = p.read_text()
+          old = '        if (gradle.hasProperty("localProperties.autosignReleaseWithDebugKey")) {\n            signingConfig signingConfigs.debug\n        }'
+          new = '        if (project.findProperty("absPrototypeSigning") == "true") {\n            signingConfig signingConfigs.debug\n        }'
+          if old not in s:
+              raise SystemExit("Expected signing block not found")
+          p.write_text(s.replace(old, new, 1))
+          PY
+
       - name: Reapply ABS hub customization
         run: |
           mkdir -p apps/android/abs-browser/app/src/main/java/org/mozilla/reference/browser
@@ -71,7 +85,7 @@ jobs:
         working-directory: apps/android/abs-browser
         run: |
           chmod +x ./gradlew
-          ./gradlew :app:assembleNightly --no-daemon --stacktrace -PlocalProperties.autosignReleaseWithDebugKey=true
+          ./gradlew :app:assembleNightly --no-daemon --stacktrace -PabsPrototypeSigning=true
 
       - name: Verify APK signature and alignment
         working-directory: apps/android/abs-browser
