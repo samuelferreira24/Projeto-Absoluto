@@ -37,4 +37,4 @@ def test_abs_navigation_capability_supports_verification_and_coverage(tmp_path):
     assert coverage["result"]["result"][0]["index"]["coverage_ratio"] == 1.0
     verification = capability.execute(
         "verify", {"action": "verify", "source": "fixture"})
-    assert verification["invalid"] == []
+    assert verification["result"]["invalid"] == []
