@@ -101,7 +101,7 @@ class ConversationalToolRuntime:
                 context["path"] = match.group(1).strip()
         elif action == "search":
             match = re.search(
-                r'''(?:buscar|procure|procurar|pesquise|pesquisar|search)\s+(.+?)(?:\s+no\s+github|\s+no\s+reposit[oó]rio.*)?
+                r"(?:buscar|procure|procurar|pesquise|pesquisar|search)\\s+(.+)$",
                 text, re.IGNORECASE)
             if match:
                 context["query"] = match.group(1).strip()
