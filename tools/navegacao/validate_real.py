@@ -61,7 +61,7 @@ def _lifecycle_probe(repositories: dict[str, Path]) -> dict:
         copies = {}
         for source, original in repositories.items():
             target = root / source
-            shutil.copytree(original, target)
+            shutil.copytree(original, target, ignore_dangling_symlinks=True)
             copies[source] = target
 
         probe_source = next(iter(copies))
