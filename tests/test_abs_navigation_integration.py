@@ -34,7 +34,7 @@ def test_abs_navigation_capability_supports_verification_and_coverage(tmp_path):
     capability = KnowledgeNavigationCapability(
         db_path=tmp_path / "nav.sqlite", sources={"fixture": source})
     coverage = capability.execute("coverage", {"action": "coverage"})
-    assert coverage["result"]["index"]["coverage_ratio"] == 1.0
+    assert coverage["result"]["result"]["index"]["coverage_ratio"] == 1.0
     verification = capability.execute(
         "verify", {"action": "verify", "source": "fixture"})
     assert verification["invalid"] == []
