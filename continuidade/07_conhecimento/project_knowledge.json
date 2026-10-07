@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-07T15:00:09-03:00",
-  "source_revision": "237ab20ba8ef1da41d234918a8dfbd549f124090",
+  "generated_at": "2026-10-07T15:18:05-03:00",
+  "source_revision": "540de6108dd7dd4dbb1f067e5d23d83535b90024",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 61
+      "file_count": 62
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -37,7 +37,7 @@
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 53
+      "file_count": 54
     }
   ],
   "capabilities": [
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "237ab20ba8ef1da41d234918a8dfbd549f124090",
-      "commit_subject": "Expandir Navegação para Conhecimento Verificável"
+      "revision": "540de6108dd7dd4dbb1f067e5d23d83535b90024",
+      "commit_subject": "docs: registrar fechamento da navegacao verificavel"
     }
   ],
   "tools": [
@@ -2815,6 +2815,11 @@
       "path": "docs/03_planejamento/AUDITORIA_E_PLANO_FECHAMENTO_ABS_V1_OPERACIONAL_2026-09-25.md"
     },
     {
+      "id": "file:docs/03_planejamento/FECHAMENTO_NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/FECHAMENTO_NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md"
+    },
+    {
       "id": "file:docs/03_planejamento/GUIA_MANUAL_FECHAMENTO_V1.md",
       "kind": "file",
       "path": "docs/03_planejamento/GUIA_MANUAL_FECHAMENTO_V1.md"
@@ -3278,6 +3283,11 @@
       "id": "file:tests/test_navegacao_conhecimento.py",
       "kind": "file",
       "path": "tests/test_navegacao_conhecimento.py"
+    },
+    {
+      "id": "file:tests/test_navegacao_fechamento.py",
+      "kind": "file",
+      "path": "tests/test_navegacao_fechamento.py"
     },
     {
       "id": "file:tests/test_navegacao_real.py",
@@ -7272,6 +7282,90 @@
       "sha": "237ab20ba8ef1da41d234918a8dfbd549f124090"
     },
     {
+      "id": "commit:99f761fb443b67d6e99da936d8bb041c0cbf846e",
+      "kind": "commit",
+      "at": "2026-10-07T18:00:31Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "99f761fb443b67d6e99da936d8bb041c0cbf846e"
+    },
+    {
+      "id": "commit:cd73609a4a054c20cf47ccfa8cdc4df8abf163cc",
+      "kind": "commit",
+      "at": "2026-10-07T15:12:26-03:00",
+      "subject": "test: fechar cobertura e ciclo de vida da navegação",
+      "sha": "cd73609a4a054c20cf47ccfa8cdc4df8abf163cc"
+    },
+    {
+      "id": "commit:653334445229e04a093870089b4a49c52e7da708",
+      "kind": "commit",
+      "at": "2026-10-07T15:12:56-03:00",
+      "subject": "test: ampliar validacao real da navegacao",
+      "sha": "653334445229e04a093870089b4a49c52e7da708"
+    },
+    {
+      "id": "commit:37f6c0070cb95b2bd82d1adb21d9021d6a5a1cad",
+      "kind": "commit",
+      "at": "2026-10-07T15:13:47-03:00",
+      "subject": "fix: manter FTS externo consistente em atualizacoes e delecoes",
+      "sha": "37f6c0070cb95b2bd82d1adb21d9021d6a5a1cad"
+    },
+    {
+      "id": "commit:5208578fa096d7f70c009c1bcf6065580d83d0f2",
+      "kind": "commit",
+      "at": "2026-10-07T15:13:52-03:00",
+      "subject": "test: validar evidencia por proveniencia sem depender de ranking",
+      "sha": "5208578fa096d7f70c009c1bcf6065580d83d0f2"
+    },
+    {
+      "id": "commit:2ef20fa6e3773e939fdbbd28eb568f06f05bd067",
+      "kind": "commit",
+      "at": "2026-10-07T15:14:24-03:00",
+      "subject": "test: separar validacao funcional de auditoria real estrita",
+      "sha": "2ef20fa6e3773e939fdbbd28eb568f06f05bd067"
+    },
+    {
+      "id": "commit:cfaceed6a0cf537d80f79c2c44c9a5dfe998c52e",
+      "kind": "commit",
+      "at": "2026-10-07T15:14:56-03:00",
+      "subject": "test: não exigir matriz completa em fixture mínimo",
+      "sha": "cfaceed6a0cf537d80f79c2c44c9a5dfe998c52e"
+    },
+    {
+      "id": "commit:f9fa94f167e38d81c948c8f694d3452f0d3f710f",
+      "kind": "commit",
+      "at": "2026-10-07T15:15:38-03:00",
+      "subject": "fix: ignorar links simbolicos quebrados no snapshot de lifecycle",
+      "sha": "f9fa94f167e38d81c948c8f694d3452f0d3f710f"
+    },
+    {
+      "id": "commit:e12457d728d0e734e5374fbfa9b83fff7bde27d1",
+      "kind": "commit",
+      "at": "2026-10-07T15:16:31-03:00",
+      "subject": "fix: criar snapshot de lifecycle apenas com fontes indexaveis",
+      "sha": "e12457d728d0e734e5374fbfa9b83fff7bde27d1"
+    },
+    {
+      "id": "commit:bd3b1a4d717727ff5afc107a73ea57a5de413161",
+      "kind": "commit",
+      "at": "2026-10-07T15:17:14-03:00",
+      "subject": "test: validar protocolo de agente no indice real",
+      "sha": "bd3b1a4d717727ff5afc107a73ea57a5de413161"
+    },
+    {
+      "id": "commit:b26b350cc7171bba24a3259dd2119698ea1e9918",
+      "kind": "commit",
+      "at": "2026-10-07T15:17:52-03:00",
+      "subject": "Merge pull request #107 from samuelferreira24/feat/navegacao-fechamento-profissional",
+      "sha": "b26b350cc7171bba24a3259dd2119698ea1e9918"
+    },
+    {
+      "id": "commit:540de6108dd7dd4dbb1f067e5d23d83535b90024",
+      "kind": "commit",
+      "at": "2026-10-07T15:18:05-03:00",
+      "subject": "docs: registrar fechamento da navegacao verificavel",
+      "sha": "540de6108dd7dd4dbb1f067e5d23d83535b90024"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7384,23 +7478,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:867754e57662",
+      "id": "evidence:repository:6ccab70fce90",
       "kind": "evidence",
-      "at": "2026-10-07T15:00:09-03:00",
+      "at": "2026-10-07T15:18:05-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:867754e57662",
+      "id": "event:repository-scan:6ccab70fce90",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-07T15:00:09-03:00"
+      "at": "2026-10-07T15:18:05-03:00"
     },
     {
-      "id": "event:commit-observed:237ab20ba8ef",
+      "id": "event:commit-observed:540de6108dd7",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-07T15:00:09-03:00"
+      "at": "2026-10-07T15:18:05-03:00"
     }
   ],
   "paths": [
@@ -7435,11 +7529,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:5f3e101b0b9d"
+        "evidence:test:c43591966d2e"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-07T15:00:09-03:00"
+      "last_validated": "2026-10-07T15:18:05-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7462,20 +7556,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:867754e57662",
+      "id": "evidence:repository:6ccab70fce90",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-07T15:00:09-03:00",
+      "observed_at": "2026-10-07T15:18:05-03:00",
       "status": "observed",
-      "detail": "369 files indexed at revision 237ab20ba8ef1da41d234918a8dfbd549f124090"
+      "detail": "371 files indexed at revision 540de6108dd7dd4dbb1f067e5d23d83535b90024"
     },
     {
-      "id": "evidence:test:5f3e101b0b9d",
+      "id": "evidence:test:c43591966d2e",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-07T15:00:09-03:00",
+      "observed_at": "2026-10-07T15:18:05-03:00",
       "status": "tested",
-      "detail": "150 passed in 7.29s"
+      "detail": "157 passed in 7.20s"
     }
   ],
   "decisions": [
@@ -7578,28 +7672,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:867754e57662",
+      "id": "event:repository-scan:6ccab70fce90",
       "type": "repository_scanned",
-      "at": "2026-10-07T15:00:09-03:00",
-      "revision": "237ab20ba8ef1da41d234918a8dfbd549f124090",
-      "file_count": 369,
-      "evidence_id": "evidence:repository:867754e57662"
+      "at": "2026-10-07T15:18:05-03:00",
+      "revision": "540de6108dd7dd4dbb1f067e5d23d83535b90024",
+      "file_count": 371,
+      "evidence_id": "evidence:repository:6ccab70fce90"
     },
     {
-      "id": "event:commit-observed:237ab20ba8ef",
+      "id": "event:commit-observed:540de6108dd7",
       "type": "commit_observed",
-      "at": "2026-10-07T15:00:09-03:00",
-      "revision": "237ab20ba8ef1da41d234918a8dfbd549f124090",
+      "at": "2026-10-07T15:18:05-03:00",
+      "revision": "540de6108dd7dd4dbb1f067e5d23d83535b90024",
       "branch": "main",
-      "subject": "Expandir Navegação para Conhecimento Verificável",
-      "changed_files": []
+      "subject": "docs: registrar fechamento da navegacao verificavel",
+      "changed_files": [
+        "docs/03_planejamento/FECHAMENTO_NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md"
+      ]
     },
     {
-      "id": "event:test:5f3e101b0b9d",
+      "id": "event:test:c43591966d2e",
       "type": "tests_observed",
-      "at": "2026-10-07T15:00:09-03:00",
+      "at": "2026-10-07T15:18:05-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:5f3e101b0b9d"
+      "evidence_id": "evidence:test:c43591966d2e"
     }
   ],
   "knowledge_sources": [
@@ -7655,7 +7751,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "2bf2653354adc3b9d8f244102a4d70ffbbe1b1aa33a35c6f07b939c6c4c96857"
+      "sha256": "07d1d086d9b78e41791e514afa0f319574a483c7aa5c49bbdd9586564e6490f1"
     },
     {
       "id": "source:session",
@@ -29250,12 +29346,362 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:867754e57662",
-      "source": "event:repository-scan:867754e57662",
-      "relation": "generated",
-      "target": "evidence:repository:867754e57662",
+      "id": "rel:commit-precedes:237ab20ba8ef:99f761fb443b",
+      "source": "commit:237ab20ba8ef1da41d234918a8dfbd549f124090",
+      "relation": "precedes",
+      "target": "commit:99f761fb443b67d6e99da936d8bb041c0cbf846e",
       "status": "asserted",
-      "at": "2026-10-07T15:00:09-03:00",
+      "at": "2026-10-07T18:00:31Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:99f761fb443b:032adc3624d7",
+      "source": "commit:99f761fb443b67d6e99da936d8bb041c0cbf846e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-07T18:00:31Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:99f761fb443b:d64178c49886",
+      "source": "commit:99f761fb443b67d6e99da936d8bb041c0cbf846e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-07T18:00:31Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:99f761fb443b:cd73609a4a05",
+      "source": "commit:99f761fb443b67d6e99da936d8bb041c0cbf846e",
+      "relation": "precedes",
+      "target": "commit:cd73609a4a054c20cf47ccfa8cdc4df8abf163cc",
+      "status": "asserted",
+      "at": "2026-10-07T15:12:26-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cd73609a4a05:7b5e1f1ad3cf",
+      "source": "commit:cd73609a4a054c20cf47ccfa8cdc4df8abf163cc",
+      "relation": "changed",
+      "target": "file:tests/test_navegacao_fechamento.py",
+      "status": "asserted",
+      "at": "2026-10-07T15:12:26-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:cd73609a4a05:653334445229",
+      "source": "commit:cd73609a4a054c20cf47ccfa8cdc4df8abf163cc",
+      "relation": "precedes",
+      "target": "commit:653334445229e04a093870089b4a49c52e7da708",
+      "status": "asserted",
+      "at": "2026-10-07T15:12:56-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:653334445229:cbcbd6f91176",
+      "source": "commit:653334445229e04a093870089b4a49c52e7da708",
+      "relation": "changed",
+      "target": "file:tools/navegacao/validate_real.py",
+      "status": "asserted",
+      "at": "2026-10-07T15:12:56-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:653334445229:37f6c0070cb9",
+      "source": "commit:653334445229e04a093870089b4a49c52e7da708",
+      "relation": "precedes",
+      "target": "commit:37f6c0070cb95b2bd82d1adb21d9021d6a5a1cad",
+      "status": "asserted",
+      "at": "2026-10-07T15:13:47-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:37f6c0070cb9:529da1ea90d5",
+      "source": "commit:37f6c0070cb95b2bd82d1adb21d9021d6a5a1cad",
+      "relation": "changed",
+      "target": "file:tools/navegacao/index.py",
+      "status": "asserted",
+      "at": "2026-10-07T15:13:47-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:37f6c0070cb9:5208578fa096",
+      "source": "commit:37f6c0070cb95b2bd82d1adb21d9021d6a5a1cad",
+      "relation": "precedes",
+      "target": "commit:5208578fa096d7f70c009c1bcf6065580d83d0f2",
+      "status": "asserted",
+      "at": "2026-10-07T15:13:52-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:5208578fa096:7b5e1f1ad3cf",
+      "source": "commit:5208578fa096d7f70c009c1bcf6065580d83d0f2",
+      "relation": "changed",
+      "target": "file:tests/test_navegacao_fechamento.py",
+      "status": "asserted",
+      "at": "2026-10-07T15:13:52-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:5208578fa096:2ef20fa6e377",
+      "source": "commit:5208578fa096d7f70c009c1bcf6065580d83d0f2",
+      "relation": "precedes",
+      "target": "commit:2ef20fa6e3773e939fdbbd28eb568f06f05bd067",
+      "status": "asserted",
+      "at": "2026-10-07T15:14:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2ef20fa6e377:cbcbd6f91176",
+      "source": "commit:2ef20fa6e3773e939fdbbd28eb568f06f05bd067",
+      "relation": "changed",
+      "target": "file:tools/navegacao/validate_real.py",
+      "status": "asserted",
+      "at": "2026-10-07T15:14:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:2ef20fa6e377:cfaceed6a0cf",
+      "source": "commit:2ef20fa6e3773e939fdbbd28eb568f06f05bd067",
+      "relation": "precedes",
+      "target": "commit:cfaceed6a0cf537d80f79c2c44c9a5dfe998c52e",
+      "status": "asserted",
+      "at": "2026-10-07T15:14:56-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cfaceed6a0cf:cbcbd6f91176",
+      "source": "commit:cfaceed6a0cf537d80f79c2c44c9a5dfe998c52e",
+      "relation": "changed",
+      "target": "file:tools/navegacao/validate_real.py",
+      "status": "asserted",
+      "at": "2026-10-07T15:14:56-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:cfaceed6a0cf:f9fa94f167e3",
+      "source": "commit:cfaceed6a0cf537d80f79c2c44c9a5dfe998c52e",
+      "relation": "precedes",
+      "target": "commit:f9fa94f167e38d81c948c8f694d3452f0d3f710f",
+      "status": "asserted",
+      "at": "2026-10-07T15:15:38-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f9fa94f167e3:cbcbd6f91176",
+      "source": "commit:f9fa94f167e38d81c948c8f694d3452f0d3f710f",
+      "relation": "changed",
+      "target": "file:tools/navegacao/validate_real.py",
+      "status": "asserted",
+      "at": "2026-10-07T15:15:38-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f9fa94f167e3:e12457d728d0",
+      "source": "commit:f9fa94f167e38d81c948c8f694d3452f0d3f710f",
+      "relation": "precedes",
+      "target": "commit:e12457d728d0e734e5374fbfa9b83fff7bde27d1",
+      "status": "asserted",
+      "at": "2026-10-07T15:16:31-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e12457d728d0:cbcbd6f91176",
+      "source": "commit:e12457d728d0e734e5374fbfa9b83fff7bde27d1",
+      "relation": "changed",
+      "target": "file:tools/navegacao/validate_real.py",
+      "status": "asserted",
+      "at": "2026-10-07T15:16:31-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:e12457d728d0:bd3b1a4d7177",
+      "source": "commit:e12457d728d0e734e5374fbfa9b83fff7bde27d1",
+      "relation": "precedes",
+      "target": "commit:bd3b1a4d717727ff5afc107a73ea57a5de413161",
+      "status": "asserted",
+      "at": "2026-10-07T15:17:14-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bd3b1a4d7177:cbcbd6f91176",
+      "source": "commit:bd3b1a4d717727ff5afc107a73ea57a5de413161",
+      "relation": "changed",
+      "target": "file:tools/navegacao/validate_real.py",
+      "status": "asserted",
+      "at": "2026-10-07T15:17:14-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:99f761fb443b:b26b350cc717",
+      "source": "commit:99f761fb443b67d6e99da936d8bb041c0cbf846e",
+      "relation": "precedes",
+      "target": "commit:b26b350cc7171bba24a3259dd2119698ea1e9918",
+      "status": "asserted",
+      "at": "2026-10-07T15:17:52-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:bd3b1a4d7177:b26b350cc717",
+      "source": "commit:bd3b1a4d717727ff5afc107a73ea57a5de413161",
+      "relation": "precedes",
+      "target": "commit:b26b350cc7171bba24a3259dd2119698ea1e9918",
+      "status": "asserted",
+      "at": "2026-10-07T15:17:52-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b26b350cc717:540de6108dd7",
+      "source": "commit:b26b350cc7171bba24a3259dd2119698ea1e9918",
+      "relation": "precedes",
+      "target": "commit:540de6108dd7dd4dbb1f067e5d23d83535b90024",
+      "status": "asserted",
+      "at": "2026-10-07T15:18:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:540de6108dd7:bc988b58603b",
+      "source": "commit:540de6108dd7dd4dbb1f067e5d23d83535b90024",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/FECHAMENTO_NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md",
+      "status": "asserted",
+      "at": "2026-10-07T15:18:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:6ccab70fce90",
+      "source": "event:repository-scan:6ccab70fce90",
+      "relation": "generated",
+      "target": "evidence:repository:6ccab70fce90",
+      "status": "asserted",
+      "at": "2026-10-07T15:18:05-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -29264,12 +29710,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:237ab20ba8ef",
-      "source": "commit:237ab20ba8ef1da41d234918a8dfbd549f124090",
+      "id": "rel:scan-commit:540de6108dd7",
+      "source": "commit:540de6108dd7dd4dbb1f067e5d23d83535b90024",
       "relation": "observed_by",
-      "target": "event:repository-scan:867754e57662",
+      "target": "event:repository-scan:6ccab70fce90",
       "status": "asserted",
-      "at": "2026-10-07T15:00:09-03:00",
+      "at": "2026-10-07T15:18:05-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",

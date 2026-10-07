@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 237ab20ba8ef1da41d234918a8dfbd549f124090
-Momento da revisão: 2026-10-07T15:00:09-03:00
+Revisão observada: 540de6108dd7dd4dbb1f067e5d23d83535b90024
+Momento da revisão: 2026-10-07T15:18:05-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -25,10 +25,10 @@ Momento da revisão: 2026-10-07T15:00:09-03:00
 - component:abs_core — abs_core (53 arquivos)
 - component:cerebro — cerebro (45 arquivos)
 - component:continuity — continuity (24 arquivos)
-- component:docs — docs (61 arquivos)
+- component:docs — docs (62 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
 - component:project — project (121 arquivos)
-- component:tests — tests (53 arquivos)
+- component:tests — tests (54 arquivos)
 
 ## Capacidades
 - capability:codex — Codex code engineering — estado: observed
@@ -495,6 +495,7 @@ Momento da revisão: 2026-10-07T15:00:09-03:00
 - file:docs/02_arquitetura/ROTEAMENTO_DE_RECURSOS_V1.md — None — estado: unknown
 - file:docs/03_planejamento/00_INDICE_PLANEJAMENTO.md — None — estado: unknown
 - file:docs/03_planejamento/AUDITORIA_E_PLANO_FECHAMENTO_ABS_V1_OPERACIONAL_2026-09-25.md — None — estado: unknown
+- file:docs/03_planejamento/FECHAMENTO_NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md — None — estado: unknown
 - file:docs/03_planejamento/GUIA_MANUAL_FECHAMENTO_V1.md — None — estado: unknown
 - file:docs/03_planejamento/GUIA_MANUAL_FECHAMENTO_V1_ATUAL.md — None — estado: unknown
 - file:docs/03_planejamento/INTEGRACAO_OPENWEBUI_GATEWAY_ABS.md — None — estado: unknown
@@ -588,6 +589,7 @@ Momento da revisão: 2026-10-07T15:00:09-03:00
 - file:tests/test_local.py — None — estado: unknown
 - file:tests/test_navegacao_agent.py — None — estado: unknown
 - file:tests/test_navegacao_conhecimento.py — None — estado: unknown
+- file:tests/test_navegacao_fechamento.py — None — estado: unknown
 - file:tests/test_navegacao_real.py — None — estado: unknown
 - file:tests/test_navegacao_v1.py — None — estado: unknown
 - file:tests/test_navegacao_v2.py — None — estado: unknown
@@ -1172,6 +1174,18 @@ Momento da revisão: 2026-10-07T15:00:09-03:00
 - commit:7557b5c82c7e4cb7df766ea71a8ae8d78fc6caa3 — None — estado: unknown
 - commit:6da1160c56e0d83ec22f78ed126574f5299580b6 — None — estado: unknown
 - commit:237ab20ba8ef1da41d234918a8dfbd549f124090 — None — estado: unknown
+- commit:99f761fb443b67d6e99da936d8bb041c0cbf846e — None — estado: unknown
+- commit:cd73609a4a054c20cf47ccfa8cdc4df8abf163cc — None — estado: unknown
+- commit:653334445229e04a093870089b4a49c52e7da708 — None — estado: unknown
+- commit:37f6c0070cb95b2bd82d1adb21d9021d6a5a1cad — None — estado: unknown
+- commit:5208578fa096d7f70c009c1bcf6065580d83d0f2 — None — estado: unknown
+- commit:2ef20fa6e3773e939fdbbd28eb568f06f05bd067 — None — estado: unknown
+- commit:cfaceed6a0cf537d80f79c2c44c9a5dfe998c52e — None — estado: unknown
+- commit:f9fa94f167e38d81c948c8f694d3452f0d3f710f — None — estado: unknown
+- commit:e12457d728d0e734e5374fbfa9b83fff7bde27d1 — None — estado: unknown
+- commit:bd3b1a4d717727ff5afc107a73ea57a5de413161 — None — estado: unknown
+- commit:b26b350cc7171bba24a3259dd2119698ea1e9918 — None — estado: unknown
+- commit:540de6108dd7dd4dbb1f067e5d23d83535b90024 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1186,19 +1200,19 @@ Momento da revisão: 2026-10-07T15:00:09-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:867754e57662 — None — estado: unknown
-- event:repository-scan:867754e57662 — None — estado: unknown
-- event:commit-observed:237ab20ba8ef — None — estado: unknown
+- evidence:repository:6ccab70fce90 — None — estado: unknown
+- event:repository-scan:6ccab70fce90 — None — estado: unknown
+- event:commit-observed:540de6108dd7 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:5f3e101b0b9d
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:c43591966d2e
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:867754e57662 — repository_scanned — revisão: 237ab20ba8ef1da41d234918a8dfbd549f124090
-- event:commit-observed:237ab20ba8ef — commit_observed — revisão: 237ab20ba8ef1da41d234918a8dfbd549f124090
-- event:test:5f3e101b0b9d — tests_observed — revisão: n/a
+- event:repository-scan:6ccab70fce90 — repository_scanned — revisão: 540de6108dd7dd4dbb1f067e5d23d83535b90024
+- event:commit-observed:540de6108dd7 — commit_observed — revisão: 540de6108dd7dd4dbb1f067e5d23d83535b90024
+- event:test:c43591966d2e — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -2738,15 +2752,40 @@ Momento da revisão: 2026-10-07T15:00:09-03:00
 - commit:6da1160c56e0d83ec22f78ed126574f5299580b6 — changed → file:tools/navegacao/investigate.py — asserted
 - commit:eb5eacfec0dd61c081887aacb6b7cd3292daaf04 — precedes → commit:237ab20ba8ef1da41d234918a8dfbd549f124090 — asserted
 - commit:6da1160c56e0d83ec22f78ed126574f5299580b6 — precedes → commit:237ab20ba8ef1da41d234918a8dfbd549f124090 — asserted
-- event:repository-scan:867754e57662 — generated → evidence:repository:867754e57662 — asserted
-- commit:237ab20ba8ef1da41d234918a8dfbd549f124090 — observed_by → event:repository-scan:867754e57662 — asserted
+- commit:237ab20ba8ef1da41d234918a8dfbd549f124090 — precedes → commit:99f761fb443b67d6e99da936d8bb041c0cbf846e — asserted
+- commit:99f761fb443b67d6e99da936d8bb041c0cbf846e — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:99f761fb443b67d6e99da936d8bb041c0cbf846e — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:99f761fb443b67d6e99da936d8bb041c0cbf846e — precedes → commit:cd73609a4a054c20cf47ccfa8cdc4df8abf163cc — asserted
+- commit:cd73609a4a054c20cf47ccfa8cdc4df8abf163cc — changed → file:tests/test_navegacao_fechamento.py — asserted
+- commit:cd73609a4a054c20cf47ccfa8cdc4df8abf163cc — precedes → commit:653334445229e04a093870089b4a49c52e7da708 — asserted
+- commit:653334445229e04a093870089b4a49c52e7da708 — changed → file:tools/navegacao/validate_real.py — asserted
+- commit:653334445229e04a093870089b4a49c52e7da708 — precedes → commit:37f6c0070cb95b2bd82d1adb21d9021d6a5a1cad — asserted
+- commit:37f6c0070cb95b2bd82d1adb21d9021d6a5a1cad — changed → file:tools/navegacao/index.py — asserted
+- commit:37f6c0070cb95b2bd82d1adb21d9021d6a5a1cad — precedes → commit:5208578fa096d7f70c009c1bcf6065580d83d0f2 — asserted
+- commit:5208578fa096d7f70c009c1bcf6065580d83d0f2 — changed → file:tests/test_navegacao_fechamento.py — asserted
+- commit:5208578fa096d7f70c009c1bcf6065580d83d0f2 — precedes → commit:2ef20fa6e3773e939fdbbd28eb568f06f05bd067 — asserted
+- commit:2ef20fa6e3773e939fdbbd28eb568f06f05bd067 — changed → file:tools/navegacao/validate_real.py — asserted
+- commit:2ef20fa6e3773e939fdbbd28eb568f06f05bd067 — precedes → commit:cfaceed6a0cf537d80f79c2c44c9a5dfe998c52e — asserted
+- commit:cfaceed6a0cf537d80f79c2c44c9a5dfe998c52e — changed → file:tools/navegacao/validate_real.py — asserted
+- commit:cfaceed6a0cf537d80f79c2c44c9a5dfe998c52e — precedes → commit:f9fa94f167e38d81c948c8f694d3452f0d3f710f — asserted
+- commit:f9fa94f167e38d81c948c8f694d3452f0d3f710f — changed → file:tools/navegacao/validate_real.py — asserted
+- commit:f9fa94f167e38d81c948c8f694d3452f0d3f710f — precedes → commit:e12457d728d0e734e5374fbfa9b83fff7bde27d1 — asserted
+- commit:e12457d728d0e734e5374fbfa9b83fff7bde27d1 — changed → file:tools/navegacao/validate_real.py — asserted
+- commit:e12457d728d0e734e5374fbfa9b83fff7bde27d1 — precedes → commit:bd3b1a4d717727ff5afc107a73ea57a5de413161 — asserted
+- commit:bd3b1a4d717727ff5afc107a73ea57a5de413161 — changed → file:tools/navegacao/validate_real.py — asserted
+- commit:99f761fb443b67d6e99da936d8bb041c0cbf846e — precedes → commit:b26b350cc7171bba24a3259dd2119698ea1e9918 — asserted
+- commit:bd3b1a4d717727ff5afc107a73ea57a5de413161 — precedes → commit:b26b350cc7171bba24a3259dd2119698ea1e9918 — asserted
+- commit:b26b350cc7171bba24a3259dd2119698ea1e9918 — precedes → commit:540de6108dd7dd4dbb1f067e5d23d83535b90024 — asserted
+- commit:540de6108dd7dd4dbb1f067e5d23d83535b90024 — changed → file:docs/03_planejamento/FECHAMENTO_NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md — asserted
+- event:repository-scan:6ccab70fce90 — generated → evidence:repository:6ccab70fce90 — asserted
+- commit:540de6108dd7dd4dbb1f067e5d23d83535b90024 — observed_by → event:repository-scan:6ccab70fce90 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:867754e57662 — repository_scan — observed — 369 files indexed at revision 237ab20ba8ef1da41d234918a8dfbd549f124090
-- evidence:test:5f3e101b0b9d — test — tested — 150 passed in 7.29s
+- evidence:repository:6ccab70fce90 — repository_scan — observed — 371 files indexed at revision 540de6108dd7dd4dbb1f067e5d23d83535b90024
+- evidence:test:c43591966d2e — test — tested — 157 passed in 7.20s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
