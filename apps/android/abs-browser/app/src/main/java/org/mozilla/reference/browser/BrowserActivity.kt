@@ -38,6 +38,7 @@ open class BrowserActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_ABS_APP_WEB = "abs_app_web"
+        const val EXTRA_ABS_RETURN_TO_HUB = "abs_return_to_hub"
     }
 
     private val sessionId: String?
@@ -85,7 +86,8 @@ open class BrowserActivity : AppCompatActivity() {
                         }
                     }
 
-                    if (!handled && intent.getBooleanExtra(EXTRA_ABS_APP_WEB, false)) {
+                    if (!handled && (intent.getBooleanExtra(EXTRA_ABS_APP_WEB, false) ||
+                            intent.getBooleanExtra(EXTRA_ABS_RETURN_TO_HUB, false))) {
                         finish()
                     }
                 }
