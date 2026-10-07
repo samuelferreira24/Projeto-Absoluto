@@ -89,7 +89,7 @@ jobs:
             "appId": "$ABS_APPLICATION_ID",
             "versionName": "${{ inputs.version_name }}",
             "versionCode": ${{ inputs.version_code }},
-            "apkUrl": "https://github.com/${{ github.repository }}/releases/download/abs-browser-v${{ inputs.version_name }}/ABS-Browser-${{ inputs.version_name }.apk",
+            "apkUrl": "https://github.com/${{ github.repository }}/releases/download/abs-browser-v${{ inputs.version_name }}/ABS-Browser-${{ inputs.version_name }}.apk",
             "sha256": "$SHA",
             "mandatory": false,
             "channel": "prototype"
