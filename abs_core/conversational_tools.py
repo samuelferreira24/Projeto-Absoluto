@@ -4,6 +4,8 @@ import re
 from typing import Any
 from urllib.parse import urlparse
 
+from .capabilities import CapabilityRegistry
+from .orchestrator import Orchestrator
 from .resource_dispatcher import ResourceDispatcher
 from .resource_router import ResourceRouteRequest
 from .tool_planner import ToolPlanner
@@ -18,12 +20,27 @@ class ConversationalToolRuntime:
         "repositório do projeto",
         "repositorio do projeto",
     )
+    _NAVIGATION_MARKERS = (
+        "no projeto", "neste projeto", "no código", "no codigo",
+        "na arquitetura", "onde está implementado", "onde esta implementado",
+        "qual arquivo", "qual ficheiro", "proveniência", "proveniencia",
+        "evidência no projeto", "evidencia no projeto", "no repositório local",
+        "no repositorio local", "como o abs funciona",
+    )
 
-    _URL_RE = re.compile(r"https?://[^\s<>'\"]+")
+    _URL_RE = re.compile(r"https?://[^\s<>'"]+")
 
-    def __init__(self, planner: ToolPlanner, dispatcher: ResourceDispatcher) -> None:
+    def __init__(
+        self,
+        planner: ToolPlanner,
+        dispatcher: ResourceDispatcher,
+        capabilities: CapabilityRegistry | None = None,
+        orchestrator: Orchestrator | None = None,
+    ) -> None:
         self.planner = planner
         self.dispatcher = dispatcher
+        self.capabilities = capabilities
+        self.orchestrator = orchestrator
 
     def detect(self, message: str) -> dict[str, Any] | None:
         text = str(message or "").strip()
@@ -36,11 +53,16 @@ class ConversationalToolRuntime:
             url = url_match.group(0).rstrip(".,;:)]}")
             parsed = urlparse(url)
             if parsed.scheme in {"http", "https"} and parsed.netloc:
-                return {
-                    "tool_id": "internet-http",
-                    "action": "get",
-                    "url": url,
-                }
+                return {"tool_id": "internet-http", "action": "get", "url": url}
+
+        if any(marker in lowered for marker in self._NAVIGATION_MARKERS):
+            action = "search" if any(
+                word in lowered for word in ("buscar", "procure", "procurar", "pesquise", "pesquisar")
+            ) else "investigate"
+            context: dict[str, Any] = {"action": action, "source": "projeto-absoluto"}
+            if action == "search":
+                context["query"] = text
+            return {"tool_id": "knowledge-navigation", **context}
 
         if not any(marker in lowered for marker in self._GITHUB_MARKERS):
             return None
@@ -67,26 +89,20 @@ class ConversationalToolRuntime:
         context: dict[str, Any] = {"action": action}
         if action == "file":
             match = re.search(
-                r"(?:arquivo|ficheiro|file)\s+(?:chamado\s+|de\s+)?['\"]?([^'\"\n,;]+)",
-                text,
-                re.IGNORECASE,
-            )
+                r"(?:arquivo|ficheiro|file)\s+(?:chamado\s+|de\s+)?['"]?([^'"\n,;]+)",
+                text, re.IGNORECASE)
             if match:
                 context["path"] = match.group(1).strip()
         elif action == "directory":
             match = re.search(
-                r"(?:pasta|diret[oó]rio|directory)\s+(?:chamada\s+|de\s+)?['\"]?([^'\"\n,;]+)",
-                text,
-                re.IGNORECASE,
-            )
+                r"(?:pasta|diret[oó]rio|directory)\s+(?:chamada\s+|de\s+)?['"]?([^'"\n,;]+)",
+                text, re.IGNORECASE)
             if match:
                 context["path"] = match.group(1).strip()
         elif action == "search":
             match = re.search(
                 r"(?:buscar|procure|procurar|pesquise|pesquisar|search)\s+(.+?)(?:\s+no\s+github|\s+no\s+reposit[oó]rio.*)?$",
-                text,
-                re.IGNORECASE,
-            )
+                text, re.IGNORECASE)
             if match:
                 context["query"] = match.group(1).strip()
 
@@ -98,13 +114,28 @@ class ConversationalToolRuntime:
             return None
 
         if intent.get("action") == "unsupported_write":
-            return {
-                "type": "tool_blocked",
-                "tool": "github",
-                "reason": intent["reason"],
-            }
+            return {"type": "tool_blocked", "tool": "github", "reason": intent["reason"]}
 
         tool_id = str(intent["tool_id"])
+        if tool_id == "knowledge-navigation":
+            if self.capabilities is None or self.orchestrator is None:
+                raise LookupError("knowledge_navigation_runtime_not_available")
+            capability = self.capabilities.get(tool_id)
+            work = self.orchestrator.create(
+                str(message),
+                {**intent, "source": "conversational", "knowledge_navigation": True},
+            )
+            work = self.orchestrator.run(work.id, tool_id, approved=True)
+            return {
+                "type": "tool_result",
+                "tool": tool_id,
+                "action": intent["action"],
+                "result": work.result,
+                "work_id": work.id,
+                "provenance": work.provenance,
+                "capability": capability.name,
+            }
+
         if tool_id == "github":
             required = ("repository",)
             category = "source-control"
@@ -134,20 +165,14 @@ class ConversationalToolRuntime:
         context["tool_id"] = tool_id
         context["source"] = "conversational"
         result = self.dispatcher.dispatch(
-            objective,
-            request,
-            context=context,
-            approved=True,
+            objective, request, context=context, approved=True,
         )
         return {
             "type": "tool_result",
             "tool": tool_id,
             "action": intent["action"],
             "route": result.selected_connection,
-            "plan": {
-                "tool_id": plans[0].tool_id,
-                "routes": list(plans[0].routes),
-            },
+            "plan": {"tool_id": plans[0].tool_id, "routes": list(plans[0].routes)},
             "result": result.work.result,
             "work_id": result.work.id,
         }
