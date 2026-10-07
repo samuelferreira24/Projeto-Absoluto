@@ -1,0 +1,134 @@
+name: ABS VPS Command Channel
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: abs-vps-command
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      startsWith(github.event.comment.body, '/abs ')
+    runs-on: [self-hosted, abs-vps-01]
+    timeout-minutes: 10
+
+    steps:
+      - name: Execute allowlisted command
+        id: command
+        shell: bash
+        env:
+          REQUEST: ${{ github.event.comment.body }}
+        run: |
+          set -u
+          command="${REQUEST#'/abs '}"
+          result=""
+
+          case "$command" in
+            help)
+              result='Available commands:
+          /abs help
+          /abs status
+          /abs docker
+          /abs coolify
+          /abs git'
+              ;;
+            status)
+              {
+                echo "hostname: $(hostname)"
+                echo "user: $(id -un)"
+                echo "kernel: $(uname -a)"
+                echo "uptime: $(uptime -p 2>/dev/null || true)"
+                echo
+                echo "[disk]"
+                df -h /
+                echo
+                echo "[memory]"
+                free -h
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
+            docker)
+              if command -v docker >/dev/null 2>&1; then
+                {
+                  echo "docker: $(docker --version 2>&1)"
+                  echo
+                  docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' 2>&1
+                } > /tmp/abs-vps-result.txt
+              else
+                echo "docker: not installed or not in PATH" > /tmp/abs-vps-result.txt
+              fi
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
+            coolify)
+              {
+                echo "[local port 8000]"
+                curl -I -sS --max-time 10 http://127.0.0.1:8000 2>&1 | head -n 20 || true
+                echo
+                echo "[coolify containers]"
+                if command -v docker >/dev/null 2>&1; then
+                  docker ps --format '{{.Names}}\t{{.Status}}\t{{.Ports}}' 2>&1 | grep -i coolify || true
+                fi
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
+            git)
+              {
+                echo "git: $(git --version 2>&1)"
+                if [ -d "$HOME/Projeto-Absoluto/.git" ]; then
+                  echo
+                  git -C "$HOME/Projeto-Absoluto" status --short --branch 2>&1
+                else
+                  echo
+                  echo "Projeto-Absoluto: not found at $HOME/Projeto-Absoluto"
+                fi
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
+            *)
+              result="Comando não permitido: $command. Use /abs help."
+              ;;
+          esac
+
+          {
+            echo 'result<<ABS_RESULT_EOF'
+            printf '%s\n' "$result"
+            echo 'ABS_RESULT_EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Report result
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.command.outputs.result }}
+          REQUEST: ${{ github.event.comment.body }}
+          COMMENT_ID: ${{ github.event.comment.id }}
+        with:
+          script: |
+            const issue_number = context.issue.number;
+            const result = process.env.RESULT || '(sem saída)';
+            const request = process.env.REQUEST || '';
+            const commentId = process.env.COMMENT_ID || '';
+            const body = [
+              '### ABS VPS',
+              '',
+              'COMMAND_MARKER' + request + 'COMMAND_MARKER',
+              '',
+              'OUTPUT_START',
+              result.slice(0, 12000),
+              'OUTPUT_END'
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              body
+            });
