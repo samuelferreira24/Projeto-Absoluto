@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-07T13:37:58-03:00",
-  "source_revision": "1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
+  "generated_at": "2026-10-07T13:47:02-03:00",
+  "source_revision": "24014a7697fdaf9e6f1a942394a7a08050656319",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 114
+      "file_count": 115
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
-      "commit_subject": "Encerrar Navegação e Pesquisa V2 (#102)"
+      "revision": "24014a7697fdaf9e6f1a942394a7a08050656319",
+      "commit_subject": "Adicionar validação real da Navegação V2 (#103)"
     }
   ],
   "tools": [
@@ -963,6 +963,11 @@
       "id": "file:.github/workflows/abs-core.yml",
       "kind": "file",
       "path": ".github/workflows/abs-core.yml"
+    },
+    {
+      "id": "file:.github/workflows/navegacao-v2-real-validation.yml",
+      "kind": "file",
+      "path": ".github/workflows/navegacao-v2-real-validation.yml"
     },
     {
       "id": "file:.github/workflows/project-knowledge-tests.yml",
@@ -7035,6 +7040,20 @@
       "sha": "1f0b620873d984c01ac7e9f89abdf3ccab065bb8"
     },
     {
+      "id": "commit:f0bcf1341062b576036f9735eda79b63828a8c39",
+      "kind": "commit",
+      "at": "2026-10-07T16:38:16Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "f0bcf1341062b576036f9735eda79b63828a8c39"
+    },
+    {
+      "id": "commit:24014a7697fdaf9e6f1a942394a7a08050656319",
+      "kind": "commit",
+      "at": "2026-10-07T13:47:02-03:00",
+      "subject": "Adicionar validação real da Navegação V2 (#103)",
+      "sha": "24014a7697fdaf9e6f1a942394a7a08050656319"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7147,23 +7166,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:fa643a92ad77",
+      "id": "evidence:repository:1289d3ac7eaf",
       "kind": "evidence",
-      "at": "2026-10-07T13:37:58-03:00",
+      "at": "2026-10-07T13:47:02-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:fa643a92ad77",
+      "id": "event:repository-scan:1289d3ac7eaf",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-07T13:37:58-03:00"
+      "at": "2026-10-07T13:47:02-03:00"
     },
     {
-      "id": "event:commit-observed:1f0b620873d9",
+      "id": "event:commit-observed:24014a7697fd",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-07T13:37:58-03:00"
+      "at": "2026-10-07T13:47:02-03:00"
     }
   ],
   "paths": [
@@ -7198,11 +7217,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:c733fa996ead"
+        "evidence:test:15cf78047729"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-07T13:37:58-03:00"
+      "last_validated": "2026-10-07T13:47:02-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7225,20 +7244,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:fa643a92ad77",
+      "id": "evidence:repository:1289d3ac7eaf",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-07T13:37:58-03:00",
+      "observed_at": "2026-10-07T13:47:02-03:00",
       "status": "observed",
-      "detail": "358 files indexed at revision 1f0b620873d984c01ac7e9f89abdf3ccab065bb8"
+      "detail": "359 files indexed at revision 24014a7697fdaf9e6f1a942394a7a08050656319"
     },
     {
-      "id": "evidence:test:c733fa996ead",
+      "id": "evidence:test:15cf78047729",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-07T13:37:58-03:00",
+      "observed_at": "2026-10-07T13:47:02-03:00",
       "status": "tested",
-      "detail": "146 passed in 7.05s"
+      "detail": "146 passed in 7.21s"
     }
   ],
   "decisions": [
@@ -7341,30 +7360,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:fa643a92ad77",
+      "id": "event:repository-scan:1289d3ac7eaf",
       "type": "repository_scanned",
-      "at": "2026-10-07T13:37:58-03:00",
-      "revision": "1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
-      "file_count": 358,
-      "evidence_id": "evidence:repository:fa643a92ad77"
+      "at": "2026-10-07T13:47:02-03:00",
+      "revision": "24014a7697fdaf9e6f1a942394a7a08050656319",
+      "file_count": 359,
+      "evidence_id": "evidence:repository:1289d3ac7eaf"
     },
     {
-      "id": "event:commit-observed:1f0b620873d9",
+      "id": "event:commit-observed:24014a7697fd",
       "type": "commit_observed",
-      "at": "2026-10-07T13:37:58-03:00",
-      "revision": "1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
+      "at": "2026-10-07T13:47:02-03:00",
+      "revision": "24014a7697fdaf9e6f1a942394a7a08050656319",
       "branch": "main",
-      "subject": "Encerrar Navegação e Pesquisa V2 (#102)",
+      "subject": "Adicionar validação real da Navegação V2 (#103)",
       "changed_files": [
-        "docs/03_planejamento/pesquisa/ENCERRAMENTO_NAVEGACAO_V2.md"
+        ".github/workflows/navegacao-v2-real-validation.yml"
       ]
     },
     {
-      "id": "event:test:c733fa996ead",
+      "id": "event:test:15cf78047729",
       "type": "tests_observed",
-      "at": "2026-10-07T13:37:58-03:00",
+      "at": "2026-10-07T13:47:02-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:c733fa996ead"
+      "evidence_id": "evidence:test:15cf78047729"
     }
   ],
   "knowledge_sources": [
@@ -7420,7 +7439,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "4845e5148f4f15de1820963e4134c97e39f247a85a7b0ed02fea4cf57a76d4de"
+      "sha256": "be6e362bc48534b1be04c1b6aa4a2d28258917813bedad6d7b042ad92c8091b8"
     },
     {
       "id": "source:session",
@@ -28259,12 +28278,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:fa643a92ad77",
-      "source": "event:repository-scan:fa643a92ad77",
-      "relation": "generated",
-      "target": "evidence:repository:fa643a92ad77",
+      "id": "rel:commit-precedes:1f0b620873d9:f0bcf1341062",
+      "source": "commit:1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
+      "relation": "precedes",
+      "target": "commit:f0bcf1341062b576036f9735eda79b63828a8c39",
       "status": "asserted",
-      "at": "2026-10-07T13:37:58-03:00",
+      "at": "2026-10-07T16:38:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f0bcf1341062:032adc3624d7",
+      "source": "commit:f0bcf1341062b576036f9735eda79b63828a8c39",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-07T16:38:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f0bcf1341062:d64178c49886",
+      "source": "commit:f0bcf1341062b576036f9735eda79b63828a8c39",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-07T16:38:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f0bcf1341062:24014a7697fd",
+      "source": "commit:f0bcf1341062b576036f9735eda79b63828a8c39",
+      "relation": "precedes",
+      "target": "commit:24014a7697fdaf9e6f1a942394a7a08050656319",
+      "status": "asserted",
+      "at": "2026-10-07T13:47:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:24014a7697fd:8bb24e6b31df",
+      "source": "commit:24014a7697fdaf9e6f1a942394a7a08050656319",
+      "relation": "changed",
+      "target": "file:.github/workflows/navegacao-v2-real-validation.yml",
+      "status": "asserted",
+      "at": "2026-10-07T13:47:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:1289d3ac7eaf",
+      "source": "event:repository-scan:1289d3ac7eaf",
+      "relation": "generated",
+      "target": "evidence:repository:1289d3ac7eaf",
+      "status": "asserted",
+      "at": "2026-10-07T13:47:02-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -28273,12 +28362,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:1f0b620873d9",
-      "source": "commit:1f0b620873d984c01ac7e9f89abdf3ccab065bb8",
+      "id": "rel:scan-commit:24014a7697fd",
+      "source": "commit:24014a7697fdaf9e6f1a942394a7a08050656319",
       "relation": "observed_by",
-      "target": "event:repository-scan:fa643a92ad77",
+      "target": "event:repository-scan:1289d3ac7eaf",
       "status": "asserted",
-      "at": "2026-10-07T13:37:58-03:00",
+      "at": "2026-10-07T13:47:02-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
