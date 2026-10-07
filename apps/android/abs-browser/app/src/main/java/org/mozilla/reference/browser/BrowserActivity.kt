@@ -36,6 +36,10 @@ import org.projetoabsoluto.abs.browser.ext.components
 open class BrowserActivity : AppCompatActivity() {
     private lateinit var crashIntegration: CrashIntegration
 
+    companion object {
+        const val EXTRA_ABS_APP_WEB = "abs_app_web"
+    }
+
     private val sessionId: String?
         get() = SafeIntent(intent).getStringExtra(EXTRA_SESSION_ID)
 
@@ -74,10 +78,15 @@ open class BrowserActivity : AppCompatActivity() {
             this,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
+                    var handled = false
                     supportFragmentManager.fragments.forEach {
-                        if (it is UserInteractionHandler && it.onBackPressed()) {
-                            return
+                        if (!handled && it is UserInteractionHandler && it.onBackPressed()) {
+                            handled = true
                         }
+                    }
+
+                    if (!handled && intent.getBooleanExtra(EXTRA_ABS_APP_WEB, false)) {
+                        finish()
                     }
                 }
             },
