@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-07T16:15:21-03:00",
-  "source_revision": "a752a4a38be43ab16e6b31db06f9507116c3dec9",
+  "generated_at": "2026-10-07T16:16:20-03:00",
+  "source_revision": "aac9828448cc4b92b7ebeca1ff7a99d73eaf41e5",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 66
+      "file_count": 67
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "a752a4a38be43ab16e6b31db06f9507116c3dec9",
-      "commit_subject": "Merge pull request #119 from samuelferreira24/validacao-v1-acceptance"
+      "revision": "aac9828448cc4b92b7ebeca1ff7a99d73eaf41e5",
+      "commit_subject": "Merge pull request #120 from samuelferreira24/fechamento-abs-v1-core"
     }
   ],
   "tools": [
@@ -2818,6 +2818,11 @@
       "id": "file:docs/03_planejamento/AUDITORIA_E_PLANO_FECHAMENTO_ABS_V1_OPERACIONAL_2026-09-25.md",
       "kind": "file",
       "path": "docs/03_planejamento/AUDITORIA_E_PLANO_FECHAMENTO_ABS_V1_OPERACIONAL_2026-09-25.md"
+    },
+    {
+      "id": "file:docs/03_planejamento/FECHAMENTO_ABS_V1_CORE.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/FECHAMENTO_ABS_V1_CORE.md"
     },
     {
       "id": "file:docs/03_planejamento/FECHAMENTO_NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md",
@@ -7676,6 +7681,27 @@
       "sha": "a752a4a38be43ab16e6b31db06f9507116c3dec9"
     },
     {
+      "id": "commit:1f5602ede6bd8263cf89cfd34bbdd999237d40b7",
+      "kind": "commit",
+      "at": "2026-10-07T19:15:40Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "1f5602ede6bd8263cf89cfd34bbdd999237d40b7"
+    },
+    {
+      "id": "commit:e19f26961125c657bf33a32ca194ed85deac9ec1",
+      "kind": "commit",
+      "at": "2026-10-07T16:15:41-03:00",
+      "subject": "docs: fechar ABS V1 Core e apontar proxima etapa",
+      "sha": "e19f26961125c657bf33a32ca194ed85deac9ec1"
+    },
+    {
+      "id": "commit:aac9828448cc4b92b7ebeca1ff7a99d73eaf41e5",
+      "kind": "commit",
+      "at": "2026-10-07T16:16:20-03:00",
+      "subject": "Merge pull request #120 from samuelferreira24/fechamento-abs-v1-core",
+      "sha": "aac9828448cc4b92b7ebeca1ff7a99d73eaf41e5"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7788,23 +7814,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:837f53252de1",
+      "id": "evidence:repository:451bbb4b0dc4",
       "kind": "evidence",
-      "at": "2026-10-07T16:15:21-03:00",
+      "at": "2026-10-07T16:16:20-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:837f53252de1",
+      "id": "event:repository-scan:451bbb4b0dc4",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-07T16:15:21-03:00"
+      "at": "2026-10-07T16:16:20-03:00"
     },
     {
-      "id": "event:commit-observed:a752a4a38be4",
+      "id": "event:commit-observed:aac9828448cc",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-07T16:15:21-03:00"
+      "at": "2026-10-07T16:16:20-03:00"
     }
   ],
   "paths": [
@@ -7839,11 +7865,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:9c1dca6765fd"
+        "evidence:test:2f1ca881da30"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-07T16:15:21-03:00"
+      "last_validated": "2026-10-07T16:16:20-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7866,20 +7892,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:837f53252de1",
+      "id": "evidence:repository:451bbb4b0dc4",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-07T16:15:21-03:00",
+      "observed_at": "2026-10-07T16:16:20-03:00",
       "status": "observed",
-      "detail": "377 files indexed at revision a752a4a38be43ab16e6b31db06f9507116c3dec9"
+      "detail": "378 files indexed at revision aac9828448cc4b92b7ebeca1ff7a99d73eaf41e5"
     },
     {
-      "id": "evidence:test:9c1dca6765fd",
+      "id": "evidence:test:2f1ca881da30",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-07T16:15:21-03:00",
+      "observed_at": "2026-10-07T16:16:20-03:00",
       "status": "tested",
-      "detail": "163 passed in 6.97s"
+      "detail": "163 passed in 7.49s"
     }
   ],
   "decisions": [
@@ -7982,28 +8008,28 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:837f53252de1",
+      "id": "event:repository-scan:451bbb4b0dc4",
       "type": "repository_scanned",
-      "at": "2026-10-07T16:15:21-03:00",
-      "revision": "a752a4a38be43ab16e6b31db06f9507116c3dec9",
-      "file_count": 377,
-      "evidence_id": "evidence:repository:837f53252de1"
+      "at": "2026-10-07T16:16:20-03:00",
+      "revision": "aac9828448cc4b92b7ebeca1ff7a99d73eaf41e5",
+      "file_count": 378,
+      "evidence_id": "evidence:repository:451bbb4b0dc4"
     },
     {
-      "id": "event:commit-observed:a752a4a38be4",
+      "id": "event:commit-observed:aac9828448cc",
       "type": "commit_observed",
-      "at": "2026-10-07T16:15:21-03:00",
-      "revision": "a752a4a38be43ab16e6b31db06f9507116c3dec9",
+      "at": "2026-10-07T16:16:20-03:00",
+      "revision": "aac9828448cc4b92b7ebeca1ff7a99d73eaf41e5",
       "branch": "main",
-      "subject": "Merge pull request #119 from samuelferreira24/validacao-v1-acceptance",
+      "subject": "Merge pull request #120 from samuelferreira24/fechamento-abs-v1-core",
       "changed_files": []
     },
     {
-      "id": "event:test:9c1dca6765fd",
+      "id": "event:test:2f1ca881da30",
       "type": "tests_observed",
-      "at": "2026-10-07T16:15:21-03:00",
+      "at": "2026-10-07T16:16:20-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:9c1dca6765fd"
+      "evidence_id": "evidence:test:2f1ca881da30"
     }
   ],
   "knowledge_sources": [
@@ -8059,7 +8085,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "bf37ce712554164decec13e1a404e63a03aed9efc4002521003b0ff64cc2c096"
+      "sha256": "760c84519122a7e3ba1b08fa1b1de3e1440d2beaa6c758f394db227f64748c13"
     },
     {
       "id": "source:session",
@@ -31208,12 +31234,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:837f53252de1",
-      "source": "event:repository-scan:837f53252de1",
-      "relation": "generated",
-      "target": "evidence:repository:837f53252de1",
+      "id": "rel:commit-precedes:a752a4a38be4:1f5602ede6bd",
+      "source": "commit:a752a4a38be43ab16e6b31db06f9507116c3dec9",
+      "relation": "precedes",
+      "target": "commit:1f5602ede6bd8263cf89cfd34bbdd999237d40b7",
       "status": "asserted",
-      "at": "2026-10-07T16:15:21-03:00",
+      "at": "2026-10-07T19:15:40Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1f5602ede6bd:032adc3624d7",
+      "source": "commit:1f5602ede6bd8263cf89cfd34bbdd999237d40b7",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-07T19:15:40Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1f5602ede6bd:d64178c49886",
+      "source": "commit:1f5602ede6bd8263cf89cfd34bbdd999237d40b7",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-07T19:15:40Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a752a4a38be4:e19f26961125",
+      "source": "commit:a752a4a38be43ab16e6b31db06f9507116c3dec9",
+      "relation": "precedes",
+      "target": "commit:e19f26961125c657bf33a32ca194ed85deac9ec1",
+      "status": "asserted",
+      "at": "2026-10-07T16:15:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e19f26961125:2dd07f8134ed",
+      "source": "commit:e19f26961125c657bf33a32ca194ed85deac9ec1",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/FECHAMENTO_ABS_V1_CORE.md",
+      "status": "asserted",
+      "at": "2026-10-07T16:15:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:1f5602ede6bd:aac9828448cc",
+      "source": "commit:1f5602ede6bd8263cf89cfd34bbdd999237d40b7",
+      "relation": "precedes",
+      "target": "commit:aac9828448cc4b92b7ebeca1ff7a99d73eaf41e5",
+      "status": "asserted",
+      "at": "2026-10-07T16:16:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:e19f26961125:aac9828448cc",
+      "source": "commit:e19f26961125c657bf33a32ca194ed85deac9ec1",
+      "relation": "precedes",
+      "target": "commit:aac9828448cc4b92b7ebeca1ff7a99d73eaf41e5",
+      "status": "asserted",
+      "at": "2026-10-07T16:16:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:451bbb4b0dc4",
+      "source": "event:repository-scan:451bbb4b0dc4",
+      "relation": "generated",
+      "target": "evidence:repository:451bbb4b0dc4",
+      "status": "asserted",
+      "at": "2026-10-07T16:16:20-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -31222,12 +31346,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:a752a4a38be4",
-      "source": "commit:a752a4a38be43ab16e6b31db06f9507116c3dec9",
+      "id": "rel:scan-commit:aac9828448cc",
+      "source": "commit:aac9828448cc4b92b7ebeca1ff7a99d73eaf41e5",
       "relation": "observed_by",
-      "target": "event:repository-scan:837f53252de1",
+      "target": "event:repository-scan:451bbb4b0dc4",
       "status": "asserted",
-      "at": "2026-10-07T16:15:21-03:00",
+      "at": "2026-10-07T16:16:20-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
