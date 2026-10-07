@@ -115,7 +115,7 @@ android {
         proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         matchingFallbacks = ['release'] // Use on the "release" build type in dependencies (AARs)
 
-        if (gradle.hasProperty("localProperties.autosignReleaseWithDebugKey")) {
+        if (project.findProperty("absPrototypeSigning") == "true") {
             signingConfig signingConfigs.debug
         }
 
