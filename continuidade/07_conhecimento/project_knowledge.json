@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-07T14:03:37-03:00",
-  "source_revision": "c69a59423f836704fff31b778326e0dff8c67514",
+  "generated_at": "2026-10-07T15:00:09-03:00",
+  "source_revision": "237ab20ba8ef1da41d234918a8dfbd549f124090",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 60
+      "file_count": 61
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -32,12 +32,12 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 115
+      "file_count": 121
     },
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 50
+      "file_count": 53
     }
   ],
   "capabilities": [
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "c69a59423f836704fff31b778326e0dff8c67514",
-      "commit_subject": "Corrigir validação incremental da Navegação V2 (#105)"
+      "revision": "237ab20ba8ef1da41d234918a8dfbd549f124090",
+      "commit_subject": "Expandir Navegação para Conhecimento Verificável"
     }
   ],
   "tools": [
@@ -1033,6 +1033,11 @@
       "id": "file:20_interface/web/sw.js",
       "kind": "file",
       "path": "20_interface/web/sw.js"
+    },
+    {
+      "id": "file:40_integracao/NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md",
+      "kind": "file",
+      "path": "40_integracao/NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md"
     },
     {
       "id": "file:50_frentes/01_automacao/.gitkeep",
@@ -2835,6 +2840,11 @@
       "path": "docs/03_planejamento/MAPA_MESTRE_EVOLUCAO_ABS_V1_A_INDEPENDENCIA.md"
     },
     {
+      "id": "file:docs/03_planejamento/NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md"
+    },
+    {
       "id": "file:docs/03_planejamento/PLANO_ABS_INTEGRACAO_GITHUB.md",
       "kind": "file",
       "path": "docs/03_planejamento/PLANO_ABS_INTEGRACAO_GITHUB.md"
@@ -3260,6 +3270,21 @@
       "path": "tests/test_local.py"
     },
     {
+      "id": "file:tests/test_navegacao_agent.py",
+      "kind": "file",
+      "path": "tests/test_navegacao_agent.py"
+    },
+    {
+      "id": "file:tests/test_navegacao_conhecimento.py",
+      "kind": "file",
+      "path": "tests/test_navegacao_conhecimento.py"
+    },
+    {
+      "id": "file:tests/test_navegacao_real.py",
+      "kind": "file",
+      "path": "tests/test_navegacao_real.py"
+    },
+    {
       "id": "file:tests/test_navegacao_v1.py",
       "kind": "file",
       "path": "tests/test_navegacao_v1.py"
@@ -3430,6 +3455,21 @@
       "path": "tools/navegacao/__init__.py"
     },
     {
+      "id": "file:tools/navegacao/agent.py",
+      "kind": "file",
+      "path": "tools/navegacao/agent.py"
+    },
+    {
+      "id": "file:tools/navegacao/ai.py",
+      "kind": "file",
+      "path": "tools/navegacao/ai.py"
+    },
+    {
+      "id": "file:tools/navegacao/coverage.py",
+      "kind": "file",
+      "path": "tools/navegacao/coverage.py"
+    },
+    {
       "id": "file:tools/navegacao/history.py",
       "kind": "file",
       "path": "tools/navegacao/history.py"
@@ -3445,6 +3485,11 @@
       "path": "tools/navegacao/inspect.py"
     },
     {
+      "id": "file:tools/navegacao/investigate.py",
+      "kind": "file",
+      "path": "tools/navegacao/investigate.py"
+    },
+    {
       "id": "file:tools/navegacao/navigator.py",
       "kind": "file",
       "path": "tools/navegacao/navigator.py"
@@ -3458,6 +3503,11 @@
       "id": "file:tools/navegacao/search.py",
       "kind": "file",
       "path": "tools/navegacao/search.py"
+    },
+    {
+      "id": "file:tools/navegacao/validate_real.py",
+      "kind": "file",
+      "path": "tools/navegacao/validate_real.py"
     },
     {
       "id": "file:tools/navegacao/verify.py",
@@ -7068,6 +7118,160 @@
       "sha": "c69a59423f836704fff31b778326e0dff8c67514"
     },
     {
+      "id": "commit:eb5eacfec0dd61c081887aacb6b7cd3292daaf04",
+      "kind": "commit",
+      "at": "2026-10-07T17:04:07Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "eb5eacfec0dd61c081887aacb6b7cd3292daaf04"
+    },
+    {
+      "id": "commit:5246fcf63d62975407b26e80ddf64deb75991ac7",
+      "kind": "commit",
+      "at": "2026-10-07T14:55:39-03:00",
+      "subject": "Expandir Navegacao para conhecimento verificavel e uso direto por IA",
+      "sha": "5246fcf63d62975407b26e80ddf64deb75991ac7"
+    },
+    {
+      "id": "commit:9578936007de43106f967f62247dda0673096730",
+      "kind": "commit",
+      "at": "2026-10-07T14:55:42-03:00",
+      "subject": "Expandir Navegacao para conhecimento verificavel e uso direto por IA",
+      "sha": "9578936007de43106f967f62247dda0673096730"
+    },
+    {
+      "id": "commit:dd36f417d21b3ae7c20f0b45e36f7868a22ad734",
+      "kind": "commit",
+      "at": "2026-10-07T14:55:50-03:00",
+      "subject": "Expandir Navegacao para conhecimento verificavel e uso direto por IA",
+      "sha": "dd36f417d21b3ae7c20f0b45e36f7868a22ad734"
+    },
+    {
+      "id": "commit:21077cfca8870395ca9b4e5a3c8a0f20907ed208",
+      "kind": "commit",
+      "at": "2026-10-07T14:55:58-03:00",
+      "subject": "Evoluir facade para KnowledgeNavigator verificavel e independente do ABS",
+      "sha": "21077cfca8870395ca9b4e5a3c8a0f20907ed208"
+    },
+    {
+      "id": "commit:f624fd59c72c52cda4d49f8e9bb44dfc48bfb2df",
+      "kind": "commit",
+      "at": "2026-10-07T14:56:00-03:00",
+      "subject": "Evoluir facade para KnowledgeNavigator verificavel e independente do ABS",
+      "sha": "f624fd59c72c52cda4d49f8e9bb44dfc48bfb2df"
+    },
+    {
+      "id": "commit:0c5e3acb594d66c208a09d92ff9b040e03c5635e",
+      "kind": "commit",
+      "at": "2026-10-07T14:56:12-03:00",
+      "subject": "Documentar Navegacao de Conhecimento Verificavel e testes de uso por IA",
+      "sha": "0c5e3acb594d66c208a09d92ff9b040e03c5635e"
+    },
+    {
+      "id": "commit:27fe6caf5a089799e6309971ae15925d7302d705",
+      "kind": "commit",
+      "at": "2026-10-07T14:56:14-03:00",
+      "subject": "Documentar Navegacao de Conhecimento Verificavel e testes de uso por IA",
+      "sha": "27fe6caf5a089799e6309971ae15925d7302d705"
+    },
+    {
+      "id": "commit:ccf9a54f5383d8596945a6ea48bf86cd0ad7ed4e",
+      "kind": "commit",
+      "at": "2026-10-07T14:56:17-03:00",
+      "subject": "Documentar Navegacao de Conhecimento Verificavel e testes de uso por IA",
+      "sha": "ccf9a54f5383d8596945a6ea48bf86cd0ad7ed4e"
+    },
+    {
+      "id": "commit:d74785b7ab3d16936e38d8487eed18bc3833ff90",
+      "kind": "commit",
+      "at": "2026-10-07T14:56:35-03:00",
+      "subject": "Adicionar harness de validacao real e matriz de investigacao",
+      "sha": "d74785b7ab3d16936e38d8487eed18bc3833ff90"
+    },
+    {
+      "id": "commit:dda57b3eb08f318ae400a6cb9be6f337218ed0e5",
+      "kind": "commit",
+      "at": "2026-10-07T14:56:38-03:00",
+      "subject": "Adicionar harness de validacao real e matriz de investigacao",
+      "sha": "dda57b3eb08f318ae400a6cb9be6f337218ed0e5"
+    },
+    {
+      "id": "commit:08c096771643dbc0b52722dda9a7324b9927d644",
+      "kind": "commit",
+      "at": "2026-10-07T14:57:07-03:00",
+      "subject": "Fechar interface de IA e validacao real da navegacao",
+      "sha": "08c096771643dbc0b52722dda9a7324b9927d644"
+    },
+    {
+      "id": "commit:94fcfd0e5c8f3ae6dcf2496c24a6db0323c215a0",
+      "kind": "commit",
+      "at": "2026-10-07T14:57:17-03:00",
+      "subject": "Adicionar validacao real dos dois repositorios no CI",
+      "sha": "94fcfd0e5c8f3ae6dcf2496c24a6db0323c215a0"
+    },
+    {
+      "id": "commit:0ff7084ab46890d2f431b05767632c7768c0b13e",
+      "kind": "commit",
+      "at": "2026-10-07T14:57:20-03:00",
+      "subject": "Adicionar validacao real dos dois repositorios no CI",
+      "sha": "0ff7084ab46890d2f431b05767632c7768c0b13e"
+    },
+    {
+      "id": "commit:cfa5e5378b656d8ec4d3e5b6e5f4e8cbdbe37b30",
+      "kind": "commit",
+      "at": "2026-10-07T14:57:50-03:00",
+      "subject": "Executar validacao de navegacao tambem no branch de implementacao",
+      "sha": "cfa5e5378b656d8ec4d3e5b6e5f4e8cbdbe37b30"
+    },
+    {
+      "id": "commit:53d91f3e32b594a44e12c4afad523562d98bd7a8",
+      "kind": "commit",
+      "at": "2026-10-07T14:58:07-03:00",
+      "subject": "Adicionar protocolo de agente por JSONL para uso direto por IA",
+      "sha": "53d91f3e32b594a44e12c4afad523562d98bd7a8"
+    },
+    {
+      "id": "commit:b5e49bf971984ae74b9ce00c4657a116ea4b2e8d",
+      "kind": "commit",
+      "at": "2026-10-07T14:58:09-03:00",
+      "subject": "Adicionar protocolo de agente por JSONL para uso direto por IA",
+      "sha": "b5e49bf971984ae74b9ce00c4657a116ea4b2e8d"
+    },
+    {
+      "id": "commit:3d848bedd4193b71838536817acb42481f2e7f35",
+      "kind": "commit",
+      "at": "2026-10-07T14:58:19-03:00",
+      "subject": "Documentar protocolo de agente da navegacao verificavel",
+      "sha": "3d848bedd4193b71838536817acb42481f2e7f35"
+    },
+    {
+      "id": "commit:d589ffa5ad3c9832f51d3e5d2e358821391bf0a1",
+      "kind": "commit",
+      "at": "2026-10-07T14:58:45-03:00",
+      "subject": "Corrigir checkout do repositorio Sistema na validacao real",
+      "sha": "d589ffa5ad3c9832f51d3e5d2e358821391bf0a1"
+    },
+    {
+      "id": "commit:7557b5c82c7e4cb7df766ea71a8ae8d78fc6caa3",
+      "kind": "commit",
+      "at": "2026-10-07T14:59:18-03:00",
+      "subject": "Manter teste de investigacao em portugues com expansao verificavel",
+      "sha": "7557b5c82c7e4cb7df766ea71a8ae8d78fc6caa3"
+    },
+    {
+      "id": "commit:6da1160c56e0d83ec22f78ed126574f5299580b6",
+      "kind": "commit",
+      "at": "2026-10-07T14:59:27-03:00",
+      "subject": "Adicionar expansao bilingue verificavel na investigacao",
+      "sha": "6da1160c56e0d83ec22f78ed126574f5299580b6"
+    },
+    {
+      "id": "commit:237ab20ba8ef1da41d234918a8dfbd549f124090",
+      "kind": "commit",
+      "at": "2026-10-07T15:00:09-03:00",
+      "subject": "Expandir Navegação para Conhecimento Verificável",
+      "sha": "237ab20ba8ef1da41d234918a8dfbd549f124090"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7180,23 +7384,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:75febd891f2b",
+      "id": "evidence:repository:867754e57662",
       "kind": "evidence",
-      "at": "2026-10-07T14:03:37-03:00",
+      "at": "2026-10-07T15:00:09-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:75febd891f2b",
+      "id": "event:repository-scan:867754e57662",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-07T14:03:37-03:00"
+      "at": "2026-10-07T15:00:09-03:00"
     },
     {
-      "id": "event:commit-observed:c69a59423f83",
+      "id": "event:commit-observed:237ab20ba8ef",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-07T14:03:37-03:00"
+      "at": "2026-10-07T15:00:09-03:00"
     }
   ],
   "paths": [
@@ -7231,11 +7435,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:499a07d92cb4"
+        "evidence:test:5f3e101b0b9d"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-07T14:03:37-03:00"
+      "last_validated": "2026-10-07T15:00:09-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7258,20 +7462,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:75febd891f2b",
+      "id": "evidence:repository:867754e57662",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-07T14:03:37-03:00",
+      "observed_at": "2026-10-07T15:00:09-03:00",
       "status": "observed",
-      "detail": "359 files indexed at revision c69a59423f836704fff31b778326e0dff8c67514"
+      "detail": "369 files indexed at revision 237ab20ba8ef1da41d234918a8dfbd549f124090"
     },
     {
-      "id": "evidence:test:499a07d92cb4",
+      "id": "evidence:test:5f3e101b0b9d",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-07T14:03:37-03:00",
+      "observed_at": "2026-10-07T15:00:09-03:00",
       "status": "tested",
-      "detail": "146 passed in 7.00s"
+      "detail": "150 passed in 7.29s"
     }
   ],
   "decisions": [
@@ -7374,30 +7578,28 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:75febd891f2b",
+      "id": "event:repository-scan:867754e57662",
       "type": "repository_scanned",
-      "at": "2026-10-07T14:03:37-03:00",
-      "revision": "c69a59423f836704fff31b778326e0dff8c67514",
-      "file_count": 359,
-      "evidence_id": "evidence:repository:75febd891f2b"
+      "at": "2026-10-07T15:00:09-03:00",
+      "revision": "237ab20ba8ef1da41d234918a8dfbd549f124090",
+      "file_count": 369,
+      "evidence_id": "evidence:repository:867754e57662"
     },
     {
-      "id": "event:commit-observed:c69a59423f83",
+      "id": "event:commit-observed:237ab20ba8ef",
       "type": "commit_observed",
-      "at": "2026-10-07T14:03:37-03:00",
-      "revision": "c69a59423f836704fff31b778326e0dff8c67514",
+      "at": "2026-10-07T15:00:09-03:00",
+      "revision": "237ab20ba8ef1da41d234918a8dfbd549f124090",
       "branch": "main",
-      "subject": "Corrigir validação incremental da Navegação V2 (#105)",
-      "changed_files": [
-        ".github/workflows/navegacao-v2-real-validation.yml"
-      ]
+      "subject": "Expandir Navegação para Conhecimento Verificável",
+      "changed_files": []
     },
     {
-      "id": "event:test:499a07d92cb4",
+      "id": "event:test:5f3e101b0b9d",
       "type": "tests_observed",
-      "at": "2026-10-07T14:03:37-03:00",
+      "at": "2026-10-07T15:00:09-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:499a07d92cb4"
+      "evidence_id": "evidence:test:5f3e101b0b9d"
     }
   ],
   "knowledge_sources": [
@@ -7453,7 +7655,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "4b32f04629b169b825790600a9db45798bfeafe2db33098510154f35531f00c8"
+      "sha256": "2bf2653354adc3b9d8f244102a4d70ffbbe1b1aa33a35c6f07b939c6c4c96857"
     },
     {
       "id": "source:session",
@@ -28432,12 +28634,628 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:75febd891f2b",
-      "source": "event:repository-scan:75febd891f2b",
-      "relation": "generated",
-      "target": "evidence:repository:75febd891f2b",
+      "id": "rel:commit-precedes:c69a59423f83:eb5eacfec0dd",
+      "source": "commit:c69a59423f836704fff31b778326e0dff8c67514",
+      "relation": "precedes",
+      "target": "commit:eb5eacfec0dd61c081887aacb6b7cd3292daaf04",
       "status": "asserted",
-      "at": "2026-10-07T14:03:37-03:00",
+      "at": "2026-10-07T17:04:07Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:eb5eacfec0dd:032adc3624d7",
+      "source": "commit:eb5eacfec0dd61c081887aacb6b7cd3292daaf04",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-07T17:04:07Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:eb5eacfec0dd:d64178c49886",
+      "source": "commit:eb5eacfec0dd61c081887aacb6b7cd3292daaf04",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-07T17:04:07Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:eb5eacfec0dd:5246fcf63d62",
+      "source": "commit:eb5eacfec0dd61c081887aacb6b7cd3292daaf04",
+      "relation": "precedes",
+      "target": "commit:5246fcf63d62975407b26e80ddf64deb75991ac7",
+      "status": "asserted",
+      "at": "2026-10-07T14:55:39-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:5246fcf63d62:82a80d665694",
+      "source": "commit:5246fcf63d62975407b26e80ddf64deb75991ac7",
+      "relation": "changed",
+      "target": "file:tools/navegacao/coverage.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:55:39-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:5246fcf63d62:9578936007de",
+      "source": "commit:5246fcf63d62975407b26e80ddf64deb75991ac7",
+      "relation": "precedes",
+      "target": "commit:9578936007de43106f967f62247dda0673096730",
+      "status": "asserted",
+      "at": "2026-10-07T14:55:42-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:9578936007de:3235f28a9c32",
+      "source": "commit:9578936007de43106f967f62247dda0673096730",
+      "relation": "changed",
+      "target": "file:tools/navegacao/investigate.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:55:42-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:9578936007de:dd36f417d21b",
+      "source": "commit:9578936007de43106f967f62247dda0673096730",
+      "relation": "precedes",
+      "target": "commit:dd36f417d21b3ae7c20f0b45e36f7868a22ad734",
+      "status": "asserted",
+      "at": "2026-10-07T14:55:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:dd36f417d21b:9cdab3a3ee79",
+      "source": "commit:dd36f417d21b3ae7c20f0b45e36f7868a22ad734",
+      "relation": "changed",
+      "target": "file:tools/navegacao/ai.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:55:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:dd36f417d21b:21077cfca887",
+      "source": "commit:dd36f417d21b3ae7c20f0b45e36f7868a22ad734",
+      "relation": "precedes",
+      "target": "commit:21077cfca8870395ca9b4e5a3c8a0f20907ed208",
+      "status": "asserted",
+      "at": "2026-10-07T14:55:58-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:21077cfca887:0823e29c41cb",
+      "source": "commit:21077cfca8870395ca9b4e5a3c8a0f20907ed208",
+      "relation": "changed",
+      "target": "file:tools/navegacao/navigator.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:55:58-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:21077cfca887:f624fd59c72c",
+      "source": "commit:21077cfca8870395ca9b4e5a3c8a0f20907ed208",
+      "relation": "precedes",
+      "target": "commit:f624fd59c72c52cda4d49f8e9bb44dfc48bfb2df",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f624fd59c72c:6bc2093f4d29",
+      "source": "commit:f624fd59c72c52cda4d49f8e9bb44dfc48bfb2df",
+      "relation": "changed",
+      "target": "file:tools/navegacao/__init__.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f624fd59c72c:0c5e3acb594d",
+      "source": "commit:f624fd59c72c52cda4d49f8e9bb44dfc48bfb2df",
+      "relation": "precedes",
+      "target": "commit:0c5e3acb594d66c208a09d92ff9b040e03c5635e",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:12-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:0c5e3acb594d:13e3ea51f4f5",
+      "source": "commit:0c5e3acb594d66c208a09d92ff9b040e03c5635e",
+      "relation": "changed",
+      "target": "file:tests/test_navegacao_conhecimento.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:12-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:0c5e3acb594d:27fe6caf5a08",
+      "source": "commit:0c5e3acb594d66c208a09d92ff9b040e03c5635e",
+      "relation": "precedes",
+      "target": "commit:27fe6caf5a089799e6309971ae15925d7302d705",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:14-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:27fe6caf5a08:2852cebe41fe",
+      "source": "commit:27fe6caf5a089799e6309971ae15925d7302d705",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:14-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:27fe6caf5a08:ccf9a54f5383",
+      "source": "commit:27fe6caf5a089799e6309971ae15925d7302d705",
+      "relation": "precedes",
+      "target": "commit:ccf9a54f5383d8596945a6ea48bf86cd0ad7ed4e",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:17-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ccf9a54f5383:c41a60c6f988",
+      "source": "commit:ccf9a54f5383d8596945a6ea48bf86cd0ad7ed4e",
+      "relation": "changed",
+      "target": "file:40_integracao/NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:17-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:ccf9a54f5383:d74785b7ab3d",
+      "source": "commit:ccf9a54f5383d8596945a6ea48bf86cd0ad7ed4e",
+      "relation": "precedes",
+      "target": "commit:d74785b7ab3d16936e38d8487eed18bc3833ff90",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:35-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d74785b7ab3d:cbcbd6f91176",
+      "source": "commit:d74785b7ab3d16936e38d8487eed18bc3833ff90",
+      "relation": "changed",
+      "target": "file:tools/navegacao/validate_real.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:35-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:d74785b7ab3d:dda57b3eb08f",
+      "source": "commit:d74785b7ab3d16936e38d8487eed18bc3833ff90",
+      "relation": "precedes",
+      "target": "commit:dda57b3eb08f318ae400a6cb9be6f337218ed0e5",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:38-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:dda57b3eb08f:31fb33b7d376",
+      "source": "commit:dda57b3eb08f318ae400a6cb9be6f337218ed0e5",
+      "relation": "changed",
+      "target": "file:tests/test_navegacao_real.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:56:38-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:dda57b3eb08f:08c096771643",
+      "source": "commit:dda57b3eb08f318ae400a6cb9be6f337218ed0e5",
+      "relation": "precedes",
+      "target": "commit:08c096771643dbc0b52722dda9a7324b9927d644",
+      "status": "asserted",
+      "at": "2026-10-07T14:57:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:08c096771643:ea154fe4316e",
+      "source": "commit:08c096771643dbc0b52722dda9a7324b9927d644",
+      "relation": "changed",
+      "target": "file:tools/navegacao/README.md",
+      "status": "asserted",
+      "at": "2026-10-07T14:57:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:08c096771643:94fcfd0e5c8f",
+      "source": "commit:08c096771643dbc0b52722dda9a7324b9927d644",
+      "relation": "precedes",
+      "target": "commit:94fcfd0e5c8f3ae6dcf2496c24a6db0323c215a0",
+      "status": "asserted",
+      "at": "2026-10-07T14:57:17-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:94fcfd0e5c8f:31fb33b7d376",
+      "source": "commit:94fcfd0e5c8f3ae6dcf2496c24a6db0323c215a0",
+      "relation": "changed",
+      "target": "file:tests/test_navegacao_real.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:57:17-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:94fcfd0e5c8f:0ff7084ab468",
+      "source": "commit:94fcfd0e5c8f3ae6dcf2496c24a6db0323c215a0",
+      "relation": "precedes",
+      "target": "commit:0ff7084ab46890d2f431b05767632c7768c0b13e",
+      "status": "asserted",
+      "at": "2026-10-07T14:57:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:0ff7084ab468:65dc8a7ffdc6",
+      "source": "commit:0ff7084ab46890d2f431b05767632c7768c0b13e",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-core.yml",
+      "status": "asserted",
+      "at": "2026-10-07T14:57:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:0ff7084ab468:cfa5e5378b65",
+      "source": "commit:0ff7084ab46890d2f431b05767632c7768c0b13e",
+      "relation": "precedes",
+      "target": "commit:cfa5e5378b656d8ec4d3e5b6e5f4e8cbdbe37b30",
+      "status": "asserted",
+      "at": "2026-10-07T14:57:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cfa5e5378b65:65dc8a7ffdc6",
+      "source": "commit:cfa5e5378b656d8ec4d3e5b6e5f4e8cbdbe37b30",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-core.yml",
+      "status": "asserted",
+      "at": "2026-10-07T14:57:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:cfa5e5378b65:53d91f3e32b5",
+      "source": "commit:cfa5e5378b656d8ec4d3e5b6e5f4e8cbdbe37b30",
+      "relation": "precedes",
+      "target": "commit:53d91f3e32b594a44e12c4afad523562d98bd7a8",
+      "status": "asserted",
+      "at": "2026-10-07T14:58:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:53d91f3e32b5:dee8239deaf1",
+      "source": "commit:53d91f3e32b594a44e12c4afad523562d98bd7a8",
+      "relation": "changed",
+      "target": "file:tools/navegacao/agent.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:58:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:53d91f3e32b5:b5e49bf97198",
+      "source": "commit:53d91f3e32b594a44e12c4afad523562d98bd7a8",
+      "relation": "precedes",
+      "target": "commit:b5e49bf971984ae74b9ce00c4657a116ea4b2e8d",
+      "status": "asserted",
+      "at": "2026-10-07T14:58:09-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b5e49bf97198:06fce233e6eb",
+      "source": "commit:b5e49bf971984ae74b9ce00c4657a116ea4b2e8d",
+      "relation": "changed",
+      "target": "file:tests/test_navegacao_agent.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:58:09-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b5e49bf97198:3d848bedd419",
+      "source": "commit:b5e49bf971984ae74b9ce00c4657a116ea4b2e8d",
+      "relation": "precedes",
+      "target": "commit:3d848bedd4193b71838536817acb42481f2e7f35",
+      "status": "asserted",
+      "at": "2026-10-07T14:58:19-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3d848bedd419:ea154fe4316e",
+      "source": "commit:3d848bedd4193b71838536817acb42481f2e7f35",
+      "relation": "changed",
+      "target": "file:tools/navegacao/README.md",
+      "status": "asserted",
+      "at": "2026-10-07T14:58:19-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:3d848bedd419:d589ffa5ad3c",
+      "source": "commit:3d848bedd4193b71838536817acb42481f2e7f35",
+      "relation": "precedes",
+      "target": "commit:d589ffa5ad3c9832f51d3e5d2e358821391bf0a1",
+      "status": "asserted",
+      "at": "2026-10-07T14:58:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d589ffa5ad3c:65dc8a7ffdc6",
+      "source": "commit:d589ffa5ad3c9832f51d3e5d2e358821391bf0a1",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-core.yml",
+      "status": "asserted",
+      "at": "2026-10-07T14:58:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:d589ffa5ad3c:7557b5c82c7e",
+      "source": "commit:d589ffa5ad3c9832f51d3e5d2e358821391bf0a1",
+      "relation": "precedes",
+      "target": "commit:7557b5c82c7e4cb7df766ea71a8ae8d78fc6caa3",
+      "status": "asserted",
+      "at": "2026-10-07T14:59:18-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:7557b5c82c7e:6da1160c56e0",
+      "source": "commit:7557b5c82c7e4cb7df766ea71a8ae8d78fc6caa3",
+      "relation": "precedes",
+      "target": "commit:6da1160c56e0d83ec22f78ed126574f5299580b6",
+      "status": "asserted",
+      "at": "2026-10-07T14:59:27-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6da1160c56e0:3235f28a9c32",
+      "source": "commit:6da1160c56e0d83ec22f78ed126574f5299580b6",
+      "relation": "changed",
+      "target": "file:tools/navegacao/investigate.py",
+      "status": "asserted",
+      "at": "2026-10-07T14:59:27-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:eb5eacfec0dd:237ab20ba8ef",
+      "source": "commit:eb5eacfec0dd61c081887aacb6b7cd3292daaf04",
+      "relation": "precedes",
+      "target": "commit:237ab20ba8ef1da41d234918a8dfbd549f124090",
+      "status": "asserted",
+      "at": "2026-10-07T15:00:09-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:6da1160c56e0:237ab20ba8ef",
+      "source": "commit:6da1160c56e0d83ec22f78ed126574f5299580b6",
+      "relation": "precedes",
+      "target": "commit:237ab20ba8ef1da41d234918a8dfbd549f124090",
+      "status": "asserted",
+      "at": "2026-10-07T15:00:09-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:867754e57662",
+      "source": "event:repository-scan:867754e57662",
+      "relation": "generated",
+      "target": "evidence:repository:867754e57662",
+      "status": "asserted",
+      "at": "2026-10-07T15:00:09-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -28446,12 +29264,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:c69a59423f83",
-      "source": "commit:c69a59423f836704fff31b778326e0dff8c67514",
+      "id": "rel:scan-commit:237ab20ba8ef",
+      "source": "commit:237ab20ba8ef1da41d234918a8dfbd549f124090",
       "relation": "observed_by",
-      "target": "event:repository-scan:75febd891f2b",
+      "target": "event:repository-scan:867754e57662",
       "status": "asserted",
-      "at": "2026-10-07T14:03:37-03:00",
+      "at": "2026-10-07T15:00:09-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
