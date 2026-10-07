@@ -24,6 +24,7 @@ from .adapters import EchoCapability
 from .intelligence import CognitiveRuntime, IntelligenceRegistry
 from .project_knowledge_runtime import ExecutionKnowledgeRecorder
 from .verification import ResultVerifier
+from .navigation_adapter import KnowledgeNavigationCapability
 
 
 @dataclass
@@ -44,6 +45,7 @@ class ABSRuntime:
     intelligence: IntelligenceRegistry
     cognitive_runtime: CognitiveRuntime
     data_layer: ABSDataLayer
+    navigation: KnowledgeNavigationCapability
 
 
 def build_registry() -> CapabilityRegistry:
@@ -135,9 +137,11 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
     dispatcher.orchestrator = orchestrator
     from .conversational_tools import ConversationalToolRuntime
     cognitive.tool_runtime = ConversationalToolRuntime(planner, dispatcher)
+    navigation = KnowledgeNavigationCapability()
+    registry.register(CapabilityRecord("knowledge-navigation", navigation.name, navigation.kind, navigation))
 
     return ABSRuntime(
         registry, orchestrator, resources, interface_runtime, connections, accounts,
         knowledge, tool_store, learning, discovery, planner, router, dispatcher,
-        intelligence, cognitive, data_layer,
+        intelligence, cognitive, data_layer, navigation,
     )

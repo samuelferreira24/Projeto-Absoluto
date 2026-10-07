@@ -176,6 +176,19 @@ class ABSHandler(BaseHTTPRequestHandler):
             self._send(200, result)
             return
 
+        if self.path == "/knowledge/navigation":
+            try:
+                objective = str(data.get("objective") or data.get("question") or "").strip()
+                if not objective:
+                    self._send(400, {"error": "objective_required"})
+                    return
+                context = dict(data.get("context") or {})
+                result = self.registry.get("knowledge-navigation").adapter.execute(objective, context)
+                self._send(200, result)
+            except (KeyError, ValueError, RuntimeError) as exc:
+                self._send(400, {"error": str(exc)})
+            return
+
         if self.path == "/accounts/register":
             account_id = str(data.get("id") or "").strip()
             provider = str(data.get("provider") or "").strip()
