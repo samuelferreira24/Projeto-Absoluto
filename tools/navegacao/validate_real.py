@@ -154,6 +154,7 @@ def validate(db: Path, repositories: dict[str, Path], *, strict: bool = False) -
         else:
             # Minimal fixtures prove the validator mechanics; strict query coverage
             # is reserved for the real repositories invoked by the CLI.
+            matrix_ok = True
             adversarial_ok = True
 
     lifecycle = _lifecycle_probe(repositories)
