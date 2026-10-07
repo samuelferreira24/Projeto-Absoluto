@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-07T16:08:26-03:00",
-  "source_revision": "5c7037ebf895d34fddac0d625b08f988e55f8714",
+  "generated_at": "2026-10-07T16:09:25-03:00",
+  "source_revision": "08e6f38553e0df4655f5ad83a649ef9086854583",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 63
+      "file_count": 64
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "5c7037ebf895d34fddac0d625b08f988e55f8714",
-      "commit_subject": "fix: restaurar roteador conversacional apos integracao de navegacao"
+      "revision": "08e6f38553e0df4655f5ad83a649ef9086854583",
+      "commit_subject": "Merge pull request #115 from samuelferreira24/validacao-runtime-navegacao-v3"
     }
   ],
   "tools": [
@@ -2873,6 +2873,11 @@
       "id": "file:docs/03_planejamento/Plano_Projeto.md",
       "kind": "file",
       "path": "docs/03_planejamento/Plano_Projeto.md"
+    },
+    {
+      "id": "file:docs/03_planejamento/VALIDACAO_RUNTIME_NAVEGACAO_V3.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/VALIDACAO_RUNTIME_NAVEGACAO_V3.md"
     },
     {
       "id": "file:docs/03_planejamento/pesquisa/ATAQUE_ADVERSARIAL_FINAL_MOLDE_ABS_V0.md",
@@ -7535,6 +7540,27 @@
       "sha": "5c7037ebf895d34fddac0d625b08f988e55f8714"
     },
     {
+      "id": "commit:c77c249b75bac5e094fff023a0c28001f95e0824",
+      "kind": "commit",
+      "at": "2026-10-07T16:08:34-03:00",
+      "subject": "test: registrar validacao final runtime navegacao",
+      "sha": "c77c249b75bac5e094fff023a0c28001f95e0824"
+    },
+    {
+      "id": "commit:cb44299fe016d03560aaf1dc17782bcdb67f3fb6",
+      "kind": "commit",
+      "at": "2026-10-07T19:08:43Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "cb44299fe016d03560aaf1dc17782bcdb67f3fb6"
+    },
+    {
+      "id": "commit:08e6f38553e0df4655f5ad83a649ef9086854583",
+      "kind": "commit",
+      "at": "2026-10-07T16:09:25-03:00",
+      "subject": "Merge pull request #115 from samuelferreira24/validacao-runtime-navegacao-v3",
+      "sha": "08e6f38553e0df4655f5ad83a649ef9086854583"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7647,23 +7673,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:df02d9780e83",
+      "id": "evidence:repository:f4f1ed528e69",
       "kind": "evidence",
-      "at": "2026-10-07T16:08:26-03:00",
+      "at": "2026-10-07T16:09:25-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:df02d9780e83",
+      "id": "event:repository-scan:f4f1ed528e69",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-07T16:08:26-03:00"
+      "at": "2026-10-07T16:09:25-03:00"
     },
     {
-      "id": "event:commit-observed:5c7037ebf895",
+      "id": "event:commit-observed:08e6f38553e0",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-07T16:08:26-03:00"
+      "at": "2026-10-07T16:09:25-03:00"
     }
   ],
   "paths": [
@@ -7698,11 +7724,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:5dfd9b5ff6c8"
+        "evidence:test:5dfff2948bca"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-07T16:08:26-03:00"
+      "last_validated": "2026-10-07T16:09:25-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7725,20 +7751,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:df02d9780e83",
+      "id": "evidence:repository:f4f1ed528e69",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-07T16:08:26-03:00",
+      "observed_at": "2026-10-07T16:09:25-03:00",
       "status": "observed",
-      "detail": "374 files indexed at revision 5c7037ebf895d34fddac0d625b08f988e55f8714"
+      "detail": "375 files indexed at revision 08e6f38553e0df4655f5ad83a649ef9086854583"
     },
     {
-      "id": "evidence:test:5dfd9b5ff6c8",
+      "id": "evidence:test:5dfff2948bca",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-07T16:08:26-03:00",
+      "observed_at": "2026-10-07T16:09:25-03:00",
       "status": "tested",
-      "detail": "160 passed in 6.40s"
+      "detail": "160 passed in 6.98s"
     }
   ],
   "decisions": [
@@ -7841,30 +7867,28 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:df02d9780e83",
+      "id": "event:repository-scan:f4f1ed528e69",
       "type": "repository_scanned",
-      "at": "2026-10-07T16:08:26-03:00",
-      "revision": "5c7037ebf895d34fddac0d625b08f988e55f8714",
-      "file_count": 374,
-      "evidence_id": "evidence:repository:df02d9780e83"
+      "at": "2026-10-07T16:09:25-03:00",
+      "revision": "08e6f38553e0df4655f5ad83a649ef9086854583",
+      "file_count": 375,
+      "evidence_id": "evidence:repository:f4f1ed528e69"
     },
     {
-      "id": "event:commit-observed:5c7037ebf895",
+      "id": "event:commit-observed:08e6f38553e0",
       "type": "commit_observed",
-      "at": "2026-10-07T16:08:26-03:00",
-      "revision": "5c7037ebf895d34fddac0d625b08f988e55f8714",
+      "at": "2026-10-07T16:09:25-03:00",
+      "revision": "08e6f38553e0df4655f5ad83a649ef9086854583",
       "branch": "main",
-      "subject": "fix: restaurar roteador conversacional apos integracao de navegacao",
-      "changed_files": [
-        "abs_core/conversational_tools.py"
-      ]
+      "subject": "Merge pull request #115 from samuelferreira24/validacao-runtime-navegacao-v3",
+      "changed_files": []
     },
     {
-      "id": "event:test:5dfd9b5ff6c8",
+      "id": "event:test:5dfff2948bca",
       "type": "tests_observed",
-      "at": "2026-10-07T16:08:26-03:00",
+      "at": "2026-10-07T16:09:25-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:5dfd9b5ff6c8"
+      "evidence_id": "evidence:test:5dfff2948bca"
     }
   ],
   "knowledge_sources": [
@@ -7920,7 +7944,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "8d1b4a33af9e37e9245bfbbae7772085ffa1a70bfdb9b86ad5bfefe6dcf4be48"
+      "sha256": "b8d19c49986f0a1a16e9a92cd4838bc4adffd061f5971ea42966e9d3f93038e2"
     },
     {
       "id": "source:session",
@@ -30495,12 +30519,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:df02d9780e83",
-      "source": "event:repository-scan:df02d9780e83",
-      "relation": "generated",
-      "target": "evidence:repository:df02d9780e83",
+      "id": "rel:commit-precedes:5c7037ebf895:c77c249b75ba",
+      "source": "commit:5c7037ebf895d34fddac0d625b08f988e55f8714",
+      "relation": "precedes",
+      "target": "commit:c77c249b75bac5e094fff023a0c28001f95e0824",
       "status": "asserted",
-      "at": "2026-10-07T16:08:26-03:00",
+      "at": "2026-10-07T16:08:34-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c77c249b75ba:920a69376130",
+      "source": "commit:c77c249b75bac5e094fff023a0c28001f95e0824",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/VALIDACAO_RUNTIME_NAVEGACAO_V3.md",
+      "status": "asserted",
+      "at": "2026-10-07T16:08:34-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:5c7037ebf895:cb44299fe016",
+      "source": "commit:5c7037ebf895d34fddac0d625b08f988e55f8714",
+      "relation": "precedes",
+      "target": "commit:cb44299fe016d03560aaf1dc17782bcdb67f3fb6",
+      "status": "asserted",
+      "at": "2026-10-07T19:08:43Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cb44299fe016:032adc3624d7",
+      "source": "commit:cb44299fe016d03560aaf1dc17782bcdb67f3fb6",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-07T19:08:43Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cb44299fe016:d64178c49886",
+      "source": "commit:cb44299fe016d03560aaf1dc17782bcdb67f3fb6",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-07T19:08:43Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:cb44299fe016:08e6f38553e0",
+      "source": "commit:cb44299fe016d03560aaf1dc17782bcdb67f3fb6",
+      "relation": "precedes",
+      "target": "commit:08e6f38553e0df4655f5ad83a649ef9086854583",
+      "status": "asserted",
+      "at": "2026-10-07T16:09:25-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c77c249b75ba:08e6f38553e0",
+      "source": "commit:c77c249b75bac5e094fff023a0c28001f95e0824",
+      "relation": "precedes",
+      "target": "commit:08e6f38553e0df4655f5ad83a649ef9086854583",
+      "status": "asserted",
+      "at": "2026-10-07T16:09:25-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:f4f1ed528e69",
+      "source": "event:repository-scan:f4f1ed528e69",
+      "relation": "generated",
+      "target": "evidence:repository:f4f1ed528e69",
+      "status": "asserted",
+      "at": "2026-10-07T16:09:25-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -30509,12 +30631,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:5c7037ebf895",
-      "source": "commit:5c7037ebf895d34fddac0d625b08f988e55f8714",
+      "id": "rel:scan-commit:08e6f38553e0",
+      "source": "commit:08e6f38553e0df4655f5ad83a649ef9086854583",
       "relation": "observed_by",
-      "target": "event:repository-scan:df02d9780e83",
+      "target": "event:repository-scan:f4f1ed528e69",
       "status": "asserted",
-      "at": "2026-10-07T16:08:26-03:00",
+      "at": "2026-10-07T16:09:25-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
