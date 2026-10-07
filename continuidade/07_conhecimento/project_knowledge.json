@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-07T16:11:31-03:00",
-  "source_revision": "0fe25089c1558bd3e5ca1a4a3546e474d72df836",
+  "generated_at": "2026-10-07T16:14:11-03:00",
+  "source_revision": "fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "0fe25089c1558bd3e5ca1a4a3546e474d72df836",
-      "commit_subject": "Merge pull request #116 from samuelferreira24/validacao-ai-layer"
+      "revision": "fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
+      "commit_subject": "test: validar resultado real do Echo na aceitacao V1"
     }
   ],
   "tools": [
@@ -7622,6 +7622,34 @@
       "sha": "0fe25089c1558bd3e5ca1a4a3546e474d72df836"
     },
     {
+      "id": "commit:23bd8b3cdc888304aab77ad45c9d59fa077961ac",
+      "kind": "commit",
+      "at": "2026-10-07T19:11:51Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "23bd8b3cdc888304aab77ad45c9d59fa077961ac"
+    },
+    {
+      "id": "commit:b293cee4d14076663656efb92f3d7a227896d47c",
+      "kind": "commit",
+      "at": "2026-10-07T16:11:57-03:00",
+      "subject": "test: adicionar aceitacao end-to-end da V1",
+      "sha": "b293cee4d14076663656efb92f3d7a227896d47c"
+    },
+    {
+      "id": "commit:1d02c48fcf4b14d58bd23c708c20fb7d480453e6",
+      "kind": "commit",
+      "at": "2026-10-07T16:13:13-03:00",
+      "subject": "test: alinhar aceitacao ao contrato do Echo",
+      "sha": "1d02c48fcf4b14d58bd23c708c20fb7d480453e6"
+    },
+    {
+      "id": "commit:fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
+      "kind": "commit",
+      "at": "2026-10-07T16:14:11-03:00",
+      "subject": "test: validar resultado real do Echo na aceitacao V1",
+      "sha": "fa40f331efbbfaf84dd2026a6156a772f0ed04b6"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7734,23 +7762,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:0461f82e2f87",
+      "id": "evidence:repository:30b0b515989c",
       "kind": "evidence",
-      "at": "2026-10-07T16:11:31-03:00",
+      "at": "2026-10-07T16:14:11-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:0461f82e2f87",
+      "id": "event:repository-scan:30b0b515989c",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-07T16:11:31-03:00"
+      "at": "2026-10-07T16:14:11-03:00"
     },
     {
-      "id": "event:commit-observed:0fe25089c155",
+      "id": "event:commit-observed:fa40f331efbb",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-07T16:11:31-03:00"
+      "at": "2026-10-07T16:14:11-03:00"
     }
   ],
   "paths": [
@@ -7785,11 +7813,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:8f559a12f115"
+        "evidence:test:a3fca43c14f6"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-07T16:11:31-03:00"
+      "last_validated": "2026-10-07T16:14:11-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7812,20 +7840,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:0461f82e2f87",
+      "id": "evidence:repository:30b0b515989c",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-07T16:11:31-03:00",
+      "observed_at": "2026-10-07T16:14:11-03:00",
       "status": "observed",
-      "detail": "376 files indexed at revision 0fe25089c1558bd3e5ca1a4a3546e474d72df836"
+      "detail": "376 files indexed at revision fa40f331efbbfaf84dd2026a6156a772f0ed04b6"
     },
     {
-      "id": "evidence:test:8f559a12f115",
+      "id": "evidence:test:a3fca43c14f6",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-07T16:11:31-03:00",
+      "observed_at": "2026-10-07T16:14:11-03:00",
       "status": "tested",
-      "detail": "162 passed in 7.39s"
+      "detail": "163 passed in 7.34s"
     }
   ],
   "decisions": [
@@ -7928,28 +7956,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:0461f82e2f87",
+      "id": "event:repository-scan:30b0b515989c",
       "type": "repository_scanned",
-      "at": "2026-10-07T16:11:31-03:00",
-      "revision": "0fe25089c1558bd3e5ca1a4a3546e474d72df836",
+      "at": "2026-10-07T16:14:11-03:00",
+      "revision": "fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
       "file_count": 376,
-      "evidence_id": "evidence:repository:0461f82e2f87"
+      "evidence_id": "evidence:repository:30b0b515989c"
     },
     {
-      "id": "event:commit-observed:0fe25089c155",
+      "id": "event:commit-observed:fa40f331efbb",
       "type": "commit_observed",
-      "at": "2026-10-07T16:11:31-03:00",
-      "revision": "0fe25089c1558bd3e5ca1a4a3546e474d72df836",
+      "at": "2026-10-07T16:14:11-03:00",
+      "revision": "fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
       "branch": "main",
-      "subject": "Merge pull request #116 from samuelferreira24/validacao-ai-layer",
-      "changed_files": []
+      "subject": "test: validar resultado real do Echo na aceitacao V1",
+      "changed_files": [
+        "tests/test_execution_knowledge_e2e.py"
+      ]
     },
     {
-      "id": "event:test:8f559a12f115",
+      "id": "event:test:a3fca43c14f6",
       "type": "tests_observed",
-      "at": "2026-10-07T16:11:31-03:00",
+      "at": "2026-10-07T16:14:11-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:8f559a12f115"
+      "evidence_id": "evidence:test:a3fca43c14f6"
     }
   ],
   "knowledge_sources": [
@@ -8005,7 +8035,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "cc7b94a80a6c0b7dba73a4b956476d16b30fe6ad0321bfede64d99160af479e5"
+      "sha256": "6be4138127389343c9e00d342595e4deaa49337efbed7bfaa4ccd96d687a09a9"
     },
     {
       "id": "source:session",
@@ -30930,12 +30960,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:0461f82e2f87",
-      "source": "event:repository-scan:0461f82e2f87",
-      "relation": "generated",
-      "target": "evidence:repository:0461f82e2f87",
+      "id": "rel:commit-precedes:0fe25089c155:23bd8b3cdc88",
+      "source": "commit:0fe25089c1558bd3e5ca1a4a3546e474d72df836",
+      "relation": "precedes",
+      "target": "commit:23bd8b3cdc888304aab77ad45c9d59fa077961ac",
       "status": "asserted",
-      "at": "2026-10-07T16:11:31-03:00",
+      "at": "2026-10-07T19:11:51Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:23bd8b3cdc88:032adc3624d7",
+      "source": "commit:23bd8b3cdc888304aab77ad45c9d59fa077961ac",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-07T19:11:51Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:23bd8b3cdc88:d64178c49886",
+      "source": "commit:23bd8b3cdc888304aab77ad45c9d59fa077961ac",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-07T19:11:51Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:23bd8b3cdc88:b293cee4d140",
+      "source": "commit:23bd8b3cdc888304aab77ad45c9d59fa077961ac",
+      "relation": "precedes",
+      "target": "commit:b293cee4d14076663656efb92f3d7a227896d47c",
+      "status": "asserted",
+      "at": "2026-10-07T16:11:57-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b293cee4d140:2e22804d5645",
+      "source": "commit:b293cee4d14076663656efb92f3d7a227896d47c",
+      "relation": "changed",
+      "target": "file:tests/test_execution_knowledge_e2e.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:11:57-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b293cee4d140:1d02c48fcf4b",
+      "source": "commit:b293cee4d14076663656efb92f3d7a227896d47c",
+      "relation": "precedes",
+      "target": "commit:1d02c48fcf4b14d58bd23c708c20fb7d480453e6",
+      "status": "asserted",
+      "at": "2026-10-07T16:13:13-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1d02c48fcf4b:2e22804d5645",
+      "source": "commit:1d02c48fcf4b14d58bd23c708c20fb7d480453e6",
+      "relation": "changed",
+      "target": "file:tests/test_execution_knowledge_e2e.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:13:13-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:1d02c48fcf4b:fa40f331efbb",
+      "source": "commit:1d02c48fcf4b14d58bd23c708c20fb7d480453e6",
+      "relation": "precedes",
+      "target": "commit:fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
+      "status": "asserted",
+      "at": "2026-10-07T16:14:11-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:fa40f331efbb:2e22804d5645",
+      "source": "commit:fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
+      "relation": "changed",
+      "target": "file:tests/test_execution_knowledge_e2e.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:14:11-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:30b0b515989c",
+      "source": "event:repository-scan:30b0b515989c",
+      "relation": "generated",
+      "target": "evidence:repository:30b0b515989c",
+      "status": "asserted",
+      "at": "2026-10-07T16:14:11-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -30944,12 +31100,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:0fe25089c155",
-      "source": "commit:0fe25089c1558bd3e5ca1a4a3546e474d72df836",
+      "id": "rel:scan-commit:fa40f331efbb",
+      "source": "commit:fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
       "relation": "observed_by",
-      "target": "event:repository-scan:0461f82e2f87",
+      "target": "event:repository-scan:30b0b515989c",
       "status": "asserted",
-      "at": "2026-10-07T16:11:31-03:00",
+      "at": "2026-10-07T16:14:11-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
