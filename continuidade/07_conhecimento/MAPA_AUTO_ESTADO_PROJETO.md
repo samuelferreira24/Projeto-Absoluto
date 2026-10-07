@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 24014a7697fdaf9e6f1a942394a7a08050656319
-Momento da revisão: 2026-10-07T13:47:02-03:00
+Revisão observada: c69a59423f836704fff31b778326e0dff8c67514
+Momento da revisão: 2026-10-07T14:03:37-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -1138,6 +1138,8 @@ Momento da revisão: 2026-10-07T13:47:02-03:00
 - commit:1f0b620873d984c01ac7e9f89abdf3ccab065bb8 — None — estado: unknown
 - commit:f0bcf1341062b576036f9735eda79b63828a8c39 — None — estado: unknown
 - commit:24014a7697fdaf9e6f1a942394a7a08050656319 — None — estado: unknown
+- commit:4c047cb8a33790f1bea7ccfd31b6d644ac218951 — None — estado: unknown
+- commit:c69a59423f836704fff31b778326e0dff8c67514 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1152,19 +1154,19 @@ Momento da revisão: 2026-10-07T13:47:02-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:1289d3ac7eaf — None — estado: unknown
-- event:repository-scan:1289d3ac7eaf — None — estado: unknown
-- event:commit-observed:24014a7697fd — None — estado: unknown
+- evidence:repository:75febd891f2b — None — estado: unknown
+- event:repository-scan:75febd891f2b — None — estado: unknown
+- event:commit-observed:c69a59423f83 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:15cf78047729
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:499a07d92cb4
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:1289d3ac7eaf — repository_scanned — revisão: 24014a7697fdaf9e6f1a942394a7a08050656319
-- event:commit-observed:24014a7697fd — commit_observed — revisão: 24014a7697fdaf9e6f1a942394a7a08050656319
-- event:test:15cf78047729 — tests_observed — revisão: n/a
+- event:repository-scan:75febd891f2b — repository_scanned — revisão: c69a59423f836704fff31b778326e0dff8c67514
+- event:commit-observed:c69a59423f83 — commit_observed — revisão: c69a59423f836704fff31b778326e0dff8c67514
+- event:test:499a07d92cb4 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -2655,15 +2657,20 @@ Momento da revisão: 2026-10-07T13:47:02-03:00
 - commit:f0bcf1341062b576036f9735eda79b63828a8c39 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
 - commit:f0bcf1341062b576036f9735eda79b63828a8c39 — precedes → commit:24014a7697fdaf9e6f1a942394a7a08050656319 — asserted
 - commit:24014a7697fdaf9e6f1a942394a7a08050656319 — changed → file:.github/workflows/navegacao-v2-real-validation.yml — asserted
-- event:repository-scan:1289d3ac7eaf — generated → evidence:repository:1289d3ac7eaf — asserted
-- commit:24014a7697fdaf9e6f1a942394a7a08050656319 — observed_by → event:repository-scan:1289d3ac7eaf — asserted
+- commit:24014a7697fdaf9e6f1a942394a7a08050656319 — precedes → commit:4c047cb8a33790f1bea7ccfd31b6d644ac218951 — asserted
+- commit:4c047cb8a33790f1bea7ccfd31b6d644ac218951 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:4c047cb8a33790f1bea7ccfd31b6d644ac218951 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:4c047cb8a33790f1bea7ccfd31b6d644ac218951 — precedes → commit:c69a59423f836704fff31b778326e0dff8c67514 — asserted
+- commit:c69a59423f836704fff31b778326e0dff8c67514 — changed → file:.github/workflows/navegacao-v2-real-validation.yml — asserted
+- event:repository-scan:75febd891f2b — generated → evidence:repository:75febd891f2b — asserted
+- commit:c69a59423f836704fff31b778326e0dff8c67514 — observed_by → event:repository-scan:75febd891f2b — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:1289d3ac7eaf — repository_scan — observed — 359 files indexed at revision 24014a7697fdaf9e6f1a942394a7a08050656319
-- evidence:test:15cf78047729 — test — tested — 146 passed in 7.21s
+- evidence:repository:75febd891f2b — repository_scan — observed — 359 files indexed at revision c69a59423f836704fff31b778326e0dff8c67514
+- evidence:test:499a07d92cb4 — test — tested — 146 passed in 7.00s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
