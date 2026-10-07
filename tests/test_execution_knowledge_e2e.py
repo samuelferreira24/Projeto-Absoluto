@@ -118,7 +118,7 @@ def test_v1_acceptance_crosses_navigation_intelligence_verification_and_memory(t
 
     assert result["work_state"] == "completed"
     assert result["result"]["verification"]["accepted"] is True
-    assert result["response"]
+    assert result["result"]["objective"] == "Onde está implementada a verificação no projeto?"
     assert result["result"]["type"] == "echo"
     assert result["provenance"]
     assert data_layer.search(kind="work_result", limit=10)
