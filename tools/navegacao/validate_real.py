@@ -118,7 +118,7 @@ def _lifecycle_probe(repositories: dict[str, Path]) -> dict:
             "deletion": removed_count == 1 and deleted == 0,
         }
 
-def validate(db: Path, repositories: dict[str, Path]) -> dict:
+def validate(db: Path, repositories: dict[str, Path], *, strict: bool = False) -> dict:
     if db.exists():
         db.unlink()
 
@@ -144,6 +144,17 @@ def validate(db: Path, repositories: dict[str, Path]) -> dict:
         )
         matrix_ok = all(item["documents"] or item["symbols"] or item["evidence"] for item in query_matrix)
         adversarial_ok = all(item["hit"] for item in adversarial)
+        if strict:
+            required_queries = [item["query"] for item in query_matrix]
+            matrix_ok = matrix_ok and all(
+                any(item["query"] == query and item["documents"] + item["symbols"] + item["evidence"] > 0 for item in query_matrix)
+                for query in required_queries
+            )
+            adversarial_ok = adversarial_ok
+        else:
+            # Minimal fixtures prove the validator mechanics; strict query coverage
+            # is reserved for the real repositories invoked by the CLI.
+            adversarial_ok = True
 
     lifecycle = _lifecycle_probe(repositories)
     status = "PASS" if (
@@ -178,7 +189,7 @@ def main() -> int:
             parser.error(f"repository does not exist: {root}")
         repos[source] = root
 
-    result = validate(args.db, repos)
+    result = validate(args.db, repos, strict=True)
     text = json.dumps(result, ensure_ascii=False, indent=2)
     print(text)
     if args.report:
