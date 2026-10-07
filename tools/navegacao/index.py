@@ -146,14 +146,11 @@ def upsert_document(conn, source_id, root, path, git_meta):
         conn.execute("""UPDATE documents SET root=?, title=?, extension=?, content_sha256=?,
                         size_bytes=?, content=?, latest_commit=?, latest_commit_date=? WHERE id=?""",
                      (str(root), title, ext, sha, len(data), content, commit, commit_date, doc_id))
-        conn.execute("DELETE FROM documents_fts WHERE rowid=?", (doc_id,))
     else:
         doc_id = conn.execute("""INSERT INTO documents
             (source_id, root, path, title, extension, content_sha256, size_bytes, content, latest_commit, latest_commit_date)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
             (source_id, str(root), rel, title, ext, sha, len(data), content, commit, commit_date)).lastrowid
-    conn.execute("INSERT INTO documents_fts(rowid, title, path, content, source_id) VALUES (?, ?, ?, ?, ?)",
-                 (doc_id, title, rel, content, source_id))
     refresh_structure(conn, doc_id, content, ext)
     return True
 
@@ -180,6 +177,10 @@ def index_source(conn, source_id: str, root: Path):
             conn.execute("DELETE FROM documents_fts WHERE rowid=?", (doc_id,))
             conn.execute("DELETE FROM documents WHERE id=?", (doc_id,))
             removed += 1
+    if changed or removed:
+        # FTS5 is configured as an external-content index. Rebuild once after
+        # the source table mutation so the index and content table stay exact.
+        conn.execute("INSERT INTO documents_fts(documents_fts) VALUES ('rebuild')")
     return changed, removed
 
 def main():
