@@ -1,70 +1,66 @@
-# Navegação e Pesquisa V1
+# Navegação de Conhecimento Verificável
 
-Camada independente do ABS em construção. Pode ser usada diretamente por uma IA/operador e posteriormente pelo ABS.
+Camada independente do ABS para aquisição, localização, expansão e verificação de conhecimento em múltiplas fontes. Pode ser usada diretamente por uma IA/operador antes do ABS e, depois, como capacidade nativa do ABS.
 
-## Capacidades atuais
+## Capacidades
 
-- **Busca lexical:** SQLite FTS5 + BM25, snippets e filtros por fonte, caminho e extensão.
-- **Busca estrutural:** símbolos de Python/JS/TS/TSX/JSX e imports/dependências.
-- **Navegação de objeto:** conteúdo, hash, estado temporal, símbolos e relações.
-- **Navegação relacional:** encontrar documentos que importam/referenciam um alvo, com filtro de tipo.
-- **Navegação temporal:** SHA/data do último commit e pesquisa Git por alteração.
-- **Facade de navegação:** `Navigator` fornece uma interface estável para search/symbols/inspect/related/navigate.
-- **Verificação de proveniência:** confirma hash do arquivo original e integridade do FTS5 antes de confiar no resultado.
-- **Múltiplas fontes:** qualquer quantidade de repositórios no mesmo índice, preservando source_id.
-- **Indexação incremental:** arquivos inalterados não são reprocessados.
-- **Metadados Git eficiente:** o histórico é obtido por repositório, evitando uma chamada Git por arquivo.
+- busca lexical SQLite FTS5 + BM25;
+- símbolos e relações/importações;
+- inspeção com conteúdo, hash e estado temporal;
+- investigação orientada a evidências;
+- cobertura mensurável, incluindo arquivos ignorados e não indexados;
+- verificação de proveniência e integridade;
+- múltiplos repositórios no mesmo índice;
+- indexação incremental e remoções;
+- histórico Git;
+- interface Python estável;
+- CLI JSON para uma investigação;
+- protocolo JSONL persistente para uma IA operar search/symbols/inspect/related/investigate/coverage/verify.
 
-## Comandos
+## Indexar os dois repositórios
 
-Indexar ambos:
+    python -m tools.navegacao.index --db .abs-navigation/index.sqlite \
+      --repo projeto-absoluto=/caminho/Projeto-Absoluto \
+      --repo sistema=/caminho/Sistema
 
-~~~bash
-python -m tools.navegacao.index --db .abs-navigation/index.sqlite \
-  --repo projeto-absoluto=/caminho/Projeto-Absoluto \
-  --repo sistema=/caminho/Sistema
-~~~
+## Usar diretamente por uma IA
 
-Busca geral:
+Investigação única:
 
-~~~bash
-python -m tools.navegacao.search --db .abs-navigation/index.sqlite "memória temporal"
-~~~
+    python -m tools.navegacao.ai --db .abs-navigation/index.sqlite "como a proveniência é verificada?"
 
-Busca com filtros:
+Protocolo de agente persistente:
 
-~~~bash
-python -m tools.navegacao.search --db .abs-navigation/index.sqlite \
-  --source projeto-absoluto --path-prefix docs/ --extension md "governança"
-~~~
+    python -m tools.navegacao.agent --db .abs-navigation/index.sqlite
 
-Busca de símbolos:
+Cada linha de entrada é um JSON, por exemplo:
 
-~~~bash
-python -m tools.navegacao.search --db .abs-navigation/index.sqlite \
-  --symbols --kind function "executor"
-~~~
+    {"action":"search","query":"orquestrador","source":"projeto-absoluto","limit":10}
+    {"action":"investigate","question":"como a proveniência é verificada?","limit":8}
+    {"action":"inspect","source":"projeto-absoluto","path":"tools/navegacao/navigator.py"}
 
-Relações:
+Cada resposta é JSONL com ok=true/false. A interface não importa abs_core. Se o ABS estiver parado, a navegação continua utilizável.
 
-~~~bash
-python -m tools.navegacao.related --db .abs-navigation/index.sqlite \
-  --type imports "abs_core"
-~~~
+## API
 
-Histórico:
+    from tools.navegacao.navigator import KnowledgeNavigator
+    nav = KnowledgeNavigator(".abs-navigation/index.sqlite")
+    nav.search("memória temporal")
+    nav.symbols("executor")
+    nav.inspect("projeto-absoluto", "docs/00_MODELO_PROJETO_ABSOLUTO.md")
+    nav.investigate("como a proveniência é verificada?")
+    nav.coverage()
 
-~~~bash
-python -m tools.navegacao.history --repo /caminho/Projeto-Absoluto "memória"
-python -m tools.navegacao.history --repo /caminho/Projeto-Absoluto --regex "memory|memória"
-~~~
+Navigator continua disponível como alias compatível.
 
-Inspeção:
+## Validação real
 
-~~~bash
-python -m tools.navegacao.inspect --db .abs-navigation/index.sqlite \
-  --source projeto-absoluto --path docs/00_MODELO_PROJETO_ABSOLUTO.md
-~~~
+    python -m tools.navegacao.validate_real --db /tmp/navigation.sqlite \
+      --repo projeto-absoluto=/caminho/Projeto-Absoluto \
+      --repo sistema=/caminho/Sistema \
+      --report /tmp/navigation-report.json
+
+A validação registra cobertura, indexação, remoções, proveniência e uma matriz de consultas. Ela mede a capacidade sem confundir quantidade de registros com cobertura completa.
 
 ## Princípios
 
@@ -73,33 +69,9 @@ python -m tools.navegacao.inspect --db .abs-navigation/index.sqlite \
 - é idempotente;
 - pode ser apagada e reconstruída;
 - não confunde índice com verdade;
-- mantém camadas avançadas opcionais;
-- não depende de uma IA, modelo, banco vetorial ou fornecedor.
+- não depende de uma IA, modelo, banco vetorial ou fornecedor;
+- respostas finais devem ser construídas a partir das evidências, não inventadas pelo navegador.
 
-## Verificação
+## Limites
 
-```bash
-python -m tools.navegacao.verify --db .abs-navigation/index.sqlite
-python -m tools.navegacao.verify --db .abs-navigation/index.sqlite --source projeto-absoluto
-python -m tools.navegacao.verify --db .abs-navigation/index.sqlite --rebuild
-```
-
-A verificação compara SHA-256 do conteúdo indexado com a fonte atual. Se houver alteração externa, o resultado é marcado como `hash_mismatch`; se a fonte desapareceu, `missing`.
-
-## Limites deliberados
-
-A V2 continua sem fingir compreensão semântica. Embeddings, grafo semântico mais profundo, pesquisa web/conectores e ranking híbrido podem ser adicionados posteriormente e precisam ser validados contra casos reais.
-
-## API estável
-
-A camada pode ser consumida sem conhecer as tabelas SQLite:
-
-```python
-from tools.navegacao.navigator import Navigator
-nav = Navigator('.abs-navigation/index.sqlite')
-nav.search('memória temporal')
-nav.symbols('executor')
-nav.inspect('projeto-absoluto', 'docs/00_MODELO_PROJETO_ABSOLUTO.md')
-nav.related('abs_core')
-nav.navigate('memória temporal')
-```
+A camada não finge compreensão semântica. Expansão por termos e estrutura é deliberadamente verificável. Embeddings, ranking híbrido, grafo semântico profundo e conectores externos podem ser adicionados depois, mas não são dependências do núcleo.

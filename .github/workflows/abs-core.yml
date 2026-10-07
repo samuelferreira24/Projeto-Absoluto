@@ -1,8 +1,8 @@
 name: ABS Core
-# Foundation suite only; legacy historical tests are not part of this vertical slice.
+# Foundation suite plus real two-repository navigation validation.
 on:
   push:
-    branches: ["main", "abs/capability-foundation-v1", "codex-cli-integration"]
+    branches: ["main", "abs/capability-foundation-v1", "codex-cli-integration", "feat/navegacao-conhecimento-verificavel"]
   pull_request:
     branches: ["main"]
 jobs:
@@ -10,8 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: samuelferreira24/Sistema
+          path: Sistema
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: python -m pip install -U pip pytest
       - run: pytest -q tests
+      - run: |
+          python -m tools.navegacao.validate_real \
+            --db /tmp/abs-navigation-real.sqlite \
+            --repo projeto-absoluto=$GITHUB_WORKSPACE \
+            --repo sistema=$GITHUB_WORKSPACE/Sistema \
+            --report /tmp/abs-navigation-real.json
