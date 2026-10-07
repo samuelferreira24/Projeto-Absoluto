@@ -258,7 +258,12 @@ class HubActivity : AppCompatActivity() {
 
     private fun perform(action: Action) {
         when (action) {
-            Action.BROWSER -> startActivity(Intent(this, BrowserActivity::class.java))
+            Action.BROWSER -> {
+                val intent = Intent(this, BrowserActivity::class.java).apply {
+                    putExtra(BrowserActivity.EXTRA_ABS_RETURN_TO_HUB, true)
+                }
+                startActivity(intent)
+            }
             Action.WEB_APP -> openWebApp()
             Action.SETTINGS -> startActivity(Intent(this, SettingsActivity::class.java))
         }
