@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 08e6f38553e0df4655f5ad83a649ef9086854583
-Momento da revisão: 2026-10-07T16:09:25-03:00
+Revisão observada: fd9e3254d944da64341b283d583fe771d121e1e2
+Momento da revisão: 2026-10-07T16:10:28-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -1215,6 +1215,11 @@ Momento da revisão: 2026-10-07T16:09:25-03:00
 - commit:c77c249b75bac5e094fff023a0c28001f95e0824 — None — estado: unknown
 - commit:cb44299fe016d03560aaf1dc17782bcdb67f3fb6 — None — estado: unknown
 - commit:08e6f38553e0df4655f5ad83a649ef9086854583 — None — estado: unknown
+- commit:bcf7aa25576bda51230a1ca3f06b732156a6817d — None — estado: unknown
+- commit:2e876576c6321c2d486f8cbbff690986a86b9cde — None — estado: unknown
+- commit:332e04c6db7ac364c855693d60b2fb0d0a9f06a5 — None — estado: unknown
+- commit:af3f6a33654d846a8ca6d95d84b3dd7105c3bf19 — None — estado: unknown
+- commit:fd9e3254d944da64341b283d583fe771d121e1e2 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1229,19 +1234,19 @@ Momento da revisão: 2026-10-07T16:09:25-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:f4f1ed528e69 — None — estado: unknown
-- event:repository-scan:f4f1ed528e69 — None — estado: unknown
-- event:commit-observed:08e6f38553e0 — None — estado: unknown
+- evidence:repository:e52c7e4be227 — None — estado: unknown
+- event:repository-scan:e52c7e4be227 — None — estado: unknown
+- event:commit-observed:fd9e3254d944 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:5dfff2948bca
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:35960c58cecb
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:f4f1ed528e69 — repository_scanned — revisão: 08e6f38553e0df4655f5ad83a649ef9086854583
-- event:commit-observed:08e6f38553e0 — commit_observed — revisão: 08e6f38553e0df4655f5ad83a649ef9086854583
-- event:test:5dfff2948bca — tests_observed — revisão: n/a
+- event:repository-scan:e52c7e4be227 — repository_scanned — revisão: fd9e3254d944da64341b283d583fe771d121e1e2
+- event:commit-observed:fd9e3254d944 — commit_observed — revisão: fd9e3254d944da64341b283d583fe771d121e1e2
+- event:test:35960c58cecb — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -2858,15 +2863,26 @@ Momento da revisão: 2026-10-07T16:09:25-03:00
 - commit:cb44299fe016d03560aaf1dc17782bcdb67f3fb6 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
 - commit:cb44299fe016d03560aaf1dc17782bcdb67f3fb6 — precedes → commit:08e6f38553e0df4655f5ad83a649ef9086854583 — asserted
 - commit:c77c249b75bac5e094fff023a0c28001f95e0824 — precedes → commit:08e6f38553e0df4655f5ad83a649ef9086854583 — asserted
-- event:repository-scan:f4f1ed528e69 — generated → evidence:repository:f4f1ed528e69 — asserted
-- commit:08e6f38553e0df4655f5ad83a649ef9086854583 — observed_by → event:repository-scan:f4f1ed528e69 — asserted
+- commit:08e6f38553e0df4655f5ad83a649ef9086854583 — precedes → commit:bcf7aa25576bda51230a1ca3f06b732156a6817d — asserted
+- commit:bcf7aa25576bda51230a1ca3f06b732156a6817d — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:bcf7aa25576bda51230a1ca3f06b732156a6817d — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:bcf7aa25576bda51230a1ca3f06b732156a6817d — precedes → commit:2e876576c6321c2d486f8cbbff690986a86b9cde — asserted
+- commit:2e876576c6321c2d486f8cbbff690986a86b9cde — changed → file:abs_core/intelligence.py — asserted
+- commit:2e876576c6321c2d486f8cbbff690986a86b9cde — precedes → commit:332e04c6db7ac364c855693d60b2fb0d0a9f06a5 — asserted
+- commit:332e04c6db7ac364c855693d60b2fb0d0a9f06a5 — changed → file:abs_core/intelligence.py — asserted
+- commit:332e04c6db7ac364c855693d60b2fb0d0a9f06a5 — precedes → commit:af3f6a33654d846a8ca6d95d84b3dd7105c3bf19 — asserted
+- commit:af3f6a33654d846a8ca6d95d84b3dd7105c3bf19 — changed → file:abs_core/intelligence.py — asserted
+- commit:af3f6a33654d846a8ca6d95d84b3dd7105c3bf19 — precedes → commit:fd9e3254d944da64341b283d583fe771d121e1e2 — asserted
+- commit:fd9e3254d944da64341b283d583fe771d121e1e2 — changed → file:tests/test_cognitive_runtime.py — asserted
+- event:repository-scan:e52c7e4be227 — generated → evidence:repository:e52c7e4be227 — asserted
+- commit:fd9e3254d944da64341b283d583fe771d121e1e2 — observed_by → event:repository-scan:e52c7e4be227 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:f4f1ed528e69 — repository_scan — observed — 375 files indexed at revision 08e6f38553e0df4655f5ad83a649ef9086854583
-- evidence:test:5dfff2948bca — test — tested — 160 passed in 6.98s
+- evidence:repository:e52c7e4be227 — repository_scan — observed — 375 files indexed at revision fd9e3254d944da64341b283d583fe771d121e1e2
+- evidence:test:35960c58cecb — test — tested — 162 passed in 6.88s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.

@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-07T16:09:25-03:00",
-  "source_revision": "08e6f38553e0df4655f5ad83a649ef9086854583",
+  "generated_at": "2026-10-07T16:10:28-03:00",
+  "source_revision": "fd9e3254d944da64341b283d583fe771d121e1e2",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "08e6f38553e0df4655f5ad83a649ef9086854583",
-      "commit_subject": "Merge pull request #115 from samuelferreira24/validacao-runtime-navegacao-v3"
+      "revision": "fd9e3254d944da64341b283d583fe771d121e1e2",
+      "commit_subject": "test: validar fallback e modo offline da AI Layer"
     }
   ],
   "tools": [
@@ -7561,6 +7561,41 @@
       "sha": "08e6f38553e0df4655f5ad83a649ef9086854583"
     },
     {
+      "id": "commit:bcf7aa25576bda51230a1ca3f06b732156a6817d",
+      "kind": "commit",
+      "at": "2026-10-07T19:09:44Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "bcf7aa25576bda51230a1ca3f06b732156a6817d"
+    },
+    {
+      "id": "commit:2e876576c6321c2d486f8cbbff690986a86b9cde",
+      "kind": "commit",
+      "at": "2026-10-07T16:10:00-03:00",
+      "subject": "feat: adicionar roteamento por capacidade e modo offline",
+      "sha": "2e876576c6321c2d486f8cbbff690986a86b9cde"
+    },
+    {
+      "id": "commit:332e04c6db7ac364c855693d60b2fb0d0a9f06a5",
+      "kind": "commit",
+      "at": "2026-10-07T16:10:12-03:00",
+      "subject": "feat: adicionar fallback entre inteligencias do ABS",
+      "sha": "332e04c6db7ac364c855693d60b2fb0d0a9f06a5"
+    },
+    {
+      "id": "commit:af3f6a33654d846a8ca6d95d84b3dd7105c3bf19",
+      "kind": "commit",
+      "at": "2026-10-07T16:10:21-03:00",
+      "subject": "feat: registrar tentativas de fallback da AI Layer",
+      "sha": "af3f6a33654d846a8ca6d95d84b3dd7105c3bf19"
+    },
+    {
+      "id": "commit:fd9e3254d944da64341b283d583fe771d121e1e2",
+      "kind": "commit",
+      "at": "2026-10-07T16:10:28-03:00",
+      "subject": "test: validar fallback e modo offline da AI Layer",
+      "sha": "fd9e3254d944da64341b283d583fe771d121e1e2"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7673,23 +7708,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:f4f1ed528e69",
+      "id": "evidence:repository:e52c7e4be227",
       "kind": "evidence",
-      "at": "2026-10-07T16:09:25-03:00",
+      "at": "2026-10-07T16:10:28-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:f4f1ed528e69",
+      "id": "event:repository-scan:e52c7e4be227",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-07T16:09:25-03:00"
+      "at": "2026-10-07T16:10:28-03:00"
     },
     {
-      "id": "event:commit-observed:08e6f38553e0",
+      "id": "event:commit-observed:fd9e3254d944",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-07T16:09:25-03:00"
+      "at": "2026-10-07T16:10:28-03:00"
     }
   ],
   "paths": [
@@ -7724,11 +7759,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:5dfff2948bca"
+        "evidence:test:35960c58cecb"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-07T16:09:25-03:00"
+      "last_validated": "2026-10-07T16:10:28-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7751,20 +7786,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:f4f1ed528e69",
+      "id": "evidence:repository:e52c7e4be227",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-07T16:09:25-03:00",
+      "observed_at": "2026-10-07T16:10:28-03:00",
       "status": "observed",
-      "detail": "375 files indexed at revision 08e6f38553e0df4655f5ad83a649ef9086854583"
+      "detail": "375 files indexed at revision fd9e3254d944da64341b283d583fe771d121e1e2"
     },
     {
-      "id": "evidence:test:5dfff2948bca",
+      "id": "evidence:test:35960c58cecb",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-07T16:09:25-03:00",
+      "observed_at": "2026-10-07T16:10:28-03:00",
       "status": "tested",
-      "detail": "160 passed in 6.98s"
+      "detail": "162 passed in 6.88s"
     }
   ],
   "decisions": [
@@ -7867,28 +7902,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:f4f1ed528e69",
+      "id": "event:repository-scan:e52c7e4be227",
       "type": "repository_scanned",
-      "at": "2026-10-07T16:09:25-03:00",
-      "revision": "08e6f38553e0df4655f5ad83a649ef9086854583",
+      "at": "2026-10-07T16:10:28-03:00",
+      "revision": "fd9e3254d944da64341b283d583fe771d121e1e2",
       "file_count": 375,
-      "evidence_id": "evidence:repository:f4f1ed528e69"
+      "evidence_id": "evidence:repository:e52c7e4be227"
     },
     {
-      "id": "event:commit-observed:08e6f38553e0",
+      "id": "event:commit-observed:fd9e3254d944",
       "type": "commit_observed",
-      "at": "2026-10-07T16:09:25-03:00",
-      "revision": "08e6f38553e0df4655f5ad83a649ef9086854583",
+      "at": "2026-10-07T16:10:28-03:00",
+      "revision": "fd9e3254d944da64341b283d583fe771d121e1e2",
       "branch": "main",
-      "subject": "Merge pull request #115 from samuelferreira24/validacao-runtime-navegacao-v3",
-      "changed_files": []
+      "subject": "test: validar fallback e modo offline da AI Layer",
+      "changed_files": [
+        "tests/test_cognitive_runtime.py"
+      ]
     },
     {
-      "id": "event:test:5dfff2948bca",
+      "id": "event:test:35960c58cecb",
       "type": "tests_observed",
-      "at": "2026-10-07T16:09:25-03:00",
+      "at": "2026-10-07T16:10:28-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:5dfff2948bca"
+      "evidence_id": "evidence:test:35960c58cecb"
     }
   ],
   "knowledge_sources": [
@@ -7944,7 +7981,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "b8d19c49986f0a1a16e9a92cd4838bc4adffd061f5971ea42966e9d3f93038e2"
+      "sha256": "f0fccc5de3fef5bb036a9296f25d724a130cbaf4b74f993fba41120891e8221e"
     },
     {
       "id": "source:session",
@@ -30617,12 +30654,166 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:f4f1ed528e69",
-      "source": "event:repository-scan:f4f1ed528e69",
-      "relation": "generated",
-      "target": "evidence:repository:f4f1ed528e69",
+      "id": "rel:commit-precedes:08e6f38553e0:bcf7aa25576b",
+      "source": "commit:08e6f38553e0df4655f5ad83a649ef9086854583",
+      "relation": "precedes",
+      "target": "commit:bcf7aa25576bda51230a1ca3f06b732156a6817d",
       "status": "asserted",
-      "at": "2026-10-07T16:09:25-03:00",
+      "at": "2026-10-07T19:09:44Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bcf7aa25576b:032adc3624d7",
+      "source": "commit:bcf7aa25576bda51230a1ca3f06b732156a6817d",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-07T19:09:44Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bcf7aa25576b:d64178c49886",
+      "source": "commit:bcf7aa25576bda51230a1ca3f06b732156a6817d",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-07T19:09:44Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:bcf7aa25576b:2e876576c632",
+      "source": "commit:bcf7aa25576bda51230a1ca3f06b732156a6817d",
+      "relation": "precedes",
+      "target": "commit:2e876576c6321c2d486f8cbbff690986a86b9cde",
+      "status": "asserted",
+      "at": "2026-10-07T16:10:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2e876576c632:7fe5bf87e5fb",
+      "source": "commit:2e876576c6321c2d486f8cbbff690986a86b9cde",
+      "relation": "changed",
+      "target": "file:abs_core/intelligence.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:10:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:2e876576c632:332e04c6db7a",
+      "source": "commit:2e876576c6321c2d486f8cbbff690986a86b9cde",
+      "relation": "precedes",
+      "target": "commit:332e04c6db7ac364c855693d60b2fb0d0a9f06a5",
+      "status": "asserted",
+      "at": "2026-10-07T16:10:12-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:332e04c6db7a:7fe5bf87e5fb",
+      "source": "commit:332e04c6db7ac364c855693d60b2fb0d0a9f06a5",
+      "relation": "changed",
+      "target": "file:abs_core/intelligence.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:10:12-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:332e04c6db7a:af3f6a33654d",
+      "source": "commit:332e04c6db7ac364c855693d60b2fb0d0a9f06a5",
+      "relation": "precedes",
+      "target": "commit:af3f6a33654d846a8ca6d95d84b3dd7105c3bf19",
+      "status": "asserted",
+      "at": "2026-10-07T16:10:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:af3f6a33654d:7fe5bf87e5fb",
+      "source": "commit:af3f6a33654d846a8ca6d95d84b3dd7105c3bf19",
+      "relation": "changed",
+      "target": "file:abs_core/intelligence.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:10:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:af3f6a33654d:fd9e3254d944",
+      "source": "commit:af3f6a33654d846a8ca6d95d84b3dd7105c3bf19",
+      "relation": "precedes",
+      "target": "commit:fd9e3254d944da64341b283d583fe771d121e1e2",
+      "status": "asserted",
+      "at": "2026-10-07T16:10:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:fd9e3254d944:caffc04d9c41",
+      "source": "commit:fd9e3254d944da64341b283d583fe771d121e1e2",
+      "relation": "changed",
+      "target": "file:tests/test_cognitive_runtime.py",
+      "status": "asserted",
+      "at": "2026-10-07T16:10:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:e52c7e4be227",
+      "source": "event:repository-scan:e52c7e4be227",
+      "relation": "generated",
+      "target": "evidence:repository:e52c7e4be227",
+      "status": "asserted",
+      "at": "2026-10-07T16:10:28-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -30631,12 +30822,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:08e6f38553e0",
-      "source": "commit:08e6f38553e0df4655f5ad83a649ef9086854583",
+      "id": "rel:scan-commit:fd9e3254d944",
+      "source": "commit:fd9e3254d944da64341b283d583fe771d121e1e2",
       "relation": "observed_by",
-      "target": "event:repository-scan:f4f1ed528e69",
+      "target": "event:repository-scan:e52c7e4be227",
       "status": "asserted",
-      "at": "2026-10-07T16:09:25-03:00",
+      "at": "2026-10-07T16:10:28-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
