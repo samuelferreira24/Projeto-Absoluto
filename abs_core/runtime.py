@@ -129,6 +129,9 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
     router = ResourceRouter(connections)
     planner = ToolPlanner(knowledge, router)
 
+    navigation = KnowledgeNavigationCapability()
+    registry.register(CapabilityRecord("knowledge-navigation", navigation.name, navigation.kind, navigation))
+
     intelligence = IntelligenceRegistry()
     intelligence.discover_from_capabilities(registry, connections)
     cognitive = CognitiveRuntime(registry, intelligence, orchestrator, store_path=db_path, data_layer=data_layer)
@@ -136,9 +139,9 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
     dispatcher = ResourceDispatcher(router, planner, registry, knowledge, learning)
     dispatcher.orchestrator = orchestrator
     from .conversational_tools import ConversationalToolRuntime
-    cognitive.tool_runtime = ConversationalToolRuntime(planner, dispatcher)
-    navigation = KnowledgeNavigationCapability()
-    registry.register(CapabilityRecord("knowledge-navigation", navigation.name, navigation.kind, navigation))
+    cognitive.tool_runtime = ConversationalToolRuntime(
+        planner, dispatcher, capabilities=registry, orchestrator=orchestrator,
+    )
 
     return ABSRuntime(
         registry, orchestrator, resources, interface_runtime, connections, accounts,
