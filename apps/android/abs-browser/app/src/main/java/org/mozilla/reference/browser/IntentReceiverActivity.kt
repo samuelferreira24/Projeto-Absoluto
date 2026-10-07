@@ -31,8 +31,12 @@ class IntentReceiverActivity : Activity() {
 
         val processor = utils.intentProcessors.firstOrNull { it.process(intent) }
 
+        val absAppWeb = intent.getBooleanExtra(BrowserActivity.EXTRA_ABS_APP_WEB, false)
+
+        // The ABS Hub owns this App Web entry. Keep it on the normal BrowserActivity
+        // path so the old web app remains a separate web app, not a merged native module.
         val className =
-            if (processor in utils.externalIntentProcessors) {
+            if (!absAppWeb && processor in utils.externalIntentProcessors) {
                 ExternalAppBrowserActivity::class
             } else {
                 BrowserActivity::class
