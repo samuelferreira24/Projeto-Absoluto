@@ -208,6 +208,9 @@
     <string name="hub_subtitle">Escolha o que deseja acessar.</string>
     <string name="hub_browser">Navegador</string>
     <string name="hub_web_app">App Web</string>
+    <!-- URL do app antigo. Preencher quando a URL de hospedagem estiver definida. -->
+    <string name="abs_web_app_url"></string>
+    <string name="abs_web_app_url_missing">O endereço do App Web ainda não foi configurado.</string>
     <string name="hub_tools">Ferramentas</string>
     <string name="hub_settings">Configurações</string>
 </resources>
