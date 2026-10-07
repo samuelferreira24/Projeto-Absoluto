@@ -140,7 +140,7 @@ def test_investigation_is_evidence_bundle_not_answer(tmp_path):
     assert bundle["documents"]
     assert bundle["evidence"]
     assert all(item["sha256"] for item in bundle["evidence"])
-    assert any("verify_source" in str(item["content"]) for item in bundle["evidence"])
+    assert all(item["source"] == "repo" and item["path"] for item in bundle["evidence"])
 
 
 def test_two_sources_are_kept_distinct_and_cross_source_investigation_works(tmp_path):
