@@ -13,7 +13,9 @@ Camada independente do ABS para aquisição, localização, expansão e verifica
 - múltiplos repositórios no mesmo índice;
 - indexação incremental e remoções;
 - histórico Git;
-- interface Python estável e CLI JSON para IA.
+- interface Python estável;
+- CLI JSON para uma investigação;
+- protocolo JSONL persistente para uma IA operar search/symbols/inspect/related/investigate/coverage/verify.
 
 ## Indexar os dois repositórios
 
@@ -23,13 +25,21 @@ Camada independente do ABS para aquisição, localização, expansão e verifica
 
 ## Usar diretamente por uma IA
 
+Investigação única:
+
     python -m tools.navegacao.ai --db .abs-navigation/index.sqlite "como a proveniência é verificada?"
 
-Ou por JSON:
+Protocolo de agente persistente:
 
-    echo '{"question":"onde fica o orquestrador?","source":"projeto-absoluto"}' | python -m tools.navegacao.ai --db .abs-navigation/index.sqlite
+    python -m tools.navegacao.agent --db .abs-navigation/index.sqlite
 
-A CLI não importa abs_core. Se o ABS estiver parado, esta camada continua utilizável.
+Cada linha de entrada é um JSON, por exemplo:
+
+    {"action":"search","query":"orquestrador","source":"projeto-absoluto","limit":10}
+    {"action":"investigate","question":"como a proveniência é verificada?","limit":8}
+    {"action":"inspect","source":"projeto-absoluto","path":"tools/navegacao/navigator.py"}
+
+Cada resposta é JSONL com ok=true/false. A interface não importa abs_core. Se o ABS estiver parado, a navegação continua utilizável.
 
 ## API
 
@@ -50,7 +60,7 @@ Navigator continua disponível como alias compatível.
       --repo sistema=/caminho/Sistema \
       --report /tmp/navigation-report.json
 
-A validação registra cobertura, indexação incremental/remoções, proveniência e uma matriz de consultas. Ela mede a capacidade sem confundir quantidade de registros com cobertura completa.
+A validação registra cobertura, indexação, remoções, proveniência e uma matriz de consultas. Ela mede a capacidade sem confundir quantidade de registros com cobertura completa.
 
 ## Princípios
 
