@@ -1,0 +1,161 @@
+name: Navegacao V2 - Validacao Real
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  real-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Projeto-Absoluto
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: projeto-absoluto
+
+      - name: Checkout Sistema
+        uses: actions/checkout@v4
+        with:
+          repository: samuelferreira24/Sistema
+          fetch-depth: 0
+          path: sistema
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test dependency
+        run: python -m pip install -U pip pytest
+
+      - name: Execute navigation V2 against both real repositories
+        working-directory: projeto-absoluto
+        run: |
+          set -euo pipefail
+          rm -rf .abs-navigation
+          python -m tools.navegacao.index --db .abs-navigation/index.sqlite \
+            --repo projeto-absoluto="$GITHUB_WORKSPACE/projeto-absoluto" \
+            --repo sistema="$GITHUB_WORKSPACE/sistema"
+
+          python - <<'PY'
+          import sqlite3
+          from pathlib import Path
+          from tools.navegacao.navigator import Navigator
+          from tools.navegacao.verify import verify_source, verify_fts
+
+          db = Path(".abs-navigation/index.sqlite")
+          nav = Navigator(db)
+
+          with sqlite3.connect(db) as conn:
+              verify_fts(conn)
+              counts = dict(conn.execute(
+                  "SELECT source_id, COUNT(*) FROM documents GROUP BY source_id"
+              ).fetchall())
+              assert counts.get("projeto-absoluto", 0) > 0, counts
+              assert counts.get("sistema", 0) > 0, counts
+              assert not [r for r in verify_source(conn) if r["status"] != "ok"]
+
+          # Lexical search in both real sources.
+          assert nav.search("navegacao", source="projeto-absoluto", limit=5)
+          assert nav.search("Sistema", source="sistema", limit=5)
+
+          # Structural search and source isolation.
+          assert nav.symbols("Navigator", source="projeto-absoluto", limit=10)
+
+          # Inspection of a real file from main.
+          inspected = nav.inspect("projeto-absoluto", "tools/navegacao/navigator.py")
+          assert inspected and inspected.get("path") == "tools/navegacao/navigator.py"
+
+          # Relation navigation.
+          related = nav.related("tools.navegacao.navigator", source="projeto-absoluto", limit=20)
+          assert isinstance(related, list)
+
+          # Unified facade.
+          bundle = nav.navigate("navegacao", source="projeto-absoluto", limit=10)
+          assert bundle["query"] == "navegacao"
+          assert "results" in bundle and "symbols" in bundle and "relations" in bundle
+
+          print("REAL_NAVIGATION_COUNTS", counts)
+          print("REAL_NAVIGATION_PASS")
+          PY
+
+      - name: Validate full project knowledge suite
+        working-directory: projeto-absoluto
+        run: |
+          pytest -q tests/test_project_knowledge.py tests/test_path_evaluator.py tests/test_project_knowledge_runtime.py tests/test_navegacao_v1.py tests/test_navegacao_v2.py
+
+      - name: Validate incremental update and deletion on real indexed sources
+        working-directory: projeto-absoluto
+        run: |
+          set -euo pipefail
+          TMP="$GITHUB_WORKSPACE/projeto-absoluto/.navigation-real-validation.txt"
+          DB="$GITHUB_WORKSPACE/projeto-absoluto/.abs-navigation/index.sqlite"
+
+          printf 'navigation-real-validation-v1\n' > "$TMP"
+          python -m tools.navegacao.index --db "$DB" \
+            --repo projeto-absoluto="$GITHUB_WORKSPACE/projeto-absoluto" \
+            --repo sistema="$GITHUB_WORKSPACE/sistema"
+
+          python - <<'PY'
+          from pathlib import Path
+          from tools.navegacao.navigator import Navigator
+          nav = Navigator(Path(".abs-navigation/index.sqlite"))
+          assert nav.search("navigation-real-validation-v1", source="projeto-absoluto")
+          PY
+
+          printf 'navigation-real-validation-v2\n' > "$TMP"
+          python -m tools.navegacao.index --db "$DB" \
+            --repo projeto-absoluto="$GITHUB_WORKSPACE/projeto-absoluto" \
+            --repo sistema="$GITHUB_WORKSPACE/sistema"
+
+          python - <<'PY'
+          from pathlib import Path
+          from tools.navegacao.navigator import Navigator
+          nav = Navigator(Path(".abs-navigation/index.sqlite"))
+          assert nav.search("navigation-real-validation-v2", source="projeto-absoluto")
+          assert not nav.search("navigation-real-validation-v1", source="projeto-absoluto")
+          PY
+
+          rm "$TMP"
+          python -m tools.navegacao.index --db "$DB" \
+            --repo projeto-absoluto="$GITHUB_WORKSPACE/projeto-absoluto" \
+            --repo sistema="$GITHUB_WORKSPACE/sistema"
+
+          python - <<'PY'
+          from pathlib import Path
+          from tools.navegacao.navigator import Navigator
+          nav = Navigator(Path(".abs-navigation/index.sqlite"))
+          assert not nav.search("navigation-real-validation-v2", source="projeto-absoluto")
+          print("REAL_INCREMENTAL_DELETE_PASS")
+          PY
+
+      - name: Validate provenance mismatch detection and FTS recovery
+        working-directory: projeto-absoluto
+        run: |
+          set -euo pipefail
+          DB="$GITHUB_WORKSPACE/projeto-absoluto/.abs-navigation/index.sqlite"
+          TARGET="$GITHUB_WORKSPACE/projeto-absoluto/tools/navegacao/navigator.py"
+          cp "$TARGET" "$TARGET.navigation-validation-backup"
+
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("tools/navegacao/navigator.py")
+          p.write_text(p.read_text() + "\n# navigation-real-validation-mutation\n")
+          PY
+
+          set +e
+          python -m tools.navegacao.verify --db "$DB" --source projeto-absoluto
+          status=$?
+          set -e
+          test "$status" -eq 1
+
+          mv "$TARGET.navigation-validation-backup" "$TARGET"
+
+          python -m tools.navegacao.index --db "$DB" \
+            --repo projeto-absoluto="$GITHUB_WORKSPACE/projeto-absoluto" \
+            --repo sistema="$GITHUB_WORKSPACE/sistema"
+
+          python -m tools.navegacao.verify --db "$DB" --source projeto-absoluto --rebuild
+          echo "REAL_PROVENANCE_RECOVERY_PASS"
