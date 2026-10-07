@@ -1,0 +1,21 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+package org.projetoabsoluto.abs.browser.tabs
+
+import androidx.recyclerview.widget.ItemTouchHelper
+import kotlin.math.abs
+import mozilla.components.browser.state.state.TabSessionState
+import mozilla.components.browser.tabstray.TabTouchCallback
+
+/** Lets the user swipe a tab in the tabs tray away to close it, fading it out as it moves. */
+class TabsTouchHelper(observable: (TabSessionState) -> Unit) :
+    ItemTouchHelper(
+        object : TabTouchCallback(observable) {
+            override fun alphaForItemSwipe(
+                dX: Float,
+                distanceToAlphaMin: Int,
+            ): Float = 1f - 2f * abs(dX) / distanceToAlphaMin
+        }
+    )

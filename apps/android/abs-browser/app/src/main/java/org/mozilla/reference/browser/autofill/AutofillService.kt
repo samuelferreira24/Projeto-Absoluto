@@ -1,0 +1,15 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+package org.projetoabsoluto.abs.browser.autofill
+
+import mozilla.components.feature.autofill.AbstractAutofillService
+import mozilla.components.feature.autofill.AutofillConfiguration
+import org.projetoabsoluto.abs.browser.ext.components
+
+/** System autofill service that lets Android fill logins saved in this browser into other apps. */
+class AutofillService : AbstractAutofillService() {
+    override val configuration: AutofillConfiguration by lazy { components.autofillConfiguration }
+    override val applicationScope by lazy { components.applicationScope }
+}

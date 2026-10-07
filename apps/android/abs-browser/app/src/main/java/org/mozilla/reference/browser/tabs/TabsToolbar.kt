@@ -1,0 +1,84 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+package org.projetoabsoluto.abs.browser.tabs
+
+import android.content.Context
+import android.util.AttributeSet
+import mozilla.components.feature.tabs.tabstray.TabsFeature
+import mozilla.components.ui.icons.R as iconsR
+import org.projetoabsoluto.abs.browser.R
+import org.projetoabsoluto.abs.browser.ext.components
+
+/** Toolbar of the tabs tray, with back navigation and the new tab and close tabs actions. */
+class TabsToolbar
+@JvmOverloads
+constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+) : androidx.appcompat.widget.Toolbar(context, attrs) {
+    private var tabsFeature: TabsFeature? = null
+    private var isPrivateTray = false
+    private var closeTabsTray: (() -> Unit)? = null
+
+    init {
+        navigationContentDescription = "back"
+        setNavigationIcon(iconsR.drawable.mozac_ic_back_24)
+        setNavigationOnClickListener {
+            closeTabsTray?.invoke()
+        }
+        inflateMenu(R.menu.tabstray_menu)
+        setOnMenuItemClickListener {
+            val tabsUseCases = components.useCases.tabsUseCases
+            when (it.itemId) {
+                R.id.newTab -> {
+                    when (isPrivateTray) {
+                        true -> tabsUseCases.addTab.invoke("about:privatebrowsing", selectTab = true, private = true)
+                        false -> tabsUseCases.addTab.invoke("about:blank", selectTab = true)
+                    }
+                    closeTabsTray?.invoke()
+                }
+
+                R.id.closeTab -> {
+                    when (isPrivateTray) {
+                        true -> tabsUseCases.removePrivateTabs.invoke()
+                        false -> tabsUseCases.removeNormalTabs.invoke()
+                    }
+                }
+            }
+            true
+        }
+    }
+
+    /**
+     * Supplies the collaborators after inflation, since this view is created from XML and only the tabs tray fragment
+     * knows how to close the tray.
+     */
+    fun initialize(
+        tabsFeature: TabsFeature?,
+        closeTabsTray: () -> Unit,
+    ) {
+        this.tabsFeature = tabsFeature
+        this.closeTabsTray = closeTabsTray
+    }
+
+    /**
+     * Called through [TabsPanel] whenever it switches between normal and private tabs, so the new tab and close tabs
+     * actions act on the type currently shown.
+     */
+    fun updateToolbar(isPrivate: Boolean) {
+        // Store the state for the menu option
+        isPrivateTray = isPrivate
+
+        // Update the menu option text
+        menu.findItem(R.id.closeTab).title =
+            if (isPrivate) {
+                context.getString(R.string.menu_action_close_tabs_private)
+            } else {
+                context.getString(R.string.menu_action_close_tabs)
+            }
+    }
+
+    private val components = context.components
+}

@@ -1,0 +1,122 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+package org.projetoabsoluto.abs.browser.ui
+
+import mockwebserver3.MockWebServer
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.projetoabsoluto.abs.browser.helpers.AndroidAssetDispatcher
+import org.projetoabsoluto.abs.browser.helpers.BrowserActivityTestRule
+import org.projetoabsoluto.abs.browser.helpers.RetryTestRule
+import org.projetoabsoluto.abs.browser.helpers.TestAssetHelper
+import org.projetoabsoluto.abs.browser.ui.robots.navigationToolbar
+
+class ReaderViewTest {
+    private lateinit var mockWebServer: MockWebServer
+
+    @get:Rule val activityTestRule = BrowserActivityTestRule()
+
+    @Rule @JvmField val retryTestRule = RetryTestRule(3)
+
+    @Before
+    fun setUp() {
+        mockWebServer =
+            MockWebServer().apply {
+                dispatcher = AndroidAssetDispatcher()
+                start()
+            }
+    }
+
+    @After
+    fun tearDown() {
+        runCatching { mockWebServer.close() }
+    }
+
+    @Test
+    fun verifyReaderViewDetectionTest() {
+        val readerViewPage = TestAssetHelper.getLoremIpsumAsset(mockWebServer)
+
+        navigationToolbar {}.enterUrlAndEnterToBrowser(readerViewPage.url) {}
+        navigationToolbar {
+            verifyReaderViewButton()
+        }
+            .clickReaderViewButton {
+                verifyAppearanceButtonExists()
+                clickAppearanceButton()
+                verifyAppearanceMenuExists()
+            }
+            .dismissAppearanceMenu {}
+        navigationToolbar {}
+            .clickReaderViewButton {
+                verifyAppearanceButtonDoesntExists()
+            }
+    }
+
+    @Test
+    fun readerViewFontChangeTest() {
+        val readerViewPage = TestAssetHelper.getLoremIpsumAsset(mockWebServer)
+
+        navigationToolbar {}.enterUrlAndEnterToBrowser(readerViewPage.url) {}
+        navigationToolbar {
+            verifyReaderViewButton()
+        }
+            .clickReaderViewButton {
+                verifyAppearanceButtonExists()
+                clickAppearanceButton()
+                verifyAppearanceMenuExists()
+                verifyFontGroupButtons()
+                clickSansSerifButton()
+                verifyActiveAppearanceFont("SANSSERIF")
+                clickSerifButton()
+                verifyActiveAppearanceFont("SERIF")
+            }
+    }
+
+    @Test
+    fun readerViewFontSizeChangeTest() {
+        val readerViewPage = TestAssetHelper.getLoremIpsumAsset(mockWebServer)
+
+        navigationToolbar {}.enterUrlAndEnterToBrowser(readerViewPage.url) {}
+        navigationToolbar {
+            verifyReaderViewButton()
+        }
+            .clickReaderViewButton {
+                verifyAppearanceButtonExists()
+                clickAppearanceButton()
+                verifyAppearanceMenuExists()
+                verifyIncreaseFontSizeButton()
+                verifyDecreaseFontSizeButton()
+                verifyAppearanceFontSize(3)
+                clickIncreaseFontSizeButton()
+                verifyAppearanceFontSize(4)
+                clickDecreaseFontSizeButton()
+                verifyAppearanceFontSize(3)
+            }
+    }
+
+    @Test
+    fun readerViewColorSchemeChangeTest() {
+        val readerViewPage = TestAssetHelper.getLoremIpsumAsset(mockWebServer)
+
+        navigationToolbar {}.enterUrlAndEnterToBrowser(readerViewPage.url) {}
+        navigationToolbar {
+            verifyReaderViewButton()
+        }
+            .clickReaderViewButton {
+                verifyAppearanceButtonExists()
+                clickAppearanceButton()
+                verifyAppearanceMenuExists()
+                verifyColorSchemeGroupButtons()
+                clickSepiaColorButton()
+                verifyAppearanceColorScheme("SEPIA")
+                clickDarkColorButton()
+                verifyAppearanceColorScheme("DARK")
+                clickLightColorButton()
+                verifyAppearanceColorScheme("LIGHT")
+            }
+    }
+}
