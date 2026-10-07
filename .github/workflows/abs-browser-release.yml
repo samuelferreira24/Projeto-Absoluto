@@ -1,0 +1,102 @@
+name: ABS Browser Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_name:
+        required: true
+        default: "0.1.0"
+      version_code:
+        required: true
+        default: "1"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      UPSTREAM_REPO: https://github.com/mozilla-mobile/reference-browser.git
+      UPSTREAM_REF: master
+      ABS_APPLICATION_ID: org.projetoabsoluto.abs.browser
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch Reference Browser
+        run: |
+          rm -rf /tmp/reference-browser
+          git clone --depth 1 --branch "$UPSTREAM_REF" "$UPSTREAM_REPO" /tmp/reference-browser
+          mkdir -p apps/android/abs-browser
+          rm -rf apps/android/abs-browser/*
+          cp -a /tmp/reference-browser/. apps/android/abs-browser/
+          rm -rf apps/android/abs-browser/.git
+          printf 'upstream_ref=%s\n' "$UPSTREAM_REF" > apps/android/abs-browser/UPSTREAM_REVISION.txt
+          git -C /tmp/reference-browser rev-parse HEAD >> apps/android/abs-browser/UPSTREAM_REVISION.txt
+
+      - name: Transform package identity
+        working-directory: apps/android/abs-browser
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          old="org.mozilla.reference.browser"
+          new="org.projetoabsoluto.abs.browser"
+          for p in Path(".").rglob("*"):
+              if not p.is_file() or p.name=="gradle-wrapper.jar":
+                  continue
+              try:
+                  s=p.read_text()
+              except (UnicodeDecodeError,OSError):
+                  continue
+              if old in s:
+                  p.write_text(s.replace(old,new))
+          PY
+
+      - name: Build APK
+        working-directory: apps/android/abs-browser
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :app:assembleNightly --no-daemon --stacktrace
+
+      - name: Locate and checksum APK
+        id: apk
+        working-directory: apps/android/abs-browser
+        run: |
+          APK="$(find app/build/outputs/apk -type f -name '*.apk' | head -n 1)"
+          test -n "$APK"
+          echo "path=$APK" >> "$GITHUB_OUTPUT"
+          sha256sum "$APK" > "$APK.sha256"
+
+      - name: Publish APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ABS-Browser-${{ inputs.version_name }}-${{ inputs.version_code }}
+          path: |
+            apps/android/abs-browser/${{ steps.apk.outputs.path }}
+            apps/android/abs-browser/${{ steps.apk.outputs.path }}.sha256
+
+      - name: Generate update manifest
+        run: |
+          mkdir -p apps/android/abs-browser/update
+          SHA="$(cut -d' ' -f1 apps/android/abs-browser/${{ steps.apk.outputs.path }}.sha256)"
+          cat > apps/android/abs-browser/update/latest.json <<EOF
+          {
+            "appId": "$ABS_APPLICATION_ID",
+            "versionName": "${{ inputs.version_name }}",
+            "versionCode": ${{ inputs.version_code }},
+            "apkUrl": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "sha256": "$SHA",
+            "mandatory": false
+          }
+          EOF
+
+      - name: Commit release metadata
+        run: |
+          git config user.name "Projeto Absoluto CI"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/android/abs-browser/update/latest.json apps/android/abs-browser/UPSTREAM_REVISION.txt
+          git commit -m "release: ABS Browser ${{ inputs.version_name }} (${{ inputs.version_code }}) [skip ci]" || true
+          git push origin HEAD:${GITHUB_REF_NAME}
