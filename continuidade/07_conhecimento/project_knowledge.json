@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-07T16:14:11-03:00",
-  "source_revision": "fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
+  "generated_at": "2026-10-07T16:15:21-03:00",
+  "source_revision": "a752a4a38be43ab16e6b31db06f9507116c3dec9",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 65
+      "file_count": 66
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
-      "commit_subject": "test: validar resultado real do Echo na aceitacao V1"
+      "revision": "a752a4a38be43ab16e6b31db06f9507116c3dec9",
+      "commit_subject": "Merge pull request #119 from samuelferreira24/validacao-v1-acceptance"
     }
   ],
   "tools": [
@@ -2883,6 +2883,11 @@
       "id": "file:docs/03_planejamento/VALIDACAO_RUNTIME_NAVEGACAO_V3.md",
       "kind": "file",
       "path": "docs/03_planejamento/VALIDACAO_RUNTIME_NAVEGACAO_V3.md"
+    },
+    {
+      "id": "file:docs/03_planejamento/VALIDACAO_V1_ACCEPTANCE.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/VALIDACAO_V1_ACCEPTANCE.md"
     },
     {
       "id": "file:docs/03_planejamento/pesquisa/ATAQUE_ADVERSARIAL_FINAL_MOLDE_ABS_V0.md",
@@ -7650,6 +7655,27 @@
       "sha": "fa40f331efbbfaf84dd2026a6156a772f0ed04b6"
     },
     {
+      "id": "commit:f1a706cba15f448e923dfc166c76ed4ae2d5f04a",
+      "kind": "commit",
+      "at": "2026-10-07T16:14:19-03:00",
+      "subject": "test: registrar aceitacao V1",
+      "sha": "f1a706cba15f448e923dfc166c76ed4ae2d5f04a"
+    },
+    {
+      "id": "commit:e89aa7a0c0812714af79a2414d7c0d52f0ae6397",
+      "kind": "commit",
+      "at": "2026-10-07T19:14:30Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "e89aa7a0c0812714af79a2414d7c0d52f0ae6397"
+    },
+    {
+      "id": "commit:a752a4a38be43ab16e6b31db06f9507116c3dec9",
+      "kind": "commit",
+      "at": "2026-10-07T16:15:21-03:00",
+      "subject": "Merge pull request #119 from samuelferreira24/validacao-v1-acceptance",
+      "sha": "a752a4a38be43ab16e6b31db06f9507116c3dec9"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7762,23 +7788,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:30b0b515989c",
+      "id": "evidence:repository:837f53252de1",
       "kind": "evidence",
-      "at": "2026-10-07T16:14:11-03:00",
+      "at": "2026-10-07T16:15:21-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:30b0b515989c",
+      "id": "event:repository-scan:837f53252de1",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-07T16:14:11-03:00"
+      "at": "2026-10-07T16:15:21-03:00"
     },
     {
-      "id": "event:commit-observed:fa40f331efbb",
+      "id": "event:commit-observed:a752a4a38be4",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-07T16:14:11-03:00"
+      "at": "2026-10-07T16:15:21-03:00"
     }
   ],
   "paths": [
@@ -7813,11 +7839,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:a3fca43c14f6"
+        "evidence:test:9c1dca6765fd"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-07T16:14:11-03:00"
+      "last_validated": "2026-10-07T16:15:21-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7840,20 +7866,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:30b0b515989c",
+      "id": "evidence:repository:837f53252de1",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-07T16:14:11-03:00",
+      "observed_at": "2026-10-07T16:15:21-03:00",
       "status": "observed",
-      "detail": "376 files indexed at revision fa40f331efbbfaf84dd2026a6156a772f0ed04b6"
+      "detail": "377 files indexed at revision a752a4a38be43ab16e6b31db06f9507116c3dec9"
     },
     {
-      "id": "evidence:test:a3fca43c14f6",
+      "id": "evidence:test:9c1dca6765fd",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-07T16:14:11-03:00",
+      "observed_at": "2026-10-07T16:15:21-03:00",
       "status": "tested",
-      "detail": "163 passed in 7.34s"
+      "detail": "163 passed in 6.97s"
     }
   ],
   "decisions": [
@@ -7956,30 +7982,28 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:30b0b515989c",
+      "id": "event:repository-scan:837f53252de1",
       "type": "repository_scanned",
-      "at": "2026-10-07T16:14:11-03:00",
-      "revision": "fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
-      "file_count": 376,
-      "evidence_id": "evidence:repository:30b0b515989c"
+      "at": "2026-10-07T16:15:21-03:00",
+      "revision": "a752a4a38be43ab16e6b31db06f9507116c3dec9",
+      "file_count": 377,
+      "evidence_id": "evidence:repository:837f53252de1"
     },
     {
-      "id": "event:commit-observed:fa40f331efbb",
+      "id": "event:commit-observed:a752a4a38be4",
       "type": "commit_observed",
-      "at": "2026-10-07T16:14:11-03:00",
-      "revision": "fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
+      "at": "2026-10-07T16:15:21-03:00",
+      "revision": "a752a4a38be43ab16e6b31db06f9507116c3dec9",
       "branch": "main",
-      "subject": "test: validar resultado real do Echo na aceitacao V1",
-      "changed_files": [
-        "tests/test_execution_knowledge_e2e.py"
-      ]
+      "subject": "Merge pull request #119 from samuelferreira24/validacao-v1-acceptance",
+      "changed_files": []
     },
     {
-      "id": "event:test:a3fca43c14f6",
+      "id": "event:test:9c1dca6765fd",
       "type": "tests_observed",
-      "at": "2026-10-07T16:14:11-03:00",
+      "at": "2026-10-07T16:15:21-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:a3fca43c14f6"
+      "evidence_id": "evidence:test:9c1dca6765fd"
     }
   ],
   "knowledge_sources": [
@@ -8035,7 +8059,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "6be4138127389343c9e00d342595e4deaa49337efbed7bfaa4ccd96d687a09a9"
+      "sha256": "bf37ce712554164decec13e1a404e63a03aed9efc4002521003b0ff64cc2c096"
     },
     {
       "id": "source:session",
@@ -31086,12 +31110,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:30b0b515989c",
-      "source": "event:repository-scan:30b0b515989c",
-      "relation": "generated",
-      "target": "evidence:repository:30b0b515989c",
+      "id": "rel:commit-precedes:fa40f331efbb:f1a706cba15f",
+      "source": "commit:fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
+      "relation": "precedes",
+      "target": "commit:f1a706cba15f448e923dfc166c76ed4ae2d5f04a",
       "status": "asserted",
-      "at": "2026-10-07T16:14:11-03:00",
+      "at": "2026-10-07T16:14:19-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f1a706cba15f:22d4120d06c7",
+      "source": "commit:f1a706cba15f448e923dfc166c76ed4ae2d5f04a",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/VALIDACAO_V1_ACCEPTANCE.md",
+      "status": "asserted",
+      "at": "2026-10-07T16:14:19-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:fa40f331efbb:e89aa7a0c081",
+      "source": "commit:fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
+      "relation": "precedes",
+      "target": "commit:e89aa7a0c0812714af79a2414d7c0d52f0ae6397",
+      "status": "asserted",
+      "at": "2026-10-07T19:14:30Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e89aa7a0c081:032adc3624d7",
+      "source": "commit:e89aa7a0c0812714af79a2414d7c0d52f0ae6397",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-07T19:14:30Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e89aa7a0c081:d64178c49886",
+      "source": "commit:e89aa7a0c0812714af79a2414d7c0d52f0ae6397",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-07T19:14:30Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:e89aa7a0c081:a752a4a38be4",
+      "source": "commit:e89aa7a0c0812714af79a2414d7c0d52f0ae6397",
+      "relation": "precedes",
+      "target": "commit:a752a4a38be43ab16e6b31db06f9507116c3dec9",
+      "status": "asserted",
+      "at": "2026-10-07T16:15:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f1a706cba15f:a752a4a38be4",
+      "source": "commit:f1a706cba15f448e923dfc166c76ed4ae2d5f04a",
+      "relation": "precedes",
+      "target": "commit:a752a4a38be43ab16e6b31db06f9507116c3dec9",
+      "status": "asserted",
+      "at": "2026-10-07T16:15:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:837f53252de1",
+      "source": "event:repository-scan:837f53252de1",
+      "relation": "generated",
+      "target": "evidence:repository:837f53252de1",
+      "status": "asserted",
+      "at": "2026-10-07T16:15:21-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -31100,12 +31222,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:fa40f331efbb",
-      "source": "commit:fa40f331efbbfaf84dd2026a6156a772f0ed04b6",
+      "id": "rel:scan-commit:a752a4a38be4",
+      "source": "commit:a752a4a38be43ab16e6b31db06f9507116c3dec9",
       "relation": "observed_by",
-      "target": "event:repository-scan:30b0b515989c",
+      "target": "event:repository-scan:837f53252de1",
       "status": "asserted",
-      "at": "2026-10-07T16:14:11-03:00",
+      "at": "2026-10-07T16:15:21-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
