@@ -28,7 +28,7 @@ class ConversationalToolRuntime:
         "no repositorio local", "como o abs funciona",
     )
 
-        _URL_RE = re.compile(r'''https?://[^\s<>'"]+''')
+    _URL_RE = re.compile(r'''https?://[^\s<>'"]+''')
 
     def __init__(
         self,
