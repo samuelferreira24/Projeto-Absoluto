@@ -1,0 +1,86 @@
+name: ABS Browser Bootstrap
+
+on:
+  push:
+    branches:
+      - abs-browser-bootstrap
+    paths:
+      - '.github/workflows/abs-browser-bootstrap.yml'
+      - 'apps/android/abs-browser/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      UPSTREAM_REPO: https://github.com/mozilla-mobile/reference-browser.git
+      UPSTREAM_REF: master
+      ABS_APPLICATION_ID: org.projetoabsoluto.abs.browser
+      ABS_NAMESPACE: org.projetoabsoluto.abs.browser
+
+    steps:
+      - name: Checkout ABS repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch upstream Reference Browser
+        run: |
+          rm -rf /tmp/reference-browser
+          git clone --depth 1 --branch "$UPSTREAM_REF" "$UPSTREAM_REPO" /tmp/reference-browser
+          mkdir -p apps/android/abs-browser
+          rm -rf apps/android/abs-browser/src
+          cp -a /tmp/reference-browser/. apps/android/abs-browser/
+          rm -rf apps/android/abs-browser/.git
+          printf '%s\n' "upstream_ref=$UPSTREAM_REF" > apps/android/abs-browser/UPSTREAM_REVISION.txt
+          git -C /tmp/reference-browser rev-parse HEAD >> apps/android/abs-browser/UPSTREAM_REVISION.txt
+
+      - name: Transform package identity for ABS
+        working-directory: apps/android/abs-browser
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          old = "org.mozilla.reference.browser"
+          new = "org.projetoabsoluto.abs.browser"
+          for p in Path(".").rglob("*"):
+              if not p.is_file() or p.name in {"gradle-wrapper.jar"}:
+                  continue
+              try:
+                  s = p.read_text()
+              except (UnicodeDecodeError, OSError):
+                  continue
+              if old in s:
+                  p.write_text(s.replace(old, new))
+          PY
+
+      - name: Build ABS Browser nightly APK
+        working-directory: apps/android/abs-browser
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :app:assembleNightly --no-daemon --stacktrace
+
+      - name: Locate APK
+        id: apk
+        working-directory: apps/android/abs-browser
+        run: |
+          APK="$(find app/build/outputs/apk -type f -name '*.apk' | head -n 1)"
+          test -n "$APK"
+          echo "path=$APK" >> "$GITHUB_OUTPUT"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ABS-Browser-bootstrap
+          path: apps/android/abs-browser/${{ steps.apk.outputs.path }}
+
+      - name: Record source snapshot
+        run: |
+          git config user.name "Projeto Absoluto CI"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/android/abs-browser
+          git commit -m "Adicionar base do ABS Browser a partir do Reference Browser [skip ci]" || exit 0
+          git push origin HEAD:abs-browser-bootstrap
