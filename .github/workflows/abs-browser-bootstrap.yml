@@ -65,6 +65,7 @@ jobs:
           git show HEAD:apps/android/abs-browser/app/src/main/res/layout/activity_hub.xml > apps/android/abs-browser/app/src/main/res/layout/activity_hub.xml
           git show HEAD:apps/android/abs-browser/app/src/main/AndroidManifest.xml > apps/android/abs-browser/app/src/main/AndroidManifest.xml
           git show HEAD:apps/android/abs-browser/app/src/main/res/values/strings.xml > apps/android/abs-browser/app/src/main/res/values/strings.xml
+          git show HEAD:apps/android/abs-browser/app/src/main/java/org/mozilla/reference/browser/BrowserActivity.kt > apps/android/abs-browser/app/src/main/java/org/mozilla/reference/browser/BrowserActivity.kt
 
       - name: Build ABS Browser nightly APK
         working-directory: apps/android/abs-browser
