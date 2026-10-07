@@ -8,6 +8,17 @@ from .inspect import inspect_document
 from .related import related
 from .search import search, search_symbols
 
+TERM_ALIASES = {
+    "proveniencia": {"provenance"},
+    "navegacao": {"navigation"},
+    "conhecimento": {"knowledge"},
+    "verificacao": {"verification", "verify"},
+    "memoria": {"memory"},
+    "sistema": {"system"},
+    "busca": {"search"},
+    "arquivo": {"file"},
+}
+
 
 def _terms(query: str) -> list[str]:
     normalized = unicodedata.normalize("NFKD", query)
@@ -16,9 +27,12 @@ def _terms(query: str) -> list[str]:
     plain = re.findall(r"[A-Za-z0-9_]+", normalized)
     result: list[str] = []
     for term in [*raw, *plain]:
-        term = term.strip()
-        if len(term) >= 3 and term.lower() not in result:
-            result.append(term.lower())
+        term = term.strip().lower()
+        if len(term) >= 3 and term not in result:
+            result.append(term)
+        for alias in TERM_ALIASES.get(term, set()):
+            if alias not in result:
+                result.append(alias)
     return result
 
 
