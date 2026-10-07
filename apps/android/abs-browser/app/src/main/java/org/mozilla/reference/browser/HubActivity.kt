@@ -14,7 +14,21 @@ class HubActivity : AppCompatActivity() {
         }
 
         findViewById<android.view.View>(R.id.hub_web_app).setOnClickListener {
-            startActivity(Intent(this, BrowserActivity::class.java))
+            val url = getString(R.string.abs_web_app_url).trim()
+            if (url.isEmpty()) {
+                android.widget.Toast.makeText(
+                    this,
+                    getString(R.string.abs_web_app_url_missing),
+                    android.widget.Toast.LENGTH_LONG,
+                ).show()
+                return@setOnClickListener
+            }
+
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = android.net.Uri.parse(url)
+                putExtra(BrowserActivity.EXTRA_ABS_APP_WEB, true)
+            }
+            startActivity(intent)
         }
 
         findViewById<android.view.View>(R.id.hub_tools).setOnClickListener { }
