@@ -3,7 +3,7 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <resources>
-    <string name="app_name">Reference Browser</string>
+    <string name="app_name">ABS</string>
 
     <!-- Text shown in the toolbar if it is empty -->
     <string name="toolbar_hint">Search or enter address</string>
@@ -202,4 +202,12 @@
     <string name="customize_addon_collection_user_hint">Collection owner (User ID)</string>
     <!-- Toast shown after confirming the custom add-on collection configuration -->
     <string name="toast_customize_addon_collection_done">Add-on collection modified. Quitting the application to apply changes…</string>
+
+    <!-- ABS top-level hub -->
+    <string name="hub_title">ABS</string>
+    <string name="hub_subtitle">Escolha o que deseja acessar.</string>
+    <string name="hub_browser">Navegador</string>
+    <string name="hub_web_app">App Web</string>
+    <string name="hub_tools">Ferramentas</string>
+    <string name="hub_settings">Configurações</string>
 </resources>
