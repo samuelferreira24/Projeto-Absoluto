@@ -27,8 +27,7 @@ class ConversationalToolRuntime:
         "evidência no projeto", "evidencia no projeto", "no repositório local",
         "no repositorio local", "como o abs funciona",
     )
-
-    _URL_RE = re.compile(r'''https?://[^\s<>'"]+''')
+    _URL_RE = re.compile(r"https?://\S+")
 
     def __init__(
         self,
@@ -88,21 +87,15 @@ class ConversationalToolRuntime:
 
         context: dict[str, Any] = {"action": action}
         if action == "file":
-            match = re.search(
-                r'''(?:arquivo|ficheiro|file)\s+(?:chamado\s+|de\s+)?['"]?([^'"\n,;]+)''',
-                text, re.IGNORECASE)
+            match = re.search(r"(?:arquivo|ficheiro|file)\s+(.+)$", text, re.IGNORECASE)
             if match:
-                context["path"] = match.group(1).strip()
+                context["path"] = match.group(1).strip().strip("'\"")
         elif action == "directory":
-            match = re.search(
-                r'''(?:pasta|diret[oó]rio|directory)\s+(?:chamada\s+|de\s+)?['"]?([^'"\n,;]+)''',
-                text, re.IGNORECASE)
+            match = re.search(r"(?:pasta|diretório|diretorio|directory)\s+(.+)$", text, re.IGNORECASE)
             if match:
-                context["path"] = match.group(1).strip()
+                context["path"] = match.group(1).strip().strip("'\"")
         elif action == "search":
-            match = re.search(
-                r"(?:buscar|procure|procurar|pesquise|pesquisar|search)\\s+(.+)$",
-                text, re.IGNORECASE)
+            match = re.search(r"(?:buscar|procure|procurar|pesquise|pesquisar|search)\s+(.+)$", text, re.IGNORECASE)
             if match:
                 context["query"] = match.group(1).strip()
 
@@ -114,7 +107,11 @@ class ConversationalToolRuntime:
             return None
 
         if intent.get("action") == "unsupported_write":
-            return {"type": "tool_blocked", "tool": "github", "reason": intent["reason"]}
+            return {
+                "type": "tool_blocked",
+                "tool": "github",
+                "reason": intent["reason"],
+            }
 
         tool_id = str(intent["tool_id"])
         if tool_id == "knowledge-navigation":
@@ -165,239 +162,20 @@ class ConversationalToolRuntime:
         context["tool_id"] = tool_id
         context["source"] = "conversational"
         result = self.dispatcher.dispatch(
-            objective, request, context=context, approved=True,
-        )
-        return {
-            "type": "tool_result",
-            "tool": tool_id,
-            "action": intent["action"],
-            "route": result.selected_connection,
-            "plan": {"tool_id": plans[0].tool_id, "routes": list(plans[0].routes)},
-            "result": result.work.result,
-            "work_id": result.work.id,
-        }
-'',
-                text, re.IGNORECASE)
-            if match:
-                context["query"] = match.group(1).strip()
-
-        return {"tool_id": "github", **context}
-
-    def execute(self, message: str) -> dict[str, Any] | None:
-        intent = self.detect(message)
-        if intent is None:
-            return None
-
-        if intent.get("action") == "unsupported_write":
-            return {"type": "tool_blocked", "tool": "github", "reason": intent["reason"]}
-
-        tool_id = str(intent["tool_id"])
-        if tool_id == "knowledge-navigation":
-            if self.capabilities is None or self.orchestrator is None:
-                raise LookupError("knowledge_navigation_runtime_not_available")
-            capability = self.capabilities.get(tool_id)
-            work = self.orchestrator.create(
-                str(message),
-                {**intent, "source": "conversational", "knowledge_navigation": True},
-            )
-            work = self.orchestrator.run(work.id, tool_id, approved=True)
-            return {
-                "type": "tool_result",
-                "tool": tool_id,
-                "action": intent["action"],
-                "result": work.result,
-                "work_id": work.id,
-                "provenance": work.provenance,
-                "capability": capability.name,
-            }
-
-        if tool_id == "github":
-            required = ("repository",)
-            category = "source-control"
-        elif tool_id == "internet-http":
-            required = ("http",)
-            category = "network"
-        else:
-            raise LookupError(f"unsupported_conversational_tool:{tool_id}")
-
-        objective = str(message)
-        request = ResourceRouteRequest(
-            objective=objective,
-            required_capabilities=required,
-            preferred_categories=(category,),
-            context={"tool_id": tool_id},
-        )
-        plans = self.planner.plan(
             objective,
-            required,
-            preferred_categories=(category,),
-            tool_id=tool_id if tool_id == "github" else None,
-        )
-        if not plans:
-            raise LookupError(f"{tool_id}_tool_route_not_available")
-
-        context = dict(intent)
-        context["tool_id"] = tool_id
-        context["source"] = "conversational"
-        result = self.dispatcher.dispatch(
-            objective, request, context=context, approved=True,
+            request,
+            context=context,
+            approved=True,
         )
         return {
             "type": "tool_result",
             "tool": tool_id,
             "action": intent["action"],
             "route": result.selected_connection,
-            "plan": {"tool_id": plans[0].tool_id, "routes": list(plans[0].routes)},
-            "result": result.work.result,
-            "work_id": result.work.id,
-        }
-'',
-                text, re.IGNORECASE)
-            if match:
-                context["query"] = match.group(1).strip()
-
-        return {"tool_id": "github", **context}
-
-    def execute(self, message: str) -> dict[str, Any] | None:
-        intent = self.detect(message)
-        if intent is None:
-            return None
-
-        if intent.get("action") == "unsupported_write":
-            return {"type": "tool_blocked", "tool": "github", "reason": intent["reason"]}
-
-        tool_id = str(intent["tool_id"])
-        if tool_id == "knowledge-navigation":
-            if self.capabilities is None or self.orchestrator is None:
-                raise LookupError("knowledge_navigation_runtime_not_available")
-            capability = self.capabilities.get(tool_id)
-            work = self.orchestrator.create(
-                str(message),
-                {**intent, "source": "conversational", "knowledge_navigation": True},
-            )
-            work = self.orchestrator.run(work.id, tool_id, approved=True)
-            return {
-                "type": "tool_result",
-                "tool": tool_id,
-                "action": intent["action"],
-                "result": work.result,
-                "work_id": work.id,
-                "provenance": work.provenance,
-                "capability": capability.name,
-            }
-
-        if tool_id == "github":
-            required = ("repository",)
-            category = "source-control"
-        elif tool_id == "internet-http":
-            required = ("http",)
-            category = "network"
-        else:
-            raise LookupError(f"unsupported_conversational_tool:{tool_id}")
-
-        objective = str(message)
-        request = ResourceRouteRequest(
-            objective=objective,
-            required_capabilities=required,
-            preferred_categories=(category,),
-            context={"tool_id": tool_id},
-        )
-        plans = self.planner.plan(
-            objective,
-            required,
-            preferred_categories=(category,),
-            tool_id=tool_id if tool_id == "github" else None,
-        )
-        if not plans:
-            raise LookupError(f"{tool_id}_tool_route_not_available")
-
-        context = dict(intent)
-        context["tool_id"] = tool_id
-        context["source"] = "conversational"
-        result = self.dispatcher.dispatch(
-            objective, request, context=context, approved=True,
-        )
-        return {
-            "type": "tool_result",
-            "tool": tool_id,
-            "action": intent["action"],
-            "route": result.selected_connection,
-            "plan": {"tool_id": plans[0].tool_id, "routes": list(plans[0].routes)},
-            "result": result.work.result,
-            "work_id": result.work.id,
-        }
-'',
-                text, re.IGNORECASE)
-            if match:
-                context["query"] = match.group(1).strip()
-
-        return {"tool_id": "github", **context}
-
-    def execute(self, message: str) -> dict[str, Any] | None:
-        intent = self.detect(message)
-        if intent is None:
-            return None
-
-        if intent.get("action") == "unsupported_write":
-            return {"type": "tool_blocked", "tool": "github", "reason": intent["reason"]}
-
-        tool_id = str(intent["tool_id"])
-        if tool_id == "knowledge-navigation":
-            if self.capabilities is None or self.orchestrator is None:
-                raise LookupError("knowledge_navigation_runtime_not_available")
-            capability = self.capabilities.get(tool_id)
-            work = self.orchestrator.create(
-                str(message),
-                {**intent, "source": "conversational", "knowledge_navigation": True},
-            )
-            work = self.orchestrator.run(work.id, tool_id, approved=True)
-            return {
-                "type": "tool_result",
-                "tool": tool_id,
-                "action": intent["action"],
-                "result": work.result,
-                "work_id": work.id,
-                "provenance": work.provenance,
-                "capability": capability.name,
-            }
-
-        if tool_id == "github":
-            required = ("repository",)
-            category = "source-control"
-        elif tool_id == "internet-http":
-            required = ("http",)
-            category = "network"
-        else:
-            raise LookupError(f"unsupported_conversational_tool:{tool_id}")
-
-        objective = str(message)
-        request = ResourceRouteRequest(
-            objective=objective,
-            required_capabilities=required,
-            preferred_categories=(category,),
-            context={"tool_id": tool_id},
-        )
-        plans = self.planner.plan(
-            objective,
-            required,
-            preferred_categories=(category,),
-            tool_id=tool_id if tool_id == "github" else None,
-        )
-        if not plans:
-            raise LookupError(f"{tool_id}_tool_route_not_available")
-
-        context = dict(intent)
-        context["tool_id"] = tool_id
-        context["source"] = "conversational"
-        result = self.dispatcher.dispatch(
-            objective, request, context=context, approved=True,
-        )
-        return {
-            "type": "tool_result",
-            "tool": tool_id,
-            "action": intent["action"],
-            "route": result.selected_connection,
-            "plan": {"tool_id": plans[0].tool_id, "routes": list(plans[0].routes)},
+            "plan": {
+                "tool_id": plans[0].tool_id,
+                "routes": list(plans[0].routes),
+            },
             "result": result.work.result,
             "work_id": result.work.id,
         }
