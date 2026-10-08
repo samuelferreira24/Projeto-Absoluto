@@ -264,9 +264,21 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
         self._tickets={}
     def status(self):
         s=self.capacity.snapshot(self.queue.depth()); self.v3_state.capacity(s)
+        intelligence = []
+        for cap in self.registry.list():
+            kind = str(getattr(cap, "kind", "")).lower()
+            if "ai" in kind:
+                meta = dict(getattr(cap, "metadata", {}) or {})
+                intelligence.append({
+                    "id": cap.id, "name": cap.name, "kind": cap.kind,
+                    "status": "available", "cost_class": meta.get("cost_class"),
+                    "capabilities": list(meta.get("capabilities") or ()),
+                    "local": kind == "local_ai",
+                })
         return {"version":"v3","capacity":asdict(s)|{"state":s.state.value},
                 "cost_policy_default":self.cost_policy.default_policy.value,
                 "queue_depth":self.queue.depth(),"active_executions":self._active,
+                "intelligence": intelligence,
                 "models":self.lifecycle.status(),
                 "telemetry":self.telemetry.snapshot()}
     def _acquire_slot(self,work_id,priority):
