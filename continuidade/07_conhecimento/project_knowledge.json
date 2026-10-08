@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T14:52:16-03:00",
-  "source_revision": "786e2df1949d9963c1c605c5b679ea824024c0c6",
+  "generated_at": "2026-10-08T15:35:49-03:00",
+  "source_revision": "8c28f85d8fc92028566a8a4a14f192398cbd8312",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "786e2df1949d9963c1c605c5b679ea824024c0c6",
-      "commit_subject": "fix: refresh VPS checkout before V3 validation"
+      "revision": "8c28f85d8fc92028566a8a4a14f192398cbd8312",
+      "commit_subject": "V3: adicionar testes de integração do roteamento e execução real"
     }
   ],
   "tools": [
@@ -8545,6 +8545,27 @@
       "sha": "786e2df1949d9963c1c605c5b679ea824024c0c6"
     },
     {
+      "id": "commit:d4c3ed196c1b57ea88e2e28983143263c7d34ba9",
+      "kind": "commit",
+      "at": "2026-10-08T17:52:40Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "d4c3ed196c1b57ea88e2e28983143263c7d34ba9"
+    },
+    {
+      "id": "commit:afe052c96d407a6415809bc4fe591bea0098bd0c",
+      "kind": "commit",
+      "at": "2026-10-08T15:35:39-03:00",
+      "subject": "Fechar V3: corrigir roteamento de inteligencia e robustez do control plane",
+      "sha": "afe052c96d407a6415809bc4fe591bea0098bd0c"
+    },
+    {
+      "id": "commit:8c28f85d8fc92028566a8a4a14f192398cbd8312",
+      "kind": "commit",
+      "at": "2026-10-08T15:35:49-03:00",
+      "subject": "V3: adicionar testes de integração do roteamento e execução real",
+      "sha": "8c28f85d8fc92028566a8a4a14f192398cbd8312"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -8657,23 +8678,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:defe18ce9cd0",
+      "id": "evidence:repository:ff7014bd1bfe",
       "kind": "evidence",
-      "at": "2026-10-08T14:52:16-03:00",
+      "at": "2026-10-08T15:35:49-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:defe18ce9cd0",
+      "id": "event:repository-scan:ff7014bd1bfe",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T14:52:16-03:00"
+      "at": "2026-10-08T15:35:49-03:00"
     },
     {
-      "id": "event:commit-observed:786e2df1949d",
+      "id": "event:commit-observed:8c28f85d8fc9",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T14:52:16-03:00"
+      "at": "2026-10-08T15:35:49-03:00"
     }
   ],
   "paths": [
@@ -8708,11 +8729,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:7036cfd41abc"
+        "evidence:test:4df0ab549008"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T14:52:16-03:00"
+      "last_validated": "2026-10-08T15:35:49-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -8735,20 +8756,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:defe18ce9cd0",
+      "id": "evidence:repository:ff7014bd1bfe",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T14:52:16-03:00",
+      "observed_at": "2026-10-08T15:35:49-03:00",
       "status": "observed",
-      "detail": "394 files indexed at revision 786e2df1949d9963c1c605c5b679ea824024c0c6"
+      "detail": "394 files indexed at revision 8c28f85d8fc92028566a8a4a14f192398cbd8312"
     },
     {
-      "id": "evidence:test:7036cfd41abc",
+      "id": "evidence:test:4df0ab549008",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T14:52:16-03:00",
+      "observed_at": "2026-10-08T15:35:49-03:00",
       "status": "tested",
-      "detail": "184 passed in 7.50s"
+      "detail": "187 passed in 7.00s"
     }
   ],
   "decisions": [
@@ -8851,30 +8872,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:defe18ce9cd0",
+      "id": "event:repository-scan:ff7014bd1bfe",
       "type": "repository_scanned",
-      "at": "2026-10-08T14:52:16-03:00",
-      "revision": "786e2df1949d9963c1c605c5b679ea824024c0c6",
+      "at": "2026-10-08T15:35:49-03:00",
+      "revision": "8c28f85d8fc92028566a8a4a14f192398cbd8312",
       "file_count": 394,
-      "evidence_id": "evidence:repository:defe18ce9cd0"
+      "evidence_id": "evidence:repository:ff7014bd1bfe"
     },
     {
-      "id": "event:commit-observed:786e2df1949d",
+      "id": "event:commit-observed:8c28f85d8fc9",
       "type": "commit_observed",
-      "at": "2026-10-08T14:52:16-03:00",
-      "revision": "786e2df1949d9963c1c605c5b679ea824024c0c6",
+      "at": "2026-10-08T15:35:49-03:00",
+      "revision": "8c28f85d8fc92028566a8a4a14f192398cbd8312",
       "branch": "main",
-      "subject": "fix: refresh VPS checkout before V3 validation",
+      "subject": "V3: adicionar testes de integração do roteamento e execução real",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        "tests/test_v3.py"
       ]
     },
     {
-      "id": "event:test:7036cfd41abc",
+      "id": "event:test:4df0ab549008",
       "type": "tests_observed",
-      "at": "2026-10-08T14:52:16-03:00",
+      "at": "2026-10-08T15:35:49-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:7036cfd41abc"
+      "evidence_id": "evidence:test:4df0ab549008"
     }
   ],
   "knowledge_sources": [
@@ -8930,7 +8951,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "5abbb4d1c902b8dc93f4b73f48839df7c34f10dd17748f437a008bbb6aee1177"
+      "sha256": "905bc706a053f79b0f4a2e487bb848b9c21450109fd0e6ac81ca8dc5c42b3438"
     },
     {
       "id": "source:session",
@@ -35887,12 +35908,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:defe18ce9cd0",
-      "source": "event:repository-scan:defe18ce9cd0",
-      "relation": "generated",
-      "target": "evidence:repository:defe18ce9cd0",
+      "id": "rel:commit-precedes:786e2df1949d:d4c3ed196c1b",
+      "source": "commit:786e2df1949d9963c1c605c5b679ea824024c0c6",
+      "relation": "precedes",
+      "target": "commit:d4c3ed196c1b57ea88e2e28983143263c7d34ba9",
       "status": "asserted",
-      "at": "2026-10-08T14:52:16-03:00",
+      "at": "2026-10-08T17:52:40Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d4c3ed196c1b:032adc3624d7",
+      "source": "commit:d4c3ed196c1b57ea88e2e28983143263c7d34ba9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T17:52:40Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d4c3ed196c1b:d64178c49886",
+      "source": "commit:d4c3ed196c1b57ea88e2e28983143263c7d34ba9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T17:52:40Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:d4c3ed196c1b:afe052c96d40",
+      "source": "commit:d4c3ed196c1b57ea88e2e28983143263c7d34ba9",
+      "relation": "precedes",
+      "target": "commit:afe052c96d407a6415809bc4fe591bea0098bd0c",
+      "status": "asserted",
+      "at": "2026-10-08T15:35:39-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:afe052c96d40:04f1341ba654",
+      "source": "commit:afe052c96d407a6415809bc4fe591bea0098bd0c",
+      "relation": "changed",
+      "target": "file:abs_core/v3.py",
+      "status": "asserted",
+      "at": "2026-10-08T15:35:39-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:afe052c96d40:8c28f85d8fc9",
+      "source": "commit:afe052c96d407a6415809bc4fe591bea0098bd0c",
+      "relation": "precedes",
+      "target": "commit:8c28f85d8fc92028566a8a4a14f192398cbd8312",
+      "status": "asserted",
+      "at": "2026-10-08T15:35:49-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:8c28f85d8fc9:3014122fb6b6",
+      "source": "commit:8c28f85d8fc92028566a8a4a14f192398cbd8312",
+      "relation": "changed",
+      "target": "file:tests/test_v3.py",
+      "status": "asserted",
+      "at": "2026-10-08T15:35:49-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:ff7014bd1bfe",
+      "source": "event:repository-scan:ff7014bd1bfe",
+      "relation": "generated",
+      "target": "evidence:repository:ff7014bd1bfe",
+      "status": "asserted",
+      "at": "2026-10-08T15:35:49-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -35901,12 +36020,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:786e2df1949d",
-      "source": "commit:786e2df1949d9963c1c605c5b679ea824024c0c6",
+      "id": "rel:scan-commit:8c28f85d8fc9",
+      "source": "commit:8c28f85d8fc92028566a8a4a14f192398cbd8312",
       "relation": "observed_by",
-      "target": "event:repository-scan:defe18ce9cd0",
+      "target": "event:repository-scan:ff7014bd1bfe",
       "status": "asserted",
-      "at": "2026-10-08T14:52:16-03:00",
+      "at": "2026-10-08T15:35:49-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
