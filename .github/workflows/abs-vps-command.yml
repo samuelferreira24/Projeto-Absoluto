@@ -79,6 +79,74 @@ jobs:
               health="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               result="$(printf 'health: %s\nwork_create: %s\nwork_run: %s\n' "$health" "$work_json" "$run_json")"
               ;;
+            openclaw-install)
+              set -e
+              export HOME=/home/absadmin
+              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+              if ! command -v node >/dev/null 2>&1 || ! node -e 'process.exit(Number(process.versions.node.split(".")[0]) < 22 ? 1 : 0)'; then
+                curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+                sudo apt-get install -y nodejs
+              fi
+              if ! command -v openclaw >/dev/null 2>&1; then
+                npm install -g openclaw@2026.9.8
+              fi
+              OPENCLAW_BIN="$(command -v openclaw)"
+              "$OPENCLAW_BIN" --version > /tmp/openclaw-version.txt
+              sudo tee /etc/systemd/system/openclaw-gateway.service >/dev/null <<UNIT
+          [Unit]
+          Description=OpenClaw Gateway - Projeto Absoluto
+          After=network-online.target
+          Wants=network-online.target
+
+          [Service]
+          Type=simple
+          User=absadmin
+          Group=absadmin
+          WorkingDirectory=/home/absadmin
+          Environment=HOME=/home/absadmin
+          Environment=PATH=/home/absadmin/.local/bin:/home/absadmin/.npm-global/bin:/home/absadmin/.npm/bin:/usr/local/bin:/usr/bin:/bin
+          ExecStart=$OPENCLAW_BIN gateway --port 18789
+          Restart=always
+          RestartSec=5
+          TimeoutStopSec=30
+          KillMode=control-group
+
+          [Install]
+          WantedBy=multi-user.target
+          UNIT
+              sudo systemctl daemon-reload
+              sudo systemctl enable openclaw-gateway.service
+              sudo systemctl restart openclaw-gateway.service
+              sleep 3
+              {
+                echo "version: $(cat /tmp/openclaw-version.txt)"
+                echo "binary: $OPENCLAW_BIN"
+                echo
+                sudo systemctl is-active openclaw-gateway.service
+                echo
+                curl -fsS --max-time 10 http://127.0.0.1:18789/ >/dev/null && echo "gateway_http: reachable" || echo "gateway_http: not-ready"
+              } > /tmp/openclaw-vps-result.txt
+              result="$(cat /tmp/openclaw-vps-result.txt)"
+              ;;
+            openclaw-status)
+              export HOME=/home/absadmin
+              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+              {
+                echo "[version]"
+                command -v openclaw || true
+                openclaw --version 2>&1 || true
+                echo
+                echo "[service]"
+                sudo systemctl status openclaw-gateway.service --no-pager -l || true
+                echo
+                echo "[gateway]"
+                openclaw gateway status --deep 2>&1 || true
+                echo
+                echo "[models-auth]"
+                openclaw models auth list --provider openai --json 2>&1 || true
+              } > /tmp/openclaw-vps-result.txt
+              result="$(cat /tmp/openclaw-vps-result.txt)"
+              ;;
             abs-status)
               {
                 sudo systemctl status abs.service --no-pager -l || true
@@ -98,7 +166,9 @@ jobs:
           /abs install
           /abs start
           /abs abs-status
-          /abs test'
+          /abs test
+          /abs openclaw-install
+          /abs openclaw-status'
               ;;
             status)
               {
