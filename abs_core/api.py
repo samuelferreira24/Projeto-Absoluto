@@ -116,7 +116,7 @@ class ABSHandler(BaseHTTPRequestHandler):
             self._send(200, {
                 "name": "ABS",
                 "status": "alive",
-                "version": "v2",
+                "version": getattr(self.orchestrator, "version", "v2"),
                 "uptime_seconds": round(time.time() - self.started_at, 3),
                 "connection_count": len(self.connections.list()),
                 "auto_update": True,
