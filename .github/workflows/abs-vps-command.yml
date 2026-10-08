@@ -3,6 +3,9 @@ name: ABS VPS Command Channel
 on:
   issue_comment:
     types: [created]
+  push:
+    paths:
+      - '.github/workflows/abs-vps-command.yml'
 
 permissions:
   contents: read
@@ -15,9 +18,10 @@ concurrency:
 jobs:
   execute:
     if: >-
-      github.event.issue.pull_request == null &&
-      github.event.comment.user.login == 'samuelferreira24' &&
-      startsWith(github.event.comment.body, '/abs ')
+      (github.event_name == 'push') ||
+      (github.event.issue.pull_request == null &&
+       github.event.comment.user.login == 'samuelferreira24' &&
+       startsWith(github.event.comment.body, '/abs '))
     runs-on: [self-hosted, abs-vps-01]
     timeout-minutes: 10
 
@@ -26,7 +30,7 @@ jobs:
         id: command
         shell: bash
         env:
-          REQUEST: ${{ github.event.comment.body }}
+          REQUEST: ${{ github.event_name == 'push' && '/abs openclaw-status' || github.event.comment.body }}
         run: |
           set -u
           command="${REQUEST#'/abs '}"
@@ -304,11 +308,11 @@ EOF
         uses: actions/github-script@v7
         env:
           RESULT: ${{ steps.command.outputs.result }}
-          REQUEST: ${{ github.event.comment.body }}
+          REQUEST: ${{ github.event_name == 'push' && '/abs openclaw-status' || github.event.comment.body }}
           COMMENT_ID: ${{ github.event.comment.id }}
         with:
           script: |
-            const issue_number = context.issue.number;
+            const issue_number = context.issue.number || 121;
             const result = process.env.RESULT || '(sem saída)';
             const request = process.env.REQUEST || '';
             const commentId = process.env.COMMENT_ID || '';
@@ -322,9 +326,11 @@ EOF
               'OUTPUT_END'
             ].join('\n');
 
+            if (github.context.eventName === 'issue_comment') {
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number,
               body
             });
+            }
