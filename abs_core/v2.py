@@ -511,10 +511,17 @@ class ABSV2Orchestrator:
                 work.emit("v2.execution.started", attempt=attempt, executor=plan.executor_id,
                           mode=plan.mode.value)
                 execution_context = dict(work.context)
-                execution_context["_v2_capability"] = cap
+                # Adapters receive a serializable public context; the live capability
+                # object never crosses the persistence boundary.
+                execution_context.pop("_v2_capability", None)
+                execution_context["_v2_capability_id"] = cap.id if cap else None
                 execution_context["timeout_seconds"] = plan.budget.max_seconds
+                if plan.executor_id == "direct":
+                    execution_context["_v2_capability"] = cap
                 try:
                     result = executor.execute(work.objective, execution_context)
+                    if isinstance(result, dict):
+                        result = json.loads(json.dumps(result, default=str))
                     obs = Observation(str(uuid.uuid4()), work.id, attempt, plan.executor_id,
                                       "execution_result", result)
                     observations.append(obs)
