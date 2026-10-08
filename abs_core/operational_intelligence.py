@@ -266,45 +266,102 @@ class OperationalIntelligence:
         )
 
     def execute(self, objective: str, context: dict[str, Any], orchestrator) -> dict[str, Any]:
-        plan = self.plan(objective, context)
-        if plan.unknowns and not any(s.capability_id for s in plan.steps):
-            return {
-                "type": "operational_unknown",
-                "plan": plan.public(),
-                "completed": False,
-                "reason": "no_validated_execution_capability",
-            }
+        """Run the closed cognitive loop.
 
-        results = []
-        for index, step in enumerate(plan.steps, 1):
-            step_context = dict(context)
-            step_context.update(step.context)
-            step_context["priority"] = step.priority
-            step_context["operational_plan"] = plan.public()
-            step_context["operational_step"] = index
-            if step.executor and step.executor != "direct":
-                step_context["executor"] = step.executor
-            work = orchestrator.create(step.objective, step_context)
-            done = orchestrator.run(work.id, step.capability_id, approved=bool(context.get("approved", False)))
-            result = {
-                "index": index,
-                "work_id": done.id,
-                "state": done.state.value,
-                "capability_id": done.capability_id,
-                "result": done.result,
-            }
-            results.append(result)
-            if done.state.value != "completed":
+        A plan is an hypothesis, not proof of completion. Every execution is
+        observed through the Work result/state. A rejected/failed step causes
+        the planner to receive the failure evidence and produce a new plan,
+        bounded by max_replans. The ABS remains the authority: the model can
+        propose a strategy, but only validated capabilities are executable.
+        """
+        base_context = dict(context or {})
+        max_replans = max(0, min(int(base_context.get("max_replans", 2) or 0), 10))
+        attempts: list[dict[str, Any]] = []
+        working_context = dict(base_context)
+
+        for cycle in range(max_replans + 1):
+            plan = self.plan(objective, working_context)
+            if plan.unknowns and not any(s.capability_id for s in plan.steps):
+                return {
+                    "type": "operational_unknown",
+                    "completed": False,
+                    "plan": plan.public(),
+                    "cycles": attempts,
+                    "reason": "no_validated_execution_capability",
+                }
+
+            cycle_results = []
+            failed_step = None
+            for index, step in enumerate(plan.steps, 1):
+                step_context = dict(working_context)
+                step_context.update(step.context)
+                step_context["priority"] = step.priority
+                step_context["operational_plan"] = plan.public()
+                step_context["operational_step"] = index
+                step_context["operational_cycle"] = cycle
+                if step.executor and step.executor != "direct":
+                    step_context["executor"] = step.executor
+
+                work = orchestrator.create(step.objective, step_context)
+                done = orchestrator.run(
+                    work.id,
+                    step.capability_id,
+                    approved=bool(working_context.get("approved", False)),
+                )
+                result = {
+                    "index": index,
+                    "work_id": done.id,
+                    "state": done.state.value,
+                    "capability_id": done.capability_id,
+                    "result": done.result,
+                }
+                cycle_results.append(result)
+
+                if done.state.value != "completed":
+                    failed_step = index
+                    break
+
+            attempts.append({
+                "cycle": cycle,
+                "plan": plan.public(),
+                "steps": cycle_results,
+                "failed_step": failed_step,
+            })
+
+            if failed_step is None:
+                return {
+                    "type": "operational_result",
+                    "completed": True,
+                    "plan": plan.public(),
+                    "cycles": attempts,
+                    "steps": cycle_results,
+                }
+
+            if cycle >= max_replans:
                 return {
                     "type": "operational_result",
                     "completed": False,
                     "plan": plan.public(),
-                    "steps": results,
-                    "failed_step": index,
+                    "cycles": attempts,
+                    "steps": cycle_results,
+                    "failed_step": failed_step,
+                    "reason": "max_replans_exhausted",
                 }
-        return {
-            "type": "operational_result",
-            "completed": True,
-            "plan": plan.public(),
-            "steps": results,
-        }
+
+            failed = cycle_results[-1]
+            failure_result = failed.get("result")
+            working_context = {
+                **working_context,
+                "replanned": True,
+                "previous_plan": plan.public(),
+                "previous_cycle": cycle,
+                "failed_step": failed_step,
+                "failure_evidence": {
+                    "work_id": failed.get("work_id"),
+                    "state": failed.get("state"),
+                    "capability_id": failed.get("capability_id"),
+                    "result": failure_result,
+                },
+            }
+
+        raise RuntimeError("operational_cycle_exhausted")
