@@ -88,7 +88,7 @@ jobs:
                 sudo apt-get install -y nodejs
               fi
               if ! command -v openclaw >/dev/null 2>&1; then
-                npm install -g openclaw@2026.9.8
+                sudo npm install -g openclaw@2026.9.8
               fi
               OPENCLAW_BIN="$(command -v openclaw)"
               "$OPENCLAW_BIN" --version > /tmp/openclaw-version.txt
