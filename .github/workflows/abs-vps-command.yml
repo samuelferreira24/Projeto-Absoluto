@@ -19,7 +19,7 @@ jobs:
       github.event.comment.user.login == 'samuelferreira24' &&
       startsWith(github.event.comment.body, '/abs ')
     runs-on: [self-hosted, abs-vps-01]
-    timeout-minutes: 10
+    timeout-minutes: 45
 
     steps:
       - name: Execute allowlisted command
@@ -156,6 +156,51 @@ jobs:
               python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["state"]=="completed", d; r=d["result"]; assert r["executor"]=="openclaw", r; assert r["verification"]["accepted"] is True, r; print("ABS V2 OPENCLAW WORK PASS")' <<<"$run_json"
               result="$run_json"
               ;;
+            install-local-ais)
+              set -e
+              export HOME=/home/absadmin
+              export PATH="/home/absadmin/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+              if ! command -v ollama >/dev/null 2>&1; then
+                curl -fsSL https://ollama.com/install.sh | sh
+              fi
+              sudo mkdir -p /etc/ollama
+              sudo tee /etc/ollama/ollama.env >/dev/null <<'ENV'
+OLLAMA_HOST=127.0.0.1:11434
+OLLAMA_KEEP_ALIVE=0
+OLLAMA_NUM_PARALLEL=1
+ENV
+              sudo systemctl enable ollama
+              sudo systemctl restart ollama
+              sleep 3
+              models=("qwen3.5:0.8b" "qwen3.5:2b" "qwen3.5:4b" "ministral-3:3b" "gemma4:e2b" "gemma4:e4b")
+              for model in "${models[@]}"; do
+                echo "PULL $model"
+                ollama pull "$model"
+              done
+              cat > /tmp/abs-local-models.env <<'ENV'
+ABS_LOCAL_AI_MODELS=qwen3.5-0.8b|http://127.0.0.1:11434|qwen3.5:0.8b,qwen3.5-2b|http://127.0.0.1:11434|qwen3.5:2b,qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b,ministral-3b|http://127.0.0.1:11434|ministral-3:3b,gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b,gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b
+ABS_LOCAL_AI_URL=http://127.0.0.1:11434
+ABS_LOCAL_AI_MODEL=qwen3.5:4b
+ENV
+              sudo install -m 0644 /tmp/abs-local-models.env /etc/abs-local-models.env
+              if [ -f /etc/systemd/system/abs.service ]; then
+                sudo sed -i '/^Environment=PYTHONUNBUFFERED=1$/a EnvironmentFile=-/etc/abs-local-models.env' /etc/systemd/system/abs.service
+                sudo systemctl daemon-reload
+                sudo systemctl restart abs.service
+                sleep 3
+              fi
+              {
+                echo "ollama: $(ollama --version 2>&1)"
+                echo "endpoint: http://127.0.0.1:11434"
+                echo "[models]"
+                ollama list
+                echo "[abs-env]"
+                cat /etc/abs-local-models.env
+                echo "[health]"
+                curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status || true
+              } > /tmp/abs-local-ai-result.txt
+              result="$(cat /tmp/abs-local-ai-result.txt)"
+              ;;
             openclaw-v2-test)
               set -e
               export HOME=/home/absadmin
@@ -264,6 +309,7 @@ jobs:
           /abs v3-test
           /abs v3-live-test
           /abs v3-chat-test
+          /abs install-local-ais
           /abs openclaw-v2-test
           /abs openclaw-install
           /abs openclaw-status'
