@@ -501,7 +501,7 @@ class ABSHandler(BaseHTTPRequestHandler):
 
 
 def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
-          resources=None, interface_runtime=None, connections=None, accounts=None, tool_knowledge=None, tool_discovery=None, tool_planner=None, tool_learning=None, resource_dispatcher=None, cognitive_runtime=None):
+          resources=None, interface_runtime=None, connections=None, accounts=None, tool_knowledge=None, tool_discovery=None, tool_planner=None, tool_learning=None, resource_dispatcher=None, cognitive_runtime=None, planner_runtime=None):
     ABSHandler.orchestrator = orchestrator
     ABSHandler.v2 = orchestrator if isinstance(orchestrator, ABSV2Orchestrator) else None
     ABSHandler.registry = registry
@@ -514,6 +514,8 @@ def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
     ABSHandler.tool_planner = tool_planner or ToolPlanner(ABSHandler.tool_knowledge, ResourceRouter(ABSHandler.connections))
     ABSHandler.tool_learning = tool_learning or ToolLearningEngine(ABSHandler.tool_knowledge)
     ABSHandler.cognitive_runtime = cognitive_runtime
+    if planner_runtime is not None:
+        ABSHandler.operational_intelligence = planner_runtime
     ABSHandler.protocols = getattr(orchestrator, "protocols", None)
     ABSHandler.resource_dispatcher = resource_dispatcher or ResourceDispatcher(
         ResourceRouter(ABSHandler.connections), ABSHandler.tool_planner,
