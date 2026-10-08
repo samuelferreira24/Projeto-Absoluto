@@ -26,6 +26,7 @@ from .project_knowledge_runtime import ExecutionKnowledgeRecorder
 from .verification import ResultVerifier
 from .navigation_adapter import KnowledgeNavigationCapability
 from .v2 import ABSV2Orchestrator
+from .v2_protocols import ProtocolRegistry
 
 
 @dataclass
@@ -47,6 +48,7 @@ class ABSRuntime:
     cognitive_runtime: CognitiveRuntime
     data_layer: ABSDataLayer
     navigation: KnowledgeNavigationCapability
+    protocols: ProtocolRegistry
 
 
 def build_registry() -> CapabilityRegistry:
@@ -138,6 +140,9 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
     cognitive = CognitiveRuntime(registry, intelligence, orchestrator, store_path=db_path, data_layer=data_layer)
 
     dispatcher = ResourceDispatcher(router, planner, registry, knowledge, learning)
+    protocols = ProtocolRegistry()
+    protocols.discover_from_env()
+    orchestrator.protocols = protocols
     dispatcher.orchestrator = orchestrator
     from .conversational_tools import ConversationalToolRuntime
     cognitive.tool_runtime = ConversationalToolRuntime(
@@ -147,5 +152,5 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
     return ABSRuntime(
         registry, orchestrator, resources, interface_runtime, connections, accounts,
         knowledge, tool_store, learning, discovery, planner, router, dispatcher,
-        intelligence, cognitive, data_layer, navigation,
+        intelligence, cognitive, data_layer, navigation, protocols,
     )

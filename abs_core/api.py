@@ -39,6 +39,7 @@ class ABSHandler(BaseHTTPRequestHandler):
     tool_learning: ToolLearningEngine | None = None
     resource_dispatcher: ResourceDispatcher | None = None
     cognitive_runtime: CognitiveRuntime | None = None
+    protocols = None
     started_at = time.time()
 
     def _request_path(self) -> str:
@@ -142,7 +143,7 @@ class ABSHandler(BaseHTTPRequestHandler):
             })
             return
         if self.path == "/v2/status":
-            self._send(200, {"version": "v2", "integrated": True})
+            self._send(200, {"version": "v2", "integrated": True, "protocols": self.protocols.public() if self.protocols else {}})
             return
         if self.path.startswith("/v2/works/"):
             work_id = self.path.split("/", 2)[2]
@@ -496,6 +497,7 @@ def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
     ABSHandler.tool_planner = tool_planner or ToolPlanner(ABSHandler.tool_knowledge, ResourceRouter(ABSHandler.connections))
     ABSHandler.tool_learning = tool_learning or ToolLearningEngine(ABSHandler.tool_knowledge)
     ABSHandler.cognitive_runtime = cognitive_runtime
+    ABSHandler.protocols = getattr(orchestrator, "protocols", None)
     ABSHandler.resource_dispatcher = resource_dispatcher or ResourceDispatcher(
         ResourceRouter(ABSHandler.connections), ABSHandler.tool_planner,
         ABSHandler.registry, ABSHandler.tool_knowledge,
