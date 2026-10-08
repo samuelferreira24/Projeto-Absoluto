@@ -101,7 +101,7 @@ jobs:
               ;;
             v3-intelligence-test)
               set -e
-              objective_json="$(curl -fsS --max-time 30 -X POST http://127.0.0.1:8787/objective -H 'Content-Type: application/json' -d '{"objective":"Execute a simple ABS operational intelligence integration test. Use the smallest sufficient path and complete the objective.","context":{"approved":false,"required_capabilities":["chat"]}}')"
+              objective_json="$(curl -fsS --max-time 30 -X POST http://127.0.0.1:8787/objective -H 'Content-Type: application/json' -d '{"objective":"Execute a simple ABS operational intelligence integration test. Use the smallest sufficient path and complete the objective.","context":{"approved":false,"capability_id":"echo"}}')"
               python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["type"] in {"operational_result","operational_unknown"}, d; print("ABS V3 OPERATIONAL INTELLIGENCE HTTP PASS"); print(json.dumps(d)[:12000])' <<<"$objective_json"
               result="$objective_json"
               ;;
