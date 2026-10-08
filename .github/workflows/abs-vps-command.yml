@@ -105,6 +105,12 @@ jobs:
               python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["type"]=="operational_result" and d["completed"] is True, d; p=d["plan"]; assert p["source"]=="model" and p["intelligence_id"], p; print("ABS V3 OPERATIONAL INTELLIGENCE HTTP PASS"); print(json.dumps(d)[:12000])' <<<"$objective_json"
               result="$objective_json"
               ;;
+            v3-chat-test)
+              set -e
+              chat_json="$(curl -fsS --max-time 60 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d '{"message":"Reply with exactly ABS_V3_CHAT_OK and nothing else.","approved":true}')"
+              python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["work_state"]=="completed", d; assert d["response"]=="ABS_V3_CHAT_OK", d; assert d["provenance"], d; print("ABS V3 CHAT PASS"); print(json.dumps(d)[:12000])' <<<"$chat_json"
+              result="$chat_json"
+              ;;
             v3-live-test)
               set -e
               work_json="$(curl -fsS --max-time 10 -X POST http://127.0.0.1:8787/works -H 'Content-Type: application/json' -d '{"objective":"ABS V3 LIVE HTTP TEST","context":{"capability_id":"echo","risk":"low"}}')"
@@ -247,6 +253,7 @@ jobs:
           /abs v2-test
           /abs v3-test
           /abs v3-live-test
+          /abs v3-chat-test
           /abs openclaw-v2-test
           /abs openclaw-install
           /abs openclaw-status'
