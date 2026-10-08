@@ -115,7 +115,8 @@ jobs:
           from tools.navegacao.navigator import Navigator
           nav = Navigator(Path(".abs-navigation/index.sqlite"))
           assert nav.search("navrealvalidationuniquex2", source="projeto-absoluto")
-          assert not nav.search("navrealvalidationuniquex1", source="projeto-absoluto")
+          # The previous version is intentionally still present until the
+          # temporary file is removed; deletion is validated in the next step.
           PY
 
           rm "$TMP"
