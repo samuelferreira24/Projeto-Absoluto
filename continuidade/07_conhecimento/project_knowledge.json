@@ -1,13 +1,13 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T15:47:09-03:00",
-  "source_revision": "16dea47bd9749e6ecb2d04c27765fcaa22b327b6",
+  "generated_at": "2026-10-08T15:48:33-03:00",
+  "source_revision": "57484dd0959db8fac50408f8e1064a1c0028378f",
   "components": [
     {
       "id": "component:abs_core",
       "kind": "abs_core",
-      "file_count": 58
+      "file_count": 59
     },
     {
       "id": "component:cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "16dea47bd9749e6ecb2d04c27765fcaa22b327b6",
-      "commit_subject": "Use validated capability in V3 intelligence live test"
+      "revision": "57484dd0959db8fac50408f8e1064a1c0028378f",
+      "commit_subject": "Require real model-backed Operational Intelligence in V3 live test"
     }
   ],
   "tools": [
@@ -1988,6 +1988,11 @@
       "id": "file:abs_core/openai_compat.py",
       "kind": "file",
       "path": "abs_core/openai_compat.py"
+    },
+    {
+      "id": "file:abs_core/openclaw_intelligence_adapter.py",
+      "kind": "file",
+      "path": "abs_core/openclaw_intelligence_adapter.py"
     },
     {
       "id": "file:abs_core/openrouter_adapter.py",
@@ -8697,6 +8702,34 @@
       "sha": "16dea47bd9749e6ecb2d04c27765fcaa22b327b6"
     },
     {
+      "id": "commit:6754b5e9b1f3be8a2e7a14ee66c78cf7c4d8b560",
+      "kind": "commit",
+      "at": "2026-10-08T18:47:27Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "6754b5e9b1f3be8a2e7a14ee66c78cf7c4d8b560"
+    },
+    {
+      "id": "commit:190ae21d510e078c6c10c4631785092a1ee67a30",
+      "kind": "commit",
+      "at": "2026-10-08T15:48:15-03:00",
+      "subject": "Add OpenClaw-backed ABS operational intelligence adapter",
+      "sha": "190ae21d510e078c6c10c4631785092a1ee67a30"
+    },
+    {
+      "id": "commit:75c0796539394f8fe7bfb7494279a2053b51d10d",
+      "kind": "commit",
+      "at": "2026-10-08T15:48:23-03:00",
+      "subject": "Register OpenClaw as operational intelligence resource",
+      "sha": "75c0796539394f8fe7bfb7494279a2053b51d10d"
+    },
+    {
+      "id": "commit:57484dd0959db8fac50408f8e1064a1c0028378f",
+      "kind": "commit",
+      "at": "2026-10-08T15:48:33-03:00",
+      "subject": "Require real model-backed Operational Intelligence in V3 live test",
+      "sha": "57484dd0959db8fac50408f8e1064a1c0028378f"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -8809,23 +8842,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:defae2f7d8e7",
+      "id": "evidence:repository:838f1ff211ea",
       "kind": "evidence",
-      "at": "2026-10-08T15:47:09-03:00",
+      "at": "2026-10-08T15:48:33-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:defae2f7d8e7",
+      "id": "event:repository-scan:838f1ff211ea",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T15:47:09-03:00"
+      "at": "2026-10-08T15:48:33-03:00"
     },
     {
-      "id": "event:commit-observed:16dea47bd974",
+      "id": "event:commit-observed:57484dd0959d",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T15:47:09-03:00"
+      "at": "2026-10-08T15:48:33-03:00"
     }
   ],
   "paths": [
@@ -8860,11 +8893,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:468ded29b04f"
+        "evidence:test:4dad7368e12b"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T15:47:09-03:00"
+      "last_validated": "2026-10-08T15:48:33-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -8887,20 +8920,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:defae2f7d8e7",
+      "id": "evidence:repository:838f1ff211ea",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T15:47:09-03:00",
+      "observed_at": "2026-10-08T15:48:33-03:00",
       "status": "observed",
-      "detail": "395 files indexed at revision 16dea47bd9749e6ecb2d04c27765fcaa22b327b6"
+      "detail": "396 files indexed at revision 57484dd0959db8fac50408f8e1064a1c0028378f"
     },
     {
-      "id": "evidence:test:468ded29b04f",
+      "id": "evidence:test:4dad7368e12b",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T15:47:09-03:00",
+      "observed_at": "2026-10-08T15:48:33-03:00",
       "status": "tested",
-      "detail": "191 passed in 7.43s"
+      "detail": "191 passed in 7.10s"
     }
   ],
   "decisions": [
@@ -9003,30 +9036,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:defae2f7d8e7",
+      "id": "event:repository-scan:838f1ff211ea",
       "type": "repository_scanned",
-      "at": "2026-10-08T15:47:09-03:00",
-      "revision": "16dea47bd9749e6ecb2d04c27765fcaa22b327b6",
-      "file_count": 395,
-      "evidence_id": "evidence:repository:defae2f7d8e7"
+      "at": "2026-10-08T15:48:33-03:00",
+      "revision": "57484dd0959db8fac50408f8e1064a1c0028378f",
+      "file_count": 396,
+      "evidence_id": "evidence:repository:838f1ff211ea"
     },
     {
-      "id": "event:commit-observed:16dea47bd974",
+      "id": "event:commit-observed:57484dd0959d",
       "type": "commit_observed",
-      "at": "2026-10-08T15:47:09-03:00",
-      "revision": "16dea47bd9749e6ecb2d04c27765fcaa22b327b6",
+      "at": "2026-10-08T15:48:33-03:00",
+      "revision": "57484dd0959db8fac50408f8e1064a1c0028378f",
       "branch": "main",
-      "subject": "Use validated capability in V3 intelligence live test",
+      "subject": "Require real model-backed Operational Intelligence in V3 live test",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:468ded29b04f",
+      "id": "event:test:4dad7368e12b",
       "type": "tests_observed",
-      "at": "2026-10-08T15:47:09-03:00",
+      "at": "2026-10-08T15:48:33-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:468ded29b04f"
+      "evidence_id": "evidence:test:4dad7368e12b"
     }
   ],
   "knowledge_sources": [
@@ -9082,7 +9115,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "71774623b0d7aa6a73873ab48d1b4f11c77eb3538c711097d6bf05fab020c284"
+      "sha256": "62bd71660ed4f5cd9d7ce4adca795b2af77e8332cb88dce8a22eb899701a56c3"
     },
     {
       "id": "source:session",
@@ -36711,12 +36744,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:defae2f7d8e7",
-      "source": "event:repository-scan:defae2f7d8e7",
-      "relation": "generated",
-      "target": "evidence:repository:defae2f7d8e7",
+      "id": "rel:commit-precedes:16dea47bd974:6754b5e9b1f3",
+      "source": "commit:16dea47bd9749e6ecb2d04c27765fcaa22b327b6",
+      "relation": "precedes",
+      "target": "commit:6754b5e9b1f3be8a2e7a14ee66c78cf7c4d8b560",
       "status": "asserted",
-      "at": "2026-10-08T15:47:09-03:00",
+      "at": "2026-10-08T18:47:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6754b5e9b1f3:032adc3624d7",
+      "source": "commit:6754b5e9b1f3be8a2e7a14ee66c78cf7c4d8b560",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T18:47:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6754b5e9b1f3:d64178c49886",
+      "source": "commit:6754b5e9b1f3be8a2e7a14ee66c78cf7c4d8b560",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T18:47:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:6754b5e9b1f3:190ae21d510e",
+      "source": "commit:6754b5e9b1f3be8a2e7a14ee66c78cf7c4d8b560",
+      "relation": "precedes",
+      "target": "commit:190ae21d510e078c6c10c4631785092a1ee67a30",
+      "status": "asserted",
+      "at": "2026-10-08T15:48:15-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:190ae21d510e:a20a85be0a40",
+      "source": "commit:190ae21d510e078c6c10c4631785092a1ee67a30",
+      "relation": "changed",
+      "target": "file:abs_core/openclaw_intelligence_adapter.py",
+      "status": "asserted",
+      "at": "2026-10-08T15:48:15-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:190ae21d510e:75c079653939",
+      "source": "commit:190ae21d510e078c6c10c4631785092a1ee67a30",
+      "relation": "precedes",
+      "target": "commit:75c0796539394f8fe7bfb7494279a2053b51d10d",
+      "status": "asserted",
+      "at": "2026-10-08T15:48:23-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:75c079653939:7e20f933dbaf",
+      "source": "commit:75c0796539394f8fe7bfb7494279a2053b51d10d",
+      "relation": "changed",
+      "target": "file:abs_core/runtime.py",
+      "status": "asserted",
+      "at": "2026-10-08T15:48:23-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:75c079653939:57484dd0959d",
+      "source": "commit:75c0796539394f8fe7bfb7494279a2053b51d10d",
+      "relation": "precedes",
+      "target": "commit:57484dd0959db8fac50408f8e1064a1c0028378f",
+      "status": "asserted",
+      "at": "2026-10-08T15:48:33-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:57484dd0959d:1734be446032",
+      "source": "commit:57484dd0959db8fac50408f8e1064a1c0028378f",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-08T15:48:33-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:838f1ff211ea",
+      "source": "event:repository-scan:838f1ff211ea",
+      "relation": "generated",
+      "target": "evidence:repository:838f1ff211ea",
+      "status": "asserted",
+      "at": "2026-10-08T15:48:33-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -36725,12 +36884,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:16dea47bd974",
-      "source": "commit:16dea47bd9749e6ecb2d04c27765fcaa22b327b6",
+      "id": "rel:scan-commit:57484dd0959d",
+      "source": "commit:57484dd0959db8fac50408f8e1064a1c0028378f",
       "relation": "observed_by",
-      "target": "event:repository-scan:defae2f7d8e7",
+      "target": "event:repository-scan:838f1ff211ea",
       "status": "asserted",
-      "at": "2026-10-08T15:47:09-03:00",
+      "at": "2026-10-08T15:48:33-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
