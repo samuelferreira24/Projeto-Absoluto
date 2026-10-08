@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T17:19:38-03:00",
-  "source_revision": "277546d7c633784674395940f16baa9b37f6d478",
+  "generated_at": "2026-10-08T17:21:48-03:00",
+  "source_revision": "290ac270d2f2ed5be5974f580e1a6154227f4788",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 124
+      "file_count": 125
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "277546d7c633784674395940f16baa9b37f6d478",
-      "commit_subject": "[ABS-VPS-BOOTSTRAP] Adicionar bootstrap controlado das IAs locais"
+      "revision": "290ac270d2f2ed5be5974f580e1a6154227f4788",
+      "commit_subject": "Adicionar instalador controlado da frota de IAs locais"
     }
   ],
   "tools": [
@@ -963,6 +963,11 @@
       "id": "file:.github/workflows/abs-core.yml",
       "kind": "file",
       "path": ".github/workflows/abs-core.yml"
+    },
+    {
+      "id": "file:.github/workflows/abs-local-ai-installer.yml",
+      "kind": "file",
+      "path": ".github/workflows/abs-local-ai-installer.yml"
     },
     {
       "id": "file:.github/workflows/abs-v2-ci.yml",
@@ -9051,6 +9056,20 @@
       "sha": "277546d7c633784674395940f16baa9b37f6d478"
     },
     {
+      "id": "commit:b94d4a25779960885bf24bb68ccc8cf59ecc6839",
+      "kind": "commit",
+      "at": "2026-10-08T20:19:58Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "b94d4a25779960885bf24bb68ccc8cf59ecc6839"
+    },
+    {
+      "id": "commit:290ac270d2f2ed5be5974f580e1a6154227f4788",
+      "kind": "commit",
+      "at": "2026-10-08T17:21:48-03:00",
+      "subject": "Adicionar instalador controlado da frota de IAs locais",
+      "sha": "290ac270d2f2ed5be5974f580e1a6154227f4788"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9163,23 +9182,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:8dc43db483aa",
+      "id": "evidence:repository:c081050f14ef",
       "kind": "evidence",
-      "at": "2026-10-08T17:19:38-03:00",
+      "at": "2026-10-08T17:21:48-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:8dc43db483aa",
+      "id": "event:repository-scan:c081050f14ef",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T17:19:38-03:00"
+      "at": "2026-10-08T17:21:48-03:00"
     },
     {
-      "id": "event:commit-observed:277546d7c633",
+      "id": "event:commit-observed:290ac270d2f2",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T17:19:38-03:00"
+      "at": "2026-10-08T17:21:48-03:00"
     }
   ],
   "paths": [
@@ -9214,11 +9233,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:591a677e5c32"
+        "evidence:test:f7bd4f0f15fc"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T17:19:38-03:00"
+      "last_validated": "2026-10-08T17:21:48-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9241,18 +9260,18 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:8dc43db483aa",
+      "id": "evidence:repository:c081050f14ef",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T17:19:38-03:00",
+      "observed_at": "2026-10-08T17:21:48-03:00",
       "status": "observed",
-      "detail": "400 files indexed at revision 277546d7c633784674395940f16baa9b37f6d478"
+      "detail": "401 files indexed at revision 290ac270d2f2ed5be5974f580e1a6154227f4788"
     },
     {
-      "id": "evidence:test:591a677e5c32",
+      "id": "evidence:test:f7bd4f0f15fc",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T17:19:38-03:00",
+      "observed_at": "2026-10-08T17:21:48-03:00",
       "status": "tested",
       "detail": "196 passed in 7.59s"
     }
@@ -9357,30 +9376,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:8dc43db483aa",
+      "id": "event:repository-scan:c081050f14ef",
       "type": "repository_scanned",
-      "at": "2026-10-08T17:19:38-03:00",
-      "revision": "277546d7c633784674395940f16baa9b37f6d478",
-      "file_count": 400,
-      "evidence_id": "evidence:repository:8dc43db483aa"
+      "at": "2026-10-08T17:21:48-03:00",
+      "revision": "290ac270d2f2ed5be5974f580e1a6154227f4788",
+      "file_count": 401,
+      "evidence_id": "evidence:repository:c081050f14ef"
     },
     {
-      "id": "event:commit-observed:277546d7c633",
+      "id": "event:commit-observed:290ac270d2f2",
       "type": "commit_observed",
-      "at": "2026-10-08T17:19:38-03:00",
-      "revision": "277546d7c633784674395940f16baa9b37f6d478",
+      "at": "2026-10-08T17:21:48-03:00",
+      "revision": "290ac270d2f2ed5be5974f580e1a6154227f4788",
       "branch": "main",
-      "subject": "[ABS-VPS-BOOTSTRAP] Adicionar bootstrap controlado das IAs locais",
+      "subject": "Adicionar instalador controlado da frota de IAs locais",
       "changed_files": [
-        ".github/workflows/abs-vps-local-ai-bootstrap.yml"
+        ".github/workflows/abs-local-ai-installer.yml"
       ]
     },
     {
-      "id": "event:test:591a677e5c32",
+      "id": "event:test:f7bd4f0f15fc",
       "type": "tests_observed",
-      "at": "2026-10-08T17:19:38-03:00",
+      "at": "2026-10-08T17:21:48-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:591a677e5c32"
+      "evidence_id": "evidence:test:f7bd4f0f15fc"
     }
   ],
   "knowledge_sources": [
@@ -9436,7 +9455,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "94e74a6c80d3124d832c6bcb8c8dc60bfd63d0f44a2abad6fd7892feeb5687a4"
+      "sha256": "a15e6e23fbceb149b9972dea885154a2815002356753f07e14880b475350d083"
     },
     {
       "id": "source:session",
@@ -38605,12 +38624,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:8dc43db483aa",
-      "source": "event:repository-scan:8dc43db483aa",
-      "relation": "generated",
-      "target": "evidence:repository:8dc43db483aa",
+      "id": "rel:commit-precedes:277546d7c633:b94d4a257799",
+      "source": "commit:277546d7c633784674395940f16baa9b37f6d478",
+      "relation": "precedes",
+      "target": "commit:b94d4a25779960885bf24bb68ccc8cf59ecc6839",
       "status": "asserted",
-      "at": "2026-10-08T17:19:38-03:00",
+      "at": "2026-10-08T20:19:58Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b94d4a257799:032adc3624d7",
+      "source": "commit:b94d4a25779960885bf24bb68ccc8cf59ecc6839",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T20:19:58Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b94d4a257799:d64178c49886",
+      "source": "commit:b94d4a25779960885bf24bb68ccc8cf59ecc6839",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T20:19:58Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b94d4a257799:290ac270d2f2",
+      "source": "commit:b94d4a25779960885bf24bb68ccc8cf59ecc6839",
+      "relation": "precedes",
+      "target": "commit:290ac270d2f2ed5be5974f580e1a6154227f4788",
+      "status": "asserted",
+      "at": "2026-10-08T17:21:48-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:290ac270d2f2:c87579349177",
+      "source": "commit:290ac270d2f2ed5be5974f580e1a6154227f4788",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-local-ai-installer.yml",
+      "status": "asserted",
+      "at": "2026-10-08T17:21:48-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:c081050f14ef",
+      "source": "event:repository-scan:c081050f14ef",
+      "relation": "generated",
+      "target": "evidence:repository:c081050f14ef",
+      "status": "asserted",
+      "at": "2026-10-08T17:21:48-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -38619,12 +38708,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:277546d7c633",
-      "source": "commit:277546d7c633784674395940f16baa9b37f6d478",
+      "id": "rel:scan-commit:290ac270d2f2",
+      "source": "commit:290ac270d2f2ed5be5974f580e1a6154227f4788",
       "relation": "observed_by",
-      "target": "event:repository-scan:8dc43db483aa",
+      "target": "event:repository-scan:c081050f14ef",
       "status": "asserted",
-      "at": "2026-10-08T17:19:38-03:00",
+      "at": "2026-10-08T17:21:48-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
