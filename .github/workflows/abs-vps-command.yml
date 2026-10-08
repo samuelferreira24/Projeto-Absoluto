@@ -19,7 +19,7 @@ jobs:
       github.event.comment.user.login == 'samuelferreira24' &&
       startsWith(github.event.comment.body, '/abs ')
     runs-on: [self-hosted, abs-vps-01]
-    timeout-minutes: 45
+    timeout-minutes: 10
 
     steps:
       - name: Execute allowlisted command
@@ -73,30 +73,6 @@ jobs:
               sudo systemctl restart abs.service
               sleep 2
               result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
-              export HOME=/home/absadmin
-              export PATH="/home/absadmin/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              if ! command -v ollama >/dev/null 2>&1; then
-                curl -fsSL https://ollama.com/install.sh | sh
-              fi
-              sudo systemctl enable ollama
-              sudo systemctl restart ollama
-              sleep 3
-              ollama pull qwen3.5:0.8b
-              ollama pull qwen3.5:2b
-              ollama pull qwen3.5:4b
-              ollama pull ministral-3:3b
-              ollama pull gemma4:e2b
-              ollama pull gemma4:e4b
-              sudo tee /etc/abs-local-models.env >/dev/null <<'ENV'
-ABS_LOCAL_AI_MODELS=qwen3.5-0.8b|http://127.0.0.1:11434|qwen3.5:0.8b,qwen3.5-2b|http://127.0.0.1:11434|qwen3.5:2b,qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b,ministral-3b|http://127.0.0.1:11434|ministral-3:3b,gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b,gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b
-ABS_LOCAL_AI_URL=http://127.0.0.1:11434
-ABS_LOCAL_AI_MODEL=qwen3.5:4b
-ENV
-              sudo sed -i '/^Environment=PYTHONUNBUFFERED=1$/a EnvironmentFile=-/etc/abs-local-models.env' /etc/systemd/system/abs.service
-              sudo systemctl daemon-reload
-              sudo systemctl restart abs.service
-              sleep 3
-              result="$(printf 'health: %s\nollama: %s\nmodels:\n%s\nv3-status:\n%s' "$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)" "$(ollama --version 2>&1)" "$(ollama list)" "$(curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status)")"
               ;;
             v3-test)
               cd "$HOME/Projeto-Absoluto"
