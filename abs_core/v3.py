@@ -390,7 +390,10 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
                 try:
                     result=super().run(work_id,candidate_id,approved=approved)
                     elapsed=time.time()-execution_start
-                    success=getattr(result,"result",None) is not None
+                    # A result payload alone is not proof of success. The V2/V1
+                    # verification state is authoritative for learning and
+                    # future routing decisions.
+                    success=getattr(result,"state",None).value == "completed"
                     self.telemetry.inc("completed" if success else "failed")
                     self.telemetry.observe("work_seconds",elapsed)
                     amount=float(context.get("estimated_cost",0) or 0) if decision.cost_class is CostClass.PAID_API else 0.0
