@@ -227,8 +227,10 @@ class Telemetry:
 class RecoveryManager:
     def __init__(self,state_store): self.state_store=state_store
     def reconcile(self,work):
-        self.state_store.event(work.id,"recovery_reconcile",{"state":str(work.state),"result_present":work.result is not None})
-        if work.result is not None:return "completed_candidate"
+        state_value=getattr(getattr(work,"state",None),"value",str(getattr(work,"state",None)))
+        self.state_store.event(work.id,"recovery_reconcile",{"state":state_value,"result_present":work.result is not None})
+        if state_value == "completed": return "completed"
+        if state_value in {"failed","cancelled"}: return "resume_or_replan"
         return "resume_or_replan"
 
 class ABSV3Orchestrator(ABSV2Orchestrator):
@@ -342,7 +344,7 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
         context=dict(work.context)
         if capability_id:
             context["capability_id"]=capability_id
-        if work.result is not None:
+        if getattr(getattr(work,"state",None),"value",None) == "completed":
             self.recovery.reconcile(work)
             return work
         priority=str(context.get("priority") or "normal")
@@ -353,7 +355,7 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
                 context=dict(work.context)
                 if capability_id:
                     context["capability_id"]=capability_id
-                if work.result is not None:
+                if getattr(getattr(work,"state",None),"value",None) == "completed":
                     self.recovery.reconcile(work)
                     return work
                 decision=self._gate(work,context)
