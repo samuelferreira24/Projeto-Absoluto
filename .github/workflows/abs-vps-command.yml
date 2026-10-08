@@ -209,6 +209,7 @@ jobs:
           /abs abs-status
           /abs test
           /abs v2-test
+          /abs v3-test
           /abs openclaw-v2-test
           /abs openclaw-install
           /abs openclaw-status'
