@@ -28,6 +28,7 @@ from .navigation_adapter import KnowledgeNavigationCapability
 from .v2 import ABSV2Orchestrator
 from .v3 import ABSV3Orchestrator
 from .v2_protocols import ProtocolRegistry
+from .operational_intelligence import OperationalIntelligence
 
 
 @dataclass
@@ -50,6 +51,7 @@ class ABSRuntime:
     data_layer: ABSDataLayer
     navigation: KnowledgeNavigationCapability
     protocols: ProtocolRegistry
+    operational_intelligence: OperationalIntelligence
 
 
 def build_registry() -> CapabilityRegistry:
@@ -139,6 +141,9 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
     intelligence = IntelligenceRegistry()
     intelligence.discover_from_capabilities(registry, connections)
     cognitive = CognitiveRuntime(registry, intelligence, orchestrator, store_path=db_path, data_layer=data_layer)
+    operational = OperationalIntelligence(
+        registry, orchestrator.selector, orchestrator.cost_policy, state_store=orchestrator.v3_state,
+    )
 
     dispatcher = ResourceDispatcher(router, planner, registry, knowledge, learning)
     protocols = ProtocolRegistry()
@@ -153,5 +158,5 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
     return ABSRuntime(
         registry, orchestrator, resources, interface_runtime, connections, accounts,
         knowledge, tool_store, learning, discovery, planner, router, dispatcher,
-        intelligence, cognitive, data_layer, navigation, protocols,
+        intelligence, cognitive, data_layer, navigation, protocols, operational,
     )
