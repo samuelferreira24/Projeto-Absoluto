@@ -158,7 +158,35 @@ jobs:
               ;;
             local-ai-install)
               set -e
-              result="LOCAL_AI_COMMAND_REACHED"
+              export HOME=/home/absadmin
+              export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+              if ! command -v ollama >/dev/null 2>&1; then
+                curl -fsSL https://ollama.com/install.sh | sh
+              fi
+              sudo systemctl enable ollama
+              sudo systemctl restart ollama
+              sleep 3
+              ollama pull qwen3.5:0.8b
+              ollama pull qwen3.5:2b
+              ollama pull qwen3.5:4b
+              ollama pull ministral-3:3b
+              ollama pull gemma4:e2b
+              ollama pull gemma4:e4b
+              sudo sh -c 'printf "%s\\n" "ABS_LOCAL_AI_MODELS=qwen3.5-0.8b|http://127.0.0.1:11434|qwen3.5:0.8b,qwen3.5-2b|http://127.0.0.1:11434|qwen3.5:2b,qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b,ministral-3b|http://127.0.0.1:11434|ministral-3:3b,gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b,gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "ABS_LOCAL_AI_URL=http://127.0.0.1:11434" "ABS_LOCAL_AI_MODEL=qwen3.5:4b" > /etc/abs-local-models.env'
+              if [ -f /etc/systemd/system/abs.service ]; then
+                sudo sed -i '/EnvironmentFile=-\/etc\/abs-local-models.env/d' /etc/systemd/system/abs.service
+                sudo sed -i '/^Environment=PYTHONUNBUFFERED=1$/a EnvironmentFile=-/etc/abs-local-models.env' /etc/systemd/system/abs.service
+                sudo systemctl daemon-reload
+                sudo systemctl restart abs.service
+                sleep 3
+              fi
+              echo "=== OLLAMA ==="
+              ollama --version
+              echo "=== MODELS ==="
+              ollama list
+              echo "=== ABS V3 ==="
+              curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status
+              result="LOCAL_AI_INSTALL_PASS"
               ;;
             openclaw-v2-test)
               set -e
