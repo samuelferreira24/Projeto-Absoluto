@@ -131,54 +131,6 @@ jobs:
               } > /tmp/openclaw-vps-result.txt
               result="$(cat /tmp/openclaw-vps-result.txt)"
               ;;
-            openclaw-set-default-force)
-              set +e
-              export HOME=/home/absadmin
-              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              sudo systemctl stop openclaw-gateway.service
-              stop_rc=$?
-              /usr/bin/openclaw models set openai/gpt-5.6-luna > /tmp/openclaw-set-default-force.txt 2>&1
-              set_rc=$?
-              sudo systemctl start openclaw-gateway.service
-              start_rc=$?
-              sleep 5
-              result="stop_rc=$stop_rc set_rc=$set_rc start_rc=$start_rc\n$(cat /tmp/openclaw-set-default-force.txt)\n$(sudo systemctl is-active openclaw-gateway.service)"
-              ;;
-            openclaw-set-default)
-              set +e
-              export HOME=/home/absadmin
-              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              /usr/bin/openclaw models set openai/gpt-5.6-luna > /tmp/openclaw-set-default.txt 2>&1
-              rc=$?
-              result="exit_code=$rc\n$(cat /tmp/openclaw-set-default.txt)"
-              ;;
-            openclaw-models)
-              set +e
-              export HOME=/home/absadmin
-              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              /usr/bin/openclaw models list --json > /tmp/openclaw-models.txt 2>&1
-              rc=$?
-              result="exit_code=$rc\n$(cat /tmp/openclaw-models.txt)"
-              ;;
-            openclaw-exec-infer)
-              set +e
-              export HOME=/home/absadmin
-              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              /usr/bin/openclaw agent --agent main --message 'Responda exatamente: OPENCLAW_DEFAULT_MODEL_OK' --timeout 90 --json > /tmp/openclaw-infer.txt 2>&1
-              rc=$?
-              result="exit_code=$rc\n$(cat /tmp/openclaw-infer.txt)"
-              ;;
-            openclaw-agent-help)
-              export HOME=/home/absadmin
-              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              result="$(sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw agent --help 2>&1)"
-              ;;
-            openclaw-infer)
-              set -e
-              export HOME=/home/absadmin
-              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              result="$(sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw agent --agent main --message 'Responda exatamente: OPENCLAW_INFERENCE_OK' --timeout 90 --json 2>&1)"
-              ;;
             openclaw-status)
               export HOME=/home/absadmin
               export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
