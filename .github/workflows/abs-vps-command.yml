@@ -153,21 +153,15 @@ jobs:
               export HOME=/home/absadmin
               export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
               models="qwen3.5:0.8b qwen3.5:2b qwen3.5:4b ministral-3:3b gemma4:e2b gemma4:e4b"
-              failed=0
-              report=""
               for model in $models; do
                 echo "=== $model ==="
-                out="$(curl -fsS --max-time 240 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d "{\"model\":\"$model\",\"prompt\":\"Reply exactly LOCAL_AI_OK\",\"stream\":false}")" || { echo "HTTP_FAIL"; failed=1; continue; }
+                out="$(curl -fsS --max-time 240 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d "{\"model\":\"$model\",\"prompt\":\"Reply exactly LOCAL_AI_OK\",\"stream\":false}")"
                 echo "$out"
                 echo "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("response","").strip()=="LOCAL_AI_OK", d'
               done
-              echo "=== OLLAMA ==="
               ollama list
-              echo "=== MEMORY ==="
               free -h
-              echo "=== DISK ==="
               df -h /
-              [ "$failed" -eq 0 ]
               result="LOCAL_AI_ALL_6_PASS"
               ;;
             v2-openclaw-work-test)
