@@ -131,6 +131,12 @@ jobs:
               } > /tmp/openclaw-vps-result.txt
               result="$(cat /tmp/openclaw-vps-result.txt)"
               ;;
+            openclaw-exec-infer)
+              set -e
+              export HOME=/home/absadmin
+              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+              result="$(sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw agent exec --message 'Responda exatamente: OPENCLAW_EXEC_INFERENCE_OK' --timeout 90 --json 2>&1)"
+              ;;
             openclaw-agent-help)
               export HOME=/home/absadmin
               export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
