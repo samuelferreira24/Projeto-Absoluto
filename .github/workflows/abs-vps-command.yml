@@ -3,6 +3,10 @@ name: ABS VPS Command Channel
 on:
   issue_comment:
     types: [created]
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/abs-vps-command.yml'
 
 permissions:
   contents: read
@@ -29,7 +33,11 @@ jobs:
           REQUEST: ${{ github.event.comment.body }}
         run: |
           set -u
-          command="${REQUEST#'/abs '}"
+          if [ "${{ github.event_name }}" = "push" ]; then
+            command="local-ai-test-all"
+          else
+            command="${REQUEST#'/abs '}"
+          fi
           result=""
 
           case "$command" in
