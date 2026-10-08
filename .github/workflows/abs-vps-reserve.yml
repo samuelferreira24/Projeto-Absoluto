@@ -1,0 +1,76 @@
+name: ABS VPS Reserve Channel
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  execute-reserve:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      startsWith(github.event.comment.body, '/abs-reserve ')
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 10
+    steps:
+      - name: Execute reserve command
+        id: command
+        shell: bash
+        env:
+          REQUEST: ${{ github.event.comment.body }}
+        run: |
+          set -euo pipefail
+          command="${REQUEST#'/abs-reserve '}"
+          case "$command" in
+            status)
+              result="$(hostname; echo; uptime -p; echo; free -h; echo; df -h /; echo; sudo systemctl is-active abs.service || true)"
+              ;;
+            restart-abs)
+              sudo systemctl restart abs.service
+              sleep 2
+              result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
+              ;;
+            v3-test)
+              cd "$HOME/Projeto-Absoluto"
+              git fetch origin main --quiet
+              git reset --hard origin/main --quiet
+              python3 -m compileall -q abs_core
+              python3 -m pytest -q tests
+              result="ABS RESERVE V3 TEST PASS"
+              ;;
+            *)
+              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve restart-abs ou /abs-reserve v3-test."
+              ;;
+          esac
+          {
+            echo 'result<<ABS_RESULT_EOF'
+            printf '%s\n' "$result"
+            echo 'ABS_RESULT_EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Report result
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.command.outputs.result }}
+          REQUEST: ${{ github.event.comment.body }}
+        with:
+          script: |
+            const body = [
+              '### ABS VPS RESERVE',
+              '',
+              'COMMAND_MARKER' + (process.env.REQUEST || '') + 'COMMAND_MARKER',
+              '',
+              'OUTPUT_START',
+              (process.env.RESULT || '(sem saída)').slice(0, 12000),
+              'OUTPUT_END'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
