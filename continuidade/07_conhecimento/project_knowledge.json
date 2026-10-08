@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T03:18:50-03:00",
-  "source_revision": "cacf637016c661482c31b95cc0d28fa3d1257a5a",
+  "generated_at": "2026-10-08T03:20:55-03:00",
+  "source_revision": "050303f9da4978e14f78216b25168f64ff1cf392",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 73
+      "file_count": 74
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "cacf637016c661482c31b95cc0d28fa3d1257a5a",
-      "commit_subject": "feat: implement V2 workflow and multiagent execution modes"
+      "revision": "050303f9da4978e14f78216b25168f64ff1cf392",
+      "commit_subject": "docs: registrar estado da implementacao integrada ABS V2"
     }
   ],
   "tools": [
@@ -2838,6 +2838,11 @@
       "id": "file:docs/03_planejamento/ABS_V2_CONTRATOS_E_GATES.md",
       "kind": "file",
       "path": "docs/03_planejamento/ABS_V2_CONTRATOS_E_GATES.md"
+    },
+    {
+      "id": "file:docs/03_planejamento/ABS_V2_IMPLEMENTACAO_INTEGRADA.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/ABS_V2_IMPLEMENTACAO_INTEGRADA.md"
     },
     {
       "id": "file:docs/03_planejamento/ABS_V2_MATRIZ_CONVERGENCIA.md",
@@ -8285,6 +8290,20 @@
       "sha": "cacf637016c661482c31b95cc0d28fa3d1257a5a"
     },
     {
+      "id": "commit:c81e40de9638ef5d8dc93c5fc11cdbafaf2692bc",
+      "kind": "commit",
+      "at": "2026-10-08T06:19:11Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "c81e40de9638ef5d8dc93c5fc11cdbafaf2692bc"
+    },
+    {
+      "id": "commit:050303f9da4978e14f78216b25168f64ff1cf392",
+      "kind": "commit",
+      "at": "2026-10-08T03:20:55-03:00",
+      "subject": "docs: registrar estado da implementacao integrada ABS V2",
+      "sha": "050303f9da4978e14f78216b25168f64ff1cf392"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -8397,23 +8416,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:1bb4d0783ad3",
+      "id": "evidence:repository:17cdfc116bfa",
       "kind": "evidence",
-      "at": "2026-10-08T03:18:50-03:00",
+      "at": "2026-10-08T03:20:55-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:1bb4d0783ad3",
+      "id": "event:repository-scan:17cdfc116bfa",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T03:18:50-03:00"
+      "at": "2026-10-08T03:20:55-03:00"
     },
     {
-      "id": "event:commit-observed:cacf637016c6",
+      "id": "event:commit-observed:050303f9da49",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T03:18:50-03:00"
+      "at": "2026-10-08T03:20:55-03:00"
     }
   ],
   "paths": [
@@ -8448,11 +8467,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:35090e214a17"
+        "evidence:test:f8d49db0d426"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T03:18:50-03:00"
+      "last_validated": "2026-10-08T03:20:55-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -8475,20 +8494,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:1bb4d0783ad3",
+      "id": "evidence:repository:17cdfc116bfa",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T03:18:50-03:00",
+      "observed_at": "2026-10-08T03:20:55-03:00",
       "status": "observed",
-      "detail": "391 files indexed at revision cacf637016c661482c31b95cc0d28fa3d1257a5a"
+      "detail": "392 files indexed at revision 050303f9da4978e14f78216b25168f64ff1cf392"
     },
     {
-      "id": "evidence:test:35090e214a17",
+      "id": "evidence:test:f8d49db0d426",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T03:18:50-03:00",
+      "observed_at": "2026-10-08T03:20:55-03:00",
       "status": "tested",
-      "detail": "174 passed in 7.21s"
+      "detail": "174 passed in 7.87s"
     }
   ],
   "decisions": [
@@ -8591,31 +8610,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:1bb4d0783ad3",
+      "id": "event:repository-scan:17cdfc116bfa",
       "type": "repository_scanned",
-      "at": "2026-10-08T03:18:50-03:00",
-      "revision": "cacf637016c661482c31b95cc0d28fa3d1257a5a",
-      "file_count": 391,
-      "evidence_id": "evidence:repository:1bb4d0783ad3"
+      "at": "2026-10-08T03:20:55-03:00",
+      "revision": "050303f9da4978e14f78216b25168f64ff1cf392",
+      "file_count": 392,
+      "evidence_id": "evidence:repository:17cdfc116bfa"
     },
     {
-      "id": "event:commit-observed:cacf637016c6",
+      "id": "event:commit-observed:050303f9da49",
       "type": "commit_observed",
-      "at": "2026-10-08T03:18:50-03:00",
-      "revision": "cacf637016c661482c31b95cc0d28fa3d1257a5a",
+      "at": "2026-10-08T03:20:55-03:00",
+      "revision": "050303f9da4978e14f78216b25168f64ff1cf392",
       "branch": "main",
-      "subject": "feat: implement V2 workflow and multiagent execution modes",
+      "subject": "docs: registrar estado da implementacao integrada ABS V2",
       "changed_files": [
-        "abs_core/v2.py",
-        "tests/test_v2_modes.py"
+        "docs/03_planejamento/ABS_V2_IMPLEMENTACAO_INTEGRADA.md"
       ]
     },
     {
-      "id": "event:test:35090e214a17",
+      "id": "event:test:f8d49db0d426",
       "type": "tests_observed",
-      "at": "2026-10-08T03:18:50-03:00",
+      "at": "2026-10-08T03:20:55-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:35090e214a17"
+      "evidence_id": "evidence:test:f8d49db0d426"
     }
   ],
   "knowledge_sources": [
@@ -8671,7 +8689,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "884af4b9d3dbb35271212b1cd4b5b79f93986ee4a7a0b10599cc857e6a8df3af"
+      "sha256": "fa428cd337abb9a5302629f9e21e8e30c7abe0bcb5e693b81baf3354b752b8ab"
     },
     {
       "id": "source:session",
@@ -34578,12 +34596,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:1bb4d0783ad3",
-      "source": "event:repository-scan:1bb4d0783ad3",
-      "relation": "generated",
-      "target": "evidence:repository:1bb4d0783ad3",
+      "id": "rel:commit-precedes:cacf637016c6:c81e40de9638",
+      "source": "commit:cacf637016c661482c31b95cc0d28fa3d1257a5a",
+      "relation": "precedes",
+      "target": "commit:c81e40de9638ef5d8dc93c5fc11cdbafaf2692bc",
       "status": "asserted",
-      "at": "2026-10-08T03:18:50-03:00",
+      "at": "2026-10-08T06:19:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c81e40de9638:032adc3624d7",
+      "source": "commit:c81e40de9638ef5d8dc93c5fc11cdbafaf2692bc",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T06:19:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c81e40de9638:d64178c49886",
+      "source": "commit:c81e40de9638ef5d8dc93c5fc11cdbafaf2692bc",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T06:19:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c81e40de9638:050303f9da49",
+      "source": "commit:c81e40de9638ef5d8dc93c5fc11cdbafaf2692bc",
+      "relation": "precedes",
+      "target": "commit:050303f9da4978e14f78216b25168f64ff1cf392",
+      "status": "asserted",
+      "at": "2026-10-08T03:20:55-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:050303f9da49:917e94cb6e1b",
+      "source": "commit:050303f9da4978e14f78216b25168f64ff1cf392",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/ABS_V2_IMPLEMENTACAO_INTEGRADA.md",
+      "status": "asserted",
+      "at": "2026-10-08T03:20:55-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:17cdfc116bfa",
+      "source": "event:repository-scan:17cdfc116bfa",
+      "relation": "generated",
+      "target": "evidence:repository:17cdfc116bfa",
+      "status": "asserted",
+      "at": "2026-10-08T03:20:55-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -34592,12 +34680,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:cacf637016c6",
-      "source": "commit:cacf637016c661482c31b95cc0d28fa3d1257a5a",
+      "id": "rel:scan-commit:050303f9da49",
+      "source": "commit:050303f9da4978e14f78216b25168f64ff1cf392",
       "relation": "observed_by",
-      "target": "event:repository-scan:1bb4d0783ad3",
+      "target": "event:repository-scan:17cdfc116bfa",
       "status": "asserted",
-      "at": "2026-10-08T03:18:50-03:00",
+      "at": "2026-10-08T03:20:55-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
