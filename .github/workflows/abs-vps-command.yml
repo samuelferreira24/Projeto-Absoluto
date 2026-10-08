@@ -95,13 +95,13 @@ jobs:
               cd "$HOME/Projeto-Absoluto"
               openclaw agent --message "Reply with exactly OPENCLAW_V2_INTEGRATION_OK and nothing else." --json > /tmp/openclaw-v2-test.json
               python3 - <<'PY'
-import json
-p="/tmp/openclaw-v2-test.json"
-s=open(p,encoding="utf-8").read()
-if "OPENCLAW_V2_INTEGRATION_OK" not in s:
-    raise SystemExit("openclaw_v2_expected_text_missing")
-print("OPENCLAW V2 INTEGRATION PASS")
-PY
+              import json
+              p="/tmp/openclaw-v2-test.json"
+              s=open(p,encoding="utf-8").read()
+              if "OPENCLAW_V2_INTEGRATION_OK" not in s:
+                  raise SystemExit("openclaw_v2_expected_text_missing")
+              print("OPENCLAW V2 INTEGRATION PASS")
+              PY
               result="$(cat /tmp/openclaw-v2-test.json | tail -c 12000)"
               ;;
             openclaw-install)
