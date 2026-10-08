@@ -274,27 +274,78 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
         c=ranked[0]; return V3Decision(WorkDisposition.EXECUTE,c.id,c.cost_class,"admitted",snap,policy)
     def run(self,work_id,capability_id=None,approved=False):
         start=time.time()
-        with self._v3_lock:
-            work=self.store.load(work_id); context=dict(work.context)
-            if capability_id:context["capability_id"]=capability_id
-            # Recovery/idempotency takes precedence over optimization.
-            if work.result is not None:
-                self.recovery.reconcile(work); return work
-            decision=self._gate(work,context)
-            self.v3_state.event(work_id,"decision",asdict(decision)|{"disposition":decision.disposition.value,"cost_class":decision.cost_class.value if decision.cost_class else None,"policy":decision.policy.value})
-            if decision.disposition is WorkDisposition.WAIT:
-                self.queue.push(work_id,10 if context.get("priority")=="critical" else 0)
-                work.context["_v3"]={"status":"waiting","reason":decision.reason,"policy":decision.policy.value}
-                self.store.save(work); self.telemetry.inc("wait"); return work
-            work.context["_v3"]={"status":"admitted","selected_intelligence":decision.candidate_id,"cost_class":decision.cost_class.value if decision.cost_class else None,"cost_policy":decision.policy.value,"capacity_state":decision.capacity.state.value,"queue_depth":self.queue.depth()}
-            self.store.save(work)
-            try:
-                result=super().run(work_id,decision.candidate_id,approved=approved)
-                elapsed=time.time()-start; success=getattr(result,"result",None) is not None
-                self.telemetry.inc("completed" if success else "failed"); self.telemetry.observe("work_seconds",elapsed)
-                if decision.cost_class:self.v3_state.cost(work_id,decision.candidate_id or "",decision.cost_class,0.0)
-                self.v3_state.learn(decision.candidate_id or "unknown",success,elapsed)
-                return result
-            except Exception as exc:
-                self.telemetry.inc("error"); self.v3_state.event(work_id,"execution_error",{"error":str(exc)})
-                raise
+        work=self.store.load(work_id)
+        context=dict(work.context)
+        if capability_id:
+            context["capability_id"]=capability_id
+        if work.result is not None:
+            self.recovery.reconcile(work)
+            return work
+        priority=str(context.get("priority") or "normal")
+        self._acquire_slot(work_id,10 if priority=="critical" else 0)
+        try:
+            with self._v3_lock:
+                work=self.store.load(work_id)
+                context=dict(work.context)
+                if capability_id:
+                    context["capability_id"]=capability_id
+                if work.result is not None:
+                    self.recovery.reconcile(work)
+                    return work
+                decision=self._gate(work,context)
+                self.v3_state.event(work_id,"decision",asdict(decision)|{
+                    "disposition":decision.disposition.value,
+                    "cost_class":decision.cost_class.value if decision.cost_class else None,
+                    "policy":decision.policy.value})
+                if decision.disposition is WorkDisposition.WAIT:
+                    self.queue.push(work_id,10 if priority=="critical" else 0)
+                    work.context["_v3"]={"status":"waiting","reason":decision.reason,"policy":decision.policy.value}
+                    self.store.save(work)
+                    self.telemetry.inc("wait")
+                    return work
+                work.context["_v3"]={
+                    "status":"admitted",
+                    "selected_intelligence":decision.candidate_id,
+                    "cost_class":decision.cost_class.value if decision.cost_class else None,
+                    "cost_policy":decision.policy.value,
+                    "capacity_state":decision.capacity.state.value,
+                    "queue_depth":self.queue.depth(),
+                    "active":self._active}
+                self.store.save(work)
+                candidate_id=decision.candidate_id
+            attempts=0
+            while True:
+                attempts+=1
+                execution_start=time.time()
+                try:
+                    result=super().run(work_id,candidate_id,approved=approved)
+                    elapsed=time.time()-execution_start
+                    success=getattr(result,"result",None) is not None
+                    self.telemetry.inc("completed" if success else "failed")
+                    self.telemetry.observe("work_seconds",elapsed)
+                    amount=float(context.get("estimated_cost",0) or 0) if decision.cost_class is CostClass.PAID_API else 0.0
+                    if decision.cost_class:
+                        self.v3_state.cost(work_id,candidate_id or "",decision.cost_class,amount)
+                    self.v3_state.learn(candidate_id or "unknown",success,elapsed)
+                    self._rerank_with_learning()
+                    return result
+                except Exception as exc:
+                    elapsed=time.time()-execution_start
+                    self.v3_state.learn(candidate_id or "unknown",False,elapsed)
+                    self.v3_state.event(work_id,"execution_error",{
+                        "error":str(exc),"candidate":candidate_id,"attempt":attempts})
+                    alternatives=self._replan_candidates(work,context,candidate_id)
+                    if not alternatives or attempts>=int(context.get("max_replans",2) or 2):
+                        self.telemetry.inc("error")
+                        raise
+                    candidate_id=alternatives[0].id
+                    self.telemetry.inc("replan")
+                    with self._v3_lock:
+                        work=self.store.load(work_id)
+                        work.context.setdefault("_v3",{})["replanned_from"]=decision.candidate_id
+                        work.context["_v3"]["selected_intelligence"]=candidate_id
+                        work.context["_v3"]["replan_attempt"]=attempts
+                        self.store.save(work)
+        finally:
+            self._release_slot()
+
