@@ -178,8 +178,9 @@ def index_source(conn, source_id: str, root: Path):
             conn.execute("DELETE FROM documents WHERE id=?", (doc_id,))
             removed += 1
     if changed or removed:
-        # FTS5 is configured as an external-content index. Rebuild once after
-        # the source table mutation so the index and content table stay exact.
+        # FTS5 is an external-content index. Clear the derived index before
+        # rebuilding so deleted/replaced rows cannot survive in a new reader.
+        conn.execute("DELETE FROM documents_fts")
         conn.execute("INSERT INTO documents_fts(documents_fts) VALUES ('rebuild')")
     return changed, removed
 
