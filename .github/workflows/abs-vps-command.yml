@@ -156,6 +156,26 @@ jobs:
               python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["state"]=="completed", d; r=d["result"]; assert r["executor"]=="openclaw", r; assert r["verification"]["accepted"] is True, r; print("ABS V2 OPENCLAW WORK PASS")' <<<"$run_json"
               result="$run_json"
               ;;
+            local-ai-test-all)
+              set -e
+              export HOME=/home/absadmin
+              export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+              models="qwen3.5:0.8b qwen3.5:2b qwen3.5:4b ministral-3:3b gemma4:e2b gemma4:e4b"
+              failed=0
+              : > /tmp/local-ai-test-all.txt
+              for model in $models; do
+                echo "=== $model ===" | tee -a /tmp/local-ai-test-all.txt
+                out="$(curl -fsS --max-time 180 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d "{\"model\":\"$model\",\"prompt\":\"Reply exactly LOCAL_AI_OK\",\"stream\":false}")" || { echo "HTTP_FAIL" | tee -a /tmp/local-ai-test-all.txt; failed=1; continue; }
+                echo "$out" | tee -a /tmp/local-ai-test-all.txt
+                echo "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("response","").strip()=="LOCAL_AI_OK", d' || failed=1
+              done
+              echo "=== MEMORY ===" | tee -a /tmp/local-ai-test-all.txt
+              free -h | tee -a /tmp/local-ai-test-all.txt
+              echo "=== DISK ===" | tee -a /tmp/local-ai-test-all.txt
+              df -h / | tee -a /tmp/local-ai-test-all.txt
+              if [ "$failed" -ne 0 ]; then result="$(cat /tmp/local-ai-test-all.txt)"; exit 1; fi
+              result="$(cat /tmp/local-ai-test-all.txt)"
+              ;;
             local-ai-install)
               set -e
               export HOME=/home/absadmin
