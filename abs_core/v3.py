@@ -393,7 +393,8 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
                     # A result payload alone is not proof of success. The V2/V1
                     # verification state is authoritative for learning and
                     # future routing decisions.
-                    success=getattr(result,"state",None).value == "completed"
+                    state_value=getattr(getattr(result,"state",None),"value",None)
+                    success=state_value == "completed"
                     self.telemetry.inc("completed" if success else "failed")
                     self.telemetry.observe("work_seconds",elapsed)
                     amount=float(context.get("estimated_cost",0) or 0) if decision.cost_class is CostClass.PAID_API else 0.0
@@ -401,6 +402,30 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
                         self.v3_state.cost(work_id,candidate_id or "",decision.cost_class,amount)
                     self.v3_state.learn(candidate_id or "unknown",success,elapsed)
                     self._rerank_with_learning()
+
+                    # A verified failure is evidence too. Replan on the observed
+                    # Work state, not only on thrown exceptions, and never reuse
+                    # the failed intelligence in the same bounded recovery loop.
+                    if not success:
+                        self.v3_state.event(work_id,"verification_failure",{
+                            "candidate":candidate_id,"state":state_value,
+                            "result":getattr(result,"result",None),"attempt":attempts})
+                        alternatives=self._replan_candidates(work,context,candidate_id)
+                        max_replans=max(0,min(int(context.get("max_replans",2) or 0),10))
+                        if alternatives and attempts<=max_replans:
+                            candidate_id=alternatives[0].id
+                            self.telemetry.inc("replan")
+                            with self._v3_lock:
+                                current=self.store.load(work_id)
+                                current.context.setdefault("_v3",{})["replanned_from"]=candidate_id
+                                current.context["_v3"]["selected_intelligence"]=candidate_id
+                                current.context["_v3"]["replan_attempt"]=attempts
+                                current.context["_v3"]["failure_evidence"]={
+                                    "state":state_value,
+                                    "result":getattr(result,"result",None),
+                                }
+                                self.store.save(current)
+                            continue
                     return result
                 except Exception as exc:
                     elapsed=time.time()-execution_start
