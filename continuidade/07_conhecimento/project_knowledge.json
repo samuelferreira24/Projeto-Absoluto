@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T18:03:48-03:00",
-  "source_revision": "daa6f2e31dcb409d77774f3a34f91f599784c80d",
+  "generated_at": "2026-10-08T18:18:18-03:00",
+  "source_revision": "faccea7e774bd2e3948f95bba6db81eecea01e22",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 74
+      "file_count": 75
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 123
+      "file_count": 125
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "daa6f2e31dcb409d77774f3a34f91f599784c80d",
-      "commit_subject": "Incluir validação real das IAs locais no teste V3"
+      "revision": "faccea7e774bd2e3948f95bba6db81eecea01e22",
+      "commit_subject": "Documentar canal reserva do ABS VPS"
     }
   ],
   "tools": [
@@ -983,6 +983,11 @@
       "id": "file:.github/workflows/abs-vps-local-ai-bootstrap.yml",
       "kind": "file",
       "path": ".github/workflows/abs-vps-local-ai-bootstrap.yml"
+    },
+    {
+      "id": "file:.github/workflows/abs-vps-reserve.yml",
+      "kind": "file",
+      "path": ".github/workflows/abs-vps-reserve.yml"
     },
     {
       "id": "file:.github/workflows/navegacao-v2-real-validation.yml",
@@ -3130,6 +3135,11 @@
       "path": "docs/architecture/PROJECT_KNOWLEDGE_V1.md"
     },
     {
+      "id": "file:docs/infra/CANAL_RESERVA_ABS_VPS.md",
+      "kind": "file",
+      "path": "docs/infra/CANAL_RESERVA_ABS_VPS.md"
+    },
+    {
       "id": "file:docs/memoria/DECISOES.md",
       "kind": "file",
       "path": "docs/memoria/DECISOES.md"
@@ -3673,6 +3683,11 @@
       "id": "file:tools/navegacao/verify.py",
       "kind": "file",
       "path": "tools/navegacao/verify.py"
+    },
+    {
+      "id": "file:tools/vps/install-reserve-runner.sh",
+      "kind": "file",
+      "path": "tools/vps/install-reserve-runner.sh"
     },
     {
       "id": "file:web/index.html",
@@ -9217,6 +9232,34 @@
       "sha": "daa6f2e31dcb409d77774f3a34f91f599784c80d"
     },
     {
+      "id": "commit:bb08bf37a960d584234345f8fd854841b1e8afb2",
+      "kind": "commit",
+      "at": "2026-10-08T21:04:06Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "bb08bf37a960d584234345f8fd854841b1e8afb2"
+    },
+    {
+      "id": "commit:58a0d4403fc86f4aee3d7082ee464627f16b1a81",
+      "kind": "commit",
+      "at": "2026-10-08T18:18:13-03:00",
+      "subject": "Adicionar instalador do runner reserva do VPS",
+      "sha": "58a0d4403fc86f4aee3d7082ee464627f16b1a81"
+    },
+    {
+      "id": "commit:6ec73c874ea4c1c2912638790cd940f552597b83",
+      "kind": "commit",
+      "at": "2026-10-08T18:18:16-03:00",
+      "subject": "Adicionar canal reserva do ABS VPS",
+      "sha": "6ec73c874ea4c1c2912638790cd940f552597b83"
+    },
+    {
+      "id": "commit:faccea7e774bd2e3948f95bba6db81eecea01e22",
+      "kind": "commit",
+      "at": "2026-10-08T18:18:18-03:00",
+      "subject": "Documentar canal reserva do ABS VPS",
+      "sha": "faccea7e774bd2e3948f95bba6db81eecea01e22"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9329,23 +9372,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:3f9b73c178dc",
+      "id": "evidence:repository:3141e2911ebb",
       "kind": "evidence",
-      "at": "2026-10-08T18:03:48-03:00",
+      "at": "2026-10-08T18:18:18-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:3f9b73c178dc",
+      "id": "event:repository-scan:3141e2911ebb",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T18:03:48-03:00"
+      "at": "2026-10-08T18:18:18-03:00"
     },
     {
-      "id": "event:commit-observed:daa6f2e31dcb",
+      "id": "event:commit-observed:faccea7e774b",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T18:03:48-03:00"
+      "at": "2026-10-08T18:18:18-03:00"
     }
   ],
   "paths": [
@@ -9380,11 +9423,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:db364fcbcfa0"
+        "evidence:test:58b7bc0c92f2"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T18:03:48-03:00"
+      "last_validated": "2026-10-08T18:18:18-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9407,20 +9450,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:3f9b73c178dc",
+      "id": "evidence:repository:3141e2911ebb",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T18:03:48-03:00",
+      "observed_at": "2026-10-08T18:18:18-03:00",
       "status": "observed",
-      "detail": "399 files indexed at revision daa6f2e31dcb409d77774f3a34f91f599784c80d"
+      "detail": "402 files indexed at revision faccea7e774bd2e3948f95bba6db81eecea01e22"
     },
     {
-      "id": "evidence:test:db364fcbcfa0",
+      "id": "evidence:test:58b7bc0c92f2",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T18:03:48-03:00",
+      "observed_at": "2026-10-08T18:18:18-03:00",
       "status": "tested",
-      "detail": "196 passed in 6.84s"
+      "detail": "196 passed in 6.89s"
     }
   ],
   "decisions": [
@@ -9523,30 +9566,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:3f9b73c178dc",
+      "id": "event:repository-scan:3141e2911ebb",
       "type": "repository_scanned",
-      "at": "2026-10-08T18:03:48-03:00",
-      "revision": "daa6f2e31dcb409d77774f3a34f91f599784c80d",
-      "file_count": 399,
-      "evidence_id": "evidence:repository:3f9b73c178dc"
+      "at": "2026-10-08T18:18:18-03:00",
+      "revision": "faccea7e774bd2e3948f95bba6db81eecea01e22",
+      "file_count": 402,
+      "evidence_id": "evidence:repository:3141e2911ebb"
     },
     {
-      "id": "event:commit-observed:daa6f2e31dcb",
+      "id": "event:commit-observed:faccea7e774b",
       "type": "commit_observed",
-      "at": "2026-10-08T18:03:48-03:00",
-      "revision": "daa6f2e31dcb409d77774f3a34f91f599784c80d",
+      "at": "2026-10-08T18:18:18-03:00",
+      "revision": "faccea7e774bd2e3948f95bba6db81eecea01e22",
       "branch": "main",
-      "subject": "Incluir validação real das IAs locais no teste V3",
+      "subject": "Documentar canal reserva do ABS VPS",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        "docs/infra/CANAL_RESERVA_ABS_VPS.md"
       ]
     },
     {
-      "id": "event:test:db364fcbcfa0",
+      "id": "event:test:58b7bc0c92f2",
       "type": "tests_observed",
-      "at": "2026-10-08T18:03:48-03:00",
+      "at": "2026-10-08T18:18:18-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:db364fcbcfa0"
+      "evidence_id": "evidence:test:58b7bc0c92f2"
     }
   ],
   "knowledge_sources": [
@@ -9602,7 +9645,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "cff84d249256b955232bb5c31a52cfc446f4c1880bbfd49c0fa85bf88ad2b7a5"
+      "sha256": "52f29789726fc9f920f79348c860f3c90be8efe293f8237c31dc050741981ff8"
     },
     {
       "id": "source:session",
@@ -39555,12 +39598,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:3f9b73c178dc",
-      "source": "event:repository-scan:3f9b73c178dc",
-      "relation": "generated",
-      "target": "evidence:repository:3f9b73c178dc",
+      "id": "rel:commit-precedes:daa6f2e31dcb:bb08bf37a960",
+      "source": "commit:daa6f2e31dcb409d77774f3a34f91f599784c80d",
+      "relation": "precedes",
+      "target": "commit:bb08bf37a960d584234345f8fd854841b1e8afb2",
       "status": "asserted",
-      "at": "2026-10-08T18:03:48-03:00",
+      "at": "2026-10-08T21:04:06Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bb08bf37a960:032adc3624d7",
+      "source": "commit:bb08bf37a960d584234345f8fd854841b1e8afb2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T21:04:06Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bb08bf37a960:d64178c49886",
+      "source": "commit:bb08bf37a960d584234345f8fd854841b1e8afb2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T21:04:06Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:bb08bf37a960:58a0d4403fc8",
+      "source": "commit:bb08bf37a960d584234345f8fd854841b1e8afb2",
+      "relation": "precedes",
+      "target": "commit:58a0d4403fc86f4aee3d7082ee464627f16b1a81",
+      "status": "asserted",
+      "at": "2026-10-08T18:18:13-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:58a0d4403fc8:b231df479392",
+      "source": "commit:58a0d4403fc86f4aee3d7082ee464627f16b1a81",
+      "relation": "changed",
+      "target": "file:tools/vps/install-reserve-runner.sh",
+      "status": "asserted",
+      "at": "2026-10-08T18:18:13-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:58a0d4403fc8:6ec73c874ea4",
+      "source": "commit:58a0d4403fc86f4aee3d7082ee464627f16b1a81",
+      "relation": "precedes",
+      "target": "commit:6ec73c874ea4c1c2912638790cd940f552597b83",
+      "status": "asserted",
+      "at": "2026-10-08T18:18:16-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6ec73c874ea4:3ea533262670",
+      "source": "commit:6ec73c874ea4c1c2912638790cd940f552597b83",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-reserve.yml",
+      "status": "asserted",
+      "at": "2026-10-08T18:18:16-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:6ec73c874ea4:faccea7e774b",
+      "source": "commit:6ec73c874ea4c1c2912638790cd940f552597b83",
+      "relation": "precedes",
+      "target": "commit:faccea7e774bd2e3948f95bba6db81eecea01e22",
+      "status": "asserted",
+      "at": "2026-10-08T18:18:18-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:faccea7e774b:65710c5f9637",
+      "source": "commit:faccea7e774bd2e3948f95bba6db81eecea01e22",
+      "relation": "changed",
+      "target": "file:docs/infra/CANAL_RESERVA_ABS_VPS.md",
+      "status": "asserted",
+      "at": "2026-10-08T18:18:18-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:3141e2911ebb",
+      "source": "event:repository-scan:3141e2911ebb",
+      "relation": "generated",
+      "target": "evidence:repository:3141e2911ebb",
+      "status": "asserted",
+      "at": "2026-10-08T18:18:18-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -39569,12 +39738,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:daa6f2e31dcb",
-      "source": "commit:daa6f2e31dcb409d77774f3a34f91f599784c80d",
+      "id": "rel:scan-commit:faccea7e774b",
+      "source": "commit:faccea7e774bd2e3948f95bba6db81eecea01e22",
       "relation": "observed_by",
-      "target": "event:repository-scan:3f9b73c178dc",
+      "target": "event:repository-scan:3141e2911ebb",
       "status": "asserted",
-      "at": "2026-10-08T18:03:48-03:00",
+      "at": "2026-10-08T18:18:18-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
