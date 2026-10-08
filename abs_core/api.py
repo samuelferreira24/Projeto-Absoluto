@@ -142,6 +142,9 @@ class ABSHandler(BaseHTTPRequestHandler):
                 "summary": self.resources.summary(),
             })
             return
+        if self.path == "/v3/status":
+            self._send(200, self.orchestrator.status() if hasattr(self.orchestrator, "status") else {"version":"unknown"})
+            return
         if self.path == "/v2/status":
             self._send(200, {"version": "v2", "integrated": True, "protocols": self.protocols.public() if self.protocols else {}})
             return
