@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T15:43:12-03:00",
-  "source_revision": "25dd5fb72de5c90c95a14ca75afa755aa44c49b6",
+  "generated_at": "2026-10-08T15:45:51-03:00",
+  "source_revision": "01e71d2f5a2d0e7c4b14d5c4a17a64ed07e7d389",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "25dd5fb72de5c90c95a14ca75afa755aa44c49b6",
-      "commit_subject": "Add V3 objective entrypoint"
+      "revision": "01e71d2f5a2d0e7c4b14d5c4a17a64ed07e7d389",
+      "commit_subject": "Record UNKNOWN for invalid planned capabilities"
     }
   ],
   "tools": [
@@ -8634,6 +8634,55 @@
       "sha": "25dd5fb72de5c90c95a14ca75afa755aa44c49b6"
     },
     {
+      "id": "commit:debe8a82e65ba61f453b9e76796818a0ac06f6cc",
+      "kind": "commit",
+      "at": "2026-10-08T18:43:32Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "debe8a82e65ba61f453b9e76796818a0ac06f6cc"
+    },
+    {
+      "id": "commit:f7833c2b5598a879d557c89e03169c5ffcb8d75f",
+      "kind": "commit",
+      "at": "2026-10-08T15:43:41-03:00",
+      "subject": "Connect V3 planning runtime to API",
+      "sha": "f7833c2b5598a879d557c89e03169c5ffcb8d75f"
+    },
+    {
+      "id": "commit:4984932da635a83b5ae86b368517da7dc640bd6c",
+      "kind": "commit",
+      "at": "2026-10-08T15:43:50-03:00",
+      "subject": "Connect operational planner to ABS server",
+      "sha": "4984932da635a83b5ae86b368517da7dc640bd6c"
+    },
+    {
+      "id": "commit:2147aaac95c7349d0540adda9547454c1e666e9f",
+      "kind": "commit",
+      "at": "2026-10-08T15:44:04-03:00",
+      "subject": "Add integrated Operational Intelligence V3 tests",
+      "sha": "2147aaac95c7349d0540adda9547454c1e666e9f"
+    },
+    {
+      "id": "commit:27cd8e2008241cb19c7343f009aa531d9dac75ad",
+      "kind": "commit",
+      "at": "2026-10-08T15:44:32-03:00",
+      "subject": "Add V3 Operational Intelligence live integration test",
+      "sha": "27cd8e2008241cb19c7343f009aa531d9dac75ad"
+    },
+    {
+      "id": "commit:7d31501091f706153bd535d2495e443da10a15d6",
+      "kind": "commit",
+      "at": "2026-10-08T15:45:31-03:00",
+      "subject": "Refresh ABS checkout before service restart",
+      "sha": "7d31501091f706153bd535d2495e443da10a15d6"
+    },
+    {
+      "id": "commit:01e71d2f5a2d0e7c4b14d5c4a17a64ed07e7d389",
+      "kind": "commit",
+      "at": "2026-10-08T15:45:51-03:00",
+      "subject": "Record UNKNOWN for invalid planned capabilities",
+      "sha": "01e71d2f5a2d0e7c4b14d5c4a17a64ed07e7d389"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -8746,23 +8795,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:5400e93e0940",
+      "id": "evidence:repository:05c79db418bf",
       "kind": "evidence",
-      "at": "2026-10-08T15:43:12-03:00",
+      "at": "2026-10-08T15:45:51-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:5400e93e0940",
+      "id": "event:repository-scan:05c79db418bf",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T15:43:12-03:00"
+      "at": "2026-10-08T15:45:51-03:00"
     },
     {
-      "id": "event:commit-observed:25dd5fb72de5",
+      "id": "event:commit-observed:01e71d2f5a2d",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T15:43:12-03:00"
+      "at": "2026-10-08T15:45:51-03:00"
     }
   ],
   "paths": [
@@ -8797,11 +8846,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:3e7f4f92561f"
+        "evidence:test:98079ed41fb0"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T15:43:12-03:00"
+      "last_validated": "2026-10-08T15:45:51-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -8824,20 +8873,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:5400e93e0940",
+      "id": "evidence:repository:05c79db418bf",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T15:43:12-03:00",
+      "observed_at": "2026-10-08T15:45:51-03:00",
       "status": "observed",
-      "detail": "395 files indexed at revision 25dd5fb72de5c90c95a14ca75afa755aa44c49b6"
+      "detail": "395 files indexed at revision 01e71d2f5a2d0e7c4b14d5c4a17a64ed07e7d389"
     },
     {
-      "id": "evidence:test:3e7f4f92561f",
+      "id": "evidence:test:98079ed41fb0",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T15:43:12-03:00",
+      "observed_at": "2026-10-08T15:45:51-03:00",
       "status": "tested",
-      "detail": "188 passed in 7.61s"
+      "detail": "191 passed in 6.99s"
     }
   ],
   "decisions": [
@@ -8940,30 +8989,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:5400e93e0940",
+      "id": "event:repository-scan:05c79db418bf",
       "type": "repository_scanned",
-      "at": "2026-10-08T15:43:12-03:00",
-      "revision": "25dd5fb72de5c90c95a14ca75afa755aa44c49b6",
+      "at": "2026-10-08T15:45:51-03:00",
+      "revision": "01e71d2f5a2d0e7c4b14d5c4a17a64ed07e7d389",
       "file_count": 395,
-      "evidence_id": "evidence:repository:5400e93e0940"
+      "evidence_id": "evidence:repository:05c79db418bf"
     },
     {
-      "id": "event:commit-observed:25dd5fb72de5",
+      "id": "event:commit-observed:01e71d2f5a2d",
       "type": "commit_observed",
-      "at": "2026-10-08T15:43:12-03:00",
-      "revision": "25dd5fb72de5c90c95a14ca75afa755aa44c49b6",
+      "at": "2026-10-08T15:45:51-03:00",
+      "revision": "01e71d2f5a2d0e7c4b14d5c4a17a64ed07e7d389",
       "branch": "main",
-      "subject": "Add V3 objective entrypoint",
+      "subject": "Record UNKNOWN for invalid planned capabilities",
       "changed_files": [
-        "abs_core/api.py"
+        "abs_core/operational_intelligence.py"
       ]
     },
     {
-      "id": "event:test:3e7f4f92561f",
+      "id": "event:test:98079ed41fb0",
       "type": "tests_observed",
-      "at": "2026-10-08T15:43:12-03:00",
+      "at": "2026-10-08T15:45:51-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:3e7f4f92561f"
+      "evidence_id": "evidence:test:98079ed41fb0"
     }
   ],
   "knowledge_sources": [
@@ -9019,7 +9068,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "04e7de810a85a0bd3d785a66416b645340280c8b11714b3ed9acce7a6e19e31f"
+      "sha256": "736b50f9ab432dbc9ef41690d6cb0475e4008e84cbfea8b4df156c43f010ffc2"
     },
     {
       "id": "source:session",
@@ -36368,12 +36417,222 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:5400e93e0940",
-      "source": "event:repository-scan:5400e93e0940",
-      "relation": "generated",
-      "target": "evidence:repository:5400e93e0940",
+      "id": "rel:commit-precedes:25dd5fb72de5:debe8a82e65b",
+      "source": "commit:25dd5fb72de5c90c95a14ca75afa755aa44c49b6",
+      "relation": "precedes",
+      "target": "commit:debe8a82e65ba61f453b9e76796818a0ac06f6cc",
       "status": "asserted",
-      "at": "2026-10-08T15:43:12-03:00",
+      "at": "2026-10-08T18:43:32Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:debe8a82e65b:032adc3624d7",
+      "source": "commit:debe8a82e65ba61f453b9e76796818a0ac06f6cc",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T18:43:32Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:debe8a82e65b:d64178c49886",
+      "source": "commit:debe8a82e65ba61f453b9e76796818a0ac06f6cc",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T18:43:32Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:debe8a82e65b:f7833c2b5598",
+      "source": "commit:debe8a82e65ba61f453b9e76796818a0ac06f6cc",
+      "relation": "precedes",
+      "target": "commit:f7833c2b5598a879d557c89e03169c5ffcb8d75f",
+      "status": "asserted",
+      "at": "2026-10-08T15:43:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f7833c2b5598:ab06acb5f6f1",
+      "source": "commit:f7833c2b5598a879d557c89e03169c5ffcb8d75f",
+      "relation": "changed",
+      "target": "file:abs_core/api.py",
+      "status": "asserted",
+      "at": "2026-10-08T15:43:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f7833c2b5598:4984932da635",
+      "source": "commit:f7833c2b5598a879d557c89e03169c5ffcb8d75f",
+      "relation": "precedes",
+      "target": "commit:4984932da635a83b5ae86b368517da7dc640bd6c",
+      "status": "asserted",
+      "at": "2026-10-08T15:43:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:4984932da635:86b1ae0a5879",
+      "source": "commit:4984932da635a83b5ae86b368517da7dc640bd6c",
+      "relation": "changed",
+      "target": "file:abs_core/server.py",
+      "status": "asserted",
+      "at": "2026-10-08T15:43:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:4984932da635:2147aaac95c7",
+      "source": "commit:4984932da635a83b5ae86b368517da7dc640bd6c",
+      "relation": "precedes",
+      "target": "commit:2147aaac95c7349d0540adda9547454c1e666e9f",
+      "status": "asserted",
+      "at": "2026-10-08T15:44:04-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2147aaac95c7:3014122fb6b6",
+      "source": "commit:2147aaac95c7349d0540adda9547454c1e666e9f",
+      "relation": "changed",
+      "target": "file:tests/test_v3.py",
+      "status": "asserted",
+      "at": "2026-10-08T15:44:04-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:2147aaac95c7:27cd8e200824",
+      "source": "commit:2147aaac95c7349d0540adda9547454c1e666e9f",
+      "relation": "precedes",
+      "target": "commit:27cd8e2008241cb19c7343f009aa531d9dac75ad",
+      "status": "asserted",
+      "at": "2026-10-08T15:44:32-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:27cd8e200824:1734be446032",
+      "source": "commit:27cd8e2008241cb19c7343f009aa531d9dac75ad",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-08T15:44:32-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:27cd8e200824:7d31501091f7",
+      "source": "commit:27cd8e2008241cb19c7343f009aa531d9dac75ad",
+      "relation": "precedes",
+      "target": "commit:7d31501091f706153bd535d2495e443da10a15d6",
+      "status": "asserted",
+      "at": "2026-10-08T15:45:31-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7d31501091f7:1734be446032",
+      "source": "commit:7d31501091f706153bd535d2495e443da10a15d6",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-08T15:45:31-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:7d31501091f7:01e71d2f5a2d",
+      "source": "commit:7d31501091f706153bd535d2495e443da10a15d6",
+      "relation": "precedes",
+      "target": "commit:01e71d2f5a2d0e7c4b14d5c4a17a64ed07e7d389",
+      "status": "asserted",
+      "at": "2026-10-08T15:45:51-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:01e71d2f5a2d:7e73bc8a7b8c",
+      "source": "commit:01e71d2f5a2d0e7c4b14d5c4a17a64ed07e7d389",
+      "relation": "changed",
+      "target": "file:abs_core/operational_intelligence.py",
+      "status": "asserted",
+      "at": "2026-10-08T15:45:51-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:05c79db418bf",
+      "source": "event:repository-scan:05c79db418bf",
+      "relation": "generated",
+      "target": "evidence:repository:05c79db418bf",
+      "status": "asserted",
+      "at": "2026-10-08T15:45:51-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -36382,12 +36641,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:25dd5fb72de5",
-      "source": "commit:25dd5fb72de5c90c95a14ca75afa755aa44c49b6",
+      "id": "rel:scan-commit:01e71d2f5a2d",
+      "source": "commit:01e71d2f5a2d0e7c4b14d5c4a17a64ed07e7d389",
       "relation": "observed_by",
-      "target": "event:repository-scan:5400e93e0940",
+      "target": "event:repository-scan:05c79db418bf",
       "status": "asserted",
-      "at": "2026-10-08T15:43:12-03:00",
+      "at": "2026-10-08T15:45:51-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
