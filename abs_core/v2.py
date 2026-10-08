@@ -338,12 +338,20 @@ class ExecutorRouter:
         self.openclaw = OpenClawExecutor()
         if self.openclaw.available():
             self.executors["openclaw"] = self.openclaw
+        self.executors["workflow"] = WorkflowExecutor(registry)
+        self.executors["multiagent"] = MultiAgentExecutor(
+            registry, self.openclaw if self.openclaw.available() else None
+        )
 
     def choose(self, mode: V2Mode, capability_id: str | None, context: dict[str, Any]) -> tuple[str, Executor]:
         preferred = str(context.get("executor") or "").strip()
         if preferred in self.executors:
             return preferred, self.executors[preferred]
-        if mode in {V2Mode.AGENT, V2Mode.MULTIAGENT} and "openclaw" in self.executors:
+        if mode == V2Mode.WORKFLOW:
+            return "workflow", self.executors["workflow"]
+        if mode == V2Mode.MULTIAGENT:
+            return "multiagent", self.executors["multiagent"]
+        if mode == V2Mode.AGENT and "openclaw" in self.executors:
             return "openclaw", self.executors["openclaw"]
         return "direct", self.executors["direct"]
 
@@ -351,6 +359,70 @@ class ExecutorRouter:
 def _which(name: str) -> str | None:
     import shutil
     return shutil.which(name)
+
+
+class WorkflowExecutor(Executor):
+    id = "workflow"
+
+    def __init__(self, registry):
+        self.registry = registry
+
+    def execute(self, objective: str, context: dict[str, Any]):
+        steps = list(context.get("steps") or [])
+        if not steps:
+            steps = [{"objective": objective}]
+        outputs = []
+        for index, raw in enumerate(steps, 1):
+            step = raw if isinstance(raw, dict) else {"objective": str(raw)}
+            step_objective = str(step.get("objective") or objective)
+            capability_id = step.get("capability_id") or context.get("capability_id")
+            if not capability_id:
+                raise RuntimeError("workflow_step_capability_required")
+            cap = self.registry.get(str(capability_id))
+            step_context = {
+                k: v for k, v in context.items()
+                if k not in {"_v2_capability", "steps"}
+            }
+            step_context["_v2_capability"] = cap
+            value = cap.adapter.execute(step_objective, step_context)
+            outputs.append({"index": index, "objective": step_objective,
+                            "capability_id": cap.id, "result": value})
+        return {"type": "workflow", "steps": outputs, "count": len(outputs)}
+
+
+class MultiAgentExecutor(Executor):
+    id = "multiagent"
+
+    def __init__(self, registry, openclaw: OpenClawExecutor | None):
+        self.registry = registry
+        self.openclaw = openclaw
+
+    def execute(self, objective: str, context: dict[str, Any]):
+        raw = list(context.get("subtasks") or [])
+        if not raw:
+            raw = [{"objective": objective}]
+        budget = max(1, min(int(context.get("max_subagents", len(raw)) or 1), 16))
+        if len(raw) > budget:
+            raise RuntimeError("multiagent_admission_denied")
+        outputs = []
+        for index, item in enumerate(raw, 1):
+            subtask = item if isinstance(item, dict) else {"objective": str(item)}
+            text = str(subtask.get("objective") or objective)
+            cap_id = subtask.get("capability_id") or context.get("capability_id")
+            if cap_id:
+                cap = self.registry.get(str(cap_id))
+                subctx = {k: v for k, v in context.items() if k != "subtasks"}
+                subctx["_v2_capability"] = cap
+                value = cap.adapter.execute(text, subctx)
+                outputs.append({"index": index, "executor": "direct",
+                                "objective": text, "result": value})
+            elif self.openclaw is not None:
+                value = self.openclaw.execute(text, context)
+                outputs.append({"index": index, "executor": "openclaw",
+                                "objective": text, "result": value})
+            else:
+                raise RuntimeError("multiagent_no_executor_available")
+        return {"type": "multiagent", "agents": outputs, "count": len(outputs)}
 
 
 class VerificationEngine:
