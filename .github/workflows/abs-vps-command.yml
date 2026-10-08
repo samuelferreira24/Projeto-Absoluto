@@ -64,24 +64,29 @@ jobs:
               sudo systemctl restart abs.service
               sleep 2
               result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
+              ;;
+            start)
+              cd "$HOME/Projeto-Absoluto"
+              git fetch origin main --quiet
+              git reset --hard origin/main --quiet
+              sudo systemctl enable abs.service
+              sudo systemctl restart abs.service
+              sleep 2
+              result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               export HOME=/home/absadmin
               export PATH="/home/absadmin/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
               if ! command -v ollama >/dev/null 2>&1; then
                 curl -fsSL https://ollama.com/install.sh | sh
               fi
-              sudo tee /etc/ollama/ollama.env >/dev/null <<'ENV'
-OLLAMA_HOST=127.0.0.1:11434
-OLLAMA_KEEP_ALIVE=0
-OLLAMA_NUM_PARALLEL=1
-ENV
               sudo systemctl enable ollama
               sudo systemctl restart ollama
               sleep 3
-              models=("qwen3.5:0.8b" "qwen3.5:2b" "qwen3.5:4b" "ministral-3:3b" "gemma4:e2b" "gemma4:e4b")
-              for model in "${models[@]}"; do
-                echo "PULL $model"
-                ollama pull "$model"
-              done
+              ollama pull qwen3.5:0.8b
+              ollama pull qwen3.5:2b
+              ollama pull qwen3.5:4b
+              ollama pull ministral-3:3b
+              ollama pull gemma4:e2b
+              ollama pull gemma4:e4b
               sudo tee /etc/abs-local-models.env >/dev/null <<'ENV'
 ABS_LOCAL_AI_MODELS=qwen3.5-0.8b|http://127.0.0.1:11434|qwen3.5:0.8b,qwen3.5-2b|http://127.0.0.1:11434|qwen3.5:2b,qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b,ministral-3b|http://127.0.0.1:11434|ministral-3:3b,gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b,gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b
 ABS_LOCAL_AI_URL=http://127.0.0.1:11434
@@ -92,15 +97,6 @@ ENV
               sudo systemctl restart abs.service
               sleep 3
               result="$(printf 'health: %s\nollama: %s\nmodels:\n%s\nv3-status:\n%s' "$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)" "$(ollama --version 2>&1)" "$(ollama list)" "$(curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status)")"
-              ;;
-            start)
-              cd "$HOME/Projeto-Absoluto"
-              git fetch origin main --quiet
-              git reset --hard origin/main --quiet
-              sudo systemctl enable abs.service
-              sudo systemctl restart abs.service
-              sleep 2
-              result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               ;;
             v3-test)
               cd "$HOME/Projeto-Absoluto"
@@ -183,51 +179,6 @@ ENV
               run_json="$(curl -fsS --max-time 90 -X POST "http://127.0.0.1:8787/works/$work_id/run" -H 'Content-Type: application/json' -d '{"approved":true}')"
               python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["state"]=="completed", d; r=d["result"]; assert r["executor"]=="openclaw", r; assert r["verification"]["accepted"] is True, r; print("ABS V2 OPENCLAW WORK PASS")' <<<"$run_json"
               result="$run_json"
-              ;;
-            install-local-ais)
-              set -e
-              export HOME=/home/absadmin
-              export PATH="/home/absadmin/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              if ! command -v ollama >/dev/null 2>&1; then
-                curl -fsSL https://ollama.com/install.sh | sh
-              fi
-              sudo mkdir -p /etc/ollama
-              sudo tee /etc/ollama/ollama.env >/dev/null <<'ENV'
-OLLAMA_HOST=127.0.0.1:11434
-OLLAMA_KEEP_ALIVE=0
-OLLAMA_NUM_PARALLEL=1
-ENV
-              sudo systemctl enable ollama
-              sudo systemctl restart ollama
-              sleep 3
-              models=("qwen3.5:0.8b" "qwen3.5:2b" "qwen3.5:4b" "ministral-3:3b" "gemma4:e2b" "gemma4:e4b")
-              for model in "${models[@]}"; do
-                echo "PULL $model"
-                ollama pull "$model"
-              done
-              cat > /tmp/abs-local-models.env <<'ENV'
-ABS_LOCAL_AI_MODELS=qwen3.5-0.8b|http://127.0.0.1:11434|qwen3.5:0.8b,qwen3.5-2b|http://127.0.0.1:11434|qwen3.5:2b,qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b,ministral-3b|http://127.0.0.1:11434|ministral-3:3b,gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b,gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b
-ABS_LOCAL_AI_URL=http://127.0.0.1:11434
-ABS_LOCAL_AI_MODEL=qwen3.5:4b
-ENV
-              sudo install -m 0644 /tmp/abs-local-models.env /etc/abs-local-models.env
-              if [ -f /etc/systemd/system/abs.service ]; then
-                sudo sed -i '/^Environment=PYTHONUNBUFFERED=1$/a EnvironmentFile=-/etc/abs-local-models.env' /etc/systemd/system/abs.service
-                sudo systemctl daemon-reload
-                sudo systemctl restart abs.service
-                sleep 3
-              fi
-              {
-                echo "ollama: $(ollama --version 2>&1)"
-                echo "endpoint: http://127.0.0.1:11434"
-                echo "[models]"
-                ollama list
-                echo "[abs-env]"
-                cat /etc/abs-local-models.env
-                echo "[health]"
-                curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status || true
-              } > /tmp/abs-local-ai-result.txt
-              result="$(cat /tmp/abs-local-ai-result.txt)"
               ;;
             openclaw-v2-test)
               set -e
@@ -337,7 +288,6 @@ ENV
           /abs v3-test
           /abs v3-live-test
           /abs v3-chat-test
-          /abs install-local-ais
           /abs openclaw-v2-test
           /abs openclaw-install
           /abs openclaw-status'
