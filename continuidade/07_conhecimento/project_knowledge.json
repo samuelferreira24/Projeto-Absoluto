@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T16:37:13-03:00",
-  "source_revision": "18d6b8dd8cecbc4829fdbd4a342ad3ec3b33cc84",
+  "generated_at": "2026-10-08T16:40:29-03:00",
+  "source_revision": "a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "18d6b8dd8cecbc4829fdbd4a342ad3ec3b33cc84",
-      "commit_subject": "Test V3 chat response extraction"
+      "revision": "a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
+      "commit_subject": "Align V3 chat resource with executed provenance"
     }
   ],
   "tools": [
@@ -8934,6 +8934,20 @@
       "sha": "18d6b8dd8cecbc4829fdbd4a342ad3ec3b33cc84"
     },
     {
+      "id": "commit:49275a4fb3a786dee17c7d7dc1b05b5354d045ba",
+      "kind": "commit",
+      "at": "2026-10-08T19:37:30Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "49275a4fb3a786dee17c7d7dc1b05b5354d045ba"
+    },
+    {
+      "id": "commit:a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
+      "kind": "commit",
+      "at": "2026-10-08T16:40:29-03:00",
+      "subject": "Align V3 chat resource with executed provenance",
+      "sha": "a1ec955e9246d0d007d3b9b8c05c2c410ac9b111"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9046,23 +9060,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:77c6408f834f",
+      "id": "evidence:repository:5f5829ea47bd",
       "kind": "evidence",
-      "at": "2026-10-08T16:37:13-03:00",
+      "at": "2026-10-08T16:40:29-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:77c6408f834f",
+      "id": "event:repository-scan:5f5829ea47bd",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T16:37:13-03:00"
+      "at": "2026-10-08T16:40:29-03:00"
     },
     {
-      "id": "event:commit-observed:18d6b8dd8cec",
+      "id": "event:commit-observed:a1ec955e9246",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T16:37:13-03:00"
+      "at": "2026-10-08T16:40:29-03:00"
     }
   ],
   "paths": [
@@ -9097,11 +9111,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:d4029a746b97"
+        "evidence:test:2069e1f50b11"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T16:37:13-03:00"
+      "last_validated": "2026-10-08T16:40:29-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9124,20 +9138,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:77c6408f834f",
+      "id": "evidence:repository:5f5829ea47bd",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T16:37:13-03:00",
+      "observed_at": "2026-10-08T16:40:29-03:00",
       "status": "observed",
-      "detail": "399 files indexed at revision 18d6b8dd8cecbc4829fdbd4a342ad3ec3b33cc84"
+      "detail": "399 files indexed at revision a1ec955e9246d0d007d3b9b8c05c2c410ac9b111"
     },
     {
-      "id": "evidence:test:d4029a746b97",
+      "id": "evidence:test:2069e1f50b11",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T16:37:13-03:00",
+      "observed_at": "2026-10-08T16:40:29-03:00",
       "status": "tested",
-      "detail": "196 passed in 7.02s"
+      "detail": "196 passed in 7.55s"
     }
   ],
   "decisions": [
@@ -9240,30 +9254,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:77c6408f834f",
+      "id": "event:repository-scan:5f5829ea47bd",
       "type": "repository_scanned",
-      "at": "2026-10-08T16:37:13-03:00",
-      "revision": "18d6b8dd8cecbc4829fdbd4a342ad3ec3b33cc84",
+      "at": "2026-10-08T16:40:29-03:00",
+      "revision": "a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
       "file_count": 399,
-      "evidence_id": "evidence:repository:77c6408f834f"
+      "evidence_id": "evidence:repository:5f5829ea47bd"
     },
     {
-      "id": "event:commit-observed:18d6b8dd8cec",
+      "id": "event:commit-observed:a1ec955e9246",
       "type": "commit_observed",
-      "at": "2026-10-08T16:37:13-03:00",
-      "revision": "18d6b8dd8cecbc4829fdbd4a342ad3ec3b33cc84",
+      "at": "2026-10-08T16:40:29-03:00",
+      "revision": "a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
       "branch": "main",
-      "subject": "Test V3 chat response extraction",
+      "subject": "Align V3 chat resource with executed provenance",
       "changed_files": [
-        "tests/test_cognitive_runtime_v3.py"
+        "abs_core/intelligence.py"
       ]
     },
     {
-      "id": "event:test:d4029a746b97",
+      "id": "event:test:2069e1f50b11",
       "type": "tests_observed",
-      "at": "2026-10-08T16:37:13-03:00",
+      "at": "2026-10-08T16:40:29-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:d4029a746b97"
+      "evidence_id": "evidence:test:2069e1f50b11"
     }
   ],
   "knowledge_sources": [
@@ -9319,7 +9333,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "4f59ed3cf34493d3f64409f6ecc4a1eda8eea51e463e220eee79ecfc0ad61845"
+      "sha256": "4c07f2fcd1ced03f1e4418e0fc8daf0bde84e6d05c01466f2df753efc1eca34c"
     },
     {
       "id": "source:session",
@@ -37942,12 +37956,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:77c6408f834f",
-      "source": "event:repository-scan:77c6408f834f",
-      "relation": "generated",
-      "target": "evidence:repository:77c6408f834f",
+      "id": "rel:commit-precedes:18d6b8dd8cec:49275a4fb3a7",
+      "source": "commit:18d6b8dd8cecbc4829fdbd4a342ad3ec3b33cc84",
+      "relation": "precedes",
+      "target": "commit:49275a4fb3a786dee17c7d7dc1b05b5354d045ba",
       "status": "asserted",
-      "at": "2026-10-08T16:37:13-03:00",
+      "at": "2026-10-08T19:37:30Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:49275a4fb3a7:032adc3624d7",
+      "source": "commit:49275a4fb3a786dee17c7d7dc1b05b5354d045ba",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T19:37:30Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:49275a4fb3a7:d64178c49886",
+      "source": "commit:49275a4fb3a786dee17c7d7dc1b05b5354d045ba",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T19:37:30Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:49275a4fb3a7:a1ec955e9246",
+      "source": "commit:49275a4fb3a786dee17c7d7dc1b05b5354d045ba",
+      "relation": "precedes",
+      "target": "commit:a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
+      "status": "asserted",
+      "at": "2026-10-08T16:40:29-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a1ec955e9246:7fe5bf87e5fb",
+      "source": "commit:a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
+      "relation": "changed",
+      "target": "file:abs_core/intelligence.py",
+      "status": "asserted",
+      "at": "2026-10-08T16:40:29-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:5f5829ea47bd",
+      "source": "event:repository-scan:5f5829ea47bd",
+      "relation": "generated",
+      "target": "evidence:repository:5f5829ea47bd",
+      "status": "asserted",
+      "at": "2026-10-08T16:40:29-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -37956,12 +38040,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:18d6b8dd8cec",
-      "source": "commit:18d6b8dd8cecbc4829fdbd4a342ad3ec3b33cc84",
+      "id": "rel:scan-commit:a1ec955e9246",
+      "source": "commit:a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
       "relation": "observed_by",
-      "target": "event:repository-scan:77c6408f834f",
+      "target": "event:repository-scan:5f5829ea47bd",
       "status": "asserted",
-      "at": "2026-10-08T16:37:13-03:00",
+      "at": "2026-10-08T16:40:29-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
