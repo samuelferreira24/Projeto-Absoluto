@@ -176,6 +176,24 @@ class AdmissionQueue:
     def depth(self):
         with self._lock:return len(self._q)
 
+class LlamaCppModelAdapter:
+    """Adapter for llama-server router model load/unload lifecycle."""
+    def __init__(self, endpoint: str):
+        self.endpoint=endpoint.rstrip("/")
+    def _post(self, path: str, model: str):
+        data=json.dumps({"model":model}).encode()
+        req=urllib.request.Request(self.endpoint+path,data=data,headers={"Content-Type":"application/json"},method="POST")
+        with urllib.request.urlopen(req,timeout=10) as resp:
+            return json.loads(resp.read().decode() or "{}")
+    def load(self, model: str):
+        result=self._post("/models/load",model)
+        if result.get("success") is False: raise RuntimeError("llama_model_load_failed")
+        return result
+    def unload(self, model: str):
+        result=self._post("/models/unload",model)
+        if result.get("success") is False: raise RuntimeError("llama_model_unload_failed")
+        return result
+
 class ModelLifecycle:
     """Provider-neutral model lifecycle. llama.cpp/Ollama/vLLM adapters may attach here."""
     def __init__(self): self.models={}; self._lock=threading.RLock()
@@ -224,6 +242,17 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
         self.selector=IntelligenceSelector(self.v3_state.all_learning())
         self.queue=AdmissionQueue()
         self.lifecycle=ModelLifecycle()
+        self.llama_lifecycle = None
+        llama_endpoint = os.getenv("ABS_LLAMA_CPP_ROUTER_URL", "").strip()
+        if llama_endpoint:
+            self.llama_lifecycle = LlamaCppModelAdapter(llama_endpoint)
+            specs = os.getenv("ABS_LOCAL_AI_MODELS", "").strip()
+            for raw in (specs.split(",") if specs else []):
+                parts=[item.strip() for item in raw.split("|")]
+                if len(parts)==3 and all(parts):
+                    model_id, endpoint, model_name=parts
+                    if endpoint.rstrip("/") == llama_endpoint.rstrip("/"):
+                        self.lifecycle.register(model_id, loader=lambda m=model_name: self.llama_lifecycle.load(m), unloader=lambda m=model_name: self.llama_lifecycle.unload(m), metadata={"provider":"llama.cpp","model":model_name,"endpoint":llama_endpoint})
         self.telemetry=Telemetry()
         self.recovery=RecoveryManager(self.v3_state)
         self._v3_lock=threading.RLock()
