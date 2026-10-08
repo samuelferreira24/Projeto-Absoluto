@@ -92,8 +92,11 @@ jobs:
           set -euo pipefail
           TMP="$GITHUB_WORKSPACE/projeto-absoluto/.navigation-real-validation.txt"
           DB="$GITHUB_WORKSPACE/projeto-absoluto/.abs-navigation/index.sqlite"
+          TOKEN1="absrealvalidation_${GITHUB_RUN_ID}_a"
+          TOKEN2="absrealvalidation_${GITHUB_RUN_ID}_b"
+          export TOKEN1 TOKEN2
 
-          printf 'navrealvalidationuniquex1\n' > "$TMP"
+          printf '%s\n' "$TOKEN1" > "$TMP"
           python -m tools.navegacao.index --db "$DB" \
             --repo projeto-absoluto="$GITHUB_WORKSPACE/projeto-absoluto" \
             --repo sistema="$GITHUB_WORKSPACE/sistema"
@@ -102,10 +105,11 @@ jobs:
           from pathlib import Path
           from tools.navegacao.navigator import Navigator
           nav = Navigator(Path(".abs-navigation/index.sqlite"))
-          assert nav.search("navrealvalidationuniquex1", source="projeto-absoluto")
+          import os
+          assert nav.search(os.environ["TOKEN1"], source="projeto-absoluto")
           PY
 
-          printf 'navrealvalidationuniquex2\n' > "$TMP"
+          printf '%s\n' "$TOKEN2" > "$TMP"
           python -m tools.navegacao.index --db "$DB" \
             --repo projeto-absoluto="$GITHUB_WORKSPACE/projeto-absoluto" \
             --repo sistema="$GITHUB_WORKSPACE/sistema"
@@ -114,9 +118,10 @@ jobs:
           from pathlib import Path
           from tools.navegacao.navigator import Navigator
           nav = Navigator(Path(".abs-navigation/index.sqlite"))
-          assert nav.search("navrealvalidationuniquex2", source="projeto-absoluto")
-          # The previous version is intentionally still present until the
-          # temporary file is removed; deletion is validated in the next step.
+          import os
+          assert nav.search(os.environ["TOKEN2"], source="projeto-absoluto")
+          # The previous token is unique to the temporary file and is replaced
+          # before deletion is checked.
           PY
 
           rm "$TMP"
@@ -128,7 +133,8 @@ jobs:
           from pathlib import Path
           from tools.navegacao.navigator import Navigator
           nav = Navigator(Path(".abs-navigation/index.sqlite"))
-          assert not nav.search("navrealvalidationuniquex2", source="projeto-absoluto")
+          import os
+          assert not nav.search(os.environ["TOKEN2"], source="projeto-absoluto")
           print("REAL_INCREMENTAL_DELETE_PASS")
           PY
 
