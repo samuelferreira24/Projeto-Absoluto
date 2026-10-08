@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T02:15:49-03:00",
-  "source_revision": "24c4b051d2b0e86ba8f8cc3b2397aa5caee69ee5",
+  "generated_at": "2026-10-08T02:16:50-03:00",
+  "source_revision": "764c2837ed5b95d64ca251e5f793634c9534e5b5",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "24c4b051d2b0e86ba8f8cc3b2397aa5caee69ee5",
-      "commit_subject": "test: capture Gateway-backed OpenClaw inference"
+      "revision": "764c2837ed5b95d64ca251e5f793634c9534e5b5",
+      "commit_subject": "test: inspect OpenClaw available models"
     }
   ],
   "tools": [
@@ -7974,6 +7974,20 @@
       "sha": "24c4b051d2b0e86ba8f8cc3b2397aa5caee69ee5"
     },
     {
+      "id": "commit:55d53af0c51c9b86490ca1fa9911e25363f127d6",
+      "kind": "commit",
+      "at": "2026-10-08T05:16:06Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "55d53af0c51c9b86490ca1fa9911e25363f127d6"
+    },
+    {
+      "id": "commit:764c2837ed5b95d64ca251e5f793634c9534e5b5",
+      "kind": "commit",
+      "at": "2026-10-08T02:16:50-03:00",
+      "subject": "test: inspect OpenClaw available models",
+      "sha": "764c2837ed5b95d64ca251e5f793634c9534e5b5"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -8086,23 +8100,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:11e0c15fc30f",
+      "id": "evidence:repository:c9f6fb1b95fa",
       "kind": "evidence",
-      "at": "2026-10-08T02:15:49-03:00",
+      "at": "2026-10-08T02:16:50-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:11e0c15fc30f",
+      "id": "event:repository-scan:c9f6fb1b95fa",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T02:15:49-03:00"
+      "at": "2026-10-08T02:16:50-03:00"
     },
     {
-      "id": "event:commit-observed:24c4b051d2b0",
+      "id": "event:commit-observed:764c2837ed5b",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T02:15:49-03:00"
+      "at": "2026-10-08T02:16:50-03:00"
     }
   ],
   "paths": [
@@ -8137,11 +8151,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:d6fcadbba071"
+        "evidence:test:e0631b8cd82f"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T02:15:49-03:00"
+      "last_validated": "2026-10-08T02:16:50-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -8164,20 +8178,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:11e0c15fc30f",
+      "id": "evidence:repository:c9f6fb1b95fa",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T02:15:49-03:00",
+      "observed_at": "2026-10-08T02:16:50-03:00",
       "status": "observed",
-      "detail": "382 files indexed at revision 24c4b051d2b0e86ba8f8cc3b2397aa5caee69ee5"
+      "detail": "382 files indexed at revision 764c2837ed5b95d64ca251e5f793634c9534e5b5"
     },
     {
-      "id": "evidence:test:d6fcadbba071",
+      "id": "evidence:test:e0631b8cd82f",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T02:15:49-03:00",
+      "observed_at": "2026-10-08T02:16:50-03:00",
       "status": "tested",
-      "detail": "163 passed in 7.35s"
+      "detail": "163 passed in 7.42s"
     }
   ],
   "decisions": [
@@ -8280,30 +8294,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:11e0c15fc30f",
+      "id": "event:repository-scan:c9f6fb1b95fa",
       "type": "repository_scanned",
-      "at": "2026-10-08T02:15:49-03:00",
-      "revision": "24c4b051d2b0e86ba8f8cc3b2397aa5caee69ee5",
+      "at": "2026-10-08T02:16:50-03:00",
+      "revision": "764c2837ed5b95d64ca251e5f793634c9534e5b5",
       "file_count": 382,
-      "evidence_id": "evidence:repository:11e0c15fc30f"
+      "evidence_id": "evidence:repository:c9f6fb1b95fa"
     },
     {
-      "id": "event:commit-observed:24c4b051d2b0",
+      "id": "event:commit-observed:764c2837ed5b",
       "type": "commit_observed",
-      "at": "2026-10-08T02:15:49-03:00",
-      "revision": "24c4b051d2b0e86ba8f8cc3b2397aa5caee69ee5",
+      "at": "2026-10-08T02:16:50-03:00",
+      "revision": "764c2837ed5b95d64ca251e5f793634c9534e5b5",
       "branch": "main",
-      "subject": "test: capture Gateway-backed OpenClaw inference",
+      "subject": "test: inspect OpenClaw available models",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:d6fcadbba071",
+      "id": "event:test:e0631b8cd82f",
       "type": "tests_observed",
-      "at": "2026-10-08T02:15:49-03:00",
+      "at": "2026-10-08T02:16:50-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:d6fcadbba071"
+      "evidence_id": "evidence:test:e0631b8cd82f"
     }
   ],
   "knowledge_sources": [
@@ -8359,7 +8373,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "35bff5d2e93b19efb9ea2dfa1a79b1b1ba50aef2967d1249d081f88ccd559735"
+      "sha256": "8f351c8e3b908f92fb98c93d54f5261c802465fceaeeb2eb2b6be639402b5df2"
     },
     {
       "id": "source:session",
@@ -32852,12 +32866,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:11e0c15fc30f",
-      "source": "event:repository-scan:11e0c15fc30f",
-      "relation": "generated",
-      "target": "evidence:repository:11e0c15fc30f",
+      "id": "rel:commit-precedes:24c4b051d2b0:55d53af0c51c",
+      "source": "commit:24c4b051d2b0e86ba8f8cc3b2397aa5caee69ee5",
+      "relation": "precedes",
+      "target": "commit:55d53af0c51c9b86490ca1fa9911e25363f127d6",
       "status": "asserted",
-      "at": "2026-10-08T02:15:49-03:00",
+      "at": "2026-10-08T05:16:06Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:55d53af0c51c:032adc3624d7",
+      "source": "commit:55d53af0c51c9b86490ca1fa9911e25363f127d6",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T05:16:06Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:55d53af0c51c:d64178c49886",
+      "source": "commit:55d53af0c51c9b86490ca1fa9911e25363f127d6",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T05:16:06Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:55d53af0c51c:764c2837ed5b",
+      "source": "commit:55d53af0c51c9b86490ca1fa9911e25363f127d6",
+      "relation": "precedes",
+      "target": "commit:764c2837ed5b95d64ca251e5f793634c9534e5b5",
+      "status": "asserted",
+      "at": "2026-10-08T02:16:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:764c2837ed5b:1734be446032",
+      "source": "commit:764c2837ed5b95d64ca251e5f793634c9534e5b5",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-08T02:16:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:c9f6fb1b95fa",
+      "source": "event:repository-scan:c9f6fb1b95fa",
+      "relation": "generated",
+      "target": "evidence:repository:c9f6fb1b95fa",
+      "status": "asserted",
+      "at": "2026-10-08T02:16:50-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -32866,12 +32950,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:24c4b051d2b0",
-      "source": "commit:24c4b051d2b0e86ba8f8cc3b2397aa5caee69ee5",
+      "id": "rel:scan-commit:764c2837ed5b",
+      "source": "commit:764c2837ed5b95d64ca251e5f793634c9534e5b5",
       "relation": "observed_by",
-      "target": "event:repository-scan:11e0c15fc30f",
+      "target": "event:repository-scan:c9f6fb1b95fa",
       "status": "asserted",
-      "at": "2026-10-08T02:15:49-03:00",
+      "at": "2026-10-08T02:16:50-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
