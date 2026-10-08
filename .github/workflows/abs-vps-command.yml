@@ -89,6 +89,14 @@ jobs:
               health="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               result="$(printf 'health: %s\nwork_create: %s\nwork_run: %s\n' "$health" "$work_json" "$run_json")"
               ;;
+            v2-openclaw-work-test)
+              set -e
+              work_json="$(curl -fsS --max-time 10 -X POST http://127.0.0.1:8787/works -H 'Content-Type: application/json' -d '{"objective":"Reply with exactly ABS_V2_OPENCLAW_WORK_OK","context":{"adaptive":true,"approved":true,"risk":"low"}}')"
+              work_id="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])' <<<"$work_json")"
+              run_json="$(curl -fsS --max-time 90 -X POST "http://127.0.0.1:8787/works/$work_id/run" -H 'Content-Type: application/json' -d '{"approved":true}')"
+              python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["state"]=="completed", d; r=d["result"]; assert r["executor"]=="openclaw", r; assert r["verification"]["accepted"] is True, r; print("ABS V2 OPENCLAW WORK PASS")' <<<"$run_json"
+              result="$run_json"
+              ;;
             openclaw-v2-test)
               set -e
               export HOME=/home/absadmin
