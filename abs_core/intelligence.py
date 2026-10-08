@@ -130,12 +130,27 @@ class CognitiveRuntime:
             resources = [r for r in resources if r.local]
         required = tuple(session.get("context", {}).get("required_capabilities") or ())
 
+        def available_memory_mb() -> float:
+            try:
+                with open("/proc/meminfo", "r", encoding="utf-8") as handle:
+                    values = {line.split(":", 1)[0]: float(line.split()[1]) for line in handle if ":" in line}
+                return values.get("MemAvailable", 0.0) / 1024.0
+            except (OSError, ValueError, IndexError):
+                return 0.0
+
+        memory_mb = available_memory_mb()
+
         def score(resource: IntelligenceResource) -> tuple[float, str]:
             availability = {"configured": 30.0, "available": 20.0, "degraded": 5.0}.get(resource.status, 0.0)
             capability_match = sum(1.0 for item in required if item in resource.capabilities)
             locality = 20.0 if session.get("context", {}).get("offline") is True and resource.local else 0.0
             preferred_bonus = 1000.0 if preferred == resource.id else 0.0
-            return (preferred_bonus + capability_match * 100.0 + locality + availability + resource.priority, resource.id)
+            memory_need = float(resource.metadata.get("estimated_memory_mb", 0.0) or 0.0)
+            memory_penalty = 0.0
+            if resource.local and memory_need and memory_mb:
+                deficit = max(0.0, memory_need - memory_mb)
+                memory_penalty = min(120.0, deficit / 40.0)
+            return (preferred_bonus + capability_match * 100.0 + locality + availability + resource.priority - memory_penalty, resource.id)
 
         return sorted(resources, key=lambda item: (-score(item)[0], score(item)[1]))
 
