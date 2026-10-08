@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T16:35:06-03:00",
-  "source_revision": "33f602d0601dcbb72998eb9c494a68808d9fcb9c",
+  "generated_at": "2026-10-08T16:36:25-03:00",
+  "source_revision": "d9b811d1c4cbf64f99f6dbcfd83cf51967b9845d",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "33f602d0601dcbb72998eb9c494a68808d9fcb9c",
-      "commit_subject": "Add real V3 conversational integration test"
+      "revision": "d9b811d1c4cbf64f99f6dbcfd83cf51967b9845d",
+      "commit_subject": "Make V3 chat validation diagnostic and bounded"
     }
   ],
   "tools": [
@@ -8894,6 +8894,20 @@
       "sha": "33f602d0601dcbb72998eb9c494a68808d9fcb9c"
     },
     {
+      "id": "commit:8231d4804f6eb6fcaaf1982272792f2b46c08ffd",
+      "kind": "commit",
+      "at": "2026-10-08T19:35:29Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "8231d4804f6eb6fcaaf1982272792f2b46c08ffd"
+    },
+    {
+      "id": "commit:d9b811d1c4cbf64f99f6dbcfd83cf51967b9845d",
+      "kind": "commit",
+      "at": "2026-10-08T16:36:25-03:00",
+      "subject": "Make V3 chat validation diagnostic and bounded",
+      "sha": "d9b811d1c4cbf64f99f6dbcfd83cf51967b9845d"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9006,23 +9020,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:343f07355010",
+      "id": "evidence:repository:1c83ed156831",
       "kind": "evidence",
-      "at": "2026-10-08T16:35:06-03:00",
+      "at": "2026-10-08T16:36:25-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:343f07355010",
+      "id": "event:repository-scan:1c83ed156831",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T16:35:06-03:00"
+      "at": "2026-10-08T16:36:25-03:00"
     },
     {
-      "id": "event:commit-observed:33f602d0601d",
+      "id": "event:commit-observed:d9b811d1c4cb",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T16:35:06-03:00"
+      "at": "2026-10-08T16:36:25-03:00"
     }
   ],
   "paths": [
@@ -9057,11 +9071,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:bde7d30d826c"
+        "evidence:test:05dc38d4fb00"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T16:35:06-03:00"
+      "last_validated": "2026-10-08T16:36:25-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9084,20 +9098,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:343f07355010",
+      "id": "evidence:repository:1c83ed156831",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T16:35:06-03:00",
+      "observed_at": "2026-10-08T16:36:25-03:00",
       "status": "observed",
-      "detail": "398 files indexed at revision 33f602d0601dcbb72998eb9c494a68808d9fcb9c"
+      "detail": "398 files indexed at revision d9b811d1c4cbf64f99f6dbcfd83cf51967b9845d"
     },
     {
-      "id": "evidence:test:bde7d30d826c",
+      "id": "evidence:test:05dc38d4fb00",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T16:35:06-03:00",
+      "observed_at": "2026-10-08T16:36:25-03:00",
       "status": "tested",
-      "detail": "194 passed in 11.20s"
+      "detail": "194 passed in 7.51s"
     }
   ],
   "decisions": [
@@ -9200,30 +9214,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:343f07355010",
+      "id": "event:repository-scan:1c83ed156831",
       "type": "repository_scanned",
-      "at": "2026-10-08T16:35:06-03:00",
-      "revision": "33f602d0601dcbb72998eb9c494a68808d9fcb9c",
+      "at": "2026-10-08T16:36:25-03:00",
+      "revision": "d9b811d1c4cbf64f99f6dbcfd83cf51967b9845d",
       "file_count": 398,
-      "evidence_id": "evidence:repository:343f07355010"
+      "evidence_id": "evidence:repository:1c83ed156831"
     },
     {
-      "id": "event:commit-observed:33f602d0601d",
+      "id": "event:commit-observed:d9b811d1c4cb",
       "type": "commit_observed",
-      "at": "2026-10-08T16:35:06-03:00",
-      "revision": "33f602d0601dcbb72998eb9c494a68808d9fcb9c",
+      "at": "2026-10-08T16:36:25-03:00",
+      "revision": "d9b811d1c4cbf64f99f6dbcfd83cf51967b9845d",
       "branch": "main",
-      "subject": "Add real V3 conversational integration test",
+      "subject": "Make V3 chat validation diagnostic and bounded",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:bde7d30d826c",
+      "id": "event:test:05dc38d4fb00",
       "type": "tests_observed",
-      "at": "2026-10-08T16:35:06-03:00",
+      "at": "2026-10-08T16:36:25-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:bde7d30d826c"
+      "evidence_id": "evidence:test:05dc38d4fb00"
     }
   ],
   "knowledge_sources": [
@@ -9279,7 +9293,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "5bd210acc2c97069bc1fb7b51e80bc7cec4e58bd09e28b95709f4d8239da5346"
+      "sha256": "d7da9fc28346fcf8a8f0adcb8a584306c980b54b37d18984488c84f737e6bc64"
     },
     {
       "id": "source:session",
@@ -37734,12 +37748,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:343f07355010",
-      "source": "event:repository-scan:343f07355010",
-      "relation": "generated",
-      "target": "evidence:repository:343f07355010",
+      "id": "rel:commit-precedes:33f602d0601d:8231d4804f6e",
+      "source": "commit:33f602d0601dcbb72998eb9c494a68808d9fcb9c",
+      "relation": "precedes",
+      "target": "commit:8231d4804f6eb6fcaaf1982272792f2b46c08ffd",
       "status": "asserted",
-      "at": "2026-10-08T16:35:06-03:00",
+      "at": "2026-10-08T19:35:29Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:8231d4804f6e:032adc3624d7",
+      "source": "commit:8231d4804f6eb6fcaaf1982272792f2b46c08ffd",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T19:35:29Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:8231d4804f6e:d64178c49886",
+      "source": "commit:8231d4804f6eb6fcaaf1982272792f2b46c08ffd",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T19:35:29Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:8231d4804f6e:d9b811d1c4cb",
+      "source": "commit:8231d4804f6eb6fcaaf1982272792f2b46c08ffd",
+      "relation": "precedes",
+      "target": "commit:d9b811d1c4cbf64f99f6dbcfd83cf51967b9845d",
+      "status": "asserted",
+      "at": "2026-10-08T16:36:25-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d9b811d1c4cb:1734be446032",
+      "source": "commit:d9b811d1c4cbf64f99f6dbcfd83cf51967b9845d",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-08T16:36:25-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:1c83ed156831",
+      "source": "event:repository-scan:1c83ed156831",
+      "relation": "generated",
+      "target": "evidence:repository:1c83ed156831",
+      "status": "asserted",
+      "at": "2026-10-08T16:36:25-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -37748,12 +37832,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:33f602d0601d",
-      "source": "commit:33f602d0601dcbb72998eb9c494a68808d9fcb9c",
+      "id": "rel:scan-commit:d9b811d1c4cb",
+      "source": "commit:d9b811d1c4cbf64f99f6dbcfd83cf51967b9845d",
       "relation": "observed_by",
-      "target": "event:repository-scan:343f07355010",
+      "target": "event:repository-scan:1c83ed156831",
       "status": "asserted",
-      "at": "2026-10-08T16:35:06-03:00",
+      "at": "2026-10-08T16:36:25-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
