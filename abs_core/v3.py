@@ -201,7 +201,7 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
     version="v3"
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
-        db_path=getattr(self.store,"db_path",None) or os.getenv("ABS_DB_PATH","abs.db")
+        db_path=getattr(self.store,"path",None) or os.getenv("ABS_DB_PATH","abs.db")
         self.v3_state=V3StateStore(str(db_path))
         self.capacity=CapacityGovernor()
         self.cost_policy=CostPolicyEngine()
