@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T16:02:18-03:00",
-  "source_revision": "320936fba31aa543d40e013655213750a86fbc75",
+  "generated_at": "2026-10-08T16:11:55-03:00",
+  "source_revision": "0016b4d47910e5b0da1ad03219aacb1706ee26cf",
   "components": [
     {
       "id": "component:abs_core",
@@ -37,7 +37,7 @@
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 60
+      "file_count": 61
     }
   ],
   "capabilities": [
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "320936fba31aa543d40e013655213750a86fbc75",
-      "commit_subject": "Adicionar teste do ciclo cognitivo com replanejamento"
+      "revision": "0016b4d47910e5b0da1ad03219aacb1706ee26cf",
+      "commit_subject": "Testar recuperação da V3 após falha verificada"
     }
   ],
   "tools": [
@@ -3563,6 +3563,11 @@
       "id": "file:tests/test_v3.py",
       "kind": "file",
       "path": "tests/test_v3.py"
+    },
+    {
+      "id": "file:tests/test_v3_verified_recovery.py",
+      "kind": "file",
+      "path": "tests/test_v3_verified_recovery.py"
     },
     {
       "id": "file:tests/test_vertical_slice.py",
@@ -8777,6 +8782,34 @@
       "sha": "320936fba31aa543d40e013655213750a86fbc75"
     },
     {
+      "id": "commit:b114efea6c75f7ad8a4fc386fd1f94f86e36eb03",
+      "kind": "commit",
+      "at": "2026-10-08T19:02:39Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "b114efea6c75f7ad8a4fc386fd1f94f86e36eb03"
+    },
+    {
+      "id": "commit:a92dadcb55c334661c5f544056ab3f21981f2a61",
+      "kind": "commit",
+      "at": "2026-10-08T16:11:41-03:00",
+      "subject": "Fechar recuperação da V3 para falhas verificadas",
+      "sha": "a92dadcb55c334661c5f544056ab3f21981f2a61"
+    },
+    {
+      "id": "commit:2b58ece0648d32e08b9e710d7338d634ce223a00",
+      "kind": "commit",
+      "at": "2026-10-08T16:11:46-03:00",
+      "subject": "Corrigir proveniência do fallback V3",
+      "sha": "2b58ece0648d32e08b9e710d7338d634ce223a00"
+    },
+    {
+      "id": "commit:0016b4d47910e5b0da1ad03219aacb1706ee26cf",
+      "kind": "commit",
+      "at": "2026-10-08T16:11:55-03:00",
+      "subject": "Testar recuperação da V3 após falha verificada",
+      "sha": "0016b4d47910e5b0da1ad03219aacb1706ee26cf"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -8889,23 +8922,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:78340fa7fac4",
+      "id": "evidence:repository:1008f4126757",
       "kind": "evidence",
-      "at": "2026-10-08T16:02:18-03:00",
+      "at": "2026-10-08T16:11:55-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:78340fa7fac4",
+      "id": "event:repository-scan:1008f4126757",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T16:02:18-03:00"
+      "at": "2026-10-08T16:11:55-03:00"
     },
     {
-      "id": "event:commit-observed:320936fba31a",
+      "id": "event:commit-observed:0016b4d47910",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T16:02:18-03:00"
+      "at": "2026-10-08T16:11:55-03:00"
     }
   ],
   "paths": [
@@ -8940,11 +8973,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:a0f6625eb609"
+        "evidence:test:66e9fb6dd202"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T16:02:18-03:00"
+      "last_validated": "2026-10-08T16:11:55-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -8967,20 +9000,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:78340fa7fac4",
+      "id": "evidence:repository:1008f4126757",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T16:02:18-03:00",
+      "observed_at": "2026-10-08T16:11:55-03:00",
       "status": "observed",
-      "detail": "397 files indexed at revision 320936fba31aa543d40e013655213750a86fbc75"
+      "detail": "398 files indexed at revision 0016b4d47910e5b0da1ad03219aacb1706ee26cf"
     },
     {
-      "id": "evidence:test:a0f6625eb609",
+      "id": "evidence:test:66e9fb6dd202",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T16:02:18-03:00",
+      "observed_at": "2026-10-08T16:11:55-03:00",
       "status": "tested",
-      "detail": "192 passed in 7.50s"
+      "detail": "193 passed in 7.27s"
     }
   ],
   "decisions": [
@@ -9083,30 +9116,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:78340fa7fac4",
+      "id": "event:repository-scan:1008f4126757",
       "type": "repository_scanned",
-      "at": "2026-10-08T16:02:18-03:00",
-      "revision": "320936fba31aa543d40e013655213750a86fbc75",
-      "file_count": 397,
-      "evidence_id": "evidence:repository:78340fa7fac4"
+      "at": "2026-10-08T16:11:55-03:00",
+      "revision": "0016b4d47910e5b0da1ad03219aacb1706ee26cf",
+      "file_count": 398,
+      "evidence_id": "evidence:repository:1008f4126757"
     },
     {
-      "id": "event:commit-observed:320936fba31a",
+      "id": "event:commit-observed:0016b4d47910",
       "type": "commit_observed",
-      "at": "2026-10-08T16:02:18-03:00",
-      "revision": "320936fba31aa543d40e013655213750a86fbc75",
+      "at": "2026-10-08T16:11:55-03:00",
+      "revision": "0016b4d47910e5b0da1ad03219aacb1706ee26cf",
       "branch": "main",
-      "subject": "Adicionar teste do ciclo cognitivo com replanejamento",
+      "subject": "Testar recuperação da V3 após falha verificada",
       "changed_files": [
-        "tests/test_operational_cycle.py"
+        "tests/test_v3_verified_recovery.py"
       ]
     },
     {
-      "id": "event:test:a0f6625eb609",
+      "id": "event:test:66e9fb6dd202",
       "type": "tests_observed",
-      "at": "2026-10-08T16:02:18-03:00",
+      "at": "2026-10-08T16:11:55-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:a0f6625eb609"
+      "evidence_id": "evidence:test:66e9fb6dd202"
     }
   ],
   "knowledge_sources": [
@@ -9162,7 +9195,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "ac3f37aaabb9b360c9db83b0bb2a7292bf5f98f27927b6d24bb5a4bddd39a10e"
+      "sha256": "4819670d8cd601bacbcb206ed57788fe6e2681e85fc19290de22ec79926692ff"
     },
     {
       "id": "source:session",
@@ -37113,12 +37146,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:78340fa7fac4",
-      "source": "event:repository-scan:78340fa7fac4",
-      "relation": "generated",
-      "target": "evidence:repository:78340fa7fac4",
+      "id": "rel:commit-precedes:320936fba31a:b114efea6c75",
+      "source": "commit:320936fba31aa543d40e013655213750a86fbc75",
+      "relation": "precedes",
+      "target": "commit:b114efea6c75f7ad8a4fc386fd1f94f86e36eb03",
       "status": "asserted",
-      "at": "2026-10-08T16:02:18-03:00",
+      "at": "2026-10-08T19:02:39Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b114efea6c75:032adc3624d7",
+      "source": "commit:b114efea6c75f7ad8a4fc386fd1f94f86e36eb03",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T19:02:39Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b114efea6c75:d64178c49886",
+      "source": "commit:b114efea6c75f7ad8a4fc386fd1f94f86e36eb03",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T19:02:39Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b114efea6c75:a92dadcb55c3",
+      "source": "commit:b114efea6c75f7ad8a4fc386fd1f94f86e36eb03",
+      "relation": "precedes",
+      "target": "commit:a92dadcb55c334661c5f544056ab3f21981f2a61",
+      "status": "asserted",
+      "at": "2026-10-08T16:11:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a92dadcb55c3:04f1341ba654",
+      "source": "commit:a92dadcb55c334661c5f544056ab3f21981f2a61",
+      "relation": "changed",
+      "target": "file:abs_core/v3.py",
+      "status": "asserted",
+      "at": "2026-10-08T16:11:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a92dadcb55c3:2b58ece0648d",
+      "source": "commit:a92dadcb55c334661c5f544056ab3f21981f2a61",
+      "relation": "precedes",
+      "target": "commit:2b58ece0648d32e08b9e710d7338d634ce223a00",
+      "status": "asserted",
+      "at": "2026-10-08T16:11:46-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2b58ece0648d:04f1341ba654",
+      "source": "commit:2b58ece0648d32e08b9e710d7338d634ce223a00",
+      "relation": "changed",
+      "target": "file:abs_core/v3.py",
+      "status": "asserted",
+      "at": "2026-10-08T16:11:46-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:2b58ece0648d:0016b4d47910",
+      "source": "commit:2b58ece0648d32e08b9e710d7338d634ce223a00",
+      "relation": "precedes",
+      "target": "commit:0016b4d47910e5b0da1ad03219aacb1706ee26cf",
+      "status": "asserted",
+      "at": "2026-10-08T16:11:55-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:0016b4d47910:77972ad00fd2",
+      "source": "commit:0016b4d47910e5b0da1ad03219aacb1706ee26cf",
+      "relation": "changed",
+      "target": "file:tests/test_v3_verified_recovery.py",
+      "status": "asserted",
+      "at": "2026-10-08T16:11:55-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:1008f4126757",
+      "source": "event:repository-scan:1008f4126757",
+      "relation": "generated",
+      "target": "evidence:repository:1008f4126757",
+      "status": "asserted",
+      "at": "2026-10-08T16:11:55-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -37127,12 +37286,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:320936fba31a",
-      "source": "commit:320936fba31aa543d40e013655213750a86fbc75",
+      "id": "rel:scan-commit:0016b4d47910",
+      "source": "commit:0016b4d47910e5b0da1ad03219aacb1706ee26cf",
       "relation": "observed_by",
-      "target": "event:repository-scan:78340fa7fac4",
+      "target": "event:repository-scan:1008f4126757",
       "status": "asserted",
-      "at": "2026-10-08T16:02:18-03:00",
+      "at": "2026-10-08T16:11:55-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
