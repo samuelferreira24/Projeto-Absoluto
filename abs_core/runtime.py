@@ -116,7 +116,7 @@ def build_registry() -> CapabilityRegistry:
                     registry.register(CapabilityRecord(
                         capability_id, f"IA local — {model_id}", "local_ai",
                         LocalAICapability(endpoint=endpoint, model=model_name),
-                        metadata={"model_id": model_id, "endpoint": endpoint, "model": model_name, "cost_class": "free_local", "capabilities": ["reasoning", "chat"]},
+                        metadata={"model_id": model_id, "endpoint": endpoint, "model": model_name, "cost_class": "free_local", "capabilities": ["reasoning", "chat", "vision", "tools"], "priority": {"qwen3.5-4b": 25.0, "gemma4-e4b": 24.0, "ministral-3b": 20.0, "qwen3.5-2b": 15.0, "gemma4-e2b": 14.0, "qwen3.5-0.8b": 10.0}.get(model_id, 10.0)},
                     ))
                 except ValueError:
                     pass
