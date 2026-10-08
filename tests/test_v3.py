@@ -89,3 +89,47 @@ def test_llama_lifecycle_adapter_calls_load_unload():
     assert a.load("qwen")["success"] is True
     assert a.unload("qwen")["success"] is True
     assert calls==[("/models/load","qwen"),("/models/unload","qwen")]
+
+
+def test_operational_intelligence_validates_model_plan():
+    from abs_core.operational_intelligence import OperationalIntelligence
+    from abs_core.capabilities import CapabilityRegistry, CapabilityRecord
+    class FakeAdapter:
+        def execute(self, objective, context):
+            return {"final_response": '{"understanding":"do echo","mode":"direct","steps":[{"objective":"hello","capability_id":"echo","executor":"direct"}],"success_criteria":["echo completes"],"unknowns":[]}'}
+    reg=CapabilityRegistry()
+    reg.register(CapabilityRecord("echo","Echo","test",FakeAdapter()))
+    reg.register(CapabilityRecord("planner","Planner","external_ai",FakeAdapter(),metadata={"cost_class":"free_external","capabilities":["reasoning"]}))
+    oi=OperationalIntelligence(reg, IntelligenceSelector(), CostPolicyEngine())
+    plan=oi.plan("do echo",{})
+    assert plan.steps[0].capability_id=="echo"
+    assert plan.mode=="direct"
+
+def test_operational_intelligence_rejects_unknown_capability():
+    from abs_core.operational_intelligence import OperationalIntelligence
+    from abs_core.capabilities import CapabilityRegistry, CapabilityRecord
+    class FakeAdapter:
+        def execute(self, objective, context):
+            return {"final_response": '{"understanding":"x","mode":"direct","steps":[{"objective":"x","capability_id":"invented"}]}'}
+    reg=CapabilityRegistry()
+    reg.register(CapabilityRecord("planner","Planner","external_ai",FakeAdapter(),metadata={"cost_class":"free_external","capabilities":["reasoning"]}))
+    oi=OperationalIntelligence(reg, IntelligenceSelector(), CostPolicyEngine())
+    plan=oi.plan("x",{})
+    assert plan.steps[0].capability_id is None
+    assert plan.unknowns
+
+def test_operational_intelligence_executes_integrated_objective():
+    from abs_core.operational_intelligence import OperationalIntelligence
+    from abs_core.runtime import build_runtime
+    rt=build_runtime(":memory:")
+    class Planner:
+        def execute(self, objective, context):
+            return {"final_response": '{"understanding":"echo it","mode":"direct","steps":[{"objective":"V3 operational echo","capability_id":"echo","executor":"direct"}],"success_criteria":["completed"],"unknowns":[]}'}
+    rt.registry.register(__import__("abs_core.capabilities",fromlist=["CapabilityRecord"]).CapabilityRecord(
+        "planner","Planner","external_ai",Planner(),metadata={"cost_class":"free_external","capabilities":["reasoning"]}))
+    rt.intelligence.register(__import__("abs_core.intelligence",fromlist=["IntelligenceResource"]).IntelligenceResource(
+        "intelligence:planner","planner","Planner","remote",False,("reasoning",)))
+    rt.operational_intelligence = OperationalIntelligence(rt.registry, rt.orchestrator.selector, rt.orchestrator.cost_policy)
+    result=rt.operational_intelligence.execute("V3 operational echo",{},rt.orchestrator)
+    assert result["completed"] is True
+    assert result["steps"][0]["state"]=="completed"
