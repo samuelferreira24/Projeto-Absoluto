@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 299ac7232efac354d19a9d2ad702d781dc7ec0d7
-Momento da revisão: 2026-10-08T18:54:05-03:00
+Revisão observada: 56c552cca878fa020c0adb65b012dc7dda6f5d85
+Momento da revisão: 2026-10-08T19:16:53-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -1485,6 +1485,8 @@ Momento da revisão: 2026-10-08T18:54:05-03:00
 - commit:0de99eb93b9d17e0fcf6d183730f594bd351a4b9 — None — estado: unknown
 - commit:6976a316396291cc670748e45136274f07946654 — None — estado: unknown
 - commit:299ac7232efac354d19a9d2ad702d781dc7ec0d7 — None — estado: unknown
+- commit:dd94350f8e51ab961e4e4d423c7c2d26b700b790 — None — estado: unknown
+- commit:56c552cca878fa020c0adb65b012dc7dda6f5d85 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1499,19 +1501,19 @@ Momento da revisão: 2026-10-08T18:54:05-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:6fa2296ba85e — None — estado: unknown
-- event:repository-scan:6fa2296ba85e — None — estado: unknown
-- event:commit-observed:299ac7232efa — None — estado: unknown
+- evidence:repository:ff7be1285fc2 — None — estado: unknown
+- event:repository-scan:ff7be1285fc2 — None — estado: unknown
+- event:commit-observed:56c552cca878 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:db0a26e9d6e5
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:ace6969dfce0
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:6fa2296ba85e — repository_scanned — revisão: 299ac7232efac354d19a9d2ad702d781dc7ec0d7
-- event:commit-observed:299ac7232efa — commit_observed — revisão: 299ac7232efac354d19a9d2ad702d781dc7ec0d7
-- event:test:db0a26e9d6e5 — tests_observed — revisão: n/a
+- event:repository-scan:ff7be1285fc2 — repository_scanned — revisão: 56c552cca878fa020c0adb65b012dc7dda6f5d85
+- event:commit-observed:56c552cca878 — commit_observed — revisão: 56c552cca878fa020c0adb65b012dc7dda6f5d85
+- event:test:ace6969dfce0 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -3691,15 +3693,20 @@ Momento da revisão: 2026-10-08T18:54:05-03:00
 - commit:6976a316396291cc670748e45136274f07946654 — changed → file:.github/workflows/abs-auto-integration.yml — asserted
 - commit:6976a316396291cc670748e45136274f07946654 — precedes → commit:299ac7232efac354d19a9d2ad702d781dc7ec0d7 — asserted
 - commit:299ac7232efac354d19a9d2ad702d781dc7ec0d7 — changed → file:.github/workflows/abs-local-ai-health.yml — asserted
-- event:repository-scan:6fa2296ba85e — generated → evidence:repository:6fa2296ba85e — asserted
-- commit:299ac7232efac354d19a9d2ad702d781dc7ec0d7 — observed_by → event:repository-scan:6fa2296ba85e — asserted
+- commit:299ac7232efac354d19a9d2ad702d781dc7ec0d7 — precedes → commit:dd94350f8e51ab961e4e4d423c7c2d26b700b790 — asserted
+- commit:dd94350f8e51ab961e4e4d423c7c2d26b700b790 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:dd94350f8e51ab961e4e4d423c7c2d26b700b790 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:dd94350f8e51ab961e4e4d423c7c2d26b700b790 — precedes → commit:56c552cca878fa020c0adb65b012dc7dda6f5d85 — asserted
+- commit:56c552cca878fa020c0adb65b012dc7dda6f5d85 — changed → file:.github/workflows/abs-local-ai-health.yml — asserted
+- event:repository-scan:ff7be1285fc2 — generated → evidence:repository:ff7be1285fc2 — asserted
+- commit:56c552cca878fa020c0adb65b012dc7dda6f5d85 — observed_by → event:repository-scan:ff7be1285fc2 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:6fa2296ba85e — repository_scan — observed — 406 files indexed at revision 299ac7232efac354d19a9d2ad702d781dc7ec0d7
-- evidence:test:db0a26e9d6e5 — test — tested — 199 passed in 6.84s
+- evidence:repository:ff7be1285fc2 — repository_scan — observed — 406 files indexed at revision 56c552cca878fa020c0adb65b012dc7dda6f5d85
+- evidence:test:ace6969dfce0 — test — tested — 199 passed in 6.34s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
