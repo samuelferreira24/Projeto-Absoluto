@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T17:18:50-03:00",
-  "source_revision": "65a4313140956586dd63c90ec6a83ed5c978a7b1",
+  "generated_at": "2026-10-08T17:19:38-03:00",
+  "source_revision": "277546d7c633784674395940f16baa9b37f6d478",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 123
+      "file_count": 124
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "65a4313140956586dd63c90ec6a83ed5c978a7b1",
-      "commit_subject": "Restaurar canal VPS e integrar instalação das IAs locais"
+      "revision": "277546d7c633784674395940f16baa9b37f6d478",
+      "commit_subject": "[ABS-VPS-BOOTSTRAP] Adicionar bootstrap controlado das IAs locais"
     }
   ],
   "tools": [
@@ -973,6 +973,11 @@
       "id": "file:.github/workflows/abs-vps-command.yml",
       "kind": "file",
       "path": ".github/workflows/abs-vps-command.yml"
+    },
+    {
+      "id": "file:.github/workflows/abs-vps-local-ai-bootstrap.yml",
+      "kind": "file",
+      "path": ".github/workflows/abs-vps-local-ai-bootstrap.yml"
     },
     {
       "id": "file:.github/workflows/navegacao-v2-real-validation.yml",
@@ -9032,6 +9037,20 @@
       "sha": "65a4313140956586dd63c90ec6a83ed5c978a7b1"
     },
     {
+      "id": "commit:edee22b43d1a0f632ad58fbe6be59697d5d34c26",
+      "kind": "commit",
+      "at": "2026-10-08T20:19:10Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "edee22b43d1a0f632ad58fbe6be59697d5d34c26"
+    },
+    {
+      "id": "commit:277546d7c633784674395940f16baa9b37f6d478",
+      "kind": "commit",
+      "at": "2026-10-08T17:19:38-03:00",
+      "subject": "[ABS-VPS-BOOTSTRAP] Adicionar bootstrap controlado das IAs locais",
+      "sha": "277546d7c633784674395940f16baa9b37f6d478"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9144,23 +9163,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:fa0dceb2dfe6",
+      "id": "evidence:repository:8dc43db483aa",
       "kind": "evidence",
-      "at": "2026-10-08T17:18:50-03:00",
+      "at": "2026-10-08T17:19:38-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:fa0dceb2dfe6",
+      "id": "event:repository-scan:8dc43db483aa",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T17:18:50-03:00"
+      "at": "2026-10-08T17:19:38-03:00"
     },
     {
-      "id": "event:commit-observed:65a431314095",
+      "id": "event:commit-observed:277546d7c633",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T17:18:50-03:00"
+      "at": "2026-10-08T17:19:38-03:00"
     }
   ],
   "paths": [
@@ -9195,11 +9214,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:9a8a9193c359"
+        "evidence:test:591a677e5c32"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T17:18:50-03:00"
+      "last_validated": "2026-10-08T17:19:38-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9222,20 +9241,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:fa0dceb2dfe6",
+      "id": "evidence:repository:8dc43db483aa",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T17:18:50-03:00",
+      "observed_at": "2026-10-08T17:19:38-03:00",
       "status": "observed",
-      "detail": "399 files indexed at revision 65a4313140956586dd63c90ec6a83ed5c978a7b1"
+      "detail": "400 files indexed at revision 277546d7c633784674395940f16baa9b37f6d478"
     },
     {
-      "id": "evidence:test:9a8a9193c359",
+      "id": "evidence:test:591a677e5c32",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T17:18:50-03:00",
+      "observed_at": "2026-10-08T17:19:38-03:00",
       "status": "tested",
-      "detail": "196 passed in 7.74s"
+      "detail": "196 passed in 7.59s"
     }
   ],
   "decisions": [
@@ -9338,30 +9357,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:fa0dceb2dfe6",
+      "id": "event:repository-scan:8dc43db483aa",
       "type": "repository_scanned",
-      "at": "2026-10-08T17:18:50-03:00",
-      "revision": "65a4313140956586dd63c90ec6a83ed5c978a7b1",
-      "file_count": 399,
-      "evidence_id": "evidence:repository:fa0dceb2dfe6"
+      "at": "2026-10-08T17:19:38-03:00",
+      "revision": "277546d7c633784674395940f16baa9b37f6d478",
+      "file_count": 400,
+      "evidence_id": "evidence:repository:8dc43db483aa"
     },
     {
-      "id": "event:commit-observed:65a431314095",
+      "id": "event:commit-observed:277546d7c633",
       "type": "commit_observed",
-      "at": "2026-10-08T17:18:50-03:00",
-      "revision": "65a4313140956586dd63c90ec6a83ed5c978a7b1",
+      "at": "2026-10-08T17:19:38-03:00",
+      "revision": "277546d7c633784674395940f16baa9b37f6d478",
       "branch": "main",
-      "subject": "Restaurar canal VPS e integrar instalação das IAs locais",
+      "subject": "[ABS-VPS-BOOTSTRAP] Adicionar bootstrap controlado das IAs locais",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        ".github/workflows/abs-vps-local-ai-bootstrap.yml"
       ]
     },
     {
-      "id": "event:test:9a8a9193c359",
+      "id": "event:test:591a677e5c32",
       "type": "tests_observed",
-      "at": "2026-10-08T17:18:50-03:00",
+      "at": "2026-10-08T17:19:38-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:9a8a9193c359"
+      "evidence_id": "evidence:test:591a677e5c32"
     }
   ],
   "knowledge_sources": [
@@ -9417,7 +9436,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "149f8f577eff665c209b95fd01d9e92c67377de0b58534c7e725c2d1e5c9e277"
+      "sha256": "94e74a6c80d3124d832c6bcb8c8dc60bfd63d0f44a2abad6fd7892feeb5687a4"
     },
     {
       "id": "source:session",
@@ -38516,12 +38535,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:fa0dceb2dfe6",
-      "source": "event:repository-scan:fa0dceb2dfe6",
-      "relation": "generated",
-      "target": "evidence:repository:fa0dceb2dfe6",
+      "id": "rel:commit-precedes:65a431314095:edee22b43d1a",
+      "source": "commit:65a4313140956586dd63c90ec6a83ed5c978a7b1",
+      "relation": "precedes",
+      "target": "commit:edee22b43d1a0f632ad58fbe6be59697d5d34c26",
       "status": "asserted",
-      "at": "2026-10-08T17:18:50-03:00",
+      "at": "2026-10-08T20:19:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:edee22b43d1a:032adc3624d7",
+      "source": "commit:edee22b43d1a0f632ad58fbe6be59697d5d34c26",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T20:19:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:edee22b43d1a:d64178c49886",
+      "source": "commit:edee22b43d1a0f632ad58fbe6be59697d5d34c26",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T20:19:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:edee22b43d1a:277546d7c633",
+      "source": "commit:edee22b43d1a0f632ad58fbe6be59697d5d34c26",
+      "relation": "precedes",
+      "target": "commit:277546d7c633784674395940f16baa9b37f6d478",
+      "status": "asserted",
+      "at": "2026-10-08T17:19:38-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:277546d7c633:1fbc01beff08",
+      "source": "commit:277546d7c633784674395940f16baa9b37f6d478",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-local-ai-bootstrap.yml",
+      "status": "asserted",
+      "at": "2026-10-08T17:19:38-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:8dc43db483aa",
+      "source": "event:repository-scan:8dc43db483aa",
+      "relation": "generated",
+      "target": "evidence:repository:8dc43db483aa",
+      "status": "asserted",
+      "at": "2026-10-08T17:19:38-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -38530,12 +38619,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:65a431314095",
-      "source": "commit:65a4313140956586dd63c90ec6a83ed5c978a7b1",
+      "id": "rel:scan-commit:277546d7c633",
+      "source": "commit:277546d7c633784674395940f16baa9b37f6d478",
       "relation": "observed_by",
-      "target": "event:repository-scan:fa0dceb2dfe6",
+      "target": "event:repository-scan:8dc43db483aa",
       "status": "asserted",
-      "at": "2026-10-08T17:18:50-03:00",
+      "at": "2026-10-08T17:19:38-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
