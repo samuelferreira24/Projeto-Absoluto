@@ -132,10 +132,12 @@ jobs:
               result="$(cat /tmp/openclaw-vps-result.txt)"
               ;;
             openclaw-exec-infer)
-              set -e
+              set +e
               export HOME=/home/absadmin
               export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              result="$(sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw agent --local --agent main --model openai/gpt-6-astra --message 'Responda exatamente: OPENCLAW_LOCAL_INFERENCE_OK' --timeout 90 --json 2>&1)"
+              /usr/bin/openclaw agent --local --agent main --model openai/gpt-6-astra --message 'Responda exatamente: OPENCLAW_LOCAL_INFERENCE_OK' --timeout 90 --json > /tmp/openclaw-infer.txt 2>&1
+              rc=$?
+              result="exit_code=$rc\n$(cat /tmp/openclaw-infer.txt)"
               ;;
             openclaw-agent-help)
               export HOME=/home/absadmin
