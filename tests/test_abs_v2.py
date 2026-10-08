@@ -64,7 +64,6 @@ def test_v2_high_risk_waits_for_approval():
 def test_v2_policy_blocks_non_imperator_authority():
     registry = build()
     orch = ABSV2Orchestrator(registry, WorkStore(":memory:"))
-    work = orch.create("x", {"capability_id": "echo", "authority_actor": "agent"})
-    result = orch.run(work.id, approved=True)
-    assert result.state == WorkState.FAILED
-    assert "authority" in result.result["error"]
+    import pytest
+    with pytest.raises(PermissionError, match="authority_must_originate_from_imperador"):
+        orch.create("x", {"capability_id": "echo", "authority_actor": "agent"})
