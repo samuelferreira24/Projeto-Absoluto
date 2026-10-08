@@ -217,6 +217,35 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
                 "cost_policy_default":self.cost_policy.default_policy.value,
                 "queue_depth":self.queue.depth(),"models":self.lifecycle.status(),
                 "telemetry":self.telemetry.snapshot()}
+    def _acquire_slot(self,work_id,priority):
+        with self._capacity_cv:
+            self._ticket_seq += 1
+            self._tickets[work_id] = (-int(priority), self._ticket_seq)
+            while True:
+                snap = self.capacity.snapshot(self.queue.depth())
+                ordered = sorted(self._tickets.items(), key=lambda kv: kv[1])
+                position = next((i for i,(wid,_) in enumerate(ordered) if wid == work_id), len(ordered))
+                if position < max(1,snap.concurrency) and self._active < max(1,snap.concurrency):
+                    self._active += 1
+                    self._tickets.pop(work_id,None)
+                    return snap
+                self._capacity_cv.wait(timeout=0.25)
+
+    def _release_slot(self):
+        with self._capacity_cv:
+            self._active = max(0,self._active-1)
+            self._capacity_cv.notify_all()
+
+    def _rerank_with_learning(self):
+        self.selector.learning = self.v3_state.all_learning()
+
+    def _replan_candidates(self,work,context,failed_id):
+        self._rerank_with_learning()
+        ai=[self._candidate(c) for c in self.registry.list() if "ai" in str(getattr(c,"kind","")).lower()]
+        policy=self.cost_policy.policy(context)
+        budget=CostBudget(float(context.get("max_spend",os.getenv("ABS_MAX_SPEND","0")) or 0),float(context.get("spent",0) or 0))
+        return [c for c in self.selector.rank(ai,policy,budget,set(context.get("required_capabilities") or ())) if c.id != failed_id]
+
     def _candidate(self,cap):
         meta=getattr(cap,"metadata",{}) or {}; kind=str(getattr(cap,"kind","")).lower()
         raw=str(meta.get("cost_class") or "").lower()
