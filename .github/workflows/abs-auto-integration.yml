@@ -1,6 +1,8 @@
 name: ABS Automatic Integration Validation
 
 on:
+  schedule:
+    - cron: '*/10 * * * *'
   push:
     branches: [main]
     paths:
