@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 7b435733630107c8f0dd753c13a795e676c4c688
-Momento da revisão: 2026-10-08T18:53:28-03:00
+Revisão observada: 299ac7232efac354d19a9d2ad702d781dc7ec0d7
+Momento da revisão: 2026-10-08T18:54:05-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -27,7 +27,7 @@ Momento da revisão: 2026-10-08T18:53:28-03:00
 - component:continuity — continuity (24 arquivos)
 - component:docs — docs (75 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
-- component:project — project (126 arquivos)
+- component:project — project (127 arquivos)
 - component:tests — tests (64 arquivos)
 
 ## Capacidades
@@ -126,6 +126,7 @@ Momento da revisão: 2026-10-08T18:53:28-03:00
 - file:"docs/90_fontes/\360\237\221\224 Consultoria_ Projeto Comercial & Automa\303\247\303\243o _ OpenHands Cloud (1).mht" — None — estado: unknown
 - file:.github/workflows/abs-auto-integration.yml — None — estado: unknown
 - file:.github/workflows/abs-core.yml — None — estado: unknown
+- file:.github/workflows/abs-local-ai-health.yml — None — estado: unknown
 - file:.github/workflows/abs-local-ai-installer.yml — None — estado: unknown
 - file:.github/workflows/abs-v2-ci.yml — None — estado: unknown
 - file:.github/workflows/abs-vps-command.yml — None — estado: unknown
@@ -1481,6 +1482,9 @@ Momento da revisão: 2026-10-08T18:53:28-03:00
 - commit:fa0653e14505e84cc6491c0672c8a8c23fcc241a — None — estado: unknown
 - commit:4a6eeda5c411245d848bab8565cc94b20ca148b1 — None — estado: unknown
 - commit:7b435733630107c8f0dd753c13a795e676c4c688 — None — estado: unknown
+- commit:0de99eb93b9d17e0fcf6d183730f594bd351a4b9 — None — estado: unknown
+- commit:6976a316396291cc670748e45136274f07946654 — None — estado: unknown
+- commit:299ac7232efac354d19a9d2ad702d781dc7ec0d7 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1495,19 +1499,19 @@ Momento da revisão: 2026-10-08T18:53:28-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:330b33893e70 — None — estado: unknown
-- event:repository-scan:330b33893e70 — None — estado: unknown
-- event:commit-observed:7b4357336301 — None — estado: unknown
+- evidence:repository:6fa2296ba85e — None — estado: unknown
+- event:repository-scan:6fa2296ba85e — None — estado: unknown
+- event:commit-observed:299ac7232efa — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:0f2595ce86ea
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:db0a26e9d6e5
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:330b33893e70 — repository_scanned — revisão: 7b435733630107c8f0dd753c13a795e676c4c688
-- event:commit-observed:7b4357336301 — commit_observed — revisão: 7b435733630107c8f0dd753c13a795e676c4c688
-- event:test:0f2595ce86ea — tests_observed — revisão: n/a
+- event:repository-scan:6fa2296ba85e — repository_scanned — revisão: 299ac7232efac354d19a9d2ad702d781dc7ec0d7
+- event:commit-observed:299ac7232efa — commit_observed — revisão: 299ac7232efac354d19a9d2ad702d781dc7ec0d7
+- event:test:db0a26e9d6e5 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -3680,15 +3684,22 @@ Momento da revisão: 2026-10-08T18:53:28-03:00
 - commit:4a6eeda5c411245d848bab8565cc94b20ca148b1 — changed → file:tests/test_intelligence_discovery.py — asserted
 - commit:4a6eeda5c411245d848bab8565cc94b20ca148b1 — precedes → commit:7b435733630107c8f0dd753c13a795e676c4c688 — asserted
 - commit:7b435733630107c8f0dd753c13a795e676c4c688 — changed → file:abs_core/intelligence.py — asserted
-- event:repository-scan:330b33893e70 — generated → evidence:repository:330b33893e70 — asserted
-- commit:7b435733630107c8f0dd753c13a795e676c4c688 — observed_by → event:repository-scan:330b33893e70 — asserted
+- commit:7b435733630107c8f0dd753c13a795e676c4c688 — precedes → commit:0de99eb93b9d17e0fcf6d183730f594bd351a4b9 — asserted
+- commit:0de99eb93b9d17e0fcf6d183730f594bd351a4b9 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:0de99eb93b9d17e0fcf6d183730f594bd351a4b9 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:0de99eb93b9d17e0fcf6d183730f594bd351a4b9 — precedes → commit:6976a316396291cc670748e45136274f07946654 — asserted
+- commit:6976a316396291cc670748e45136274f07946654 — changed → file:.github/workflows/abs-auto-integration.yml — asserted
+- commit:6976a316396291cc670748e45136274f07946654 — precedes → commit:299ac7232efac354d19a9d2ad702d781dc7ec0d7 — asserted
+- commit:299ac7232efac354d19a9d2ad702d781dc7ec0d7 — changed → file:.github/workflows/abs-local-ai-health.yml — asserted
+- event:repository-scan:6fa2296ba85e — generated → evidence:repository:6fa2296ba85e — asserted
+- commit:299ac7232efac354d19a9d2ad702d781dc7ec0d7 — observed_by → event:repository-scan:6fa2296ba85e — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:330b33893e70 — repository_scan — observed — 405 files indexed at revision 7b435733630107c8f0dd753c13a795e676c4c688
-- evidence:test:0f2595ce86ea — test — tested — 199 passed in 7.98s
+- evidence:repository:6fa2296ba85e — repository_scan — observed — 406 files indexed at revision 299ac7232efac354d19a9d2ad702d781dc7ec0d7
+- evidence:test:db0a26e9d6e5 — test — tested — 199 passed in 6.84s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
