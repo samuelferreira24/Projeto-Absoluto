@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: faccea7e774bd2e3948f95bba6db81eecea01e22
-Momento da revisão: 2026-10-08T18:18:18-03:00
+Revisão observada: adfddbf3408efb9f6d3b3d86d4f7d60baa035525
+Momento da revisão: 2026-10-08T18:40:04-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -1466,6 +1466,10 @@ Momento da revisão: 2026-10-08T18:18:18-03:00
 - commit:58a0d4403fc86f4aee3d7082ee464627f16b1a81 — None — estado: unknown
 - commit:6ec73c874ea4c1c2912638790cd940f552597b83 — None — estado: unknown
 - commit:faccea7e774bd2e3948f95bba6db81eecea01e22 — None — estado: unknown
+- commit:664267f9f05ee23e16bffcca228a7507e4bbb71e — None — estado: unknown
+- commit:7ffa172072f9fe4815c84622dced037b323b4ccf — None — estado: unknown
+- commit:4b78d7c6a6b9c6fc0f4e1a31371f7f7af2eb2702 — None — estado: unknown
+- commit:adfddbf3408efb9f6d3b3d86d4f7d60baa035525 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1480,19 +1484,19 @@ Momento da revisão: 2026-10-08T18:18:18-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:3141e2911ebb — None — estado: unknown
-- event:repository-scan:3141e2911ebb — None — estado: unknown
-- event:commit-observed:faccea7e774b — None — estado: unknown
+- evidence:repository:afefa06d0319 — None — estado: unknown
+- event:repository-scan:afefa06d0319 — None — estado: unknown
+- event:commit-observed:adfddbf3408e — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:58b7bc0c92f2
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:550ee3c10330
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:3141e2911ebb — repository_scanned — revisão: faccea7e774bd2e3948f95bba6db81eecea01e22
-- event:commit-observed:faccea7e774b — commit_observed — revisão: faccea7e774bd2e3948f95bba6db81eecea01e22
-- event:test:58b7bc0c92f2 — tests_observed — revisão: n/a
+- event:repository-scan:afefa06d0319 — repository_scanned — revisão: adfddbf3408efb9f6d3b3d86d4f7d60baa035525
+- event:commit-observed:adfddbf3408e — commit_observed — revisão: adfddbf3408efb9f6d3b3d86d4f7d60baa035525
+- event:test:550ee3c10330 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -3638,15 +3642,24 @@ Momento da revisão: 2026-10-08T18:18:18-03:00
 - commit:6ec73c874ea4c1c2912638790cd940f552597b83 — changed → file:.github/workflows/abs-vps-reserve.yml — asserted
 - commit:6ec73c874ea4c1c2912638790cd940f552597b83 — precedes → commit:faccea7e774bd2e3948f95bba6db81eecea01e22 — asserted
 - commit:faccea7e774bd2e3948f95bba6db81eecea01e22 — changed → file:docs/infra/CANAL_RESERVA_ABS_VPS.md — asserted
-- event:repository-scan:3141e2911ebb — generated → evidence:repository:3141e2911ebb — asserted
-- commit:faccea7e774bd2e3948f95bba6db81eecea01e22 — observed_by → event:repository-scan:3141e2911ebb — asserted
+- commit:faccea7e774bd2e3948f95bba6db81eecea01e22 — precedes → commit:664267f9f05ee23e16bffcca228a7507e4bbb71e — asserted
+- commit:664267f9f05ee23e16bffcca228a7507e4bbb71e — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:664267f9f05ee23e16bffcca228a7507e4bbb71e — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:664267f9f05ee23e16bffcca228a7507e4bbb71e — precedes → commit:7ffa172072f9fe4815c84622dced037b323b4ccf — asserted
+- commit:7ffa172072f9fe4815c84622dced037b323b4ccf — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:7ffa172072f9fe4815c84622dced037b323b4ccf — precedes → commit:4b78d7c6a6b9c6fc0f4e1a31371f7f7af2eb2702 — asserted
+- commit:4b78d7c6a6b9c6fc0f4e1a31371f7f7af2eb2702 — changed → file:abs_core/runtime.py — asserted
+- commit:4b78d7c6a6b9c6fc0f4e1a31371f7f7af2eb2702 — precedes → commit:adfddbf3408efb9f6d3b3d86d4f7d60baa035525 — asserted
+- commit:adfddbf3408efb9f6d3b3d86d4f7d60baa035525 — changed → file:.github/workflows/abs-vps-reserve.yml — asserted
+- event:repository-scan:afefa06d0319 — generated → evidence:repository:afefa06d0319 — asserted
+- commit:adfddbf3408efb9f6d3b3d86d4f7d60baa035525 — observed_by → event:repository-scan:afefa06d0319 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:3141e2911ebb — repository_scan — observed — 402 files indexed at revision faccea7e774bd2e3948f95bba6db81eecea01e22
-- evidence:test:58b7bc0c92f2 — test — tested — 196 passed in 6.89s
+- evidence:repository:afefa06d0319 — repository_scan — observed — 402 files indexed at revision adfddbf3408efb9f6d3b3d86d4f7d60baa035525
+- evidence:test:550ee3c10330 — test — tested — 196 passed in 7.46s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
