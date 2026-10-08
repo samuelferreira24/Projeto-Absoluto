@@ -144,7 +144,7 @@ class CostPolicyEngine:
     def admissible(self,c,policy,budget):
         if not c.healthy: return False
         if c.cost_class is CostClass.PAID_API:
-            return policy is CostPolicy.PAID_ALLOWED and c.estimated_cost<=budget.remaining
+            return policy is CostPolicy.PAID_ALLOWED and c.estimated_cost>0 and c.estimated_cost<=budget.remaining
         if c.cost_class is CostClass.SUBSCRIPTION:
             return policy in {CostPolicy.FREE_FIRST,CostPolicy.PAID_ALLOWED}
         return True
@@ -170,7 +170,9 @@ class AdmissionQueue:
         with self._lock:
             if not self._q:return None
             best=min(range(len(self._q)),key=lambda i:self._q[i][:2])
-            return self._q.pop(best)[2]
+            item=self._q[best]
+            del self._q[best]
+            return item[2]
     def depth(self):
         with self._lock:return len(self._q)
 
