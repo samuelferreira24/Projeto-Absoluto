@@ -34,16 +34,35 @@ jobs:
               sleep 2
               result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               ;;
-            v3-test)
+            v3-test|integrate-test)
               cd "$HOME/Projeto-Absoluto"
               git fetch origin main --quiet
               git reset --hard origin/main --quiet
               python3 -m compileall -q abs_core
               python3 -m pytest -q tests
-              result="ABS RESERVE V3 TEST PASS"
+              health="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
+              v3="$(curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status)"
+              echo "$health"
+              echo "$v3"
+              result="ABS RESERVE V3 + HTTP INTEGRATION PASS"
+              ;;
+            local-ai-test-all)
+              set +e
+              export HOME=/home/absadmin
+              models="qwen3.5:0.8b qwen3.5:2b qwen3.5:4b ministral-3:3b gemma4:e2b gemma4:e4b"
+              failed=0
+              for model in $models; do
+                echo "=== $model ==="
+                out="$(curl -fsS --max-time 180 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d "{\"model\":\"$model\",\"prompt\":\"Reply exactly LOCAL_AI_OK\",\"stream\":false}")" || { echo "HTTP_FAIL $model"; failed=1; continue; }
+                echo "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("response","").strip()=="LOCAL_AI_OK", d' || failed=1
+                echo "PASS $model"
+              done
+              free -h
+              df -h /
+              if [ "$failed" -eq 0 ]; then result="ABS RESERVE LOCAL AI ALL 6 PASS"; else result="ABS RESERVE LOCAL AI FAILURE"; exit 1; fi
               ;;
             *)
-              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve restart-abs ou /abs-reserve v3-test."
+              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve restart-abs, /abs-reserve v3-test, /abs-reserve integrate-test ou /abs-reserve local-ai-test-all."
               ;;
           esac
           {
