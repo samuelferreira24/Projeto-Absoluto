@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T15:35:49-03:00",
-  "source_revision": "8c28f85d8fc92028566a8a4a14f192398cbd8312",
+  "generated_at": "2026-10-08T15:37:01-03:00",
+  "source_revision": "a4b79f1331c8f04b234a54068d5de6164f3524c2",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "8c28f85d8fc92028566a8a4a14f192398cbd8312",
-      "commit_subject": "V3: adicionar testes de integração do roteamento e execução real"
+      "revision": "a4b79f1331c8f04b234a54068d5de6164f3524c2",
+      "commit_subject": "V3: adicionar prova live via API no VPS"
     }
   ],
   "tools": [
@@ -8566,6 +8566,34 @@
       "sha": "8c28f85d8fc92028566a8a4a14f192398cbd8312"
     },
     {
+      "id": "commit:174286bef979377813cb221d220f54e3b075337c",
+      "kind": "commit",
+      "at": "2026-10-08T18:36:10Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "174286bef979377813cb221d220f54e3b075337c"
+    },
+    {
+      "id": "commit:73aa541d1f0cc9a646de2bf1d088f6b5c2e45fa1",
+      "kind": "commit",
+      "at": "2026-10-08T15:36:34-03:00",
+      "subject": "V3: integrar lifecycle real opcional do llama.cpp router",
+      "sha": "73aa541d1f0cc9a646de2bf1d088f6b5c2e45fa1"
+    },
+    {
+      "id": "commit:64b79c6ba90b6de43700d46e4c139e25da9ebea1",
+      "kind": "commit",
+      "at": "2026-10-08T15:36:42-03:00",
+      "subject": "V3: validar lifecycle llama.cpp",
+      "sha": "64b79c6ba90b6de43700d46e4c139e25da9ebea1"
+    },
+    {
+      "id": "commit:a4b79f1331c8f04b234a54068d5de6164f3524c2",
+      "kind": "commit",
+      "at": "2026-10-08T15:37:01-03:00",
+      "subject": "V3: adicionar prova live via API no VPS",
+      "sha": "a4b79f1331c8f04b234a54068d5de6164f3524c2"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -8678,23 +8706,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:ff7014bd1bfe",
+      "id": "evidence:repository:4feb5e913f43",
       "kind": "evidence",
-      "at": "2026-10-08T15:35:49-03:00",
+      "at": "2026-10-08T15:37:01-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:ff7014bd1bfe",
+      "id": "event:repository-scan:4feb5e913f43",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T15:35:49-03:00"
+      "at": "2026-10-08T15:37:01-03:00"
     },
     {
-      "id": "event:commit-observed:8c28f85d8fc9",
+      "id": "event:commit-observed:a4b79f1331c8",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T15:35:49-03:00"
+      "at": "2026-10-08T15:37:01-03:00"
     }
   ],
   "paths": [
@@ -8729,11 +8757,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:4df0ab549008"
+        "evidence:test:bee34ac699a8"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T15:35:49-03:00"
+      "last_validated": "2026-10-08T15:37:01-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -8756,20 +8784,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:ff7014bd1bfe",
+      "id": "evidence:repository:4feb5e913f43",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T15:35:49-03:00",
+      "observed_at": "2026-10-08T15:37:01-03:00",
       "status": "observed",
-      "detail": "394 files indexed at revision 8c28f85d8fc92028566a8a4a14f192398cbd8312"
+      "detail": "394 files indexed at revision a4b79f1331c8f04b234a54068d5de6164f3524c2"
     },
     {
-      "id": "evidence:test:4df0ab549008",
+      "id": "evidence:test:bee34ac699a8",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T15:35:49-03:00",
+      "observed_at": "2026-10-08T15:37:01-03:00",
       "status": "tested",
-      "detail": "187 passed in 7.00s"
+      "detail": "188 passed in 7.42s"
     }
   ],
   "decisions": [
@@ -8872,30 +8900,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:ff7014bd1bfe",
+      "id": "event:repository-scan:4feb5e913f43",
       "type": "repository_scanned",
-      "at": "2026-10-08T15:35:49-03:00",
-      "revision": "8c28f85d8fc92028566a8a4a14f192398cbd8312",
+      "at": "2026-10-08T15:37:01-03:00",
+      "revision": "a4b79f1331c8f04b234a54068d5de6164f3524c2",
       "file_count": 394,
-      "evidence_id": "evidence:repository:ff7014bd1bfe"
+      "evidence_id": "evidence:repository:4feb5e913f43"
     },
     {
-      "id": "event:commit-observed:8c28f85d8fc9",
+      "id": "event:commit-observed:a4b79f1331c8",
       "type": "commit_observed",
-      "at": "2026-10-08T15:35:49-03:00",
-      "revision": "8c28f85d8fc92028566a8a4a14f192398cbd8312",
+      "at": "2026-10-08T15:37:01-03:00",
+      "revision": "a4b79f1331c8f04b234a54068d5de6164f3524c2",
       "branch": "main",
-      "subject": "V3: adicionar testes de integração do roteamento e execução real",
+      "subject": "V3: adicionar prova live via API no VPS",
       "changed_files": [
-        "tests/test_v3.py"
+        ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:4df0ab549008",
+      "id": "event:test:bee34ac699a8",
       "type": "tests_observed",
-      "at": "2026-10-08T15:35:49-03:00",
+      "at": "2026-10-08T15:37:01-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:4df0ab549008"
+      "evidence_id": "evidence:test:bee34ac699a8"
     }
   ],
   "knowledge_sources": [
@@ -8951,7 +8979,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "905bc706a053f79b0f4a2e487bb848b9c21450109fd0e6ac81ca8dc5c42b3438"
+      "sha256": "fc5eaed4e3f84db108fd83b97a582bdecdba1e621bb4d670ddd131378eb89634"
     },
     {
       "id": "source:session",
@@ -36006,12 +36034,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:ff7014bd1bfe",
-      "source": "event:repository-scan:ff7014bd1bfe",
-      "relation": "generated",
-      "target": "evidence:repository:ff7014bd1bfe",
+      "id": "rel:commit-precedes:8c28f85d8fc9:174286bef979",
+      "source": "commit:8c28f85d8fc92028566a8a4a14f192398cbd8312",
+      "relation": "precedes",
+      "target": "commit:174286bef979377813cb221d220f54e3b075337c",
       "status": "asserted",
-      "at": "2026-10-08T15:35:49-03:00",
+      "at": "2026-10-08T18:36:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:174286bef979:032adc3624d7",
+      "source": "commit:174286bef979377813cb221d220f54e3b075337c",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T18:36:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:174286bef979:d64178c49886",
+      "source": "commit:174286bef979377813cb221d220f54e3b075337c",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T18:36:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:174286bef979:73aa541d1f0c",
+      "source": "commit:174286bef979377813cb221d220f54e3b075337c",
+      "relation": "precedes",
+      "target": "commit:73aa541d1f0cc9a646de2bf1d088f6b5c2e45fa1",
+      "status": "asserted",
+      "at": "2026-10-08T15:36:34-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:73aa541d1f0c:04f1341ba654",
+      "source": "commit:73aa541d1f0cc9a646de2bf1d088f6b5c2e45fa1",
+      "relation": "changed",
+      "target": "file:abs_core/v3.py",
+      "status": "asserted",
+      "at": "2026-10-08T15:36:34-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:73aa541d1f0c:64b79c6ba90b",
+      "source": "commit:73aa541d1f0cc9a646de2bf1d088f6b5c2e45fa1",
+      "relation": "precedes",
+      "target": "commit:64b79c6ba90b6de43700d46e4c139e25da9ebea1",
+      "status": "asserted",
+      "at": "2026-10-08T15:36:42-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:64b79c6ba90b:3014122fb6b6",
+      "source": "commit:64b79c6ba90b6de43700d46e4c139e25da9ebea1",
+      "relation": "changed",
+      "target": "file:tests/test_v3.py",
+      "status": "asserted",
+      "at": "2026-10-08T15:36:42-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:64b79c6ba90b:a4b79f1331c8",
+      "source": "commit:64b79c6ba90b6de43700d46e4c139e25da9ebea1",
+      "relation": "precedes",
+      "target": "commit:a4b79f1331c8f04b234a54068d5de6164f3524c2",
+      "status": "asserted",
+      "at": "2026-10-08T15:37:01-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a4b79f1331c8:1734be446032",
+      "source": "commit:a4b79f1331c8f04b234a54068d5de6164f3524c2",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-08T15:37:01-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:4feb5e913f43",
+      "source": "event:repository-scan:4feb5e913f43",
+      "relation": "generated",
+      "target": "evidence:repository:4feb5e913f43",
+      "status": "asserted",
+      "at": "2026-10-08T15:37:01-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -36020,12 +36174,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:8c28f85d8fc9",
-      "source": "commit:8c28f85d8fc92028566a8a4a14f192398cbd8312",
+      "id": "rel:scan-commit:a4b79f1331c8",
+      "source": "commit:a4b79f1331c8f04b234a54068d5de6164f3524c2",
       "relation": "observed_by",
-      "target": "event:repository-scan:ff7014bd1bfe",
+      "target": "event:repository-scan:4feb5e913f43",
       "status": "asserted",
-      "at": "2026-10-08T15:35:49-03:00",
+      "at": "2026-10-08T15:37:01-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
