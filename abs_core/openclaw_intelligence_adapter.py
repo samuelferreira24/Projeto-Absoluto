@@ -53,6 +53,9 @@ class OpenClawIntelligenceCapability:
             try:
                 parsed = json.loads(proc.stdout)
                 final = parsed.get("text") or parsed.get("final_response")
+                payloads = ((parsed.get("result") or {}).get("payloads") or [])
+                if not final and payloads:
+                    final = payloads[0].get("text")
             except Exception:
                 final = proc.stdout.strip()
         if not final:
