@@ -1,0 +1,36 @@
+name: ABS Automatic Integration Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'abs_core/**'
+      - 'tests/**'
+      - '.github/workflows/abs-auto-integration.yml'
+      - '.github/workflows/abs-vps-reserve.yml'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  validate:
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 15
+    steps:
+      - name: Validate ABS on reserve VPS
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$HOME/Projeto-Absoluto"
+          git fetch origin main --quiet
+          git reset --hard origin/main --quiet
+          python3 -m compileall -q abs_core
+          python3 -m pytest -q tests
+          health="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
+          v3="$(curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status)"
+          python3 -c 'import json,sys; d=json.loads(sys.argv[1]); assert d.get("status") == "alive", d' "$health"
+          python3 -c 'import json,sys; d=json.loads(sys.argv[1]); assert d.get("version") == "v3", d' "$v3"
+          echo "ABS_AUTO_INTEGRATION_PASS"
+          echo "$health"
+          echo "$v3"
