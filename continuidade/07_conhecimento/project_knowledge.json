@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T17:16:24-03:00",
-  "source_revision": "aae2361b46e68f41e1982071a32965ee93bc629d",
+  "generated_at": "2026-10-08T17:17:49-03:00",
+  "source_revision": "9656027cbfab3ebd6a9873081bd95a1637a363bc",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "aae2361b46e68f41e1982071a32965ee93bc629d",
-      "commit_subject": "Adicionar seleção automática por prioridade às IAs locais"
+      "revision": "9656027cbfab3ebd6a9873081bd95a1637a363bc",
+      "commit_subject": "Instalar frota de IAs locais durante instalação do ABS"
     }
   ],
   "tools": [
@@ -9004,6 +9004,20 @@
       "sha": "aae2361b46e68f41e1982071a32965ee93bc629d"
     },
     {
+      "id": "commit:940a748393a6e8722c69c8f9b502b2f248b545f2",
+      "kind": "commit",
+      "at": "2026-10-08T20:16:49Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "940a748393a6e8722c69c8f9b502b2f248b545f2"
+    },
+    {
+      "id": "commit:9656027cbfab3ebd6a9873081bd95a1637a363bc",
+      "kind": "commit",
+      "at": "2026-10-08T17:17:49-03:00",
+      "subject": "Instalar frota de IAs locais durante instalação do ABS",
+      "sha": "9656027cbfab3ebd6a9873081bd95a1637a363bc"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9116,23 +9130,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:8a9c9141cdf9",
+      "id": "evidence:repository:b4f134c47640",
       "kind": "evidence",
-      "at": "2026-10-08T17:16:24-03:00",
+      "at": "2026-10-08T17:17:49-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:8a9c9141cdf9",
+      "id": "event:repository-scan:b4f134c47640",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T17:16:24-03:00"
+      "at": "2026-10-08T17:17:49-03:00"
     },
     {
-      "id": "event:commit-observed:aae2361b46e6",
+      "id": "event:commit-observed:9656027cbfab",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T17:16:24-03:00"
+      "at": "2026-10-08T17:17:49-03:00"
     }
   ],
   "paths": [
@@ -9167,11 +9181,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:a058955cdb69"
+        "evidence:test:faa0a364c4b0"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T17:16:24-03:00"
+      "last_validated": "2026-10-08T17:17:49-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9194,20 +9208,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:8a9c9141cdf9",
+      "id": "evidence:repository:b4f134c47640",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T17:16:24-03:00",
+      "observed_at": "2026-10-08T17:17:49-03:00",
       "status": "observed",
-      "detail": "399 files indexed at revision aae2361b46e68f41e1982071a32965ee93bc629d"
+      "detail": "399 files indexed at revision 9656027cbfab3ebd6a9873081bd95a1637a363bc"
     },
     {
-      "id": "evidence:test:a058955cdb69",
+      "id": "evidence:test:faa0a364c4b0",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T17:16:24-03:00",
+      "observed_at": "2026-10-08T17:17:49-03:00",
       "status": "tested",
-      "detail": "196 passed in 12.18s"
+      "detail": "196 passed in 7.57s"
     }
   ],
   "decisions": [
@@ -9310,30 +9324,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:8a9c9141cdf9",
+      "id": "event:repository-scan:b4f134c47640",
       "type": "repository_scanned",
-      "at": "2026-10-08T17:16:24-03:00",
-      "revision": "aae2361b46e68f41e1982071a32965ee93bc629d",
+      "at": "2026-10-08T17:17:49-03:00",
+      "revision": "9656027cbfab3ebd6a9873081bd95a1637a363bc",
       "file_count": 399,
-      "evidence_id": "evidence:repository:8a9c9141cdf9"
+      "evidence_id": "evidence:repository:b4f134c47640"
     },
     {
-      "id": "event:commit-observed:aae2361b46e6",
+      "id": "event:commit-observed:9656027cbfab",
       "type": "commit_observed",
-      "at": "2026-10-08T17:16:24-03:00",
-      "revision": "aae2361b46e68f41e1982071a32965ee93bc629d",
+      "at": "2026-10-08T17:17:49-03:00",
+      "revision": "9656027cbfab3ebd6a9873081bd95a1637a363bc",
       "branch": "main",
-      "subject": "Adicionar seleção automática por prioridade às IAs locais",
+      "subject": "Instalar frota de IAs locais durante instalação do ABS",
       "changed_files": [
-        "abs_core/runtime.py"
+        ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:a058955cdb69",
+      "id": "event:test:faa0a364c4b0",
       "type": "tests_observed",
-      "at": "2026-10-08T17:16:24-03:00",
+      "at": "2026-10-08T17:17:49-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:a058955cdb69"
+      "evidence_id": "evidence:test:faa0a364c4b0"
     }
   ],
   "knowledge_sources": [
@@ -9389,7 +9403,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "31b1177bf8b6010a4db632c658659167e023fd788bb8428edc8cb877337ce9a5"
+      "sha256": "c3cac2f0889b566de653c2a55c9cea8a56568eb439feda0ee676905fbdc6b5dc"
     },
     {
       "id": "source:session",
@@ -38348,12 +38362,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:8a9c9141cdf9",
-      "source": "event:repository-scan:8a9c9141cdf9",
-      "relation": "generated",
-      "target": "evidence:repository:8a9c9141cdf9",
+      "id": "rel:commit-precedes:aae2361b46e6:940a748393a6",
+      "source": "commit:aae2361b46e68f41e1982071a32965ee93bc629d",
+      "relation": "precedes",
+      "target": "commit:940a748393a6e8722c69c8f9b502b2f248b545f2",
       "status": "asserted",
-      "at": "2026-10-08T17:16:24-03:00",
+      "at": "2026-10-08T20:16:49Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:940a748393a6:032adc3624d7",
+      "source": "commit:940a748393a6e8722c69c8f9b502b2f248b545f2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T20:16:49Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:940a748393a6:d64178c49886",
+      "source": "commit:940a748393a6e8722c69c8f9b502b2f248b545f2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T20:16:49Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:940a748393a6:9656027cbfab",
+      "source": "commit:940a748393a6e8722c69c8f9b502b2f248b545f2",
+      "relation": "precedes",
+      "target": "commit:9656027cbfab3ebd6a9873081bd95a1637a363bc",
+      "status": "asserted",
+      "at": "2026-10-08T17:17:49-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:9656027cbfab:1734be446032",
+      "source": "commit:9656027cbfab3ebd6a9873081bd95a1637a363bc",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-08T17:17:49-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:b4f134c47640",
+      "source": "event:repository-scan:b4f134c47640",
+      "relation": "generated",
+      "target": "evidence:repository:b4f134c47640",
+      "status": "asserted",
+      "at": "2026-10-08T17:17:49-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -38362,12 +38446,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:aae2361b46e6",
-      "source": "commit:aae2361b46e68f41e1982071a32965ee93bc629d",
+      "id": "rel:scan-commit:9656027cbfab",
+      "source": "commit:9656027cbfab3ebd6a9873081bd95a1637a363bc",
       "relation": "observed_by",
-      "target": "event:repository-scan:8a9c9141cdf9",
+      "target": "event:repository-scan:b4f134c47640",
       "status": "asserted",
-      "at": "2026-10-08T17:16:24-03:00",
+      "at": "2026-10-08T17:17:49-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
