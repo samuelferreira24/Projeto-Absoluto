@@ -71,6 +71,17 @@ jobs:
               sleep 2
               result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               ;;
+            v3-test)
+              set -e
+              cd "$HOME/Projeto-Absoluto"
+              python3 -m compileall -q abs_core
+              python3 -m pytest -q tests/test_v3.py
+              echo "[v3-status]"
+              curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status
+              echo
+              echo "ABS V3 TEST PASS"
+              result="ABS V3 TEST PASS"
+              ;;
             v2-test)
               set -e
               cd "$HOME/Projeto-Absoluto"
