@@ -25,7 +25,13 @@ class LocalABS:
         approved = bool(payload.get("approved", False))
         work = self.runtime.orchestrator.create(objective, payload)
         work = self.runtime.orchestrator.run(work.id, capability_id, approved)
-        return asdict(work)
+        data = asdict(work)
+        # Preserve the V1 LocalABS response contract while exposing the full V2
+        # execution record alongside it.
+        if isinstance(work.result, dict) and work.result.get("type") == "v2_result":
+            data["v2_result"] = work.result
+            data["result"] = work.result.get("result")
+        return data
 
 
 def _ensure_gateway_service() -> None:
