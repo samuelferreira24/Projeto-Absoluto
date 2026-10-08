@@ -16,6 +16,7 @@ from .tool_learning import ToolLearningEngine
 from . import update_manager
 from .intelligence import CognitiveRuntime
 from .integration import integration_descriptor
+from .v2 import ABSV2Orchestrator
 
 WEB_INDEX = Path(__file__).resolve().parent.parent / "20_interface" / "web" / "index.html"
 WEB_SPATIAL_P0 = WEB_INDEX.parent / "spatial-environment-p0.html"
@@ -25,6 +26,7 @@ OPENAPI = Path(__file__).resolve().parent.parent / "docs" / "api" / "openapi.jso
 
 
 class ABSHandler(BaseHTTPRequestHandler):
+    v2 = None
     orchestrator: Orchestrator | None = None
     registry = None
     resources: ResourceManager | None = None
@@ -113,7 +115,7 @@ class ABSHandler(BaseHTTPRequestHandler):
             self._send(200, {
                 "name": "ABS",
                 "status": "alive",
-                "version": "v1",
+                "version": "v2",
                 "uptime_seconds": round(time.time() - self.started_at, 3),
                 "connection_count": len(self.connections.list()),
                 "auto_update": True,
@@ -138,6 +140,16 @@ class ABSHandler(BaseHTTPRequestHandler):
                 "devices": [d.public() for d in self.resources.list()],
                 "summary": self.resources.summary(),
             })
+            return
+        if self.path == "/v2/status":
+            self._send(200, {"version": "v2", "integrated": True})
+            return
+        if self.path.startswith("/v2/works/"):
+            work_id = self.path.split("/", 2)[2]
+            try:
+                self._send(200, self.v2.inspect(work_id))
+            except KeyError:
+                self._send(404, {"error": "work_not_found"})
             return
         if self.path.startswith("/works/"):
             work_id = self.path.split("/", 2)[2]
@@ -473,6 +485,7 @@ class ABSHandler(BaseHTTPRequestHandler):
 def serve(orchestrator: Orchestrator, registry, host="127.0.0.1", port=8787,
           resources=None, interface_runtime=None, connections=None, accounts=None, tool_knowledge=None, tool_discovery=None, tool_planner=None, tool_learning=None, resource_dispatcher=None, cognitive_runtime=None):
     ABSHandler.orchestrator = orchestrator
+    ABSHandler.v2 = orchestrator if isinstance(orchestrator, ABSV2Orchestrator) else None
     ABSHandler.registry = registry
     ABSHandler.resources = resources or ResourceManager()
     ABSHandler.interface_runtime = interface_runtime or InterfaceRuntime()
