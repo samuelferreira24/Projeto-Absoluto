@@ -221,6 +221,7 @@ class OperationalIntelligence:
             mode = "direct"
         valid_ids = {c.id for c in self.registry.list()}
         steps: list[OperationalStep] = []
+        unknowns = [str(x) for x in raw.get("unknowns") or []]
         for item in list(raw.get("steps") or []):
             if not isinstance(item, dict):
                 continue
@@ -228,6 +229,7 @@ class OperationalIntelligence:
             if cid is not None:
                 cid = str(cid)
                 if cid not in valid_ids:
+                    unknowns.append(f"Unknown capability requested by planning intelligence: {cid}")
                     cid = None
             step_obj = str(item.get("objective") or "").strip()
             if not step_obj:
@@ -258,7 +260,7 @@ class OperationalIntelligence:
             steps=tuple(steps),
             success_criteria=tuple(str(x) for x in raw.get("success_criteria") or []),
             assumptions=tuple(str(x) for x in raw.get("assumptions") or []),
-            unknowns=tuple(str(x) for x in raw.get("unknowns") or []),
+            unknowns=tuple(dict.fromkeys(unknowns)),
             source="model",
             intelligence_id=intelligence_id,
         )
