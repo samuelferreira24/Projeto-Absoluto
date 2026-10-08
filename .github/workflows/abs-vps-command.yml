@@ -75,7 +75,7 @@ jobs:
               set -e
               cd "$HOME/Projeto-Absoluto"
               python3 -m compileall -q abs_core
-              python3 -m pytest -q tests/test_v3.py
+              python3 -m pytest -q tests
               echo "[v3-status]"
               curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status
               echo
