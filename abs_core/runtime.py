@@ -25,6 +25,7 @@ from .intelligence import CognitiveRuntime, IntelligenceRegistry
 from .project_knowledge_runtime import ExecutionKnowledgeRecorder
 from .verification import ResultVerifier
 from .navigation_adapter import KnowledgeNavigationCapability
+from .v2 import ABSV2Orchestrator
 
 
 @dataclass
@@ -114,7 +115,7 @@ def build_runtime(db_path: str | None = None) -> ABSRuntime:
     project_root = Path(__file__).resolve().parents[1]
     knowledge_runtime = ExecutionKnowledgeRecorder(root=project_root, output_dir=project_root / "continuidade/07_conhecimento")
     verifier = ResultVerifier()
-    orchestrator = Orchestrator(registry, store, knowledge_runtime=knowledge_runtime, data_layer=data_layer, verifier=verifier)
+    orchestrator = ABSV2Orchestrator(registry, store, data_layer=data_layer, knowledge_runtime=knowledge_runtime)
 
     resources = ResourceManager()
     interface_runtime = InterfaceRuntime()
