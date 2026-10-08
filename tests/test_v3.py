@@ -49,3 +49,33 @@ def test_state_store_learning(tmp_path):
     db.learn("local",True,.5); db.learn("local",False,1.5)
     x=db.learning("local")
     assert x["attempts"]==2 and x["successes"]==1 and x["failures"]==1
+
+
+def test_v3_candidate_maps_to_real_capability_id():
+    from types import SimpleNamespace
+    from abs_core.v3 import ABSV3Orchestrator, CostClass
+    cap=SimpleNamespace(id="local-ai", kind="local_ai", metadata={})
+    candidate=ABSV3Orchestrator._candidate.__get__(object.__new__(ABSV3Orchestrator), ABSV3Orchestrator)(cap)
+    assert candidate.id=="local-ai"
+    assert candidate.cost_class is CostClass.FREE_LOCAL
+    assert "chat" in candidate.capabilities
+
+
+def test_v3_explicit_unknown_capability_is_denied():
+    from abs_core.v3 import ABSV3Orchestrator, WorkDisposition
+    from abs_core.capabilities import CapabilityRegistry
+    from abs_core.store import WorkStore
+    o=ABSV3Orchestrator(CapabilityRegistry(), WorkStore(":memory:"))
+    w=o.create("test", {})
+    d=o._gate(w, {"capability_id":"does-not-exist"})
+    assert d.disposition is WorkDisposition.DENY
+
+
+def test_v3_explicit_echo_executes_end_to_end():
+    from abs_core.runtime import build_runtime
+    rt=build_runtime(":memory:")
+    work=rt.orchestrator.create("V3 echo integration", {"capability_id":"echo"})
+    done=rt.orchestrator.run(work.id, "echo")
+    assert done.state.value=="completed"
+    assert done.result["type"]=="v2_result"
+    assert done.result["verification"]["accepted"] is True
