@@ -61,7 +61,7 @@ class IntelligenceRegistry:
                 id=f"intelligence:{cap.id}", capability_id=cap.id, name=cap.name,
                 source="local" if local else "remote", local=local,
                 capabilities=capabilities_hint, status=status,
-                priority=10.0 if local else 5.0, metadata=metadata,
+                priority=float(metadata.get("priority", 10.0 if local else 5.0)), metadata=metadata,
             )
             self.register(resource)
             found.append(resource)
