@@ -131,6 +131,14 @@ jobs:
               } > /tmp/openclaw-vps-result.txt
               result="$(cat /tmp/openclaw-vps-result.txt)"
               ;;
+            openclaw-models)
+              set +e
+              export HOME=/home/absadmin
+              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+              /usr/bin/openclaw models list --json > /tmp/openclaw-models.txt 2>&1
+              rc=$?
+              result="exit_code=$rc\n$(cat /tmp/openclaw-models.txt)"
+              ;;
             openclaw-exec-infer)
               set +e
               export HOME=/home/absadmin
