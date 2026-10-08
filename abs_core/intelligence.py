@@ -52,9 +52,9 @@ class IntelligenceRegistry:
             if cap.kind not in {"external_ai", "ai", "local_ai"} and cap.id not in {"codex", "openai-api", "claude", "gemini", "local-ai"} and not cap.id.startswith("local-ai:"):
                 continue
             connection = next((item for item in connection_map.values() if item.metadata.get("adapter") == cap.id or item.id == cap.id), None)
-            local = cap.kind == "local_ai" or cap.id == "codex" or (connection is not None and connection.transport in {"local-http", "cli-termux"})
+            local = cap.kind == "local_ai" or (connection is not None and connection.transport in {"local-http", "cli-termux"})
             status = connection.status if connection else "available"
-            capabilities_hint = tuple(connection.capabilities) if connection else ()
+            capabilities_hint = tuple(connection.capabilities) if connection else tuple(cap.metadata.get("capabilities") or ())
             metadata = {"connection_id": connection.id if connection else None, "conversational": cap.id not in {"codex"}}
             metadata.update(cap.metadata)
             resource = IntelligenceResource(
