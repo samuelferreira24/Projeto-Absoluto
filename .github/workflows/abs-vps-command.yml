@@ -135,7 +135,7 @@ jobs:
               set -e
               export HOME=/home/absadmin
               export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              result="$(sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw agent exec 'Responda exatamente: OPENCLAW_EXEC_INFERENCE_OK' --timeout 90 --json 2>&1)"
+              result="$(sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw agent --local --agent main --model openai/gpt-6-astra --message 'Responda exatamente: OPENCLAW_LOCAL_INFERENCE_OK' --timeout 90 --json 2>&1)"
               ;;
             openclaw-agent-help)
               export HOME=/home/absadmin
