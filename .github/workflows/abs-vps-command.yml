@@ -103,6 +103,16 @@ jobs:
                 echo "[v3-status]"
                 echo "$status"
               } > /tmp/v3-result.txt
+              echo "[local-ai-real-validation]"
+              models="qwen3.5:0.8b qwen3.5:2b qwen3.5:4b ministral-3:3b gemma4:e2b gemma4:e4b"
+              for model in $models; do
+                out="$(curl -fsS --max-time 300 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d "{\"model\":\"$model\",\"prompt\":\"Reply exactly LOCAL_AI_OK\",\"stream\":false}")"
+                echo "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("response","").strip()=="LOCAL_AI_OK", d'
+                echo "PASS $model"
+              done
+              local_json="$(curl -fsS --max-time 300 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d '{"message":"Reply exactly ABS_LOCAL_AI_OK.","approved":true,"context":{"capability_id":"local-ai:qwen3.5-0.8b"}}')"
+              echo "$local_json"
+              echo "$local_json" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("work_state")=="completed", d; assert d.get("response"), d; p=d.get("provenance") or {}; assert p.get("capability_id")=="local-ai:qwen3.5-0.8b", p; print("ABS LOCAL CHAT PASS")'
               result="$(cat /tmp/v3-result.txt)"
               if [ "$compile_rc" -eq 0 ] && [ "$test_rc" -eq 0 ]; then
                 echo "ABS V3 TEST PASS"
