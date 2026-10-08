@@ -76,7 +76,7 @@ jobs:
               cd "$HOME/Projeto-Absoluto"
               if ! python3 -m pip --version >/dev/null 2>&1; then sudo apt-get update -qq && sudo apt-get install -y -qq python3-pip; fi
               python3 -m pip install --user -q pytest --break-system-packages
-              python3 -m pytest -q tests/test_abs_v2.py
+              python3 -m pytest -q tests
               python3 -m compileall -q abs_core
               result="ABS V2 pytest + compileall PASS"
               ;;
@@ -87,6 +87,22 @@ jobs:
               run_json="$(curl -fsS --max-time 10 -X POST "http://127.0.0.1:8787/works/$work_id/run" -H 'Content-Type: application/json' -d '{"capability_id":"echo","approved":false}')"
               health="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               result="$(printf 'health: %s\nwork_create: %s\nwork_run: %s\n' "$health" "$work_json" "$run_json")"
+              ;;
+            openclaw-v2-test)
+              set -e
+              export HOME=/home/absadmin
+              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+              cd "$HOME/Projeto-Absoluto"
+              openclaw agent --message "Reply with exactly OPENCLAW_V2_INTEGRATION_OK and nothing else." --json > /tmp/openclaw-v2-test.json
+              python3 - <<'PY'
+import json
+p="/tmp/openclaw-v2-test.json"
+s=open(p,encoding="utf-8").read()
+if "OPENCLAW_V2_INTEGRATION_OK" not in s:
+    raise SystemExit("openclaw_v2_expected_text_missing")
+print("OPENCLAW V2 INTEGRATION PASS")
+PY
+              result="$(cat /tmp/openclaw-v2-test.json | tail -c 12000)"
               ;;
             openclaw-install)
               set -e
@@ -180,6 +196,7 @@ jobs:
           /abs abs-status
           /abs test
           /abs v2-test
+          /abs openclaw-v2-test
           /abs openclaw-install
           /abs openclaw-status'
               ;;
