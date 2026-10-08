@@ -188,6 +188,10 @@ jobs:
               } > /tmp/openclaw-vps-result.txt
               result="$(cat /tmp/openclaw-vps-result.txt)"
               ;;
+            diagnose)
+              { sudo journalctl -u abs.service -n 100 --no-pager 2>&1 || true; echo; cd "$HOME/Projeto-Absoluto"; python3 -c 'import abs_core.v3; print("V3_IMPORT_OK")' 2>&1 || true; } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             abs-status)
               {
                 sudo systemctl status abs.service --no-pager -l || true
