@@ -73,6 +73,8 @@ jobs:
               ;;
             v3-test)
               cd "$HOME/Projeto-Absoluto"
+              git fetch origin main --quiet
+              git reset --hard origin/main --quiet
               set +e
               python3 -m compileall -q abs_core > /tmp/v3-compile.txt 2>&1
               compile_rc=$?
