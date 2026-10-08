@@ -40,4 +40,5 @@ jobs:
           done
           free -h
           df -h /
-          exit "$failed"
+          if [ "$failed" -ne 0 ]; then exit "$failed"; fi
+          echo "ABS_LOCAL_AI_HEALTH_PASS"
