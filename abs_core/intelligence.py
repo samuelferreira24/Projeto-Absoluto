@@ -120,6 +120,11 @@ class CognitiveRuntime:
 
     def _rank_resources(self, session: dict[str, Any], preferred_resource: str | None = None) -> list[IntelligenceResource]:
         preferred = preferred_resource or session.get("preferred_resource")
+        requested_capability = session.get("context", {}).get("capability_id")
+        if not preferred and requested_capability:
+            preferred = str(requested_capability)
+            if not preferred.startswith("intelligence:"):
+                preferred = f"intelligence:{preferred}"
         resources = [r for r in self.intelligence.list() if r.status not in {"offline", "planned"}]
         if session.get("context", {}).get("offline") is True:
             resources = [r for r in resources if r.local]
