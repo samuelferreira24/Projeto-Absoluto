@@ -60,7 +60,7 @@ def build_registry() -> CapabilityRegistry:
     from .internet_adapter import InternetHTTPCapability
     from .github_adapter import GitHubCapability
 
-    registry.register(CapabilityRecord("codex", "OpenAI Codex CLI", "external_ai", CodexCapability()))
+    registry.register(CapabilityRecord("codex", "OpenAI Codex CLI", "external_ai", CodexCapability(), metadata={"cost_class": "subscription", "capabilities": ["reasoning", "coding", "tools", "agent"]}))
     registry.register(CapabilityRecord("internet-http", "Internet HTTP", "network", InternetHTTPCapability()))
     registry.register(CapabilityRecord(
         "github",
