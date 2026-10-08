@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T01:50:14-03:00",
-  "source_revision": "30d31faf72f42308267e554d37b4b86a96557fa4",
+  "generated_at": "2026-10-08T01:53:39-03:00",
+  "source_revision": "42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "30d31faf72f42308267e554d37b4b86a96557fa4",
-      "commit_subject": "Inicializar configuracao base do Gateway OpenClaw"
+      "revision": "42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
+      "commit_subject": "Inicializar memoria e ordens operacionais do OpenClaw"
     }
   ],
   "tools": [
@@ -7791,6 +7791,20 @@
       "sha": "30d31faf72f42308267e554d37b4b86a96557fa4"
     },
     {
+      "id": "commit:f3878fe696b74d5b5f9ae7ce62f37749230f7398",
+      "kind": "commit",
+      "at": "2026-10-08T04:50:36Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "f3878fe696b74d5b5f9ae7ce62f37749230f7398"
+    },
+    {
+      "id": "commit:42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
+      "kind": "commit",
+      "at": "2026-10-08T01:53:39-03:00",
+      "subject": "Inicializar memoria e ordens operacionais do OpenClaw",
+      "sha": "42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7903,23 +7917,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:493ef27fee30",
+      "id": "evidence:repository:52c262516956",
       "kind": "evidence",
-      "at": "2026-10-08T01:50:14-03:00",
+      "at": "2026-10-08T01:53:39-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:493ef27fee30",
+      "id": "event:repository-scan:52c262516956",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T01:50:14-03:00"
+      "at": "2026-10-08T01:53:39-03:00"
     },
     {
-      "id": "event:commit-observed:30d31faf72f4",
+      "id": "event:commit-observed:42b0858cd5ef",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T01:50:14-03:00"
+      "at": "2026-10-08T01:53:39-03:00"
     }
   ],
   "paths": [
@@ -7954,11 +7968,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:e4d8d0aec771"
+        "evidence:test:a170d8a7a897"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T01:50:14-03:00"
+      "last_validated": "2026-10-08T01:53:39-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7981,20 +7995,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:493ef27fee30",
+      "id": "evidence:repository:52c262516956",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T01:50:14-03:00",
+      "observed_at": "2026-10-08T01:53:39-03:00",
       "status": "observed",
-      "detail": "379 files indexed at revision 30d31faf72f42308267e554d37b4b86a96557fa4"
+      "detail": "379 files indexed at revision 42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2"
     },
     {
-      "id": "evidence:test:e4d8d0aec771",
+      "id": "evidence:test:a170d8a7a897",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T01:50:14-03:00",
+      "observed_at": "2026-10-08T01:53:39-03:00",
       "status": "tested",
-      "detail": "163 passed in 8.00s"
+      "detail": "163 passed in 7.39s"
     }
   ],
   "decisions": [
@@ -8097,30 +8111,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:493ef27fee30",
+      "id": "event:repository-scan:52c262516956",
       "type": "repository_scanned",
-      "at": "2026-10-08T01:50:14-03:00",
-      "revision": "30d31faf72f42308267e554d37b4b86a96557fa4",
+      "at": "2026-10-08T01:53:39-03:00",
+      "revision": "42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
       "file_count": 379,
-      "evidence_id": "evidence:repository:493ef27fee30"
+      "evidence_id": "evidence:repository:52c262516956"
     },
     {
-      "id": "event:commit-observed:30d31faf72f4",
+      "id": "event:commit-observed:42b0858cd5ef",
       "type": "commit_observed",
-      "at": "2026-10-08T01:50:14-03:00",
-      "revision": "30d31faf72f42308267e554d37b4b86a96557fa4",
+      "at": "2026-10-08T01:53:39-03:00",
+      "revision": "42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
       "branch": "main",
-      "subject": "Inicializar configuracao base do Gateway OpenClaw",
+      "subject": "Inicializar memoria e ordens operacionais do OpenClaw",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:e4d8d0aec771",
+      "id": "event:test:a170d8a7a897",
       "type": "tests_observed",
-      "at": "2026-10-08T01:50:14-03:00",
+      "at": "2026-10-08T01:53:39-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:e4d8d0aec771"
+      "evidence_id": "evidence:test:a170d8a7a897"
     }
   ],
   "knowledge_sources": [
@@ -8176,7 +8190,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "b3aa61a5aaa43465e37d1ed5609513c79c224b202feec02e6dbb426b38572eaa"
+      "sha256": "58f17f2f4f9c22c3db39baa8fb6588776f47d18a7376d996b941eeac79fe9fff"
     },
     {
       "id": "source:session",
@@ -31843,12 +31857,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:493ef27fee30",
-      "source": "event:repository-scan:493ef27fee30",
-      "relation": "generated",
-      "target": "evidence:repository:493ef27fee30",
+      "id": "rel:commit-precedes:30d31faf72f4:f3878fe696b7",
+      "source": "commit:30d31faf72f42308267e554d37b4b86a96557fa4",
+      "relation": "precedes",
+      "target": "commit:f3878fe696b74d5b5f9ae7ce62f37749230f7398",
       "status": "asserted",
-      "at": "2026-10-08T01:50:14-03:00",
+      "at": "2026-10-08T04:50:36Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f3878fe696b7:032adc3624d7",
+      "source": "commit:f3878fe696b74d5b5f9ae7ce62f37749230f7398",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T04:50:36Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f3878fe696b7:d64178c49886",
+      "source": "commit:f3878fe696b74d5b5f9ae7ce62f37749230f7398",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T04:50:36Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f3878fe696b7:42b0858cd5ef",
+      "source": "commit:f3878fe696b74d5b5f9ae7ce62f37749230f7398",
+      "relation": "precedes",
+      "target": "commit:42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
+      "status": "asserted",
+      "at": "2026-10-08T01:53:39-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:42b0858cd5ef:1734be446032",
+      "source": "commit:42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-08T01:53:39-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:52c262516956",
+      "source": "event:repository-scan:52c262516956",
+      "relation": "generated",
+      "target": "evidence:repository:52c262516956",
+      "status": "asserted",
+      "at": "2026-10-08T01:53:39-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -31857,12 +31941,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:30d31faf72f4",
-      "source": "commit:30d31faf72f42308267e554d37b4b86a96557fa4",
+      "id": "rel:scan-commit:42b0858cd5ef",
+      "source": "commit:42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
       "relation": "observed_by",
-      "target": "event:repository-scan:493ef27fee30",
+      "target": "event:repository-scan:52c262516956",
       "status": "asserted",
-      "at": "2026-10-08T01:50:14-03:00",
+      "at": "2026-10-08T01:53:39-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
