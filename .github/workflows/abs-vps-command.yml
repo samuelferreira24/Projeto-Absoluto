@@ -19,9 +19,12 @@ concurrency:
 jobs:
   execute:
     if: >-
-      github.event.issue.pull_request == null &&
-      github.event.comment.user.login == 'samuelferreira24' &&
-      startsWith(github.event.comment.body, '/abs ')
+      github.event_name == 'push' ||
+      (
+        github.event.issue.pull_request == null &&
+        github.event.comment.user.login == 'samuelferreira24' &&
+        startsWith(github.event.comment.body, '/abs ')
+      )
     runs-on: [self-hosted, abs-vps-01]
     timeout-minutes: 10
 
