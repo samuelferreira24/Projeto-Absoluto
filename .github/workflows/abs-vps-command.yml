@@ -71,6 +71,13 @@ jobs:
               sleep 2
               result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               ;;
+            v2-test)
+              set -e
+              cd "$HOME/Projeto-Absoluto"
+              python3 -m pytest -q tests/test_abs_v2.py
+              python3 -m compileall -q abs_core
+              result="ABS V2 pytest + compileall PASS"
+              ;;
             test)
               set -e
               work_json="$(curl -fsS --max-time 10 -X POST http://127.0.0.1:8787/works -H 'Content-Type: application/json' -d '{"objective":"ABS VPS end-to-end test"}')"
@@ -170,6 +177,7 @@ jobs:
           /abs start
           /abs abs-status
           /abs test
+          /abs v2-test
           /abs openclaw-install
           /abs openclaw-status'
               ;;
