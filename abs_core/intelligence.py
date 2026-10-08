@@ -249,6 +249,12 @@ class CognitiveRuntime:
                 final_response = result.get("error", "intelligence_execution_failed") if isinstance(result, dict) else str(result)
             else:
                 final_response = self._extract_final_response(result)
+            actual_capability = getattr(work, "capability_id", None)
+            if actual_capability and resource.capability_id != actual_capability:
+                try:
+                    resource = self.intelligence.get(f"intelligence:{actual_capability}")
+                except KeyError:
+                    pass
             session["messages"].append({"role": "assistant", "content": final_response})
             session["preferred_resource"] = preferred_resource or session.get("preferred_resource")
             self._save(session)
