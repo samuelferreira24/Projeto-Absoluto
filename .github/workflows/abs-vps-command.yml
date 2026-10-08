@@ -131,6 +131,69 @@ jobs:
               } > /tmp/openclaw-vps-result.txt
               result="$(cat /tmp/openclaw-vps-result.txt)"
               ;;
+            openclaw-bootstrap)
+              set -e
+              export HOME=/home/absadmin
+              export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
+              mkdir -p /home/absadmin/openclaw-workspace/memory
+              cat > /home/absadmin/openclaw-workspace/AGENTS.md <<'EOF'
+# Projeto Absoluto — Ordem Operacional Provisória
+
+## Papel
+Você é o operador 24/7 do Projeto Absoluto na VPS. Observe, diagnostique, execute operações autorizadas e mantenha o sistema funcionando.
+
+## Autoridade
+- Imperador (usuário) = autoridade final.
+- ABS = núcleo de autoridade/orquestração/verificação do sistema.
+- OpenClaw = operador/inteligência operacional provisória; não substitui o ABS.
+- ChatGPT e outras IAs = inteligências externas que podem orientar ou colaborar.
+
+## Regras
+1. Prefira observar e verificar antes de alterar.
+2. Para operações do ABS, preserve o ciclo objetivo → execução → verificação → proveniência.
+3. Registre mudanças relevantes na memória operacional.
+4. Não apague dados, destrua serviços, altere firewall, credenciais ou arquitetura estrutural sem autorização explícita.
+5. Mudanças reversíveis e manutenção rotineira podem ser executadas quando claramente necessárias.
+6. Em caso de incerteza relevante, pare e peça orientação.
+7. Nunca trate uma conversa ou inferência como evidência; prefira estado real, logs, testes e Git.
+EOF
+              cat > /home/absadmin/openclaw-workspace/MEMORY.md <<'EOF'
+# Memória Operacional — Projeto Absoluto
+
+## Estado em 2026-10-08
+- VPS: abs-vps-01, Ubuntu 24.04, x86_64, 3 vCPU, ~5.7 GiB RAM, 2 GiB swap, ~46 GiB livres.
+- Usuário operacional: absadmin.
+- ABS: serviço systemd ativo em 127.0.0.1:8787; ciclo V1 objetivo → work → capability → execução → verificação → proveniência → persistência → resultado já foi testado com PASS.
+- Coolify: instalado na VPS.
+- Ponte ChatGPT → GitHub Actions → self-hosted runner → VPS: funcional.
+- Runner: abs-vps-01, serviço persistente.
+- OpenClaw: 2026.9.8 instalado em /usr/bin/openclaw.
+- OpenClaw Gateway: serviço systemd openclaw-gateway.service, loopback 127.0.0.1:18789, persistente.
+
+## Arquitetura provisória
+Imperador → ABS (autoridade/orquestração/verificação) → OpenClaw (operador 24/7) → VPS/GitHub/Termux/browser e futuras integrações.
+ChatGPT é uma inteligência externa, não o único operador.
+
+## Próximo bloqueio
+Conectar uma identidade de modelo ao OpenClaw. Preferência inicial: OpenAI Codex/ChatGPT OAuth por device code, se a conta for elegível. A autorização deve ser feita pelo usuário; não registrar códigos ou credenciais no GitHub.
+
+## Memória
+GitHub permanece a memória técnica versionada. Este workspace é memória operacional do operador. Mudanças importantes devem ser consolidadas no Git quando apropriado.
+EOF
+              cat > /home/absadmin/openclaw-workspace/memory/2026-10-08.md <<'EOF'
+# 2026-10-08
+
+OpenClaw foi instalado na VPS como operador 24/7 provisório. Gateway ativo por systemd, loopback 127.0.0.1:18789. Ainda sem perfil de autenticação de modelo. ABS continua sendo autoridade/orquestrador; OpenClaw não deve substituir essa função.
+EOF
+              chown -R absadmin:absadmin /home/absadmin/openclaw-workspace
+              sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw config set agents.defaults.workspace /home/absadmin/openclaw-workspace
+              sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw config set tools.exec.mode auto
+              sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw config set agents.defaults.heartbeat.every 30m
+              sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw config set agents.defaults.heartbeat.target none
+              sudo systemctl restart openclaw-gateway.service
+              sleep 5
+              result="$(sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw gateway status --deep 2>&1)"
+              ;;
             openclaw-status)
               export HOME=/home/absadmin
               export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
@@ -171,7 +234,8 @@ jobs:
           /abs abs-status
           /abs test
           /abs openclaw-install
-          /abs openclaw-status'
+          /abs openclaw-status
+          /abs openclaw-bootstrap'
               ;;
             status)
               {
