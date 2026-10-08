@@ -6,6 +6,8 @@ on:
   push:
     paths:
       - '.github/workflows/abs-vps-command.yml'
+  pull_request:
+    types: [opened, synchronize]
 
 permissions:
   contents: read
@@ -19,6 +21,7 @@ jobs:
   execute:
     if: >-
       (github.event_name == 'push') ||
+      (github.event_name == 'pull_request') ||
       (github.event.issue.pull_request == null &&
        github.event.comment.user.login == 'samuelferreira24' &&
        startsWith(github.event.comment.body, '/abs '))
@@ -30,7 +33,7 @@ jobs:
         id: command
         shell: bash
         env:
-          REQUEST: ${{ github.event_name == 'push' && '/abs openclaw-status' || github.event.comment.body }}
+          REQUEST: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && '/abs openclaw-status' || github.event.comment.body }}
         run: |
           set -u
           command="${REQUEST#'/abs '}"
@@ -326,7 +329,7 @@ EOF
               'OUTPUT_END'
             ].join('\n');
 
-            if (github.context.eventName === 'issue_comment') {
+            if (context.eventName === 'issue_comment') {
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
