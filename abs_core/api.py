@@ -39,6 +39,7 @@ class ABSHandler(BaseHTTPRequestHandler):
     tool_learning: ToolLearningEngine | None = None
     resource_dispatcher: ResourceDispatcher | None = None
     cognitive_runtime: CognitiveRuntime | None = None
+    operational_intelligence = None
     protocols = None
     started_at = time.time()
 
@@ -395,6 +396,19 @@ class ABSHandler(BaseHTTPRequestHandler):
             self.interface_runtime.update_context(**values)
             self._send(200, self.interface_runtime.public_state())
             return
+        if self.path == "/objective":
+            objective = str(data.get("objective") or "").strip()
+            if not objective:
+                self._send(400, {"error": "objective_required"})
+                return
+            result = self.operational_intelligence.execute(
+                objective,
+                data.get("context") if isinstance(data.get("context"), dict) else {},
+                self.orchestrator,
+            )
+            self._send(200, result)
+            return
+
         if self.path == "/chat":
             message = str(data.get("message") or "").strip()
             if not message:
