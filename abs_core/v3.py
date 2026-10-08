@@ -82,7 +82,19 @@ class V3StateStore:
             self.db.execute("INSERT INTO v3_capacity(load,available,concurrency,state,ts) VALUES(?,?,?,?,?)",
                             (s.load_ratio,s.available_bytes,s.concurrency,s.state.value,s.timestamp))
             self.db.commit()
-    def learning(self,key):\n        with self._lock:\n            row=self.db.execute("SELECT attempts,successes,failures,latency_sum FROM v3_learning WHERE key=?",(key,)).fetchone()\n            if not row: return {}\n            a,ok,fail,total=row\n            return {"attempts":a,"successes":ok,"failures":fail,"latency_avg":(total/a if a else 0.0)}\n    def all_learning(self):\n        with self._lock:\n            rows=self.db.execute("SELECT key,attempts,successes,failures,latency_sum FROM v3_learning").fetchall()\n            return {k:{"attempts":a,"successes":ok,"failures":fail,"latency_avg":(total/a if a else 0.0)} for k,a,ok,fail,total in rows}\n    def learn(self,key,success,latency):
+    def learning(self,key):
+        with self._lock:
+            row=self.db.execute("SELECT attempts,successes,failures,latency_sum FROM v3_learning WHERE key=?",(key,)).fetchone()
+            if not row: return {}
+            a,ok,fail,total=row
+            return {"attempts":a,"successes":ok,"failures":fail,"latency_avg":(total/a if a else 0.0)}
+
+    def all_learning(self):
+        with self._lock:
+            rows=self.db.execute("SELECT key,attempts,successes,failures,latency_sum FROM v3_learning").fetchall()
+            return {k:{"attempts":a,"successes":ok,"failures":fail,"latency_avg":(total/a if a else 0.0)} for k,a,ok,fail,total in rows}
+
+    def learn(self,key,success,latency):
         with self._lock:
             row=self.db.execute("SELECT attempts,successes,failures,latency_sum FROM v3_learning WHERE key=?",(key,)).fetchone()
             a,ok,fail,total=row or (0,0,0,0.0)
