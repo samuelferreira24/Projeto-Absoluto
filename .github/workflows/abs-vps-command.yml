@@ -71,6 +71,14 @@ jobs:
               sleep 2
               result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               ;;
+            test)
+              set -e
+              work_json="$(curl -fsS --max-time 10 -X POST http://127.0.0.1:8787/works -H 'Content-Type: application/json' -d '{"objective":"ABS VPS end-to-end test"}')"
+              work_id="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])' <<<"$work_json")"
+              run_json="$(curl -fsS --max-time 10 -X POST "http://127.0.0.1:8787/works/$work_id/run" -H 'Content-Type: application/json' -d '{"capability_id":"echo","approved":false}')"
+              health="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
+              result="$(printf 'health: %s\nwork_create: %s\nwork_run: %s\n' "$health" "$work_json" "$run_json")"
+              ;;
             abs-status)
               {
                 sudo systemctl status abs.service --no-pager -l || true
@@ -89,7 +97,8 @@ jobs:
           /abs git
           /abs install
           /abs start
-          /abs abs-status'
+          /abs abs-status
+          /abs test'
               ;;
             status)
               {
