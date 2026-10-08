@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T17:21:48-03:00",
-  "source_revision": "290ac270d2f2ed5be5974f580e1a6154227f4788",
+  "generated_at": "2026-10-08T17:22:32-03:00",
+  "source_revision": "cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "290ac270d2f2ed5be5974f580e1a6154227f4788",
-      "commit_subject": "Adicionar instalador controlado da frota de IAs locais"
+      "revision": "cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
+      "commit_subject": "Restaurar canal VPS comprovadamente funcional"
     }
   ],
   "tools": [
@@ -9070,6 +9070,20 @@
       "sha": "290ac270d2f2ed5be5974f580e1a6154227f4788"
     },
     {
+      "id": "commit:de0c319831ec9f37645a139ca6044a33c29a6ea8",
+      "kind": "commit",
+      "at": "2026-10-08T20:22:11Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "de0c319831ec9f37645a139ca6044a33c29a6ea8"
+    },
+    {
+      "id": "commit:cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
+      "kind": "commit",
+      "at": "2026-10-08T17:22:32-03:00",
+      "subject": "Restaurar canal VPS comprovadamente funcional",
+      "sha": "cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9182,23 +9196,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:c081050f14ef",
+      "id": "evidence:repository:9e9ad024f6eb",
       "kind": "evidence",
-      "at": "2026-10-08T17:21:48-03:00",
+      "at": "2026-10-08T17:22:32-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:c081050f14ef",
+      "id": "event:repository-scan:9e9ad024f6eb",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T17:21:48-03:00"
+      "at": "2026-10-08T17:22:32-03:00"
     },
     {
-      "id": "event:commit-observed:290ac270d2f2",
+      "id": "event:commit-observed:cfee6ff3874a",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T17:21:48-03:00"
+      "at": "2026-10-08T17:22:32-03:00"
     }
   ],
   "paths": [
@@ -9233,11 +9247,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:f7bd4f0f15fc"
+        "evidence:test:875cdfb3db52"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T17:21:48-03:00"
+      "last_validated": "2026-10-08T17:22:32-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9260,20 +9274,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:c081050f14ef",
+      "id": "evidence:repository:9e9ad024f6eb",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T17:21:48-03:00",
+      "observed_at": "2026-10-08T17:22:32-03:00",
       "status": "observed",
-      "detail": "401 files indexed at revision 290ac270d2f2ed5be5974f580e1a6154227f4788"
+      "detail": "401 files indexed at revision cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde"
     },
     {
-      "id": "evidence:test:f7bd4f0f15fc",
+      "id": "evidence:test:875cdfb3db52",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T17:21:48-03:00",
+      "observed_at": "2026-10-08T17:22:32-03:00",
       "status": "tested",
-      "detail": "196 passed in 7.59s"
+      "detail": "196 passed in 7.52s"
     }
   ],
   "decisions": [
@@ -9376,30 +9390,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:c081050f14ef",
+      "id": "event:repository-scan:9e9ad024f6eb",
       "type": "repository_scanned",
-      "at": "2026-10-08T17:21:48-03:00",
-      "revision": "290ac270d2f2ed5be5974f580e1a6154227f4788",
+      "at": "2026-10-08T17:22:32-03:00",
+      "revision": "cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
       "file_count": 401,
-      "evidence_id": "evidence:repository:c081050f14ef"
+      "evidence_id": "evidence:repository:9e9ad024f6eb"
     },
     {
-      "id": "event:commit-observed:290ac270d2f2",
+      "id": "event:commit-observed:cfee6ff3874a",
       "type": "commit_observed",
-      "at": "2026-10-08T17:21:48-03:00",
-      "revision": "290ac270d2f2ed5be5974f580e1a6154227f4788",
+      "at": "2026-10-08T17:22:32-03:00",
+      "revision": "cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
       "branch": "main",
-      "subject": "Adicionar instalador controlado da frota de IAs locais",
+      "subject": "Restaurar canal VPS comprovadamente funcional",
       "changed_files": [
-        ".github/workflows/abs-local-ai-installer.yml"
+        ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:f7bd4f0f15fc",
+      "id": "event:test:875cdfb3db52",
       "type": "tests_observed",
-      "at": "2026-10-08T17:21:48-03:00",
+      "at": "2026-10-08T17:22:32-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:f7bd4f0f15fc"
+      "evidence_id": "evidence:test:875cdfb3db52"
     }
   ],
   "knowledge_sources": [
@@ -9455,7 +9469,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "a15e6e23fbceb149b9972dea885154a2815002356753f07e14880b475350d083"
+      "sha256": "7e6621b5942f69c2c1853f558e8f8ea430de42e667adc7834dfba694e7ffd960"
     },
     {
       "id": "source:session",
@@ -38694,12 +38708,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:c081050f14ef",
-      "source": "event:repository-scan:c081050f14ef",
-      "relation": "generated",
-      "target": "evidence:repository:c081050f14ef",
+      "id": "rel:commit-precedes:290ac270d2f2:de0c319831ec",
+      "source": "commit:290ac270d2f2ed5be5974f580e1a6154227f4788",
+      "relation": "precedes",
+      "target": "commit:de0c319831ec9f37645a139ca6044a33c29a6ea8",
       "status": "asserted",
-      "at": "2026-10-08T17:21:48-03:00",
+      "at": "2026-10-08T20:22:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:de0c319831ec:032adc3624d7",
+      "source": "commit:de0c319831ec9f37645a139ca6044a33c29a6ea8",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T20:22:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:de0c319831ec:d64178c49886",
+      "source": "commit:de0c319831ec9f37645a139ca6044a33c29a6ea8",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T20:22:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:de0c319831ec:cfee6ff3874a",
+      "source": "commit:de0c319831ec9f37645a139ca6044a33c29a6ea8",
+      "relation": "precedes",
+      "target": "commit:cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
+      "status": "asserted",
+      "at": "2026-10-08T17:22:32-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cfee6ff3874a:1734be446032",
+      "source": "commit:cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-08T17:22:32-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:9e9ad024f6eb",
+      "source": "event:repository-scan:9e9ad024f6eb",
+      "relation": "generated",
+      "target": "evidence:repository:9e9ad024f6eb",
+      "status": "asserted",
+      "at": "2026-10-08T17:22:32-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -38708,12 +38792,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:290ac270d2f2",
-      "source": "commit:290ac270d2f2ed5be5974f580e1a6154227f4788",
+      "id": "rel:scan-commit:cfee6ff3874a",
+      "source": "commit:cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
       "relation": "observed_by",
-      "target": "event:repository-scan:c081050f14ef",
+      "target": "event:repository-scan:9e9ad024f6eb",
       "status": "asserted",
-      "at": "2026-10-08T17:21:48-03:00",
+      "at": "2026-10-08T17:22:32-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
