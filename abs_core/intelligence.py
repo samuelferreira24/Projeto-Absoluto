@@ -140,6 +140,21 @@ class CognitiveRuntime:
             raise RuntimeError("no_intelligence_resource_available")
         return resources[0]
 
+    @staticmethod
+    def _extract_final_response(result: Any) -> Any:
+        if isinstance(result, dict):
+            direct = result.get("final_response")
+            if direct is not None:
+                return direct
+            nested = result.get("result")
+            if isinstance(nested, dict):
+                inner = nested.get("final_response")
+                if inner is not None:
+                    return inner
+            if nested is not None and not isinstance(nested, dict):
+                return nested
+        return result
+
     def turn(self, message: str, *, session_id: str | None = None, preferred_resource: str | None = None,
              context: dict[str, Any] | None = None, approved: bool = False) -> dict[str, Any]:
         message = str(message or "").strip()
@@ -233,7 +248,7 @@ class CognitiveRuntime:
             if work.state.value == "failed":
                 final_response = result.get("error", "intelligence_execution_failed") if isinstance(result, dict) else str(result)
             else:
-                final_response = result.get("final_response") if isinstance(result, dict) else result
+                final_response = self._extract_final_response(result)
             session["messages"].append({"role": "assistant", "content": final_response})
             session["preferred_resource"] = preferred_resource or session.get("preferred_resource")
             self._save(session)
