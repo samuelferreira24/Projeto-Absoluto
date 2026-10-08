@@ -33,13 +33,63 @@ jobs:
           result=""
 
           case "$command" in
+            install)
+              set -e
+              if [ ! -d "$HOME/Projeto-Absoluto/.git" ]; then
+                git clone https://github.com/samuelferreira24/Projeto-Absoluto.git "$HOME/Projeto-Absoluto"
+              else
+                git -C "$HOME/Projeto-Absoluto" fetch origin main
+                git -C "$HOME/Projeto-Absoluto" reset --hard origin/main
+              fi
+              sudo tee /etc/systemd/system/abs.service >/dev/null <<'UNIT'
+          [Unit]
+          Description=ABS Sistema Absoluto
+          After=network-online.target
+          Wants=network-online.target
+
+          [Service]
+          Type=simple
+          User=absadmin
+          WorkingDirectory=/home/absadmin/Projeto-Absoluto
+          ExecStart=/usr/bin/python3 -m abs_core.server
+          Restart=always
+          RestartSec=5
+          Environment=PYTHONUNBUFFERED=1
+
+          [Install]
+          WantedBy=multi-user.target
+          UNIT
+              sudo systemctl daemon-reload
+              sudo systemctl enable abs.service
+              sudo systemctl restart abs.service
+              sleep 2
+              result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
+              ;;
+            start)
+              sudo systemctl enable abs.service
+              sudo systemctl restart abs.service
+              sleep 2
+              result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
+              ;;
+            abs-status)
+              {
+                sudo systemctl status abs.service --no-pager -l || true
+                echo
+                echo "[health]"
+                curl -fsS --max-time 10 http://127.0.0.1:8787/health || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             help)
               result='Available commands:
           /abs help
           /abs status
           /abs docker
           /abs coolify
-          /abs git'
+          /abs git
+          /abs install
+          /abs start
+          /abs abs-status'
               ;;
             status)
               {
