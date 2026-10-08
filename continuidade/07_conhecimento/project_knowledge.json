@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T01:53:39-03:00",
-  "source_revision": "42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
+  "generated_at": "2026-10-08T01:56:19-03:00",
+  "source_revision": "e3bc5f2947229f1b4812fc6fd380c67fbf274d57",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 67
+      "file_count": 70
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
-      "commit_subject": "Inicializar memoria e ordens operacionais do OpenClaw"
+      "revision": "e3bc5f2947229f1b4812fc6fd380c67fbf274d57",
+      "commit_subject": "Adicionar memoria operacional do Projeto Absoluto"
     }
   ],
   "tools": [
@@ -3068,6 +3068,21 @@
       "id": "file:docs/architecture/PROJECT_KNOWLEDGE_V1.md",
       "kind": "file",
       "path": "docs/architecture/PROJECT_KNOWLEDGE_V1.md"
+    },
+    {
+      "id": "file:docs/memoria/DECISOES.md",
+      "kind": "file",
+      "path": "docs/memoria/DECISOES.md"
+    },
+    {
+      "id": "file:docs/memoria/ESTADO_ATUAL.md",
+      "kind": "file",
+      "path": "docs/memoria/ESTADO_ATUAL.md"
+    },
+    {
+      "id": "file:docs/memoria/MEMORIA_OPERACIONAL.md",
+      "kind": "file",
+      "path": "docs/memoria/MEMORIA_OPERACIONAL.md"
     },
     {
       "id": "file:extract_text.py",
@@ -7805,6 +7820,34 @@
       "sha": "42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2"
     },
     {
+      "id": "commit:25335f1b4597580937479cb83438a95294c05b29",
+      "kind": "commit",
+      "at": "2026-10-08T04:53:59Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "25335f1b4597580937479cb83438a95294c05b29"
+    },
+    {
+      "id": "commit:b6f5f6a07a132f2af967a9b2aa13916437b8acfc",
+      "kind": "commit",
+      "at": "2026-10-08T01:56:15-03:00",
+      "subject": "Adicionar memoria operacional do Projeto Absoluto",
+      "sha": "b6f5f6a07a132f2af967a9b2aa13916437b8acfc"
+    },
+    {
+      "id": "commit:be30a00a3e5980af2975477ca32e23637cd2f986",
+      "kind": "commit",
+      "at": "2026-10-08T01:56:17-03:00",
+      "subject": "Adicionar memoria operacional do Projeto Absoluto",
+      "sha": "be30a00a3e5980af2975477ca32e23637cd2f986"
+    },
+    {
+      "id": "commit:e3bc5f2947229f1b4812fc6fd380c67fbf274d57",
+      "kind": "commit",
+      "at": "2026-10-08T01:56:19-03:00",
+      "subject": "Adicionar memoria operacional do Projeto Absoluto",
+      "sha": "e3bc5f2947229f1b4812fc6fd380c67fbf274d57"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -7917,23 +7960,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:52c262516956",
+      "id": "evidence:repository:bd4eb8ea3c99",
       "kind": "evidence",
-      "at": "2026-10-08T01:53:39-03:00",
+      "at": "2026-10-08T01:56:19-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:52c262516956",
+      "id": "event:repository-scan:bd4eb8ea3c99",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T01:53:39-03:00"
+      "at": "2026-10-08T01:56:19-03:00"
     },
     {
-      "id": "event:commit-observed:42b0858cd5ef",
+      "id": "event:commit-observed:e3bc5f294722",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T01:53:39-03:00"
+      "at": "2026-10-08T01:56:19-03:00"
     }
   ],
   "paths": [
@@ -7968,11 +8011,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:a170d8a7a897"
+        "evidence:test:dbb76c2b76fd"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T01:53:39-03:00"
+      "last_validated": "2026-10-08T01:56:19-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -7995,20 +8038,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:52c262516956",
+      "id": "evidence:repository:bd4eb8ea3c99",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T01:53:39-03:00",
+      "observed_at": "2026-10-08T01:56:19-03:00",
       "status": "observed",
-      "detail": "379 files indexed at revision 42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2"
+      "detail": "382 files indexed at revision e3bc5f2947229f1b4812fc6fd380c67fbf274d57"
     },
     {
-      "id": "evidence:test:a170d8a7a897",
+      "id": "evidence:test:dbb76c2b76fd",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T01:53:39-03:00",
+      "observed_at": "2026-10-08T01:56:19-03:00",
       "status": "tested",
-      "detail": "163 passed in 7.39s"
+      "detail": "163 passed in 7.35s"
     }
   ],
   "decisions": [
@@ -8111,30 +8154,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:52c262516956",
+      "id": "event:repository-scan:bd4eb8ea3c99",
       "type": "repository_scanned",
-      "at": "2026-10-08T01:53:39-03:00",
-      "revision": "42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
-      "file_count": 379,
-      "evidence_id": "evidence:repository:52c262516956"
+      "at": "2026-10-08T01:56:19-03:00",
+      "revision": "e3bc5f2947229f1b4812fc6fd380c67fbf274d57",
+      "file_count": 382,
+      "evidence_id": "evidence:repository:bd4eb8ea3c99"
     },
     {
-      "id": "event:commit-observed:42b0858cd5ef",
+      "id": "event:commit-observed:e3bc5f294722",
       "type": "commit_observed",
-      "at": "2026-10-08T01:53:39-03:00",
-      "revision": "42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
+      "at": "2026-10-08T01:56:19-03:00",
+      "revision": "e3bc5f2947229f1b4812fc6fd380c67fbf274d57",
       "branch": "main",
-      "subject": "Inicializar memoria e ordens operacionais do OpenClaw",
+      "subject": "Adicionar memoria operacional do Projeto Absoluto",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        "docs/memoria/DECISOES.md"
       ]
     },
     {
-      "id": "event:test:a170d8a7a897",
+      "id": "event:test:dbb76c2b76fd",
       "type": "tests_observed",
-      "at": "2026-10-08T01:53:39-03:00",
+      "at": "2026-10-08T01:56:19-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:a170d8a7a897"
+      "evidence_id": "evidence:test:dbb76c2b76fd"
     }
   ],
   "knowledge_sources": [
@@ -8190,7 +8233,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "58f17f2f4f9c22c3db39baa8fb6588776f47d18a7376d996b941eeac79fe9fff"
+      "sha256": "b76e7005069b20d32750f99f43fd71186daa43b54ad4856fb74d2eab73b3d6ca"
     },
     {
       "id": "source:session",
@@ -31927,12 +31970,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:52c262516956",
-      "source": "event:repository-scan:52c262516956",
-      "relation": "generated",
-      "target": "evidence:repository:52c262516956",
+      "id": "rel:commit-precedes:42b0858cd5ef:25335f1b4597",
+      "source": "commit:42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
+      "relation": "precedes",
+      "target": "commit:25335f1b4597580937479cb83438a95294c05b29",
       "status": "asserted",
-      "at": "2026-10-08T01:53:39-03:00",
+      "at": "2026-10-08T04:53:59Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:25335f1b4597:032adc3624d7",
+      "source": "commit:25335f1b4597580937479cb83438a95294c05b29",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T04:53:59Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:25335f1b4597:d64178c49886",
+      "source": "commit:25335f1b4597580937479cb83438a95294c05b29",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T04:53:59Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:25335f1b4597:b6f5f6a07a13",
+      "source": "commit:25335f1b4597580937479cb83438a95294c05b29",
+      "relation": "precedes",
+      "target": "commit:b6f5f6a07a132f2af967a9b2aa13916437b8acfc",
+      "status": "asserted",
+      "at": "2026-10-08T01:56:15-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b6f5f6a07a13:7b7fb23c2cb5",
+      "source": "commit:b6f5f6a07a132f2af967a9b2aa13916437b8acfc",
+      "relation": "changed",
+      "target": "file:docs/memoria/ESTADO_ATUAL.md",
+      "status": "asserted",
+      "at": "2026-10-08T01:56:15-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b6f5f6a07a13:be30a00a3e59",
+      "source": "commit:b6f5f6a07a132f2af967a9b2aa13916437b8acfc",
+      "relation": "precedes",
+      "target": "commit:be30a00a3e5980af2975477ca32e23637cd2f986",
+      "status": "asserted",
+      "at": "2026-10-08T01:56:17-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:be30a00a3e59:c1816d4ad0e7",
+      "source": "commit:be30a00a3e5980af2975477ca32e23637cd2f986",
+      "relation": "changed",
+      "target": "file:docs/memoria/MEMORIA_OPERACIONAL.md",
+      "status": "asserted",
+      "at": "2026-10-08T01:56:17-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:be30a00a3e59:e3bc5f294722",
+      "source": "commit:be30a00a3e5980af2975477ca32e23637cd2f986",
+      "relation": "precedes",
+      "target": "commit:e3bc5f2947229f1b4812fc6fd380c67fbf274d57",
+      "status": "asserted",
+      "at": "2026-10-08T01:56:19-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e3bc5f294722:2a4d886a7603",
+      "source": "commit:e3bc5f2947229f1b4812fc6fd380c67fbf274d57",
+      "relation": "changed",
+      "target": "file:docs/memoria/DECISOES.md",
+      "status": "asserted",
+      "at": "2026-10-08T01:56:19-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:bd4eb8ea3c99",
+      "source": "event:repository-scan:bd4eb8ea3c99",
+      "relation": "generated",
+      "target": "evidence:repository:bd4eb8ea3c99",
+      "status": "asserted",
+      "at": "2026-10-08T01:56:19-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -31941,12 +32110,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:42b0858cd5ef",
-      "source": "commit:42b0858cd5ef4f52ed1ff0f0fbd9fd90f3157fe2",
+      "id": "rel:scan-commit:e3bc5f294722",
+      "source": "commit:e3bc5f2947229f1b4812fc6fd380c67fbf274d57",
       "relation": "observed_by",
-      "target": "event:repository-scan:52c262516956",
+      "target": "event:repository-scan:bd4eb8ea3c99",
       "status": "asserted",
-      "at": "2026-10-08T01:53:39-03:00",
+      "at": "2026-10-08T01:56:19-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
