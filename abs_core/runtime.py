@@ -87,6 +87,19 @@ def build_registry() -> CapabilityRegistry:
         except Exception:
             continue
 
+    try:
+        from .openclaw_intelligence_adapter import OpenClawIntelligenceCapability
+        if os.path.exists("/usr/bin/openclaw") or os.getenv("ABS_OPENCLAW_COMMAND"):
+            registry.register(CapabilityRecord(
+                "openclaw-intelligence",
+                "OpenClaw Operational Intelligence",
+                "external_ai",
+                OpenClawIntelligenceCapability(),
+                metadata={"cost_class": "subscription", "capabilities": ["reasoning", "tools", "agent"], "quality": 0.8},
+            ))
+    except Exception:
+        pass
+
     from .local_ai_adapter import LocalAICapability
     local_specs = os.getenv("ABS_LOCAL_AI_MODELS", "").strip()
     if local_specs:
