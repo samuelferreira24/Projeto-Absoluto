@@ -66,6 +66,9 @@ jobs:
               result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               ;;
             start)
+              cd "$HOME/Projeto-Absoluto"
+              git fetch origin main --quiet
+              git reset --hard origin/main --quiet
               sudo systemctl enable abs.service
               sudo systemctl restart abs.service
               sleep 2
