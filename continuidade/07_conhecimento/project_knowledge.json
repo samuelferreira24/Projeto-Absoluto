@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T16:11:55-03:00",
-  "source_revision": "0016b4d47910e5b0da1ad03219aacb1706ee26cf",
+  "generated_at": "2026-10-08T16:13:14-03:00",
+  "source_revision": "5588ef674a2e49418b45f35c2d79fca5fbe445c1",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "0016b4d47910e5b0da1ad03219aacb1706ee26cf",
-      "commit_subject": "Testar recuperação da V3 após falha verificada"
+      "revision": "5588ef674a2e49418b45f35c2d79fca5fbe445c1",
+      "commit_subject": "Corrigir validação incremental real da navegação"
     }
   ],
   "tools": [
@@ -8810,6 +8810,20 @@
       "sha": "0016b4d47910e5b0da1ad03219aacb1706ee26cf"
     },
     {
+      "id": "commit:27364fc55be3d9a6b9f317ee0bdf34f10bff90b7",
+      "kind": "commit",
+      "at": "2026-10-08T19:12:14Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "27364fc55be3d9a6b9f317ee0bdf34f10bff90b7"
+    },
+    {
+      "id": "commit:5588ef674a2e49418b45f35c2d79fca5fbe445c1",
+      "kind": "commit",
+      "at": "2026-10-08T16:13:14-03:00",
+      "subject": "Corrigir validação incremental real da navegação",
+      "sha": "5588ef674a2e49418b45f35c2d79fca5fbe445c1"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -8922,23 +8936,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:1008f4126757",
+      "id": "evidence:repository:c6c48f30a612",
       "kind": "evidence",
-      "at": "2026-10-08T16:11:55-03:00",
+      "at": "2026-10-08T16:13:14-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:1008f4126757",
+      "id": "event:repository-scan:c6c48f30a612",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T16:11:55-03:00"
+      "at": "2026-10-08T16:13:14-03:00"
     },
     {
-      "id": "event:commit-observed:0016b4d47910",
+      "id": "event:commit-observed:5588ef674a2e",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T16:11:55-03:00"
+      "at": "2026-10-08T16:13:14-03:00"
     }
   ],
   "paths": [
@@ -8973,11 +8987,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:66e9fb6dd202"
+        "evidence:test:02d203a89587"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T16:11:55-03:00"
+      "last_validated": "2026-10-08T16:13:14-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9000,20 +9014,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:1008f4126757",
+      "id": "evidence:repository:c6c48f30a612",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T16:11:55-03:00",
+      "observed_at": "2026-10-08T16:13:14-03:00",
       "status": "observed",
-      "detail": "398 files indexed at revision 0016b4d47910e5b0da1ad03219aacb1706ee26cf"
+      "detail": "398 files indexed at revision 5588ef674a2e49418b45f35c2d79fca5fbe445c1"
     },
     {
-      "id": "evidence:test:66e9fb6dd202",
+      "id": "evidence:test:02d203a89587",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T16:11:55-03:00",
+      "observed_at": "2026-10-08T16:13:14-03:00",
       "status": "tested",
-      "detail": "193 passed in 7.27s"
+      "detail": "193 passed in 7.24s"
     }
   ],
   "decisions": [
@@ -9116,30 +9130,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:1008f4126757",
+      "id": "event:repository-scan:c6c48f30a612",
       "type": "repository_scanned",
-      "at": "2026-10-08T16:11:55-03:00",
-      "revision": "0016b4d47910e5b0da1ad03219aacb1706ee26cf",
+      "at": "2026-10-08T16:13:14-03:00",
+      "revision": "5588ef674a2e49418b45f35c2d79fca5fbe445c1",
       "file_count": 398,
-      "evidence_id": "evidence:repository:1008f4126757"
+      "evidence_id": "evidence:repository:c6c48f30a612"
     },
     {
-      "id": "event:commit-observed:0016b4d47910",
+      "id": "event:commit-observed:5588ef674a2e",
       "type": "commit_observed",
-      "at": "2026-10-08T16:11:55-03:00",
-      "revision": "0016b4d47910e5b0da1ad03219aacb1706ee26cf",
+      "at": "2026-10-08T16:13:14-03:00",
+      "revision": "5588ef674a2e49418b45f35c2d79fca5fbe445c1",
       "branch": "main",
-      "subject": "Testar recuperação da V3 após falha verificada",
+      "subject": "Corrigir validação incremental real da navegação",
       "changed_files": [
-        "tests/test_v3_verified_recovery.py"
+        ".github/workflows/navegacao-v2-real-validation.yml"
       ]
     },
     {
-      "id": "event:test:66e9fb6dd202",
+      "id": "event:test:02d203a89587",
       "type": "tests_observed",
-      "at": "2026-10-08T16:11:55-03:00",
+      "at": "2026-10-08T16:13:14-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:66e9fb6dd202"
+      "evidence_id": "evidence:test:02d203a89587"
     }
   ],
   "knowledge_sources": [
@@ -9195,7 +9209,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "4819670d8cd601bacbcb206ed57788fe6e2681e85fc19290de22ec79926692ff"
+      "sha256": "efb6d9a36df8d161e9957b26a300f31858d50b1fe2f6b1807950e89b6c39ee18"
     },
     {
       "id": "source:session",
@@ -37272,12 +37286,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:1008f4126757",
-      "source": "event:repository-scan:1008f4126757",
-      "relation": "generated",
-      "target": "evidence:repository:1008f4126757",
+      "id": "rel:commit-precedes:0016b4d47910:27364fc55be3",
+      "source": "commit:0016b4d47910e5b0da1ad03219aacb1706ee26cf",
+      "relation": "precedes",
+      "target": "commit:27364fc55be3d9a6b9f317ee0bdf34f10bff90b7",
       "status": "asserted",
-      "at": "2026-10-08T16:11:55-03:00",
+      "at": "2026-10-08T19:12:14Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:27364fc55be3:032adc3624d7",
+      "source": "commit:27364fc55be3d9a6b9f317ee0bdf34f10bff90b7",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T19:12:14Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:27364fc55be3:d64178c49886",
+      "source": "commit:27364fc55be3d9a6b9f317ee0bdf34f10bff90b7",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T19:12:14Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:27364fc55be3:5588ef674a2e",
+      "source": "commit:27364fc55be3d9a6b9f317ee0bdf34f10bff90b7",
+      "relation": "precedes",
+      "target": "commit:5588ef674a2e49418b45f35c2d79fca5fbe445c1",
+      "status": "asserted",
+      "at": "2026-10-08T16:13:14-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:5588ef674a2e:8bb24e6b31df",
+      "source": "commit:5588ef674a2e49418b45f35c2d79fca5fbe445c1",
+      "relation": "changed",
+      "target": "file:.github/workflows/navegacao-v2-real-validation.yml",
+      "status": "asserted",
+      "at": "2026-10-08T16:13:14-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:c6c48f30a612",
+      "source": "event:repository-scan:c6c48f30a612",
+      "relation": "generated",
+      "target": "evidence:repository:c6c48f30a612",
+      "status": "asserted",
+      "at": "2026-10-08T16:13:14-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -37286,12 +37370,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:0016b4d47910",
-      "source": "commit:0016b4d47910e5b0da1ad03219aacb1706ee26cf",
+      "id": "rel:scan-commit:5588ef674a2e",
+      "source": "commit:5588ef674a2e49418b45f35c2d79fca5fbe445c1",
       "relation": "observed_by",
-      "target": "event:repository-scan:1008f4126757",
+      "target": "event:repository-scan:c6c48f30a612",
       "status": "asserted",
-      "at": "2026-10-08T16:11:55-03:00",
+      "at": "2026-10-08T16:13:14-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
