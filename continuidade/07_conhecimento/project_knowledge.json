@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T03:18:19-03:00",
-  "source_revision": "714ccda0934cc91aba34a13664e52d4acd690e11",
+  "generated_at": "2026-10-08T03:18:50-03:00",
+  "source_revision": "cacf637016c661482c31b95cc0d28fa3d1257a5a",
   "components": [
     {
       "id": "component:abs_core",
@@ -37,7 +37,7 @@
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 57
+      "file_count": 58
     }
   ],
   "capabilities": [
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "714ccda0934cc91aba34a13664e52d4acd690e11",
-      "commit_subject": "feat: integrate MCP and A2A protocol boundaries"
+      "revision": "cacf637016c661482c31b95cc0d28fa3d1257a5a",
+      "commit_subject": "feat: implement V2 workflow and multiagent execution modes"
     }
   ],
   "tools": [
@@ -3523,6 +3523,11 @@
       "id": "file:tests/test_v1_operational_layers.py",
       "kind": "file",
       "path": "tests/test_v1_operational_layers.py"
+    },
+    {
+      "id": "file:tests/test_v2_modes.py",
+      "kind": "file",
+      "path": "tests/test_v2_modes.py"
     },
     {
       "id": "file:tests/test_v2_protocols.py",
@@ -8266,6 +8271,20 @@
       "sha": "714ccda0934cc91aba34a13664e52d4acd690e11"
     },
     {
+      "id": "commit:076827f173e718dd283ae109284324289c7ab4fe",
+      "kind": "commit",
+      "at": "2026-10-08T06:18:39Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "076827f173e718dd283ae109284324289c7ab4fe"
+    },
+    {
+      "id": "commit:cacf637016c661482c31b95cc0d28fa3d1257a5a",
+      "kind": "commit",
+      "at": "2026-10-08T03:18:50-03:00",
+      "subject": "feat: implement V2 workflow and multiagent execution modes",
+      "sha": "cacf637016c661482c31b95cc0d28fa3d1257a5a"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -8378,23 +8397,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:4a2fee8ff77d",
+      "id": "evidence:repository:1bb4d0783ad3",
       "kind": "evidence",
-      "at": "2026-10-08T03:18:19-03:00",
+      "at": "2026-10-08T03:18:50-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:4a2fee8ff77d",
+      "id": "event:repository-scan:1bb4d0783ad3",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T03:18:19-03:00"
+      "at": "2026-10-08T03:18:50-03:00"
     },
     {
-      "id": "event:commit-observed:714ccda0934c",
+      "id": "event:commit-observed:cacf637016c6",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T03:18:19-03:00"
+      "at": "2026-10-08T03:18:50-03:00"
     }
   ],
   "paths": [
@@ -8429,11 +8448,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:6a5483453d88"
+        "evidence:test:35090e214a17"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T03:18:19-03:00"
+      "last_validated": "2026-10-08T03:18:50-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -8456,20 +8475,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:4a2fee8ff77d",
+      "id": "evidence:repository:1bb4d0783ad3",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T03:18:19-03:00",
+      "observed_at": "2026-10-08T03:18:50-03:00",
       "status": "observed",
-      "detail": "390 files indexed at revision 714ccda0934cc91aba34a13664e52d4acd690e11"
+      "detail": "391 files indexed at revision cacf637016c661482c31b95cc0d28fa3d1257a5a"
     },
     {
-      "id": "evidence:test:6a5483453d88",
+      "id": "evidence:test:35090e214a17",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T03:18:19-03:00",
+      "observed_at": "2026-10-08T03:18:50-03:00",
       "status": "tested",
-      "detail": "171 passed in 7.08s"
+      "detail": "174 passed in 7.21s"
     }
   ],
   "decisions": [
@@ -8572,33 +8591,31 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:4a2fee8ff77d",
+      "id": "event:repository-scan:1bb4d0783ad3",
       "type": "repository_scanned",
-      "at": "2026-10-08T03:18:19-03:00",
-      "revision": "714ccda0934cc91aba34a13664e52d4acd690e11",
-      "file_count": 390,
-      "evidence_id": "evidence:repository:4a2fee8ff77d"
+      "at": "2026-10-08T03:18:50-03:00",
+      "revision": "cacf637016c661482c31b95cc0d28fa3d1257a5a",
+      "file_count": 391,
+      "evidence_id": "evidence:repository:1bb4d0783ad3"
     },
     {
-      "id": "event:commit-observed:714ccda0934c",
+      "id": "event:commit-observed:cacf637016c6",
       "type": "commit_observed",
-      "at": "2026-10-08T03:18:19-03:00",
-      "revision": "714ccda0934cc91aba34a13664e52d4acd690e11",
+      "at": "2026-10-08T03:18:50-03:00",
+      "revision": "cacf637016c661482c31b95cc0d28fa3d1257a5a",
       "branch": "main",
-      "subject": "feat: integrate MCP and A2A protocol boundaries",
+      "subject": "feat: implement V2 workflow and multiagent execution modes",
       "changed_files": [
-        "abs_core/api.py",
-        "abs_core/runtime.py",
-        "abs_core/v2_protocols.py",
-        "tests/test_v2_protocols.py"
+        "abs_core/v2.py",
+        "tests/test_v2_modes.py"
       ]
     },
     {
-      "id": "event:test:6a5483453d88",
+      "id": "event:test:35090e214a17",
       "type": "tests_observed",
-      "at": "2026-10-08T03:18:19-03:00",
+      "at": "2026-10-08T03:18:50-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:6a5483453d88"
+      "evidence_id": "evidence:test:35090e214a17"
     }
   ],
   "knowledge_sources": [
@@ -8654,7 +8671,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "2ebd3a600ab0897d2bde56c8d20d4db95cc503046e71d86fa47a7a71b2950e79"
+      "sha256": "884af4b9d3dbb35271212b1cd4b5b79f93986ee4a7a0b10599cc857e6a8df3af"
     },
     {
       "id": "source:session",
@@ -34477,12 +34494,96 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:4a2fee8ff77d",
-      "source": "event:repository-scan:4a2fee8ff77d",
-      "relation": "generated",
-      "target": "evidence:repository:4a2fee8ff77d",
+      "id": "rel:commit-precedes:714ccda0934c:076827f173e7",
+      "source": "commit:714ccda0934cc91aba34a13664e52d4acd690e11",
+      "relation": "precedes",
+      "target": "commit:076827f173e718dd283ae109284324289c7ab4fe",
       "status": "asserted",
-      "at": "2026-10-08T03:18:19-03:00",
+      "at": "2026-10-08T06:18:39Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:076827f173e7:032adc3624d7",
+      "source": "commit:076827f173e718dd283ae109284324289c7ab4fe",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T06:18:39Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:076827f173e7:d64178c49886",
+      "source": "commit:076827f173e718dd283ae109284324289c7ab4fe",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T06:18:39Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:076827f173e7:cacf637016c6",
+      "source": "commit:076827f173e718dd283ae109284324289c7ab4fe",
+      "relation": "precedes",
+      "target": "commit:cacf637016c661482c31b95cc0d28fa3d1257a5a",
+      "status": "asserted",
+      "at": "2026-10-08T03:18:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cacf637016c6:e262940b1bc4",
+      "source": "commit:cacf637016c661482c31b95cc0d28fa3d1257a5a",
+      "relation": "changed",
+      "target": "file:abs_core/v2.py",
+      "status": "asserted",
+      "at": "2026-10-08T03:18:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cacf637016c6:2d50c8818ce9",
+      "source": "commit:cacf637016c661482c31b95cc0d28fa3d1257a5a",
+      "relation": "changed",
+      "target": "file:tests/test_v2_modes.py",
+      "status": "asserted",
+      "at": "2026-10-08T03:18:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:1bb4d0783ad3",
+      "source": "event:repository-scan:1bb4d0783ad3",
+      "relation": "generated",
+      "target": "evidence:repository:1bb4d0783ad3",
+      "status": "asserted",
+      "at": "2026-10-08T03:18:50-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -34491,12 +34592,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:714ccda0934c",
-      "source": "commit:714ccda0934cc91aba34a13664e52d4acd690e11",
+      "id": "rel:scan-commit:cacf637016c6",
+      "source": "commit:cacf637016c661482c31b95cc0d28fa3d1257a5a",
       "relation": "observed_by",
-      "target": "event:repository-scan:4a2fee8ff77d",
+      "target": "event:repository-scan:1bb4d0783ad3",
       "status": "asserted",
-      "at": "2026-10-08T03:18:19-03:00",
+      "at": "2026-10-08T03:18:50-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
