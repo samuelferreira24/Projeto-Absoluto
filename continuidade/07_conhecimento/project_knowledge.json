@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T16:40:29-03:00",
-  "source_revision": "a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
+  "generated_at": "2026-10-08T16:55:31-03:00",
+  "source_revision": "258e7132dabb48902a5e259346beafcf39c84e75",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
-      "commit_subject": "Align V3 chat resource with executed provenance"
+      "revision": "258e7132dabb48902a5e259346beafcf39c84e75",
+      "commit_subject": "Register planned AI providers with explicit V3 routing metadata"
     }
   ],
   "tools": [
@@ -8948,6 +8948,20 @@
       "sha": "a1ec955e9246d0d007d3b9b8c05c2c410ac9b111"
     },
     {
+      "id": "commit:160d54c63a92b2bade790cda724e263dc8e542f7",
+      "kind": "commit",
+      "at": "2026-10-08T19:40:48Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "160d54c63a92b2bade790cda724e263dc8e542f7"
+    },
+    {
+      "id": "commit:258e7132dabb48902a5e259346beafcf39c84e75",
+      "kind": "commit",
+      "at": "2026-10-08T16:55:31-03:00",
+      "subject": "Register planned AI providers with explicit V3 routing metadata",
+      "sha": "258e7132dabb48902a5e259346beafcf39c84e75"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9060,23 +9074,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:5f5829ea47bd",
+      "id": "evidence:repository:781797cefc36",
       "kind": "evidence",
-      "at": "2026-10-08T16:40:29-03:00",
+      "at": "2026-10-08T16:55:31-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:5f5829ea47bd",
+      "id": "event:repository-scan:781797cefc36",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T16:40:29-03:00"
+      "at": "2026-10-08T16:55:31-03:00"
     },
     {
-      "id": "event:commit-observed:a1ec955e9246",
+      "id": "event:commit-observed:258e7132dabb",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T16:40:29-03:00"
+      "at": "2026-10-08T16:55:31-03:00"
     }
   ],
   "paths": [
@@ -9111,11 +9125,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:2069e1f50b11"
+        "evidence:test:f108ea7056c4"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T16:40:29-03:00"
+      "last_validated": "2026-10-08T16:55:31-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9138,20 +9152,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:5f5829ea47bd",
+      "id": "evidence:repository:781797cefc36",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T16:40:29-03:00",
+      "observed_at": "2026-10-08T16:55:31-03:00",
       "status": "observed",
-      "detail": "399 files indexed at revision a1ec955e9246d0d007d3b9b8c05c2c410ac9b111"
+      "detail": "399 files indexed at revision 258e7132dabb48902a5e259346beafcf39c84e75"
     },
     {
-      "id": "evidence:test:2069e1f50b11",
+      "id": "evidence:test:f108ea7056c4",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T16:40:29-03:00",
+      "observed_at": "2026-10-08T16:55:31-03:00",
       "status": "tested",
-      "detail": "196 passed in 7.55s"
+      "detail": "196 passed in 7.44s"
     }
   ],
   "decisions": [
@@ -9254,30 +9268,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:5f5829ea47bd",
+      "id": "event:repository-scan:781797cefc36",
       "type": "repository_scanned",
-      "at": "2026-10-08T16:40:29-03:00",
-      "revision": "a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
+      "at": "2026-10-08T16:55:31-03:00",
+      "revision": "258e7132dabb48902a5e259346beafcf39c84e75",
       "file_count": 399,
-      "evidence_id": "evidence:repository:5f5829ea47bd"
+      "evidence_id": "evidence:repository:781797cefc36"
     },
     {
-      "id": "event:commit-observed:a1ec955e9246",
+      "id": "event:commit-observed:258e7132dabb",
       "type": "commit_observed",
-      "at": "2026-10-08T16:40:29-03:00",
-      "revision": "a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
+      "at": "2026-10-08T16:55:31-03:00",
+      "revision": "258e7132dabb48902a5e259346beafcf39c84e75",
       "branch": "main",
-      "subject": "Align V3 chat resource with executed provenance",
+      "subject": "Register planned AI providers with explicit V3 routing metadata",
       "changed_files": [
-        "abs_core/intelligence.py"
+        "abs_core/runtime.py"
       ]
     },
     {
-      "id": "event:test:2069e1f50b11",
+      "id": "event:test:f108ea7056c4",
       "type": "tests_observed",
-      "at": "2026-10-08T16:40:29-03:00",
+      "at": "2026-10-08T16:55:31-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:2069e1f50b11"
+      "evidence_id": "evidence:test:f108ea7056c4"
     }
   ],
   "knowledge_sources": [
@@ -9333,7 +9347,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "4c07f2fcd1ced03f1e4418e0fc8daf0bde84e6d05c01466f2df753efc1eca34c"
+      "sha256": "588d8c033454171d842615cb2d908573ffc4a4e86440790698daa15e27a7a382"
     },
     {
       "id": "source:session",
@@ -38026,12 +38040,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:5f5829ea47bd",
-      "source": "event:repository-scan:5f5829ea47bd",
-      "relation": "generated",
-      "target": "evidence:repository:5f5829ea47bd",
+      "id": "rel:commit-precedes:a1ec955e9246:160d54c63a92",
+      "source": "commit:a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
+      "relation": "precedes",
+      "target": "commit:160d54c63a92b2bade790cda724e263dc8e542f7",
       "status": "asserted",
-      "at": "2026-10-08T16:40:29-03:00",
+      "at": "2026-10-08T19:40:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:160d54c63a92:032adc3624d7",
+      "source": "commit:160d54c63a92b2bade790cda724e263dc8e542f7",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T19:40:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:160d54c63a92:d64178c49886",
+      "source": "commit:160d54c63a92b2bade790cda724e263dc8e542f7",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T19:40:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:160d54c63a92:258e7132dabb",
+      "source": "commit:160d54c63a92b2bade790cda724e263dc8e542f7",
+      "relation": "precedes",
+      "target": "commit:258e7132dabb48902a5e259346beafcf39c84e75",
+      "status": "asserted",
+      "at": "2026-10-08T16:55:31-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:258e7132dabb:7e20f933dbaf",
+      "source": "commit:258e7132dabb48902a5e259346beafcf39c84e75",
+      "relation": "changed",
+      "target": "file:abs_core/runtime.py",
+      "status": "asserted",
+      "at": "2026-10-08T16:55:31-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:781797cefc36",
+      "source": "event:repository-scan:781797cefc36",
+      "relation": "generated",
+      "target": "evidence:repository:781797cefc36",
+      "status": "asserted",
+      "at": "2026-10-08T16:55:31-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -38040,12 +38124,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:a1ec955e9246",
-      "source": "commit:a1ec955e9246d0d007d3b9b8c05c2c410ac9b111",
+      "id": "rel:scan-commit:258e7132dabb",
+      "source": "commit:258e7132dabb48902a5e259346beafcf39c84e75",
       "relation": "observed_by",
-      "target": "event:repository-scan:5f5829ea47bd",
+      "target": "event:repository-scan:781797cefc36",
       "status": "asserted",
-      "at": "2026-10-08T16:40:29-03:00",
+      "at": "2026-10-08T16:55:31-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
