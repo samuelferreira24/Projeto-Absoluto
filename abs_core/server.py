@@ -14,6 +14,7 @@ def main() -> None:
         tool_planner=runtime.tool_planner, tool_learning=runtime.tool_learning,
         resource_dispatcher=runtime.resource_dispatcher,
         cognitive_runtime=runtime.cognitive_runtime,
+        planner_runtime=runtime.operational_intelligence,
     )
 
 
