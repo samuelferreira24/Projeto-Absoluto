@@ -222,7 +222,11 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
         self.lifecycle=ModelLifecycle()
         self.telemetry=Telemetry()
         self.recovery=RecoveryManager(self.v3_state)
-        self._v3_lock=threading.RLock()\n        self._capacity_cv=threading.Condition(self._v3_lock)\n        self._active=0\n        self._ticket_seq=0\n        self._tickets={}
+        self._v3_lock=threading.RLock()
+        self._capacity_cv=threading.Condition(self._v3_lock)
+        self._active=0
+        self._ticket_seq=0
+        self._tickets={}
     def status(self):
         s=self.capacity.snapshot(self.queue.depth()); self.v3_state.capacity(s)
         return {"version":"v3","capacity":asdict(s)|{"state":s.state.value},
