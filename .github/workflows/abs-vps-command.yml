@@ -164,7 +164,7 @@ jobs:
               set +e
               export HOME=/home/absadmin
               export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              /usr/bin/openclaw agent --agent main --model --message 'Responda exatamente: OPENCLAW_DEFAULT_MODEL_OK' --timeout 90 --json > /tmp/openclaw-infer.txt 2>&1
+              /usr/bin/openclaw agent --agent main --message 'Responda exatamente: OPENCLAW_DEFAULT_MODEL_OK' --timeout 90 --json > /tmp/openclaw-infer.txt 2>&1
               rc=$?
               result="exit_code=$rc\n$(cat /tmp/openclaw-infer.txt)"
               ;;
