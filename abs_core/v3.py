@@ -413,11 +413,12 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
                         alternatives=self._replan_candidates(work,context,candidate_id)
                         max_replans=max(0,min(int(context.get("max_replans",2) or 0),10))
                         if alternatives and attempts<=max_replans:
+                            failed_candidate=candidate_id
                             candidate_id=alternatives[0].id
                             self.telemetry.inc("replan")
                             with self._v3_lock:
                                 current=self.store.load(work_id)
-                                current.context.setdefault("_v3",{})["replanned_from"]=candidate_id
+                                current.context.setdefault("_v3",{})["replanned_from"]=failed_candidate
                                 current.context["_v3"]["selected_intelligence"]=candidate_id
                                 current.context["_v3"]["replan_attempt"]=attempts
                                 current.context["_v3"]["failure_evidence"]={
