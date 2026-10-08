@@ -90,7 +90,18 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
     def _gate(self,work,context):
         policy=self.cost_policy.policy(context); budget=CostBudget(float(context.get("max_spend",os.getenv("ABS_MAX_SPEND","0")) or 0),float(context.get("spent",0) or 0))
         snap=self.capacity.admission(str(context.get("priority") or "normal")); required=set(context.get("required_capabilities") or ())
-        candidates=[self._candidate(c) for c in self.registry.list()]
+        caps=self.registry.list()
+        ai_caps=[c for c in caps if str(getattr(c,"kind","")).lower() in {"local_ai","external_ai"} or "ai" in str(getattr(c,"kind","")).lower()]
+        # Explicit non-AI capabilities (echo, github, http, etc.) remain V2-compatible.
+        explicit=str(context.get("capability_id") or "")
+        if explicit:
+            try:
+                cap=self.registry.get(explicit)
+                if cap not in ai_caps:
+                    return V3Decision(True, explicit, CostClass.FREE_EXTERNAL, "explicit_non_ai_capability", snap, policy)
+            except KeyError:
+                pass
+        candidates=[self._candidate(c) for c in ai_caps]
         ranked=self.intelligence_selector.rank(candidates,policy,budget,required)
         preferred=str(context.get("intelligence_id") or context.get("capability_id") or "")
         if preferred: ranked=sorted(ranked,key=lambda c:(0 if c.id==preferred else 1,c.estimated_cost,c.latency_ms))
