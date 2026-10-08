@@ -185,8 +185,10 @@ class ModelLifecycle:
         with self._lock:
             m=self.models.get(model_id)
             if not m:return False
-            if not m["loaded"] and m["loader"]: m["loader"]()
-            m["loaded"]=True; return True
+            if m["loaded"]: return True
+            if m["loader"]: m["loader"]()
+            m["loaded"]=True
+            return True
     def unload(self,model_id):
         with self._lock:
             m=self.models.get(model_id)
@@ -233,7 +235,8 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
         s=self.capacity.snapshot(self.queue.depth()); self.v3_state.capacity(s)
         return {"version":"v3","capacity":asdict(s)|{"state":s.state.value},
                 "cost_policy_default":self.cost_policy.default_policy.value,
-                "queue_depth":self.queue.depth(),"models":self.lifecycle.status(),
+                "queue_depth":self.queue.depth(),"active_executions":self._active,
+                "models":self.lifecycle.status(),
                 "telemetry":self.telemetry.snapshot()}
     def _acquire_slot(self,work_id,priority):
         with self._capacity_cv:
@@ -267,11 +270,18 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
     def _candidate(self,cap):
         meta=getattr(cap,"metadata",{}) or {}; kind=str(getattr(cap,"kind","")).lower()
         raw=str(meta.get("cost_class") or "").lower()
+        if kind == "local_ai" and not raw:
+            raw = CostClass.FREE_LOCAL.value
+        elif kind == "external_ai" and not raw:
+            raw = CostClass.FREE_EXTERNAL.value
         if not raw:
             raw=CostClass.FREE_LOCAL.value if "local" in kind else CostClass.PAID_API.value if "ai" in kind else CostClass.FREE_EXTERNAL.value
         try:cc=CostClass(raw)
         except ValueError:cc=CostClass.FREE_EXTERNAL
-        return IntelligenceCandidate(cap.id,cc,tuple(meta.get("capabilities") or ()),float(meta.get("estimated_cost",0) or 0),True,float(meta.get("latency_ms",0) or 0),cc is CostClass.FREE_LOCAL,float(meta.get("quality",.5) or .5),int(meta.get("context_window",0) or 0))
+        capabilities = tuple(meta.get("capabilities") or ())
+        if not capabilities and kind == "local_ai":
+            capabilities = ("chat", "reasoning")
+        return IntelligenceCandidate(cap.id,cc,capabilities,float(meta.get("estimated_cost",0) or 0),True,float(meta.get("latency_ms",0) or 0),cc is CostClass.FREE_LOCAL,float(meta.get("quality",.5) or .5),int(meta.get("context_window",0) or 0))
     def _gate(self,work,context):
         priority=str(context.get("priority") or "normal")
         snap,allowed=self.capacity.admission(priority,self.queue.depth()); policy=self.cost_policy.policy(context)
@@ -283,11 +293,18 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
                 cap=self.registry.get(explicit)
                 if "ai" not in str(getattr(cap,"kind","")).lower():
                     return V3Decision(WorkDisposition.EXECUTE,explicit,CostClass.FREE_EXTERNAL,"explicit_non_ai_capability",snap,policy)
-            except KeyError: pass
+                candidate=self._candidate(cap)
+                if not self.cost_policy.admissible(candidate,policy,budget):
+                    return V3Decision(WorkDisposition.WAIT,explicit,candidate.cost_class,"explicit_intelligence_not_admissible",snap,policy)
+                return V3Decision(WorkDisposition.EXECUTE,explicit,candidate.cost_class,"explicit_intelligence",snap,policy)
+            except KeyError:
+                return V3Decision(WorkDisposition.DENY,explicit,None,"unknown_capability",snap,policy)
         ai=[self._candidate(c) for c in self.registry.list() if "ai" in str(getattr(c,"kind","")).lower()]
         ranked=self.selector.rank(ai,policy,budget,set(context.get("required_capabilities") or ()))
         preferred=str(context.get("intelligence_id") or "")
-        if preferred: ranked=sorted(ranked,key=lambda c:(0 if c.id==preferred else 1,c.estimated_cost,c.latency_ms))
+        if preferred:
+            preferred_capability = preferred.split(":",1)[1] if preferred.startswith("intelligence:") else preferred
+            ranked=sorted(ranked,key=lambda c:(0 if c.id==preferred_capability else 1,c.estimated_cost,c.latency_ms))
         if not ranked:return V3Decision(WorkDisposition.WAIT,None,None,"no_admissible_intelligence",snap,policy)
         c=ranked[0]; return V3Decision(WorkDisposition.EXECUTE,c.id,c.cost_class,"admitted",snap,policy)
     def run(self,work_id,capability_id=None,approved=False):
@@ -315,6 +332,12 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
                     "disposition":decision.disposition.value,
                     "cost_class":decision.cost_class.value if decision.cost_class else None,
                     "policy":decision.policy.value})
+                if decision.disposition is WorkDisposition.DENY:
+                    work.context["_v3"]={"status":"denied","reason":decision.reason,"policy":decision.policy.value}
+                    work.result={"type":"v3_policy_error","error":decision.reason}
+                    self.telemetry.inc("denied")
+                    self.store.save(work)
+                    return work
                 if decision.disposition is WorkDisposition.WAIT:
                     self.queue.push(work_id,10 if priority=="critical" else 0)
                     work.context["_v3"]={"status":"waiting","reason":decision.reason,"policy":decision.policy.value}
