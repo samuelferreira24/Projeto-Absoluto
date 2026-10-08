@@ -5,7 +5,7 @@ The ABS owns authority, policy, admission, scheduling, verification and
 recovery. Providers/executors are replaceable capabilities.
 """
 
-import json, os, resource as _resource, threading, time, uuid, sqlite3
+import json, os, resource as _resource, threading, time, uuid, sqlite3, urllib.request, urllib.error
 from collections import deque
 from dataclasses import dataclass, asdict
 from enum import Enum
@@ -82,7 +82,7 @@ class V3StateStore:
             self.db.execute("INSERT INTO v3_capacity(load,available,concurrency,state,ts) VALUES(?,?,?,?,?)",
                             (s.load_ratio,s.available_bytes,s.concurrency,s.state.value,s.timestamp))
             self.db.commit()
-    def learn(self,key,success,latency):
+    def learning(self,key):\n        with self._lock:\n            row=self.db.execute("SELECT attempts,successes,failures,latency_sum FROM v3_learning WHERE key=?",(key,)).fetchone()\n            if not row: return {}\n            a,ok,fail,total=row\n            return {"attempts":a,"successes":ok,"failures":fail,"latency_avg":(total/a if a else 0.0)}\n    def all_learning(self):\n        with self._lock:\n            rows=self.db.execute("SELECT key,attempts,successes,failures,latency_sum FROM v3_learning").fetchall()\n            return {k:{"attempts":a,"successes":ok,"failures":fail,"latency_avg":(total/a if a else 0.0)} for k,a,ok,fail,total in rows}\n    def learn(self,key,success,latency):
         with self._lock:
             row=self.db.execute("SELECT attempts,successes,failures,latency_sum FROM v3_learning WHERE key=?",(key,)).fetchone()
             a,ok,fail,total=row or (0,0,0,0.0)
@@ -205,12 +205,12 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
         self.v3_state=V3StateStore(str(db_path))
         self.capacity=CapacityGovernor()
         self.cost_policy=CostPolicyEngine()
-        self.selector=IntelligenceSelector()
+        self.selector=IntelligenceSelector(self.v3_state.all_learning())
         self.queue=AdmissionQueue()
         self.lifecycle=ModelLifecycle()
         self.telemetry=Telemetry()
         self.recovery=RecoveryManager(self.v3_state)
-        self._v3_lock=threading.RLock()
+        self._v3_lock=threading.RLock()\n        self._capacity_cv=threading.Condition(self._v3_lock)\n        self._active=0\n        self._ticket_seq=0\n        self._tickets={}
     def status(self):
         s=self.capacity.snapshot(self.queue.depth()); self.v3_state.capacity(s)
         return {"version":"v3","capacity":asdict(s)|{"state":s.state.value},
