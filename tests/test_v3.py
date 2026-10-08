@@ -79,3 +79,13 @@ def test_v3_explicit_echo_executes_end_to_end():
     assert done.state.value=="completed"
     assert done.result["type"]=="v2_result"
     assert done.result["verification"]["accepted"] is True
+
+
+def test_llama_lifecycle_adapter_calls_load_unload():
+    from abs_core.v3 import LlamaCppModelAdapter
+    calls=[]
+    a=LlamaCppModelAdapter("http://127.0.0.1:8080")
+    a._post=lambda path,model: calls.append((path,model)) or {"success":True}
+    assert a.load("qwen")["success"] is True
+    assert a.unload("qwen")["success"] is True
+    assert calls==[("/models/load","qwen"),("/models/unload","qwen")]
