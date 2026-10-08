@@ -72,15 +72,27 @@ jobs:
               result="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
               ;;
             v3-test)
-              set -e
               cd "$HOME/Projeto-Absoluto"
-              python3 -m compileall -q abs_core
-              python3 -m pytest -q tests
-              echo "[v3-status]"
-              curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status
-              echo
-              echo "ABS V3 TEST PASS"
-              result="ABS V3 TEST PASS"
+              set +e
+              python3 -m compileall -q abs_core > /tmp/v3-compile.txt 2>&1
+              compile_rc=$?
+              python3 -m pytest -q tests > /tmp/v3-tests.txt 2>&1
+              test_rc=$?
+              status="$(curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status 2>&1)"
+              {
+                echo "[compile_rc] $compile_rc"
+                cat /tmp/v3-compile.txt
+                echo "[test_rc] $test_rc"
+                cat /tmp/v3-tests.txt
+                echo "[v3-status]"
+                echo "$status"
+              } > /tmp/v3-result.txt
+              result="$(cat /tmp/v3-result.txt)"
+              if [ "$compile_rc" -eq 0 ] && [ "$test_rc" -eq 0 ]; then
+                echo "ABS V3 TEST PASS"
+              else
+                echo "ABS V3 TEST FAIL"
+              fi
               ;;
             v2-test)
               set -e
