@@ -22,7 +22,7 @@ def test_multiple_accounts_same_provider_are_distinct():
 
 
 def test_account_can_use_different_connection_paths():
-    registry = AccountRegistry()
+    registry = AccountRegistry(":memory:")
     registry.register(AccountRecord(
         id="claude-api-1", provider="claude", name="Claude API 1",
         connection_id="claude-api", capabilities=["reasoning"],
