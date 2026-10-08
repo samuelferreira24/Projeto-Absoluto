@@ -536,13 +536,14 @@ class ABSV2Orchestrator:
                             hashlib.sha256(raw.encode()).hexdigest(), item.source)
                         self.v2store.evidence(evidence)
                         evidence_ids.append(evidence.id)
+                    verification_public = {**asdict(verification), "evidence_ids": list(verification.evidence_ids)}
                     work.result = {
                         "type": "v2_result",
                         "mode": plan.mode.value,
                         "executor": plan.executor_id,
                         "attempt": attempt,
                         "result": result,
-                        "verification": asdict(verification),
+                        "verification": verification_public,
                         "evidence_ids": evidence_ids,
                     }
                     work.provenance.append({
@@ -550,7 +551,7 @@ class ABSV2Orchestrator:
                         "capability_id": cap.id if cap else None,
                         "executor": plan.executor_id, "mode": plan.mode.value,
                         "attempt": attempt, "recorded_at": now(),
-                        "verification": asdict(verification),
+                        "verification": verification_public,
                         "evidence_ids": evidence_ids,
                     })
                     if verification.accepted:
