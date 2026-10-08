@@ -114,6 +114,9 @@ jobs:
           [Install]
           WantedBy=multi-user.target
           UNIT
+              sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw setup --baseline --workspace /home/absadmin/.openclaw/workspace
+              sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw config set gateway.mode local
+              sudo -u absadmin env HOME=/home/absadmin /usr/bin/openclaw doctor --generate-gateway-token
               sudo systemctl daemon-reload
               sudo systemctl enable openclaw-gateway.service
               sudo systemctl restart openclaw-gateway.service
