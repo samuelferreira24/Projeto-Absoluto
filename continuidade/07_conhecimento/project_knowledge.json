@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T17:22:32-03:00",
-  "source_revision": "cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
+  "generated_at": "2026-10-08T17:23:30-03:00",
+  "source_revision": "f54642677b7eff209756f8649c3ac591f4195309",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 125
+      "file_count": 123
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
-      "commit_subject": "Restaurar canal VPS comprovadamente funcional"
+      "revision": "f54642677b7eff209756f8649c3ac591f4195309",
+      "commit_subject": "Remover bootstrap temporário de IA local"
     }
   ],
   "tools": [
@@ -9084,6 +9084,34 @@
       "sha": "cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde"
     },
     {
+      "id": "commit:362f664017976695fb2bd0a1915c35035cf7ab06",
+      "kind": "commit",
+      "at": "2026-10-08T20:22:53Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "362f664017976695fb2bd0a1915c35035cf7ab06"
+    },
+    {
+      "id": "commit:5419570ff747c6194d7722bd5f92d8bfa7686fbb",
+      "kind": "commit",
+      "at": "2026-10-08T17:23:23-03:00",
+      "subject": "Adicionar comando controlado para instalar frota local de IAs",
+      "sha": "5419570ff747c6194d7722bd5f92d8bfa7686fbb"
+    },
+    {
+      "id": "commit:6204cec4bc9ace7e6e7ad220216f2d7e54b3c360",
+      "kind": "commit",
+      "at": "2026-10-08T17:23:27-03:00",
+      "subject": "Remover bootstrap temporário de IA local",
+      "sha": "6204cec4bc9ace7e6e7ad220216f2d7e54b3c360"
+    },
+    {
+      "id": "commit:f54642677b7eff209756f8649c3ac591f4195309",
+      "kind": "commit",
+      "at": "2026-10-08T17:23:30-03:00",
+      "subject": "Remover bootstrap temporário de IA local",
+      "sha": "f54642677b7eff209756f8649c3ac591f4195309"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9196,23 +9224,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:9e9ad024f6eb",
+      "id": "evidence:repository:ae861d3c6097",
       "kind": "evidence",
-      "at": "2026-10-08T17:22:32-03:00",
+      "at": "2026-10-08T17:23:30-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:9e9ad024f6eb",
+      "id": "event:repository-scan:ae861d3c6097",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T17:22:32-03:00"
+      "at": "2026-10-08T17:23:30-03:00"
     },
     {
-      "id": "event:commit-observed:cfee6ff3874a",
+      "id": "event:commit-observed:f54642677b7e",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T17:22:32-03:00"
+      "at": "2026-10-08T17:23:30-03:00"
     }
   ],
   "paths": [
@@ -9247,11 +9275,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:875cdfb3db52"
+        "evidence:test:5bd968c490b3"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T17:22:32-03:00"
+      "last_validated": "2026-10-08T17:23:30-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9274,20 +9302,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:9e9ad024f6eb",
+      "id": "evidence:repository:ae861d3c6097",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T17:22:32-03:00",
+      "observed_at": "2026-10-08T17:23:30-03:00",
       "status": "observed",
-      "detail": "401 files indexed at revision cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde"
+      "detail": "399 files indexed at revision f54642677b7eff209756f8649c3ac591f4195309"
     },
     {
-      "id": "evidence:test:875cdfb3db52",
+      "id": "evidence:test:5bd968c490b3",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T17:22:32-03:00",
+      "observed_at": "2026-10-08T17:23:30-03:00",
       "status": "tested",
-      "detail": "196 passed in 7.52s"
+      "detail": "196 passed in 7.47s"
     }
   ],
   "decisions": [
@@ -9390,30 +9418,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:9e9ad024f6eb",
+      "id": "event:repository-scan:ae861d3c6097",
       "type": "repository_scanned",
-      "at": "2026-10-08T17:22:32-03:00",
-      "revision": "cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
-      "file_count": 401,
-      "evidence_id": "evidence:repository:9e9ad024f6eb"
+      "at": "2026-10-08T17:23:30-03:00",
+      "revision": "f54642677b7eff209756f8649c3ac591f4195309",
+      "file_count": 399,
+      "evidence_id": "evidence:repository:ae861d3c6097"
     },
     {
-      "id": "event:commit-observed:cfee6ff3874a",
+      "id": "event:commit-observed:f54642677b7e",
       "type": "commit_observed",
-      "at": "2026-10-08T17:22:32-03:00",
-      "revision": "cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
+      "at": "2026-10-08T17:23:30-03:00",
+      "revision": "f54642677b7eff209756f8649c3ac591f4195309",
       "branch": "main",
-      "subject": "Restaurar canal VPS comprovadamente funcional",
+      "subject": "Remover bootstrap temporário de IA local",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        ".github/workflows/abs-local-ai-installer.yml"
       ]
     },
     {
-      "id": "event:test:875cdfb3db52",
+      "id": "event:test:5bd968c490b3",
       "type": "tests_observed",
-      "at": "2026-10-08T17:22:32-03:00",
+      "at": "2026-10-08T17:23:30-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:875cdfb3db52"
+      "evidence_id": "evidence:test:5bd968c490b3"
     }
   ],
   "knowledge_sources": [
@@ -9469,7 +9497,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "7e6621b5942f69c2c1853f558e8f8ea430de42e667adc7834dfba694e7ffd960"
+      "sha256": "058fb5d6d43eee65b538382fbaf9556940db395df9dd30de4e809025ab267364"
     },
     {
       "id": "source:session",
@@ -38778,12 +38806,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:9e9ad024f6eb",
-      "source": "event:repository-scan:9e9ad024f6eb",
-      "relation": "generated",
-      "target": "evidence:repository:9e9ad024f6eb",
+      "id": "rel:commit-precedes:cfee6ff3874a:362f66401797",
+      "source": "commit:cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
+      "relation": "precedes",
+      "target": "commit:362f664017976695fb2bd0a1915c35035cf7ab06",
       "status": "asserted",
-      "at": "2026-10-08T17:22:32-03:00",
+      "at": "2026-10-08T20:22:53Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:362f66401797:032adc3624d7",
+      "source": "commit:362f664017976695fb2bd0a1915c35035cf7ab06",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T20:22:53Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:362f66401797:d64178c49886",
+      "source": "commit:362f664017976695fb2bd0a1915c35035cf7ab06",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T20:22:53Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:362f66401797:5419570ff747",
+      "source": "commit:362f664017976695fb2bd0a1915c35035cf7ab06",
+      "relation": "precedes",
+      "target": "commit:5419570ff747c6194d7722bd5f92d8bfa7686fbb",
+      "status": "asserted",
+      "at": "2026-10-08T17:23:23-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:5419570ff747:1734be446032",
+      "source": "commit:5419570ff747c6194d7722bd5f92d8bfa7686fbb",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-08T17:23:23-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:5419570ff747:6204cec4bc9a",
+      "source": "commit:5419570ff747c6194d7722bd5f92d8bfa7686fbb",
+      "relation": "precedes",
+      "target": "commit:6204cec4bc9ace7e6e7ad220216f2d7e54b3c360",
+      "status": "asserted",
+      "at": "2026-10-08T17:23:27-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6204cec4bc9a:1fbc01beff08",
+      "source": "commit:6204cec4bc9ace7e6e7ad220216f2d7e54b3c360",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-local-ai-bootstrap.yml",
+      "status": "asserted",
+      "at": "2026-10-08T17:23:27-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:6204cec4bc9a:f54642677b7e",
+      "source": "commit:6204cec4bc9ace7e6e7ad220216f2d7e54b3c360",
+      "relation": "precedes",
+      "target": "commit:f54642677b7eff209756f8649c3ac591f4195309",
+      "status": "asserted",
+      "at": "2026-10-08T17:23:30-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f54642677b7e:c87579349177",
+      "source": "commit:f54642677b7eff209756f8649c3ac591f4195309",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-local-ai-installer.yml",
+      "status": "asserted",
+      "at": "2026-10-08T17:23:30-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:ae861d3c6097",
+      "source": "event:repository-scan:ae861d3c6097",
+      "relation": "generated",
+      "target": "evidence:repository:ae861d3c6097",
+      "status": "asserted",
+      "at": "2026-10-08T17:23:30-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -38792,12 +38946,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:cfee6ff3874a",
-      "source": "commit:cfee6ff3874a7bfed2cf3dba580e78fd3d2eedde",
+      "id": "rel:scan-commit:f54642677b7e",
+      "source": "commit:f54642677b7eff209756f8649c3ac591f4195309",
       "relation": "observed_by",
-      "target": "event:repository-scan:9e9ad024f6eb",
+      "target": "event:repository-scan:ae861d3c6097",
       "status": "asserted",
-      "at": "2026-10-08T17:22:32-03:00",
+      "at": "2026-10-08T17:23:30-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
