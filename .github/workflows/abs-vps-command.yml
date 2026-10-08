@@ -131,6 +131,19 @@ jobs:
               } > /tmp/openclaw-vps-result.txt
               result="$(cat /tmp/openclaw-vps-result.txt)"
               ;;
+            openclaw-set-default-force)
+              set +e
+              export HOME=/home/absadmin
+              export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.npm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+              sudo systemctl stop openclaw-gateway.service
+              stop_rc=$?
+              /usr/bin/openclaw models set openai/gpt-5.6-luna > /tmp/openclaw-set-default-force.txt 2>&1
+              set_rc=$?
+              sudo systemctl start openclaw-gateway.service
+              start_rc=$?
+              sleep 5
+              result="stop_rc=$stop_rc set_rc=$set_rc start_rc=$start_rc\n$(cat /tmp/openclaw-set-default-force.txt)\n$(sudo systemctl is-active openclaw-gateway.service)"
+              ;;
             openclaw-set-default)
               set +e
               export HOME=/home/absadmin
