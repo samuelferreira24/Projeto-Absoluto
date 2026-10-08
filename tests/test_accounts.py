@@ -2,7 +2,7 @@ from abs_core.accounts import AccountRecord, AccountRegistry
 
 
 def test_multiple_accounts_same_provider_are_distinct():
-    registry = AccountRegistry()
+    registry = AccountRegistry(":memory:")
     registry.register(AccountRecord(
         id="chatgpt-1", provider="chatgpt", name="ChatGPT 1",
         connection_id="chatgpt-connector",
