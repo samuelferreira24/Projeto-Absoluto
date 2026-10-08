@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T18:40:04-03:00",
-  "source_revision": "adfddbf3408efb9f6d3b3d86d4f7d60baa035525",
+  "generated_at": "2026-10-08T18:40:37-03:00",
+  "source_revision": "b4b2ee837be1368bcc41d6256977f6899551368d",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "adfddbf3408efb9f6d3b3d86d4f7d60baa035525",
-      "commit_subject": "feat: expand reserve integration validation"
+      "revision": "b4b2ee837be1368bcc41d6256977f6899551368d",
+      "commit_subject": "fix: honor explicit intelligence selection in cognitive routing"
     }
   ],
   "tools": [
@@ -9288,6 +9288,20 @@
       "sha": "adfddbf3408efb9f6d3b3d86d4f7d60baa035525"
     },
     {
+      "id": "commit:f2d5fc20ad7971442336133c77f6d29e9b54059e",
+      "kind": "commit",
+      "at": "2026-10-08T21:40:26Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "f2d5fc20ad7971442336133c77f6d29e9b54059e"
+    },
+    {
+      "id": "commit:b4b2ee837be1368bcc41d6256977f6899551368d",
+      "kind": "commit",
+      "at": "2026-10-08T18:40:37-03:00",
+      "subject": "fix: honor explicit intelligence selection in cognitive routing",
+      "sha": "b4b2ee837be1368bcc41d6256977f6899551368d"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9400,23 +9414,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:afefa06d0319",
+      "id": "evidence:repository:60e82b402aef",
       "kind": "evidence",
-      "at": "2026-10-08T18:40:04-03:00",
+      "at": "2026-10-08T18:40:37-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:afefa06d0319",
+      "id": "event:repository-scan:60e82b402aef",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T18:40:04-03:00"
+      "at": "2026-10-08T18:40:37-03:00"
     },
     {
-      "id": "event:commit-observed:adfddbf3408e",
+      "id": "event:commit-observed:b4b2ee837be1",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T18:40:04-03:00"
+      "at": "2026-10-08T18:40:37-03:00"
     }
   ],
   "paths": [
@@ -9451,11 +9465,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:550ee3c10330"
+        "evidence:test:a931a82e71b8"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T18:40:04-03:00"
+      "last_validated": "2026-10-08T18:40:37-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9478,20 +9492,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:afefa06d0319",
+      "id": "evidence:repository:60e82b402aef",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T18:40:04-03:00",
+      "observed_at": "2026-10-08T18:40:37-03:00",
       "status": "observed",
-      "detail": "402 files indexed at revision adfddbf3408efb9f6d3b3d86d4f7d60baa035525"
+      "detail": "402 files indexed at revision b4b2ee837be1368bcc41d6256977f6899551368d"
     },
     {
-      "id": "evidence:test:550ee3c10330",
+      "id": "evidence:test:a931a82e71b8",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T18:40:04-03:00",
+      "observed_at": "2026-10-08T18:40:37-03:00",
       "status": "tested",
-      "detail": "196 passed in 7.46s"
+      "detail": "196 passed in 7.24s"
     }
   ],
   "decisions": [
@@ -9594,30 +9608,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:afefa06d0319",
+      "id": "event:repository-scan:60e82b402aef",
       "type": "repository_scanned",
-      "at": "2026-10-08T18:40:04-03:00",
-      "revision": "adfddbf3408efb9f6d3b3d86d4f7d60baa035525",
+      "at": "2026-10-08T18:40:37-03:00",
+      "revision": "b4b2ee837be1368bcc41d6256977f6899551368d",
       "file_count": 402,
-      "evidence_id": "evidence:repository:afefa06d0319"
+      "evidence_id": "evidence:repository:60e82b402aef"
     },
     {
-      "id": "event:commit-observed:adfddbf3408e",
+      "id": "event:commit-observed:b4b2ee837be1",
       "type": "commit_observed",
-      "at": "2026-10-08T18:40:04-03:00",
-      "revision": "adfddbf3408efb9f6d3b3d86d4f7d60baa035525",
+      "at": "2026-10-08T18:40:37-03:00",
+      "revision": "b4b2ee837be1368bcc41d6256977f6899551368d",
       "branch": "main",
-      "subject": "feat: expand reserve integration validation",
+      "subject": "fix: honor explicit intelligence selection in cognitive routing",
       "changed_files": [
-        ".github/workflows/abs-vps-reserve.yml"
+        "abs_core/intelligence.py"
       ]
     },
     {
-      "id": "event:test:550ee3c10330",
+      "id": "event:test:a931a82e71b8",
       "type": "tests_observed",
-      "at": "2026-10-08T18:40:04-03:00",
+      "at": "2026-10-08T18:40:37-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:550ee3c10330"
+      "evidence_id": "evidence:test:a931a82e71b8"
     }
   ],
   "knowledge_sources": [
@@ -9673,7 +9687,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "68ff15a7fb92afa0eb47cbb9661ced777dbb61cc576a82685c92518721a7db7f"
+      "sha256": "181dfe689a81358da1ebb49a60e29350eb2b2f2289b0085444e56c86f3b302be"
     },
     {
       "id": "source:session",
@@ -39878,12 +39892,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:afefa06d0319",
-      "source": "event:repository-scan:afefa06d0319",
-      "relation": "generated",
-      "target": "evidence:repository:afefa06d0319",
+      "id": "rel:commit-precedes:adfddbf3408e:f2d5fc20ad79",
+      "source": "commit:adfddbf3408efb9f6d3b3d86d4f7d60baa035525",
+      "relation": "precedes",
+      "target": "commit:f2d5fc20ad7971442336133c77f6d29e9b54059e",
       "status": "asserted",
-      "at": "2026-10-08T18:40:04-03:00",
+      "at": "2026-10-08T21:40:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f2d5fc20ad79:032adc3624d7",
+      "source": "commit:f2d5fc20ad7971442336133c77f6d29e9b54059e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T21:40:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f2d5fc20ad79:d64178c49886",
+      "source": "commit:f2d5fc20ad7971442336133c77f6d29e9b54059e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T21:40:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f2d5fc20ad79:b4b2ee837be1",
+      "source": "commit:f2d5fc20ad7971442336133c77f6d29e9b54059e",
+      "relation": "precedes",
+      "target": "commit:b4b2ee837be1368bcc41d6256977f6899551368d",
+      "status": "asserted",
+      "at": "2026-10-08T18:40:37-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b4b2ee837be1:7fe5bf87e5fb",
+      "source": "commit:b4b2ee837be1368bcc41d6256977f6899551368d",
+      "relation": "changed",
+      "target": "file:abs_core/intelligence.py",
+      "status": "asserted",
+      "at": "2026-10-08T18:40:37-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:60e82b402aef",
+      "source": "event:repository-scan:60e82b402aef",
+      "relation": "generated",
+      "target": "evidence:repository:60e82b402aef",
+      "status": "asserted",
+      "at": "2026-10-08T18:40:37-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -39892,12 +39976,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:adfddbf3408e",
-      "source": "commit:adfddbf3408efb9f6d3b3d86d4f7d60baa035525",
+      "id": "rel:scan-commit:b4b2ee837be1",
+      "source": "commit:b4b2ee837be1368bcc41d6256977f6899551368d",
       "relation": "observed_by",
-      "target": "event:repository-scan:afefa06d0319",
+      "target": "event:repository-scan:60e82b402aef",
       "status": "asserted",
-      "at": "2026-10-08T18:40:04-03:00",
+      "at": "2026-10-08T18:40:37-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
