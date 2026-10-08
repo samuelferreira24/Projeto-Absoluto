@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-08T15:49:52-03:00",
-  "source_revision": "818b377dd0ad209171d56b63c6d5d90a3b6141d7",
+  "generated_at": "2026-10-08T16:02:18-03:00",
+  "source_revision": "320936fba31aa543d40e013655213750a86fbc75",
   "components": [
     {
       "id": "component:abs_core",
@@ -37,7 +37,7 @@
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 59
+      "file_count": 60
     }
   ],
   "capabilities": [
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "818b377dd0ad209171d56b63c6d5d90a3b6141d7",
-      "commit_subject": "Parse OpenClaw payload responses for V3 planning"
+      "revision": "320936fba31aa543d40e013655213750a86fbc75",
+      "commit_subject": "Adicionar teste do ciclo cognitivo com replanejamento"
     }
   ],
   "tools": [
@@ -3428,6 +3428,11 @@
       "id": "file:tests/test_openai_compat.py",
       "kind": "file",
       "path": "tests/test_openai_compat.py"
+    },
+    {
+      "id": "file:tests/test_operational_cycle.py",
+      "kind": "file",
+      "path": "tests/test_operational_cycle.py"
     },
     {
       "id": "file:tests/test_path_evaluator.py",
@@ -8744,6 +8749,34 @@
       "sha": "818b377dd0ad209171d56b63c6d5d90a3b6141d7"
     },
     {
+      "id": "commit:1c68c800eaa60a9de612ac240cf903b02201983e",
+      "kind": "commit",
+      "at": "2026-10-08T18:50:11Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "1c68c800eaa60a9de612ac240cf903b02201983e"
+    },
+    {
+      "id": "commit:53c88023dfdf7084505dfde8f06cb1ba16658738",
+      "kind": "commit",
+      "at": "2026-10-08T16:02:00-03:00",
+      "subject": "Fechar ciclo cognitivo com replanejamento verificado",
+      "sha": "53c88023dfdf7084505dfde8f06cb1ba16658738"
+    },
+    {
+      "id": "commit:98300d784f4447d4010ed6e86658785a197804c9",
+      "kind": "commit",
+      "at": "2026-10-08T16:02:05-03:00",
+      "subject": "Corrigir aprendizagem V3 para usar estado verificado",
+      "sha": "98300d784f4447d4010ed6e86658785a197804c9"
+    },
+    {
+      "id": "commit:320936fba31aa543d40e013655213750a86fbc75",
+      "kind": "commit",
+      "at": "2026-10-08T16:02:18-03:00",
+      "subject": "Adicionar teste do ciclo cognitivo com replanejamento",
+      "sha": "320936fba31aa543d40e013655213750a86fbc75"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -8856,23 +8889,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:a78e2156e5a9",
+      "id": "evidence:repository:78340fa7fac4",
       "kind": "evidence",
-      "at": "2026-10-08T15:49:52-03:00",
+      "at": "2026-10-08T16:02:18-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:a78e2156e5a9",
+      "id": "event:repository-scan:78340fa7fac4",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-08T15:49:52-03:00"
+      "at": "2026-10-08T16:02:18-03:00"
     },
     {
-      "id": "event:commit-observed:818b377dd0ad",
+      "id": "event:commit-observed:320936fba31a",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-08T15:49:52-03:00"
+      "at": "2026-10-08T16:02:18-03:00"
     }
   ],
   "paths": [
@@ -8907,11 +8940,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:fff941015aae"
+        "evidence:test:a0f6625eb609"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-08T15:49:52-03:00"
+      "last_validated": "2026-10-08T16:02:18-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -8934,20 +8967,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:a78e2156e5a9",
+      "id": "evidence:repository:78340fa7fac4",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-08T15:49:52-03:00",
+      "observed_at": "2026-10-08T16:02:18-03:00",
       "status": "observed",
-      "detail": "396 files indexed at revision 818b377dd0ad209171d56b63c6d5d90a3b6141d7"
+      "detail": "397 files indexed at revision 320936fba31aa543d40e013655213750a86fbc75"
     },
     {
-      "id": "evidence:test:fff941015aae",
+      "id": "evidence:test:a0f6625eb609",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-08T15:49:52-03:00",
+      "observed_at": "2026-10-08T16:02:18-03:00",
       "status": "tested",
-      "detail": "191 passed in 7.35s"
+      "detail": "192 passed in 7.50s"
     }
   ],
   "decisions": [
@@ -9050,30 +9083,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:a78e2156e5a9",
+      "id": "event:repository-scan:78340fa7fac4",
       "type": "repository_scanned",
-      "at": "2026-10-08T15:49:52-03:00",
-      "revision": "818b377dd0ad209171d56b63c6d5d90a3b6141d7",
-      "file_count": 396,
-      "evidence_id": "evidence:repository:a78e2156e5a9"
+      "at": "2026-10-08T16:02:18-03:00",
+      "revision": "320936fba31aa543d40e013655213750a86fbc75",
+      "file_count": 397,
+      "evidence_id": "evidence:repository:78340fa7fac4"
     },
     {
-      "id": "event:commit-observed:818b377dd0ad",
+      "id": "event:commit-observed:320936fba31a",
       "type": "commit_observed",
-      "at": "2026-10-08T15:49:52-03:00",
-      "revision": "818b377dd0ad209171d56b63c6d5d90a3b6141d7",
+      "at": "2026-10-08T16:02:18-03:00",
+      "revision": "320936fba31aa543d40e013655213750a86fbc75",
       "branch": "main",
-      "subject": "Parse OpenClaw payload responses for V3 planning",
+      "subject": "Adicionar teste do ciclo cognitivo com replanejamento",
       "changed_files": [
-        "abs_core/openclaw_intelligence_adapter.py"
+        "tests/test_operational_cycle.py"
       ]
     },
     {
-      "id": "event:test:fff941015aae",
+      "id": "event:test:a0f6625eb609",
       "type": "tests_observed",
-      "at": "2026-10-08T15:49:52-03:00",
+      "at": "2026-10-08T16:02:18-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:fff941015aae"
+      "evidence_id": "evidence:test:a0f6625eb609"
     }
   ],
   "knowledge_sources": [
@@ -9129,7 +9162,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "804ca4acf0a5277f9cc0d785774a06363b47c3826191b42412a94e34bd7e2f8b"
+      "sha256": "ac3f37aaabb9b360c9db83b0bb2a7292bf5f98f27927b6d24bb5a4bddd39a10e"
     },
     {
       "id": "source:session",
@@ -36954,12 +36987,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:a78e2156e5a9",
-      "source": "event:repository-scan:a78e2156e5a9",
-      "relation": "generated",
-      "target": "evidence:repository:a78e2156e5a9",
+      "id": "rel:commit-precedes:818b377dd0ad:1c68c800eaa6",
+      "source": "commit:818b377dd0ad209171d56b63c6d5d90a3b6141d7",
+      "relation": "precedes",
+      "target": "commit:1c68c800eaa60a9de612ac240cf903b02201983e",
       "status": "asserted",
-      "at": "2026-10-08T15:49:52-03:00",
+      "at": "2026-10-08T18:50:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1c68c800eaa6:032adc3624d7",
+      "source": "commit:1c68c800eaa60a9de612ac240cf903b02201983e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-08T18:50:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1c68c800eaa6:d64178c49886",
+      "source": "commit:1c68c800eaa60a9de612ac240cf903b02201983e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-08T18:50:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:1c68c800eaa6:53c88023dfdf",
+      "source": "commit:1c68c800eaa60a9de612ac240cf903b02201983e",
+      "relation": "precedes",
+      "target": "commit:53c88023dfdf7084505dfde8f06cb1ba16658738",
+      "status": "asserted",
+      "at": "2026-10-08T16:02:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:53c88023dfdf:7e73bc8a7b8c",
+      "source": "commit:53c88023dfdf7084505dfde8f06cb1ba16658738",
+      "relation": "changed",
+      "target": "file:abs_core/operational_intelligence.py",
+      "status": "asserted",
+      "at": "2026-10-08T16:02:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:53c88023dfdf:98300d784f44",
+      "source": "commit:53c88023dfdf7084505dfde8f06cb1ba16658738",
+      "relation": "precedes",
+      "target": "commit:98300d784f4447d4010ed6e86658785a197804c9",
+      "status": "asserted",
+      "at": "2026-10-08T16:02:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:98300d784f44:04f1341ba654",
+      "source": "commit:98300d784f4447d4010ed6e86658785a197804c9",
+      "relation": "changed",
+      "target": "file:abs_core/v3.py",
+      "status": "asserted",
+      "at": "2026-10-08T16:02:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:98300d784f44:320936fba31a",
+      "source": "commit:98300d784f4447d4010ed6e86658785a197804c9",
+      "relation": "precedes",
+      "target": "commit:320936fba31aa543d40e013655213750a86fbc75",
+      "status": "asserted",
+      "at": "2026-10-08T16:02:18-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:320936fba31a:269a97d04a05",
+      "source": "commit:320936fba31aa543d40e013655213750a86fbc75",
+      "relation": "changed",
+      "target": "file:tests/test_operational_cycle.py",
+      "status": "asserted",
+      "at": "2026-10-08T16:02:18-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:78340fa7fac4",
+      "source": "event:repository-scan:78340fa7fac4",
+      "relation": "generated",
+      "target": "evidence:repository:78340fa7fac4",
+      "status": "asserted",
+      "at": "2026-10-08T16:02:18-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -36968,12 +37127,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:818b377dd0ad",
-      "source": "commit:818b377dd0ad209171d56b63c6d5d90a3b6141d7",
+      "id": "rel:scan-commit:320936fba31a",
+      "source": "commit:320936fba31aa543d40e013655213750a86fbc75",
       "relation": "observed_by",
-      "target": "event:repository-scan:a78e2156e5a9",
+      "target": "event:repository-scan:78340fa7fac4",
       "status": "asserted",
-      "at": "2026-10-08T15:49:52-03:00",
+      "at": "2026-10-08T16:02:18-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
