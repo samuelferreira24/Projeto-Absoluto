@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: a4b79f1331c8f04b234a54068d5de6164f3524c2
-Momento da revisão: 2026-10-08T15:37:01-03:00
+Revisão observada: 70d0fdf74c1fa66bb9066de8dde27183f2fe40d6
+Momento da revisão: 2026-10-08T15:42:40-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -22,7 +22,7 @@ Momento da revisão: 2026-10-08T15:37:01-03:00
 - source:project-registry — project_registry — continuidade/07_conhecimento/project_registry.json — present — autoridade: project_governance — temporalidade: current
 
 ## Componentes
-- component:abs_core — abs_core (57 arquivos)
+- component:abs_core — abs_core (58 arquivos)
 - component:cerebro — cerebro (45 arquivos)
 - component:continuity — continuity (24 arquivos)
 - component:docs — docs (74 arquivos)
@@ -331,6 +331,7 @@ Momento da revisão: 2026-10-08T15:37:01-03:00
 - file:abs_core/openai_adapter.py — None — estado: unknown
 - file:abs_core/openai_compat.py — None — estado: unknown
 - file:abs_core/openrouter_adapter.py — None — estado: unknown
+- file:abs_core/operational_intelligence.py — None — estado: unknown
 - file:abs_core/orchestrator.py — None — estado: unknown
 - file:abs_core/path_evaluator.py — None — estado: unknown
 - file:abs_core/project_knowledge.py — None — estado: unknown
@@ -1368,6 +1369,9 @@ Momento da revisão: 2026-10-08T15:37:01-03:00
 - commit:73aa541d1f0cc9a646de2bf1d088f6b5c2e45fa1 — None — estado: unknown
 - commit:64b79c6ba90b6de43700d46e4c139e25da9ebea1 — None — estado: unknown
 - commit:a4b79f1331c8f04b234a54068d5de6164f3524c2 — None — estado: unknown
+- commit:ddb762cec34e937da2657b1a4db48f5e625085a4 — None — estado: unknown
+- commit:0507fb766e97681fd20f89ce60885eacf2497043 — None — estado: unknown
+- commit:70d0fdf74c1fa66bb9066de8dde27183f2fe40d6 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1382,19 +1386,19 @@ Momento da revisão: 2026-10-08T15:37:01-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:4feb5e913f43 — None — estado: unknown
-- event:repository-scan:4feb5e913f43 — None — estado: unknown
-- event:commit-observed:a4b79f1331c8 — None — estado: unknown
+- evidence:repository:b8bd480773b5 — None — estado: unknown
+- event:repository-scan:b8bd480773b5 — None — estado: unknown
+- event:commit-observed:70d0fdf74c1f — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:bee34ac699a8
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:6e08686b2544
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:4feb5e913f43 — repository_scanned — revisão: a4b79f1331c8f04b234a54068d5de6164f3524c2
-- event:commit-observed:a4b79f1331c8 — commit_observed — revisão: a4b79f1331c8f04b234a54068d5de6164f3524c2
-- event:test:bee34ac699a8 — tests_observed — revisão: n/a
+- event:repository-scan:b8bd480773b5 — repository_scanned — revisão: 70d0fdf74c1fa66bb9066de8dde27183f2fe40d6
+- event:commit-observed:70d0fdf74c1f — commit_observed — revisão: 70d0fdf74c1fa66bb9066de8dde27183f2fe40d6
+- event:test:6e08686b2544 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -3333,15 +3337,22 @@ Momento da revisão: 2026-10-08T15:37:01-03:00
 - commit:64b79c6ba90b6de43700d46e4c139e25da9ebea1 — changed → file:tests/test_v3.py — asserted
 - commit:64b79c6ba90b6de43700d46e4c139e25da9ebea1 — precedes → commit:a4b79f1331c8f04b234a54068d5de6164f3524c2 — asserted
 - commit:a4b79f1331c8f04b234a54068d5de6164f3524c2 — changed → file:.github/workflows/abs-vps-command.yml — asserted
-- event:repository-scan:4feb5e913f43 — generated → evidence:repository:4feb5e913f43 — asserted
-- commit:a4b79f1331c8f04b234a54068d5de6164f3524c2 — observed_by → event:repository-scan:4feb5e913f43 — asserted
+- commit:a4b79f1331c8f04b234a54068d5de6164f3524c2 — precedes → commit:ddb762cec34e937da2657b1a4db48f5e625085a4 — asserted
+- commit:ddb762cec34e937da2657b1a4db48f5e625085a4 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:ddb762cec34e937da2657b1a4db48f5e625085a4 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:ddb762cec34e937da2657b1a4db48f5e625085a4 — precedes → commit:0507fb766e97681fd20f89ce60885eacf2497043 — asserted
+- commit:0507fb766e97681fd20f89ce60885eacf2497043 — changed → file:abs_core/operational_intelligence.py — asserted
+- commit:0507fb766e97681fd20f89ce60885eacf2497043 — precedes → commit:70d0fdf74c1fa66bb9066de8dde27183f2fe40d6 — asserted
+- commit:70d0fdf74c1fa66bb9066de8dde27183f2fe40d6 — changed → file:abs_core/runtime.py — asserted
+- event:repository-scan:b8bd480773b5 — generated → evidence:repository:b8bd480773b5 — asserted
+- commit:70d0fdf74c1fa66bb9066de8dde27183f2fe40d6 — observed_by → event:repository-scan:b8bd480773b5 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:4feb5e913f43 — repository_scan — observed — 394 files indexed at revision a4b79f1331c8f04b234a54068d5de6164f3524c2
-- evidence:test:bee34ac699a8 — test — tested — 188 passed in 7.42s
+- evidence:repository:b8bd480773b5 — repository_scan — observed — 395 files indexed at revision 70d0fdf74c1fa66bb9066de8dde27183f2fe40d6
+- evidence:test:6e08686b2544 — test — tested — 188 passed in 7.47s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
