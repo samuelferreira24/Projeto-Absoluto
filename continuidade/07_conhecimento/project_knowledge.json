@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:32:10-03:00",
-  "source_revision": "ae3d1633197187b455957ccfdc7070936f77a3e8",
+  "generated_at": "2026-10-09T00:32:49-03:00",
+  "source_revision": "fe8a89b1061949093bec3d1e965dd602e8803c8e",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "ae3d1633197187b455957ccfdc7070936f77a3e8",
-      "commit_subject": "Adicionar diagnóstico somente leitura do serviço Ollama"
+      "revision": "fe8a89b1061949093bec3d1e965dd602e8803c8e",
+      "commit_subject": "Adicionar diagnóstico de logs do Ollama após smoke test lento"
     }
   ],
   "tools": [
@@ -9693,6 +9693,20 @@
       "sha": "ae3d1633197187b455957ccfdc7070936f77a3e8"
     },
     {
+      "id": "commit:5ae9c11a43cb1eb05cabfa96d5708acf0cd65225",
+      "kind": "commit",
+      "at": "2026-10-09T03:32:31Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "5ae9c11a43cb1eb05cabfa96d5708acf0cd65225"
+    },
+    {
+      "id": "commit:fe8a89b1061949093bec3d1e965dd602e8803c8e",
+      "kind": "commit",
+      "at": "2026-10-09T00:32:49-03:00",
+      "subject": "Adicionar diagnóstico de logs do Ollama após smoke test lento",
+      "sha": "fe8a89b1061949093bec3d1e965dd602e8803c8e"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9805,23 +9819,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:7af735f6dbcb",
+      "id": "evidence:repository:dfa899b34932",
       "kind": "evidence",
-      "at": "2026-10-09T00:32:10-03:00",
+      "at": "2026-10-09T00:32:49-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:7af735f6dbcb",
+      "id": "event:repository-scan:dfa899b34932",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:32:10-03:00"
+      "at": "2026-10-09T00:32:49-03:00"
     },
     {
-      "id": "event:commit-observed:ae3d16331971",
+      "id": "event:commit-observed:fe8a89b10619",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:32:10-03:00"
+      "at": "2026-10-09T00:32:49-03:00"
     }
   ],
   "paths": [
@@ -9856,11 +9870,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:04f5904b0ad4"
+        "evidence:test:fe9ffc011b07"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:32:10-03:00"
+      "last_validated": "2026-10-09T00:32:49-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9883,18 +9897,18 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:7af735f6dbcb",
+      "id": "evidence:repository:dfa899b34932",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:32:10-03:00",
+      "observed_at": "2026-10-09T00:32:49-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision ae3d1633197187b455957ccfdc7070936f77a3e8"
+      "detail": "406 files indexed at revision fe8a89b1061949093bec3d1e965dd602e8803c8e"
     },
     {
-      "id": "evidence:test:04f5904b0ad4",
+      "id": "evidence:test:fe9ffc011b07",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:32:10-03:00",
+      "observed_at": "2026-10-09T00:32:49-03:00",
       "status": "tested",
       "detail": "199 passed in 7.50s"
     }
@@ -9999,30 +10013,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:7af735f6dbcb",
+      "id": "event:repository-scan:dfa899b34932",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:32:10-03:00",
-      "revision": "ae3d1633197187b455957ccfdc7070936f77a3e8",
+      "at": "2026-10-09T00:32:49-03:00",
+      "revision": "fe8a89b1061949093bec3d1e965dd602e8803c8e",
       "file_count": 406,
-      "evidence_id": "evidence:repository:7af735f6dbcb"
+      "evidence_id": "evidence:repository:dfa899b34932"
     },
     {
-      "id": "event:commit-observed:ae3d16331971",
+      "id": "event:commit-observed:fe8a89b10619",
       "type": "commit_observed",
-      "at": "2026-10-09T00:32:10-03:00",
-      "revision": "ae3d1633197187b455957ccfdc7070936f77a3e8",
+      "at": "2026-10-09T00:32:49-03:00",
+      "revision": "fe8a89b1061949093bec3d1e965dd602e8803c8e",
       "branch": "main",
-      "subject": "Adicionar diagnóstico somente leitura do serviço Ollama",
+      "subject": "Adicionar diagnóstico de logs do Ollama após smoke test lento",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:04f5904b0ad4",
+      "id": "event:test:fe9ffc011b07",
       "type": "tests_observed",
-      "at": "2026-10-09T00:32:10-03:00",
+      "at": "2026-10-09T00:32:49-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:04f5904b0ad4"
+      "evidence_id": "evidence:test:fe9ffc011b07"
     }
   ],
   "knowledge_sources": [
@@ -10078,7 +10092,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "0219e6b9867c033c7c0ae5e44ee9db310c14dccce0014abb5c09879aad81f509"
+      "sha256": "33da84dafc0e87c2aee7cd8f959582eae35628a55add8e611f38439360966e84"
     },
     {
       "id": "source:session",
@@ -42131,12 +42145,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:7af735f6dbcb",
-      "source": "event:repository-scan:7af735f6dbcb",
-      "relation": "generated",
-      "target": "evidence:repository:7af735f6dbcb",
+      "id": "rel:commit-precedes:ae3d16331971:5ae9c11a43cb",
+      "source": "commit:ae3d1633197187b455957ccfdc7070936f77a3e8",
+      "relation": "precedes",
+      "target": "commit:5ae9c11a43cb1eb05cabfa96d5708acf0cd65225",
       "status": "asserted",
-      "at": "2026-10-09T00:32:10-03:00",
+      "at": "2026-10-09T03:32:31Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:5ae9c11a43cb:032adc3624d7",
+      "source": "commit:5ae9c11a43cb1eb05cabfa96d5708acf0cd65225",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:32:31Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:5ae9c11a43cb:d64178c49886",
+      "source": "commit:5ae9c11a43cb1eb05cabfa96d5708acf0cd65225",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:32:31Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:5ae9c11a43cb:fe8a89b10619",
+      "source": "commit:5ae9c11a43cb1eb05cabfa96d5708acf0cd65225",
+      "relation": "precedes",
+      "target": "commit:fe8a89b1061949093bec3d1e965dd602e8803c8e",
+      "status": "asserted",
+      "at": "2026-10-09T00:32:49-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:fe8a89b10619:1734be446032",
+      "source": "commit:fe8a89b1061949093bec3d1e965dd602e8803c8e",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:32:49-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:dfa899b34932",
+      "source": "event:repository-scan:dfa899b34932",
+      "relation": "generated",
+      "target": "evidence:repository:dfa899b34932",
+      "status": "asserted",
+      "at": "2026-10-09T00:32:49-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -42145,12 +42229,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:ae3d16331971",
-      "source": "commit:ae3d1633197187b455957ccfdc7070936f77a3e8",
+      "id": "rel:scan-commit:fe8a89b10619",
+      "source": "commit:fe8a89b1061949093bec3d1e965dd602e8803c8e",
       "relation": "observed_by",
-      "target": "event:repository-scan:7af735f6dbcb",
+      "target": "event:repository-scan:dfa899b34932",
       "status": "asserted",
-      "at": "2026-10-09T00:32:10-03:00",
+      "at": "2026-10-09T00:32:49-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
