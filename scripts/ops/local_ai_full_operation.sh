@@ -249,7 +249,7 @@ print(json.dumps({
 }))
 PY
 )"
-  response="$(curl -sS --max-time 300 http://127.0.0.1:11434/api/chat -H 'Content-Type: application/json' -d "$payload" 2>&1)"
+  response="$(curl -sS --max-time 120 http://127.0.0.1:11434/api/chat -H 'Content-Type: application/json' -d "$payload" 2>&1)"
   rc=$?
   if [ "$rc" -eq 0 ] && printf '%s' "$response" | python3 -c 'import json,sys
 d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(); assert "ABS_QWEN_VISION_OK" in s, s; print("vision_response="+s[:120])' && assert_unloaded; then
