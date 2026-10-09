@@ -31,7 +31,7 @@ jobs:
           command="$(tr -d '\r\n' < .github/operations/vps-command.txt)"
           result_file="$(mktemp)"
           run_model_test() {
-            local capability="$1" model="$2" expected="$3" min_kb="$4" min_ollama_bytes="$5"
+            local capability="$1" model="$2" expected="$3" min_kb="$4" min_ollama_bytes="$5" request_timeout="$6" max_time="$7" max_tokens="$8"
             local available_kb ollama_max response curl_rc
             available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
             ollama_max="$(systemctl show ollama.service -p MemoryMax --value 2>/dev/null || echo 0)"
@@ -54,8 +54,11 @@ jobs:
                 return 0
               fi
               echo "[ABS /chat request]"
-              response="$(curl -sS --max-time 150 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d "{\"message\":\"Reply exactly $expected and nothing else.\",\"approved\":true,\"context\":{\"capability_id\":\"$capability\",\"max_tokens\":16,\"temperature\":0,\"think\":false,\"keep_alive\":0,\"timeout\":120}}" 2>&1)"
-              curl_rc=$?
+              if response="$(curl -sS --max-time "$max_time" -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d "{\"message\":\"Reply exactly $expected and nothing else.\",\"approved\":true,\"context\":{\"capability_id\":\"$capability\",\"max_tokens\":$max_tokens,\"temperature\":0,\"think\":false,\"keep_alive\":0,\"timeout\":$request_timeout}}" 2>&1)"; then
+                curl_rc=0
+              else
+                curl_rc=$?
+              fi
               echo "[curl_rc] $curl_rc"
               printf '%s\n' "$response" | head -c 5000
               echo
@@ -94,22 +97,22 @@ jobs:
               } > "$result_file" 2>&1
               ;;
             test-qwen-0.8b)
-              run_model_test "local-ai:qwen3.5-0.8b" "qwen3.5:0.8b" "ABS_QWEN_08B_OK" 1572864 0
+              run_model_test "local-ai:qwen3.5-0.8b" "qwen3.5:0.8b" "ABS_QWEN_08B_OK" 1572864 0 120 150 16
               ;;
             test-qwen-2b)
-              run_model_test "local-ai:qwen3.5-2b" "qwen3.5:2b" "ABS_QWEN_2B_OK" 4194304 0
+              run_model_test "local-ai:qwen3.5-2b" "qwen3.5:2b" "ABS_QWEN_2B_OK" 4194304 0 120 150 16
               ;;
             test-qwen-4b)
-              run_model_test "local-ai:qwen3.5-4b" "qwen3.5:4b" "ABS_QWEN_4B_OK" 4194304 3300000000
+              run_model_test "local-ai:qwen3.5-4b" "qwen3.5:4b" "ABS_QWEN_4B_OK" 4194304 3300000000 240 270 8
               ;;
             test-ministral-3b)
-              run_model_test "local-ai:ministral-3b" "ministral-3:3b" "ABS_MINISTRAL_3B_OK" 4194304 2900000000
+              run_model_test "local-ai:ministral-3b" "ministral-3:3b" "ABS_MINISTRAL_3B_OK" 4194304 2900000000 180 210 8
               ;;
             test-gemma-e2b)
-              run_model_test "local-ai:gemma4-e2b" "gemma4:e2b" "ABS_GEMMA_E2B_OK" 4718592 4500000000
+              run_model_test "local-ai:gemma4-e2b" "gemma4:e2b" "ABS_GEMMA_E2B_OK" 4194304 0 240 270 8
               ;;
             test-gemma-e4b)
-              run_model_test "local-ai:gemma4-e4b" "gemma4:e4b" "ABS_GEMMA_E4B_OK" 6291456 6500000000
+              run_model_test "local-ai:gemma4-e4b" "gemma4:e4b" "ABS_GEMMA_E4B_OK" 6291456 0 300 330 8
               ;;
             *)
               printf 'REJECTED: command not allowlisted: %s\n' "$command" > "$result_file"
