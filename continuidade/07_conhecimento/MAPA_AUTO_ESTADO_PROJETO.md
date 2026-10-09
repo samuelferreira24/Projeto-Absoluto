@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 84fc2912053edd71942c5a566b3db2aae92ca2ba
-Momento da revisão: 2026-10-09T16:47:20-03:00
+Revisão observada: 382998ffa075296cde7d98e0429b315450fef562
+Momento da revisão: 2026-10-09T16:49:04-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -1622,6 +1622,8 @@ Momento da revisão: 2026-10-09T16:47:20-03:00
 - commit:b5503fd6ba041d3b3185d52d16058f39d52551ac — None — estado: unknown
 - commit:be0c6a9d01c00b48b562fdc08e1d8edc478f455c — None — estado: unknown
 - commit:84fc2912053edd71942c5a566b3db2aae92ca2ba — None — estado: unknown
+- commit:0d1c48e2b88c25ed1093c45320cece5e145e4223 — None — estado: unknown
+- commit:382998ffa075296cde7d98e0429b315450fef562 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1636,19 +1638,19 @@ Momento da revisão: 2026-10-09T16:47:20-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:343f3b40edc9 — None — estado: unknown
-- event:repository-scan:343f3b40edc9 — None — estado: unknown
-- event:commit-observed:84fc2912053e — None — estado: unknown
+- evidence:repository:29d9475a7a9a — None — estado: unknown
+- event:repository-scan:29d9475a7a9a — None — estado: unknown
+- event:commit-observed:382998ffa075 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:aea3ae83dc14
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:68d580d96db3
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:343f3b40edc9 — repository_scanned — revisão: 84fc2912053edd71942c5a566b3db2aae92ca2ba
-- event:commit-observed:84fc2912053e — commit_observed — revisão: 84fc2912053edd71942c5a566b3db2aae92ca2ba
-- event:test:aea3ae83dc14 — tests_observed — revisão: n/a
+- event:repository-scan:29d9475a7a9a — repository_scanned — revisão: 382998ffa075296cde7d98e0429b315450fef562
+- event:commit-observed:382998ffa075 — commit_observed — revisão: 382998ffa075296cde7d98e0429b315450fef562
+- event:test:68d580d96db3 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -4162,15 +4164,20 @@ Momento da revisão: 2026-10-09T16:47:20-03:00
 - commit:be0c6a9d01c00b48b562fdc08e1d8edc478f455c — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
 - commit:be0c6a9d01c00b48b562fdc08e1d8edc478f455c — precedes → commit:84fc2912053edd71942c5a566b3db2aae92ca2ba — asserted
 - commit:84fc2912053edd71942c5a566b3db2aae92ca2ba — changed → file:scripts/ops/vps_inventory_audit.sh — asserted
-- event:repository-scan:343f3b40edc9 — generated → evidence:repository:343f3b40edc9 — asserted
-- commit:84fc2912053edd71942c5a566b3db2aae92ca2ba — observed_by → event:repository-scan:343f3b40edc9 — asserted
+- commit:84fc2912053edd71942c5a566b3db2aae92ca2ba — precedes → commit:0d1c48e2b88c25ed1093c45320cece5e145e4223 — asserted
+- commit:0d1c48e2b88c25ed1093c45320cece5e145e4223 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:0d1c48e2b88c25ed1093c45320cece5e145e4223 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:0d1c48e2b88c25ed1093c45320cece5e145e4223 — precedes → commit:382998ffa075296cde7d98e0429b315450fef562 — asserted
+- commit:382998ffa075296cde7d98e0429b315450fef562 — changed → file:docs/03_planejamento/RELATORIO_LIMPEZA_VPS_E_VALIDACAO_IAS_LOCAIS_2026-10-09.md — asserted
+- event:repository-scan:29d9475a7a9a — generated → evidence:repository:29d9475a7a9a — asserted
+- commit:382998ffa075296cde7d98e0429b315450fef562 — observed_by → event:repository-scan:29d9475a7a9a — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:343f3b40edc9 — repository_scan — observed — 413 files indexed at revision 84fc2912053edd71942c5a566b3db2aae92ca2ba
-- evidence:test:aea3ae83dc14 — test — tested — 211 passed in 7.64s
+- evidence:repository:29d9475a7a9a — repository_scan — observed — 413 files indexed at revision 382998ffa075296cde7d98e0429b315450fef562
+- evidence:test:68d580d96db3 — test — tested — 211 passed in 7.63s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
