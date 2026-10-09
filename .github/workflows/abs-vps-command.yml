@@ -172,20 +172,7 @@ jobs:
               result="$(printf 'health: %s\nwork_create: %s\nwork_run: %s\n' "$health" "$work_json" "$run_json")"
               ;;
             local-ai-test-all)
-              set -e
-              export HOME=/home/absadmin
-              export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
-              models="qwen3.5:0.8b qwen3.5:2b qwen3.5:4b ministral-3:3b gemma4:e2b gemma4:e4b"
-              for model in $models; do
-                echo "=== $model ==="
-                out="$(curl -fsS --max-time 240 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d "{\"model\":\"$model\",\"prompt\":\"Reply exactly LOCAL_AI_OK\",\"stream\":false}")"
-                echo "$out"
-                echo "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("response","").strip()=="LOCAL_AI_OK", d'
-              done
-              ollama list
-              free -h
-              df -h /
-              result="LOCAL_AI_ALL_6_PASS"
+              result="DISABLED: lote de seis modelos bloqueado para proteger a VPS. Use /abs-reserve local-ai-smoke para validar um modelo por vez; o padrão operacional é qwen3.5:0.8b."
               ;;
             v2-openclaw-work-test)
               set -e
@@ -211,7 +198,7 @@ jobs:
               ollama pull ministral-3:3b
               ollama pull gemma4:e2b
               ollama pull gemma4:e4b
-              sudo sh -c 'printf "%s\\n" "ABS_LOCAL_AI_MODELS=qwen3.5-0.8b|http://127.0.0.1:11434|qwen3.5:0.8b,qwen3.5-2b|http://127.0.0.1:11434|qwen3.5:2b,qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b,ministral-3b|http://127.0.0.1:11434|ministral-3:3b,gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b,gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "ABS_LOCAL_AI_URL=http://127.0.0.1:11434" "ABS_LOCAL_AI_MODEL=qwen3.5:4b" > /etc/abs-local-models.env'
+              sudo sh -c 'printf "%s\\n" "ABS_LOCAL_AI_MODELS=qwen3.5-0.8b|http://127.0.0.1:11434|qwen3.5:0.8b,qwen3.5-2b|http://127.0.0.1:11434|qwen3.5:2b,qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b,ministral-3b|http://127.0.0.1:11434|ministral-3:3b,gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b,gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "ABS_LOCAL_AI_URL=http://127.0.0.1:11434" "ABS_LOCAL_AI_MODEL=qwen3.5:0.8b" "ABS_LOCAL_AI_MAX_TOKENS=64" "ABS_LOCAL_AI_TEMPERATURE=0" "ABS_LOCAL_AI_THINK=false" > /etc/abs-local-models.env'
               if [ -f /etc/systemd/system/abs.service ]; then
                 sudo sed -i '/EnvironmentFile=-\/etc\/abs-local-models.env/d' /etc/systemd/system/abs.service
                 sudo sed -i '/^Environment=PYTHONUNBUFFERED=1$/a EnvironmentFile=-/etc/abs-local-models.env' /etc/systemd/system/abs.service
@@ -348,7 +335,14 @@ jobs:
           /abs runner-reset-reserve'
               ;;
             local-ai-reset)
+              set -e
               service="ollama.service"
+              if [ ! -f /etc/abs-local-models.env ]; then
+                echo "FAIL: /etc/abs-local-models.env ausente; rode /abs local-ai-install após revisar os modelos instalados."
+                exit 1
+              fi
+              sudo sed -i -e '/^ABS_LOCAL_AI_MODEL=/d' -e '/^ABS_LOCAL_AI_MAX_TOKENS=/d' -e '/^ABS_LOCAL_AI_TEMPERATURE=/d' -e '/^ABS_LOCAL_AI_THINK=/d' /etc/abs-local-models.env
+              printf '%s\\n' 'ABS_LOCAL_AI_MODEL=qwen3.5:0.8b' 'ABS_LOCAL_AI_MAX_TOKENS=64' 'ABS_LOCAL_AI_TEMPERATURE=0' 'ABS_LOCAL_AI_THINK=false' | sudo tee -a /etc/abs-local-models.env >/dev/null
               sudo install -d -m 0755 /etc/systemd/system/ollama.service.d
               sudo tee /etc/systemd/system/ollama.service.d/10-abs-memory.conf >/dev/null <<'UNIT'
           [Service]
@@ -358,20 +352,40 @@ jobs:
           MemoryHigh=3200M
           MemoryMax=3584M
           MemorySwapMax=1G
+          Environment=OLLAMA_KEEP_ALIVE=0
+          Environment=OLLAMA_NUM_PARALLEL=1
+          Environment=OLLAMA_MAX_LOADED_MODELS=1
+          Environment=OLLAMA_CONTEXT_LENGTH=2048
+          UNIT
+              sudo install -d -m 0755 /etc/systemd/system/abs.service.d
+              sudo tee /etc/systemd/system/abs.service.d/10-local-ai-env.conf >/dev/null <<'UNIT'
+          [Service]
+          EnvironmentFile=-/etc/abs-local-models.env
           UNIT
               sudo systemctl daemon-reload
-              echo "[restarting Ollama to clear any stale inference]"
+              echo "[restarting Ollama to clear stale inference and apply limits]"
               sudo systemctl restart "$service"
-              sleep 5
+              sleep 4
+              echo "[restarting ABS to load safe default model]"
+              sudo systemctl restart abs.service
+              sleep 3
               {
+                echo "[Ollama limits]"
                 sudo systemctl show "$service" -p ActiveState -p SubState -p Result -p Restart -p MemoryCurrent -p MemoryPeak -p MemoryHigh -p MemoryMax -p MemorySwapMax
                 echo
-                echo "[Ollama HTTP]"
-                curl -fsS --max-time 10 http://127.0.0.1:11434/api/tags
+                echo "[safe ABS local model config]"
+                sudo grep -E '^(ABS_LOCAL_AI_URL|ABS_LOCAL_AI_MODEL|ABS_LOCAL_AI_MAX_TOKENS|ABS_LOCAL_AI_TEMPERATURE|ABS_LOCAL_AI_THINK)=' /etc/abs-local-models.env
                 echo
-                echo "[active models]"
+                echo "[Ollama active models: should be empty until requested]"
                 curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps
                 echo
+                echo "[ABS health]"
+                curl -fsS --max-time 10 http://127.0.0.1:8787/health
+                echo
+                echo "[ABS V3 status]"
+                curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status
+                echo
+                echo "[memory]"
                 free -h
               } > /tmp/abs-local-ai-reset.txt 2>&1
               result="$(cat /tmp/abs-local-ai-reset.txt)"
