@@ -75,3 +75,74 @@ def test_unknown_memory_fails_closed_for_sized_local_models(monkeypatch):
     monkeypatch.setattr("builtins.open", unavailable)
     ranked = runtime._rank_resources({"context": {}, "preferred_resource": None})
     assert ranked == []
+
+
+def test_turn_routes_to_the_exact_explicit_capability(monkeypatch):
+    import threading
+    from types import SimpleNamespace
+    from abs_core.intelligence import CognitiveRuntime, IntelligenceRegistry, IntelligenceResource
+
+    caps = {
+        "local-ai:a": SimpleNamespace(id="local-ai:a", kind="local_ai", metadata={"conversational": True}),
+        "local-ai:b": SimpleNamespace(id="local-ai:b", kind="local_ai", metadata={"conversational": True}),
+    }
+
+    class CapabilitySet:
+        def get(self, capability_id):
+            return caps[capability_id]
+
+        def list(self):
+            return list(caps.values())
+
+    class FakeOrchestrator:
+        def __init__(self):
+            self.seen = []
+
+        def create(self, objective, context):
+            return SimpleNamespace(id="work-1")
+
+        def run(self, work_id, capability_id, approved=False):
+            self.seen.append(capability_id)
+            return SimpleNamespace(
+                id=work_id,
+                state=SimpleNamespace(value="completed"),
+                result={"final_response": "ok"},
+                provenance=[{"capability_id": capability_id}],
+                capability_id=capability_id,
+            )
+
+    intelligence = IntelligenceRegistry()
+    intelligence.register(IntelligenceResource(
+        id="intelligence:local-ai:a", capability_id="local-ai:a", name="A",
+        source="local", local=True, capabilities=("chat",), status="configured",
+        priority=100, metadata={"estimated_memory_mb": 100, "conversational": True},
+    ))
+    intelligence.register(IntelligenceResource(
+        id="intelligence:local-ai:b", capability_id="local-ai:b", name="B",
+        source="local", local=True, capabilities=("chat",), status="configured",
+        priority=1, metadata={"estimated_memory_mb": 100, "conversational": True},
+    ))
+    orchestrator = FakeOrchestrator()
+    runtime = CognitiveRuntime.__new__(CognitiveRuntime)
+    runtime.capabilities = CapabilitySet()
+    runtime.intelligence = intelligence
+    runtime.orchestrator = orchestrator
+    runtime._lock = threading.RLock()
+    runtime.max_history = 24
+    runtime.tool_runtime = None
+    runtime.data_layer = None
+    session = {
+        "id": "session-1", "created_at": "", "updated_at": "",
+        "preferred_resource": None, "context": {}, "messages": [],
+    }
+    runtime._load = lambda sid: session
+    runtime._save = lambda current: None
+
+    result = runtime.turn(
+        "test explicit routing", session_id="session-1",
+        context={"capability_id": "local-ai:b"}, approved=True,
+    )
+
+    assert result["work_state"] == "completed"
+    assert orchestrator.seen == ["local-ai:b"]
+    assert result["resource"]["capability_id"] == "local-ai:b"
