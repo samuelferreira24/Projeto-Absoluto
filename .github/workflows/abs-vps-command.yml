@@ -610,6 +610,26 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            browser-diagnose)
+              {
+                echo "[container state]"
+                sudo docker inspect abs-browser-ui --format 'status={{.State.Status}} exit={{.State.ExitCode}} error={{.State.Error}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}'
+                echo
+                echo "[health/ports/mounts/limits]"
+                sudo docker inspect abs-browser-ui --format 'health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} ports={{json .HostConfig.PortBindings}} mounts={{json .Mounts}} memory={{.HostConfig.Memory}} memory_swap={{.HostConfig.MemorySwap}} cpus={{.HostConfig.NanoCpus}} pids={{.HostConfig.PidsLimit}}'
+                echo
+                echo "[sanitized startup errors]"
+                sudo docker logs --tail 160 abs-browser-ui 2>&1 | grep -Ei 'error|fatal|permission|failed|denied|exit|listen|port|supervisor|s6-' | sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[=: ][^ ]*/\1=[REDACTED]/Ig' | tail -n 80 || true
+                echo
+                echo "[host resources]"
+                free -h
+                df -h /
+                echo
+                echo "[ABS health]"
+                curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null && echo PASS || echo FAIL
+              } > /tmp/abs-browser-diagnose.txt 2>&1
+              result="$(cat /tmp/abs-browser-diagnose.txt)"
+              ;;
             docker)
               if command -v docker >/dev/null 2>&1; then
                 {
