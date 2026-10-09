@@ -4,10 +4,6 @@ on:
   issue_comment:
     types: [created]
 
-concurrency:
-  group: abs-vps-shared-tree
-  cancel-in-progress: false
-
 permissions:
   contents: read
   issues: write
@@ -18,6 +14,9 @@ jobs:
       github.event.issue.pull_request == null &&
       github.event.comment.user.login == 'samuelferreira24' &&
       startsWith(github.event.comment.body, '/abs-reserve ')
+    concurrency:
+      group: abs-vps-shared-tree
+      cancel-in-progress: false
     runs-on: [self-hosted, abs-vps-01-reserve]
     timeout-minutes: 10
     steps:
