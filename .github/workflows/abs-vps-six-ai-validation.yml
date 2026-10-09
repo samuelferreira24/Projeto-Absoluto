@@ -67,7 +67,7 @@ jobs:
                 free -h
                 return 0
               fi
-              if printf '%s\n' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); expected=sys.argv[1].upper(); cap=sys.argv[2]; assert d.get("work_state")=="completed", d; assert expected in str(d.get("response","")).upper(), d; p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert any(isinstance(x,dict) and x.get("capability_id")==cap for x in p), p; print("ABS MODEL VIA V3 PASS; capability="+cap)' "$expected" "$capability"; then
+              if printf '%s\\n' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); expected=sys.argv[1].upper(); cap=sys.argv[2]; model=sys.argv[3]; assert d.get("work_state")=="completed", d; assert expected in str(d.get("response","")).upper(), d; assert d.get("resource",{}).get("metadata",{}).get("model")==model, d.get("resource"); p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert any(isinstance(x,dict) and x.get("capability_id")==cap for x in p), p; print("ABS MODEL VIA V3 PASS; capability="+cap+"; model="+model)' "$expected" "$capability" "$model"; then
                 echo "VALIDATION=PASS"
               else
                 echo "VALIDATION=FAIL"
@@ -80,8 +80,8 @@ jobs:
           }
 
 
-          install_gguf() {
-            local model_tag="$1" url="$2" file="$3" min_bytes="$4" max_bytes="$5" min_free_kb="$6"
+          install_hf_model() {
+            local model_tag="$1" min_free_kb="$2"
             {
               echo "[install tag] $model_tag"
               if ollama list | awk 'NR>1 {print $1}' | grep -Fxq "$model_tag"; then
@@ -89,13 +89,13 @@ jobs:
                 echo "OPERATION=PASS"
                 return 0
               fi
-              local available_kb free_kb active size
+              local available_kb free_kb active
               available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
               free_kb="$(df -Pk / | awk 'NR==2 {print $4}')"
               echo "[MemAvailable_kB] $available_kb"
               echo "[disk_free_kB] $free_kb"
               if [ "$available_kb" -lt 4194304 ] || [ "$free_kb" -lt "$min_free_kb" ]; then
-                echo "BLOCKED_SAFE: memory or disk preflight failed; no download started."
+                echo "BLOCKED_SAFE: memory or disk preflight failed; no pull started."
                 return 1
               fi
               active="$(curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps)" || { echo "FAIL: Ollama API unavailable."; return 1; }
@@ -103,26 +103,14 @@ jobs:
                 echo "BLOCKED_SAFE: an Ollama model is still active."
                 return 1
               fi
-              rm -f "$file" /tmp/abs-gguf.Modelfile
-              if ! curl -fL --retry 3 --connect-timeout 20 --max-time 1200 -o "$file" "$url"; then
-                echo "FAIL: GGUF download failed."
-                rm -f "$file"
+              if ! ollama pull "$model_tag"; then
+                echo "FAIL: Ollama pull failed."
                 return 1
               fi
-              size="$(stat -c%s "$file")"
-              echo "[download_bytes] $size"
-              if [ "$size" -lt "$min_bytes" ] || [ "$size" -gt "$max_bytes" ]; then
-                echo "FAIL: downloaded file size outside expected range."
-                rm -f "$file"
+              if ! ollama list | awk 'NR>1 {print $1}' | grep -Fxq "$model_tag"; then
+                echo "FAIL: pulled tag is not present in Ollama list."
                 return 1
               fi
-              printf 'FROM %s\nPARAMETER num_ctx 2048\nPARAMETER temperature 0\n' "$file" > /tmp/abs-gguf.Modelfile
-              if ! ollama create "$model_tag" -f /tmp/abs-gguf.Modelfile; then
-                echo "FAIL: Ollama could not import GGUF."
-                rm -f "$file" /tmp/abs-gguf.Modelfile
-                return 1
-              fi
-              rm -f "$file" /tmp/abs-gguf.Modelfile
               ollama list
               echo "OPERATION=PASS"
             } > "$result_file" 2>&1
@@ -182,28 +170,28 @@ jobs:
           case "$command" in
 
             install-qwen4b-q3)
-              if install_gguf "qwen3.5:4b-q3" "https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q3_K_S.gguf?download=true" "/tmp/qwen3.5-4b-q3.gguf" 2100000000 2700000000 6291456; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              if install_hf_model "hf.co/bartowski/Qwen_Qwen3.5-4B-GGUF:Q3_K_S" 6291456; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             install-gemma-e2b-q3)
-              if install_gguf "gemma4:e2b-q3" "https://huggingface.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF/resolve/main/gemma-4-e2b-q3ks.gguf?download=true" "/tmp/gemma4-e2b-q3.gguf" 2800000000 3500000000 8388608; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              if install_hf_model "hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S" 8388608; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             install-gemma-e4b-q2)
-              if install_gguf "gemma4:e4b-i1-q2" "https://huggingface.co/mradermacher/gemma-4-E4B-it-i1-GGUF/resolve/main/gemma-4-E4B-it.i1-Q2_K.gguf?download=true" "/tmp/gemma4-e4b-q2.gguf" 4200000000 4800000000 10485760; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              if install_hf_model "hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K" 10485760; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             switch-qwen4b-q3)
-              if switch_model "local-ai:qwen3.5-4b" "qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b" "qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b-q3" "qwen3.5:4b-q3"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              if switch_model "local-ai:qwen3.5-4b" "qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b" "qwen3.5-4b|http://127.0.0.1:11434|hf.co/bartowski/Qwen_Qwen3.5-4B-GGUF:Q3_K_S" "hf.co/bartowski/Qwen_Qwen3.5-4B-GGUF:Q3_K_S"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             rollback-qwen4b)
               if switch_model "local-ai:qwen3.5-4b" "qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b-q3" "qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b" "qwen3.5:4b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             switch-gemma-e2b-q3)
-              if switch_model "local-ai:gemma4-e2b" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b-q3" "gemma4:e2b-q3"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              if switch_model "local-ai:gemma4-e2b" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b" "gemma4-e2b|http://127.0.0.1:11434|hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S" "hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             rollback-gemma-e2b)
               if switch_model "local-ai:gemma4-e2b" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b-q3" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b" "gemma4:e2b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             switch-gemma-e4b-q2)
-              if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b-i1-q2" "gemma4:e4b-i1-q2"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4-e4b|http://127.0.0.1:11434|hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K" "hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             rollback-gemma-e4b)
               if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b-i1-q2" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4:e4b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
@@ -232,16 +220,16 @@ jobs:
               run_model_test "local-ai:qwen3.5-2b" "qwen3.5:2b" "ABS_QWEN_2B_OK" 4194304 0 120 150 16
               ;;
             test-qwen-4b)
-              run_model_test "local-ai:qwen3.5-4b" "qwen3.5:4b" "Q4_OK" 4194304 3300000000 240 270 8
+              run_model_test "local-ai:qwen3.5-4b" "hf.co/bartowski/Qwen_Qwen3.5-4B-GGUF:Q3_K_S" "Q4_OK" 4194304 0 240 270 8
               ;;
             test-ministral-3b)
               run_model_test "local-ai:ministral-3b" "ministral-3:3b" "M3_OK" 4194304 2900000000 180 210 8
               ;;
             test-gemma-e2b)
-              run_model_test "local-ai:gemma4-e2b" "gemma4:e2b" "GE2_OK" 4194304 0 240 270 8
+              run_model_test "local-ai:gemma4-e2b" "hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S" "GE2_OK" 4194304 0 240 270 8
               ;;
             test-gemma-e4b)
-              run_model_test "local-ai:gemma4-e4b" "gemma4:e4b" "GE4_OK" 6291456 0 300 330 8
+              run_model_test "local-ai:gemma4-e4b" "hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K" "GE4_OK" 4404019 0 300 330 8
               ;;
             *)
               printf 'REJECTED: command not allowlisted: %s\n' "$command" > "$result_file"
@@ -254,6 +242,10 @@ jobs:
           } >> "$GITHUB_OUTPUT"
           if [[ "$command" == test-* ]] && ! grep -q 'VALIDATION=PASS' "$result_file"; then
             echo "Model validation did not pass: $command" >&2
+            exit 1
+          fi
+          if [[ "$command" == install-* || "$command" == switch-* || "$command" == rollback-* ]] && ! grep -q 'OPERATION=PASS' "$result_file"; then
+            echo "Model maintenance operation did not pass: $command" >&2
             exit 1
           fi
           if [[ "$command" == install-* || "$command" == switch-* || "$command" == rollback-* ]] && ! grep -q 'OPERATION=PASS' "$result_file"; then
