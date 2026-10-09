@@ -1,1 +1,1 @@
-install-gemma-e2b-q3
+test-gemma-e2b
