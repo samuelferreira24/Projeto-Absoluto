@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:13:55-03:00",
-  "source_revision": "a2fd89479cc9a98bc274e2072ffad3b0c5a6c956",
+  "generated_at": "2026-10-09T00:15:28-03:00",
+  "source_revision": "cbef86e9f7aae35b2595ead5ef232c5e81f7db23",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "a2fd89479cc9a98bc274e2072ffad3b0c5a6c956",
-      "commit_subject": "Serializar canal reserva e bloquear teste pesado de seis IAs"
+      "revision": "cbef86e9f7aae35b2595ead5ef232c5e81f7db23",
+      "commit_subject": "Evitar execuções automáticas periódicas acumuladas no runner reserva"
     }
   ],
   "tools": [
@@ -9469,6 +9469,34 @@
       "sha": "a2fd89479cc9a98bc274e2072ffad3b0c5a6c956"
     },
     {
+      "id": "commit:d32aa2a469e9317432436bf0a162cfb82a0c633b",
+      "kind": "commit",
+      "at": "2026-10-09T03:14:16Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "d32aa2a469e9317432436bf0a162cfb82a0c633b"
+    },
+    {
+      "id": "commit:4be6f54465ccf90652206f780731b26a8eda9e04",
+      "kind": "commit",
+      "at": "2026-10-09T00:15:09-03:00",
+      "subject": "Adicionar limpeza segura da fila de jobs antigos dos runners",
+      "sha": "4be6f54465ccf90652206f780731b26a8eda9e04"
+    },
+    {
+      "id": "commit:c146f6aa31055e84e8844d125ebb741bc698634b",
+      "kind": "commit",
+      "at": "2026-10-09T00:15:22-03:00",
+      "subject": "Desativar bateria automática de seis IAs e manter smoke test manual",
+      "sha": "c146f6aa31055e84e8844d125ebb741bc698634b"
+    },
+    {
+      "id": "commit:cbef86e9f7aae35b2595ead5ef232c5e81f7db23",
+      "kind": "commit",
+      "at": "2026-10-09T00:15:28-03:00",
+      "subject": "Evitar execuções automáticas periódicas acumuladas no runner reserva",
+      "sha": "cbef86e9f7aae35b2595ead5ef232c5e81f7db23"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9581,23 +9609,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:22a72ab991e1",
+      "id": "evidence:repository:0ee87c8b5890",
       "kind": "evidence",
-      "at": "2026-10-09T00:13:55-03:00",
+      "at": "2026-10-09T00:15:28-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:22a72ab991e1",
+      "id": "event:repository-scan:0ee87c8b5890",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:13:55-03:00"
+      "at": "2026-10-09T00:15:28-03:00"
     },
     {
-      "id": "event:commit-observed:a2fd89479cc9",
+      "id": "event:commit-observed:cbef86e9f7aa",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:13:55-03:00"
+      "at": "2026-10-09T00:15:28-03:00"
     }
   ],
   "paths": [
@@ -9632,11 +9660,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:59d11fae9f0b"
+        "evidence:test:5820a506d452"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:13:55-03:00"
+      "last_validated": "2026-10-09T00:15:28-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9659,20 +9687,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:22a72ab991e1",
+      "id": "evidence:repository:0ee87c8b5890",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:13:55-03:00",
+      "observed_at": "2026-10-09T00:15:28-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision a2fd89479cc9a98bc274e2072ffad3b0c5a6c956"
+      "detail": "406 files indexed at revision cbef86e9f7aae35b2595ead5ef232c5e81f7db23"
     },
     {
-      "id": "evidence:test:59d11fae9f0b",
+      "id": "evidence:test:5820a506d452",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:13:55-03:00",
+      "observed_at": "2026-10-09T00:15:28-03:00",
       "status": "tested",
-      "detail": "199 passed in 7.71s"
+      "detail": "199 passed in 6.73s"
     }
   ],
   "decisions": [
@@ -9775,30 +9803,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:22a72ab991e1",
+      "id": "event:repository-scan:0ee87c8b5890",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:13:55-03:00",
-      "revision": "a2fd89479cc9a98bc274e2072ffad3b0c5a6c956",
+      "at": "2026-10-09T00:15:28-03:00",
+      "revision": "cbef86e9f7aae35b2595ead5ef232c5e81f7db23",
       "file_count": 406,
-      "evidence_id": "evidence:repository:22a72ab991e1"
+      "evidence_id": "evidence:repository:0ee87c8b5890"
     },
     {
-      "id": "event:commit-observed:a2fd89479cc9",
+      "id": "event:commit-observed:cbef86e9f7aa",
       "type": "commit_observed",
-      "at": "2026-10-09T00:13:55-03:00",
-      "revision": "a2fd89479cc9a98bc274e2072ffad3b0c5a6c956",
+      "at": "2026-10-09T00:15:28-03:00",
+      "revision": "cbef86e9f7aae35b2595ead5ef232c5e81f7db23",
       "branch": "main",
-      "subject": "Serializar canal reserva e bloquear teste pesado de seis IAs",
+      "subject": "Evitar execuções automáticas periódicas acumuladas no runner reserva",
       "changed_files": [
-        ".github/workflows/abs-vps-reserve.yml"
+        ".github/workflows/abs-auto-integration.yml"
       ]
     },
     {
-      "id": "event:test:59d11fae9f0b",
+      "id": "event:test:5820a506d452",
       "type": "tests_observed",
-      "at": "2026-10-09T00:13:55-03:00",
+      "at": "2026-10-09T00:15:28-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:59d11fae9f0b"
+      "evidence_id": "evidence:test:5820a506d452"
     }
   ],
   "knowledge_sources": [
@@ -9854,7 +9882,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "ad86a1738a951e0863033bb7a2a76481627cc93eedc96bd62a3697e292ca393e"
+      "sha256": "fa6c7d67b50f86d0118179ee9c6bb3c5dc66cb29ec7097ae77634d7e594f661e"
     },
     {
       "id": "source:session",
@@ -40815,12 +40843,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:22a72ab991e1",
-      "source": "event:repository-scan:22a72ab991e1",
-      "relation": "generated",
-      "target": "evidence:repository:22a72ab991e1",
+      "id": "rel:commit-precedes:a2fd89479cc9:d32aa2a469e9",
+      "source": "commit:a2fd89479cc9a98bc274e2072ffad3b0c5a6c956",
+      "relation": "precedes",
+      "target": "commit:d32aa2a469e9317432436bf0a162cfb82a0c633b",
       "status": "asserted",
-      "at": "2026-10-09T00:13:55-03:00",
+      "at": "2026-10-09T03:14:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d32aa2a469e9:032adc3624d7",
+      "source": "commit:d32aa2a469e9317432436bf0a162cfb82a0c633b",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:14:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d32aa2a469e9:d64178c49886",
+      "source": "commit:d32aa2a469e9317432436bf0a162cfb82a0c633b",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:14:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:d32aa2a469e9:4be6f54465cc",
+      "source": "commit:d32aa2a469e9317432436bf0a162cfb82a0c633b",
+      "relation": "precedes",
+      "target": "commit:4be6f54465ccf90652206f780731b26a8eda9e04",
+      "status": "asserted",
+      "at": "2026-10-09T00:15:09-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:4be6f54465cc:1734be446032",
+      "source": "commit:4be6f54465ccf90652206f780731b26a8eda9e04",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:15:09-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:4be6f54465cc:c146f6aa3105",
+      "source": "commit:4be6f54465ccf90652206f780731b26a8eda9e04",
+      "relation": "precedes",
+      "target": "commit:c146f6aa31055e84e8844d125ebb741bc698634b",
+      "status": "asserted",
+      "at": "2026-10-09T00:15:22-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c146f6aa3105:313cd71b647e",
+      "source": "commit:c146f6aa31055e84e8844d125ebb741bc698634b",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-local-ai-health.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:15:22-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c146f6aa3105:cbef86e9f7aa",
+      "source": "commit:c146f6aa31055e84e8844d125ebb741bc698634b",
+      "relation": "precedes",
+      "target": "commit:cbef86e9f7aae35b2595ead5ef232c5e81f7db23",
+      "status": "asserted",
+      "at": "2026-10-09T00:15:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cbef86e9f7aa:2d36dad9d535",
+      "source": "commit:cbef86e9f7aae35b2595ead5ef232c5e81f7db23",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-auto-integration.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:15:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:0ee87c8b5890",
+      "source": "event:repository-scan:0ee87c8b5890",
+      "relation": "generated",
+      "target": "evidence:repository:0ee87c8b5890",
+      "status": "asserted",
+      "at": "2026-10-09T00:15:28-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -40829,12 +40983,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:a2fd89479cc9",
-      "source": "commit:a2fd89479cc9a98bc274e2072ffad3b0c5a6c956",
+      "id": "rel:scan-commit:cbef86e9f7aa",
+      "source": "commit:cbef86e9f7aae35b2595ead5ef232c5e81f7db23",
       "relation": "observed_by",
-      "target": "event:repository-scan:22a72ab991e1",
+      "target": "event:repository-scan:0ee87c8b5890",
       "status": "asserted",
-      "at": "2026-10-09T00:13:55-03:00",
+      "at": "2026-10-09T00:15:28-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
