@@ -63,3 +63,26 @@ def test_operational_cycle_replans_after_verified_failure():
     assert result["cycles"][1]["failed_step"] is None
     assert orchestrator.calls == 2
     assert result["cycles"][1]["plan"]["understanding"] == "replanned strategy"
+
+
+def test_operational_cycle_rejects_unbound_step_without_running_default_capability():
+    engine = _engine()
+    engine.plan = lambda objective, context: OperationalPlan(
+        objective=objective,
+        understanding="planner returned an unbound step",
+        mode="workflow",
+        steps=(
+            OperationalStep("step with unknown capability", capability_id=None),
+            OperationalStep("otherwise valid step", capability_id="echo"),
+        ),
+        unknowns=("Unknown capability requested by planning intelligence: missing-tool",),
+    )
+    orchestrator = _DummyOrchestrator()
+
+    result = engine.execute("do not guess the executor", {}, orchestrator)
+
+    assert result["type"] == "operational_unknown"
+    assert result["completed"] is False
+    assert result["reason"] == "plan_contains_unbound_capability"
+    assert "Every executable step must specify a validated capability_id." in result["unknowns"]
+    assert orchestrator.calls == 0
