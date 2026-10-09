@@ -242,10 +242,10 @@ jobs:
               if switch_model "local-ai:gemma4-e2b" "gemma4-e2b|http://127.0.0.1:11434|hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b" "gemma4:e2b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             switch-gemma-e4b-iq2m)
-              if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4-e4b-iq2m-ctx1k" "gemma4-e4b-iq2m-ctx1k"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4-e4b-iq2m-ctx1k:latest" "gemma4-e4b-iq2m-ctx1k:latest"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             rollback-gemma-e4b-iq2m)
-              if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4-e4b-iq2m-ctx1k" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4:e4b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4-e4b-iq2m-ctx1k:latest" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4:e4b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             switch-gemma-e4b-q2)
               if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4-e4b|http://127.0.0.1:11434|hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K" "hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
@@ -302,7 +302,7 @@ jobs:
                 echo "FAIL: could not apply temporary 4 GiB bounded Ollama test limit." > "$result_file"
                 echo "VALIDATION=FAIL" >> "$result_file"
               else
-                run_model_test "local-ai:gemma4-e4b" "gemma4-e4b-iq2m-ctx1k" "GE4_OK" 3900000 3900000000 240 270 8
+                run_model_test "local-ai:gemma4-e4b" "gemma4-e4b-iq2m-ctx1k:latest" "GE4_OK" 3900000 3900000000 240 270 8
               fi
               restore_rc=0
               sudo rm -f /etc/systemd/system/ollama.service.d/90-abs-e4b-test.conf || restore_rc=1
