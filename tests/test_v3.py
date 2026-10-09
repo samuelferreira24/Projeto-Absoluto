@@ -192,7 +192,7 @@ def test_v3_status_does_not_claim_unverified_local_ai_available():
 
 
 def _critical_v3_with_local_model():
-    from abs_core.v3 import ABSV3Orchestrator
+    from abs_core.v3 import ABSV3Orchestrator, CapacitySnapshot
     from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
     from abs_core.store import WorkStore
 
