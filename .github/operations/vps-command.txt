@@ -1,1 +1,1 @@
-test-qwen-2b
+test-qwen-4b
