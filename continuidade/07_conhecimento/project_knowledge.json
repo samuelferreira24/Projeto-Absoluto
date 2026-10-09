@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T16:41:02-03:00",
-  "source_revision": "565b52bb9a1396dfaff12f969ca392360ceddbe3",
+  "generated_at": "2026-10-09T16:43:06-03:00",
+  "source_revision": "7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 76
+      "file_count": 77
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "565b52bb9a1396dfaff12f969ca392360ceddbe3",
-      "commit_subject": "Safely clear regenerable VPS package caches"
+      "revision": "7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
+      "commit_subject": "Document VPS cleanup and six local AI validation"
     }
   ],
   "tools": [
@@ -2963,6 +2963,11 @@
       "id": "file:docs/03_planejamento/Plano_Projeto.md",
       "kind": "file",
       "path": "docs/03_planejamento/Plano_Projeto.md"
+    },
+    {
+      "id": "file:docs/03_planejamento/RELATORIO_LIMPEZA_VPS_E_VALIDACAO_IAS_LOCAIS_2026-10-09.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/RELATORIO_LIMPEZA_VPS_E_VALIDACAO_IAS_LOCAIS_2026-10-09.md"
     },
     {
       "id": "file:docs/03_planejamento/RELATORIO_OPERACAO_SEIS_IAS_LOCAIS_2026-10-09.md",
@@ -10269,6 +10274,20 @@
       "sha": "565b52bb9a1396dfaff12f969ca392360ceddbe3"
     },
     {
+      "id": "commit:323882e2d44df8d5003736dfb2e7d41d229227ba",
+      "kind": "commit",
+      "at": "2026-10-09T19:41:21Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "323882e2d44df8d5003736dfb2e7d41d229227ba"
+    },
+    {
+      "id": "commit:7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
+      "kind": "commit",
+      "at": "2026-10-09T16:43:06-03:00",
+      "subject": "Document VPS cleanup and six local AI validation",
+      "sha": "7f72054d340a6a2a3c2e3708dde7a0460a8f786c"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10381,23 +10400,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:407e3212248e",
+      "id": "evidence:repository:45cc1323ee3e",
       "kind": "evidence",
-      "at": "2026-10-09T16:41:02-03:00",
+      "at": "2026-10-09T16:43:06-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:407e3212248e",
+      "id": "event:repository-scan:45cc1323ee3e",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T16:41:02-03:00"
+      "at": "2026-10-09T16:43:06-03:00"
     },
     {
-      "id": "event:commit-observed:565b52bb9a13",
+      "id": "event:commit-observed:7f72054d340a",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T16:41:02-03:00"
+      "at": "2026-10-09T16:43:06-03:00"
     }
   ],
   "paths": [
@@ -10432,11 +10451,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:9c8373ec640b"
+        "evidence:test:f5830513d2e4"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T16:41:02-03:00"
+      "last_validated": "2026-10-09T16:43:06-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10459,20 +10478,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:407e3212248e",
+      "id": "evidence:repository:45cc1323ee3e",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T16:41:02-03:00",
+      "observed_at": "2026-10-09T16:43:06-03:00",
       "status": "observed",
-      "detail": "412 files indexed at revision 565b52bb9a1396dfaff12f969ca392360ceddbe3"
+      "detail": "413 files indexed at revision 7f72054d340a6a2a3c2e3708dde7a0460a8f786c"
     },
     {
-      "id": "evidence:test:9c8373ec640b",
+      "id": "evidence:test:f5830513d2e4",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T16:41:02-03:00",
+      "observed_at": "2026-10-09T16:43:06-03:00",
       "status": "tested",
-      "detail": "211 passed in 7.05s"
+      "detail": "211 passed in 8.90s"
     }
   ],
   "decisions": [
@@ -10575,31 +10594,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:407e3212248e",
+      "id": "event:repository-scan:45cc1323ee3e",
       "type": "repository_scanned",
-      "at": "2026-10-09T16:41:02-03:00",
-      "revision": "565b52bb9a1396dfaff12f969ca392360ceddbe3",
-      "file_count": 412,
-      "evidence_id": "evidence:repository:407e3212248e"
+      "at": "2026-10-09T16:43:06-03:00",
+      "revision": "7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
+      "file_count": 413,
+      "evidence_id": "evidence:repository:45cc1323ee3e"
     },
     {
-      "id": "event:commit-observed:565b52bb9a13",
+      "id": "event:commit-observed:7f72054d340a",
       "type": "commit_observed",
-      "at": "2026-10-09T16:41:02-03:00",
-      "revision": "565b52bb9a1396dfaff12f969ca392360ceddbe3",
+      "at": "2026-10-09T16:43:06-03:00",
+      "revision": "7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
       "branch": "main",
-      "subject": "Safely clear regenerable VPS package caches",
+      "subject": "Document VPS cleanup and six local AI validation",
       "changed_files": [
-        ".github/workflows/abs-vps-reserve.yml",
-        "scripts/ops/vps_safe_cache_cleanup.sh"
+        "docs/03_planejamento/RELATORIO_LIMPEZA_VPS_E_VALIDACAO_IAS_LOCAIS_2026-10-09.md"
       ]
     },
     {
-      "id": "event:test:9c8373ec640b",
+      "id": "event:test:f5830513d2e4",
       "type": "tests_observed",
-      "at": "2026-10-09T16:41:02-03:00",
+      "at": "2026-10-09T16:43:06-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:9c8373ec640b"
+      "evidence_id": "evidence:test:f5830513d2e4"
     }
   ],
   "knowledge_sources": [
@@ -10655,7 +10673,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "23c15247b51e37aefb998fb892fee6c420c0d95231deddd80c89522d123d34cb"
+      "sha256": "22fcef80b2c3f98158f399d2ea823b994d1884c363886c4452f140f9871e0749"
     },
     {
       "id": "source:session",
@@ -45592,12 +45610,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:407e3212248e",
-      "source": "event:repository-scan:407e3212248e",
-      "relation": "generated",
-      "target": "evidence:repository:407e3212248e",
+      "id": "rel:commit-precedes:565b52bb9a13:323882e2d44d",
+      "source": "commit:565b52bb9a1396dfaff12f969ca392360ceddbe3",
+      "relation": "precedes",
+      "target": "commit:323882e2d44df8d5003736dfb2e7d41d229227ba",
       "status": "asserted",
-      "at": "2026-10-09T16:41:02-03:00",
+      "at": "2026-10-09T19:41:21Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:323882e2d44d:032adc3624d7",
+      "source": "commit:323882e2d44df8d5003736dfb2e7d41d229227ba",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T19:41:21Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:323882e2d44d:d64178c49886",
+      "source": "commit:323882e2d44df8d5003736dfb2e7d41d229227ba",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T19:41:21Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:323882e2d44d:7f72054d340a",
+      "source": "commit:323882e2d44df8d5003736dfb2e7d41d229227ba",
+      "relation": "precedes",
+      "target": "commit:7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
+      "status": "asserted",
+      "at": "2026-10-09T16:43:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7f72054d340a:2a18216ae657",
+      "source": "commit:7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/RELATORIO_LIMPEZA_VPS_E_VALIDACAO_IAS_LOCAIS_2026-10-09.md",
+      "status": "asserted",
+      "at": "2026-10-09T16:43:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:45cc1323ee3e",
+      "source": "event:repository-scan:45cc1323ee3e",
+      "relation": "generated",
+      "target": "evidence:repository:45cc1323ee3e",
+      "status": "asserted",
+      "at": "2026-10-09T16:43:06-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -45606,12 +45694,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:565b52bb9a13",
-      "source": "commit:565b52bb9a1396dfaff12f969ca392360ceddbe3",
+      "id": "rel:scan-commit:7f72054d340a",
+      "source": "commit:7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
       "relation": "observed_by",
-      "target": "event:repository-scan:407e3212248e",
+      "target": "event:repository-scan:45cc1323ee3e",
       "status": "asserted",
-      "at": "2026-10-09T16:41:02-03:00",
+      "at": "2026-10-09T16:43:06-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
