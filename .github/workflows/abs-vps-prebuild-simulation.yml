@@ -1,0 +1,178 @@
+name: ABS Prebuild Architecture Simulation
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  simulate:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-prebuild simulate'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 15
+    steps:
+      - name: Read-only host audit and architecture simulations
+        id: simulation
+        shell: bash
+        run: |
+          set -uo pipefail
+          cd "$HOME/Projeto-Absoluto"
+          git fetch origin main --quiet
+          git reset --hard origin/main --quiet
+          report="/tmp/abs-prebuild-architecture-simulation-${GITHUB_RUN_ID:-manual}.txt"
+          {
+            echo "ABS PREBUILD ARCHITECTURE SIMULATION"
+            echo "MODE=READ_ONLY_NO_DEPLOYMENT_NO_INSTALL_NO_DELETE"
+            echo "DATE_UTC=$(date -u +%FT%TZ)"
+            echo
+            echo "=== 1. REAL HOST BASELINE ==="
+            hostname
+            uptime -p 2>/dev/null || true
+            free -h
+            df -h /
+            echo
+            echo "=== 2. SERVICE HEALTH (READ ONLY) ==="
+            for unit in abs.service ollama.service docker.service coolify.service openclaw-gateway.service; do
+              printf '%s: ' "$unit"
+              systemctl is-active "$unit" 2>/dev/null || true
+            done
+            echo
+            echo "=== 3. CURRENT CONTAINERS (NO ENV OR SECRETS) ==="
+            docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' 2>&1 || true
+            echo
+            echo "=== 4. LISTENING TCP PORTS (NO PROCESS ENV) ==="
+            ss -lnt 2>/dev/null | head -n 80 || true
+            echo
+            echo "=== 5. OLLAMA MODEL/ACTIVE SESSION SUMMARY ==="
+            curl -fsS --max-time 5 http://127.0.0.1:11434/api/tags 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); print("\n".join("MODEL "+x.get("name","?")+" size="+str(x.get("size","?")) for x in d.get("models",[])))' 2>/dev/null || echo "Ollama tags endpoint unavailable"
+            curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); print("ACTIVE_MODEL_COUNT="+str(len(d.get("models",[])))); [print("ACTIVE_MODEL "+x.get("name","?")+" size_vram="+str(x.get("size_vram","?"))) for x in d.get("models",[])]' 2>/dev/null || echo "Ollama ps endpoint unavailable"
+            echo
+            echo "=== 6. ABS HEALTH / V3 STATUS ==="
+            curl -fsS --max-time 8 http://127.0.0.1:8787/health 2>&1 || true
+            echo
+            curl -fsS --max-time 8 http://127.0.0.1:8787/v3/status 2>&1 || true
+            echo
+            echo
+            echo "=== 7. MODEL-BASED SIMULATIONS (NO SERVICES STARTED) ==="
+            python3 - <<'PY'
+          import json, shutil
+          from pathlib import Path
+
+          mem = {}
+          for line in Path("/proc/meminfo").read_text().splitlines():
+              if line.startswith(("MemTotal:", "MemAvailable:", "SwapTotal:", "SwapFree:")):
+                  k, v = line.split(":", 1)
+                  mem[k] = int(v.strip().split()[0]) // 1024
+          disk = shutil.disk_usage("/")
+          total_gib = mem.get("MemTotal", 0) / 1024
+          avail_gib = mem.get("MemAvailable", 0) / 1024
+          swap_free_gib = mem.get("SwapFree", 0) / 1024
+          disk_free_gib = disk.free / (1024**3)
+
+          # Conservative planning envelopes, not claims about measured consumption.
+          scenarios = [
+              ("idle_abs_core", 0.45, 0.25, 0.0, "ABS/API/memory and basic orchestration"),
+              ("small_local_model", 1.80, 0.50, 0.0, "one small local model; only when requested"),
+              ("visual_browser", 1.10, 0.35, 0.0, "one interactive browser session"),
+              ("browser_plus_small_model", 2.90, 0.80, 0.0, "concurrent browser + small local model"),
+              ("heavy_local_model_plus_browser", 4.30, 1.00, 0.0, "high contention stress case"),
+              ("automation_context_only", 0.75, 0.25, 0.0, "headless automation context on demand"),
+          ]
+          print(json.dumps({
+              "real_baseline_gib": {
+                  "ram_total": round(total_gib, 2),
+                  "ram_available": round(avail_gib, 2),
+                  "swap_free": round(swap_free_gib, 2),
+                  "disk_free": round(disk_free_gib, 2),
+              },
+              "scenarios": [
+                  {
+                      "name": name,
+                      "estimated_additional_ram_gib": ram,
+                      "estimated_disk_reserve_gib": disk,
+                      "assumption": note,
+                      "result": "PASS_WITH_HEADROOM" if avail_gib >= ram + 0.75 and disk_free_gib >= disk + 5 else ("DEFER_OR_SERIALIZE" if avail_gib >= ram and disk_free_gib >= disk + 2 else "BLOCK"),
+                  }
+                  for name, ram, disk, _, note in scenarios
+              ],
+              "limits": [
+                  "RAM figures are planning estimates, not benchmark results.",
+                  "Kasm full platform is excluded from the initial design due to disk footprint and host role.",
+                  "No package was installed, no container was created, and no service was restarted.",
+              ],
+          }, indent=2))
+          PY
+            echo
+            echo "=== 8. ARCHITECTURE AND FAILURE-PATH GATES ==="
+            cat <<'GATES'
+          A. ABS Core / Orchestrator / Memory: always available; browser is a tool adapter, never a dependency for core startup.
+          B. Model router: choose exactly one local model at a time by default; unload after request; external models only via configured/approved adapters.
+          C. Browser: one browser image/service if feasible; interactive user profile and ABS automation context MUST be isolated; no shared cookies by default.
+          D. Automation: launch on demand; browser/CDP control endpoint must bind privately and must never be publicly exposed unauthenticated.
+          E. Access: prefer private overlay (e.g. Tailscale); alternative is HTTPS with strong authentication and proxy/firewall validation.
+          F. Resource guard: serialize browser-heavy and larger local-model work; block/defer when memory headroom is insufficient; set service/container limits.
+          G. Persistence/recovery: persistent browser profile volume, separate ABS job state, health checks, restart policy, and an actual backup plan distinct from volume persistence.
+          H. Failure simulation matrix:
+             - browser unavailable -> ABS falls back to non-browser path or reports blocked; core remains online.
+             - Ollama unavailable -> approved external adapter or explicit degraded mode; no silent false success.
+             - low RAM -> refuse/defer browser + large model concurrency; no automatic swap storm.
+             - browser crash -> restart browser only; do not restart ABS or Ollama unnecessarily.
+             - proxy/auth failure -> deny access; never bypass auth by exposing a debug port.
+             - stale session/cookies -> isolated contexts and explicit login, no cookie copying.
+             - disk pressure -> stop deployment; preserve models, logs, backups and repository.
+             - VPS reboot -> services recover in dependency order; health checks verify rather than assume.
+          I. Deployment gate: do not build until current ports/firewall, proxy routing, storage, backup, memory envelopes, browser-control mechanism and acceptance tests are documented.
+          GATES
+            echo
+            echo "=== 9. ACCEPTANCE TESTS REQUIRED BEFORE CONSTRUCTION ==="
+            cat <<'TESTS'
+          1. Phone can open authenticated browser UI over approved private/HTTPS route.
+          2. Browser profile persists after container restart; no secrets are printed to logs.
+          3. ABS can create/control a separate automation context without touching user profile.
+          4. Browser control port is unreachable from the public Internet.
+          5. ABS health and a small local-model smoke test pass after browser load.
+          6. Resource guard blocks the heavy-model + browser scenario when headroom is inadequate.
+          7. Browser failure does not interrupt ABS API, memory or Ollama service.
+          8. Backup/restore of browser profile is tested before storing valuable sessions.
+          9. Reboot/restart test passes and all services return to healthy state.
+          10. Rollback removes only the new browser service/volume after explicit confirmation; existing data remains untouched.
+          TESTS
+            echo
+            echo "=== 10. SIMULATION RESULT ==="
+            echo "This run is a pre-build desk/model simulation plus read-only host inventory."
+            echo "It is NOT a browser deployment, real load test, external firewall scan, or proof of CDP integration."
+            echo "Construction remains BLOCKED until the evidence above is reviewed and any failed gates are resolved."
+          } > "$report" 2>&1
+          cat "$report"
+          {
+            echo 'result<<ABS_SIM_EOF'
+            cat "$report"
+            echo 'ABS_SIM_EOF'
+          } >> "$GITHUB_OUTPUT"
+      - name: Report result
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.simulation.outputs.result }}
+        with:
+          script: |
+            const body = [
+              '### ABS PREBUILD ARCHITECTURE SIMULATION',
+              '',
+              'COMMAND_MARKER/abs-prebuild simulateCOMMAND_MARKER',
+              '',
+              'OUTPUT_START',
+              (process.env.RESULT || '(sem saída)').slice(0, 12000),
+              'OUTPUT_END'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
