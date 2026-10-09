@@ -28,8 +28,11 @@ jobs:
         run: |
           set -Eeuo pipefail
           cd "$HOME/Projeto-Absoluto"
-          git fetch origin main --quiet
-          git reset --hard origin/main --quiet
+          git rev-parse --is-inside-work-tree >/dev/null
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "BLOCKED | Runner repository workspace has local changes; refusing to reset or overwrite it."
+            exit 1
+          fi
 
           REPORT="$RUNNER_TEMP/abs-browser-build-report.txt"
           install -m 600 /dev/null "$REPORT"
@@ -80,6 +83,11 @@ jobs:
           sudo ufw status verbose 2>/dev/null || true
           if sudo docker inspect abs-browser-ui >/dev/null 2>&1; then
             note "Existing abs-browser-ui container found; reusing it and preserving its config volume."
+            EXISTING_STATE="$(sudo docker inspect abs-browser-ui --format '{{.State.Status}}')"
+            if [ "$EXISTING_STATE" != "running" ]; then
+              sudo docker start abs-browser-ui >/dev/null
+              pass "Started existing stopped browser container without removing it."
+            fi
           else
             echo
             echo "=== Browser deployment ==="
