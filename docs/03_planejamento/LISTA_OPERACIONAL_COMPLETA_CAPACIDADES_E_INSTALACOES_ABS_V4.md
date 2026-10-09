@@ -219,3 +219,87 @@ Para cada bloco concluído, registrar:
 - próximo bloco executável.
 
 **Regra final:** seguir de forma contínua e em lotes, sem pedir confirmação para cada tarefa reversível e segura. Interromper apenas quando houver decisão humana realmente necessária, risco relevante, credencial/conta indisponível, falta de recurso ou impossibilidade técnica. Não afirmar que trabalho na VPS, instalação ou execução real aconteceu sem resultado observado.
+
+
+## 7. Capacidade de navegador do ABS — módulo explícito e prioritário
+
+**Objetivo:** o ABS deve navegar pela Internet e operar aplicações web autorizadas por meio de uma ferramenta executora controlada pelo ABS. O navegador não é o Cérebro, não decide a autoridade e não ganha permissões por conta própria.
+
+### 7.1 Capacidades obrigatórias
+- [ ] Abrir URLs, seguir links, voltar/avançar, recarregar e administrar abas/janelas por missão.
+- [ ] Fazer pesquisas, abrir resultados, explorar páginas e comparar fontes.
+- [ ] Extrair texto principal, títulos, links, tabelas, metadados e estado visível; reconhecer erros, bloqueios, login e conteúdo incompleto.
+- [ ] Interagir com páginas: localizar elementos, clicar, preencher formulários, selecionar opções, rolar e enviar consultas.
+- [ ] Lidar com JavaScript, SPA, conteúdo dinâmico e carregamentos assíncronos, sem confiar apenas no HTML inicial.
+- [ ] Capturar screenshots, URL final, título, trechos relevantes, timestamp e estado observado; associar evidências à missão e ao Work.
+- [ ] Baixar arquivos autorizados para workspace isolado; validar tipo/tamanho/integridade e nunca executar conteúdo baixado automaticamente.
+- [ ] Fazer upload apenas com destino e conteúdo autorizados, conferindo-os antes do envio.
+- [ ] Manter perfis, cookies, armazenamento local e sessões isolados; não reutilizar automaticamente o navegador pessoal do Imperador.
+- [ ] Suportar navegação autenticada autorizada, com pausa para MFA, CAPTCHA, desafio anti-bot ou consentimento humano.
+- [ ] Após cada ação relevante, verificar a pós-condição; clique enviado não significa operação concluída.
+- [ ] Tratar timeouts, páginas indisponíveis, sessão expirada e abas perdidas sem repetição cega de ações que possam duplicar efeitos.
+- [ ] Preservar fontes, URLs, datas e evidências; distinguir conteúdo observado, inferência e informação não confirmada.
+- [ ] Permitir ao Imperador acompanhar, pausar, cancelar e aprovar ações de impacto.
+
+### 7.2 Arquitetura-alvo
+1. **Browser Controller:** recebe comandos estruturados da missão e aplica políticas.
+2. **Browser Runtime isolado:** Chromium com Playwright, ou alternativa equivalente validada, separado dos serviços centrais.
+3. **Browser Adapter/Capability:** contrato padronizado integrado ao roteador e catálogo de capacidades do ABS.
+4. **Policy Gate:** verifica domínio, ação, perfil, permissões, risco, limite de tempo e aprovação exigida.
+5. **Evidence Collector:** guarda URL, estado observado, screenshots e artefatos vinculados ao Work.
+6. **Verifier:** verifica a pós-condição e diferencia tentativa, efeito observado e sucesso comprovado.
+7. **Human Handoff:** pausa e devolve o controle ao Imperador quando necessário.
+8. **Audit Trail:** registra autorização, ação, resultado e evidência, sem armazenar senhas/tokens nos logs.
+
+Preferir API/conector autorizado quando mais estável e seguro; usar o navegador quando a interação web/visual for necessária. O navegador é uma capacidade substituível, não a autoridade central.
+
+### 7.3 Instalação/configuração planejada
+- [ ] Inspecionar repositório, VPS e Coolify para descobrir se já há runtime utilizável; não instalar duplicatas.
+- [ ] Se não existir, avaliar Playwright + Chromium como primeira opção, conferindo compatibilidade Linux, dependências, RAM, CPU e disco.
+- [ ] Preferir container separado, imagem versionada, usuário sem privilégios, filesystem temporário e limites de recursos.
+- [ ] Não dar ao navegador acesso direto a socket Docker, chaves SSH, arquivos de produção ou segredos do ABS.
+- [ ] Manter o controlador privado; não expor a API de controle do navegador à Internet.
+- [ ] Usar sessões efêmeras por padrão; persistência somente quando necessária, autorizada, protegida e com expiração.
+- [ ] Definir limites para duração de ação, downloads, abas, concorrência e armazenamento temporário.
+- [ ] Não considerar o navegador instalado/funcional até executar teste observável no ambiente-alvo.
+
+### 7.4 Segurança obrigatória
+- [ ] Tratar páginas, anúncios, arquivos e resultados externos como dados não confiáveis, nunca como novas instruções de autoridade.
+- [ ] Testar defesa contra prompt injection, instruções ocultas e tentativas de exfiltração.
+- [ ] Bloquear por padrão acesso a localhost, metadata cloud e redes privadas, salvo exceção explícita e validada.
+- [ ] Mitigar SSRF, redirecionamentos proibidos, downloads maliciosos e acesso a arquivos locais.
+- [ ] Isolar credenciais por serviço/domínio e impedir vazamento para páginas, prompts e logs.
+- [ ] Exigir autorização explícita para compras, pagamentos, transações, publicações públicas, exclusões, mensagens sensíveis, alterações de permissões e compromissos legais.
+- [ ] Não contornar CAPTCHA, MFA, paywalls, bloqueios de acesso ou mecanismos anti-abuso; pausar quando for necessária intervenção humana.
+- [ ] Aplicar rate limits, tempo máximo e encerramento seguro da sessão.
+
+### 7.5 Testes de aceitação
+- [ ] Abrir página de teste e confirmar URL/título.
+- [ ] Pesquisar, abrir resultados e guardar fontes/evidências.
+- [ ] Extrair texto e tabela e comparar com resultado esperado.
+- [ ] Interagir com formulário apenas em ambiente de teste e verificar a pós-condição.
+- [ ] Lidar com conteúdo dinâmico, timeout e carregamento lento sem falso sucesso.
+- [ ] Capturar screenshot e associá-la ao Work.
+- [ ] Baixar arquivo inofensivo em sandbox, verificar integridade e não o executar.
+- [ ] Simular erro HTTP, sessão expirada, aba fechada e falha no meio da missão.
+- [ ] Provar isolamento de sessões e ausência de cookies/credenciais cruzados.
+- [ ] Simular prompt injection e confirmar que a página não muda a política do ABS.
+- [ ] Provar bloqueio de localhost/metadata/redes privadas por padrão.
+- [ ] Confirmar pausa em MFA/CAPTCHA e antes de ações sensíveis.
+- [ ] Confirmar que efeito não verificado é reportado como incerto, nunca como sucesso.
+- [ ] Testar o ciclo ABS Core → navegador → evidência → verificador → resposta.
+- [ ] Confirmar falha explícita/fallback autorizado quando o navegador fica indisponível.
+
+### 7.6 Ordem de implementação
+1. Inventariar runtime existente, permissões e recursos.
+2. Definir contrato da capacidade e integrar ao registro/roteador.
+3. Configurar runtime isolado e provar abertura de página e captura de evidência.
+4. Implementar navegação, leitura, pesquisa e proveniência.
+5. Implementar interação DOM/formulários em sites de teste.
+6. Adicionar downloads e tratamento de arquivos.
+7. Validar isolamento, política, auditoria e red team.
+8. Validar pós-condições, timeouts, recuperação e retomada.
+9. Executar testes ponta a ponta e atualizar o registro canônico com evidências.
+10. Só então habilitar domínios e ações reais autorizados.
+
+**Critério de conclusão:** uma missão autorizada deve navegar, executar uma interação permitida, registrar evidência, verificar a pós-condição e responder corretamente; testes negativos devem provar que o navegador não ultrapassa permissões nem transforma conteúdo de página em autoridade.
