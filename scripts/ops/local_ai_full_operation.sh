@@ -31,36 +31,30 @@ else
 fi
 
 echo "=== SAFE ALIAS AUDIT ==="
-# Remove only the exact llamacpp tag if Ollama's full API digest equals the canonical
-# Ministral tag digest. This drops a duplicate name, not the shared model data.
-python3 - "$backup/ollama-tags-before.json" "$backup/alias-decision.txt" <<'PY'
-import json,sys
-d=json.load(open(sys.argv[1]))
-items={x.get("name"):x for x in d.get("models",[])}
-canonical=items.get("ministral-3:3b")
-alias_name="llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63"
-alias=items.get(alias_name)
-if canonical and alias and canonical.get("digest") and canonical.get("digest")==alias.get("digest"):
-    print("REMOVE_ALIAS_ONLY "+alias_name)
-else:
-    print("KEEP_ALIAS: full digest equality not proven")
-PY
+# Compare the alias digest against every canonical Ministral entry; the API can
+# contain more than one same-name record, so collapsing by name is unsafe.
 alias_decision="$(python3 - "$backup/ollama-tags-before.json" <<'PY'
 import json,sys
-d=json.load(open(sys.argv[1])); items={x.get("name"):x for x in d.get("models",[])}
-c=items.get("ministral-3:3b"); a=items.get("llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63")
-print("remove" if c and a and c.get("digest") and c.get("digest")==a.get("digest") else "keep")
+models=json.load(open(sys.argv[1])).get("models",[])
+alias_name="llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63"
+aliases=[x for x in models if x.get("name")==alias_name]
+canonical_digests={x.get("digest") for x in models if x.get("name")=="ministral-3:3b" and x.get("digest")}
+if len(aliases)==1 and aliases[0].get("digest") and aliases[0]["digest"] in canonical_digests:
+    print("remove")
+else:
+    print("keep")
 PY
 )"
 if [ "$alias_decision" = remove ]; then
-  ollama show 'llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63' --modelfile > "$backup/ministral-alias.modelfile" 2>&1 || true
-  if ollama rm 'llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63'; then
-    echo "CLEANUP_PASS: removed duplicate alias only; canonical Ministral tag retained"
+  alias_tag='llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63'
+  ollama show "$alias_tag" --modelfile > "$backup/ministral-alias.modelfile" 2>&1 || true
+  if ollama rm "$alias_tag"; then
+    echo "CLEANUP_PASS: removed exact-digest Ministral alias only; canonical tag retained"
   else
-    echo "CLEANUP_FAIL: alias removal failed; no other tag touched"
+    echo "CLEANUP_FAIL: exact-digest alias removal failed; no other tag touched"
   fi
 else
-  echo "CLEANUP_SKIPPED: alias digests not exactly equal or one tag absent"
+  echo "CLEANUP_SKIPPED: alias not proven to match any canonical Ministral digest"
 fi
 
 echo "=== CONDITIONAL PHI INSTALL ==="
