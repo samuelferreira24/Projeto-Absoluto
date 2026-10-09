@@ -503,24 +503,29 @@ jobs:
             ]);
             const canceled = [];
             const failures = [];
-            for (const status of ['queued', 'in_progress']) {
-              const response = await github.rest.actions.listWorkflowRunsForRepo({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                status,
-                per_page: 100
-              });
-              for (const run of response.data.workflow_runs) {
-                if (!targets.has(run.name) || run.id === context.runId) continue;
-                try {
-                  await github.rest.actions.cancelWorkflowRun({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    run_id: run.id
-                  });
-                  canceled.push({id: run.id, name: run.name, status: run.status});
-                } catch (error) {
-                  failures.push({id: run.id, name: run.name, error: String(error.message || error).slice(0, 180)});
+            for (const status of ['queued', 'in_progress', 'pending']) {
+              for (let page = 1; page <= 10; page++) {
+                const response = await github.rest.actions.listWorkflowRunsForRepo({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  status,
+                  per_page: 100,
+                  page
+                });
+                const runs = response.data.workflow_runs || [];
+                if (runs.length === 0) break;
+                for (const run of runs) {
+                  if (!targets.has(run.name) || run.id === context.runId) continue;
+                  try {
+                    await github.rest.actions.cancelWorkflowRun({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      run_id: run.id
+                    });
+                    canceled.push({id: run.id, name: run.name, status: run.status});
+                  } catch (error) {
+                    failures.push({id: run.id, name: run.name, error: String(error.message || error).slice(0, 180)});
+                  }
                 }
               }
             }
