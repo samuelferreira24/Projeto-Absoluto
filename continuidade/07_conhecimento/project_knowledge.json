@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T11:21:50-03:00",
-  "source_revision": "3586041c14928be11b0001bd32ad6c227f42cccf",
+  "generated_at": "2026-10-09T11:29:41-03:00",
+  "source_revision": "728469ed654e027d72884102be5de0d3e1fe15c7",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 128
+      "file_count": 129
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "3586041c14928be11b0001bd32ad6c227f42cccf",
-      "commit_subject": "Recover RAM between local AI capability tests"
+      "revision": "728469ed654e027d72884102be5de0d3e1fe15c7",
+      "commit_subject": "Add read-only VPS inventory before cleanup"
     }
   ],
   "tools": [
@@ -3273,6 +3273,11 @@
       "id": "file:scripts/ops/local_ai_full_operation.sh",
       "kind": "file",
       "path": "scripts/ops/local_ai_full_operation.sh"
+    },
+    {
+      "id": "file:scripts/ops/vps_inventory_audit.sh",
+      "kind": "file",
+      "path": "scripts/ops/vps_inventory_audit.sh"
     },
     {
       "id": "file:scripts/project_knowledge_sync.py",
@@ -10147,6 +10152,20 @@
       "sha": "3586041c14928be11b0001bd32ad6c227f42cccf"
     },
     {
+      "id": "commit:3923997e6a8012fa279ea5b3169dd341f1343ac5",
+      "kind": "commit",
+      "at": "2026-10-09T14:22:08Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "3923997e6a8012fa279ea5b3169dd341f1343ac5"
+    },
+    {
+      "id": "commit:728469ed654e027d72884102be5de0d3e1fe15c7",
+      "kind": "commit",
+      "at": "2026-10-09T11:29:41-03:00",
+      "subject": "Add read-only VPS inventory before cleanup",
+      "sha": "728469ed654e027d72884102be5de0d3e1fe15c7"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10259,23 +10278,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:0088f5c2231f",
+      "id": "evidence:repository:e14ece674417",
       "kind": "evidence",
-      "at": "2026-10-09T11:21:50-03:00",
+      "at": "2026-10-09T11:29:41-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:0088f5c2231f",
+      "id": "event:repository-scan:e14ece674417",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T11:21:50-03:00"
+      "at": "2026-10-09T11:29:41-03:00"
     },
     {
-      "id": "event:commit-observed:3586041c1492",
+      "id": "event:commit-observed:728469ed654e",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T11:21:50-03:00"
+      "at": "2026-10-09T11:29:41-03:00"
     }
   ],
   "paths": [
@@ -10310,11 +10329,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:b61aa5f71668"
+        "evidence:test:ef332e1a3182"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T11:21:50-03:00"
+      "last_validated": "2026-10-09T11:29:41-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10337,20 +10356,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:0088f5c2231f",
+      "id": "evidence:repository:e14ece674417",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T11:21:50-03:00",
+      "observed_at": "2026-10-09T11:29:41-03:00",
       "status": "observed",
-      "detail": "410 files indexed at revision 3586041c14928be11b0001bd32ad6c227f42cccf"
+      "detail": "411 files indexed at revision 728469ed654e027d72884102be5de0d3e1fe15c7"
     },
     {
-      "id": "evidence:test:b61aa5f71668",
+      "id": "evidence:test:ef332e1a3182",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T11:21:50-03:00",
+      "observed_at": "2026-10-09T11:29:41-03:00",
       "status": "tested",
-      "detail": "210 passed in 6.87s"
+      "detail": "210 passed in 7.29s"
     }
   ],
   "decisions": [
@@ -10453,31 +10472,31 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:0088f5c2231f",
+      "id": "event:repository-scan:e14ece674417",
       "type": "repository_scanned",
-      "at": "2026-10-09T11:21:50-03:00",
-      "revision": "3586041c14928be11b0001bd32ad6c227f42cccf",
-      "file_count": 410,
-      "evidence_id": "evidence:repository:0088f5c2231f"
+      "at": "2026-10-09T11:29:41-03:00",
+      "revision": "728469ed654e027d72884102be5de0d3e1fe15c7",
+      "file_count": 411,
+      "evidence_id": "evidence:repository:e14ece674417"
     },
     {
-      "id": "event:commit-observed:3586041c1492",
+      "id": "event:commit-observed:728469ed654e",
       "type": "commit_observed",
-      "at": "2026-10-09T11:21:50-03:00",
-      "revision": "3586041c14928be11b0001bd32ad6c227f42cccf",
+      "at": "2026-10-09T11:29:41-03:00",
+      "revision": "728469ed654e027d72884102be5de0d3e1fe15c7",
       "branch": "main",
-      "subject": "Recover RAM between local AI capability tests",
+      "subject": "Add read-only VPS inventory before cleanup",
       "changed_files": [
         ".github/workflows/abs-vps-reserve.yml",
-        "scripts/ops/local_ai_full_operation.sh"
+        "scripts/ops/vps_inventory_audit.sh"
       ]
     },
     {
-      "id": "event:test:b61aa5f71668",
+      "id": "event:test:ef332e1a3182",
       "type": "tests_observed",
-      "at": "2026-10-09T11:21:50-03:00",
+      "at": "2026-10-09T11:29:41-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:b61aa5f71668"
+      "evidence_id": "evidence:test:ef332e1a3182"
     }
   ],
   "knowledge_sources": [
@@ -10533,7 +10552,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "75055a0e3c8d2d2fa73d9b53348a5a72bea4940e562210a00142402a18885c36"
+      "sha256": "76baa80869e561b26da761256f8282384fe4e18160f1effe6b288a6d899c3718"
     },
     {
       "id": "source:session",
@@ -44840,12 +44859,96 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:0088f5c2231f",
-      "source": "event:repository-scan:0088f5c2231f",
-      "relation": "generated",
-      "target": "evidence:repository:0088f5c2231f",
+      "id": "rel:commit-precedes:3586041c1492:3923997e6a80",
+      "source": "commit:3586041c14928be11b0001bd32ad6c227f42cccf",
+      "relation": "precedes",
+      "target": "commit:3923997e6a8012fa279ea5b3169dd341f1343ac5",
       "status": "asserted",
-      "at": "2026-10-09T11:21:50-03:00",
+      "at": "2026-10-09T14:22:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3923997e6a80:032adc3624d7",
+      "source": "commit:3923997e6a8012fa279ea5b3169dd341f1343ac5",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T14:22:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3923997e6a80:d64178c49886",
+      "source": "commit:3923997e6a8012fa279ea5b3169dd341f1343ac5",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T14:22:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:3923997e6a80:728469ed654e",
+      "source": "commit:3923997e6a8012fa279ea5b3169dd341f1343ac5",
+      "relation": "precedes",
+      "target": "commit:728469ed654e027d72884102be5de0d3e1fe15c7",
+      "status": "asserted",
+      "at": "2026-10-09T11:29:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:728469ed654e:3ea533262670",
+      "source": "commit:728469ed654e027d72884102be5de0d3e1fe15c7",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-reserve.yml",
+      "status": "asserted",
+      "at": "2026-10-09T11:29:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:728469ed654e:a42b6110d941",
+      "source": "commit:728469ed654e027d72884102be5de0d3e1fe15c7",
+      "relation": "changed",
+      "target": "file:scripts/ops/vps_inventory_audit.sh",
+      "status": "asserted",
+      "at": "2026-10-09T11:29:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:e14ece674417",
+      "source": "event:repository-scan:e14ece674417",
+      "relation": "generated",
+      "target": "evidence:repository:e14ece674417",
+      "status": "asserted",
+      "at": "2026-10-09T11:29:41-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -44854,12 +44957,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:3586041c1492",
-      "source": "commit:3586041c14928be11b0001bd32ad6c227f42cccf",
+      "id": "rel:scan-commit:728469ed654e",
+      "source": "commit:728469ed654e027d72884102be5de0d3e1fe15c7",
       "relation": "observed_by",
-      "target": "event:repository-scan:0088f5c2231f",
+      "target": "event:repository-scan:e14ece674417",
       "status": "asserted",
-      "at": "2026-10-09T11:21:50-03:00",
+      "at": "2026-10-09T11:29:41-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
