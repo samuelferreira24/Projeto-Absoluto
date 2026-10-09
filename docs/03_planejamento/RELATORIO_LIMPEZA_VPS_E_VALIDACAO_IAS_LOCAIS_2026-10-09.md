@@ -68,7 +68,14 @@ O inventário real confirmou estes componentes em execução e/ou relevantes:
    - `316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63`
    - `cb991b54b0223e5de2706780b88bb9bca50f49654e39d4608e016e9ff0413a41`
    
-   Também continua listada a tag `llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63`, que compartilha o primeiro digest. Não apagar nenhuma dessas referências até correlacionar os manifests físicos e confirmar qual digest a configuração usa.
+   Também continua listada a tag `llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63`, que compartilha o primeiro digest.
+
+   A inspeção física encontrou:
+   - Manifesto canônico `registry.ollama.ai/library/ministral-3/3b`, SHA-256 do arquivo `48104100dda3dde704b6d6d47bbb31f55f37c44c728a9c6e1d3db93a8a12bb14`.
+   - Manifesto do alias `registry.ollama.ai/library/llamacpp/316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63`, SHA-256 `316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63`, que corresponde ao primeiro digest da API.
+   - O digest `cb991b54b0223e5de2706780b88bb9bca50f49654e39d4608e016e9ff0413a41` não corresponde a nenhum dos dois manifestos encontrados no diretório de modelos inspecionado.
+
+   Portanto, o inventário da API e os manifestos físicos não concordam completamente. Não apagar nenhuma dessas referências nem retaggear o modelo até verificar a origem do segundo registro e o manifesto efetivamente resolvido pelo daemon.
 
 2. **Rollback de modelos removidos:** a configuração anterior e os Modelfiles foram guardados em `/home/absadmin/abs-local-ai-operation-backups/20261009T143518Z`. Os pesos removidos não foram copiados integralmente para outro armazenamento; a restauração desses modelos exige baixá-los novamente. Os seis modelos selecionados foram preservados.
 
