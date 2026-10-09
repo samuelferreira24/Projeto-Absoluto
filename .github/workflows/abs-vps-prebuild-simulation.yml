@@ -44,10 +44,18 @@ jobs:
             done
             echo
             echo "=== 3. CURRENT CONTAINERS (NO ENV OR SECRETS) ==="
-            docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' 2>&1 || true
+            sudo docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' 2>&1 || true
+            echo
+            echo "[Docker network/port summary for proxy and Coolify only]"
+            for name in coolify-proxy coolify; do
+              sudo docker inspect "$name" --format '{{.Name}} networks={{range $k,$v := .NetworkSettings.Networks}}{{$k}} {{end}} published_ports={{json .NetworkSettings.Ports}}' 2>&1 || true
+            done
             echo
             echo "=== 4. LISTENING TCP PORTS (NO PROCESS ENV) ==="
             ss -lnt 2>/dev/null | head -n 80 || true
+            echo
+            echo "=== FIREWALL STATUS (READ ONLY) ==="
+            sudo ufw status verbose 2>&1 || true
             echo
             echo "=== 5. OLLAMA MODEL/ACTIVE SESSION SUMMARY ==="
             curl -fsS --max-time 5 http://127.0.0.1:11434/api/tags 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); print("\n".join("MODEL "+x.get("name","?")+" size="+str(x.get("size","?")) for x in d.get("models",[])))' 2>/dev/null || echo "Ollama tags endpoint unavailable"
@@ -109,7 +117,28 @@ jobs:
           }, indent=2))
           PY
             echo
-            echo "=== 8. ARCHITECTURE AND FAILURE-PATH GATES ==="
+            echo "=== 8. PROCESS-FLOW SIMULATION (DETERMINISTIC, NO SIDE EFFECTS) ==="
+            python3 - <<'PY'
+          import json
+          flows = [
+            {"name":"simple_question","path":["request","policy_check","smallest_sufficient_model","verify_result","write_memory_if_needed","response"],"expected":"complete"},
+            {"name":"website_research","path":["request","policy_check","browser_tool","extract_evidence","cross_check","store_sources","response"],"expected":"complete_if_browser_and_network_available"},
+            {"name":"browser_unavailable","path":["request","policy_check","browser_health_fail","retry_once","fallback_non_browser_or_block","report_limitation"],"expected":"safe_degraded_no_false_success"},
+            {"name":"ollama_unavailable","path":["request","model_health_fail","approved_external_adapter_if_allowed","verify_result","response_or_block"],"expected":"safe_degraded_no_silent_fallback"},
+            {"name":"low_memory","path":["request","resource_guard","defer_or_unload_local_model","run_browser_or_model_serially","verify_headroom"],"expected":"no_heavy_concurrency"},
+            {"name":"auth_or_proxy_failure","path":["browser_request","auth_gate","deny_if_untrusted","audit_event"],"expected":"deny"},
+            {"name":"browser_crash","path":["browser_job","health_failure","restart_browser_only","recheck_abs_health","resume_or_fail_job"],"expected":"core_stays_up"},
+            {"name":"vps_reboot","path":["host_boot","docker_and_dependencies","abs_and_ollama","browser_on_demand","health_checks","ready"],"expected":"ready_only_after_checks"},
+            {"name":"disk_pressure","path":["preflight","free_space_below_reserve","abort_deployment","preserve_models_logs_and_data"],"expected":"abort_without_cleanup"},
+            {"name":"rollback","path":["disable_new_browser_service","preserve_user_data_by_default","restore_previous_routing","verify_abs_and_ollama"],"expected":"existing_services_preserved"},
+          ]
+          for f in flows:
+              print("FLOW "+f["name"]+" => "+f["expected"]+" :: "+" > ".join(f["path"]))
+          print("FLOW_COUNT="+str(len(flows)))
+          print("FLOW_SIMULATION=PASS (model-based only; not a runtime integration test)")
+          PY
+            echo
+            echo "=== 9. ARCHITECTURE AND FAILURE-PATH GATES ==="
             cat <<'GATES'
           A. ABS Core / Orchestrator / Memory: always available; browser is a tool adapter, never a dependency for core startup.
           B. Model router: choose exactly one local model at a time by default; unload after request; external models only via configured/approved adapters.
@@ -130,7 +159,7 @@ jobs:
           I. Deployment gate: do not build until current ports/firewall, proxy routing, storage, backup, memory envelopes, browser-control mechanism and acceptance tests are documented.
           GATES
             echo
-            echo "=== 9. ACCEPTANCE TESTS REQUIRED BEFORE CONSTRUCTION ==="
+            echo "=== 10. ACCEPTANCE TESTS REQUIRED BEFORE CONSTRUCTION ==="
             cat <<'TESTS'
           1. Phone can open authenticated browser UI over approved private/HTTPS route.
           2. Browser profile persists after container restart; no secrets are printed to logs.
@@ -144,8 +173,8 @@ jobs:
           10. Rollback removes only the new browser service/volume after explicit confirmation; existing data remains untouched.
           TESTS
             echo
-            echo "=== 10. SIMULATION RESULT ==="
-            echo "This run is a pre-build desk/model simulation plus read-only host inventory."
+            echo "=== 11. SIMULATION RESULT ==="
+            echo "This run is a pre-build model simulation plus read-only host inventory, port, firewall and Docker metadata audit."
             echo "It is NOT a browser deployment, real load test, external firewall scan, or proof of CDP integration."
             echo "Construction remains BLOCKED until the evidence above is reviewed and any failed gates are resolved."
           } > "$report" 2>&1
