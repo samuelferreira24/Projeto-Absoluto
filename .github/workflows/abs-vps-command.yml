@@ -637,6 +637,12 @@ jobs:
             tailnet-status)
               set +e
               {
+                echo "[Tailscale version]"
+                timeout 5s sudo -n tailscale version 2>&1 || true
+                echo
+                echo "[Tailscale Serve CLI help]"
+                timeout 5s sudo -n tailscale serve --help 2>&1 | head -n 80 || true
+                echo
                 echo "[Tailscale backend]"
                 timeout 8s sudo -n tailscale status --json 2>&1 | python3 -c 'import json,sys; d=json.load(sys.stdin); print("BackendState="+str(d.get("BackendState","unknown"))); print("SelfDNSName="+str((d.get("Self") or {}).get("DNSName","unknown"))); print("CurrentTailnet="+str((d.get("CurrentTailnet") or {}).get("Name","unknown")))' 2>&1 || true
                 echo
