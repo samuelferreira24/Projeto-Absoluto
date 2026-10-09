@@ -1,1 +1,1 @@
-test-ministral-3b
+status
