@@ -9,10 +9,6 @@ permissions:
   contents: read
   issues: write
 
-concurrency:
-  group: abs-vps-command
-  cancel-in-progress: false
-
 jobs:
   execute:
     if: >-
