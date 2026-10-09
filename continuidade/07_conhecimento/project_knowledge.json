@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T11:29:41-03:00",
-  "source_revision": "728469ed654e027d72884102be5de0d3e1fe15c7",
+  "generated_at": "2026-10-09T11:34:56-03:00",
+  "source_revision": "8236ed3bbce46df71b86f3ce838303a0c9dd67da",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "728469ed654e027d72884102be5de0d3e1fe15c7",
-      "commit_subject": "Add read-only VPS inventory before cleanup"
+      "revision": "8236ed3bbce46df71b86f3ce838303a0c9dd67da",
+      "commit_subject": "Run multimodal checks before memory-heavy tests"
     }
   ],
   "tools": [
@@ -10166,6 +10166,20 @@
       "sha": "728469ed654e027d72884102be5de0d3e1fe15c7"
     },
     {
+      "id": "commit:c0849c18747c10932d8c8976e8277f7572fb677c",
+      "kind": "commit",
+      "at": "2026-10-09T14:30:03Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "c0849c18747c10932d8c8976e8277f7572fb677c"
+    },
+    {
+      "id": "commit:8236ed3bbce46df71b86f3ce838303a0c9dd67da",
+      "kind": "commit",
+      "at": "2026-10-09T11:34:56-03:00",
+      "subject": "Run multimodal checks before memory-heavy tests",
+      "sha": "8236ed3bbce46df71b86f3ce838303a0c9dd67da"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10278,23 +10292,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:e14ece674417",
+      "id": "evidence:repository:d893284b3f41",
       "kind": "evidence",
-      "at": "2026-10-09T11:29:41-03:00",
+      "at": "2026-10-09T11:34:56-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:e14ece674417",
+      "id": "event:repository-scan:d893284b3f41",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T11:29:41-03:00"
+      "at": "2026-10-09T11:34:56-03:00"
     },
     {
-      "id": "event:commit-observed:728469ed654e",
+      "id": "event:commit-observed:8236ed3bbce4",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T11:29:41-03:00"
+      "at": "2026-10-09T11:34:56-03:00"
     }
   ],
   "paths": [
@@ -10329,11 +10343,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:ef332e1a3182"
+        "evidence:test:c8059cbe7ee5"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T11:29:41-03:00"
+      "last_validated": "2026-10-09T11:34:56-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10356,20 +10370,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:e14ece674417",
+      "id": "evidence:repository:d893284b3f41",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T11:29:41-03:00",
+      "observed_at": "2026-10-09T11:34:56-03:00",
       "status": "observed",
-      "detail": "411 files indexed at revision 728469ed654e027d72884102be5de0d3e1fe15c7"
+      "detail": "411 files indexed at revision 8236ed3bbce46df71b86f3ce838303a0c9dd67da"
     },
     {
-      "id": "evidence:test:ef332e1a3182",
+      "id": "evidence:test:c8059cbe7ee5",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T11:29:41-03:00",
+      "observed_at": "2026-10-09T11:34:56-03:00",
       "status": "tested",
-      "detail": "210 passed in 7.29s"
+      "detail": "210 passed in 7.59s"
     }
   ],
   "decisions": [
@@ -10472,31 +10486,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:e14ece674417",
+      "id": "event:repository-scan:d893284b3f41",
       "type": "repository_scanned",
-      "at": "2026-10-09T11:29:41-03:00",
-      "revision": "728469ed654e027d72884102be5de0d3e1fe15c7",
+      "at": "2026-10-09T11:34:56-03:00",
+      "revision": "8236ed3bbce46df71b86f3ce838303a0c9dd67da",
       "file_count": 411,
-      "evidence_id": "evidence:repository:e14ece674417"
+      "evidence_id": "evidence:repository:d893284b3f41"
     },
     {
-      "id": "event:commit-observed:728469ed654e",
+      "id": "event:commit-observed:8236ed3bbce4",
       "type": "commit_observed",
-      "at": "2026-10-09T11:29:41-03:00",
-      "revision": "728469ed654e027d72884102be5de0d3e1fe15c7",
+      "at": "2026-10-09T11:34:56-03:00",
+      "revision": "8236ed3bbce46df71b86f3ce838303a0c9dd67da",
       "branch": "main",
-      "subject": "Add read-only VPS inventory before cleanup",
+      "subject": "Run multimodal checks before memory-heavy tests",
       "changed_files": [
-        ".github/workflows/abs-vps-reserve.yml",
-        "scripts/ops/vps_inventory_audit.sh"
+        "scripts/ops/local_ai_full_operation.sh"
       ]
     },
     {
-      "id": "event:test:ef332e1a3182",
+      "id": "event:test:c8059cbe7ee5",
       "type": "tests_observed",
-      "at": "2026-10-09T11:29:41-03:00",
+      "at": "2026-10-09T11:34:56-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:ef332e1a3182"
+      "evidence_id": "evidence:test:c8059cbe7ee5"
     }
   ],
   "knowledge_sources": [
@@ -10552,7 +10565,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "76baa80869e561b26da761256f8282384fe4e18160f1effe6b288a6d899c3718"
+      "sha256": "c1be19ed4c1c175667baa3aba1381b495890c50be79716dac0c600d837df105c"
     },
     {
       "id": "source:session",
@@ -44943,12 +44956,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:e14ece674417",
-      "source": "event:repository-scan:e14ece674417",
-      "relation": "generated",
-      "target": "evidence:repository:e14ece674417",
+      "id": "rel:commit-precedes:728469ed654e:c0849c18747c",
+      "source": "commit:728469ed654e027d72884102be5de0d3e1fe15c7",
+      "relation": "precedes",
+      "target": "commit:c0849c18747c10932d8c8976e8277f7572fb677c",
       "status": "asserted",
-      "at": "2026-10-09T11:29:41-03:00",
+      "at": "2026-10-09T14:30:03Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c0849c18747c:032adc3624d7",
+      "source": "commit:c0849c18747c10932d8c8976e8277f7572fb677c",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T14:30:03Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c0849c18747c:d64178c49886",
+      "source": "commit:c0849c18747c10932d8c8976e8277f7572fb677c",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T14:30:03Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c0849c18747c:8236ed3bbce4",
+      "source": "commit:c0849c18747c10932d8c8976e8277f7572fb677c",
+      "relation": "precedes",
+      "target": "commit:8236ed3bbce46df71b86f3ce838303a0c9dd67da",
+      "status": "asserted",
+      "at": "2026-10-09T11:34:56-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:8236ed3bbce4:bc92442f76cc",
+      "source": "commit:8236ed3bbce46df71b86f3ce838303a0c9dd67da",
+      "relation": "changed",
+      "target": "file:scripts/ops/local_ai_full_operation.sh",
+      "status": "asserted",
+      "at": "2026-10-09T11:34:56-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:d893284b3f41",
+      "source": "event:repository-scan:d893284b3f41",
+      "relation": "generated",
+      "target": "evidence:repository:d893284b3f41",
+      "status": "asserted",
+      "at": "2026-10-09T11:34:56-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -44957,12 +45040,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:728469ed654e",
-      "source": "commit:728469ed654e027d72884102be5de0d3e1fe15c7",
+      "id": "rel:scan-commit:8236ed3bbce4",
+      "source": "commit:8236ed3bbce46df71b86f3ce838303a0c9dd67da",
       "relation": "observed_by",
-      "target": "event:repository-scan:e14ece674417",
+      "target": "event:repository-scan:d893284b3f41",
       "status": "asserted",
-      "at": "2026-10-09T11:29:41-03:00",
+      "at": "2026-10-09T11:34:56-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
