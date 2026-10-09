@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T10:57:14-03:00",
-  "source_revision": "37a1a99587a67692be1e9f82bee639edcf1eb38d",
+  "generated_at": "2026-10-09T11:08:54-03:00",
+  "source_revision": "dc12fbc51af5e33521f9da24ba79898716fd4e30",
   "components": [
     {
       "id": "component:abs_core",
@@ -37,7 +37,7 @@
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 64
+      "file_count": 65
     }
   ],
   "capabilities": [
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "37a1a99587a67692be1e9f82bee639edcf1eb38d",
-      "commit_subject": "Stop reporting configured AI adapters as available"
+      "revision": "dc12fbc51af5e33521f9da24ba79898716fd4e30",
+      "commit_subject": "Allow memory-safe local AI under CPU pressure"
     }
   ],
   "tools": [
@@ -3438,6 +3438,11 @@
       "id": "file:tests/test_local.py",
       "kind": "file",
       "path": "tests/test_local.py"
+    },
+    {
+      "id": "file:tests/test_local_ai_operation_script.py",
+      "kind": "file",
+      "path": "tests/test_local_ai_operation_script.py"
     },
     {
       "id": "file:tests/test_navegacao_agent.py",
@@ -10081,6 +10086,20 @@
       "sha": "37a1a99587a67692be1e9f82bee639edcf1eb38d"
     },
     {
+      "id": "commit:627b3cddcd2fcea08d4ad4fa5b3e1c8d7fc38629",
+      "kind": "commit",
+      "at": "2026-10-09T13:57:34Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "627b3cddcd2fcea08d4ad4fa5b3e1c8d7fc38629"
+    },
+    {
+      "id": "commit:dc12fbc51af5e33521f9da24ba79898716fd4e30",
+      "kind": "commit",
+      "at": "2026-10-09T11:08:54-03:00",
+      "subject": "Allow memory-safe local AI under CPU pressure",
+      "sha": "dc12fbc51af5e33521f9da24ba79898716fd4e30"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10193,23 +10212,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:64c382e20c02",
+      "id": "evidence:repository:894cad468735",
       "kind": "evidence",
-      "at": "2026-10-09T10:57:14-03:00",
+      "at": "2026-10-09T11:08:54-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:64c382e20c02",
+      "id": "event:repository-scan:894cad468735",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T10:57:14-03:00"
+      "at": "2026-10-09T11:08:54-03:00"
     },
     {
-      "id": "event:commit-observed:37a1a99587a6",
+      "id": "event:commit-observed:dc12fbc51af5",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T10:57:14-03:00"
+      "at": "2026-10-09T11:08:54-03:00"
     }
   ],
   "paths": [
@@ -10244,11 +10263,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:48c37854a6e9"
+        "evidence:test:07437047549b"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T10:57:14-03:00"
+      "last_validated": "2026-10-09T11:08:54-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10271,20 +10290,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:64c382e20c02",
+      "id": "evidence:repository:894cad468735",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T10:57:14-03:00",
+      "observed_at": "2026-10-09T11:08:54-03:00",
       "status": "observed",
-      "detail": "408 files indexed at revision 37a1a99587a67692be1e9f82bee639edcf1eb38d"
+      "detail": "409 files indexed at revision dc12fbc51af5e33521f9da24ba79898716fd4e30"
     },
     {
-      "id": "evidence:test:48c37854a6e9",
+      "id": "evidence:test:07437047549b",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T10:57:14-03:00",
+      "observed_at": "2026-10-09T11:08:54-03:00",
       "status": "tested",
-      "detail": "206 passed in 7.58s"
+      "detail": "209 passed in 7.63s"
     }
   ],
   "decisions": [
@@ -10387,31 +10406,34 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:64c382e20c02",
+      "id": "event:repository-scan:894cad468735",
       "type": "repository_scanned",
-      "at": "2026-10-09T10:57:14-03:00",
-      "revision": "37a1a99587a67692be1e9f82bee639edcf1eb38d",
-      "file_count": 408,
-      "evidence_id": "evidence:repository:64c382e20c02"
+      "at": "2026-10-09T11:08:54-03:00",
+      "revision": "dc12fbc51af5e33521f9da24ba79898716fd4e30",
+      "file_count": 409,
+      "evidence_id": "evidence:repository:894cad468735"
     },
     {
-      "id": "event:commit-observed:37a1a99587a6",
+      "id": "event:commit-observed:dc12fbc51af5",
       "type": "commit_observed",
-      "at": "2026-10-09T10:57:14-03:00",
-      "revision": "37a1a99587a67692be1e9f82bee639edcf1eb38d",
+      "at": "2026-10-09T11:08:54-03:00",
+      "revision": "dc12fbc51af5e33521f9da24ba79898716fd4e30",
       "branch": "main",
-      "subject": "Stop reporting configured AI adapters as available",
+      "subject": "Allow memory-safe local AI under CPU pressure",
       "changed_files": [
+        ".github/workflows/abs-vps-reserve.yml",
         "abs_core/v3.py",
+        "scripts/ops/local_ai_full_operation.sh",
+        "tests/test_local_ai_operation_script.py",
         "tests/test_v3.py"
       ]
     },
     {
-      "id": "event:test:48c37854a6e9",
+      "id": "event:test:07437047549b",
       "type": "tests_observed",
-      "at": "2026-10-09T10:57:14-03:00",
+      "at": "2026-10-09T11:08:54-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:48c37854a6e9"
+      "evidence_id": "evidence:test:07437047549b"
     }
   ],
   "knowledge_sources": [
@@ -10467,7 +10489,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "58385897c5be4a115cd2b6e708684696af19ef34bbeb41678f903a13ef5d9f80"
+      "sha256": "21990b6689a52752ba5f2848e85a22a92112eb3d831f9323b87fd0b839f288d1"
     },
     {
       "id": "source:session",
@@ -44410,12 +44432,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:64c382e20c02",
-      "source": "event:repository-scan:64c382e20c02",
-      "relation": "generated",
-      "target": "evidence:repository:64c382e20c02",
+      "id": "rel:commit-precedes:37a1a99587a6:627b3cddcd2f",
+      "source": "commit:37a1a99587a67692be1e9f82bee639edcf1eb38d",
+      "relation": "precedes",
+      "target": "commit:627b3cddcd2fcea08d4ad4fa5b3e1c8d7fc38629",
       "status": "asserted",
-      "at": "2026-10-09T10:57:14-03:00",
+      "at": "2026-10-09T13:57:34Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:627b3cddcd2f:032adc3624d7",
+      "source": "commit:627b3cddcd2fcea08d4ad4fa5b3e1c8d7fc38629",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T13:57:34Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:627b3cddcd2f:d64178c49886",
+      "source": "commit:627b3cddcd2fcea08d4ad4fa5b3e1c8d7fc38629",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T13:57:34Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:627b3cddcd2f:dc12fbc51af5",
+      "source": "commit:627b3cddcd2fcea08d4ad4fa5b3e1c8d7fc38629",
+      "relation": "precedes",
+      "target": "commit:dc12fbc51af5e33521f9da24ba79898716fd4e30",
+      "status": "asserted",
+      "at": "2026-10-09T11:08:54-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:dc12fbc51af5:3ea533262670",
+      "source": "commit:dc12fbc51af5e33521f9da24ba79898716fd4e30",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-reserve.yml",
+      "status": "asserted",
+      "at": "2026-10-09T11:08:54-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:dc12fbc51af5:04f1341ba654",
+      "source": "commit:dc12fbc51af5e33521f9da24ba79898716fd4e30",
+      "relation": "changed",
+      "target": "file:abs_core/v3.py",
+      "status": "asserted",
+      "at": "2026-10-09T11:08:54-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:dc12fbc51af5:bc92442f76cc",
+      "source": "commit:dc12fbc51af5e33521f9da24ba79898716fd4e30",
+      "relation": "changed",
+      "target": "file:scripts/ops/local_ai_full_operation.sh",
+      "status": "asserted",
+      "at": "2026-10-09T11:08:54-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:dc12fbc51af5:c923cd06810c",
+      "source": "commit:dc12fbc51af5e33521f9da24ba79898716fd4e30",
+      "relation": "changed",
+      "target": "file:tests/test_local_ai_operation_script.py",
+      "status": "asserted",
+      "at": "2026-10-09T11:08:54-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:dc12fbc51af5:3014122fb6b6",
+      "source": "commit:dc12fbc51af5e33521f9da24ba79898716fd4e30",
+      "relation": "changed",
+      "target": "file:tests/test_v3.py",
+      "status": "asserted",
+      "at": "2026-10-09T11:08:54-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:894cad468735",
+      "source": "event:repository-scan:894cad468735",
+      "relation": "generated",
+      "target": "evidence:repository:894cad468735",
+      "status": "asserted",
+      "at": "2026-10-09T11:08:54-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -44424,12 +44572,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:37a1a99587a6",
-      "source": "commit:37a1a99587a67692be1e9f82bee639edcf1eb38d",
+      "id": "rel:scan-commit:dc12fbc51af5",
+      "source": "commit:dc12fbc51af5e33521f9da24ba79898716fd4e30",
       "relation": "observed_by",
-      "target": "event:repository-scan:64c382e20c02",
+      "target": "event:repository-scan:894cad468735",
       "status": "asserted",
-      "at": "2026-10-09T10:57:14-03:00",
+      "at": "2026-10-09T11:08:54-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
