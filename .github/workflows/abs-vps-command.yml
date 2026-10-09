@@ -640,8 +640,23 @@ jobs:
                 echo "[Stop the stuck Serve waiter]"
                 sudo -n systemctl stop abs-browser-tailnet-serve.service 2>&1 || true
                 echo
-                echo "[Terminate only the noninteractive browser Serve CLI that is blocked]"
-                sudo -n pkill -TERM -f '^tailscale serve --bg http://127\\.0\\.0\\.1:3000              set +e
+                echo "[Terminate Tailscale CLI processes only; tailscaled service is untouched]"
+                sudo -n pkill -TERM -x tailscale 2>&1 || true
+                sleep 2
+                echo
+                echo "[Remaining Tailscale Serve CLI processes]"
+                ps -eo pid,ppid,stat,etime,args | grep -E '[t]ailscale serve --bg' || true
+                echo
+                echo "[Serve configuration]"
+                timeout 8s sudo -n tailscale serve status 2>&1 || true
+                echo
+                echo "[ABS health]"
+                curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null && echo PASS || echo FAIL
+              } > /tmp/abs-tailnet-release.txt 2>&1
+              result="$(cat /tmp/abs-tailnet-release.txt)"
+              ;;
+            tailnet-status)
+              set +e
               {
                 echo "[Tailscale version]"
                 timeout 5s sudo -n tailscale version 2>&1 || true
