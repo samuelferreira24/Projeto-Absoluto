@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:36:42-03:00",
-  "source_revision": "7d6da67f51caf0b1e8aaf2196ceb981b4a40d8bd",
+  "generated_at": "2026-10-09T00:44:35-03:00",
+  "source_revision": "1e391607c44f2656cd2b80093eb2bb2025d7d615",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "7d6da67f51caf0b1e8aaf2196ceb981b4a40d8bd",
-      "commit_subject": "Adicionar teste de integração ABS V3 com IA local pequena e saída limitada"
+      "revision": "1e391607c44f2656cd2b80093eb2bb2025d7d615",
+      "commit_subject": "Limitar testes locais e estabilizar configuração da IA"
     }
   ],
   "tools": [
@@ -9763,6 +9763,69 @@
       "sha": "7d6da67f51caf0b1e8aaf2196ceb981b4a40d8bd"
     },
     {
+      "id": "commit:6b8e35aacec8768a39a154939437f04d9491aaf9",
+      "kind": "commit",
+      "at": "2026-10-09T03:37:01Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "6b8e35aacec8768a39a154939437f04d9491aaf9"
+    },
+    {
+      "id": "commit:af56ebb43ab1993ae8813679616515da0e633290",
+      "kind": "commit",
+      "at": "2026-10-09T00:40:59-03:00",
+      "subject": "Usar API nativa Ollama com limites de tokens para modelos locais",
+      "sha": "af56ebb43ab1993ae8813679616515da0e633290"
+    },
+    {
+      "id": "commit:c8250efb9d5fb7be07874a590c4475d234192d10",
+      "kind": "commit",
+      "at": "2026-10-09T00:41:07-03:00",
+      "subject": "Validar caminho nativo Ollama do adaptador local",
+      "sha": "c8250efb9d5fb7be07874a590c4475d234192d10"
+    },
+    {
+      "id": "commit:374386016d192ab016b762b776131720e05d4c1f",
+      "kind": "commit",
+      "at": "2026-10-09T00:41:21-03:00",
+      "subject": "Corrigir normalização do endpoint Ollama nativo",
+      "sha": "374386016d192ab016b762b776131720e05d4c1f"
+    },
+    {
+      "id": "commit:dce124ae7b86972d5792e27223d661b5a7a52532",
+      "kind": "commit",
+      "at": "2026-10-09T00:41:45-03:00",
+      "subject": "Limitar memória do Ollama e recuperar serviço antes da integração local",
+      "sha": "dce124ae7b86972d5792e27223d661b5a7a52532"
+    },
+    {
+      "id": "commit:9054826e1c57238f199e2f5f0ea279fdac7c110d",
+      "kind": "commit",
+      "at": "2026-10-09T00:42:50-03:00",
+      "subject": "Isolar checkout da validação automática para não disputar o repositório da VPS",
+      "sha": "9054826e1c57238f199e2f5f0ea279fdac7c110d"
+    },
+    {
+      "id": "commit:d4166b12322d4f2a49df68e070c94d9695a5c430",
+      "kind": "commit",
+      "at": "2026-10-09T00:43:58-03:00",
+      "subject": "Corrigir mock de resposta nativa do Ollama",
+      "sha": "d4166b12322d4f2a49df68e070c94d9695a5c430"
+    },
+    {
+      "id": "commit:e338cf5466f1a5aa60441e0fbc1bed16eac92f4f",
+      "kind": "commit",
+      "at": "2026-10-09T00:44:17-03:00",
+      "subject": "Limitar validação ao vivo para não disputar CPU com testes de integração",
+      "sha": "e338cf5466f1a5aa60441e0fbc1bed16eac92f4f"
+    },
+    {
+      "id": "commit:1e391607c44f2656cd2b80093eb2bb2025d7d615",
+      "kind": "commit",
+      "at": "2026-10-09T00:44:35-03:00",
+      "subject": "Limitar testes locais e estabilizar configuração da IA",
+      "sha": "1e391607c44f2656cd2b80093eb2bb2025d7d615"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9875,23 +9938,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:461061a46eda",
+      "id": "evidence:repository:ee8bedd56f27",
       "kind": "evidence",
-      "at": "2026-10-09T00:36:42-03:00",
+      "at": "2026-10-09T00:44:35-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:461061a46eda",
+      "id": "event:repository-scan:ee8bedd56f27",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:36:42-03:00"
+      "at": "2026-10-09T00:44:35-03:00"
     },
     {
-      "id": "event:commit-observed:7d6da67f51ca",
+      "id": "event:commit-observed:1e391607c44f",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:36:42-03:00"
+      "at": "2026-10-09T00:44:35-03:00"
     }
   ],
   "paths": [
@@ -9926,11 +9989,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:4edd49fbe67d"
+        "evidence:test:a9f7e933b37a"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:36:42-03:00"
+      "last_validated": "2026-10-09T00:44:35-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9953,20 +10016,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:461061a46eda",
+      "id": "evidence:repository:ee8bedd56f27",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:36:42-03:00",
+      "observed_at": "2026-10-09T00:44:35-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision 7d6da67f51caf0b1e8aaf2196ceb981b4a40d8bd"
+      "detail": "406 files indexed at revision 1e391607c44f2656cd2b80093eb2bb2025d7d615"
     },
     {
-      "id": "evidence:test:4edd49fbe67d",
+      "id": "evidence:test:a9f7e933b37a",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:36:42-03:00",
+      "observed_at": "2026-10-09T00:44:35-03:00",
       "status": "tested",
-      "detail": "200 passed in 8.23s"
+      "detail": "200 passed in 5.84s"
     }
   ],
   "decisions": [
@@ -10069,30 +10132,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:461061a46eda",
+      "id": "event:repository-scan:ee8bedd56f27",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:36:42-03:00",
-      "revision": "7d6da67f51caf0b1e8aaf2196ceb981b4a40d8bd",
+      "at": "2026-10-09T00:44:35-03:00",
+      "revision": "1e391607c44f2656cd2b80093eb2bb2025d7d615",
       "file_count": 406,
-      "evidence_id": "evidence:repository:461061a46eda"
+      "evidence_id": "evidence:repository:ee8bedd56f27"
     },
     {
-      "id": "event:commit-observed:7d6da67f51ca",
+      "id": "event:commit-observed:1e391607c44f",
       "type": "commit_observed",
-      "at": "2026-10-09T00:36:42-03:00",
-      "revision": "7d6da67f51caf0b1e8aaf2196ceb981b4a40d8bd",
+      "at": "2026-10-09T00:44:35-03:00",
+      "revision": "1e391607c44f2656cd2b80093eb2bb2025d7d615",
       "branch": "main",
-      "subject": "Adicionar teste de integração ABS V3 com IA local pequena e saída limitada",
+      "subject": "Limitar testes locais e estabilizar configuração da IA",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:4edd49fbe67d",
+      "id": "event:test:a9f7e933b37a",
       "type": "tests_observed",
-      "at": "2026-10-09T00:36:42-03:00",
+      "at": "2026-10-09T00:44:35-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:4edd49fbe67d"
+      "evidence_id": "evidence:test:a9f7e933b37a"
     }
   ],
   "knowledge_sources": [
@@ -10148,7 +10211,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "bf961ebab56585babf797edc9ca3581dcbe778ffcae6ddd0a93fc54f311d53b8"
+      "sha256": "3b00c2ad8e13086c4dacf69d6907868849656b3b660631a0fbff726894d61ad8"
     },
     {
       "id": "source:session",
@@ -42523,12 +42586,278 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:461061a46eda",
-      "source": "event:repository-scan:461061a46eda",
-      "relation": "generated",
-      "target": "evidence:repository:461061a46eda",
+      "id": "rel:commit-precedes:7d6da67f51ca:6b8e35aacec8",
+      "source": "commit:7d6da67f51caf0b1e8aaf2196ceb981b4a40d8bd",
+      "relation": "precedes",
+      "target": "commit:6b8e35aacec8768a39a154939437f04d9491aaf9",
       "status": "asserted",
-      "at": "2026-10-09T00:36:42-03:00",
+      "at": "2026-10-09T03:37:01Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6b8e35aacec8:032adc3624d7",
+      "source": "commit:6b8e35aacec8768a39a154939437f04d9491aaf9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:37:01Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6b8e35aacec8:d64178c49886",
+      "source": "commit:6b8e35aacec8768a39a154939437f04d9491aaf9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:37:01Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:6b8e35aacec8:af56ebb43ab1",
+      "source": "commit:6b8e35aacec8768a39a154939437f04d9491aaf9",
+      "relation": "precedes",
+      "target": "commit:af56ebb43ab1993ae8813679616515da0e633290",
+      "status": "asserted",
+      "at": "2026-10-09T00:40:59-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:af56ebb43ab1:2ebb9d14537a",
+      "source": "commit:af56ebb43ab1993ae8813679616515da0e633290",
+      "relation": "changed",
+      "target": "file:abs_core/local_ai_adapter.py",
+      "status": "asserted",
+      "at": "2026-10-09T00:40:59-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:af56ebb43ab1:c8250efb9d5f",
+      "source": "commit:af56ebb43ab1993ae8813679616515da0e633290",
+      "relation": "precedes",
+      "target": "commit:c8250efb9d5fb7be07874a590c4475d234192d10",
+      "status": "asserted",
+      "at": "2026-10-09T00:41:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c8250efb9d5f:e43e15d41c16",
+      "source": "commit:c8250efb9d5fb7be07874a590c4475d234192d10",
+      "relation": "changed",
+      "target": "file:tests/test_ai_adapters.py",
+      "status": "asserted",
+      "at": "2026-10-09T00:41:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c8250efb9d5f:374386016d19",
+      "source": "commit:c8250efb9d5fb7be07874a590c4475d234192d10",
+      "relation": "precedes",
+      "target": "commit:374386016d192ab016b762b776131720e05d4c1f",
+      "status": "asserted",
+      "at": "2026-10-09T00:41:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:374386016d19:2ebb9d14537a",
+      "source": "commit:374386016d192ab016b762b776131720e05d4c1f",
+      "relation": "changed",
+      "target": "file:abs_core/local_ai_adapter.py",
+      "status": "asserted",
+      "at": "2026-10-09T00:41:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:374386016d19:dce124ae7b86",
+      "source": "commit:374386016d192ab016b762b776131720e05d4c1f",
+      "relation": "precedes",
+      "target": "commit:dce124ae7b86972d5792e27223d661b5a7a52532",
+      "status": "asserted",
+      "at": "2026-10-09T00:41:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:dce124ae7b86:1734be446032",
+      "source": "commit:dce124ae7b86972d5792e27223d661b5a7a52532",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:41:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:dce124ae7b86:9054826e1c57",
+      "source": "commit:dce124ae7b86972d5792e27223d661b5a7a52532",
+      "relation": "precedes",
+      "target": "commit:9054826e1c57238f199e2f5f0ea279fdac7c110d",
+      "status": "asserted",
+      "at": "2026-10-09T00:42:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:9054826e1c57:2d36dad9d535",
+      "source": "commit:9054826e1c57238f199e2f5f0ea279fdac7c110d",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-auto-integration.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:42:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:9054826e1c57:d4166b12322d",
+      "source": "commit:9054826e1c57238f199e2f5f0ea279fdac7c110d",
+      "relation": "precedes",
+      "target": "commit:d4166b12322d4f2a49df68e070c94d9695a5c430",
+      "status": "asserted",
+      "at": "2026-10-09T00:43:58-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d4166b12322d:e43e15d41c16",
+      "source": "commit:d4166b12322d4f2a49df68e070c94d9695a5c430",
+      "relation": "changed",
+      "target": "file:tests/test_ai_adapters.py",
+      "status": "asserted",
+      "at": "2026-10-09T00:43:58-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:d4166b12322d:e338cf5466f1",
+      "source": "commit:d4166b12322d4f2a49df68e070c94d9695a5c430",
+      "relation": "precedes",
+      "target": "commit:e338cf5466f1a5aa60441e0fbc1bed16eac92f4f",
+      "status": "asserted",
+      "at": "2026-10-09T00:44:17-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e338cf5466f1:2d36dad9d535",
+      "source": "commit:e338cf5466f1a5aa60441e0fbc1bed16eac92f4f",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-auto-integration.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:44:17-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:e338cf5466f1:1e391607c44f",
+      "source": "commit:e338cf5466f1a5aa60441e0fbc1bed16eac92f4f",
+      "relation": "precedes",
+      "target": "commit:1e391607c44f2656cd2b80093eb2bb2025d7d615",
+      "status": "asserted",
+      "at": "2026-10-09T00:44:35-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1e391607c44f:1734be446032",
+      "source": "commit:1e391607c44f2656cd2b80093eb2bb2025d7d615",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:44:35-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:ee8bedd56f27",
+      "source": "event:repository-scan:ee8bedd56f27",
+      "relation": "generated",
+      "target": "evidence:repository:ee8bedd56f27",
+      "status": "asserted",
+      "at": "2026-10-09T00:44:35-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -42537,12 +42866,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:7d6da67f51ca",
-      "source": "commit:7d6da67f51caf0b1e8aaf2196ceb981b4a40d8bd",
+      "id": "rel:scan-commit:1e391607c44f",
+      "source": "commit:1e391607c44f2656cd2b80093eb2bb2025d7d615",
       "relation": "observed_by",
-      "target": "event:repository-scan:461061a46eda",
+      "target": "event:repository-scan:ee8bedd56f27",
       "status": "asserted",
-      "at": "2026-10-09T00:36:42-03:00",
+      "at": "2026-10-09T00:44:35-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
