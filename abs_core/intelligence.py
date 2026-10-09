@@ -53,7 +53,10 @@ class IntelligenceRegistry:
                 continue
             connection = next((item for item in connection_map.values() if item.metadata.get("adapter") == cap.id or item.id == cap.id), None)
             local = cap.kind == "local_ai" or (connection is not None and connection.transport in {"local-http", "cli-termux"})
-            status = connection.status if connection else "available"
+            # Registration is not proof that an adapter is reachable. Without a
+            # matching connection health signal, expose local resources as configured
+            # and remote resources as unverified rather than falsely available.
+            status = connection.status if connection else ("configured" if local else "unverified")
             capabilities_hint = tuple(connection.capabilities) if connection else tuple(cap.metadata.get("capabilities") or ())
             metadata = {"connection_id": connection.id if connection else None, "conversational": cap.id not in {"codex"}}
             metadata.update(cap.metadata)
@@ -139,6 +142,18 @@ class CognitiveRuntime:
                 return 0.0
 
         memory_mb = available_memory_mb()
+        # Hard preflight, not merely a ranking penalty. Keep 768 MiB available for
+        # the ABS service, Ollama overhead, and transient allocations. An explicit
+        # preference must never override this safety gate.
+        import os
+        safety_reserve_mb = float(os.getenv("ABS_LOCAL_AI_MEMORY_RESERVE_MB", "768"))
+        if memory_mb > 0:
+            resources = [
+                resource for resource in resources
+                if not resource.local
+                or not float(resource.metadata.get("estimated_memory_mb", 0.0) or 0.0)
+                or float(resource.metadata.get("estimated_memory_mb", 0.0) or 0.0) <= max(0.0, memory_mb - safety_reserve_mb)
+            ]
 
         def score(resource: IntelligenceResource) -> tuple[float, str]:
             availability = {"configured": 30.0, "available": 20.0, "degraded": 5.0}.get(resource.status, 0.0)
