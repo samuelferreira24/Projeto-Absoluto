@@ -204,15 +204,21 @@ jobs:
           echo "=== Profile backup and restore integrity ==="
           BACKUP="$HOME/abs-browser/backups/profile-$(date -u +%F).tar.gz"
           TEMP_BACKUP="$BACKUP.partial"
-          sudo tar -czf "$TEMP_BACKUP" -C "$HOME/abs-browser" config
+          tar -czf "$TEMP_BACKUP" -C "$HOME/abs-browser" config
           chmod 600 "$TEMP_BACKUP"
           mv -f "$TEMP_BACKUP" "$BACKUP"
           BACKUP_SHA="$(sha256sum "$BACKUP" | awk '{print $1}')"
           RESTORE_DIR="$(mktemp -d "$HOME/abs-browser/backups/restore-test.XXXXXX")"
-          if tar -xzf "$BACKUP" -C "$RESTORE_DIR" && [ -d "$RESTORE_DIR/config" ] && [ -n "$(find "$RESTORE_DIR/config" -mindepth 1 -print -quit)" ]; then
-            pass "Profile backup archive extracted into an isolated staging directory"
-            RESTORED_SHA="$(tar -czf - -C "$RESTORE_DIR" config | sha256sum | awk '{print $1}')"
-            [ -n "$RESTORED_SHA" ] && pass "Restore staging contents readable; archive SHA256=$BACKUP_SHA"
+          if tar -xzf "$BACKUP" -C "$RESTORE_DIR" && [ -d "$RESTORE_DIR/config" ]; then
+            (cd "$HOME/abs-browser/config" && find . -type f -print0 | sort -z | xargs -0 -r sha256sum) > "$RESTORE_DIR/original.manifest"
+            (cd "$RESTORE_DIR/config" && find . -type f -print0 | sort -z | xargs -0 -r sha256sum) > "$RESTORE_DIR/restored.manifest"
+            if diff -u "$RESTORE_DIR/original.manifest" "$RESTORE_DIR/restored.manifest" >/dev/null; then
+              pass "Profile backup extracted and file-by-file SHA256 restore comparison passed"
+            else
+              fail "Restored profile differs from original profile manifest"
+              rm -rf "$RESTORE_DIR"
+              exit 1
+            fi
           else
             fail "Profile backup/restore staging test failed"
             rm -rf "$RESTORE_DIR"
