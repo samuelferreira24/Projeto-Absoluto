@@ -116,7 +116,7 @@ def build_registry() -> CapabilityRegistry:
                     registry.register(CapabilityRecord(
                         capability_id, f"IA local — {model_id}", "local_ai",
                         LocalAICapability(endpoint=endpoint, model=model_name),
-                        metadata={"model_id": model_id, "endpoint": endpoint, "model": model_name, "cost_class": "free_local", "capabilities": ["chat"], "capabilities_unverified": ["reasoning", "tools"], "estimated_memory_mb": {"qwen3.5-0.8b": 1800, "qwen3.5-2b": 3000, "qwen3.5-4b": 4200, "ministral-3b": 3500, "gemma4-e2b": 5200, "gemma4-e4b": 7000}.get(model_id, 2500), "priority": {"qwen3.5-0.8b": 50.0, "qwen3.5-2b": 35.0, "ministral-3b": 20.0, "qwen3.5-4b": 10.0, "gemma4-e2b": 0.0, "gemma4-e4b": -10.0}.get(model_id, 5.0)},
+                        metadata={"model_id": model_id, "endpoint": endpoint, "model": model_name, "cost_class": "free_local", "capabilities": ["chat"], "capabilities_unverified": ["reasoning", "tools"], "estimated_memory_mb": {"qwen3.5-0.8b": 1800, "qwen3.5-2b": 3000, "qwen3.5-4b": 4200, "ministral-3b": 3500, "gemma4-e2b": 5200, "gemma4-e4b": 7000, "gemma4-e2b-q3": 3600, "phi4-mini-3.8b": 3800}.get(model_id, 2500), "priority": {"qwen3.5-0.8b": 50.0, "qwen3.5-2b": 35.0, "ministral-3b": 20.0, "qwen3.5-4b": 10.0, "gemma4-e2b": 0.0, "gemma4-e4b": -10.0, "gemma4-e2b-q3": 5.0, "phi4-mini-3.8b": 12.0}.get(model_id, 5.0)},
                     ))
                 except ValueError:
                     pass

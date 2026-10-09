@@ -18,7 +18,7 @@ jobs:
       group: abs-vps-shared-tree
       cancel-in-progress: false
     runs-on: [self-hosted, abs-vps-01-reserve]
-    timeout-minutes: 10
+    timeout-minutes: 45
     steps:
       - name: Execute reserve command
         id: command
@@ -131,11 +131,17 @@ jobs:
                 curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
               fi
               ;;
+            local-ai-full-operation)
+              cd "$HOME/Projeto-Absoluto"
+              git fetch origin main --quiet
+              git reset --hard origin/main --quiet
+              result="$(bash scripts/ops/local_ai_full_operation.sh 2>&1)"
+              ;;
             local-ai-test-all)
               result="DISABLED: six-model batch is blocked. Use /abs-reserve local-ai-smoke to test one small model at a time."
               ;;
             *)
-              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve runner-main-diagnose, /abs-reserve runner-stabilize-main, /abs-reserve restart-abs, /abs-reserve v3-test, /abs-reserve integrate-test ou /abs-reserve local-ai-smoke."
+              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve runner-main-diagnose, /abs-reserve runner-stabilize-main, /abs-reserve restart-abs, /abs-reserve v3-test, /abs-reserve integrate-test, /abs-reserve local-ai-smoke ou /abs-reserve local-ai-full-operation."
               ;;
           esac
           {

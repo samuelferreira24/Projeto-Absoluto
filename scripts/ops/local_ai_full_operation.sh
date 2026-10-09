@@ -1,0 +1,170 @@
+#!/usr/bin/env bash
+# Controlled six-model ABS operation. Fixed model allowlist; never accepts shell input.
+set -uo pipefail
+export HOME=/home/absadmin
+export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+cd "$HOME/Projeto-Absoluto" || exit 2
+stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+backup="$HOME/abs-local-ai-operation-backups/$stamp"
+mkdir -p "$backup"
+log="$backup/operation.log"
+exec > >(tee -a "$log") 2>&1
+
+echo "ABS_LOCAL_AI_FULL_OPERATION_BEGIN $stamp"
+echo "=== BASELINE ==="
+hostname
+date -Is
+free -h
+df -h /
+curl -fsS --max-time 10 http://127.0.0.1:8787/health || true
+curl -fsS --max-time 10 http://127.0.0.1:11434/api/tags > "$backup/ollama-tags-before.json" || { echo "BLOCKED: Ollama API unavailable"; exit 3; }
+ollama list | tee "$backup/ollama-list-before.txt"
+curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps | tee "$backup/ollama-ps-before.json" || true
+[ -f /etc/abs-local-models.env ] && sudo cp -a /etc/abs-local-models.env "$backup/abs-local-models.env.before" || true
+
+echo "=== SAFE ALIAS AUDIT ==="
+# Remove only the exact llamacpp tag if Ollama's full API digest equals the canonical
+# Ministral tag digest. This drops a duplicate name, not the shared model data.
+python3 - "$backup/ollama-tags-before.json" "$backup/alias-decision.txt" <<'PY'
+import json,sys
+d=json.load(open(sys.argv[1]))
+items={x.get("name"):x for x in d.get("models",[])}
+canonical=items.get("ministral-3:3b")
+alias_name="llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63"
+alias=items.get(alias_name)
+if canonical and alias and canonical.get("digest") and canonical.get("digest")==alias.get("digest"):
+    print("REMOVE_ALIAS_ONLY "+alias_name)
+else:
+    print("KEEP_ALIAS: full digest equality not proven")
+PY
+alias_decision="$(python3 - "$backup/ollama-tags-before.json" <<'PY'
+import json,sys
+d=json.load(open(sys.argv[1])); items={x.get("name"):x for x in d.get("models",[])}
+c=items.get("ministral-3:3b"); a=items.get("llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63")
+print("remove" if c and a and c.get("digest") and c.get("digest")==a.get("digest") else "keep")
+PY
+)"
+if [ "$alias_decision" = remove ]; then
+  ollama show 'llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63' --modelfile > "$backup/ministral-alias.modelfile" 2>&1 || true
+  if ollama rm 'llamacpp:316262d960e27504463e6270bd8c1e8665c957ef2cff620ba333af9e1480df63'; then
+    echo "CLEANUP_PASS: removed duplicate alias only; canonical Ministral tag retained"
+  else
+    echo "CLEANUP_FAIL: alias removal failed; no other tag touched"
+  fi
+else
+  echo "CLEANUP_SKIPPED: alias digests not exactly equal or one tag absent"
+fi
+
+echo "=== CONDITIONAL PHI INSTALL ==="
+free_bytes="$(df -B1 --output=avail / | tail -n 1 | tr -d ' ')"
+available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+if [ "$free_bytes" -ge 4500000000 ] && [ "$available_kb" -ge 3500000 ]; then
+  if ollama list | awk 'NR>1 {print $1}' | grep -Fxq 'phi4-mini:3.8b'; then
+    echo "PHI_ALREADY_INSTALLED"
+  elif timeout 900 ollama pull phi4-mini:3.8b; then
+    echo "PHI_PULL_PASS"
+  else
+    echo "PHI_PULL_FAIL: retained all existing models; no forced cleanup"
+  fi
+else
+  echo "PHI_PULL_SKIPPED: disk must have >=4.5 GB free and MemAvailable >=3.5 GB"
+fi
+
+echo "=== SEQUENTIAL DIRECT SMOKE TESTS ==="
+# Test one model at a time with 2048 context, short output and keep_alive=0.
+# Thresholds include a small OS/ABS margin; a skipped model is not counted as PASS.
+test_model() {
+  model="$1"; marker="$2"; min_mb="$3"; timeout_s="$4"
+  echo "--- MODEL $model ---"
+  if ! ollama list | awk 'NR>1 {print $1}' | grep -Fxq "$model"; then
+    echo "RESULT SKIP_NOT_INSTALLED model=$model"
+    return
+  fi
+  available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+  if [ "$available_kb" -lt "$((min_mb * 1024))" ]; then
+    echo "RESULT SKIP_MEMORY model=$model available_mb=$((available_kb / 1024)) required_mb=$min_mb"
+    return
+  fi
+  before="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+  payload="$(python3 - "$model" "$marker" <<'PY'
+import json,sys
+print(json.dumps({"model":sys.argv[1],"prompt":"Reply with exactly "+sys.argv[2]+" and nothing else.","stream":False,"think":False,"keep_alive":0,"options":{"num_ctx":2048,"num_predict":40,"temperature":0}}))
+PY
+)"
+  response="$(curl -sS --max-time "$timeout_s" http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d "$payload" 2>&1)"
+  rc=$?
+  after="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+  if [ "$rc" -eq 0 ] && printf '%s' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); expected=sys.argv[1].upper(); actual=(d.get("response") or "").strip().upper(); assert expected in actual, {"expected":expected,"actual":actual}; print("response="+actual[:160])' "$marker"; then
+    echo "RESULT PASS model=$model before_mb=$((before / 1024)) after_mb=$((after / 1024))"
+  else
+    echo "RESULT FAIL model=$model curl_rc=$rc before_mb=$((before / 1024)) after_mb=$((after / 1024)) response=$(printf '%s' "$response" | head -c 800)"
+  fi
+  curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
+  echo
+}
+test_model 'qwen3.5:0.8b' 'ABS_QWEN08_OK' 1200 90
+test_model 'qwen3.5:2b' 'ABS_QWEN2B_OK' 2600 150
+test_model 'qwen3.5:4b' 'ABS_QWEN4B_OK' 3400 300
+test_model 'ministral-3:3b' 'ABS_MINISTRAL3B_OK' 3000 300
+test_model 'hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S' 'ABS_GEMMA_E2B_Q3_OK' 3200 300
+test_model 'phi4-mini:3.8b' 'ABS_PHI4MINI_OK' 3200 300
+
+echo "=== DIRECT TEST SUMMARY ==="
+grep '^RESULT ' "$log" || true
+pass_count="$(grep -c '^RESULT PASS ' "$log" || true)"
+echo "DIRECT_PASS_COUNT=$pass_count/6"
+
+# Integration is applied only if every selected model passed the direct smoke.
+if [ "$pass_count" -eq 6 ]; then
+  echo "=== BACKUP AND APPLY SIX-MODEL CONFIG ==="
+  [ -f /etc/abs-local-models.env ] && sudo cp -a /etc/abs-local-models.env "$backup/abs-local-models.env.pre-change"
+  sudo tee /etc/abs-local-models.env >/dev/null <<'ENV'
+ABS_LOCAL_AI_MODELS=qwen3.5-0.8b|http://127.0.0.1:11434|qwen3.5:0.8b,qwen3.5-2b|http://127.0.0.1:11434|qwen3.5:2b,qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b,ministral-3b|http://127.0.0.1:11434|ministral-3:3b,gemma4-e2b-q3|http://127.0.0.1:11434|hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S,phi4-mini-3.8b|http://127.0.0.1:11434|phi4-mini:3.8b
+ABS_LOCAL_AI_URL=http://127.0.0.1:11434
+ABS_LOCAL_AI_MODEL=qwen3.5:0.8b
+ABS_LOCAL_AI_MAX_TOKENS=64
+ABS_LOCAL_AI_TEMPERATURE=0
+ABS_LOCAL_AI_THINK=false
+ENV
+  sudo systemctl restart abs.service
+  sleep 3
+  integration_ok=0
+  integration_total=0
+  test_abs_model() {
+    cap="$1"; marker="$2"; integration_total=$((integration_total+1))
+    json="$(curl -sS --max-time 300 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d "$(python3 - "$cap" "$marker" <<'PY'
+import json,sys
+print(json.dumps({"message":"Reply with exactly "+sys.argv[2]+" and nothing else.","approved":True,"context":{"capability_id":"local-ai:"+sys.argv[1],"max_tokens":24,"temperature":0,"think":False,"keep_alive":0,"timeout":280}}))
+PY
+)" 2>&1)"
+    if printf '%s' "$json" | python3 -c 'import json,sys; d=json.load(sys.stdin); cap=sys.argv[1]; marker=sys.argv[2].upper(); p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert d.get("work_state")=="completed", d; assert marker in str(d.get("response","")).upper(), d; assert any(isinstance(x,dict) and x.get("capability_id")=="local-ai:"+cap for x in p), p; print("ABS_INTEGRATION_PASS "+cap)' "$cap" "$marker"; then
+      integration_ok=$((integration_ok+1))
+    else
+      echo "ABS_INTEGRATION_FAIL capability=$cap detail=$(printf '%s' "$json" | head -c 1000)"
+    fi
+    curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
+    echo
+  }
+  test_abs_model 'qwen3.5-0.8b' 'ABS_QWEN08_OK'
+  test_abs_model 'qwen3.5-2b' 'ABS_QWEN2B_OK'
+  test_abs_model 'qwen3.5-4b' 'ABS_QWEN4B_OK'
+  test_abs_model 'ministral-3b' 'ABS_MINISTRAL3B_OK'
+  test_abs_model 'gemma4-e2b-q3' 'ABS_GEMMA_E2B_Q3_OK'
+  test_abs_model 'phi4-mini-3.8b' 'ABS_PHI4MINI_OK'
+  echo "ABS_INTEGRATION_COUNT=$integration_ok/$integration_total"
+  if [ "$integration_ok" -ne 6 ]; then
+    echo "ROLLBACK: restore previous local model config"
+    if [ -f "$backup/abs-local-models.env.pre-change" ]; then sudo cp -a "$backup/abs-local-models.env.pre-change" /etc/abs-local-models.env; sudo systemctl restart abs.service; fi
+  fi
+else
+  echo "INTEGRATION_NOT_APPLIED: fewer than six direct smoke tests passed; production model configuration preserved"
+fi
+
+echo "=== FINAL STATE ==="
+curl -fsS --max-time 10 http://127.0.0.1:8787/health || true
+curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status || true
+free -h
+df -h /
+curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
+echo "BACKUP_DIR=$backup"
+echo "ABS_LOCAL_AI_FULL_OPERATION_END"
