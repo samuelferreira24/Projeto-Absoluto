@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:57:08-03:00",
-  "source_revision": "e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
+  "generated_at": "2026-10-09T00:57:41-03:00",
+  "source_revision": "b8613a508cc3357f24d86d7aa702f5b92cb46a1e",
   "components": [
     {
       "id": "component:abs_core",
@@ -17,7 +17,7 @@
     {
       "id": "component:continuity",
       "kind": "continuity",
-      "file_count": 24
+      "file_count": 25
     },
     {
       "id": "component:docs",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
-      "commit_subject": "Registrar integração ponta a ponta validada de Qwen 0.8B e Qwen 2B"
+      "revision": "b8613a508cc3357f24d86d7aa702f5b92cb46a1e",
+      "commit_subject": "Documentar estabilização da VPS e estado das IAs locais"
     }
   ],
   "tools": [
@@ -2698,6 +2698,11 @@
       "id": "file:continuidade/07_conhecimento/trajectory_registry.json",
       "kind": "file",
       "path": "continuidade/07_conhecimento/trajectory_registry.json"
+    },
+    {
+      "id": "file:continuidade/08_HANDOFF_ESTABILIZACAO_VPS_IA_LOCAL_2026-10-09.md",
+      "kind": "file",
+      "path": "continuidade/08_HANDOFF_ESTABILIZACAO_VPS_IA_LOCAL_2026-10-09.md"
     },
     {
       "id": "file:continuidade/99_legado/ESTADO_ATUAL_PROJETO_SNAPSHOT_2026-09-19.md",
@@ -9959,6 +9964,20 @@
       "sha": "e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae"
     },
     {
+      "id": "commit:6159208b64b4a31bbac36f56ce3d184cd77d62b9",
+      "kind": "commit",
+      "at": "2026-10-09T03:57:27Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "6159208b64b4a31bbac36f56ce3d184cd77d62b9"
+    },
+    {
+      "id": "commit:b8613a508cc3357f24d86d7aa702f5b92cb46a1e",
+      "kind": "commit",
+      "at": "2026-10-09T00:57:41-03:00",
+      "subject": "Documentar estabilização da VPS e estado das IAs locais",
+      "sha": "b8613a508cc3357f24d86d7aa702f5b92cb46a1e"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10071,23 +10090,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:21a8f6071ffa",
+      "id": "evidence:repository:fcea7b8ac452",
       "kind": "evidence",
-      "at": "2026-10-09T00:57:08-03:00",
+      "at": "2026-10-09T00:57:41-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:21a8f6071ffa",
+      "id": "event:repository-scan:fcea7b8ac452",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:57:08-03:00"
+      "at": "2026-10-09T00:57:41-03:00"
     },
     {
-      "id": "event:commit-observed:e8bfe0f3848e",
+      "id": "event:commit-observed:b8613a508cc3",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:57:08-03:00"
+      "at": "2026-10-09T00:57:41-03:00"
     }
   ],
   "paths": [
@@ -10122,11 +10141,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:8cb9d7504928"
+        "evidence:test:70194fa9f292"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:57:08-03:00"
+      "last_validated": "2026-10-09T00:57:41-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10149,20 +10168,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:21a8f6071ffa",
+      "id": "evidence:repository:fcea7b8ac452",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:57:08-03:00",
+      "observed_at": "2026-10-09T00:57:41-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae"
+      "detail": "407 files indexed at revision b8613a508cc3357f24d86d7aa702f5b92cb46a1e"
     },
     {
-      "id": "evidence:test:8cb9d7504928",
+      "id": "evidence:test:70194fa9f292",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:57:08-03:00",
+      "observed_at": "2026-10-09T00:57:41-03:00",
       "status": "tested",
-      "detail": "202 passed in 7.35s"
+      "detail": "202 passed in 7.62s"
     }
   ],
   "decisions": [
@@ -10265,30 +10284,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:21a8f6071ffa",
+      "id": "event:repository-scan:fcea7b8ac452",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:57:08-03:00",
-      "revision": "e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
-      "file_count": 406,
-      "evidence_id": "evidence:repository:21a8f6071ffa"
+      "at": "2026-10-09T00:57:41-03:00",
+      "revision": "b8613a508cc3357f24d86d7aa702f5b92cb46a1e",
+      "file_count": 407,
+      "evidence_id": "evidence:repository:fcea7b8ac452"
     },
     {
-      "id": "event:commit-observed:e8bfe0f3848e",
+      "id": "event:commit-observed:b8613a508cc3",
       "type": "commit_observed",
-      "at": "2026-10-09T00:57:08-03:00",
-      "revision": "e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
+      "at": "2026-10-09T00:57:41-03:00",
+      "revision": "b8613a508cc3357f24d86d7aa702f5b92cb46a1e",
       "branch": "main",
-      "subject": "Registrar integração ponta a ponta validada de Qwen 0.8B e Qwen 2B",
+      "subject": "Documentar estabilização da VPS e estado das IAs locais",
       "changed_files": [
-        "continuidade/05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md"
+        "continuidade/08_HANDOFF_ESTABILIZACAO_VPS_IA_LOCAL_2026-10-09.md"
       ]
     },
     {
-      "id": "event:test:8cb9d7504928",
+      "id": "event:test:70194fa9f292",
       "type": "tests_observed",
-      "at": "2026-10-09T00:57:08-03:00",
+      "at": "2026-10-09T00:57:41-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:8cb9d7504928"
+      "evidence_id": "evidence:test:70194fa9f292"
     }
   ],
   "knowledge_sources": [
@@ -10344,7 +10363,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "8ff42c37bcab41a59a2cd61b73855e5bf42e42535b7ff7c3eb26e22613a618f5"
+      "sha256": "75683af1b2694e3e3affec2bdecf4a0aaae7b431e605ddbcfc94997716d1ddc4"
     },
     {
       "id": "source:session",
@@ -43587,12 +43606,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:21a8f6071ffa",
-      "source": "event:repository-scan:21a8f6071ffa",
-      "relation": "generated",
-      "target": "evidence:repository:21a8f6071ffa",
+      "id": "rel:commit-precedes:e8bfe0f3848e:6159208b64b4",
+      "source": "commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
+      "relation": "precedes",
+      "target": "commit:6159208b64b4a31bbac36f56ce3d184cd77d62b9",
       "status": "asserted",
-      "at": "2026-10-09T00:57:08-03:00",
+      "at": "2026-10-09T03:57:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6159208b64b4:032adc3624d7",
+      "source": "commit:6159208b64b4a31bbac36f56ce3d184cd77d62b9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:57:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6159208b64b4:d64178c49886",
+      "source": "commit:6159208b64b4a31bbac36f56ce3d184cd77d62b9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:57:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:6159208b64b4:b8613a508cc3",
+      "source": "commit:6159208b64b4a31bbac36f56ce3d184cd77d62b9",
+      "relation": "precedes",
+      "target": "commit:b8613a508cc3357f24d86d7aa702f5b92cb46a1e",
+      "status": "asserted",
+      "at": "2026-10-09T00:57:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b8613a508cc3:e6a667fac64a",
+      "source": "commit:b8613a508cc3357f24d86d7aa702f5b92cb46a1e",
+      "relation": "changed",
+      "target": "file:continuidade/08_HANDOFF_ESTABILIZACAO_VPS_IA_LOCAL_2026-10-09.md",
+      "status": "asserted",
+      "at": "2026-10-09T00:57:41-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:fcea7b8ac452",
+      "source": "event:repository-scan:fcea7b8ac452",
+      "relation": "generated",
+      "target": "evidence:repository:fcea7b8ac452",
+      "status": "asserted",
+      "at": "2026-10-09T00:57:41-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -43601,12 +43690,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:e8bfe0f3848e",
-      "source": "commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
+      "id": "rel:scan-commit:b8613a508cc3",
+      "source": "commit:b8613a508cc3357f24d86d7aa702f5b92cb46a1e",
       "relation": "observed_by",
-      "target": "event:repository-scan:21a8f6071ffa",
+      "target": "event:repository-scan:fcea7b8ac452",
       "status": "asserted",
-      "at": "2026-10-09T00:57:08-03:00",
+      "at": "2026-10-09T00:57:41-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",

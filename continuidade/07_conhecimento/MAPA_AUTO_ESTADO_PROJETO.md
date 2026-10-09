@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae
-Momento da revisão: 2026-10-09T00:57:08-03:00
+Revisão observada: b8613a508cc3357f24d86d7aa702f5b92cb46a1e
+Momento da revisão: 2026-10-09T00:57:41-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -24,7 +24,7 @@ Momento da revisão: 2026-10-09T00:57:08-03:00
 ## Componentes
 - component:abs_core — abs_core (59 arquivos)
 - component:cerebro — cerebro (45 arquivos)
-- component:continuity — continuity (24 arquivos)
+- component:continuity — continuity (25 arquivos)
 - component:docs — docs (75 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
 - component:project — project (127 arquivos)
@@ -472,6 +472,7 @@ Momento da revisão: 2026-10-09T00:57:08-03:00
 - file:continuidade/07_conhecimento/project_knowledge.json — None — estado: unknown
 - file:continuidade/07_conhecimento/project_registry.json — None — estado: unknown
 - file:continuidade/07_conhecimento/trajectory_registry.json — None — estado: unknown
+- file:continuidade/08_HANDOFF_ESTABILIZACAO_VPS_IA_LOCAL_2026-10-09.md — None — estado: unknown
 - file:continuidade/99_legado/ESTADO_ATUAL_PROJETO_SNAPSHOT_2026-09-19.md — None — estado: unknown
 - file:continuidade/99_legado/PONTO_DE_CONTINUIDADE_V1.md — None — estado: unknown
 - file:continuidade/99_legado/PONTO_EXATO_DE_PARADA_SNAPSHOT.md — None — estado: unknown
@@ -1567,6 +1568,8 @@ Momento da revisão: 2026-10-09T00:57:08-03:00
 - commit:811cdad0a1111bea1462d490bc529a9e98a85702 — None — estado: unknown
 - commit:3da603b0bb0c951fb41bf153536d353c376ec4c9 — None — estado: unknown
 - commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae — None — estado: unknown
+- commit:6159208b64b4a31bbac36f56ce3d184cd77d62b9 — None — estado: unknown
+- commit:b8613a508cc3357f24d86d7aa702f5b92cb46a1e — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1581,19 +1584,19 @@ Momento da revisão: 2026-10-09T00:57:08-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:21a8f6071ffa — None — estado: unknown
-- event:repository-scan:21a8f6071ffa — None — estado: unknown
-- event:commit-observed:e8bfe0f3848e — None — estado: unknown
+- evidence:repository:fcea7b8ac452 — None — estado: unknown
+- event:repository-scan:fcea7b8ac452 — None — estado: unknown
+- event:commit-observed:b8613a508cc3 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:8cb9d7504928
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:70194fa9f292
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:21a8f6071ffa — repository_scanned — revisão: e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae
-- event:commit-observed:e8bfe0f3848e — commit_observed — revisão: e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae
-- event:test:8cb9d7504928 — tests_observed — revisão: n/a
+- event:repository-scan:fcea7b8ac452 — repository_scanned — revisão: b8613a508cc3357f24d86d7aa702f5b92cb46a1e
+- event:commit-observed:b8613a508cc3 — commit_observed — revisão: b8613a508cc3357f24d86d7aa702f5b92cb46a1e
+- event:test:70194fa9f292 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -3965,15 +3968,20 @@ Momento da revisão: 2026-10-09T00:57:08-03:00
 - commit:3da603b0bb0c951fb41bf153536d353c376ec4c9 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
 - commit:3da603b0bb0c951fb41bf153536d353c376ec4c9 — precedes → commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae — asserted
 - commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae — changed → file:continuidade/05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md — asserted
-- event:repository-scan:21a8f6071ffa — generated → evidence:repository:21a8f6071ffa — asserted
-- commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae — observed_by → event:repository-scan:21a8f6071ffa — asserted
+- commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae — precedes → commit:6159208b64b4a31bbac36f56ce3d184cd77d62b9 — asserted
+- commit:6159208b64b4a31bbac36f56ce3d184cd77d62b9 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:6159208b64b4a31bbac36f56ce3d184cd77d62b9 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:6159208b64b4a31bbac36f56ce3d184cd77d62b9 — precedes → commit:b8613a508cc3357f24d86d7aa702f5b92cb46a1e — asserted
+- commit:b8613a508cc3357f24d86d7aa702f5b92cb46a1e — changed → file:continuidade/08_HANDOFF_ESTABILIZACAO_VPS_IA_LOCAL_2026-10-09.md — asserted
+- event:repository-scan:fcea7b8ac452 — generated → evidence:repository:fcea7b8ac452 — asserted
+- commit:b8613a508cc3357f24d86d7aa702f5b92cb46a1e — observed_by → event:repository-scan:fcea7b8ac452 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:21a8f6071ffa — repository_scan — observed — 406 files indexed at revision e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae
-- evidence:test:8cb9d7504928 — test — tested — 202 passed in 7.35s
+- evidence:repository:fcea7b8ac452 — repository_scan — observed — 407 files indexed at revision b8613a508cc3357f24d86d7aa702f5b92cb46a1e
+- evidence:test:70194fa9f292 — test — tested — 202 passed in 7.62s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
