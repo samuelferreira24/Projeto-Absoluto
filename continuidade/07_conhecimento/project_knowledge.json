@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:06:38-03:00",
-  "source_revision": "7e9317913998042d9ae65536ec2eca23d4a27a3e",
+  "generated_at": "2026-10-09T00:07:21-03:00",
+  "source_revision": "29defe6a920bd76721ff4ce869cd0832adb7fe2b",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "7e9317913998042d9ae65536ec2eca23d4a27a3e",
-      "commit_subject": "Publicar diagnóstico do runner no canal ABS VPS"
+      "revision": "29defe6a920bd76721ff4ce869cd0832adb7fe2b",
+      "commit_subject": "Recuperar runner reserva com limite de memória e reinício"
     }
   ],
   "tools": [
@@ -9420,6 +9420,20 @@
       "sha": "7e9317913998042d9ae65536ec2eca23d4a27a3e"
     },
     {
+      "id": "commit:e31edb95f2f9381404660aa9d46b20c7f0c61bc2",
+      "kind": "commit",
+      "at": "2026-10-09T03:06:56Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "e31edb95f2f9381404660aa9d46b20c7f0c61bc2"
+    },
+    {
+      "id": "commit:29defe6a920bd76721ff4ce869cd0832adb7fe2b",
+      "kind": "commit",
+      "at": "2026-10-09T00:07:21-03:00",
+      "subject": "Recuperar runner reserva com limite de memória e reinício",
+      "sha": "29defe6a920bd76721ff4ce869cd0832adb7fe2b"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9532,23 +9546,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:8738aa3bbc34",
+      "id": "evidence:repository:aff879a38096",
       "kind": "evidence",
-      "at": "2026-10-09T00:06:38-03:00",
+      "at": "2026-10-09T00:07:21-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:8738aa3bbc34",
+      "id": "event:repository-scan:aff879a38096",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:06:38-03:00"
+      "at": "2026-10-09T00:07:21-03:00"
     },
     {
-      "id": "event:commit-observed:7e9317913998",
+      "id": "event:commit-observed:29defe6a920b",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:06:38-03:00"
+      "at": "2026-10-09T00:07:21-03:00"
     }
   ],
   "paths": [
@@ -9583,11 +9597,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:38cee57112d7"
+        "evidence:test:00dc39e19a37"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:06:38-03:00"
+      "last_validated": "2026-10-09T00:07:21-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9610,20 +9624,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:8738aa3bbc34",
+      "id": "evidence:repository:aff879a38096",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:06:38-03:00",
+      "observed_at": "2026-10-09T00:07:21-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision 7e9317913998042d9ae65536ec2eca23d4a27a3e"
+      "detail": "406 files indexed at revision 29defe6a920bd76721ff4ce869cd0832adb7fe2b"
     },
     {
-      "id": "evidence:test:38cee57112d7",
+      "id": "evidence:test:00dc39e19a37",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:06:38-03:00",
+      "observed_at": "2026-10-09T00:07:21-03:00",
       "status": "tested",
-      "detail": "199 passed in 7.30s"
+      "detail": "199 passed in 7.26s"
     }
   ],
   "decisions": [
@@ -9726,30 +9740,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:8738aa3bbc34",
+      "id": "event:repository-scan:aff879a38096",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:06:38-03:00",
-      "revision": "7e9317913998042d9ae65536ec2eca23d4a27a3e",
+      "at": "2026-10-09T00:07:21-03:00",
+      "revision": "29defe6a920bd76721ff4ce869cd0832adb7fe2b",
       "file_count": 406,
-      "evidence_id": "evidence:repository:8738aa3bbc34"
+      "evidence_id": "evidence:repository:aff879a38096"
     },
     {
-      "id": "event:commit-observed:7e9317913998",
+      "id": "event:commit-observed:29defe6a920b",
       "type": "commit_observed",
-      "at": "2026-10-09T00:06:38-03:00",
-      "revision": "7e9317913998042d9ae65536ec2eca23d4a27a3e",
+      "at": "2026-10-09T00:07:21-03:00",
+      "revision": "29defe6a920bd76721ff4ce869cd0832adb7fe2b",
       "branch": "main",
-      "subject": "Publicar diagnóstico do runner no canal ABS VPS",
+      "subject": "Recuperar runner reserva com limite de memória e reinício",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:38cee57112d7",
+      "id": "event:test:00dc39e19a37",
       "type": "tests_observed",
-      "at": "2026-10-09T00:06:38-03:00",
+      "at": "2026-10-09T00:07:21-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:38cee57112d7"
+      "evidence_id": "evidence:test:00dc39e19a37"
     }
   ],
   "knowledge_sources": [
@@ -9805,7 +9819,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "b5a7d5c5760bfe74ecd28bd625824b34302e519dd66e619ee74b77658bb9f808"
+      "sha256": "fc579a54a37f28f590e0e083210e22fc2f2b89aceb062dadfe33170e94feaf04"
     },
     {
       "id": "source:session",
@@ -40528,12 +40542,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:8738aa3bbc34",
-      "source": "event:repository-scan:8738aa3bbc34",
-      "relation": "generated",
-      "target": "evidence:repository:8738aa3bbc34",
+      "id": "rel:commit-precedes:7e9317913998:e31edb95f2f9",
+      "source": "commit:7e9317913998042d9ae65536ec2eca23d4a27a3e",
+      "relation": "precedes",
+      "target": "commit:e31edb95f2f9381404660aa9d46b20c7f0c61bc2",
       "status": "asserted",
-      "at": "2026-10-09T00:06:38-03:00",
+      "at": "2026-10-09T03:06:56Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e31edb95f2f9:032adc3624d7",
+      "source": "commit:e31edb95f2f9381404660aa9d46b20c7f0c61bc2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:06:56Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e31edb95f2f9:d64178c49886",
+      "source": "commit:e31edb95f2f9381404660aa9d46b20c7f0c61bc2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:06:56Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:e31edb95f2f9:29defe6a920b",
+      "source": "commit:e31edb95f2f9381404660aa9d46b20c7f0c61bc2",
+      "relation": "precedes",
+      "target": "commit:29defe6a920bd76721ff4ce869cd0832adb7fe2b",
+      "status": "asserted",
+      "at": "2026-10-09T00:07:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:29defe6a920b:1734be446032",
+      "source": "commit:29defe6a920bd76721ff4ce869cd0832adb7fe2b",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:07:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:aff879a38096",
+      "source": "event:repository-scan:aff879a38096",
+      "relation": "generated",
+      "target": "evidence:repository:aff879a38096",
+      "status": "asserted",
+      "at": "2026-10-09T00:07:21-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -40542,12 +40626,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:7e9317913998",
-      "source": "commit:7e9317913998042d9ae65536ec2eca23d4a27a3e",
+      "id": "rel:scan-commit:29defe6a920b",
+      "source": "commit:29defe6a920bd76721ff4ce869cd0832adb7fe2b",
       "relation": "observed_by",
-      "target": "event:repository-scan:8738aa3bbc34",
+      "target": "event:repository-scan:aff879a38096",
       "status": "asserted",
-      "at": "2026-10-09T00:06:38-03:00",
+      "at": "2026-10-09T00:07:21-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
