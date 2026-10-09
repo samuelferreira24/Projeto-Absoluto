@@ -53,6 +53,39 @@ for m in d.get("models",[]):
     print("MODEL name=%s digest=%s size=%s modified=%s" % (
         m.get("name",""),m.get("digest",""),m.get("size",""),m.get("modified_at","")))
 PY
+echo "=== OLLAMA MANIFEST AUDIT (MINISTRAL ONLY) ==="
+model_root="$(sudo systemctl show ollama.service -p Environment --value 2>/dev/null | tr ' ' '\n' | sed -n 's/^OLLAMA_MODELS=//p' | head -n 1)"
+if [ -z "$model_root" ]; then
+  for candidate in /usr/share/ollama/.ollama/models /home/ollama/.ollama/models /var/lib/ollama/.ollama/models /root/.ollama/models; do
+    if sudo test -d "$candidate/manifests"; then model_root="$candidate"; break; fi
+  done
+fi
+if [ -n "$model_root" ] && sudo test -d "$model_root/manifests"; then
+  echo "OLLAMA_STORE_ROOT=$model_root"
+  sudo python3 - "$model_root/manifests" <<'PYMANIFEST'
+import json,os,sys
+root=sys.argv[1]
+found=0
+for base,dirs,files in os.walk(root):
+    for name in files:
+        path=os.path.join(base,name)
+        rel=os.path.relpath(path,root)
+        if not any(term in rel.lower() for term in ("ministral-3","llamacpp")):
+            continue
+        try:
+            with open(path,encoding="utf-8") as f: data=json.load(f)
+            layers=data.get("layers",[])
+            digest=",".join(str(x.get("digest","")) for x in layers if x.get("mediaType","").endswith("model"))
+            sizes=",".join(str(x.get("size","")) for x in layers if x.get("mediaType","").endswith("model"))
+            print("OLLAMA_MANIFEST path=%s model_digest=%s model_bytes=%s" % (rel,digest,sizes))
+            found+=1
+        except Exception as exc:
+            print("OLLAMA_MANIFEST_READ_FAIL path=%s error=%s" % (rel,type(exc).__name__))
+print("OLLAMA_MANIFEST_MATCHES=%d" % found)
+PYMANIFEST
+else
+  echo "OLLAMA_MANIFEST_AUDIT_BLOCKED: model manifest directory not identified"
+fi
 echo "=== ACTIVE OLLAMA MODELS ==="
 curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
 echo
