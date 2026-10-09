@@ -6,8 +6,11 @@ on:
     paths:
       - 'abs_core/**'
       - 'tests/**'
+  issue_comment:
+    types: [created]
 
 permissions:
+  actions: write
   contents: read
   issues: write
 
@@ -17,6 +20,7 @@ concurrency:
 
 jobs:
   validate:
+    if: github.event_name == 'push'
     runs-on: [self-hosted, abs-vps-01-reserve]
     timeout-minutes: 15
     steps:
@@ -36,3 +40,71 @@ jobs:
           echo "ABS_AUTO_INTEGRATION_PASS"
           echo "$health"
           echo "$v3"
+
+  cleanup-queue:
+    if: >-
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request == null &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs runner-clean-queue'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel stale runner jobs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const targets = new Set([
+              'ABS Local AI Health',
+              'ABS VPS Reserve Channel',
+              'ABS Automatic Integration Validation',
+              'ABS VPS Command Channel'
+            ]);
+            const canceled = [];
+            const failures = [];
+            const knownStaleRunIds = [
+              37878328843, 37878595391, 37878551371,
+              37878529656, 37878508294, 37878648462,
+              37878704558
+            ];
+            const cancel = async (run_id, name) => {
+              if (run_id === context.runId) return;
+              try {
+                await github.rest.actions.cancelWorkflowRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id
+                });
+                canceled.push({id: run_id, name, status: 'cancel requested'});
+              } catch (error) {
+                failures.push({id: run_id, name, error: String(error.message || error).slice(0, 180)});
+              }
+            };
+            for (const id of knownStaleRunIds) {
+              await cancel(id, 'known stale runner workflow');
+            }
+            for (const status of ['queued', 'in_progress', 'pending']) {
+              const response = await github.rest.actions.listWorkflowRunsForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                status,
+                per_page: 100
+              });
+              for (const run of response.data.workflow_runs || []) {
+                if (targets.has(run.name)) await cancel(run.id, run.name);
+              }
+            }
+            const body = [
+              '### ABS VPS — limpeza de fila',
+              '',
+              'Cancelamentos solicitados: ' + canceled.length,
+              ...canceled.map(x => '- #' + x.id + ' — ' + x.name),
+              '',
+              'Falhas: ' + failures.length,
+              ...failures.map(x => '- #' + x.id + ' — ' + x.name + ': ' + x.error)
+            ].join('\\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number || 121,
+              body
+            });
