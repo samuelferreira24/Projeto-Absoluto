@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T18:20:13-03:00",
-  "source_revision": "f5c36e0fb02f2df4eadffa7d31367ae69cdef133",
+  "generated_at": "2026-10-09T18:20:44-03:00",
+  "source_revision": "f3ac94a9c1f66cb088a48391765dce6ba50824bd",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "f5c36e0fb02f2df4eadffa7d31367ae69cdef133",
-      "commit_subject": "Make browser diagnostics resilient to unavailable Docker access"
+      "revision": "f3ac94a9c1f66cb088a48391765dce6ba50824bd",
+      "commit_subject": "Fix Chromium startup PID 1 and credential variable handling"
     }
   ],
   "tools": [
@@ -10480,6 +10480,20 @@
       "sha": "f5c36e0fb02f2df4eadffa7d31367ae69cdef133"
     },
     {
+      "id": "commit:61cf2208f03f5ebeaee11128d885a9ca969540b9",
+      "kind": "commit",
+      "at": "2026-10-09T21:20:32Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "61cf2208f03f5ebeaee11128d885a9ca969540b9"
+    },
+    {
+      "id": "commit:f3ac94a9c1f66cb088a48391765dce6ba50824bd",
+      "kind": "commit",
+      "at": "2026-10-09T18:20:44-03:00",
+      "subject": "Fix Chromium startup PID 1 and credential variable handling",
+      "sha": "f3ac94a9c1f66cb088a48391765dce6ba50824bd"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10592,23 +10606,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:7a84798546c3",
+      "id": "evidence:repository:b12a2febf3b4",
       "kind": "evidence",
-      "at": "2026-10-09T18:20:13-03:00",
+      "at": "2026-10-09T18:20:44-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:7a84798546c3",
+      "id": "event:repository-scan:b12a2febf3b4",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T18:20:13-03:00"
+      "at": "2026-10-09T18:20:44-03:00"
     },
     {
-      "id": "event:commit-observed:f5c36e0fb02f",
+      "id": "event:commit-observed:f3ac94a9c1f6",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T18:20:13-03:00"
+      "at": "2026-10-09T18:20:44-03:00"
     }
   ],
   "paths": [
@@ -10643,11 +10657,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:95d2755487d2"
+        "evidence:test:95684f204ce8"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T18:20:13-03:00"
+      "last_validated": "2026-10-09T18:20:44-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10670,20 +10684,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:7a84798546c3",
+      "id": "evidence:repository:b12a2febf3b4",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T18:20:13-03:00",
+      "observed_at": "2026-10-09T18:20:44-03:00",
       "status": "observed",
-      "detail": "415 files indexed at revision f5c36e0fb02f2df4eadffa7d31367ae69cdef133"
+      "detail": "415 files indexed at revision f3ac94a9c1f66cb088a48391765dce6ba50824bd"
     },
     {
-      "id": "evidence:test:95d2755487d2",
+      "id": "evidence:test:95684f204ce8",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T18:20:13-03:00",
+      "observed_at": "2026-10-09T18:20:44-03:00",
       "status": "tested",
-      "detail": "211 passed in 7.77s"
+      "detail": "211 passed in 7.20s"
     }
   ],
   "decisions": [
@@ -10786,30 +10800,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:7a84798546c3",
+      "id": "event:repository-scan:b12a2febf3b4",
       "type": "repository_scanned",
-      "at": "2026-10-09T18:20:13-03:00",
-      "revision": "f5c36e0fb02f2df4eadffa7d31367ae69cdef133",
+      "at": "2026-10-09T18:20:44-03:00",
+      "revision": "f3ac94a9c1f66cb088a48391765dce6ba50824bd",
       "file_count": 415,
-      "evidence_id": "evidence:repository:7a84798546c3"
+      "evidence_id": "evidence:repository:b12a2febf3b4"
     },
     {
-      "id": "event:commit-observed:f5c36e0fb02f",
+      "id": "event:commit-observed:f3ac94a9c1f6",
       "type": "commit_observed",
-      "at": "2026-10-09T18:20:13-03:00",
-      "revision": "f5c36e0fb02f2df4eadffa7d31367ae69cdef133",
+      "at": "2026-10-09T18:20:44-03:00",
+      "revision": "f3ac94a9c1f66cb088a48391765dce6ba50824bd",
       "branch": "main",
-      "subject": "Make browser diagnostics resilient to unavailable Docker access",
+      "subject": "Fix Chromium startup PID 1 and credential variable handling",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        ".github/workflows/abs-vps-prebuild-build-all.yml"
       ]
     },
     {
-      "id": "event:test:95d2755487d2",
+      "id": "event:test:95684f204ce8",
       "type": "tests_observed",
-      "at": "2026-10-09T18:20:13-03:00",
+      "at": "2026-10-09T18:20:44-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:95d2755487d2"
+      "evidence_id": "evidence:test:95684f204ce8"
     }
   ],
   "knowledge_sources": [
@@ -10865,7 +10879,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "5e6a0305a295b0f517a3eb659d808e110c99cf197ddfae45cf6dd4756a7848f5"
+      "sha256": "08b5d47df6b59412d560034c900ab3f46b746fef2e0cfb7051d3660b714ba198"
     },
     {
       "id": "source:session",
@@ -46782,12 +46796,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:7a84798546c3",
-      "source": "event:repository-scan:7a84798546c3",
-      "relation": "generated",
-      "target": "evidence:repository:7a84798546c3",
+      "id": "rel:commit-precedes:f5c36e0fb02f:61cf2208f03f",
+      "source": "commit:f5c36e0fb02f2df4eadffa7d31367ae69cdef133",
+      "relation": "precedes",
+      "target": "commit:61cf2208f03f5ebeaee11128d885a9ca969540b9",
       "status": "asserted",
-      "at": "2026-10-09T18:20:13-03:00",
+      "at": "2026-10-09T21:20:32Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:61cf2208f03f:032adc3624d7",
+      "source": "commit:61cf2208f03f5ebeaee11128d885a9ca969540b9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T21:20:32Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:61cf2208f03f:d64178c49886",
+      "source": "commit:61cf2208f03f5ebeaee11128d885a9ca969540b9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T21:20:32Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:61cf2208f03f:f3ac94a9c1f6",
+      "source": "commit:61cf2208f03f5ebeaee11128d885a9ca969540b9",
+      "relation": "precedes",
+      "target": "commit:f3ac94a9c1f66cb088a48391765dce6ba50824bd",
+      "status": "asserted",
+      "at": "2026-10-09T18:20:44-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f3ac94a9c1f6:868bab1bcfbe",
+      "source": "commit:f3ac94a9c1f66cb088a48391765dce6ba50824bd",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-prebuild-build-all.yml",
+      "status": "asserted",
+      "at": "2026-10-09T18:20:44-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:b12a2febf3b4",
+      "source": "event:repository-scan:b12a2febf3b4",
+      "relation": "generated",
+      "target": "evidence:repository:b12a2febf3b4",
+      "status": "asserted",
+      "at": "2026-10-09T18:20:44-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -46796,12 +46880,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:f5c36e0fb02f",
-      "source": "commit:f5c36e0fb02f2df4eadffa7d31367ae69cdef133",
+      "id": "rel:scan-commit:f3ac94a9c1f6",
+      "source": "commit:f3ac94a9c1f66cb088a48391765dce6ba50824bd",
       "relation": "observed_by",
-      "target": "event:repository-scan:7a84798546c3",
+      "target": "event:repository-scan:b12a2febf3b4",
       "status": "asserted",
-      "at": "2026-10-09T18:20:13-03:00",
+      "at": "2026-10-09T18:20:44-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
