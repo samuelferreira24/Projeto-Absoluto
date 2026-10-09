@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T11:49:29-03:00",
-  "source_revision": "50632ea7213e29792f54fd22de5c38d2c860f0eb",
+  "generated_at": "2026-10-09T11:51:22-03:00",
+  "source_revision": "6f6b83b3d7a6219285ac4e46b5d69e1682868774",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "50632ea7213e29792f54fd22de5c38d2c860f0eb",
-      "commit_subject": "Fail fast on integration memory preflight failure"
+      "revision": "6f6b83b3d7a6219285ac4e46b5d69e1682868774",
+      "commit_subject": "Use small Qwen for multimodal VPS probe"
     }
   ],
   "tools": [
@@ -10222,6 +10222,20 @@
       "sha": "50632ea7213e29792f54fd22de5c38d2c860f0eb"
     },
     {
+      "id": "commit:080f41c17b00b695a1e54e7332e8bd6ac9c9a5e9",
+      "kind": "commit",
+      "at": "2026-10-09T14:49:50Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "080f41c17b00b695a1e54e7332e8bd6ac9c9a5e9"
+    },
+    {
+      "id": "commit:6f6b83b3d7a6219285ac4e46b5d69e1682868774",
+      "kind": "commit",
+      "at": "2026-10-09T11:51:22-03:00",
+      "subject": "Use small Qwen for multimodal VPS probe",
+      "sha": "6f6b83b3d7a6219285ac4e46b5d69e1682868774"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10334,23 +10348,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:19c29bc984fa",
+      "id": "evidence:repository:0a4d59f20579",
       "kind": "evidence",
-      "at": "2026-10-09T11:49:29-03:00",
+      "at": "2026-10-09T11:51:22-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:19c29bc984fa",
+      "id": "event:repository-scan:0a4d59f20579",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T11:49:29-03:00"
+      "at": "2026-10-09T11:51:22-03:00"
     },
     {
-      "id": "event:commit-observed:50632ea7213e",
+      "id": "event:commit-observed:6f6b83b3d7a6",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T11:49:29-03:00"
+      "at": "2026-10-09T11:51:22-03:00"
     }
   ],
   "paths": [
@@ -10385,11 +10399,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:1cfa151eec92"
+        "evidence:test:45019c777a5f"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T11:49:29-03:00"
+      "last_validated": "2026-10-09T11:51:22-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10412,20 +10426,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:19c29bc984fa",
+      "id": "evidence:repository:0a4d59f20579",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T11:49:29-03:00",
+      "observed_at": "2026-10-09T11:51:22-03:00",
       "status": "observed",
-      "detail": "411 files indexed at revision 50632ea7213e29792f54fd22de5c38d2c860f0eb"
+      "detail": "411 files indexed at revision 6f6b83b3d7a6219285ac4e46b5d69e1682868774"
     },
     {
-      "id": "evidence:test:1cfa151eec92",
+      "id": "evidence:test:45019c777a5f",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T11:49:29-03:00",
+      "observed_at": "2026-10-09T11:51:22-03:00",
       "status": "tested",
-      "detail": "211 passed in 7.70s"
+      "detail": "211 passed in 7.85s"
     }
   ],
   "decisions": [
@@ -10528,30 +10542,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:19c29bc984fa",
+      "id": "event:repository-scan:0a4d59f20579",
       "type": "repository_scanned",
-      "at": "2026-10-09T11:49:29-03:00",
-      "revision": "50632ea7213e29792f54fd22de5c38d2c860f0eb",
+      "at": "2026-10-09T11:51:22-03:00",
+      "revision": "6f6b83b3d7a6219285ac4e46b5d69e1682868774",
       "file_count": 411,
-      "evidence_id": "evidence:repository:19c29bc984fa"
+      "evidence_id": "evidence:repository:0a4d59f20579"
     },
     {
-      "id": "event:commit-observed:50632ea7213e",
+      "id": "event:commit-observed:6f6b83b3d7a6",
       "type": "commit_observed",
-      "at": "2026-10-09T11:49:29-03:00",
-      "revision": "50632ea7213e29792f54fd22de5c38d2c860f0eb",
+      "at": "2026-10-09T11:51:22-03:00",
+      "revision": "6f6b83b3d7a6219285ac4e46b5d69e1682868774",
       "branch": "main",
-      "subject": "Fail fast on integration memory preflight failure",
+      "subject": "Use small Qwen for multimodal VPS probe",
       "changed_files": [
         "scripts/ops/local_ai_full_operation.sh"
       ]
     },
     {
-      "id": "event:test:1cfa151eec92",
+      "id": "event:test:45019c777a5f",
       "type": "tests_observed",
-      "at": "2026-10-09T11:49:29-03:00",
+      "at": "2026-10-09T11:51:22-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:1cfa151eec92"
+      "evidence_id": "evidence:test:45019c777a5f"
     }
   ],
   "knowledge_sources": [
@@ -10607,7 +10621,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "739301451b58b74e7d266c3dbb74c16a4e993891204eac8893301297daf2c587"
+      "sha256": "9f4eca13303267d1ca0f03bfeb8e86d8b69c87d16ee86ac7d9bf6d5eb29585fd"
     },
     {
       "id": "source:session",
@@ -45306,12 +45320,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:19c29bc984fa",
-      "source": "event:repository-scan:19c29bc984fa",
-      "relation": "generated",
-      "target": "evidence:repository:19c29bc984fa",
+      "id": "rel:commit-precedes:50632ea7213e:080f41c17b00",
+      "source": "commit:50632ea7213e29792f54fd22de5c38d2c860f0eb",
+      "relation": "precedes",
+      "target": "commit:080f41c17b00b695a1e54e7332e8bd6ac9c9a5e9",
       "status": "asserted",
-      "at": "2026-10-09T11:49:29-03:00",
+      "at": "2026-10-09T14:49:50Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:080f41c17b00:032adc3624d7",
+      "source": "commit:080f41c17b00b695a1e54e7332e8bd6ac9c9a5e9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T14:49:50Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:080f41c17b00:d64178c49886",
+      "source": "commit:080f41c17b00b695a1e54e7332e8bd6ac9c9a5e9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T14:49:50Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:080f41c17b00:6f6b83b3d7a6",
+      "source": "commit:080f41c17b00b695a1e54e7332e8bd6ac9c9a5e9",
+      "relation": "precedes",
+      "target": "commit:6f6b83b3d7a6219285ac4e46b5d69e1682868774",
+      "status": "asserted",
+      "at": "2026-10-09T11:51:22-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6f6b83b3d7a6:bc92442f76cc",
+      "source": "commit:6f6b83b3d7a6219285ac4e46b5d69e1682868774",
+      "relation": "changed",
+      "target": "file:scripts/ops/local_ai_full_operation.sh",
+      "status": "asserted",
+      "at": "2026-10-09T11:51:22-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:0a4d59f20579",
+      "source": "event:repository-scan:0a4d59f20579",
+      "relation": "generated",
+      "target": "evidence:repository:0a4d59f20579",
+      "status": "asserted",
+      "at": "2026-10-09T11:51:22-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -45320,12 +45404,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:50632ea7213e",
-      "source": "commit:50632ea7213e29792f54fd22de5c38d2c860f0eb",
+      "id": "rel:scan-commit:6f6b83b3d7a6",
+      "source": "commit:6f6b83b3d7a6219285ac4e46b5d69e1682868774",
       "relation": "observed_by",
-      "target": "event:repository-scan:19c29bc984fa",
+      "target": "event:repository-scan:0a4d59f20579",
       "status": "asserted",
-      "at": "2026-10-09T11:49:29-03:00",
+      "at": "2026-10-09T11:51:22-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
