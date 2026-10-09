@@ -1,9 +1,5 @@
 name: ABS VPS Command Channel
 
-concurrency:
-  group: abs-vps-shared-tree
-  cancel-in-progress: false
-
 on:
   issue_comment:
     types: [created]
@@ -18,6 +14,9 @@ jobs:
       github.event.issue.pull_request == null &&
       github.event.comment.user.login == 'samuelferreira24' &&
       startsWith(github.event.comment.body, '/abs ')
+    concurrency:
+      group: abs-vps-shared-tree
+      cancel-in-progress: false
     runs-on: [self-hosted, abs-vps-01]
     timeout-minutes: 10
 
