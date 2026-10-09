@@ -610,6 +610,30 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            browser-cdp-probe)
+              set +e
+              {
+                echo "[host listeners]"
+                sudo -n ss -ltnp 2>&1 | grep -E ':(3000|3001|9222)[[:space:]]' || true
+                echo
+                echo "[network mode and limits]"
+                sudo -n docker inspect abs-browser-ui --format 'network={{.HostConfig.NetworkMode}} state={{.State.Status}} memory={{.HostConfig.Memory}} cpus={{.HostConfig.NanoCpus}} pids={{.HostConfig.PidsLimit}}' 2>&1
+                echo
+                echo "[Chromium process flags]"
+                sudo -n docker exec abs-browser-ui sh -lc 'ps -eo args | grep -E "[c]hromium" | sed -E "s#https?://[^ ]+#URL_REDACTED#g" | head -n 8' 2>&1 || true
+                echo
+                echo "[DevTools HTTP on host loopback]"
+                curl -fsS --max-time 4 http://127.0.0.1:9222/json/version 2>&1 | python3 -c 'import json,sys; d=json.load(sys.stdin); print("Browser="+str(d.get("Browser","unknown")))'
+                echo "host_cdp_exit=$?"
+                echo
+                echo "[UFW browser-port rules]"
+                sudo -n ufw status 2>&1 | grep -E '^(3000|3001|9222)/tcp' || true
+                echo
+                echo "[ABS health]"
+                curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null && echo PASS || echo FAIL
+              } > /tmp/abs-browser-cdp-probe.txt 2>&1
+              result="$(cat /tmp/abs-browser-cdp-probe.txt)"
+              ;;
             browser-diagnose)
               set +e
               {
