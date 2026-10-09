@@ -223,6 +223,7 @@ def test_v3_critical_cpu_pressure_allows_single_local_ai_with_ram_reserve(monkey
     from abs_core.v3 import WorkDisposition
 
     orchestrator = _critical_v3_with_local_model()
+    orchestrator._active = 1  # the request under test already owns the sole slot
     monkeypatch.setattr(
         "builtins.open",
         lambda *args, **kwargs: io.StringIO("MemAvailable: 4200000 kB\\n"),
@@ -241,9 +242,29 @@ def test_v3_critical_cpu_pressure_blocks_local_ai_without_ram_reserve(monkeypatc
     from abs_core.v3 import WorkDisposition
 
     orchestrator = _critical_v3_with_local_model()
+    orchestrator._active = 1
     monkeypatch.setattr(
         "builtins.open",
         lambda *args, **kwargs: io.StringIO("MemAvailable: 2000000 kB\\n"),
+    )
+    decision = orchestrator._gate(
+        SimpleNamespace(),
+        {"capability_id": "local-ai:qwen3.5-0.8b"},
+    )
+    assert decision.disposition is WorkDisposition.WAIT
+    assert decision.reason == "capacity_critical"
+
+
+def test_v3_critical_cpu_pressure_blocks_local_ai_when_another_slot_is_active(monkeypatch):
+    import io
+    from types import SimpleNamespace
+    from abs_core.v3 import WorkDisposition
+
+    orchestrator = _critical_v3_with_local_model()
+    orchestrator._active = 2
+    monkeypatch.setattr(
+        "builtins.open",
+        lambda *args, **kwargs: io.StringIO("MemAvailable: 4200000 kB\\n"),
     )
     decision = orchestrator._gate(
         SimpleNamespace(),
