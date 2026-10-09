@@ -131,6 +131,20 @@ jobs:
                 curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
               fi
               ;;
+            vps-inventory-audit)
+              cd "$HOME/Projeto-Absoluto"
+              git fetch origin main --quiet
+              git reset --hard origin/main --quiet
+              inventory_log="/tmp/abs-vps-inventory-${GITHUB_RUN_ID:-manual}.log"
+              if bash scripts/ops/vps_inventory_audit.sh > "$inventory_log" 2>&1; then
+                inventory_rc=0
+              else
+                inventory_rc=$?
+              fi
+              summary="$( { grep -E '^(ABS_VPS_INVENTORY_BEGIN|MODEL name=|CONFIG_MODEL |CONFIG_DEFAULT_TAG=|CONFIG_ENDPOINT=|CONFIG_MISSING|DOCKER_NOT_INSTALLED|BACKUP_DIR=|LOG=|ABS_VPS_INVENTORY_END|=== (HOST|TOP-LEVEL DISK USAGE|RELEVANT SERVICES|DOCKER CONTAINERS|DOCKER STORAGE SUMMARY|OLLAMA MODELS WITH DIGESTS|ACTIVE OLLAMA MODELS|ABS LOCAL MODEL CONFIG REFERENCES|ABS HEALTH AND V3 STATUS|REPOSITORY STATUS) ===|Mem:|Swap:|Filesystem|/dev/sda1|abs.service|ollama|docker|coolify)' "$inventory_log" || true; } | tail -n 120)"
+              result="$(printf 'SCRIPT_EXIT=%s\\n%s\\nFULL_LOG=%s' "$inventory_rc" "$summary" "$inventory_log")"
+              result="${result:0:10000}"
+              ;;
             local-ai-full-operation)
               cd "$HOME/Projeto-Absoluto"
               git fetch origin main --quiet
@@ -149,7 +163,7 @@ jobs:
               result="DISABLED: six-model batch is blocked. Use /abs-reserve local-ai-smoke to test one small model at a time."
               ;;
             *)
-              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve runner-main-diagnose, /abs-reserve runner-stabilize-main, /abs-reserve restart-abs, /abs-reserve v3-test, /abs-reserve integrate-test, /abs-reserve local-ai-smoke ou /abs-reserve local-ai-full-operation."
+              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve vps-inventory-audit, /abs-reserve runner-main-diagnose, /abs-reserve runner-stabilize-main, /abs-reserve restart-abs, /abs-reserve v3-test, /abs-reserve integrate-test, /abs-reserve local-ai-smoke ou /abs-reserve local-ai-full-operation."
               ;;
           esac
           {
