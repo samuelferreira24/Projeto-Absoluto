@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:07:21-03:00",
-  "source_revision": "29defe6a920bd76721ff4ce869cd0832adb7fe2b",
+  "generated_at": "2026-10-09T00:09:32-03:00",
+  "source_revision": "11fd815e615d8d3d7c7153e44e8b12e0294c0460",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "29defe6a920bd76721ff4ce869cd0832adb7fe2b",
-      "commit_subject": "Recuperar runner reserva com limite de memória e reinício"
+      "revision": "11fd815e615d8d3d7c7153e44e8b12e0294c0460",
+      "commit_subject": "Limpar job pesado pendente do runner reserva"
     }
   ],
   "tools": [
@@ -9434,6 +9434,20 @@
       "sha": "29defe6a920bd76721ff4ce869cd0832adb7fe2b"
     },
     {
+      "id": "commit:7353a8c3bc849ca72ea4cd58afaee47b9e5e6185",
+      "kind": "commit",
+      "at": "2026-10-09T03:07:39Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "7353a8c3bc849ca72ea4cd58afaee47b9e5e6185"
+    },
+    {
+      "id": "commit:11fd815e615d8d3d7c7153e44e8b12e0294c0460",
+      "kind": "commit",
+      "at": "2026-10-09T00:09:32-03:00",
+      "subject": "Limpar job pesado pendente do runner reserva",
+      "sha": "11fd815e615d8d3d7c7153e44e8b12e0294c0460"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9546,23 +9560,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:aff879a38096",
+      "id": "evidence:repository:3e58823d734c",
       "kind": "evidence",
-      "at": "2026-10-09T00:07:21-03:00",
+      "at": "2026-10-09T00:09:32-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:aff879a38096",
+      "id": "event:repository-scan:3e58823d734c",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:07:21-03:00"
+      "at": "2026-10-09T00:09:32-03:00"
     },
     {
-      "id": "event:commit-observed:29defe6a920b",
+      "id": "event:commit-observed:11fd815e615d",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:07:21-03:00"
+      "at": "2026-10-09T00:09:32-03:00"
     }
   ],
   "paths": [
@@ -9597,11 +9611,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:00dc39e19a37"
+        "evidence:test:1cdd0efbc9a1"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:07:21-03:00"
+      "last_validated": "2026-10-09T00:09:32-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9624,20 +9638,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:aff879a38096",
+      "id": "evidence:repository:3e58823d734c",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:07:21-03:00",
+      "observed_at": "2026-10-09T00:09:32-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision 29defe6a920bd76721ff4ce869cd0832adb7fe2b"
+      "detail": "406 files indexed at revision 11fd815e615d8d3d7c7153e44e8b12e0294c0460"
     },
     {
-      "id": "evidence:test:00dc39e19a37",
+      "id": "evidence:test:1cdd0efbc9a1",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:07:21-03:00",
+      "observed_at": "2026-10-09T00:09:32-03:00",
       "status": "tested",
-      "detail": "199 passed in 7.26s"
+      "detail": "199 passed in 7.51s"
     }
   ],
   "decisions": [
@@ -9740,30 +9754,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:aff879a38096",
+      "id": "event:repository-scan:3e58823d734c",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:07:21-03:00",
-      "revision": "29defe6a920bd76721ff4ce869cd0832adb7fe2b",
+      "at": "2026-10-09T00:09:32-03:00",
+      "revision": "11fd815e615d8d3d7c7153e44e8b12e0294c0460",
       "file_count": 406,
-      "evidence_id": "evidence:repository:aff879a38096"
+      "evidence_id": "evidence:repository:3e58823d734c"
     },
     {
-      "id": "event:commit-observed:29defe6a920b",
+      "id": "event:commit-observed:11fd815e615d",
       "type": "commit_observed",
-      "at": "2026-10-09T00:07:21-03:00",
-      "revision": "29defe6a920bd76721ff4ce869cd0832adb7fe2b",
+      "at": "2026-10-09T00:09:32-03:00",
+      "revision": "11fd815e615d8d3d7c7153e44e8b12e0294c0460",
       "branch": "main",
-      "subject": "Recuperar runner reserva com limite de memória e reinício",
+      "subject": "Limpar job pesado pendente do runner reserva",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:00dc39e19a37",
+      "id": "event:test:1cdd0efbc9a1",
       "type": "tests_observed",
-      "at": "2026-10-09T00:07:21-03:00",
+      "at": "2026-10-09T00:09:32-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:00dc39e19a37"
+      "evidence_id": "evidence:test:1cdd0efbc9a1"
     }
   ],
   "knowledge_sources": [
@@ -9819,7 +9833,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "fc579a54a37f28f590e0e083210e22fc2f2b89aceb062dadfe33170e94feaf04"
+      "sha256": "3db01a89571c1e3f0e1d976b44ddcd7c0b9a14b7c70717b6a294f5ec4b85af31"
     },
     {
       "id": "source:session",
@@ -40612,12 +40626,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:aff879a38096",
-      "source": "event:repository-scan:aff879a38096",
-      "relation": "generated",
-      "target": "evidence:repository:aff879a38096",
+      "id": "rel:commit-precedes:29defe6a920b:7353a8c3bc84",
+      "source": "commit:29defe6a920bd76721ff4ce869cd0832adb7fe2b",
+      "relation": "precedes",
+      "target": "commit:7353a8c3bc849ca72ea4cd58afaee47b9e5e6185",
       "status": "asserted",
-      "at": "2026-10-09T00:07:21-03:00",
+      "at": "2026-10-09T03:07:39Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7353a8c3bc84:032adc3624d7",
+      "source": "commit:7353a8c3bc849ca72ea4cd58afaee47b9e5e6185",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:07:39Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7353a8c3bc84:d64178c49886",
+      "source": "commit:7353a8c3bc849ca72ea4cd58afaee47b9e5e6185",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:07:39Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:7353a8c3bc84:11fd815e615d",
+      "source": "commit:7353a8c3bc849ca72ea4cd58afaee47b9e5e6185",
+      "relation": "precedes",
+      "target": "commit:11fd815e615d8d3d7c7153e44e8b12e0294c0460",
+      "status": "asserted",
+      "at": "2026-10-09T00:09:32-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:11fd815e615d:1734be446032",
+      "source": "commit:11fd815e615d8d3d7c7153e44e8b12e0294c0460",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:09:32-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:3e58823d734c",
+      "source": "event:repository-scan:3e58823d734c",
+      "relation": "generated",
+      "target": "evidence:repository:3e58823d734c",
+      "status": "asserted",
+      "at": "2026-10-09T00:09:32-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -40626,12 +40710,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:29defe6a920b",
-      "source": "commit:29defe6a920bd76721ff4ce869cd0832adb7fe2b",
+      "id": "rel:scan-commit:11fd815e615d",
+      "source": "commit:11fd815e615d8d3d7c7153e44e8b12e0294c0460",
       "relation": "observed_by",
-      "target": "event:repository-scan:aff879a38096",
+      "target": "event:repository-scan:3e58823d734c",
       "status": "asserted",
-      "at": "2026-10-09T00:07:21-03:00",
+      "at": "2026-10-09T00:09:32-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
