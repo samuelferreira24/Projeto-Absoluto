@@ -111,6 +111,95 @@ test_model 'ministral-3:3b' 'ABS_MINISTRAL3B_OK' 3000 300
 test_model 'hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S' 'ABS_GEMMA_E2B_Q3_OK' 3200 300
 test_model 'phi4-mini:3.8b' 'ABS_PHI4MINI_OK' 3200 300
 
+# Complementary capability tests do not alter the six-model chat pass count.
+ministral_tool_pass=0
+phi_tool_pass=0
+gemma_vision_pass=0
+test_tool_call() {
+  model="$1"; marker="$2"; min_mb="$3"; timeout_s="$4"
+  available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+  if [ "$available_kb" -lt "$((min_mb * 1024))" ]; then
+    echo "TOOL_RESULT SKIP_MEMORY model=$model available_mb=$((available_kb / 1024)) required_mb=$min_mb"
+    return
+  fi
+  payload="$(python3 - "$model" "$marker" <<'PY'
+import json,sys
+model,marker=sys.argv[1:]
+print(json.dumps({
+  "model":model,
+  "messages":[{"role":"user","content":"You must call the record_test tool, not answer directly. Pass marker exactly as "+marker+"."}],
+  "tools":[{"type":"function","function":{"name":"record_test","description":"Record a local capability validation marker.","parameters":{"type":"object","properties":{"marker":{"type":"string"}},"required":["marker"]}}}],
+  "stream":False,"think":False,"keep_alive":0,
+  "options":{"num_ctx":2048,"num_predict":96,"temperature":0}
+}))
+PY
+)"
+  response="$(curl -sS --max-time "$timeout_s" http://127.0.0.1:11434/api/chat -H 'Content-Type: application/json' -d "$payload" 2>&1)"
+  rc=$?
+  if [ "$rc" -eq 0 ] && printf '%s' "$response" | python3 -c 'import json,sys
+d=json.load(sys.stdin); expected=sys.argv[1]; calls=(d.get("message") or {}).get("tool_calls") or []
+for call in calls:
+ f=call.get("function") or {}; args=f.get("arguments") or {}
+ if isinstance(args,str):
+  try: args=json.loads(args)
+  except Exception: args={}
+ if f.get("name")=="record_test" and args.get("marker")==expected:
+  print("tool_call=record_test marker="+expected); raise SystemExit(0)
+raise SystemExit("expected tool call not returned")' "$marker"; then
+    echo "TOOL_RESULT PASS model=$model"
+    [ "$model" = "ministral-3:3b" ] && ministral_tool_pass=1
+    [ "$model" = "phi4-mini:3.8b" ] && phi_tool_pass=1
+  else
+    echo "TOOL_RESULT FAIL model=$model curl_rc=$rc detail=$(printf '%s' "$response" | head -c 500)"
+  fi
+  curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
+  echo
+}
+test_tool_call 'ministral-3:3b' 'ABS_MINISTRAL_TOOL_OK' 3000 300
+test_tool_call 'phi4-mini:3.8b' 'ABS_PHI_TOOL_OK' 2800 300
+
+test_gemma_vision() {
+  model='hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S'
+  available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+  if [ "$available_kb" -lt 3072000 ]; then
+    echo "VISION_RESULT SKIP_MEMORY model=$model available_mb=$((available_kb / 1024)) required_mb=3000"
+    return
+  fi
+  image_b64="$(python3 - <<'PY'
+import base64,struct,zlib
+def chunk(kind,data):
+    return struct.pack(">I",len(data))+kind+data+struct.pack(">I",zlib.crc32(kind+data)&0xffffffff)
+w=h=16
+raw=b"".join(b"\x00"+(b"\xff\x00\x00\xff"*w) for _ in range(h))
+png=b"\x89PNG\r\n\x1a\n"+chunk(b"IHDR",struct.pack(">IIBBBBB",w,h,8,6,0,0,0))+chunk(b"IDAT",zlib.compress(raw))+chunk(b"IEND",b"")
+print(base64.b64encode(png).decode())
+PY
+)"
+  payload="$(python3 - "$model" "$image_b64" <<'PY'
+import json,sys
+model,image=sys.argv[1:]
+print(json.dumps({
+  "model":model,
+  "messages":[{"role":"user","content":"Inspect the attached image. If its dominant color is red, reply exactly ABS_GEMMA_VISION_OK; otherwise reply NO.","images":[image]}],
+  "stream":False,"think":False,"keep_alive":0,
+  "options":{"num_ctx":2048,"num_predict":32,"temperature":0}
+}))
+PY
+)"
+  response="$(curl -sS --max-time 300 http://127.0.0.1:11434/api/chat -H 'Content-Type: application/json' -d "$payload" 2>&1)"
+  rc=$?
+  if [ "$rc" -eq 0 ] && printf '%s' "$response" | python3 -c 'import json,sys
+d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(); assert "ABS_GEMMA_VISION_OK" in s, s; print("vision_response="+s[:120])'; then
+    gemma_vision_pass=1
+    echo "VISION_RESULT PASS model=$model"
+  else
+    echo "VISION_RESULT FAIL model=$model curl_rc=$rc detail=$(printf '%s' "$response" | head -c 500)"
+  fi
+  curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
+  echo
+}
+test_gemma_vision
+
 echo "=== DIRECT TEST SUMMARY ==="
 grep '^RESULT ' "$log" || true
 pass_count="$(grep '^RESULT PASS ' "$log" | sed -E 's/.*model=([^ ]+).*/\1/' | sort -u | wc -l | tr -d ' ')"
