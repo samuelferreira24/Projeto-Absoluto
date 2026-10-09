@@ -103,16 +103,16 @@ jobs:
               run_model_test "local-ai:qwen3.5-2b" "qwen3.5:2b" "ABS_QWEN_2B_OK" 4194304 0 120 150 16
               ;;
             test-qwen-4b)
-              run_model_test "local-ai:qwen3.5-4b" "qwen3.5:4b" "ABS_QWEN_4B_OK" 4194304 3300000000 240 270 8
+              run_model_test "local-ai:qwen3.5-4b" "qwen3.5:4b" "Q4_OK" 4194304 3300000000 240 270 8
               ;;
             test-ministral-3b)
-              run_model_test "local-ai:ministral-3b" "ministral-3:3b" "ABS_MINISTRAL_3B_OK" 4194304 2900000000 180 210 8
+              run_model_test "local-ai:ministral-3b" "ministral-3:3b" "M3_OK" 4194304 2900000000 180 210 8
               ;;
             test-gemma-e2b)
-              run_model_test "local-ai:gemma4-e2b" "gemma4:e2b" "ABS_GEMMA_E2B_OK" 4194304 0 240 270 8
+              run_model_test "local-ai:gemma4-e2b" "gemma4:e2b" "GE2_OK" 4194304 0 240 270 8
               ;;
             test-gemma-e4b)
-              run_model_test "local-ai:gemma4-e4b" "gemma4:e4b" "ABS_GEMMA_E4B_OK" 6291456 0 300 330 8
+              run_model_test "local-ai:gemma4-e4b" "gemma4:e4b" "GE4_OK" 6291456 0 300 330 8
               ;;
             *)
               printf 'REJECTED: command not allowlisted: %s\n' "$command" > "$result_file"
