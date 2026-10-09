@@ -220,6 +220,20 @@ class CognitiveRuntime:
                     if v is not None and k != "conversation"
                 })
 
+            requested_capability = str(session["context"].get("capability_id") or "").strip()
+            explicit_intelligence_capability = None
+            if requested_capability:
+                try:
+                    requested_kind = str(self.capabilities.get(requested_capability).kind).lower()
+                except KeyError:
+                    requested_kind = ""
+                if requested_kind in {"ai", "external_ai", "local_ai"}:
+                    explicit_intelligence_capability = requested_capability
+                    if preferred_resource is None:
+                        preferred_resource = f"intelligence:{requested_capability}"
+            if preferred_resource and not str(preferred_resource).startswith("intelligence:"):
+                preferred_resource = f"intelligence:{preferred_resource}"
+
             resource = self._choose(session, preferred_resource)
             cap = self.capabilities.get(resource.capability_id)
             if cap.kind != "test" and not approved and not resource.metadata.get("conversational", False):
@@ -248,6 +262,13 @@ class CognitiveRuntime:
             if self.orchestrator is None:
                 self.orchestrator = Orchestrator(self.capabilities, WorkStore(self.store_path), data_layer=self.data_layer)
             ranked_resources = self._rank_resources(session, preferred_resource)
+            if explicit_intelligence_capability:
+                # An explicit capability_id is a routing constraint, not merely a
+                # ranking hint. Never silently run a different model in its place.
+                ranked_resources = [
+                    candidate for candidate in ranked_resources
+                    if candidate.capability_id == explicit_intelligence_capability
+                ]
             if not ranked_resources:
                 raise RuntimeError("no_intelligence_resource_available")
 
