@@ -52,4 +52,23 @@ A seleção só se torna final depois de capacidades especiais, integração ABS
 
 ## Execução subsequente
 
-A execução remota disparada após a correção de admissão #134 está em andamento. Atualizar esta seção com seu comentário de resultado e evidência final antes de declarar conclusão.
+### Resultado confirmado da repetição remota
+
+Evidência: [comentário de resultado do runner reserva](https://github.com/samuelferreira24/Projeto-Absoluto/issues/121#issuecomment-6082752032).
+
+- Seis testes diretos de texto passaram: Qwen 0.8B, Qwen 2B, Qwen 4B, Ministral 3B, Gemma E2B Q3 e Phi-4-mini 3.8B.
+- Após cada teste, o endpoint `/api/ps` confirmou `models=[]`; isso confirma descarregamento reportado pelo Ollama.
+- Ministral 3B passou o teste de chamada estruturada de ferramenta.
+- Phi-4-mini **não** passou o teste de ferramenta: respondeu com um bloco de texto/JSON em vez de preencher `message.tool_calls`. Não atribuir capacidade de chamada de ferramentas a esse modelo com base nesta execução.
+- Visão de Gemma E2B Q3 e Qwen 4B foi **SKIP_MEMORY**, não FAIL funcional: a memória disponível havia caído para 1.888 MiB e 1.959 MiB, respectivamente, abaixo dos limiares de 3.000/3.400 MiB.
+- Por isso, a operação preservou a configuração anterior e **não aplicou a integração de seis modelos**. A saída registrou `INTEGRATION_NOT_APPLIED: no selected local model proved image input`.
+- Foi removida somente a tag alias Ministral de digest exato igual ao modelo canônico. O disco continuou em aproximadamente 2,9 GB livres (95% ocupado); não há evidência de recuperação física significativa, pois o blob é compartilhado.
+- A nova configuração e a limpeza de outras variantes continuam bloqueadas até a visão ser provada com memória suficiente e a integração passar. As outras tags experimentais permanecem instaladas; não foram apagadas sem rollback confiável.
+
+### Correção de procedimento preparada, mas não implantada
+
+Foi criada na branch `fix/local-ai-finalize-operation-20261009` uma rotina separada que executa a visão primeiro, recupera memória reiniciando Ollama apenas quando `/api/ps` está vazio, repete os testes sequencialmente e só mantém a nova configuração se as seis integrações ABS passarem; o arquivo correspondente é `scripts/ops/local_ai_finalize_operation.sh`, com workflow fixo `.github/workflows/abs-vps-local-ai-finalize.yml`. A tentativa de abrir o PR dessa rotina foi bloqueada pela ferramenta de controle de segurança, então ela **não está no main nem foi executada**. Não declarar conclusão até que a rotina possa ser revisada, aprovada e executada com evidência.
+
+## Estado final deste checkpoint
+
+**Parcial, não concluído.** Seis modelos passaram teste direto de texto; uma chamada de ferramenta passou (Ministral); visão ainda não foi comprovada; integração ABS 0/6 na execução registrada; configuração anterior restaurada/preservada; alias exato removido; limpeza adicional adiada para proteger rollback e dados.
