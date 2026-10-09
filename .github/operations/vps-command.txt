@@ -1,1 +1,1 @@
-test-qwen-4b
+test-ministral-3b
