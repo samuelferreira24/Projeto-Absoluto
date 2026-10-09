@@ -109,10 +109,40 @@ jobs:
           pass "Daily profile backup saved with mode 600; existing profile data preserved"
 
           echo
-          echo "=== Browser container with loopback-only automation channel ==="
+          echo "=== Secure loopback CDP preparation ==="
+          UFW_STATUS="$(sudo -n ufw status verbose 2>&1 || true)"
+          if ! printf '%s' "$UFW_STATUS" | grep -q '^Status: active' || ! printf '%s' "$UFW_STATUS" | grep -q 'Default: deny (incoming)'; then
+            blocked "Host networking not enabled because UFW is not confirmed active with default-deny incoming; keeping the existing loopback-published browser."
+            sudo -n docker start abs-browser-ui >/dev/null || true
+            exit 0
+          fi
+          for port in 3000 3001 9222; do
+            if ! sudo -n ufw status | grep -Eq "^$port/tcp[[:space:]]+DENY IN"; then
+              sudo -n ufw deny "$port/tcp" comment "ABS browser private-only" >/dev/null
+            fi
+          done
+          pass "Explicit UFW deny rules confirmed for host-network browser ports 3000, 3001 and 9222"
+
+          # Chrome 136+ requires an explicitly non-default user-data directory
+          # for CDP. Copy the existing profile once; keep the source profile intact.
+          SOURCE_PROFILE="$PROFILE_MOUNT/.config/chromium"
+          CDP_PROFILE="$PROFILE_MOUNT/chromium-abs-profile"
+          if [ ! -d "$CDP_PROFILE" ] && [ -d "$SOURCE_PROFILE" ]; then
+            cp -a "$SOURCE_PROFILE" "$CDP_PROFILE"
+            pass "Copied existing Chromium profile into a separate persistent non-default CDP profile; source profile retained."
+          elif [ -d "$CDP_PROFILE" ]; then
+            pass "Reusing existing persistent CDP profile."
+          else
+            install -d -m 700 "$CDP_PROFILE"
+            pass "Created persistent non-default CDP profile directory."
+          fi
+
+          echo
+          echo "=== Browser container with host-loopback CDP ==="
           sudo -n docker rm -f abs-browser-ui >/dev/null
           sudo -n docker run -d \
             --name abs-browser-ui \
+            --network host \
             --restart unless-stopped \
             --security-opt no-new-privileges:true \
             --cap-drop NET_RAW \
@@ -120,8 +150,7 @@ jobs:
             --shm-size 512m \
             --env-file "$ENVFILE" \
             -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC \
-            -e CHROME_CLI="--remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --remote-allow-origins=*" \
-            -p 127.0.0.1:3000:3000 -p 127.0.0.1:9222:9222 \
+            -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222" \
             -v "$PROFILE_MOUNT:/config" \
             "$CONTAINER_IMAGE"
           UI_READY=0
@@ -135,10 +164,18 @@ jobs:
             if [ "$UI_READY" -eq 1 ] && [ "$CDP_READY" -eq 1 ]; then break; fi
             sleep 5
           done
-          BINDINGS="$(sudo -n docker inspect abs-browser-ui --format '{{json .HostConfig.PortBindings}}')"
-          echo "Browser state=$(sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}') UI_HTTP=$UI_CODE CDP_ready=$CDP_READY"
-          echo "Port binding metadata=$BINDINGS"
-          printf '%s' "$BINDINGS" | grep -q '127.0.0.1' && ! printf '%s' "$BINDINGS" | grep -q '0.0.0.0' || { fail "Browser or CDP port is not loopback-only."; exit 1; }
+          NETWORK_MODE="$(sudo -n docker inspect abs-browser-ui --format '{{.HostConfig.NetworkMode}}')"
+          echo "Browser state=$(sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}') UI_HTTP=$UI_CODE CDP_ready=$CDP_READY network_mode=$NETWORK_MODE"
+          if [ "$NETWORK_MODE" = "host" ]; then
+            UFW_FINAL="$(sudo -n ufw status 2>&1)"
+            for port in 3000 3001 9222; do
+              printf '%s' "$UFW_FINAL" | grep -Eq "^$port/tcp[[:space:]]+DENY IN" || { fail "Missing explicit UFW deny for host port $port"; exit 1; }
+            done
+            pass "Host network used for Chromium loopback CDP; UFW explicitly denies all browser ports from inbound traffic"
+          else
+            fail "Browser network mode was not host; CDP cannot safely reach container loopback through Docker port publishing"
+            exit 1
+          fi
           [ "$UI_READY" -eq 1 ] || { fail "Browser UI did not become ready; inspect private host logs."; exit 1; }
           pass "Visual browser is running with persistent profile and loopback-only UI"
           if [ "$CDP_READY" -eq 1 ]; then
