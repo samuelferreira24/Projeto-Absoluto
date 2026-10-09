@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:52:04-03:00",
-  "source_revision": "8496f2ad3681d2b6e3df929650cc40418edef959",
+  "generated_at": "2026-10-09T00:53:06-03:00",
+  "source_revision": "811cdad0a1111bea1462d490bc529a9e98a85702",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "8496f2ad3681d2b6e3df929650cc40418edef959",
-      "commit_subject": "Registrar recuperação dos runners e integração local validada"
+      "revision": "811cdad0a1111bea1462d490bc529a9e98a85702",
+      "commit_subject": "Adicionar teste end-to-end do Qwen 2B com limite de memória e tokens"
     }
   ],
   "tools": [
@@ -9917,6 +9917,34 @@
       "sha": "8496f2ad3681d2b6e3df929650cc40418edef959"
     },
     {
+      "id": "commit:a82f336235dd58c54ade812e7d75b45ffd32b7a9",
+      "kind": "commit",
+      "at": "2026-10-09T03:52:24Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "a82f336235dd58c54ade812e7d75b45ffd32b7a9"
+    },
+    {
+      "id": "commit:97345b66219ad83c54ed51531c7d060c3a5d8cf9",
+      "kind": "commit",
+      "at": "2026-10-09T00:52:54-03:00",
+      "subject": "Integrar Qwen 2B ao teste controlado do ABS",
+      "sha": "97345b66219ad83c54ed51531c7d060c3a5d8cf9"
+    },
+    {
+      "id": "commit:fed798672ba0968d0cd54969c52e9192bc0852e0",
+      "kind": "commit",
+      "at": "2026-10-09T00:53:02-03:00",
+      "subject": "Corrigir escape de linha no teste ABS Qwen 2B",
+      "sha": "fed798672ba0968d0cd54969c52e9192bc0852e0"
+    },
+    {
+      "id": "commit:811cdad0a1111bea1462d490bc529a9e98a85702",
+      "kind": "commit",
+      "at": "2026-10-09T00:53:06-03:00",
+      "subject": "Adicionar teste end-to-end do Qwen 2B com limite de memória e tokens",
+      "sha": "811cdad0a1111bea1462d490bc529a9e98a85702"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10029,23 +10057,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:cbc51daee920",
+      "id": "evidence:repository:306f20d0c772",
       "kind": "evidence",
-      "at": "2026-10-09T00:52:04-03:00",
+      "at": "2026-10-09T00:53:06-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:cbc51daee920",
+      "id": "event:repository-scan:306f20d0c772",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:52:04-03:00"
+      "at": "2026-10-09T00:53:06-03:00"
     },
     {
-      "id": "event:commit-observed:8496f2ad3681",
+      "id": "event:commit-observed:811cdad0a111",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:52:04-03:00"
+      "at": "2026-10-09T00:53:06-03:00"
     }
   ],
   "paths": [
@@ -10080,11 +10108,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:41f5b6eabf4b"
+        "evidence:test:7b408dcafea9"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:52:04-03:00"
+      "last_validated": "2026-10-09T00:53:06-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10107,20 +10135,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:cbc51daee920",
+      "id": "evidence:repository:306f20d0c772",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:52:04-03:00",
+      "observed_at": "2026-10-09T00:53:06-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision 8496f2ad3681d2b6e3df929650cc40418edef959"
+      "detail": "406 files indexed at revision 811cdad0a1111bea1462d490bc529a9e98a85702"
     },
     {
-      "id": "evidence:test:41f5b6eabf4b",
+      "id": "evidence:test:7b408dcafea9",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:52:04-03:00",
+      "observed_at": "2026-10-09T00:53:06-03:00",
       "status": "tested",
-      "detail": "202 passed in 7.36s"
+      "detail": "202 passed in 7.43s"
     }
   ],
   "decisions": [
@@ -10223,30 +10251,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:cbc51daee920",
+      "id": "event:repository-scan:306f20d0c772",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:52:04-03:00",
-      "revision": "8496f2ad3681d2b6e3df929650cc40418edef959",
+      "at": "2026-10-09T00:53:06-03:00",
+      "revision": "811cdad0a1111bea1462d490bc529a9e98a85702",
       "file_count": 406,
-      "evidence_id": "evidence:repository:cbc51daee920"
+      "evidence_id": "evidence:repository:306f20d0c772"
     },
     {
-      "id": "event:commit-observed:8496f2ad3681",
+      "id": "event:commit-observed:811cdad0a111",
       "type": "commit_observed",
-      "at": "2026-10-09T00:52:04-03:00",
-      "revision": "8496f2ad3681d2b6e3df929650cc40418edef959",
+      "at": "2026-10-09T00:53:06-03:00",
+      "revision": "811cdad0a1111bea1462d490bc529a9e98a85702",
       "branch": "main",
-      "subject": "Registrar recuperação dos runners e integração local validada",
+      "subject": "Adicionar teste end-to-end do Qwen 2B com limite de memória e tokens",
       "changed_files": [
-        "continuidade/05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md"
+        ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:41f5b6eabf4b",
+      "id": "event:test:7b408dcafea9",
       "type": "tests_observed",
-      "at": "2026-10-09T00:52:04-03:00",
+      "at": "2026-10-09T00:53:06-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:41f5b6eabf4b"
+      "evidence_id": "evidence:test:7b408dcafea9"
     }
   ],
   "knowledge_sources": [
@@ -10302,7 +10330,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "55094355f8a817902dd5a8e3ad34167c28f485f46a6a7d5850e6ba29c8147cd0"
+      "sha256": "391495cf6929bf8c766620a26ce8398e2987065544df2c9bbf66e88ce74673ef"
     },
     {
       "id": "source:session",
@@ -43349,12 +43377,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:cbc51daee920",
-      "source": "event:repository-scan:cbc51daee920",
-      "relation": "generated",
-      "target": "evidence:repository:cbc51daee920",
+      "id": "rel:commit-precedes:8496f2ad3681:a82f336235dd",
+      "source": "commit:8496f2ad3681d2b6e3df929650cc40418edef959",
+      "relation": "precedes",
+      "target": "commit:a82f336235dd58c54ade812e7d75b45ffd32b7a9",
       "status": "asserted",
-      "at": "2026-10-09T00:52:04-03:00",
+      "at": "2026-10-09T03:52:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a82f336235dd:032adc3624d7",
+      "source": "commit:a82f336235dd58c54ade812e7d75b45ffd32b7a9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:52:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a82f336235dd:d64178c49886",
+      "source": "commit:a82f336235dd58c54ade812e7d75b45ffd32b7a9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:52:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a82f336235dd:97345b66219a",
+      "source": "commit:a82f336235dd58c54ade812e7d75b45ffd32b7a9",
+      "relation": "precedes",
+      "target": "commit:97345b66219ad83c54ed51531c7d060c3a5d8cf9",
+      "status": "asserted",
+      "at": "2026-10-09T00:52:54-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:97345b66219a:1734be446032",
+      "source": "commit:97345b66219ad83c54ed51531c7d060c3a5d8cf9",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:52:54-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:97345b66219a:fed798672ba0",
+      "source": "commit:97345b66219ad83c54ed51531c7d060c3a5d8cf9",
+      "relation": "precedes",
+      "target": "commit:fed798672ba0968d0cd54969c52e9192bc0852e0",
+      "status": "asserted",
+      "at": "2026-10-09T00:53:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:fed798672ba0:1734be446032",
+      "source": "commit:fed798672ba0968d0cd54969c52e9192bc0852e0",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:53:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:fed798672ba0:811cdad0a111",
+      "source": "commit:fed798672ba0968d0cd54969c52e9192bc0852e0",
+      "relation": "precedes",
+      "target": "commit:811cdad0a1111bea1462d490bc529a9e98a85702",
+      "status": "asserted",
+      "at": "2026-10-09T00:53:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:811cdad0a111:1734be446032",
+      "source": "commit:811cdad0a1111bea1462d490bc529a9e98a85702",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:53:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:306f20d0c772",
+      "source": "event:repository-scan:306f20d0c772",
+      "relation": "generated",
+      "target": "evidence:repository:306f20d0c772",
+      "status": "asserted",
+      "at": "2026-10-09T00:53:06-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -43363,12 +43517,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:8496f2ad3681",
-      "source": "commit:8496f2ad3681d2b6e3df929650cc40418edef959",
+      "id": "rel:scan-commit:811cdad0a111",
+      "source": "commit:811cdad0a1111bea1462d490bc529a9e98a85702",
       "relation": "observed_by",
-      "target": "event:repository-scan:cbc51daee920",
+      "target": "event:repository-scan:306f20d0c772",
       "status": "asserted",
-      "at": "2026-10-09T00:52:04-03:00",
+      "at": "2026-10-09T00:53:06-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
