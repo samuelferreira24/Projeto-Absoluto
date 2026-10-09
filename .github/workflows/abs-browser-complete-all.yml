@@ -1,0 +1,244 @@
+name: ABS Browser Complete All
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: abs-browser-complete-all
+  cancel-in-progress: false
+
+jobs:
+  complete:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser complete-all'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 35
+    steps:
+      - name: Deploy, integrate and validate browser
+        id: work
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          REPORT="$RUNNER_TEMP/abs-browser-complete-report.txt"
+          install -m 600 /dev/null "$REPORT"
+          exec > >(tee -a "$REPORT") 2>&1
+          publish_result() {
+            {
+              echo 'result<<ABS_COMPLETE_EOF'
+              sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[=: ][^ ]*/\1=[REDACTED]/Ig' "$REPORT" | tail -c 12000
+              echo
+              echo 'ABS_COMPLETE_EOF'
+            } >> "$GITHUB_OUTPUT"
+          }
+          trap publish_result EXIT
+          pass(){ printf 'PASS | %s\n' "$*"; }
+          fail(){ printf 'FAIL | %s\n' "$*"; }
+          blocked(){ printf 'BLOCKED | %s\n' "$*"; }
+          note(){ printf 'INFO | %s\n' "$*"; }
+
+          echo "ABS BROWSER COMPLETE-ALL"
+          echo "UTC=$(date -u +%FT%TZ)"
+          echo "Host=$(hostname)"
+          echo "No existing model, Coolify service, proxy, firewall rule or unrelated container will be removed."
+          echo
+
+          sudo -n docker info >/dev/null
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null
+          pass "Docker and ABS health available before changes"
+          free -h
+          df -h /
+          AVAILABLE_KB="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+          DISK_FREE_KB="$(df -Pk / | awk 'NR==2 {print $4}')"
+          if [ "$AVAILABLE_KB" -lt 1572864 ] || [ "$DISK_FREE_KB" -lt 8388608 ]; then
+            blocked "Resource guard stopped container recreation; existing browser and services left unchanged."
+            exit 0
+          fi
+
+          CONTAINER_IMAGE="$(sudo -n docker inspect abs-browser-ui --format '{{.Config.Image}}')"
+          [ "$CONTAINER_IMAGE" = "lscr.io/linuxserver/chromium:latest" ] || { fail "Unexpected browser image; refusing replacement."; exit 1; }
+          PROFILE_MOUNT="$(sudo -n docker inspect abs-browser-ui --format '{{range .Mounts}}{{if eq .Destination "/config"}}{{.Source}}{{end}}{{end}}')"
+          [ "$PROFILE_MOUNT" = "$HOME/abs-browser/config" ] || { fail "Persistent profile mount mismatch; refusing replacement."; exit 1; }
+          ENVFILE="$HOME/.config/abs-browser/browser.env"
+          [ -s "$ENVFILE" ] && [ "$(stat -c %a "$ENVFILE")" = "600" ] || { fail "Protected browser credential file missing or not mode 600."; exit 1; }
+          if ! grep -q '^PASSWORD=' "$ENVFILE"; then
+            OLD_PASSWORD="$(sed -n 's/^CUSTOM_PASSWORD=//p' "$ENVFILE" | head -n 1)"
+            [ -n "$OLD_PASSWORD" ] || { fail "Supported browser password variable missing; no container changes made."; exit 1; }
+            printf '\nPASSWORD=%s\n' "$OLD_PASSWORD" >> "$ENVFILE"
+            chmod 600 "$ENVFILE"
+            unset OLD_PASSWORD
+            pass "Migrated existing password variable without revealing the credential"
+          fi
+
+          echo
+          echo "=== Consistent profile backup and restore test ==="
+          sudo -n docker stop --time 30 abs-browser-ui >/dev/null
+          BACKUP="$HOME/abs-browser/backups/profile-$(date -u +%F).tar.gz"
+          TEMP_BACKUP="$BACKUP.partial"
+          tar -czf "$TEMP_BACKUP" -C "$HOME/abs-browser" config
+          chmod 600 "$TEMP_BACKUP"
+          mv -f "$TEMP_BACKUP" "$BACKUP"
+          BACKUP_SHA="$(sha256sum "$BACKUP" | awk '{print $1}')"
+          RESTORE_DIR="$(mktemp -d "$HOME/abs-browser/backups/restore-test.XXXXXX")"
+          if tar -xzf "$BACKUP" -C "$RESTORE_DIR"; then
+            (cd "$HOME/abs-browser/config" && find . -type f -print0 | sort -z | xargs -0 -r sha256sum) > "$RESTORE_DIR/original.manifest"
+            (cd "$RESTORE_DIR/config" && find . -type f -print0 | sort -z | xargs -0 -r sha256sum) > "$RESTORE_DIR/restored.manifest"
+            if diff -u "$RESTORE_DIR/original.manifest" "$RESTORE_DIR/restored.manifest" >/dev/null; then
+              pass "Profile backup extracted and file-by-file SHA256 restore comparison passed"
+            else
+              fail "Restored profile differs from original; original profile was not overwritten."
+              rm -rf "$RESTORE_DIR"
+              sudo -n docker start abs-browser-ui >/dev/null || true
+              exit 1
+            fi
+          else
+            fail "Profile backup archive could not be extracted."
+            rm -rf "$RESTORE_DIR"
+            sudo -n docker start abs-browser-ui >/dev/null || true
+            exit 1
+          fi
+          rm -rf "$RESTORE_DIR"
+          echo "Backup=$BACKUP bytes=$(stat -c %s "$BACKUP") sha256=$BACKUP_SHA"
+          pass "Daily profile backup saved with mode 600; existing profile data preserved"
+
+          echo
+          echo "=== Browser container with loopback-only automation channel ==="
+          sudo -n docker rm -f abs-browser-ui >/dev/null
+          sudo -n docker run -d \
+            --name abs-browser-ui \
+            --restart unless-stopped \
+            --security-opt no-new-privileges:true \
+            --cap-drop NET_RAW \
+            --memory 1280m --memory-swap 1792m --cpus 1.50 --pids-limit 512 \
+            --shm-size 512m \
+            --env-file "$ENVFILE" \
+            -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC \
+            -e CHROME_CLI="--remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 --remote-allow-origins=*" \
+            -p 127.0.0.1:3000:3000 -p 127.0.0.1:9222:9222 \
+            -v "$PROFILE_MOUNT:/config" \
+            "$CONTAINER_IMAGE"
+          UI_READY=0
+          CDP_READY=0
+          for i in $(seq 1 24); do
+            STATE="$(sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}' 2>/dev/null || true)"
+            UI_CODE="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 5 http://127.0.0.1:3000/ 2>/dev/null || true)"
+            CDP_JSON="$(curl -fsS --max-time 4 http://127.0.0.1:9222/json/version 2>/dev/null || true)"
+            if [ "$STATE" = running ] && printf '%s' "$UI_CODE" | grep -Eq '^(200|301|302|401|403)$'; then UI_READY=1; fi
+            if [ -n "$CDP_JSON" ]; then CDP_READY=1; fi
+            if [ "$UI_READY" -eq 1 ] && [ "$CDP_READY" -eq 1 ]; then break; fi
+            sleep 5
+          done
+          BINDINGS="$(sudo -n docker inspect abs-browser-ui --format '{{json .HostConfig.PortBindings}}')"
+          echo "Browser state=$(sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}') UI_HTTP=$UI_CODE CDP_ready=$CDP_READY"
+          echo "Port binding metadata=$BINDINGS"
+          printf '%s' "$BINDINGS" | grep -q '127.0.0.1' && ! printf '%s' "$BINDINGS" | grep -q '0.0.0.0' || { fail "Browser or CDP port is not loopback-only."; exit 1; }
+          [ "$UI_READY" -eq 1 ] || { fail "Browser UI did not become ready; inspect private host logs."; exit 1; }
+          pass "Visual browser is running with persistent profile and loopback-only UI"
+          if [ "$CDP_READY" -eq 1 ]; then
+            pass "Chromium DevTools endpoint responds on loopback"
+          else
+            blocked "This Chromium image did not expose the configured DevTools endpoint; visual browser remains usable but ABS automation integration cannot be enabled safely."
+          fi
+          sudo -n docker inspect abs-browser-ui --format 'state={{.State.Status}} restarts={{.RestartCount}} memory_limit={{.HostConfig.Memory}} cpu_nanos={{.HostConfig.NanoCpus}} pids_limit={{.HostConfig.PidsLimit}}'
+
+          echo
+          echo "=== ABS repository safety and adapter tests ==="
+          REPO="$HOME/Projeto-Absoluto"
+          if [ ! -d "$REPO/.git" ]; then
+            blocked "ABS working repository not found; adapter remains in GitHub and was not activated on the service."
+          else
+            cd "$REPO"
+            DIRTY="$(git status --porcelain | grep -vE '^\?\? :memory:$' || true)"
+            if [ -n "$DIRTY" ]; then
+              blocked "Tracked/staged or unrelated local changes exist; refusing to overwrite them. Local state preserved."
+              printf '%s\n' "$DIRTY"
+            else
+              git fetch origin main --quiet
+              git merge --ff-only origin/main --quiet
+              python3 -m compileall -q abs_core/browser_adapter.py abs_core/runtime.py
+              python3 -m pytest -q tests/test_browser_adapter.py
+              pass "ABS repository fast-forwarded without reset; browser adapter compiled and security tests passed"
+
+              if [ "$CDP_READY" -eq 1 ]; then
+                DROPIN="/etc/systemd/system/abs.service.d/20-browser.conf"
+                ROLLBACK="/tmp/abs-browser-dropin.rollback"
+                if sudo -n test -f "$DROPIN"; then sudo -n cp "$DROPIN" "$ROLLBACK"; else rm -f "$ROLLBACK"; fi
+                sudo -n install -d -m 0755 /etc/systemd/system/abs.service.d
+                printf '[Service]\nEnvironment=ABS_BROWSER_CDP_URL=http://127.0.0.1:9222\n' | sudo -n tee "$DROPIN" >/dev/null
+                sudo -n systemctl daemon-reload
+                sudo -n systemctl restart abs.service
+                sleep 3
+                if ! curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null; then
+                  if [ -f "$ROLLBACK" ]; then sudo -n cp "$ROLLBACK" "$DROPIN"; else sudo -n rm -f "$DROPIN"; fi
+                  sudo -n systemctl daemon-reload
+                  sudo -n systemctl restart abs.service || true
+                  fail "ABS health failed after adapter activation; prior service override restored."
+                  exit 1
+                fi
+                WORK_JSON="$(curl -fsS --max-time 8 -X POST http://127.0.0.1:8787/works -H 'Content-Type: application/json' -d '{"objective":"Check ABS browser adapter status","context":{"action":"status"}}')"
+                WORK_ID="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])' <<<"$WORK_JSON")"
+                RUN_JSON="$(curl -fsS --max-time 12 -X POST "http://127.0.0.1:8787/works/$WORK_ID/run" -H 'Content-Type: application/json' -d '{"capability_id":"browser-control","approved":true}')"
+                python3 -c 'import json,sys; d=json.load(sys.stdin); r=d.get("result") or {}; assert d.get("state")=="completed",d; assert r.get("type")=="browser_status" and r.get("available") is True,d; print("PASS | Live ABS API executed browser-control"); print("Browser="+str(r.get("browser","unknown")))' <<<"$RUN_JSON"
+                pass "ABS browser adapter deployed and live API smoke test passed"
+              fi
+            fi
+          fi
+
+          echo
+          echo "=== Browser restart, persistence and service regression ==="
+          sudo -n docker restart abs-browser-ui >/dev/null
+          READY=0
+          for i in $(seq 1 18); do
+            STATE="$(sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}' 2>/dev/null || true)"
+            UI_CODE="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 5 http://127.0.0.1:3000/ 2>/dev/null || true)"
+            if [ "$STATE" = running ] && printf '%s' "$UI_CODE" | grep -Eq '^(200|301|302|401|403)$'; then READY=1; break; fi
+            sleep 5
+          done
+          [ "$READY" -eq 1 ] && pass "Browser recovered after restart; HTTP $UI_CODE" || { fail "Browser failed restart regression"; exit 1; }
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null && pass "ABS health regression PASS" || { fail "ABS health regression"; exit 1; }
+          curl -fsS --max-time 8 http://127.0.0.1:11434/api/tags >/dev/null && pass "Ollama regression PASS" || note "Ollama endpoint did not respond during final smoke test"
+
+          echo
+          echo "=== Private mobile access ==="
+          if command -v tailscale >/dev/null 2>&1 && sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
+            if sudo -n tailscale serve --bg http://127.0.0.1:3000 >/dev/null 2>&1; then
+              pass "Tailscale Serve configured for private HTTPS access."
+              sudo -n tailscale status --json | python3 -c 'import json,sys; d=json.load(sys.stdin); print("Tailnet state="+str(d.get("BackendState","unknown")))'
+            else
+              blocked "Tailscale is connected but private HTTPS Serve could not be configured."
+            fi
+          else
+            blocked "Tailscale is not authenticated/connected. Browser and CDP remain loopback-only; no public port was opened."
+          fi
+          echo
+          note "Credential file remains private at $HOME/.config/abs-browser/browser.env (mode 600); never publish its contents."
+          note "Browser UI port 3000 and CDP port 9222 are bound to 127.0.0.1 only."
+          echo "ABS BROWSER COMPLETE-ALL FINISHED"
+
+      - name: Publish sanitized report
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.work.outputs.result }}
+        with:
+          script: |
+            const body = [
+              '### ABS BROWSER COMPLETE-ALL — REPORT',
+              '',
+              (process.env.RESULT || 'No final report was produced. Inspect the private Actions job logs.').slice(0, 12000),
+              '',
+              'No browser password or raw environment values are included in this report.'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: 121,
+              body
+            });
