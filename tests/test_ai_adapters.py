@@ -36,7 +36,8 @@ def test_local_ai_adapter_applies_bounded_generation_options(monkeypatch) -> Non
         captured.update({"url": url, "headers": headers, "payload": payload, "timeout": timeout})
         return {
             "model": "qwen3.5:0.8b",
-            "choices": [{"message": {"content": "LOCAL_OK"}}],
+            "message": {"role": "assistant", "content": "LOCAL_OK"},
+            "done": True,
         }
 
     monkeypatch.setattr("abs_core.local_ai_adapter._post_json", fake_post)
