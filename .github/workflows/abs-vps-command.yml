@@ -311,10 +311,30 @@ jobs:
           /abs openclaw-v2-test
           /abs openclaw-install
           /abs openclaw-status
+          /abs local-ai-status
           /abs runner-health
           /abs runner-diagnose
           /abs runner-repair
           /abs runner-reset-reserve'
+              ;;
+            local-ai-status)
+              {
+                echo "[Ollama service]"
+                sudo systemctl show ollama.service -p ActiveState -p SubState -p Result -p MainPID -p MemoryCurrent -p MemoryPeak -p MemoryMax || true
+                echo
+                echo "[Ollama HTTP tags]"
+                curl -sS --max-time 5 http://127.0.0.1:11434/api/tags || true
+                echo
+                echo "[Ollama active models]"
+                curl -sS --max-time 5 http://127.0.0.1:11434/api/ps || true
+                echo
+                echo "[Ollama processes]"
+                ps -eo pid,ppid,rss,stat,etime,cmd | grep -E '[o]llama|[l]lama-server' || true
+                echo
+                echo "[memory]"
+                free -h
+              } > /tmp/abs-local-ai-status.txt 2>&1
+              result="$(cat /tmp/abs-local-ai-status.txt)"
               ;;
             runner-health)
               {
