@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T16:38:48-03:00",
-  "source_revision": "30dccf1eb2a545f27dfaea45af02a7aad0832448",
+  "generated_at": "2026-10-09T16:41:02-03:00",
+  "source_revision": "565b52bb9a1396dfaff12f969ca392360ceddbe3",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 129
+      "file_count": 130
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "30dccf1eb2a545f27dfaea45af02a7aad0832448",
-      "commit_subject": "Expand VPS inventory before further cleanup"
+      "revision": "565b52bb9a1396dfaff12f969ca392360ceddbe3",
+      "commit_subject": "Safely clear regenerable VPS package caches"
     }
   ],
   "tools": [
@@ -3278,6 +3278,11 @@
       "id": "file:scripts/ops/vps_inventory_audit.sh",
       "kind": "file",
       "path": "scripts/ops/vps_inventory_audit.sh"
+    },
+    {
+      "id": "file:scripts/ops/vps_safe_cache_cleanup.sh",
+      "kind": "file",
+      "path": "scripts/ops/vps_safe_cache_cleanup.sh"
     },
     {
       "id": "file:scripts/project_knowledge_sync.py",
@@ -10250,6 +10255,20 @@
       "sha": "30dccf1eb2a545f27dfaea45af02a7aad0832448"
     },
     {
+      "id": "commit:9d42e84da6c7a0c8cc0a4390ef78e1c06668d4ad",
+      "kind": "commit",
+      "at": "2026-10-09T19:39:06Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "9d42e84da6c7a0c8cc0a4390ef78e1c06668d4ad"
+    },
+    {
+      "id": "commit:565b52bb9a1396dfaff12f969ca392360ceddbe3",
+      "kind": "commit",
+      "at": "2026-10-09T16:41:02-03:00",
+      "subject": "Safely clear regenerable VPS package caches",
+      "sha": "565b52bb9a1396dfaff12f969ca392360ceddbe3"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10362,23 +10381,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:0687931aa596",
+      "id": "evidence:repository:407e3212248e",
       "kind": "evidence",
-      "at": "2026-10-09T16:38:48-03:00",
+      "at": "2026-10-09T16:41:02-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:0687931aa596",
+      "id": "event:repository-scan:407e3212248e",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T16:38:48-03:00"
+      "at": "2026-10-09T16:41:02-03:00"
     },
     {
-      "id": "event:commit-observed:30dccf1eb2a5",
+      "id": "event:commit-observed:565b52bb9a13",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T16:38:48-03:00"
+      "at": "2026-10-09T16:41:02-03:00"
     }
   ],
   "paths": [
@@ -10413,11 +10432,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:26909e69380b"
+        "evidence:test:9c8373ec640b"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T16:38:48-03:00"
+      "last_validated": "2026-10-09T16:41:02-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10440,20 +10459,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:0687931aa596",
+      "id": "evidence:repository:407e3212248e",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T16:38:48-03:00",
+      "observed_at": "2026-10-09T16:41:02-03:00",
       "status": "observed",
-      "detail": "411 files indexed at revision 30dccf1eb2a545f27dfaea45af02a7aad0832448"
+      "detail": "412 files indexed at revision 565b52bb9a1396dfaff12f969ca392360ceddbe3"
     },
     {
-      "id": "evidence:test:26909e69380b",
+      "id": "evidence:test:9c8373ec640b",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T16:38:48-03:00",
+      "observed_at": "2026-10-09T16:41:02-03:00",
       "status": "tested",
-      "detail": "211 passed in 7.43s"
+      "detail": "211 passed in 7.05s"
     }
   ],
   "decisions": [
@@ -10556,31 +10575,31 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:0687931aa596",
+      "id": "event:repository-scan:407e3212248e",
       "type": "repository_scanned",
-      "at": "2026-10-09T16:38:48-03:00",
-      "revision": "30dccf1eb2a545f27dfaea45af02a7aad0832448",
-      "file_count": 411,
-      "evidence_id": "evidence:repository:0687931aa596"
+      "at": "2026-10-09T16:41:02-03:00",
+      "revision": "565b52bb9a1396dfaff12f969ca392360ceddbe3",
+      "file_count": 412,
+      "evidence_id": "evidence:repository:407e3212248e"
     },
     {
-      "id": "event:commit-observed:30dccf1eb2a5",
+      "id": "event:commit-observed:565b52bb9a13",
       "type": "commit_observed",
-      "at": "2026-10-09T16:38:48-03:00",
-      "revision": "30dccf1eb2a545f27dfaea45af02a7aad0832448",
+      "at": "2026-10-09T16:41:02-03:00",
+      "revision": "565b52bb9a1396dfaff12f969ca392360ceddbe3",
       "branch": "main",
-      "subject": "Expand VPS inventory before further cleanup",
+      "subject": "Safely clear regenerable VPS package caches",
       "changed_files": [
         ".github/workflows/abs-vps-reserve.yml",
-        "scripts/ops/vps_inventory_audit.sh"
+        "scripts/ops/vps_safe_cache_cleanup.sh"
       ]
     },
     {
-      "id": "event:test:26909e69380b",
+      "id": "event:test:9c8373ec640b",
       "type": "tests_observed",
-      "at": "2026-10-09T16:38:48-03:00",
+      "at": "2026-10-09T16:41:02-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:26909e69380b"
+      "evidence_id": "evidence:test:9c8373ec640b"
     }
   ],
   "knowledge_sources": [
@@ -10636,7 +10655,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "c99ca30937c5e36b2a63d1607dc2645c478b132a3f14509067e6013dce404977"
+      "sha256": "23c15247b51e37aefb998fb892fee6c420c0d95231deddd80c89522d123d34cb"
     },
     {
       "id": "source:session",
@@ -45489,12 +45508,96 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:0687931aa596",
-      "source": "event:repository-scan:0687931aa596",
-      "relation": "generated",
-      "target": "evidence:repository:0687931aa596",
+      "id": "rel:commit-precedes:30dccf1eb2a5:9d42e84da6c7",
+      "source": "commit:30dccf1eb2a545f27dfaea45af02a7aad0832448",
+      "relation": "precedes",
+      "target": "commit:9d42e84da6c7a0c8cc0a4390ef78e1c06668d4ad",
       "status": "asserted",
-      "at": "2026-10-09T16:38:48-03:00",
+      "at": "2026-10-09T19:39:06Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:9d42e84da6c7:032adc3624d7",
+      "source": "commit:9d42e84da6c7a0c8cc0a4390ef78e1c06668d4ad",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T19:39:06Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:9d42e84da6c7:d64178c49886",
+      "source": "commit:9d42e84da6c7a0c8cc0a4390ef78e1c06668d4ad",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T19:39:06Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:9d42e84da6c7:565b52bb9a13",
+      "source": "commit:9d42e84da6c7a0c8cc0a4390ef78e1c06668d4ad",
+      "relation": "precedes",
+      "target": "commit:565b52bb9a1396dfaff12f969ca392360ceddbe3",
+      "status": "asserted",
+      "at": "2026-10-09T16:41:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:565b52bb9a13:3ea533262670",
+      "source": "commit:565b52bb9a1396dfaff12f969ca392360ceddbe3",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-reserve.yml",
+      "status": "asserted",
+      "at": "2026-10-09T16:41:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:565b52bb9a13:9b785d7486b4",
+      "source": "commit:565b52bb9a1396dfaff12f969ca392360ceddbe3",
+      "relation": "changed",
+      "target": "file:scripts/ops/vps_safe_cache_cleanup.sh",
+      "status": "asserted",
+      "at": "2026-10-09T16:41:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:407e3212248e",
+      "source": "event:repository-scan:407e3212248e",
+      "relation": "generated",
+      "target": "evidence:repository:407e3212248e",
+      "status": "asserted",
+      "at": "2026-10-09T16:41:02-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -45503,12 +45606,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:30dccf1eb2a5",
-      "source": "commit:30dccf1eb2a545f27dfaea45af02a7aad0832448",
+      "id": "rel:scan-commit:565b52bb9a13",
+      "source": "commit:565b52bb9a1396dfaff12f969ca392360ceddbe3",
       "relation": "observed_by",
-      "target": "event:repository-scan:0687931aa596",
+      "target": "event:repository-scan:407e3212248e",
       "status": "asserted",
-      "at": "2026-10-09T16:38:48-03:00",
+      "at": "2026-10-09T16:41:02-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
