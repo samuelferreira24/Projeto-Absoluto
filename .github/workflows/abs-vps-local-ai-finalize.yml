@@ -1,0 +1,65 @@
+name: ABS VPS Local AI Finalization
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  finalize-local-ai:
+    if: >-
+      github.event.issue.number == 121 &&
+      github.event.issue.pull_request == null &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-local-ai-finalize'
+    concurrency:
+      group: abs-vps-shared-tree
+      cancel-in-progress: false
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 45
+    steps:
+      - name: Execute fixed guarded finalization
+        id: operation
+        shell: bash
+        run: |
+          set -uo pipefail
+          cd "$HOME/Projeto-Absoluto" || exit 2
+          git fetch origin main --quiet
+          git reset --hard origin/main --quiet
+          log="/tmp/abs-local-ai-finalize-${GITHUB_RUN_ID}.log"
+          if bash scripts/ops/local_ai_finalize_operation.sh > "$log" 2>&1; then
+            rc=0
+          else
+            rc=$?
+          fi
+          summary="$(grep -E '^(ABS_LOCAL_AI_FINALIZE_BEGIN|VISION_RESULT |DIRECT_RESULT |DIRECT_SUMMARY|TOOL_RESULT |OLLAMA_RECOVERY_|ABS_INTEGRATION_PASS |ABS_INTEGRATION_FAIL |ABS_INTEGRATION_SUMMARY|STOP_|ROLLBACK|CLEANUP_DEFERRED|FINAL_STATE|FINAL_HEALTH|BACKUP_DIR=|ABS_LOCAL_AI_FINALIZE_END|Mem:|Swap:|Filesystem|/dev/sda1)' "$log" | tail -n 100 || true)"
+          result="$(printf 'SCRIPT_EXIT=%s\n%s\nFULL_LOG=%s' "$rc" "$summary" "$log")"
+          result="${result:0:10000}"
+          {
+            echo 'result<<ABS_RESULT_EOF'
+            printf '%s\n' "$result"
+            echo 'ABS_RESULT_EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Report result to the command issue
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.operation.outputs.result }}
+        with:
+          script: |
+            const body = [
+              '### ABS VPS LOCAL AI FINALIZATION',
+              '',
+              'OUTPUT_START',
+              (process.env.RESULT || '(sem saída)').slice(0, 12000),
+              'OUTPUT_END'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: 121,
+              body
+            });
