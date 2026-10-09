@@ -253,14 +253,13 @@ A V1 é fundação. A construção continua por experimentos, evidências, integ
 5. O V3 adicionava trabalhos à fila em memória quando a capacidade estava crítica, mas não existia consumidor de fila para removê-los. A espera agora persiste o trabalho como `paused/retryable`, sem deixar uma entrada fantasma. A validação de capacidade também preserva a negação de capacidades desconhecidas e permite o echo/teste leve sob pressão.
 6. O adaptador local usa a API nativa `/api/chat` do Ollama em loopback, limita a geração por padrão a 96 tokens, desativa thinking por padrão e permite parâmetros por contexto. A rota de teste pode usar 32 tokens e `keep_alive=0`.
 
-### Primeira IA local validada ponta a ponta
+### IAs locais validadas ponta a ponta
 
-- Capacidade: `local-ai:qwen3.5-0.8b`.
-- Teste via ABS `POST /chat`: **PASS**.
-- Resposta observada: `ABS_LOCAL_AI_OK`.
-- `work_state=completed`, proveniência aponta para `local-ai:qwen3.5-0.8b`, verificação `accepted=true`.
-- Após o teste, `/api/ps` mostrou `models=[]`; a RAM disponível voltou para cerca de 4,3 GiB.
-- A bateria `local-ai-test-all` permanece bloqueada. Os outros modelos aparecem no registro, mas ainda não estão validados individualmente ponta a ponta.
+- **Qwen 0.8B** — capacidade `local-ai:qwen3.5-0.8b`; teste via ABS `POST /chat`: **PASS**; resposta `ABS_LOCAL_AI_OK`; `work_state=completed`; proveniência e verificação `accepted=true`.
+- **Qwen 2B** — capacidade `local-ai:qwen3.5-2b`; teste via ABS `POST /chat`: **PASS**; resposta `ABS_LOCAL_AI_QWEN2B_OK`; `work_state=completed`; proveniência aponta para a capacidade solicitada e verificação `accepted=true`.
+- O Qwen 2B também passou no smoke test nativo do Ollama com limite de 16 tokens e pré-condição de pelo menos 4 GiB disponíveis.
+- Após cada teste, `/api/ps` mostrou `models=[]`; depois do descarregamento, a RAM disponível voltou para cerca de 4,3 GiB.
+- A bateria `local-ai-test-all` permanece bloqueada. Ministral 3B, Qwen 4B e Gemma 4 E2B/E4B continuam registrados, mas não foram validados individualmente ponta a ponta e não devem ser iniciados em lote.
 
 ### Regras para continuar a integração
 
