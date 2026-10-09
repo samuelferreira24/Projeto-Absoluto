@@ -265,7 +265,7 @@ jobs:
                 WORK_JSON="$(curl -fsS --max-time 8 -X POST http://127.0.0.1:8787/works -H 'Content-Type: application/json' -d '{"objective":"Check ABS browser adapter status","context":{"action":"status"}}')"
                 WORK_ID="$(python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])' <<<"$WORK_JSON")"
                 RUN_JSON="$(curl -fsS --max-time 12 -X POST "http://127.0.0.1:8787/works/$WORK_ID/run" -H 'Content-Type: application/json' -d '{"capability_id":"browser-control","approved":true}')"
-                python3 -c 'import json,sys; d=json.load(sys.stdin); r=d.get("result") or {}; assert d.get("state")=="completed",d; assert r.get("type")=="browser_status" and r.get("available") is True,d; print("PASS | Live ABS API executed browser-control"); print("Browser="+str(r.get("browser","unknown")))' <<<"$RUN_JSON"
+                python3 -c 'import json,sys; d=json.load(sys.stdin); r=d.get("result") or {}; r=(r.get("result") or {}) if r.get("type")=="v2_result" else r; assert d.get("state")=="completed",d; assert r.get("type")=="browser_status" and r.get("available") is True,d; print("PASS | Live ABS API executed browser-control"); print("Browser="+str(r.get("browser","unknown")))' <<<"$RUN_JSON"
                 pass "ABS browser adapter deployed and live API smoke test passed"
               fi
             fi
