@@ -146,7 +146,7 @@ class CognitiveRuntime:
         # the ABS service, Ollama overhead, and transient allocations. An explicit
         # preference must never override this safety gate.
         import os
-        safety_reserve_mb = float(os.getenv("ABS_LOCAL_AI_MEMORY_RESERVE_MB", "768"))
+        safety_reserve_mb = float(os.getenv("ABS_LOCAL_AI_MEMORY_RESERVE_MB", "512"))
         if memory_mb > 0:
             resources = [
                 resource for resource in resources
