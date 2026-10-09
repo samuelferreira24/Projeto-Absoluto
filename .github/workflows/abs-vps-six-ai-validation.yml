@@ -123,8 +123,13 @@ jobs:
             cat "$result_file"
             echo 'ABS_RESULT_EOF'
           } >> "$GITHUB_OUTPUT"
+          if [[ "$command" == test-* ]] && ! grep -q 'VALIDATION=PASS' "$result_file"; then
+            echo "Model validation did not pass: $command" >&2
+            exit 1
+          fi
 
       - name: Publish result to ABS VPS issue
+        if: always()
         uses: actions/github-script@v7
         env:
           RESULT: ${{ steps.test.outputs.result }}
