@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T11:47:28-03:00",
-  "source_revision": "8c155e8584f3c41b7913ee8b10c39619e216da63",
+  "generated_at": "2026-10-09T11:49:29-03:00",
+  "source_revision": "50632ea7213e29792f54fd22de5c38d2c860f0eb",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "8c155e8584f3c41b7913ee8b10c39619e216da63",
-      "commit_subject": "Honor explicit local AI capability routing"
+      "revision": "50632ea7213e29792f54fd22de5c38d2c860f0eb",
+      "commit_subject": "Fail fast on integration memory preflight failure"
     }
   ],
   "tools": [
@@ -10208,6 +10208,20 @@
       "sha": "8c155e8584f3c41b7913ee8b10c39619e216da63"
     },
     {
+      "id": "commit:c38fdf7e03b4b23b42636c00dbd265f87f59fe82",
+      "kind": "commit",
+      "at": "2026-10-09T14:47:49Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "c38fdf7e03b4b23b42636c00dbd265f87f59fe82"
+    },
+    {
+      "id": "commit:50632ea7213e29792f54fd22de5c38d2c860f0eb",
+      "kind": "commit",
+      "at": "2026-10-09T11:49:29-03:00",
+      "subject": "Fail fast on integration memory preflight failure",
+      "sha": "50632ea7213e29792f54fd22de5c38d2c860f0eb"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10320,23 +10334,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:4633c8b3cfc3",
+      "id": "evidence:repository:19c29bc984fa",
       "kind": "evidence",
-      "at": "2026-10-09T11:47:28-03:00",
+      "at": "2026-10-09T11:49:29-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:4633c8b3cfc3",
+      "id": "event:repository-scan:19c29bc984fa",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T11:47:28-03:00"
+      "at": "2026-10-09T11:49:29-03:00"
     },
     {
-      "id": "event:commit-observed:8c155e8584f3",
+      "id": "event:commit-observed:50632ea7213e",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T11:47:28-03:00"
+      "at": "2026-10-09T11:49:29-03:00"
     }
   ],
   "paths": [
@@ -10371,11 +10385,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:133702d2ddc4"
+        "evidence:test:1cfa151eec92"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T11:47:28-03:00"
+      "last_validated": "2026-10-09T11:49:29-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10398,20 +10412,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:4633c8b3cfc3",
+      "id": "evidence:repository:19c29bc984fa",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T11:47:28-03:00",
+      "observed_at": "2026-10-09T11:49:29-03:00",
       "status": "observed",
-      "detail": "411 files indexed at revision 8c155e8584f3c41b7913ee8b10c39619e216da63"
+      "detail": "411 files indexed at revision 50632ea7213e29792f54fd22de5c38d2c860f0eb"
     },
     {
-      "id": "evidence:test:133702d2ddc4",
+      "id": "evidence:test:1cfa151eec92",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T11:47:28-03:00",
+      "observed_at": "2026-10-09T11:49:29-03:00",
       "status": "tested",
-      "detail": "211 passed in 7.69s"
+      "detail": "211 passed in 7.70s"
     }
   ],
   "decisions": [
@@ -10514,31 +10528,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:4633c8b3cfc3",
+      "id": "event:repository-scan:19c29bc984fa",
       "type": "repository_scanned",
-      "at": "2026-10-09T11:47:28-03:00",
-      "revision": "8c155e8584f3c41b7913ee8b10c39619e216da63",
+      "at": "2026-10-09T11:49:29-03:00",
+      "revision": "50632ea7213e29792f54fd22de5c38d2c860f0eb",
       "file_count": 411,
-      "evidence_id": "evidence:repository:4633c8b3cfc3"
+      "evidence_id": "evidence:repository:19c29bc984fa"
     },
     {
-      "id": "event:commit-observed:8c155e8584f3",
+      "id": "event:commit-observed:50632ea7213e",
       "type": "commit_observed",
-      "at": "2026-10-09T11:47:28-03:00",
-      "revision": "8c155e8584f3c41b7913ee8b10c39619e216da63",
+      "at": "2026-10-09T11:49:29-03:00",
+      "revision": "50632ea7213e29792f54fd22de5c38d2c860f0eb",
       "branch": "main",
-      "subject": "Honor explicit local AI capability routing",
+      "subject": "Fail fast on integration memory preflight failure",
       "changed_files": [
-        "abs_core/intelligence.py",
-        "tests/test_intelligence_routing.py"
+        "scripts/ops/local_ai_full_operation.sh"
       ]
     },
     {
-      "id": "event:test:133702d2ddc4",
+      "id": "event:test:1cfa151eec92",
       "type": "tests_observed",
-      "at": "2026-10-09T11:47:28-03:00",
+      "at": "2026-10-09T11:49:29-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:133702d2ddc4"
+      "evidence_id": "evidence:test:1cfa151eec92"
     }
   ],
   "knowledge_sources": [
@@ -10594,7 +10607,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "81871e5ad21f59777a739d4bc132df014fd7a6a75a657c54e1a6d473c355bdf9"
+      "sha256": "739301451b58b74e7d266c3dbb74c16a4e993891204eac8893301297daf2c587"
     },
     {
       "id": "source:session",
@@ -45223,12 +45236,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:4633c8b3cfc3",
-      "source": "event:repository-scan:4633c8b3cfc3",
-      "relation": "generated",
-      "target": "evidence:repository:4633c8b3cfc3",
+      "id": "rel:commit-precedes:8c155e8584f3:c38fdf7e03b4",
+      "source": "commit:8c155e8584f3c41b7913ee8b10c39619e216da63",
+      "relation": "precedes",
+      "target": "commit:c38fdf7e03b4b23b42636c00dbd265f87f59fe82",
       "status": "asserted",
-      "at": "2026-10-09T11:47:28-03:00",
+      "at": "2026-10-09T14:47:49Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c38fdf7e03b4:032adc3624d7",
+      "source": "commit:c38fdf7e03b4b23b42636c00dbd265f87f59fe82",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T14:47:49Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c38fdf7e03b4:d64178c49886",
+      "source": "commit:c38fdf7e03b4b23b42636c00dbd265f87f59fe82",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T14:47:49Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c38fdf7e03b4:50632ea7213e",
+      "source": "commit:c38fdf7e03b4b23b42636c00dbd265f87f59fe82",
+      "relation": "precedes",
+      "target": "commit:50632ea7213e29792f54fd22de5c38d2c860f0eb",
+      "status": "asserted",
+      "at": "2026-10-09T11:49:29-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:50632ea7213e:bc92442f76cc",
+      "source": "commit:50632ea7213e29792f54fd22de5c38d2c860f0eb",
+      "relation": "changed",
+      "target": "file:scripts/ops/local_ai_full_operation.sh",
+      "status": "asserted",
+      "at": "2026-10-09T11:49:29-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:19c29bc984fa",
+      "source": "event:repository-scan:19c29bc984fa",
+      "relation": "generated",
+      "target": "evidence:repository:19c29bc984fa",
+      "status": "asserted",
+      "at": "2026-10-09T11:49:29-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -45237,12 +45320,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:8c155e8584f3",
-      "source": "commit:8c155e8584f3c41b7913ee8b10c39619e216da63",
+      "id": "rel:scan-commit:50632ea7213e",
+      "source": "commit:50632ea7213e29792f54fd22de5c38d2c860f0eb",
       "relation": "observed_by",
-      "target": "event:repository-scan:4633c8b3cfc3",
+      "target": "event:repository-scan:19c29bc984fa",
       "status": "asserted",
-      "at": "2026-10-09T11:47:28-03:00",
+      "at": "2026-10-09T11:49:29-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
