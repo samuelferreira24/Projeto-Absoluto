@@ -17,13 +17,27 @@ free -h
 df -h /
 echo "=== TOP-LEVEL DISK USAGE ==="
 sudo du -x -h --max-depth=1 / 2>/dev/null | sort -h | tail -n 18 | sed 's/^/DISK_DIR /' || true
+echo "=== HOME DIRECTORY USAGE ==="
+sudo du -x -h --max-depth=1 "$HOME" 2>/dev/null | sort -h | tail -n 30 | sed 's/^/HOME_DIR /' || true
+echo "=== VAR DIRECTORY USAGE ==="
+sudo du -x -h --max-depth=1 /var /var/lib /var/log 2>/dev/null | sort -h | tail -n 35 | sed 's/^/VAR_DIR /' || true
+echo "=== OTHER LARGE DIRECTORIES ==="
+for path in /usr/local /usr/share /opt /data /root; do
+  [ -d "$path" ] && sudo du -x -h --max-depth=1 "$path" 2>/dev/null | sort -h | tail -n 12 | sed 's/^/OTHER_DIR /' || true
+done
 echo "=== RELEVANT SERVICES ==="
-systemctl --no-pager --type=service --state=running | grep -Ei 'abs|ollama|docker|coolify|code-server|postgres|uptime|tailscale|redis|n8n' | sed 's/^/SERVICE /' || true
+systemctl --no-pager --type=service --state=running | grep -Ei 'abs|ollama|docker|coolify|code-server|postgres|uptime|tailscale|redis|n8n|openclaw|actions.runner' | sed 's/^/SERVICE /' || true
+echo "=== SERVICE UNIT DETAILS (NO ENVIRONMENT SECRETS) ==="
+for unit in abs.service ollama.service docker.service openclaw-gateway.service actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01.service actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01-reserve.service; do
+  if systemctl cat "$unit" >/dev/null 2>&1; then
+    systemctl show "$unit" -p LoadState -p ActiveState -p SubState -p FragmentPath -p WorkingDirectory -p User -p ExecStart --no-pager 2>/dev/null | sed "s/^/UNIT $unit /"
+  fi
+done
 echo "=== DOCKER CONTAINERS ==="
 if command -v docker >/dev/null 2>&1; then
-  docker ps -a --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' | sed 's/^/DOCKER_CONTAINER /' || true
+  sudo docker ps -a --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' | sed 's/^/DOCKER_CONTAINER /' || true
   echo "=== DOCKER STORAGE SUMMARY ==="
-  docker system df -v 2>&1 | head -n 180 | sed 's/^/DOCKER_STORAGE /' || true
+  sudo docker system df -v 2>&1 | head -n 180 | sed 's/^/DOCKER_STORAGE /' || true
 else
   echo "DOCKER_NOT_INSTALLED"
 fi
