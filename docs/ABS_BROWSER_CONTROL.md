@@ -37,7 +37,7 @@ The complete `config` directory is archived after gracefully stopping the browse
 
 ## Private mobile access
 
-Use Tailscale Serve for private HTTPS access to `http://127.0.0.1:3000`. The systemd unit `abs-browser-tailnet-serve.service` waits for Tailscale to authenticate and then configures Serve automatically. The account owner must complete the initial Tailscale login; this external identity step cannot be performed on their behalf. Do not expose ports 3000, 3001 or 9222 through public Docker bindings, UFW allow rules, Coolify/Traefik, or a public reverse proxy.
+Use Tailscale Serve for private HTTPS access to `http://127.0.0.1:3000`. The systemd unit `abs-browser-tailnet-serve.service` waits for Tailscale to authenticate and then configures Serve automatically. The account owner must complete the initial login from an authenticated SSH session with `sudo tailscale up --accept-dns=false`, then open the one-time login URL shown by Tailscale. Afterward, `sudo tailscale serve status` shows the private HTTPS URL. To retrieve the browser credentials privately, run `sudo sed -n -e 's/^CUSTOM_USER=/Username: /p' -e 's/^PASSWORD=/Password: /p' /home/absadmin/.config/abs-browser/browser.env` over SSH; never paste the output into GitHub or a public chat. Do not expose ports 3000, 3001 or 9222 through public Docker bindings, UFW allow rules, Coolify/Traefik, or a public reverse proxy.
 
 ## Verification evidence
 
