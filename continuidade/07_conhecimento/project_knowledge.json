@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:23:54-03:00",
-  "source_revision": "93a65da1678f74bdc073699505b0cb68a08b7633",
+  "generated_at": "2026-10-09T00:25:07-03:00",
+  "source_revision": "160f7feaa5726f4ec2e9f89c9a875c8413a72c19",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "93a65da1678f74bdc073699505b0cb68a08b7633",
-      "commit_subject": "Diagnosticar listener e estado real do runner principal"
+      "revision": "160f7feaa5726f4ec2e9f89c9a875c8413a72c19",
+      "commit_subject": "Forçar cancelamento de jobs órfãos que bloqueiam os runners"
     }
   ],
   "tools": [
@@ -9616,6 +9616,20 @@
       "sha": "93a65da1678f74bdc073699505b0cb68a08b7633"
     },
     {
+      "id": "commit:a256db07b3edc473d72d30db2bb64c5c0483a4a0",
+      "kind": "commit",
+      "at": "2026-10-09T03:24:21Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "a256db07b3edc473d72d30db2bb64c5c0483a4a0"
+    },
+    {
+      "id": "commit:160f7feaa5726f4ec2e9f89c9a875c8413a72c19",
+      "kind": "commit",
+      "at": "2026-10-09T00:25:07-03:00",
+      "subject": "Forçar cancelamento de jobs órfãos que bloqueiam os runners",
+      "sha": "160f7feaa5726f4ec2e9f89c9a875c8413a72c19"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9728,23 +9742,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:b1946bd39995",
+      "id": "evidence:repository:a9ccd6235d49",
       "kind": "evidence",
-      "at": "2026-10-09T00:23:54-03:00",
+      "at": "2026-10-09T00:25:07-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:b1946bd39995",
+      "id": "event:repository-scan:a9ccd6235d49",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:23:54-03:00"
+      "at": "2026-10-09T00:25:07-03:00"
     },
     {
-      "id": "event:commit-observed:93a65da1678f",
+      "id": "event:commit-observed:160f7feaa572",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:23:54-03:00"
+      "at": "2026-10-09T00:25:07-03:00"
     }
   ],
   "paths": [
@@ -9779,11 +9793,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:0c7bd13ac38f"
+        "evidence:test:f2eda9582525"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:23:54-03:00"
+      "last_validated": "2026-10-09T00:25:07-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9806,20 +9820,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:b1946bd39995",
+      "id": "evidence:repository:a9ccd6235d49",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:23:54-03:00",
+      "observed_at": "2026-10-09T00:25:07-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision 93a65da1678f74bdc073699505b0cb68a08b7633"
+      "detail": "406 files indexed at revision 160f7feaa5726f4ec2e9f89c9a875c8413a72c19"
     },
     {
-      "id": "evidence:test:0c7bd13ac38f",
+      "id": "evidence:test:f2eda9582525",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:23:54-03:00",
+      "observed_at": "2026-10-09T00:25:07-03:00",
       "status": "tested",
-      "detail": "199 passed in 10.26s"
+      "detail": "199 passed in 7.53s"
     }
   ],
   "decisions": [
@@ -9922,30 +9936,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:b1946bd39995",
+      "id": "event:repository-scan:a9ccd6235d49",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:23:54-03:00",
-      "revision": "93a65da1678f74bdc073699505b0cb68a08b7633",
+      "at": "2026-10-09T00:25:07-03:00",
+      "revision": "160f7feaa5726f4ec2e9f89c9a875c8413a72c19",
       "file_count": 406,
-      "evidence_id": "evidence:repository:b1946bd39995"
+      "evidence_id": "evidence:repository:a9ccd6235d49"
     },
     {
-      "id": "event:commit-observed:93a65da1678f",
+      "id": "event:commit-observed:160f7feaa572",
       "type": "commit_observed",
-      "at": "2026-10-09T00:23:54-03:00",
-      "revision": "93a65da1678f74bdc073699505b0cb68a08b7633",
+      "at": "2026-10-09T00:25:07-03:00",
+      "revision": "160f7feaa5726f4ec2e9f89c9a875c8413a72c19",
       "branch": "main",
-      "subject": "Diagnosticar listener e estado real do runner principal",
+      "subject": "Forçar cancelamento de jobs órfãos que bloqueiam os runners",
       "changed_files": [
-        ".github/workflows/abs-vps-reserve.yml"
+        ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:0c7bd13ac38f",
+      "id": "event:test:f2eda9582525",
       "type": "tests_observed",
-      "at": "2026-10-09T00:23:54-03:00",
+      "at": "2026-10-09T00:25:07-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:0c7bd13ac38f"
+      "evidence_id": "evidence:test:f2eda9582525"
     }
   ],
   "knowledge_sources": [
@@ -10001,7 +10015,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "31d5d31ffb0af7744883f7cc5bca35c7db1b30b94b89bc18687cabac72679735"
+      "sha256": "7387188be60cdbac0a7050aeb341bbd06bb4d33de2437f97b85e8ecf6c678899"
     },
     {
       "id": "source:session",
@@ -41676,12 +41690,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:b1946bd39995",
-      "source": "event:repository-scan:b1946bd39995",
-      "relation": "generated",
-      "target": "evidence:repository:b1946bd39995",
+      "id": "rel:commit-precedes:93a65da1678f:a256db07b3ed",
+      "source": "commit:93a65da1678f74bdc073699505b0cb68a08b7633",
+      "relation": "precedes",
+      "target": "commit:a256db07b3edc473d72d30db2bb64c5c0483a4a0",
       "status": "asserted",
-      "at": "2026-10-09T00:23:54-03:00",
+      "at": "2026-10-09T03:24:21Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a256db07b3ed:032adc3624d7",
+      "source": "commit:a256db07b3edc473d72d30db2bb64c5c0483a4a0",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:24:21Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a256db07b3ed:d64178c49886",
+      "source": "commit:a256db07b3edc473d72d30db2bb64c5c0483a4a0",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:24:21Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a256db07b3ed:160f7feaa572",
+      "source": "commit:a256db07b3edc473d72d30db2bb64c5c0483a4a0",
+      "relation": "precedes",
+      "target": "commit:160f7feaa5726f4ec2e9f89c9a875c8413a72c19",
+      "status": "asserted",
+      "at": "2026-10-09T00:25:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:160f7feaa572:1734be446032",
+      "source": "commit:160f7feaa5726f4ec2e9f89c9a875c8413a72c19",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:25:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:a9ccd6235d49",
+      "source": "event:repository-scan:a9ccd6235d49",
+      "relation": "generated",
+      "target": "evidence:repository:a9ccd6235d49",
+      "status": "asserted",
+      "at": "2026-10-09T00:25:07-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -41690,12 +41774,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:93a65da1678f",
-      "source": "commit:93a65da1678f74bdc073699505b0cb68a08b7633",
+      "id": "rel:scan-commit:160f7feaa572",
+      "source": "commit:160f7feaa5726f4ec2e9f89c9a875c8413a72c19",
       "relation": "observed_by",
-      "target": "event:repository-scan:b1946bd39995",
+      "target": "event:repository-scan:a9ccd6235d49",
       "status": "asserted",
-      "at": "2026-10-09T00:23:54-03:00",
+      "at": "2026-10-09T00:25:07-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
