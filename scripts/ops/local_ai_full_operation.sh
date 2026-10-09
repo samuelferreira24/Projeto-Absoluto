@@ -126,6 +126,7 @@ test_model 'phi4-mini:3.8b' 'ABS_PHI4MINI_OK' 3200 300
 ministral_tool_pass=0
 phi_tool_pass=0
 gemma_vision_pass=0
+qwen_vision_pass=0
 test_tool_call() {
   model="$1"; marker="$2"; min_mb="$3"; timeout_s="$4"
   available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
@@ -209,13 +210,54 @@ d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(
 }
 test_gemma_vision
 
+test_qwen_vision() {
+  model='qwen3.5:4b'
+  available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+  if [ "$available_kb" -lt 3481600 ]; then
+    echo "VISION_RESULT SKIP_MEMORY model=$model available_mb=$((available_kb / 1024)) required_mb=3400"
+    return
+  fi
+  image_b64="$(python3 - <<'PY'
+import base64,struct,zlib
+def chunk(kind,data):
+    return struct.pack(">I",len(data))+kind+data+struct.pack(">I",zlib.crc32(kind+data)&0xffffffff)
+w=h=16
+raw=b"".join(b"\x00"+(b"\xff\x00\x00\xff"*w) for _ in range(h))
+png=b"\x89PNG\r\n\x1a\n"+chunk(b"IHDR",struct.pack(">IIBBBBB",w,h,8,6,0,0,0))+chunk(b"IDAT",zlib.compress(raw))+chunk(b"IEND",b"")
+print(base64.b64encode(png).decode())
+PY
+)"
+  payload="$(python3 - "$model" "$image_b64" <<'PY'
+import json,sys
+model,image=sys.argv[1:]
+print(json.dumps({
+  "model":model,
+  "messages":[{"role":"user","content":"Inspect the attached image. If its dominant color is red, reply exactly ABS_QWEN_VISION_OK; otherwise reply NO.","images":[image]}],
+  "stream":False,"think":False,"keep_alive":0,
+  "options":{"num_ctx":2048,"num_predict":32,"temperature":0}
+}))
+PY
+)"
+  response="$(curl -sS --max-time 300 http://127.0.0.1:11434/api/chat -H 'Content-Type: application/json' -d "$payload" 2>&1)"
+  rc=$?
+  if [ "$rc" -eq 0 ] && printf '%s' "$response" | python3 -c 'import json,sys
+d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(); assert "ABS_QWEN_VISION_OK" in s, s; print("vision_response="+s[:120])' && assert_unloaded; then
+    qwen_vision_pass=1
+    echo "VISION_RESULT PASS model=$model"
+  else
+    echo "VISION_RESULT FAIL model=$model curl_rc=$rc detail=$(printf '%s' "$response" | head -c 500)"
+  fi
+  echo
+}
+test_qwen_vision
+
 echo "=== DIRECT TEST SUMMARY ==="
 grep '^RESULT ' "$log" || true
 pass_count="$(grep '^RESULT PASS ' "$log" | sed -E 's/.*model=([^ ]+).*/\1/' | sort -u | wc -l | tr -d ' ')"
 echo "DIRECT_PASS_COUNT=$pass_count/6"
 
 # Integration is applied only if every selected model passed the direct smoke.
-if [ "$pass_count" -eq 6 ] && [ "$config_existed" -eq 1 ]; then
+if [ "$pass_count" -eq 6 ] && [ "$config_existed" -eq 1 ] && [ "$((ministral_tool_pass + phi_tool_pass))" -ge 1 ] && [ "$((gemma_vision_pass + qwen_vision_pass))" -ge 1 ]; then
   echo "=== BACKUP AND APPLY SIX-MODEL CONFIG ==="
   [ -f /etc/abs-local-models.env ] && sudo cp -a /etc/abs-local-models.env "$backup/abs-local-models.env.pre-change"
   sudo tee /etc/abs-local-models.env >/dev/null <<'ENV'
@@ -288,7 +330,7 @@ for line in text.splitlines():
 print("yes" if tag in models else "no")
 PY
 )"
-      if [ "$tag" = "gemma4:e2b" ] && [ "$gemma_vision_pass" -ne 1 ]; then
+      if [ "$tag" = "gemma4:e2b" ] && [ "$gemma_vision_pass" -ne 1 ] && [ "$qwen_vision_pass" -ne 1 ]; then
         echo "CLEANUP_KEEP tag=$tag reason=selected_Gemma_vision_not_proven"
       elif [ "$referenced" != "no" ]; then
         echo "CLEANUP_KEEP tag=$tag reason=config_reference_or_unknown"
@@ -327,8 +369,12 @@ PY
 else
   if [ "$pass_count" -ne 6 ]; then
     echo "INTEGRATION_NOT_APPLIED: direct model passes=$pass_count/6; production model configuration preserved"
-  else
+  elif [ "$config_existed" -ne 1 ]; then
     echo "INTEGRATION_NOT_APPLIED: no verified backup of /etc/abs-local-models.env; production config preserved"
+  elif [ "$((ministral_tool_pass + phi_tool_pass))" -lt 1 ]; then
+    echo "INTEGRATION_NOT_APPLIED: no selected local model proved tool calling; production config preserved"
+  elif [ "$((gemma_vision_pass + qwen_vision_pass))" -lt 1 ]; then
+    echo "INTEGRATION_NOT_APPLIED: no selected local model proved image input; production config preserved"
   fi
 fi
 
