@@ -59,10 +59,18 @@ class BrowserCapability:
             raise ValueError("browser_private_destination_forbidden")
         if self.allowed_hosts and host not in self.allowed_hosts and not any(host.endswith("." + h) for h in self.allowed_hosts):
             raise ValueError("browser_host_not_allowlisted")
-        if not self.allowed_hosts and ip is None:
-            # Resolve the hostname and reject it if any address is non-global.
+        if ip is None:
+            # Always resolve hostnames, including allowlisted ones, and reject any
+            # non-global result to reduce DNS-based SSRF/rebinding risk.
             try:
-                addresses = {ipaddress.ip_address(item[4][0]) for item in socket.getaddrinfo(host, parsed.port or (443 if parsed.scheme == "https" else 80), type=socket.SOCK_STREAM)}
+                addresses = {
+                    ipaddress.ip_address(item[4][0])
+                    for item in socket.getaddrinfo(
+                        host,
+                        parsed.port or (443 if parsed.scheme == "https" else 80),
+                        type=socket.SOCK_STREAM,
+                    )
+                }
             except OSError:
                 raise ValueError("browser_host_resolution_failed") from None
             if not addresses or any(not address.is_global for address in addresses):
