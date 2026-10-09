@@ -2,15 +2,17 @@
 
 ## Purpose
 
-The ABS browser is a persistent Chromium session hosted on `abs-vps-01`. The interactive web UI is bound to IPv4 loopback at `127.0.0.1:3000`; Chromium DevTools Protocol (CDP), when enabled, is bound only to `127.0.0.1:9222`. Neither endpoint is intended to be published directly to the Internet.
+The ABS browser is a persistent Chromium session hosted on `abs-vps-01`. The browser container uses host networking so Chromium's loopback-only DevTools Protocol endpoint is reachable by ABS at `127.0.0.1:9222`. The LinuxServer web UI listens on host ports 3000/3001; UFW has explicit inbound DENY rules for 3000, 3001 and 9222. These ports must not be opened in the provider firewall, Docker proxy, UFW allow rules, or a public reverse proxy. Private access is intended to use Tailscale Serve to `http://127.0.0.1:3000` after Tailscale account authentication.
 
 ## Deployment layout
 
 - Container: `abs-browser-ui` using `lscr.io/linuxserver/chromium`.
-- Persistent profile: `/home/absadmin/abs-browser/config` mounted at `/config`.
+- Persistent configuration volume: `/home/absadmin/abs-browser/config` mounted at `/config`.
+- Active Chromium user-data directory: `/home/absadmin/abs-browser/config/chromium-abs-profile`; it is a non-default profile copied from the prior profile when available. The source profile remains in the volume.
 - Protected credentials: `/home/absadmin/.config/abs-browser/browser.env`, permissions `0600`.
 - Backups: `/home/absadmin/abs-browser/backups/profile-YYYY-MM-DD.tar.gz`, permissions `0600`.
 - Resource limits: 1.5 CPU, 1280 MiB RAM, 1792 MiB RAM+swap, 512 MiB shared memory, 512 processes.
+- Inbound firewall: explicit UFW DENY rules for TCP 3000, 3001 and 9222. No public Docker port mappings are used in host-network mode.
 - ABS adapter: `abs_core/browser_adapter.py`, registered only when `ABS_BROWSER_CDP_URL=http://127.0.0.1:9222` is configured.
 
 ## ABS adapter actions
@@ -35,7 +37,7 @@ The complete `config` directory is archived after gracefully stopping the browse
 
 ## Private mobile access
 
-Use Tailscale Serve for private HTTPS access to `http://127.0.0.1:3000` only after Tailscale is installed and authenticated. Do not expose ports 3000 or 9222 through Docker public bindings, UFW, Coolify/Traefik, or a public reverse proxy. Tailscale authentication is an external identity step and cannot be completed on behalf of the account owner without their authorization.
+Use Tailscale Serve for private HTTPS access to `http://127.0.0.1:3000`. The systemd unit `abs-browser-tailnet-serve.service` waits for Tailscale to authenticate and then configures Serve automatically. The account owner must complete the initial Tailscale login; this external identity step cannot be performed on their behalf. Do not expose ports 3000, 3001 or 9222 through public Docker bindings, UFW allow rules, Coolify/Traefik, or a public reverse proxy.
 
 ## Verification evidence
 
