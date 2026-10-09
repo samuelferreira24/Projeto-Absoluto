@@ -358,7 +358,7 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
                     kind == "local_ai"
                     and snap.state is CapacityState.CRITICAL
                     and self.queue.depth() == 0
-                    and self._active == 0
+                    and self._active == 1
                 ):
                     try:
                         with open("/proc/meminfo", "r", encoding="utf-8") as handle:
