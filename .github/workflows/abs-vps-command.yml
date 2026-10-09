@@ -337,7 +337,8 @@ jobs:
           /abs openclaw-install
           /abs openclaw-status
           /abs runner-diagnose
-          /abs runner-repair'
+          /abs runner-repair
+          /abs runner-reset-reserve'
               ;;
             runner-diagnose)
               {
@@ -387,6 +388,30 @@ jobs:
                 echo
                 echo "[recent journal]"
                 sudo journalctl -u "$service" -n 30 --no-pager
+                echo
+                echo "[ABS health]"
+                curl -fsS --max-time 10 http://127.0.0.1:8787/health
+                echo
+                echo "[RAM]"
+                free -h
+              } > /tmp/abs-vps-result.txt 2>&1
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
+            runner-reset-reserve)
+              set -e
+              service="actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01-reserve.service"
+              {
+                echo "[stopping reserve runner to clear stale/heavy job]"
+                sudo systemctl stop "$service" || true
+                sleep 3
+                echo "[starting reserve runner]"
+                sudo systemctl start "$service"
+                sleep 5
+                echo "[reserve state]"
+                sudo systemctl show "$service" -p ActiveState -p SubState -p Result -p Restart -p MemoryCurrent -p MemoryPeak -p MemoryMax -p MemorySwapMax
+                echo
+                echo "[recent journal]"
+                sudo journalctl -u "$service" -n 20 --no-pager
                 echo
                 echo "[ABS health]"
                 curl -fsS --max-time 10 http://127.0.0.1:8787/health
