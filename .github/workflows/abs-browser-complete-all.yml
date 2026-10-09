@@ -298,6 +298,40 @@ jobs:
               blocked "Could not retrieve the official Tailscale installer; no public access path was opened."
             fi
           fi
+          if command -v tailscale >/dev/null 2>&1; then
+            sudo -n install -d -m 0755 /usr/local/sbin
+            sudo -n tee /usr/local/sbin/abs-browser-tailnet-serve >/dev/null <<'TAILNET_SCRIPT'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          while true; do
+            if tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
+              tailscale serve --bg http://127.0.0.1:3000
+              exit 0
+            fi
+            sleep 30
+          done
+          TAILNET_SCRIPT
+            sudo -n chmod 0750 /usr/local/sbin/abs-browser-tailnet-serve
+            sudo -n tee /etc/systemd/system/abs-browser-tailnet-serve.service >/dev/null <<'TAILNET_UNIT'
+          [Unit]
+          Description=Configure private HTTPS access to ABS browser after Tailscale login
+          After=network-online.target tailscaled.service
+          Wants=network-online.target tailscaled.service
+
+          [Service]
+          Type=simple
+          ExecStart=/usr/local/sbin/abs-browser-tailnet-serve
+          Restart=on-failure
+          RestartSec=60
+          TimeoutStartSec=0
+
+          [Install]
+          WantedBy=multi-user.target
+          TAILNET_UNIT
+            sudo -n systemctl daemon-reload
+            sudo -n systemctl enable --now abs-browser-tailnet-serve.service >/dev/null
+            pass "Tailscale Serve waiter installed; private HTTPS will configure automatically after account authentication."
+          fi
           if command -v tailscale >/dev/null 2>&1 && sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
             if sudo -n tailscale serve --bg http://127.0.0.1:3000 >/dev/null 2>&1; then
               pass "Tailscale Serve configured for private HTTPS access."
