@@ -128,6 +128,37 @@ jobs:
                 result="$(cat /tmp/abs-v3-local-ai-result.txt)"
               fi
               ;;
+            v3-local-ai-test-qwen2b)
+              set +e
+              available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+              if [ "$available_kb" -lt 4194304 ]; then
+                result="SKIP: MemAvailable below 4 GiB; ABS Qwen 2B integration was not called. $(free -h | tail -n 2 | tr '\\n' ' ')"
+              else
+                chat_json="$(curl -sS --max-time 150 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d '{"message":"Reply exactly ABS_LOCAL_AI_QWEN2B_OK.","approved":true,"context":{"capability_id":"local-ai:qwen3.5-2b","max_tokens":16,"temperature":0,"think":false,"keep_alive":0,"timeout":120}}' 2>&1)"
+                curl_rc=$?
+                {
+                  echo "[curl_rc] $curl_rc"
+                  echo "[chat]"
+                  echo "$chat_json"
+                  if [ "$curl_rc" -eq 0 ]; then
+                    if echo "$chat_json" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("work_state")=="completed", d; assert "ABS_LOCAL_AI_QWEN2B_OK" in str(d.get("response","")).upper(), d; p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert any(isinstance(x,dict) and x.get("capability_id")=="local-ai:qwen3.5-2b" for x in p), p; print("ABS V3 QWEN 2B LOCAL AI INTEGRATION PASS")'; then
+                      echo "[validation] PASS"
+                    else
+                      echo "[validation] FAIL"
+                    fi
+                  else
+                    echo "[validation] FAIL: HTTP request did not complete"
+                  fi
+                  echo
+                  echo "[memory]"
+                  free -h
+                  echo
+                  echo "[active models after keep_alive=0]"
+                  curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
+                } > /tmp/abs-v3-local-ai-qwen2b-result.txt
+                result="$(cat /tmp/abs-v3-local-ai-qwen2b-result.txt)"
+              fi
+              ;;
             v3-chat-test)
               set +e
               chat_json="$(curl -sS --max-time 180 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d '{"message":"Reply briefly with ABS_V3_CHAT_OK.","approved":true}' 2>&1)"
