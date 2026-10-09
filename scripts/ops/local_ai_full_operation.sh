@@ -20,7 +20,15 @@ curl -fsS --max-time 10 http://127.0.0.1:8787/health || true
 curl -fsS --max-time 10 http://127.0.0.1:11434/api/tags > "$backup/ollama-tags-before.json" || { echo "BLOCKED: Ollama API unavailable"; exit 3; }
 ollama list | tee "$backup/ollama-list-before.txt"
 curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps | tee "$backup/ollama-ps-before.json" || true
-[ -f /etc/abs-local-models.env ] && sudo cp -a /etc/abs-local-models.env "$backup/abs-local-models.env.before" || true
+sudo systemctl cat abs.service > "$backup/abs-service.before.txt" 2>&1 || true
+sudo systemctl show abs.service -p Environment -p EnvironmentFiles > "$backup/abs-service-env.before.txt" 2>&1 || true
+config_existed=0
+if [ -f /etc/abs-local-models.env ]; then
+  sudo cp -a /etc/abs-local-models.env "$backup/abs-local-models.env.before"
+  config_existed=1
+else
+  echo "CONFIG_BACKUP_BLOCKED: /etc/abs-local-models.env does not exist; production config changes will be blocked"
+fi
 
 echo "=== SAFE ALIAS AUDIT ==="
 # Remove only the exact llamacpp tag if Ollama's full API digest equals the canonical
@@ -111,11 +119,11 @@ test_model 'phi4-mini:3.8b' 'ABS_PHI4MINI_OK' 3200 300
 
 echo "=== DIRECT TEST SUMMARY ==="
 grep '^RESULT ' "$log" || true
-pass_count="$(grep -c '^RESULT PASS ' "$log" || true)"
+pass_count="$(grep '^RESULT PASS ' "$log" | sed -E 's/.*model=([^ ]+).*/\1/' | sort -u | wc -l | tr -d ' ')"
 echo "DIRECT_PASS_COUNT=$pass_count/6"
 
 # Integration is applied only if every selected model passed the direct smoke.
-if [ "$pass_count" -eq 6 ]; then
+if [ "$pass_count" -eq 6 ] && [ "$config_existed" -eq 1 ]; then
   echo "=== BACKUP AND APPLY SIX-MODEL CONFIG ==="
   [ -f /etc/abs-local-models.env ] && sudo cp -a /etc/abs-local-models.env "$backup/abs-local-models.env.pre-change"
   sudo tee /etc/abs-local-models.env >/dev/null <<'ENV'
@@ -154,10 +162,66 @@ PY
   echo "ABS_INTEGRATION_COUNT=$integration_ok/$integration_total"
   if [ "$integration_ok" -ne 6 ]; then
     echo "ROLLBACK: restore previous local model config"
-    if [ -f "$backup/abs-local-models.env.pre-change" ]; then sudo cp -a "$backup/abs-local-models.env.pre-change" /etc/abs-local-models.env; sudo systemctl restart abs.service; fi
+    if [ -f "$backup/abs-local-models.env.pre-change" ]; then
+      sudo cp -a "$backup/abs-local-models.env.pre-change" /etc/abs-local-models.env
+      sudo systemctl restart abs.service
+      sleep 3
+      echo "ROLLBACK_CONFIG_RESTORED"
+    fi
+  else
+    echo "=== SAFE REDUNDANT VARIANT CLEANUP ==="
+    cleanup_before_bytes="$(df -B1 --output=avail / | tail -n 1 | tr -d ' ')"
+    for tag in \
+      'gemma4:e2b' \
+      'gemma4:e4b' \
+      'gemma4-e4b-iq2m-ctx1k:latest' \
+      'hf.co/bartowski/google_gemma-4-E4B-it-GGUF:IQ2_M' \
+      'hf.co/bartowski/Qwen_Qwen3.5-4B-GGUF:Q3_K_S'
+    do
+      referenced="$(python3 - "$tag" /etc/abs-local-models.env <<'PY'
+import sys
+tag, path = sys.argv[1:]
+try:
+    text = open(path, encoding="utf-8").read()
+except OSError:
+    print("unknown")
+    raise SystemExit
+models = []
+for line in text.splitlines():
+    if line.startswith("ABS_LOCAL_AI_MODELS="):
+        for spec in line.split("=", 1)[1].split(","):
+            parts = spec.split("|")
+            if len(parts) == 3:
+                models.append(parts[2])
+print("yes" if tag in models else "no")
+PY
+)"
+      if [ "$referenced" != "no" ]; then
+        echo "CLEANUP_KEEP tag=$tag reason=config_reference_or_unknown"
+      elif ollama list | awk 'NR>1 {print $1}' | grep -Fxq "$tag"; then
+        slug="$(printf '%s' "$tag" | tr '/:' '__')"
+        if ollama show "$tag" --modelfile > "$backup/removed-$slug.modelfile" 2>&1; then
+          if ollama rm "$tag"; then
+            echo "CLEANUP_REMOVED tag=$tag modelfile_backup=$backup/removed-$slug.modelfile"
+          else
+            echo "CLEANUP_FAIL tag=$tag reason=ollama_rm_failed"
+          fi
+        else
+          echo "CLEANUP_KEEP tag=$tag reason=manifest_backup_failed"
+        fi
+      else
+        echo "CLEANUP_SKIP tag=$tag reason=exact_tag_absent"
+      fi
+    done
+    cleanup_after_bytes="$(df -B1 --output=avail / | tail -n 1 | tr -d ' ')"
+    echo "CLEANUP_PHYSICAL_BYTES_DELTA=$((cleanup_after_bytes - cleanup_before_bytes))"
   fi
 else
-  echo "INTEGRATION_NOT_APPLIED: fewer than six direct smoke tests passed; production model configuration preserved"
+  if [ "$pass_count" -ne 6 ]; then
+    echo "INTEGRATION_NOT_APPLIED: direct model passes=$pass_count/6; production model configuration preserved"
+  else
+    echo "INTEGRATION_NOT_APPLIED: no verified backup of /etc/abs-local-models.env; production config preserved"
+  fi
 fi
 
 echo "=== FINAL STATE ==="
