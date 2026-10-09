@@ -96,11 +96,28 @@ jobs:
               echo "$v3"
               result="ABS RESERVE V3 + HTTP INTEGRATION PASS"
               ;;
+            local-ai-smoke)
+              export HOME=/home/absadmin
+              available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+              if [ "$available_kb" -lt 1572864 ]; then
+                result="SKIP: MemAvailable below 1.5 GiB; no model started. $(free -h | tail -n 2 | tr '\n' ' ')"
+              else
+                if out="$(curl -fsS --max-time 120 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d '{"model":"qwen3.5:0.8b","prompt":"Reply exactly LOCAL_AI_OK","stream":false}')"; then
+                  if printf '%s\n' "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("response","").strip()=="LOCAL_AI_OK", d; print("ABS_LOCAL_AI_SMOKE_PASS qwen3.5:0.8b")'; then
+                    result="PASS qwen3.5:0.8b; $(free -h | tail -n 2 | tr '\n' ' ')"
+                  else
+                    result="FAIL: qwen3.5:0.8b returned unexpected output; $(printf '%s' "$out" | head -c 1500); $(free -h | tail -n 2 | tr '\n' ' ')"
+                  fi
+                else
+                  result="FAIL: Ollama request failed for qwen3.5:0.8b; $(free -h | tail -n 2 | tr '\n' ' ')"
+                fi
+              fi
+              ;;
             local-ai-test-all)
-              result="DISABLED: six-model batch is blocked during runner stabilization. First complete /abs runner-health and /abs-reserve status; then test one model at a time."
+              result="DISABLED: six-model batch is blocked. Use /abs-reserve local-ai-smoke to test one small model at a time."
               ;;
             *)
-              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve runner-main-diagnose, /abs-reserve runner-stabilize-main, /abs-reserve restart-abs, /abs-reserve v3-test ou /abs-reserve integrate-test."
+              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve runner-main-diagnose, /abs-reserve runner-stabilize-main, /abs-reserve restart-abs, /abs-reserve v3-test, /abs-reserve integrate-test ou /abs-reserve local-ai-smoke."
               ;;
           esac
           {
