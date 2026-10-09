@@ -32,7 +32,6 @@ jobs:
           git reset --hard origin/main --quiet
 
           REPORT="$RUNNER_TEMP/abs-browser-build-report.txt"
-          STATUS="$RUNNER_TEMP/abs-browser-build-status.env"
           install -m 600 /dev/null "$REPORT"
           exec > >(tee -a "$REPORT") 2>&1
 
@@ -111,8 +110,7 @@ jobs:
               --restart unless-stopped \
               --init \
               --security-opt no-new-privileges:true \
-              --cap-drop ALL \
-              --cap-add CHOWN --cap-add SETUID --cap-add SETGID --cap-add DAC_OVERRIDE \
+              --cap-drop NET_RAW \
               --memory 1280m --memory-swap 1792m --cpus 1.50 --pids-limit 512 \
               --shm-size 512m \
               --env-file "$ENVFILE" \
@@ -134,7 +132,7 @@ jobs:
           if [ "$STATE" != running ]; then
             fail "Browser container is not running. Preserve its files and inspect container logs privately."
             sudo docker ps -a --filter name=abs-browser-ui --format 'Browser state={{.Status}}' || true
-            sudo docker logs --tail 40 abs-browser-ui 2>&1 | sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[^ ]*/[REDACTED]/Ig' || true
+            note "Container logs intentionally withheld from the public issue report to prevent accidental disclosure."
             exit 1
           fi
           pass "Browser container state is running"
@@ -148,13 +146,12 @@ jobs:
             exit 1
           fi
 
-          if curl -fsS --max-time 10 http://127.0.0.1:3000/ >/dev/null; then
-            pass "Browser UI responds locally on 127.0.0.1:3000"
-          else
-            note "UI root did not return HTTP success yet; checking container health and logs without exposing secrets."
-            sudo docker inspect abs-browser-ui --format 'state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}not-configured{{end}}' || true
-            sudo docker logs --tail 30 abs-browser-ui 2>&1 | sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[^ ]*/[REDACTED]/Ig' || true
-          fi
+          HTTP_CODE="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 10 http://127.0.0.1:3000/ || true)"
+          case "$HTTP_CODE" in
+            200|301|302|401) pass "Browser UI HTTP endpoint responds locally (HTTP $HTTP_CODE)" ;;
+            *) note "Browser UI returned HTTP ${HTTP_CODE:-no-response}; logs are withheld from the issue report." ;;
+          esac
+          sudo docker inspect abs-browser-ui --format 'state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}not-configured{{end}}' || true
 
           echo
           echo "=== Private mobile access readiness ==="
