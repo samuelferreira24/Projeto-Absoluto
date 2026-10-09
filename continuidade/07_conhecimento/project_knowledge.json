@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:26:41-03:00",
-  "source_revision": "2b7d1d29926ce69baeab819a22c9fea4aa2eb11a",
+  "generated_at": "2026-10-09T00:27:31-03:00",
+  "source_revision": "f9061757544648b4bc8b62571e2295259765b7b4",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "2b7d1d29926ce69baeab819a22c9fea4aa2eb11a",
-      "commit_subject": "Remover limpeza experimental de fila e manter validação automática isolada"
+      "revision": "f9061757544648b4bc8b62571e2295259765b7b4",
+      "commit_subject": "Restaurar canal principal no runner principal e remover limpeza experimental"
     }
   ],
   "tools": [
@@ -9651,6 +9651,20 @@
       "sha": "2b7d1d29926ce69baeab819a22c9fea4aa2eb11a"
     },
     {
+      "id": "commit:ed6a81db5aba6998c2d9024833ea2b8f08cab3a2",
+      "kind": "commit",
+      "at": "2026-10-09T03:27:01Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "ed6a81db5aba6998c2d9024833ea2b8f08cab3a2"
+    },
+    {
+      "id": "commit:f9061757544648b4bc8b62571e2295259765b7b4",
+      "kind": "commit",
+      "at": "2026-10-09T00:27:31-03:00",
+      "subject": "Restaurar canal principal no runner principal e remover limpeza experimental",
+      "sha": "f9061757544648b4bc8b62571e2295259765b7b4"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9763,23 +9777,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:2708bba736ca",
+      "id": "evidence:repository:46d8290512bd",
       "kind": "evidence",
-      "at": "2026-10-09T00:26:41-03:00",
+      "at": "2026-10-09T00:27:31-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:2708bba736ca",
+      "id": "event:repository-scan:46d8290512bd",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:26:41-03:00"
+      "at": "2026-10-09T00:27:31-03:00"
     },
     {
-      "id": "event:commit-observed:2b7d1d29926c",
+      "id": "event:commit-observed:f90617575446",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:26:41-03:00"
+      "at": "2026-10-09T00:27:31-03:00"
     }
   ],
   "paths": [
@@ -9814,11 +9828,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:b1dd0c5aa006"
+        "evidence:test:1d459428abef"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:26:41-03:00"
+      "last_validated": "2026-10-09T00:27:31-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9841,20 +9855,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:2708bba736ca",
+      "id": "evidence:repository:46d8290512bd",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:26:41-03:00",
+      "observed_at": "2026-10-09T00:27:31-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision 2b7d1d29926ce69baeab819a22c9fea4aa2eb11a"
+      "detail": "406 files indexed at revision f9061757544648b4bc8b62571e2295259765b7b4"
     },
     {
-      "id": "evidence:test:b1dd0c5aa006",
+      "id": "evidence:test:1d459428abef",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:26:41-03:00",
+      "observed_at": "2026-10-09T00:27:31-03:00",
       "status": "tested",
-      "detail": "199 passed in 7.54s"
+      "detail": "199 passed in 6.90s"
     }
   ],
   "decisions": [
@@ -9957,30 +9971,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:2708bba736ca",
+      "id": "event:repository-scan:46d8290512bd",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:26:41-03:00",
-      "revision": "2b7d1d29926ce69baeab819a22c9fea4aa2eb11a",
+      "at": "2026-10-09T00:27:31-03:00",
+      "revision": "f9061757544648b4bc8b62571e2295259765b7b4",
       "file_count": 406,
-      "evidence_id": "evidence:repository:2708bba736ca"
+      "evidence_id": "evidence:repository:46d8290512bd"
     },
     {
-      "id": "event:commit-observed:2b7d1d29926c",
+      "id": "event:commit-observed:f90617575446",
       "type": "commit_observed",
-      "at": "2026-10-09T00:26:41-03:00",
-      "revision": "2b7d1d29926ce69baeab819a22c9fea4aa2eb11a",
+      "at": "2026-10-09T00:27:31-03:00",
+      "revision": "f9061757544648b4bc8b62571e2295259765b7b4",
       "branch": "main",
-      "subject": "Remover limpeza experimental de fila e manter validação automática isolada",
+      "subject": "Restaurar canal principal no runner principal e remover limpeza experimental",
       "changed_files": [
-        ".github/workflows/abs-auto-integration.yml"
+        ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:b1dd0c5aa006",
+      "id": "event:test:1d459428abef",
       "type": "tests_observed",
-      "at": "2026-10-09T00:26:41-03:00",
+      "at": "2026-10-09T00:27:31-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:b1dd0c5aa006"
+      "evidence_id": "evidence:test:1d459428abef"
     }
   ],
   "knowledge_sources": [
@@ -10036,7 +10050,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "0c4e24b6c40e2038b8f5695f2783684136c859f6a7530dfff2a5d3cb9ed42e79"
+      "sha256": "15510e1928f4bec91d541a3dd6de3b4883743e050c7f2426ccb6c8a08637547f"
     },
     {
       "id": "source:session",
@@ -41879,12 +41893,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:2708bba736ca",
-      "source": "event:repository-scan:2708bba736ca",
-      "relation": "generated",
-      "target": "evidence:repository:2708bba736ca",
+      "id": "rel:commit-precedes:2b7d1d29926c:ed6a81db5aba",
+      "source": "commit:2b7d1d29926ce69baeab819a22c9fea4aa2eb11a",
+      "relation": "precedes",
+      "target": "commit:ed6a81db5aba6998c2d9024833ea2b8f08cab3a2",
       "status": "asserted",
-      "at": "2026-10-09T00:26:41-03:00",
+      "at": "2026-10-09T03:27:01Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ed6a81db5aba:032adc3624d7",
+      "source": "commit:ed6a81db5aba6998c2d9024833ea2b8f08cab3a2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:27:01Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ed6a81db5aba:d64178c49886",
+      "source": "commit:ed6a81db5aba6998c2d9024833ea2b8f08cab3a2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:27:01Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:ed6a81db5aba:f90617575446",
+      "source": "commit:ed6a81db5aba6998c2d9024833ea2b8f08cab3a2",
+      "relation": "precedes",
+      "target": "commit:f9061757544648b4bc8b62571e2295259765b7b4",
+      "status": "asserted",
+      "at": "2026-10-09T00:27:31-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f90617575446:1734be446032",
+      "source": "commit:f9061757544648b4bc8b62571e2295259765b7b4",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:27:31-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:46d8290512bd",
+      "source": "event:repository-scan:46d8290512bd",
+      "relation": "generated",
+      "target": "evidence:repository:46d8290512bd",
+      "status": "asserted",
+      "at": "2026-10-09T00:27:31-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -41893,12 +41977,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:2b7d1d29926c",
-      "source": "commit:2b7d1d29926ce69baeab819a22c9fea4aa2eb11a",
+      "id": "rel:scan-commit:f90617575446",
+      "source": "commit:f9061757544648b4bc8b62571e2295259765b7b4",
       "relation": "observed_by",
-      "target": "event:repository-scan:2708bba736ca",
+      "target": "event:repository-scan:46d8290512bd",
       "status": "asserted",
-      "at": "2026-10-09T00:26:41-03:00",
+      "at": "2026-10-09T00:27:31-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
