@@ -611,15 +611,19 @@ jobs:
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
             browser-diagnose)
+              set +e
               {
+                echo "[docker access]"
+                sudo -n docker ps --filter name=abs-browser-ui --format 'name={{.Names}} status={{.Status}} ports={{.Ports}}' 2>&1
+                echo
                 echo "[container state]"
-                sudo docker inspect abs-browser-ui --format 'status={{.State.Status}} exit={{.State.ExitCode}} error={{.State.Error}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}'
+                sudo -n docker inspect abs-browser-ui --format 'status={{.State.Status}} exit={{.State.ExitCode}} error={{.State.Error}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}' 2>&1 || true
                 echo
                 echo "[health/ports/mounts/limits]"
-                sudo docker inspect abs-browser-ui --format 'health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} ports={{json .HostConfig.PortBindings}} mounts={{json .Mounts}} memory={{.HostConfig.Memory}} memory_swap={{.HostConfig.MemorySwap}} cpus={{.HostConfig.NanoCpus}} pids={{.HostConfig.PidsLimit}}'
+                sudo -n docker inspect abs-browser-ui --format 'health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} ports={{json .HostConfig.PortBindings}} memory={{.HostConfig.Memory}} memory_swap={{.HostConfig.MemorySwap}} cpus={{.HostConfig.NanoCpus}} pids={{.HostConfig.PidsLimit}}' 2>&1 || true
                 echo
                 echo "[sanitized startup errors]"
-                sudo docker logs --tail 160 abs-browser-ui 2>&1 | grep -Ei 'error|fatal|permission|failed|denied|exit|listen|port|supervisor|s6-' | sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[=: ][^ ]*/\1=[REDACTED]/Ig' | tail -n 80 || true
+                sudo -n docker logs --tail 160 abs-browser-ui 2>&1 | grep -Ei 'error|fatal|permission|failed|denied|exit|listen|port|supervisor|s6-' | sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[=: ][^ ]*/\\1=[REDACTED]/Ig' | tail -n 80 || true
                 echo
                 echo "[host resources]"
                 free -h
