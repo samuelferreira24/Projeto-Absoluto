@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:17:23-03:00",
-  "source_revision": "ab6349e235878fc86385a532196e8b9dded21376",
+  "generated_at": "2026-10-09T00:18:06-03:00",
+  "source_revision": "956c318dee0a9277766b4b1af82ae3c1423c2508",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "ab6349e235878fc86385a532196e8b9dded21376",
-      "commit_subject": "Permitir encerrar execução antiga presa no canal de comandos"
+      "revision": "956c318dee0a9277766b4b1af82ae3c1423c2508",
+      "commit_subject": "Percorrer páginas completas ao limpar execuções presas dos runners"
     }
   ],
   "tools": [
@@ -9532,6 +9532,20 @@
       "sha": "ab6349e235878fc86385a532196e8b9dded21376"
     },
     {
+      "id": "commit:ab2c464f07980a62dd730c6f699ac19b3388b35e",
+      "kind": "commit",
+      "at": "2026-10-09T03:17:41Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "ab2c464f07980a62dd730c6f699ac19b3388b35e"
+    },
+    {
+      "id": "commit:956c318dee0a9277766b4b1af82ae3c1423c2508",
+      "kind": "commit",
+      "at": "2026-10-09T00:18:06-03:00",
+      "subject": "Percorrer páginas completas ao limpar execuções presas dos runners",
+      "sha": "956c318dee0a9277766b4b1af82ae3c1423c2508"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9644,23 +9658,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:1487e6fb9e5c",
+      "id": "evidence:repository:d3ea05e0afde",
       "kind": "evidence",
-      "at": "2026-10-09T00:17:23-03:00",
+      "at": "2026-10-09T00:18:06-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:1487e6fb9e5c",
+      "id": "event:repository-scan:d3ea05e0afde",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:17:23-03:00"
+      "at": "2026-10-09T00:18:06-03:00"
     },
     {
-      "id": "event:commit-observed:ab6349e23587",
+      "id": "event:commit-observed:956c318dee0a",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:17:23-03:00"
+      "at": "2026-10-09T00:18:06-03:00"
     }
   ],
   "paths": [
@@ -9695,11 +9709,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:5784f7e0123a"
+        "evidence:test:a176475f6a0a"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:17:23-03:00"
+      "last_validated": "2026-10-09T00:18:06-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -9722,20 +9736,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:1487e6fb9e5c",
+      "id": "evidence:repository:d3ea05e0afde",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:17:23-03:00",
+      "observed_at": "2026-10-09T00:18:06-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision ab6349e235878fc86385a532196e8b9dded21376"
+      "detail": "406 files indexed at revision 956c318dee0a9277766b4b1af82ae3c1423c2508"
     },
     {
-      "id": "evidence:test:5784f7e0123a",
+      "id": "evidence:test:a176475f6a0a",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:17:23-03:00",
+      "observed_at": "2026-10-09T00:18:06-03:00",
       "status": "tested",
-      "detail": "199 passed in 7.26s"
+      "detail": "199 passed in 7.42s"
     }
   ],
   "decisions": [
@@ -9838,30 +9852,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:1487e6fb9e5c",
+      "id": "event:repository-scan:d3ea05e0afde",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:17:23-03:00",
-      "revision": "ab6349e235878fc86385a532196e8b9dded21376",
+      "at": "2026-10-09T00:18:06-03:00",
+      "revision": "956c318dee0a9277766b4b1af82ae3c1423c2508",
       "file_count": 406,
-      "evidence_id": "evidence:repository:1487e6fb9e5c"
+      "evidence_id": "evidence:repository:d3ea05e0afde"
     },
     {
-      "id": "event:commit-observed:ab6349e23587",
+      "id": "event:commit-observed:956c318dee0a",
       "type": "commit_observed",
-      "at": "2026-10-09T00:17:23-03:00",
-      "revision": "ab6349e235878fc86385a532196e8b9dded21376",
+      "at": "2026-10-09T00:18:06-03:00",
+      "revision": "956c318dee0a9277766b4b1af82ae3c1423c2508",
       "branch": "main",
-      "subject": "Permitir encerrar execução antiga presa no canal de comandos",
+      "subject": "Percorrer páginas completas ao limpar execuções presas dos runners",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:5784f7e0123a",
+      "id": "event:test:a176475f6a0a",
       "type": "tests_observed",
-      "at": "2026-10-09T00:17:23-03:00",
+      "at": "2026-10-09T00:18:06-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:5784f7e0123a"
+      "evidence_id": "evidence:test:a176475f6a0a"
     }
   ],
   "knowledge_sources": [
@@ -9917,7 +9931,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "cc7830f5833202ae4e4780eeee662bbc1df4cfe84d315a806e2f3afac37c1994"
+      "sha256": "9c8bea92368ec2ee684b76a20e3892406d3bed5cbafdaab5382061afc3ad33ae"
     },
     {
       "id": "source:session",
@@ -41172,12 +41186,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:1487e6fb9e5c",
-      "source": "event:repository-scan:1487e6fb9e5c",
-      "relation": "generated",
-      "target": "evidence:repository:1487e6fb9e5c",
+      "id": "rel:commit-precedes:ab6349e23587:ab2c464f0798",
+      "source": "commit:ab6349e235878fc86385a532196e8b9dded21376",
+      "relation": "precedes",
+      "target": "commit:ab2c464f07980a62dd730c6f699ac19b3388b35e",
       "status": "asserted",
-      "at": "2026-10-09T00:17:23-03:00",
+      "at": "2026-10-09T03:17:41Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ab2c464f0798:032adc3624d7",
+      "source": "commit:ab2c464f07980a62dd730c6f699ac19b3388b35e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:17:41Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ab2c464f0798:d64178c49886",
+      "source": "commit:ab2c464f07980a62dd730c6f699ac19b3388b35e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:17:41Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:ab2c464f0798:956c318dee0a",
+      "source": "commit:ab2c464f07980a62dd730c6f699ac19b3388b35e",
+      "relation": "precedes",
+      "target": "commit:956c318dee0a9277766b4b1af82ae3c1423c2508",
+      "status": "asserted",
+      "at": "2026-10-09T00:18:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:956c318dee0a:1734be446032",
+      "source": "commit:956c318dee0a9277766b4b1af82ae3c1423c2508",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:18:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:d3ea05e0afde",
+      "source": "event:repository-scan:d3ea05e0afde",
+      "relation": "generated",
+      "target": "evidence:repository:d3ea05e0afde",
+      "status": "asserted",
+      "at": "2026-10-09T00:18:06-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -41186,12 +41270,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:ab6349e23587",
-      "source": "commit:ab6349e235878fc86385a532196e8b9dded21376",
+      "id": "rel:scan-commit:956c318dee0a",
+      "source": "commit:956c318dee0a9277766b4b1af82ae3c1423c2508",
       "relation": "observed_by",
-      "target": "event:repository-scan:1487e6fb9e5c",
+      "target": "event:repository-scan:d3ea05e0afde",
       "status": "asserted",
-      "at": "2026-10-09T00:17:23-03:00",
+      "at": "2026-10-09T00:18:06-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
