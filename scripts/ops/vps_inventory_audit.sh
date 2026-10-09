@@ -16,14 +16,14 @@ uptime
 free -h
 df -h /
 echo "=== TOP-LEVEL DISK USAGE ==="
-sudo du -xhd1 / 2>/dev/null | sort -h | tail -n 18 || true
+sudo du -x -h --max-depth=1 / 2>/dev/null | sort -h | tail -n 18 | sed 's/^/DISK_DIR /' || true
 echo "=== RELEVANT SERVICES ==="
-systemctl --no-pager --type=service --state=running | grep -Ei 'abs|ollama|docker|coolify|code-server|postgres|uptime|tailscale|redis|n8n' || true
+systemctl --no-pager --type=service --state=running | grep -Ei 'abs|ollama|docker|coolify|code-server|postgres|uptime|tailscale|redis|n8n' | sed 's/^/SERVICE /' || true
 echo "=== DOCKER CONTAINERS ==="
 if command -v docker >/dev/null 2>&1; then
-  docker ps -a --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' || true
+  docker ps -a --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' | sed 's/^/DOCKER_CONTAINER /' || true
   echo "=== DOCKER STORAGE SUMMARY ==="
-  docker system df -v 2>&1 | head -n 180 || true
+  docker system df -v 2>&1 | head -n 180 | sed 's/^/DOCKER_STORAGE /' || true
 else
   echo "DOCKER_NOT_INSTALLED"
 fi
