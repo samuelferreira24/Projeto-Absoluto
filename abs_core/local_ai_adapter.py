@@ -40,9 +40,7 @@ class LocalAICapability:
         ):
             messages.append({"role": "user", "content": objective})
 
-        endpoint = self.endpoint.rstrip("/")
-        if not endpoint.endswith("/chat/completions"):
-            endpoint += "/v1/chat/completions"
+        base_endpoint = self.endpoint.rstrip("/")
 
         try:
             max_tokens = int(context.get("max_tokens", os.getenv("ABS_LOCAL_AI_MAX_TOKENS", "96")))
@@ -66,9 +64,9 @@ class LocalAICapability:
             timeout = self.timeout
         timeout = max(1, min(timeout, 300))
 
-        native_ollama = endpoint.startswith(("http://127.0.0.1:11434", "http://localhost:11434"))
+        native_ollama = base_endpoint.startswith(("http://127.0.0.1:11434", "http://localhost:11434"))
         if native_ollama:
-            native_endpoint = endpoint
+            native_endpoint = base_endpoint
             if native_endpoint.endswith("/v1"):
                 native_endpoint = native_endpoint[:-3]
             payload = {
@@ -86,6 +84,7 @@ class LocalAICapability:
             if not text and message.get("thinking"):
                 text = message.get("thinking")
         else:
+            endpoint = base_endpoint
             if not endpoint.endswith("/chat/completions"):
                 endpoint += "/v1/chat/completions"
             payload = {
