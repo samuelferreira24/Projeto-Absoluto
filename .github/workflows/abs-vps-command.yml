@@ -101,6 +101,33 @@ jobs:
               python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["type"]=="operational_result" and d["completed"] is True, d; p=d["plan"]; assert p["source"]=="model" and p["intelligence_id"], p; print("ABS V3 OPERATIONAL INTELLIGENCE HTTP PASS"); print(json.dumps(d)[:12000])' <<<"$objective_json"
               result="$objective_json"
               ;;
+            v3-local-ai-qwen2b-test)
+              set +e
+              available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+              if [ "$available_kb" -lt 4194304 ]; then
+                result="SKIP: MemAvailable below 4 GiB; ABS Qwen 2B was not called. $(free -h | tail -n 2 | tr '\\n' ' ')"
+              else
+                chat_json="$(curl -sS --max-time 120 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d '{"message":"Say ABS_LOCAL_AI_QWEN2B_OK and nothing else.","approved":true,"context":{"capability_id":"local-ai:qwen3.5-2b","max_tokens":16,"temperature":0,"think":false,"keep_alive":0,"timeout":90}}' 2>&1)"
+                curl_rc=$?
+                {
+                  echo "[curl_rc] $curl_rc"
+                  echo "[chat]"
+                  echo "$chat_json"
+                  if [ "$curl_rc" -eq 0 ]; then
+                    if echo "$chat_json" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("work_state")=="completed", d; assert "ABS_LOCAL_AI_QWEN2B_OK" in str(d.get("response","")).upper(), d; p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert any(isinstance(x,dict) and x.get("capability_id")=="local-ai:qwen3.5-2b" for x in p), p; print("ABS V3 LOCAL QWEN 2B INTEGRATION PASS")'; then
+                      echo "[validation] PASS"
+                    else
+                      echo "[validation] FAIL"
+                    fi
+                  else
+                    echo "[validation] FAIL: HTTP request did not complete"
+                  fi
+                  echo
+                  free -h
+                } > /tmp/abs-v3-local-ai-qwen2b-result.txt
+                result="$(cat /tmp/abs-v3-local-ai-qwen2b-result.txt)"
+              fi
+              ;;
             v3-local-ai-test)
               set +e
               available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
@@ -352,6 +379,7 @@ jobs:
           /abs v2-test
           /abs v3-test
           /abs v3-live-test
+          /abs v3-local-ai-qwen2b-test
           /abs v3-local-ai-test
           /abs v3-chat-test
           /abs openclaw-v2-test
