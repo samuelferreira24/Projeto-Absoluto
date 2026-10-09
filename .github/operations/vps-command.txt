@@ -1,1 +1,1 @@
-test-gemma-e2b
+switch-gemma-e2b-q3
