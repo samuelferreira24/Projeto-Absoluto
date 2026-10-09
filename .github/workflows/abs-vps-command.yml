@@ -667,6 +667,9 @@ jobs:
                 echo "[Serve waiter service]"
                 sudo -n systemctl show abs-browser-tailnet-serve.service -p ActiveState -p SubState -p Result -p MainPID 2>&1 || true
                 echo
+                echo "[Serve waiter journal]"
+                sudo -n journalctl -u abs-browser-tailnet-serve.service -n 40 --no-pager 2>&1 || true
+                echo
                 echo "[Tailscale CLI processes]"
                 ps -eo pid,ppid,stat,etime,wchan:24,args | grep -E '[t]ailscale (serve|status)' || true
               } > /tmp/abs-tailnet-status.txt 2>&1
