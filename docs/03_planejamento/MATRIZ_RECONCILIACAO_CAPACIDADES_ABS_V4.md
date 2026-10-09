@@ -140,3 +140,14 @@ Estas funções não aparecem como IDs independentes no tabuleiro atual. Isso **
 Foram lidos os dois registros canônicos e referências selecionadas de inventário, runtime, verificação e teste. Não foram executados os testes do repositório nem acessado o runtime da VPS nesta etapa. Portanto, isto é uma reconciliação documental; nenhum status canônico foi alterado.
 
 Fontes internas: `continuidade/07_conhecimento/capability_registry.json`; `closure_registry.json`; `docs/02_arquitetura/INVENTARIO_CAPACIDADES_ABS_V1.md`; `docs/03_planejamento/MATRIZ_FECHAMENTO_ABS_V4.md`; referências de código e teste citadas acima.
+
+
+## Evidência de CI consultada nesta execução
+
+No commit `c61944f60318c0df42c279360ce076b0f74ba25a` da branch de planejamento, GitHub Actions concluiu com sucesso três workflows:
+
+- [ABS V2 CI — sucesso](https://github.com/samuelferreira24/Projeto-Absoluto/actions/runs/37887671464): `pytest -q tests/test_abs_v2.py` e `python -m compileall -q abs_core`.
+- [ABS Core — sucesso](https://github.com/samuelferreira24/Projeto-Absoluto/actions/runs/37887671391): `pytest -q tests` e validação real de navegação entre os repositórios Projeto-Absoluto e Sistema.
+- [Project Knowledge Tests — sucesso](https://github.com/samuelferreira24/Projeto-Absoluto/actions/runs/37887671400): testes de conhecimento do projeto, avaliador de caminhos e navegação V1/V2.
+
+**Interpretação correta:** os workflows testaram o código-base do commit e todos passaram. Como as alterações desta branch são documentais, isso não comprova a conclusão das 27 capacidades parciais nem valida o runtime atual da VPS. Também não constitui teste específico de navegador automatizado, sandbox, backup/restauração ou execução 24/7.
