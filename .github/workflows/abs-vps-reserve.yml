@@ -5,7 +5,7 @@ on:
     types: [created]
 
 concurrency:
-  group: abs-vps-reserve
+  group: abs-vps-shared-tree
   cancel-in-progress: false
 
 permissions:
