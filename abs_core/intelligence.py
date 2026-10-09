@@ -146,13 +146,21 @@ class CognitiveRuntime:
         # the ABS service, Ollama overhead, and transient allocations. An explicit
         # preference must never override this safety gate.
         import os
-        safety_reserve_mb = float(os.getenv("ABS_LOCAL_AI_MEMORY_RESERVE_MB", "512"))
+        safety_reserve_mb = float(os.getenv("ABS_LOCAL_AI_MEMORY_RESERVE_MB", "768"))
         if memory_mb > 0:
             resources = [
                 resource for resource in resources
                 if not resource.local
                 or not float(resource.metadata.get("estimated_memory_mb", 0.0) or 0.0)
                 or float(resource.metadata.get("estimated_memory_mb", 0.0) or 0.0) <= max(0.0, memory_mb - safety_reserve_mb)
+            ]
+        else:
+            # If memory cannot be measured, fail closed for local models with a
+            # declared footprint instead of treating unknown RAM as unlimited.
+            resources = [
+                resource for resource in resources
+                if not resource.local
+                or not float(resource.metadata.get("estimated_memory_mb", 0.0) or 0.0)
             ]
 
         def score(resource: IntelligenceResource) -> tuple[float, str]:
