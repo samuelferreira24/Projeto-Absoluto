@@ -13,7 +13,7 @@ permissions:
 
 concurrency:
   group: abs-vps-shared-tree
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   validate-one:
