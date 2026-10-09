@@ -37,7 +37,7 @@ jobs:
         run: |
           set -u
           if [ "${{ github.event_name }}" = "push" ]; then
-            command="local-ai-test-all"
+            command="runner-diagnose"
           else
             command="${REQUEST#'/abs '}"
           fi
@@ -337,6 +337,25 @@ jobs:
           /abs openclaw-install
           /abs openclaw-status'
               ;;
+            runner-diagnose)
+              {
+                echo "[reserve unit properties]"
+                sudo systemctl show actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01-reserve.service -p ActiveState -p SubState -p Result -p Restart -p RestartUSec -p MemoryCurrent -p MemoryPeak -p MemoryMax -p MemorySwapMax -p FragmentPath -p DropInPaths || true
+                echo
+                echo "[reserve status]"
+                sudo systemctl status actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01-reserve.service --no-pager -l || true
+                echo
+                echo "[reserve recent journal]"
+                sudo journalctl -u actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01-reserve.service -n 100 --no-pager || true
+                echo
+                echo "[runner processes]"
+                pgrep -af 'Runner.Listener|Runner.Worker|runsvc.sh' || true
+                echo
+                echo "[memory]"
+                free -h
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             status)
               {
                 echo "hostname: $(hostname)"
@@ -401,6 +420,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Report result
+        if: github.event_name == 'issue_comment'
         uses: actions/github-script@v7
         env:
           RESULT: ${{ steps.command.outputs.result }}
