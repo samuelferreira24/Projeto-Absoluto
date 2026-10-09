@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:46:30-03:00",
-  "source_revision": "31d68fe296fe4e12db9b5ffa5a17916f7e7d1669",
+  "generated_at": "2026-10-09T00:48:50-03:00",
+  "source_revision": "1e089d3854369d9f17d9267c39e543ad8a271183",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "31d68fe296fe4e12db9b5ffa5a17916f7e7d1669",
-      "commit_subject": "Corrigir escapes de nova linha na configuração de IA local"
+      "revision": "1e089d3854369d9f17d9267c39e543ad8a271183",
+      "commit_subject": "Validar proveniência local no formato real do ABS V3"
     }
   ],
   "tools": [
@@ -9875,6 +9875,20 @@
       "sha": "31d68fe296fe4e12db9b5ffa5a17916f7e7d1669"
     },
     {
+      "id": "commit:49ad00fe08abb4c7c5959aace20d50f340026125",
+      "kind": "commit",
+      "at": "2026-10-09T03:46:48Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "49ad00fe08abb4c7c5959aace20d50f340026125"
+    },
+    {
+      "id": "commit:1e089d3854369d9f17d9267c39e543ad8a271183",
+      "kind": "commit",
+      "at": "2026-10-09T00:48:50-03:00",
+      "subject": "Validar proveniência local no formato real do ABS V3",
+      "sha": "1e089d3854369d9f17d9267c39e543ad8a271183"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -9987,23 +10001,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:035724f1afca",
+      "id": "evidence:repository:7be5ff580b12",
       "kind": "evidence",
-      "at": "2026-10-09T00:46:30-03:00",
+      "at": "2026-10-09T00:48:50-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:035724f1afca",
+      "id": "event:repository-scan:7be5ff580b12",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:46:30-03:00"
+      "at": "2026-10-09T00:48:50-03:00"
     },
     {
-      "id": "event:commit-observed:31d68fe296fe",
+      "id": "event:commit-observed:1e089d385436",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:46:30-03:00"
+      "at": "2026-10-09T00:48:50-03:00"
     }
   ],
   "paths": [
@@ -10038,11 +10052,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:9cacc2318689"
+        "evidence:test:5333d0af8c3c"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:46:30-03:00"
+      "last_validated": "2026-10-09T00:48:50-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10065,20 +10079,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:035724f1afca",
+      "id": "evidence:repository:7be5ff580b12",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:46:30-03:00",
+      "observed_at": "2026-10-09T00:48:50-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision 31d68fe296fe4e12db9b5ffa5a17916f7e7d1669"
+      "detail": "406 files indexed at revision 1e089d3854369d9f17d9267c39e543ad8a271183"
     },
     {
-      "id": "evidence:test:9cacc2318689",
+      "id": "evidence:test:5333d0af8c3c",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:46:30-03:00",
+      "observed_at": "2026-10-09T00:48:50-03:00",
       "status": "tested",
-      "detail": "202 passed in 7.53s"
+      "detail": "202 passed in 7.03s"
     }
   ],
   "decisions": [
@@ -10181,30 +10195,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:035724f1afca",
+      "id": "event:repository-scan:7be5ff580b12",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:46:30-03:00",
-      "revision": "31d68fe296fe4e12db9b5ffa5a17916f7e7d1669",
+      "at": "2026-10-09T00:48:50-03:00",
+      "revision": "1e089d3854369d9f17d9267c39e543ad8a271183",
       "file_count": 406,
-      "evidence_id": "evidence:repository:035724f1afca"
+      "evidence_id": "evidence:repository:7be5ff580b12"
     },
     {
-      "id": "event:commit-observed:31d68fe296fe",
+      "id": "event:commit-observed:1e089d385436",
       "type": "commit_observed",
-      "at": "2026-10-09T00:46:30-03:00",
-      "revision": "31d68fe296fe4e12db9b5ffa5a17916f7e7d1669",
+      "at": "2026-10-09T00:48:50-03:00",
+      "revision": "1e089d3854369d9f17d9267c39e543ad8a271183",
       "branch": "main",
-      "subject": "Corrigir escapes de nova linha na configuração de IA local",
+      "subject": "Validar proveniência local no formato real do ABS V3",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:9cacc2318689",
+      "id": "event:test:5333d0af8c3c",
       "type": "tests_observed",
-      "at": "2026-10-09T00:46:30-03:00",
+      "at": "2026-10-09T00:48:50-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:9cacc2318689"
+      "evidence_id": "evidence:test:5333d0af8c3c"
     }
   ],
   "knowledge_sources": [
@@ -10260,7 +10274,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "d35b782018ef86fa405a90eb620b235bdd520d3fa2ca34c8ca7f4f149f04ec29"
+      "sha256": "827232a41332f61d389c15be46cd0d04244c310667870647f738712a07b611ba"
     },
     {
       "id": "source:session",
@@ -43111,12 +43125,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:035724f1afca",
-      "source": "event:repository-scan:035724f1afca",
-      "relation": "generated",
-      "target": "evidence:repository:035724f1afca",
+      "id": "rel:commit-precedes:31d68fe296fe:49ad00fe08ab",
+      "source": "commit:31d68fe296fe4e12db9b5ffa5a17916f7e7d1669",
+      "relation": "precedes",
+      "target": "commit:49ad00fe08abb4c7c5959aace20d50f340026125",
       "status": "asserted",
-      "at": "2026-10-09T00:46:30-03:00",
+      "at": "2026-10-09T03:46:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:49ad00fe08ab:032adc3624d7",
+      "source": "commit:49ad00fe08abb4c7c5959aace20d50f340026125",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:46:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:49ad00fe08ab:d64178c49886",
+      "source": "commit:49ad00fe08abb4c7c5959aace20d50f340026125",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:46:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:49ad00fe08ab:1e089d385436",
+      "source": "commit:49ad00fe08abb4c7c5959aace20d50f340026125",
+      "relation": "precedes",
+      "target": "commit:1e089d3854369d9f17d9267c39e543ad8a271183",
+      "status": "asserted",
+      "at": "2026-10-09T00:48:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1e089d385436:1734be446032",
+      "source": "commit:1e089d3854369d9f17d9267c39e543ad8a271183",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T00:48:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:7be5ff580b12",
+      "source": "event:repository-scan:7be5ff580b12",
+      "relation": "generated",
+      "target": "evidence:repository:7be5ff580b12",
+      "status": "asserted",
+      "at": "2026-10-09T00:48:50-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -43125,12 +43209,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:31d68fe296fe",
-      "source": "commit:31d68fe296fe4e12db9b5ffa5a17916f7e7d1669",
+      "id": "rel:scan-commit:1e089d385436",
+      "source": "commit:1e089d3854369d9f17d9267c39e543ad8a271183",
       "relation": "observed_by",
-      "target": "event:repository-scan:035724f1afca",
+      "target": "event:repository-scan:7be5ff580b12",
       "status": "asserted",
-      "at": "2026-10-09T00:46:30-03:00",
+      "at": "2026-10-09T00:48:50-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
