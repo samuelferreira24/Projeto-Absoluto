@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T17:59:45-03:00",
-  "source_revision": "51fdba0841f355da4c70ec6049db313f1ea142c0",
+  "generated_at": "2026-10-09T18:08:26-03:00",
+  "source_revision": "43cc765349eaed735b8fdb0f6f355b2105d8e3e1",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 131
+      "file_count": 132
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "51fdba0841f355da4c70ec6049db313f1ea142c0",
-      "commit_subject": "Ampliar simulação pré-build com Docker, firewall e fluxos de falha"
+      "revision": "43cc765349eaed735b8fdb0f6f355b2105d8e3e1",
+      "commit_subject": "Add guarded ABS browser build and validation workflow"
     }
   ],
   "tools": [
@@ -993,6 +993,11 @@
       "id": "file:.github/workflows/abs-vps-local-ai-bootstrap.yml",
       "kind": "file",
       "path": ".github/workflows/abs-vps-local-ai-bootstrap.yml"
+    },
+    {
+      "id": "file:.github/workflows/abs-vps-prebuild-build-all.yml",
+      "kind": "file",
+      "path": ".github/workflows/abs-vps-prebuild-build-all.yml"
     },
     {
       "id": "file:.github/workflows/abs-vps-prebuild-simulation.yml",
@@ -10377,6 +10382,20 @@
       "sha": "51fdba0841f355da4c70ec6049db313f1ea142c0"
     },
     {
+      "id": "commit:a492756335f7fd53db2f9e22f44d171f703092cd",
+      "kind": "commit",
+      "at": "2026-10-09T21:00:04Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "a492756335f7fd53db2f9e22f44d171f703092cd"
+    },
+    {
+      "id": "commit:43cc765349eaed735b8fdb0f6f355b2105d8e3e1",
+      "kind": "commit",
+      "at": "2026-10-09T18:08:26-03:00",
+      "subject": "Add guarded ABS browser build and validation workflow",
+      "sha": "43cc765349eaed735b8fdb0f6f355b2105d8e3e1"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10489,23 +10508,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:d7f91f4fe62f",
+      "id": "evidence:repository:f5b7b0424f95",
       "kind": "evidence",
-      "at": "2026-10-09T17:59:45-03:00",
+      "at": "2026-10-09T18:08:26-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:d7f91f4fe62f",
+      "id": "event:repository-scan:f5b7b0424f95",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T17:59:45-03:00"
+      "at": "2026-10-09T18:08:26-03:00"
     },
     {
-      "id": "event:commit-observed:51fdba0841f3",
+      "id": "event:commit-observed:43cc765349ea",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T17:59:45-03:00"
+      "at": "2026-10-09T18:08:26-03:00"
     }
   ],
   "paths": [
@@ -10540,11 +10559,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:e38fb466f402"
+        "evidence:test:60c6a5706a1c"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T17:59:45-03:00"
+      "last_validated": "2026-10-09T18:08:26-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10567,20 +10586,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:d7f91f4fe62f",
+      "id": "evidence:repository:f5b7b0424f95",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T17:59:45-03:00",
+      "observed_at": "2026-10-09T18:08:26-03:00",
       "status": "observed",
-      "detail": "414 files indexed at revision 51fdba0841f355da4c70ec6049db313f1ea142c0"
+      "detail": "415 files indexed at revision 43cc765349eaed735b8fdb0f6f355b2105d8e3e1"
     },
     {
-      "id": "evidence:test:e38fb466f402",
+      "id": "evidence:test:60c6a5706a1c",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T17:59:45-03:00",
+      "observed_at": "2026-10-09T18:08:26-03:00",
       "status": "tested",
-      "detail": "211 passed in 7.18s"
+      "detail": "211 passed in 7.72s"
     }
   ],
   "decisions": [
@@ -10683,30 +10702,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:d7f91f4fe62f",
+      "id": "event:repository-scan:f5b7b0424f95",
       "type": "repository_scanned",
-      "at": "2026-10-09T17:59:45-03:00",
-      "revision": "51fdba0841f355da4c70ec6049db313f1ea142c0",
-      "file_count": 414,
-      "evidence_id": "evidence:repository:d7f91f4fe62f"
+      "at": "2026-10-09T18:08:26-03:00",
+      "revision": "43cc765349eaed735b8fdb0f6f355b2105d8e3e1",
+      "file_count": 415,
+      "evidence_id": "evidence:repository:f5b7b0424f95"
     },
     {
-      "id": "event:commit-observed:51fdba0841f3",
+      "id": "event:commit-observed:43cc765349ea",
       "type": "commit_observed",
-      "at": "2026-10-09T17:59:45-03:00",
-      "revision": "51fdba0841f355da4c70ec6049db313f1ea142c0",
+      "at": "2026-10-09T18:08:26-03:00",
+      "revision": "43cc765349eaed735b8fdb0f6f355b2105d8e3e1",
       "branch": "main",
-      "subject": "Ampliar simulação pré-build com Docker, firewall e fluxos de falha",
+      "subject": "Add guarded ABS browser build and validation workflow",
       "changed_files": [
-        ".github/workflows/abs-vps-prebuild-simulation.yml"
+        ".github/workflows/abs-vps-prebuild-build-all.yml"
       ]
     },
     {
-      "id": "event:test:e38fb466f402",
+      "id": "event:test:60c6a5706a1c",
       "type": "tests_observed",
-      "at": "2026-10-09T17:59:45-03:00",
+      "at": "2026-10-09T18:08:26-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:e38fb466f402"
+      "evidence_id": "evidence:test:60c6a5706a1c"
     }
   ],
   "knowledge_sources": [
@@ -10762,7 +10781,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "8e7e2557e082e605ad84d8c26ef2e3dcd570a18f0b691b5dbe4a3da876cab08a"
+      "sha256": "6e11b6b0c75e569adb52edaddf01e1afc148333b8284370b332cf4de63fa35cf"
     },
     {
       "id": "source:session",
@@ -46203,12 +46222,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:d7f91f4fe62f",
-      "source": "event:repository-scan:d7f91f4fe62f",
-      "relation": "generated",
-      "target": "evidence:repository:d7f91f4fe62f",
+      "id": "rel:commit-precedes:51fdba0841f3:a492756335f7",
+      "source": "commit:51fdba0841f355da4c70ec6049db313f1ea142c0",
+      "relation": "precedes",
+      "target": "commit:a492756335f7fd53db2f9e22f44d171f703092cd",
       "status": "asserted",
-      "at": "2026-10-09T17:59:45-03:00",
+      "at": "2026-10-09T21:00:04Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a492756335f7:032adc3624d7",
+      "source": "commit:a492756335f7fd53db2f9e22f44d171f703092cd",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T21:00:04Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a492756335f7:d64178c49886",
+      "source": "commit:a492756335f7fd53db2f9e22f44d171f703092cd",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T21:00:04Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a492756335f7:43cc765349ea",
+      "source": "commit:a492756335f7fd53db2f9e22f44d171f703092cd",
+      "relation": "precedes",
+      "target": "commit:43cc765349eaed735b8fdb0f6f355b2105d8e3e1",
+      "status": "asserted",
+      "at": "2026-10-09T18:08:26-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:43cc765349ea:868bab1bcfbe",
+      "source": "commit:43cc765349eaed735b8fdb0f6f355b2105d8e3e1",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-prebuild-build-all.yml",
+      "status": "asserted",
+      "at": "2026-10-09T18:08:26-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:f5b7b0424f95",
+      "source": "event:repository-scan:f5b7b0424f95",
+      "relation": "generated",
+      "target": "evidence:repository:f5b7b0424f95",
+      "status": "asserted",
+      "at": "2026-10-09T18:08:26-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -46217,12 +46306,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:51fdba0841f3",
-      "source": "commit:51fdba0841f355da4c70ec6049db313f1ea142c0",
+      "id": "rel:scan-commit:43cc765349ea",
+      "source": "commit:43cc765349eaed735b8fdb0f6f355b2105d8e3e1",
       "relation": "observed_by",
-      "target": "event:repository-scan:d7f91f4fe62f",
+      "target": "event:repository-scan:f5b7b0424f95",
       "status": "asserted",
-      "at": "2026-10-09T17:59:45-03:00",
+      "at": "2026-10-09T18:08:26-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
