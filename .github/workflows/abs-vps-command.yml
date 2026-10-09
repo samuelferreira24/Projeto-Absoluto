@@ -506,7 +506,7 @@ jobs:
             // Explicitly drain the known wedged command runs; broad pagination follows.
             const knownStaleRunIds = [37878328843, 37878595391, 37878551371, 37878529656, 37878508294, 37878648462];
             for (const run_id of knownStaleRunIds) {
-              if (run_id === context.runId) continue;
+              if (run_id === Number(process.env.GITHUB_RUN_ID)) continue;
               try {
                 await github.rest.actions.cancelWorkflowRun({
                   owner: context.repo.owner,
@@ -530,7 +530,7 @@ jobs:
                 const runs = response.data.workflow_runs || [];
                 if (runs.length === 0) break;
                 for (const run of runs) {
-                  if (!targets.has(run.name) || run.id === context.runId) continue;
+                  if (!targets.has(run.name) || run.id === Number(process.env.GITHUB_RUN_ID)) continue;
                   try {
                     await github.rest.actions.cancelWorkflowRun({
                       owner: context.repo.owner,
