@@ -125,6 +125,15 @@ def build_registry() -> CapabilityRegistry:
             "local-ai", "IA local", "local_ai", LocalAICapability(),
             metadata={"cost_class": "free_local", "capabilities": ["reasoning", "chat"]},
         ))
+    if os.getenv("ABS_BROWSER_CDP_URL"):
+        from .browser_adapter import BrowserCapability
+        registry.register(CapabilityRecord(
+            "browser-control",
+            "ABS Browser Control",
+            "browser",
+            BrowserCapability(endpoint=os.getenv("ABS_BROWSER_CDP_URL")),
+            metadata={"capabilities": ["browser-status", "browser-tabs", "approved-navigation"], "security": "loopback-cdp-explicit-approval"},
+        ))
     return registry
 
 
