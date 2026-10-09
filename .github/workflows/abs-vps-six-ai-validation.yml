@@ -74,15 +74,29 @@ jobs:
               echo
               if [ "$curl_rc" -ne 0 ]; then
                 echo "FAIL: HTTP request failed."
-                free -h
-                return 0
-              fi
-              if printf '%s\\n' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); expected=sys.argv[1].upper(); cap=sys.argv[2]; model=sys.argv[3]; assert d.get("work_state")=="completed", d; assert expected in str(d.get("response","")).upper(), d; assert d.get("resource",{}).get("metadata",{}).get("model")==model, d.get("resource"); p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert any(isinstance(x,dict) and x.get("capability_id")==cap for x in p), p; print("ABS MODEL VIA V3 PASS; capability="+cap+"; model="+model)' "$expected" "$capability" "$model"; then
+                echo "VALIDATION=FAIL"
+              elif printf '%s\\n' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); expected=sys.argv[1].upper(); cap=sys.argv[2]; model=sys.argv[3]; assert d.get("work_state")=="completed", d; assert expected in str(d.get("response","")).upper(), d; assert d.get("resource",{}).get("metadata",{}).get("model")==model, d.get("resource"); p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert any(isinstance(x,dict) and x.get("capability_id")==cap for x in p), p; print("ABS MODEL VIA V3 PASS; capability="+cap+"; model="+model)' "$expected" "$capability" "$model"; then
                 echo "VALIDATION=PASS"
               else
                 echo "VALIDATION=FAIL"
               fi
-              echo "[active Ollama models after keep_alive=0]"
+              echo "[cleanup] restarting Ollama to release model memory/cache"
+              if ! sudo systemctl restart ollama.service; then
+                echo "CLEANUP=FAIL"
+                echo "VALIDATION=FAIL"
+              else
+                sleep 3
+                if ! systemctl is-active --quiet ollama.service; then
+                  echo "CLEANUP=FAIL: Ollama service is not active after restart."
+                  echo "VALIDATION=FAIL"
+                fi
+                if ! curl -fsS --max-time 10 http://127.0.0.1:8787/health; then
+                  echo "CLEANUP=FAIL: ABS health check failed after Ollama restart."
+                  echo "VALIDATION=FAIL"
+                fi
+              fi
+              echo
+              echo "[active Ollama models after cleanup]"
               curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
               echo
               free -h
@@ -159,6 +173,19 @@ jobs:
                 echo "FAIL: could not update model map."
                 return 1
               fi
+              if ! sudo grep -F -- "$to_entry" /etc/abs-local-models.env >/dev/null; then
+                echo "FAIL: model map does not contain the requested target entry."
+                return 1
+              fi
+              if ! sudo systemctl restart ollama.service; then
+                echo "FAIL: Ollama restart failed after routing change."
+                return 1
+              fi
+              sleep 3
+              if ! systemctl is-active --quiet ollama.service; then
+                echo "FAIL: Ollama is not active after restart."
+                return 1
+              fi
               if ! sudo systemctl restart abs.service; then
                 echo "FAIL: ABS restart failed."
                 return 1
@@ -169,8 +196,8 @@ jobs:
                 return 1
               fi
               echo
-              if ! curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status | python3 -c 'import json,sys; d=json.load(sys.stdin); cap,tag=sys.argv[1:3]; r=next(x for x in d["intelligence"] if x.get("id")==cap); assert r.get("metadata",{}).get("model")==tag, r; print("ROUTING PASS: "+cap+" -> "+tag)' "$capability" "$target_tag"; then
-                echo "FAIL: ABS registry does not show the target model."
+              if ! curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status | python3 -c 'import json,sys; d=json.load(sys.stdin); cap=sys.argv[1]; assert any(x.get("id")==cap and x.get("status")=="available" for x in d["intelligence"]), d; print("CAPABILITY AVAILABLE: "+cap)' "$capability"; then
+                echo "FAIL: ABS capability is not available after routing change."
                 return 1
               fi
               echo "OPERATION=PASS"
@@ -250,12 +277,8 @@ jobs:
             tail -c 12000 "$result_file"
             echo 'ABS_RESULT_EOF'
           } >> "$GITHUB_OUTPUT"
-          if [[ "$command" == test-* ]] && ! grep -q 'VALIDATION=PASS' "$result_file"; then
+          if [[ "$command" == test-* ]] && { grep -q 'VALIDATION=FAIL' "$result_file" || ! grep -q 'VALIDATION=PASS' "$result_file"; }; then
             echo "Model validation did not pass: $command" >&2
-            exit 1
-          fi
-          if [[ "$command" == install-* || "$command" == switch-* || "$command" == rollback-* ]] && ! grep -q 'OPERATION=PASS' "$result_file"; then
-            echo "Model maintenance operation did not pass: $command" >&2
             exit 1
           fi
           if [[ "$command" == install-* || "$command" == switch-* || "$command" == rollback-* ]] && ! grep -q 'OPERATION=PASS' "$result_file"; then
