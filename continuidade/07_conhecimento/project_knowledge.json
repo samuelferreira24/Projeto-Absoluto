@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T11:13:57-03:00",
-  "source_revision": "3ddf0c15db097dfabee32b8fe90635239b0a9b80",
+  "generated_at": "2026-10-09T11:18:02-03:00",
+  "source_revision": "ed5351ba9e6882815b91611259abbc978e63edc4",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 75
+      "file_count": 76
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "3ddf0c15db097dfabee32b8fe90635239b0a9b80",
-      "commit_subject": "Allow a single active local AI slot under critical CPU load"
+      "revision": "ed5351ba9e6882815b91611259abbc978e63edc4",
+      "commit_subject": "docs: record evidence and blockers from six local AI operation (#135)"
     }
   ],
   "tools": [
@@ -2963,6 +2963,11 @@
       "id": "file:docs/03_planejamento/Plano_Projeto.md",
       "kind": "file",
       "path": "docs/03_planejamento/Plano_Projeto.md"
+    },
+    {
+      "id": "file:docs/03_planejamento/RELATORIO_OPERACAO_SEIS_IAS_LOCAIS_2026-10-09.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/RELATORIO_OPERACAO_SEIS_IAS_LOCAIS_2026-10-09.md"
     },
     {
       "id": "file:docs/03_planejamento/VALIDACAO_AI_LAYER.md",
@@ -10114,6 +10119,20 @@
       "sha": "3ddf0c15db097dfabee32b8fe90635239b0a9b80"
     },
     {
+      "id": "commit:7ae410dbf1910c21252f6e2b91a46cfc5688e40e",
+      "kind": "commit",
+      "at": "2026-10-09T14:14:17Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "7ae410dbf1910c21252f6e2b91a46cfc5688e40e"
+    },
+    {
+      "id": "commit:ed5351ba9e6882815b91611259abbc978e63edc4",
+      "kind": "commit",
+      "at": "2026-10-09T11:18:02-03:00",
+      "subject": "docs: record evidence and blockers from six local AI operation (#135)",
+      "sha": "ed5351ba9e6882815b91611259abbc978e63edc4"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10226,23 +10245,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:da179e6b86e1",
+      "id": "evidence:repository:e72a13a4487e",
       "kind": "evidence",
-      "at": "2026-10-09T11:13:57-03:00",
+      "at": "2026-10-09T11:18:02-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:da179e6b86e1",
+      "id": "event:repository-scan:e72a13a4487e",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T11:13:57-03:00"
+      "at": "2026-10-09T11:18:02-03:00"
     },
     {
-      "id": "event:commit-observed:3ddf0c15db09",
+      "id": "event:commit-observed:ed5351ba9e68",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T11:13:57-03:00"
+      "at": "2026-10-09T11:18:02-03:00"
     }
   ],
   "paths": [
@@ -10277,11 +10296,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:b7c751b4dbb2"
+        "evidence:test:287ebddf637b"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T11:13:57-03:00"
+      "last_validated": "2026-10-09T11:18:02-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10304,20 +10323,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:da179e6b86e1",
+      "id": "evidence:repository:e72a13a4487e",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T11:13:57-03:00",
+      "observed_at": "2026-10-09T11:18:02-03:00",
       "status": "observed",
-      "detail": "409 files indexed at revision 3ddf0c15db097dfabee32b8fe90635239b0a9b80"
+      "detail": "410 files indexed at revision ed5351ba9e6882815b91611259abbc978e63edc4"
     },
     {
-      "id": "evidence:test:b7c751b4dbb2",
+      "id": "evidence:test:287ebddf637b",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T11:13:57-03:00",
+      "observed_at": "2026-10-09T11:18:02-03:00",
       "status": "tested",
-      "detail": "210 passed in 7.28s"
+      "detail": "210 passed in 7.58s"
     }
   ],
   "decisions": [
@@ -10420,31 +10439,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:da179e6b86e1",
+      "id": "event:repository-scan:e72a13a4487e",
       "type": "repository_scanned",
-      "at": "2026-10-09T11:13:57-03:00",
-      "revision": "3ddf0c15db097dfabee32b8fe90635239b0a9b80",
-      "file_count": 409,
-      "evidence_id": "evidence:repository:da179e6b86e1"
+      "at": "2026-10-09T11:18:02-03:00",
+      "revision": "ed5351ba9e6882815b91611259abbc978e63edc4",
+      "file_count": 410,
+      "evidence_id": "evidence:repository:e72a13a4487e"
     },
     {
-      "id": "event:commit-observed:3ddf0c15db09",
+      "id": "event:commit-observed:ed5351ba9e68",
       "type": "commit_observed",
-      "at": "2026-10-09T11:13:57-03:00",
-      "revision": "3ddf0c15db097dfabee32b8fe90635239b0a9b80",
+      "at": "2026-10-09T11:18:02-03:00",
+      "revision": "ed5351ba9e6882815b91611259abbc978e63edc4",
       "branch": "main",
-      "subject": "Allow a single active local AI slot under critical CPU load",
+      "subject": "docs: record evidence and blockers from six local AI operation (#135)",
       "changed_files": [
-        "abs_core/v3.py",
-        "tests/test_v3.py"
+        "docs/03_planejamento/RELATORIO_OPERACAO_SEIS_IAS_LOCAIS_2026-10-09.md"
       ]
     },
     {
-      "id": "event:test:b7c751b4dbb2",
+      "id": "event:test:287ebddf637b",
       "type": "tests_observed",
-      "at": "2026-10-09T11:13:57-03:00",
+      "at": "2026-10-09T11:18:02-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:b7c751b4dbb2"
+      "evidence_id": "evidence:test:287ebddf637b"
     }
   ],
   "knowledge_sources": [
@@ -10500,7 +10518,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "2d4dfafcbdb1887ff4d158f1dff9387f907d78d04877e625a3aa0e6285b6fd73"
+      "sha256": "2ee9992facca2bce2d589b9b337e4127a50d6c6e096149de6033a264e2256c71"
     },
     {
       "id": "source:session",
@@ -44653,12 +44671,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:da179e6b86e1",
-      "source": "event:repository-scan:da179e6b86e1",
-      "relation": "generated",
-      "target": "evidence:repository:da179e6b86e1",
+      "id": "rel:commit-precedes:3ddf0c15db09:7ae410dbf191",
+      "source": "commit:3ddf0c15db097dfabee32b8fe90635239b0a9b80",
+      "relation": "precedes",
+      "target": "commit:7ae410dbf1910c21252f6e2b91a46cfc5688e40e",
       "status": "asserted",
-      "at": "2026-10-09T11:13:57-03:00",
+      "at": "2026-10-09T14:14:17Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7ae410dbf191:032adc3624d7",
+      "source": "commit:7ae410dbf1910c21252f6e2b91a46cfc5688e40e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T14:14:17Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7ae410dbf191:d64178c49886",
+      "source": "commit:7ae410dbf1910c21252f6e2b91a46cfc5688e40e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T14:14:17Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:7ae410dbf191:ed5351ba9e68",
+      "source": "commit:7ae410dbf1910c21252f6e2b91a46cfc5688e40e",
+      "relation": "precedes",
+      "target": "commit:ed5351ba9e6882815b91611259abbc978e63edc4",
+      "status": "asserted",
+      "at": "2026-10-09T11:18:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ed5351ba9e68:7b41d119d484",
+      "source": "commit:ed5351ba9e6882815b91611259abbc978e63edc4",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/RELATORIO_OPERACAO_SEIS_IAS_LOCAIS_2026-10-09.md",
+      "status": "asserted",
+      "at": "2026-10-09T11:18:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:e72a13a4487e",
+      "source": "event:repository-scan:e72a13a4487e",
+      "relation": "generated",
+      "target": "evidence:repository:e72a13a4487e",
+      "status": "asserted",
+      "at": "2026-10-09T11:18:02-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -44667,12 +44755,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:3ddf0c15db09",
-      "source": "commit:3ddf0c15db097dfabee32b8fe90635239b0a9b80",
+      "id": "rel:scan-commit:ed5351ba9e68",
+      "source": "commit:ed5351ba9e6882815b91611259abbc978e63edc4",
       "relation": "observed_by",
-      "target": "event:repository-scan:da179e6b86e1",
+      "target": "event:repository-scan:e72a13a4487e",
       "status": "asserted",
-      "at": "2026-10-09T11:13:57-03:00",
+      "at": "2026-10-09T11:18:02-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",

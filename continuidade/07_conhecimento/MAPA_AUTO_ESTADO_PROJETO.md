@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 3ddf0c15db097dfabee32b8fe90635239b0a9b80
-Momento da revisão: 2026-10-09T11:13:57-03:00
+Revisão observada: ed5351ba9e6882815b91611259abbc978e63edc4
+Momento da revisão: 2026-10-09T11:18:02-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -25,7 +25,7 @@ Momento da revisão: 2026-10-09T11:13:57-03:00
 - component:abs_core — abs_core (59 arquivos)
 - component:cerebro — cerebro (45 arquivos)
 - component:continuity — continuity (25 arquivos)
-- component:docs — docs (75 arquivos)
+- component:docs — docs (76 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
 - component:project — project (128 arquivos)
 - component:tests — tests (65 arquivos)
@@ -525,6 +525,7 @@ Momento da revisão: 2026-10-09T11:13:57-03:00
 - file:docs/03_planejamento/PLANO_ABS_INTEGRACAO_GITHUB.md — None — estado: unknown
 - file:docs/03_planejamento/PLANO_ABS_V1_CURTO_MEDIO_LONGO_PRAZO.md — None — estado: unknown
 - file:docs/03_planejamento/Plano_Projeto.md — None — estado: unknown
+- file:docs/03_planejamento/RELATORIO_OPERACAO_SEIS_IAS_LOCAIS_2026-10-09.md — None — estado: unknown
 - file:docs/03_planejamento/VALIDACAO_AI_LAYER.md — None — estado: unknown
 - file:docs/03_planejamento/VALIDACAO_RUNTIME_NAVEGACAO_V3.md — None — estado: unknown
 - file:docs/03_planejamento/VALIDACAO_V1_ACCEPTANCE.md — None — estado: unknown
@@ -1590,6 +1591,8 @@ Momento da revisão: 2026-10-09T11:13:57-03:00
 - commit:dc12fbc51af5e33521f9da24ba79898716fd4e30 — None — estado: unknown
 - commit:2e39cc3d1443b5b0f967f90be8989bc9a494b743 — None — estado: unknown
 - commit:3ddf0c15db097dfabee32b8fe90635239b0a9b80 — None — estado: unknown
+- commit:7ae410dbf1910c21252f6e2b91a46cfc5688e40e — None — estado: unknown
+- commit:ed5351ba9e6882815b91611259abbc978e63edc4 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1604,19 +1607,19 @@ Momento da revisão: 2026-10-09T11:13:57-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:da179e6b86e1 — None — estado: unknown
-- event:repository-scan:da179e6b86e1 — None — estado: unknown
-- event:commit-observed:3ddf0c15db09 — None — estado: unknown
+- evidence:repository:e72a13a4487e — None — estado: unknown
+- event:repository-scan:e72a13a4487e — None — estado: unknown
+- event:commit-observed:ed5351ba9e68 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:b7c751b4dbb2
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:287ebddf637b
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:da179e6b86e1 — repository_scanned — revisão: 3ddf0c15db097dfabee32b8fe90635239b0a9b80
-- event:commit-observed:3ddf0c15db09 — commit_observed — revisão: 3ddf0c15db097dfabee32b8fe90635239b0a9b80
-- event:test:b7c751b4dbb2 — tests_observed — revisão: n/a
+- event:repository-scan:e72a13a4487e — repository_scanned — revisão: ed5351ba9e6882815b91611259abbc978e63edc4
+- event:commit-observed:ed5351ba9e68 — commit_observed — revisão: ed5351ba9e6882815b91611259abbc978e63edc4
+- event:test:287ebddf637b — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -4053,15 +4056,20 @@ Momento da revisão: 2026-10-09T11:13:57-03:00
 - commit:2e39cc3d1443b5b0f967f90be8989bc9a494b743 — precedes → commit:3ddf0c15db097dfabee32b8fe90635239b0a9b80 — asserted
 - commit:3ddf0c15db097dfabee32b8fe90635239b0a9b80 — changed → file:abs_core/v3.py — asserted
 - commit:3ddf0c15db097dfabee32b8fe90635239b0a9b80 — changed → file:tests/test_v3.py — asserted
-- event:repository-scan:da179e6b86e1 — generated → evidence:repository:da179e6b86e1 — asserted
-- commit:3ddf0c15db097dfabee32b8fe90635239b0a9b80 — observed_by → event:repository-scan:da179e6b86e1 — asserted
+- commit:3ddf0c15db097dfabee32b8fe90635239b0a9b80 — precedes → commit:7ae410dbf1910c21252f6e2b91a46cfc5688e40e — asserted
+- commit:7ae410dbf1910c21252f6e2b91a46cfc5688e40e — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:7ae410dbf1910c21252f6e2b91a46cfc5688e40e — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:7ae410dbf1910c21252f6e2b91a46cfc5688e40e — precedes → commit:ed5351ba9e6882815b91611259abbc978e63edc4 — asserted
+- commit:ed5351ba9e6882815b91611259abbc978e63edc4 — changed → file:docs/03_planejamento/RELATORIO_OPERACAO_SEIS_IAS_LOCAIS_2026-10-09.md — asserted
+- event:repository-scan:e72a13a4487e — generated → evidence:repository:e72a13a4487e — asserted
+- commit:ed5351ba9e6882815b91611259abbc978e63edc4 — observed_by → event:repository-scan:e72a13a4487e — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:da179e6b86e1 — repository_scan — observed — 409 files indexed at revision 3ddf0c15db097dfabee32b8fe90635239b0a9b80
-- evidence:test:b7c751b4dbb2 — test — tested — 210 passed in 7.28s
+- evidence:repository:e72a13a4487e — repository_scan — observed — 410 files indexed at revision ed5351ba9e6882815b91611259abbc978e63edc4
+- evidence:test:287ebddf637b — test — tested — 210 passed in 7.58s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
