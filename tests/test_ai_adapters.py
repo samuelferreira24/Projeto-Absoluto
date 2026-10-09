@@ -44,7 +44,7 @@ def test_local_ai_adapter_applies_bounded_generation_options(monkeypatch) -> Non
     adapter = LocalAICapability(endpoint="http://127.0.0.1:11434", model="qwen3.5:0.8b")
     result = adapter.execute(
         "hello",
-        {"max_tokens": 32, "temperature": 0, "think": False, "keep_alive": 0},
+        {"max_tokens": 32, "temperature": 0, "think": False, "keep_alive": 0, "num_ctx": 1536},
     )
 
     assert result["final_response"] == "LOCAL_OK"
@@ -52,6 +52,21 @@ def test_local_ai_adapter_applies_bounded_generation_options(monkeypatch) -> Non
     assert captured["payload"]["model"] == "qwen3.5:0.8b"
     assert captured["payload"]["options"]["num_predict"] == 32
     assert captured["payload"]["options"]["temperature"] == 0.0
+    assert captured["payload"]["options"]["num_ctx"] == 1536
     assert captured["payload"]["think"] is False
     assert captured["payload"]["keep_alive"] == 0
 
+
+
+def test_local_ai_adapter_clamps_context_window(monkeypatch) -> None:
+    captured = {}
+
+    def fake_post(url, headers, payload, timeout):
+        captured.update(payload)
+        return {"model": "qwen3.5:0.8b", "message": {"content": "LOCAL_OK"}}
+
+    monkeypatch.setattr("abs_core.local_ai_adapter._post_json", fake_post)
+    LocalAICapability(endpoint="http://127.0.0.1:11434", model="qwen3.5:0.8b").execute(
+        "hello", {"num_ctx": 999999, "keep_alive": 0}
+    )
+    assert captured["options"]["num_ctx"] == 8192
