@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T00:53:06-03:00",
-  "source_revision": "811cdad0a1111bea1462d490bc529a9e98a85702",
+  "generated_at": "2026-10-09T00:57:08-03:00",
+  "source_revision": "e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "811cdad0a1111bea1462d490bc529a9e98a85702",
-      "commit_subject": "Adicionar teste end-to-end do Qwen 2B com limite de memória e tokens"
+      "revision": "e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
+      "commit_subject": "Registrar integração ponta a ponta validada de Qwen 0.8B e Qwen 2B"
     }
   ],
   "tools": [
@@ -9945,6 +9945,20 @@
       "sha": "811cdad0a1111bea1462d490bc529a9e98a85702"
     },
     {
+      "id": "commit:3da603b0bb0c951fb41bf153536d353c376ec4c9",
+      "kind": "commit",
+      "at": "2026-10-09T03:53:24Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "3da603b0bb0c951fb41bf153536d353c376ec4c9"
+    },
+    {
+      "id": "commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
+      "kind": "commit",
+      "at": "2026-10-09T00:57:08-03:00",
+      "subject": "Registrar integração ponta a ponta validada de Qwen 0.8B e Qwen 2B",
+      "sha": "e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10057,23 +10071,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:306f20d0c772",
+      "id": "evidence:repository:21a8f6071ffa",
       "kind": "evidence",
-      "at": "2026-10-09T00:53:06-03:00",
+      "at": "2026-10-09T00:57:08-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:306f20d0c772",
+      "id": "event:repository-scan:21a8f6071ffa",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:53:06-03:00"
+      "at": "2026-10-09T00:57:08-03:00"
     },
     {
-      "id": "event:commit-observed:811cdad0a111",
+      "id": "event:commit-observed:e8bfe0f3848e",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T00:53:06-03:00"
+      "at": "2026-10-09T00:57:08-03:00"
     }
   ],
   "paths": [
@@ -10108,11 +10122,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:7b408dcafea9"
+        "evidence:test:8cb9d7504928"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T00:53:06-03:00"
+      "last_validated": "2026-10-09T00:57:08-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10135,20 +10149,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:306f20d0c772",
+      "id": "evidence:repository:21a8f6071ffa",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T00:53:06-03:00",
+      "observed_at": "2026-10-09T00:57:08-03:00",
       "status": "observed",
-      "detail": "406 files indexed at revision 811cdad0a1111bea1462d490bc529a9e98a85702"
+      "detail": "406 files indexed at revision e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae"
     },
     {
-      "id": "evidence:test:7b408dcafea9",
+      "id": "evidence:test:8cb9d7504928",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T00:53:06-03:00",
+      "observed_at": "2026-10-09T00:57:08-03:00",
       "status": "tested",
-      "detail": "202 passed in 7.43s"
+      "detail": "202 passed in 7.35s"
     }
   ],
   "decisions": [
@@ -10251,30 +10265,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:306f20d0c772",
+      "id": "event:repository-scan:21a8f6071ffa",
       "type": "repository_scanned",
-      "at": "2026-10-09T00:53:06-03:00",
-      "revision": "811cdad0a1111bea1462d490bc529a9e98a85702",
+      "at": "2026-10-09T00:57:08-03:00",
+      "revision": "e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
       "file_count": 406,
-      "evidence_id": "evidence:repository:306f20d0c772"
+      "evidence_id": "evidence:repository:21a8f6071ffa"
     },
     {
-      "id": "event:commit-observed:811cdad0a111",
+      "id": "event:commit-observed:e8bfe0f3848e",
       "type": "commit_observed",
-      "at": "2026-10-09T00:53:06-03:00",
-      "revision": "811cdad0a1111bea1462d490bc529a9e98a85702",
+      "at": "2026-10-09T00:57:08-03:00",
+      "revision": "e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
       "branch": "main",
-      "subject": "Adicionar teste end-to-end do Qwen 2B com limite de memória e tokens",
+      "subject": "Registrar integração ponta a ponta validada de Qwen 0.8B e Qwen 2B",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        "continuidade/05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md"
       ]
     },
     {
-      "id": "event:test:7b408dcafea9",
+      "id": "event:test:8cb9d7504928",
       "type": "tests_observed",
-      "at": "2026-10-09T00:53:06-03:00",
+      "at": "2026-10-09T00:57:08-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:7b408dcafea9"
+      "evidence_id": "evidence:test:8cb9d7504928"
     }
   ],
   "knowledge_sources": [
@@ -10330,7 +10344,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "391495cf6929bf8c766620a26ce8398e2987065544df2c9bbf66e88ce74673ef"
+      "sha256": "8ff42c37bcab41a59a2cd61b73855e5bf42e42535b7ff7c3eb26e22613a618f5"
     },
     {
       "id": "source:session",
@@ -43503,12 +43517,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:306f20d0c772",
-      "source": "event:repository-scan:306f20d0c772",
-      "relation": "generated",
-      "target": "evidence:repository:306f20d0c772",
+      "id": "rel:commit-precedes:811cdad0a111:3da603b0bb0c",
+      "source": "commit:811cdad0a1111bea1462d490bc529a9e98a85702",
+      "relation": "precedes",
+      "target": "commit:3da603b0bb0c951fb41bf153536d353c376ec4c9",
       "status": "asserted",
-      "at": "2026-10-09T00:53:06-03:00",
+      "at": "2026-10-09T03:53:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3da603b0bb0c:032adc3624d7",
+      "source": "commit:3da603b0bb0c951fb41bf153536d353c376ec4c9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T03:53:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3da603b0bb0c:d64178c49886",
+      "source": "commit:3da603b0bb0c951fb41bf153536d353c376ec4c9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T03:53:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:3da603b0bb0c:e8bfe0f3848e",
+      "source": "commit:3da603b0bb0c951fb41bf153536d353c376ec4c9",
+      "relation": "precedes",
+      "target": "commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
+      "status": "asserted",
+      "at": "2026-10-09T00:57:08-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e8bfe0f3848e:918abc9b3aa8",
+      "source": "commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
+      "relation": "changed",
+      "target": "file:continuidade/05_handoffs/01_HANDOFF_ATUAL_OPERACIONAL.md",
+      "status": "asserted",
+      "at": "2026-10-09T00:57:08-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:21a8f6071ffa",
+      "source": "event:repository-scan:21a8f6071ffa",
+      "relation": "generated",
+      "target": "evidence:repository:21a8f6071ffa",
+      "status": "asserted",
+      "at": "2026-10-09T00:57:08-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -43517,12 +43601,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:811cdad0a111",
-      "source": "commit:811cdad0a1111bea1462d490bc529a9e98a85702",
+      "id": "rel:scan-commit:e8bfe0f3848e",
+      "source": "commit:e8bfe0f3848ee77f4aafb68432183b6f2de9d0ae",
       "relation": "observed_by",
-      "target": "event:repository-scan:306f20d0c772",
+      "target": "event:repository-scan:21a8f6071ffa",
       "status": "asserted",
-      "at": "2026-10-09T00:53:06-03:00",
+      "at": "2026-10-09T00:57:08-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
