@@ -75,6 +75,18 @@ fi
 echo "=== SEQUENTIAL DIRECT SMOKE TESTS ==="
 # Test one model at a time with 2048 context, short output and keep_alive=0.
 # Thresholds include a small OS/ABS margin; a skipped model is not counted as PASS.
+# A successful response is not a pass unless Ollama confirms the model unloaded.
+assert_unloaded() {
+  active_json="$(curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps 2>&1)" || {
+    echo "UNLOAD_FAIL reason=api_ps_unavailable"
+    return 1
+  }
+  if printf '%s' "$active_json" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert not d.get("models"), d; print("UNLOAD_PASS models=[]")'; then
+    return 0
+  fi
+  echo "UNLOAD_FAIL active=$(printf '%s' "$active_json" | head -c 500)"
+  return 1
+}
 test_model() {
   model="$1"; marker="$2"; min_mb="$3"; timeout_s="$4"
   echo "--- MODEL $model ---"
@@ -96,12 +108,11 @@ PY
   response="$(curl -sS --max-time "$timeout_s" http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d "$payload" 2>&1)"
   rc=$?
   after="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
-  if [ "$rc" -eq 0 ] && printf '%s' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); expected=sys.argv[1].upper(); actual=(d.get("response") or "").strip().upper(); assert expected in actual, {"expected":expected,"actual":actual}; print("response="+actual[:160])' "$marker"; then
+  if [ "$rc" -eq 0 ] && printf '%s' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); expected=sys.argv[1].upper(); actual=(d.get("response") or "").strip().upper(); assert expected in actual, {"expected":expected,"actual":actual}; print("response="+actual[:160])' "$marker" && assert_unloaded; then
     echo "RESULT PASS model=$model before_mb=$((before / 1024)) after_mb=$((after / 1024))"
   else
     echo "RESULT FAIL model=$model curl_rc=$rc before_mb=$((before / 1024)) after_mb=$((after / 1024)) response=$(printf '%s' "$response" | head -c 800)"
   fi
-  curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
   echo
 }
 test_model 'qwen3.5:0.8b' 'ABS_QWEN08_OK' 1200 90
@@ -145,14 +156,13 @@ for call in calls:
   except Exception: args={}
  if f.get("name")=="record_test" and args.get("marker")==expected:
   print("tool_call=record_test marker="+expected); raise SystemExit(0)
-raise SystemExit("expected tool call not returned")' "$marker"; then
+raise SystemExit("expected tool call not returned")' "$marker" && assert_unloaded; then
     echo "TOOL_RESULT PASS model=$model"
     [ "$model" = "ministral-3:3b" ] && ministral_tool_pass=1
     [ "$model" = "phi4-mini:3.8b" ] && phi_tool_pass=1
   else
     echo "TOOL_RESULT FAIL model=$model curl_rc=$rc detail=$(printf '%s' "$response" | head -c 500)"
   fi
-  curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
   echo
 }
 test_tool_call 'ministral-3:3b' 'ABS_MINISTRAL_TOOL_OK' 3000 300
@@ -189,13 +199,12 @@ PY
   response="$(curl -sS --max-time 300 http://127.0.0.1:11434/api/chat -H 'Content-Type: application/json' -d "$payload" 2>&1)"
   rc=$?
   if [ "$rc" -eq 0 ] && printf '%s' "$response" | python3 -c 'import json,sys
-d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(); assert "ABS_GEMMA_VISION_OK" in s, s; print("vision_response="+s[:120])'; then
+d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(); assert "ABS_GEMMA_VISION_OK" in s, s; print("vision_response="+s[:120])' && assert_unloaded; then
     gemma_vision_pass=1
     echo "VISION_RESULT PASS model=$model"
   else
     echo "VISION_RESULT FAIL model=$model curl_rc=$rc detail=$(printf '%s' "$response" | head -c 500)"
   fi
-  curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
   echo
 }
 test_gemma_vision
