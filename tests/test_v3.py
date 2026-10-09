@@ -146,3 +146,22 @@ def test_operational_intelligence_executes_integrated_objective():
     result=rt.operational_intelligence.execute("V3 operational echo",{},rt.orchestrator)
     assert result["completed"] is True
     assert result["steps"][0]["state"]=="completed"
+
+def test_capacity_wait_does_not_leave_phantom_queue_entry():
+    from abs_core.runtime import build_runtime
+    from abs_core.v3 import CapacitySnapshot, CapacityState
+
+    rt = build_runtime(":memory:")
+    critical = CapacitySnapshot(3, 1.0, 1, 0, 1, CapacityState.CRITICAL, 1, 0.0)
+    rt.orchestrator.capacity.admission = lambda priority, depth: (critical, False)
+    work = rt.orchestrator.create(
+        "Defer non-lightweight work while capacity is critical",
+        {"capability_id": "internet-http"},
+    )
+
+    paused = rt.orchestrator.run(work.id, "internet-http")
+    assert paused.state.value == "paused"
+    assert paused.context["_v3"]["status"] == "waiting"
+    assert paused.context["_v3"]["retryable"] is True
+    assert rt.orchestrator.queue.depth() == 0
+
