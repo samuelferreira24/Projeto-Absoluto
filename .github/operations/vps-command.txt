@@ -1,1 +1,1 @@
-status
+test-qwen-0.8b
