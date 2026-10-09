@@ -484,11 +484,13 @@ As fontes abaixo são referências primárias de projeto; não equivalem a recom
 
 ## 12. Próxima ação operacional
 
-1. Revisar este plano e registrar decisões autorizadas.
+A primeira reconciliação documental foi registrada em `docs/03_planejamento/MATRIZ_RECONCILIACAO_CAPACIDADES_ABS_V4.md`. Ela cruza as 72 capacidades, estados atuais e critérios de fechamento e registra 16 candidatas que precisam de auditoria própria. Não altera os estados canônicos e não substitui teste no runtime.
+
+1. Usar a matriz de reconciliação como mapa de trabalho.
 2. Auditar o baseline real de `main`, o estado da VPS e os testes sem alterar produção.
-3. Gerar uma matriz **lacuna → código existente → contrato → dependências → teste → evidência → critério de aceite** a partir do closure registry.
+3. Para cada lacuna prioritária, ligar código existente → contrato → dependências → teste → evidência → critério de aceite.
 4. Executar o primeiro vertical slice de fechamento, preservando o runtime V3.
-5. Atualizar os registros de capacidades e conhecimento com resultados reais.
+5. Atualizar os registros de capacidades e conhecimento apenas com resultados reais.
 6. Prosseguir pelas etapas na ordem de dependência, sem criar uma nova arquitetura intermediária.
 
 **Definição de sucesso:** o ABS em construção opera o ecossistema de capacidades com autoridade preservada, execução durável, roteamento substituível, memória/proveniência, verificação, segurança, observabilidade, recuperação e uma interface utilizável pelo Imperador — e pode ampliar essas capacidades sem reescrever o núcleo.
