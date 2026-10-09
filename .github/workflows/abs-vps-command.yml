@@ -498,7 +498,8 @@ jobs:
             const targets = new Set([
               'ABS Local AI Health',
               'ABS VPS Reserve Channel',
-              'ABS Automatic Integration Validation'
+              'ABS Automatic Integration Validation',
+              'ABS VPS Command Channel'
             ]);
             const canceled = [];
             const failures = [];
