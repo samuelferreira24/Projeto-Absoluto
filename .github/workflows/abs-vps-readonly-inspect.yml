@@ -1,0 +1,62 @@
+name: ABS VPS Read-only Inspector
+
+on:
+  push:
+    branches:
+      - ops/vps-six-ai-validation
+    paths:
+      - ".github/operations/inspect.txt"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  inspect:
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 3
+    steps:
+      - name: Checkout isolated workspace
+        uses: actions/checkout@v4
+      - name: Inspect without changing services
+        id: inspect
+        shell: bash
+        run: |
+          set +e
+          {
+            echo "[host]"; hostname; date -Is
+            echo "[RAM and swap]"; free -h
+            echo "[disk]"; df -h /
+            echo "[Ollama service]"
+            sudo systemctl show ollama.service -p ActiveState -p SubState -p MemoryCurrent -p MemoryPeak -p MemoryMax -p MemorySwapMax
+            echo "[Ollama processes]"
+            ps -eo pid,etime,%cpu,%mem,rss,args | grep -E 'ollama|hf.co|qwen|Qwen|ministral|gemma' | grep -v grep || true
+            echo "[Ollama model store]"
+            du -sh /usr/share/ollama/.ollama/models /usr/share/ollama/.ollama/models/blobs 2>/dev/null || true
+            echo "[active models]"
+            curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
+            echo
+            echo "[recent Ollama journal]"
+            sudo journalctl -u ollama.service -n 25 --no-pager || true
+            echo
+            echo "[ABS health]"
+            curl -fsS --max-time 5 http://127.0.0.1:8787/health || true
+          } > /tmp/abs-vps-inspect.txt 2>&1
+          {
+            echo 'result<<ABS_INSPECT_EOF'
+            cat /tmp/abs-vps-inspect.txt
+            echo 'ABS_INSPECT_EOF'
+          } >> "$GITHUB_OUTPUT"
+      - name: Publish inspection
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.inspect.outputs.result }}
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: 121,
+              body: '### ABS VPS — diagnóstico somente leitura\n\n```text\n' + (process.env.RESULT || '(sem saída)').slice(0, 10000) + '\n```'
+            });
