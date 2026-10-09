@@ -168,7 +168,7 @@ def test_capacity_wait_does_not_leave_phantom_queue_entry():
 
 
 def test_v3_status_does_not_claim_unverified_local_ai_available():
-    from abs_core.v3 import ABSV3Orchestrator
+    from abs_core.v3 import ABSV3Orchestrator, CapacitySnapshot
     from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
     from abs_core.store import WorkStore
 
