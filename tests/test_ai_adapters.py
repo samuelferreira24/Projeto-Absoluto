@@ -47,10 +47,10 @@ def test_local_ai_adapter_applies_bounded_generation_options(monkeypatch) -> Non
     )
 
     assert result["final_response"] == "LOCAL_OK"
-    assert captured["url"] == "http://127.0.0.1:11434/v1/chat/completions"
+    assert captured["url"] == "http://127.0.0.1:11434/api/chat"
     assert captured["payload"]["model"] == "qwen3.5:0.8b"
-    assert captured["payload"]["max_tokens"] == 32
-    assert captured["payload"]["temperature"] == 0.0
+    assert captured["payload"]["options"]["num_predict"] == 32
+    assert captured["payload"]["options"]["temperature"] == 0.0
     assert captured["payload"]["think"] is False
     assert captured["payload"]["keep_alive"] == 0
 
