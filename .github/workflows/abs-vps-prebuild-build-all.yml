@@ -27,12 +27,9 @@ jobs:
         shell: bash
         run: |
           set -Eeuo pipefail
-          cd "$HOME/Projeto-Absoluto"
-          git rev-parse --is-inside-work-tree >/dev/null
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "BLOCKED | Runner repository workspace has local changes; refusing to reset or overwrite it."
-            exit 1
-          fi
+          # This job uses only host-level Docker/service checks; it must not enter,
+          # reset, clean, or otherwise mutate the runner's shared repository workspace.
+          # Existing local changes are deliberately left untouched.
 
           REPORT="$RUNNER_TEMP/abs-browser-build-report.txt"
           install -m 600 /dev/null "$REPORT"
