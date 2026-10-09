@@ -6,7 +6,6 @@ on:
       - ops/vps-six-ai-validation
     paths:
       - ".github/operations/vps-command.txt"
-      - ".github/workflows/abs-vps-six-ai-validation.yml"
 
 permissions:
   contents: read
@@ -213,6 +212,20 @@ jobs:
             install-gemma-e2b-q3)
               if install_hf_model "hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S" 8388608; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
+            install-gemma-e4b-iq2m)
+              if install_hf_model "hf.co/bartowski/google_gemma-4-E4B-it-GGUF:IQ2_M" 6291456; then
+                printf '%s\n' 'FROM hf.co/bartowski/google_gemma-4-E4B-it-GGUF:IQ2_M' 'PARAMETER num_ctx 1024' > /tmp/Modelfile.abs-gemma-e4b-iq2m
+                if ollama create gemma4-e4b-iq2m-ctx1k -f /tmp/Modelfile.abs-gemma-e4b-iq2m >> "$result_file" 2>&1; then
+                  echo "Custom model created with num_ctx=1024."
+                  echo "OPERATION=PASS" >> "$result_file"
+                else
+                  echo "FAIL: could not create low-context Gemma E4B alias." >> "$result_file"
+                  echo "OPERATION=FAIL" >> "$result_file"
+                fi
+              else
+                echo "OPERATION=FAIL" >> "$result_file"
+              fi
+              ;;
             install-gemma-e4b-q2)
               if install_hf_model "hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K" 10485760; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
@@ -227,6 +240,12 @@ jobs:
               ;;
             rollback-gemma-e2b)
               if switch_model "local-ai:gemma4-e2b" "gemma4-e2b|http://127.0.0.1:11434|hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b" "gemma4:e2b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+            switch-gemma-e4b-iq2m)
+              if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4-e4b-iq2m-ctx1k" "gemma4-e4b-iq2m-ctx1k"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+            rollback-gemma-e4b-iq2m)
+              if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4-e4b-iq2m-ctx1k" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4:e4b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
               ;;
             switch-gemma-e4b-q2)
               if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4-e4b|http://127.0.0.1:11434|hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K" "hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
@@ -265,6 +284,43 @@ jobs:
               ;;
             test-gemma-e2b)
               run_model_test "local-ai:gemma4-e2b" "hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S" "GE2_OK" 3800000 0 240 270 8
+              ;;
+            test-gemma-e4b-iq2m)
+              set +e
+              sudo install -d -m 0755 /etc/systemd/system/ollama.service.d
+              sudo tee /etc/systemd/system/ollama.service.d/90-abs-e4b-test.conf >/dev/null <<'UNIT'
+          [Service]
+          MemoryAccounting=yes
+          MemoryMax=4G
+          MemorySwapMax=512M
+          UNIT
+              setup_rc=$?
+              sudo systemctl daemon-reload || setup_rc=1
+              sudo systemctl restart ollama.service || setup_rc=1
+              sleep 3
+              if [ "$setup_rc" -ne 0 ] || ! systemctl is-active --quiet ollama.service; then
+                echo "FAIL: could not apply temporary 4 GiB bounded Ollama test limit." > "$result_file"
+                echo "VALIDATION=FAIL" >> "$result_file"
+              else
+                run_model_test "local-ai:gemma4-e4b" "gemma4-e4b-iq2m-ctx1k" "GE4_OK" 3900000 3900000000 240 270 8
+              fi
+              restore_rc=0
+              sudo rm -f /etc/systemd/system/ollama.service.d/90-abs-e4b-test.conf || restore_rc=1
+              sudo systemctl daemon-reload || restore_rc=1
+              sudo systemctl restart ollama.service || restore_rc=1
+              sleep 3
+              if ! curl -fsS --max-time 10 http://127.0.0.1:8787/health; then
+                echo "FAIL: ABS health check failed after restoring Ollama memory limits." >> "$result_file"
+                echo "VALIDATION=FAIL" >> "$result_file"
+              fi
+              echo >> "$result_file"
+              echo "[restored Ollama limits]" >> "$result_file"
+              systemctl show ollama.service -p ActiveState -p SubState -p MemoryCurrent -p MemoryPeak -p MemoryMax -p MemorySwapMax >> "$result_file"
+              free -h >> "$result_file"
+              if [ "$restore_rc" -ne 0 ]; then
+                echo "FAIL: could not restore default Ollama memory limits." >> "$result_file"
+                echo "VALIDATION=FAIL" >> "$result_file"
+              fi
               ;;
             test-gemma-e4b)
               run_model_test "local-ai:gemma4-e4b" "hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K" "GE4_OK" 4404019 0 300 330 8
