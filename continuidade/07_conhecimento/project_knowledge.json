@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T10:54:07-03:00",
-  "source_revision": "198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+  "generated_at": "2026-10-09T10:57:14-03:00",
+  "source_revision": "37a1a99587a67692be1e9f82bee639edcf1eb38d",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
-      "commit_subject": "Fix local AI context and memory safety gates"
+      "revision": "37a1a99587a67692be1e9f82bee639edcf1eb38d",
+      "commit_subject": "Stop reporting configured AI adapters as available"
     }
   ],
   "tools": [
@@ -10067,6 +10067,20 @@
       "sha": "198cfc1b9fb26ec4e15f9959f86ef00990ab71b5"
     },
     {
+      "id": "commit:f127340eb53a09c49876cde5dc22ed53ec5c3138",
+      "kind": "commit",
+      "at": "2026-10-09T13:54:27Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "f127340eb53a09c49876cde5dc22ed53ec5c3138"
+    },
+    {
+      "id": "commit:37a1a99587a67692be1e9f82bee639edcf1eb38d",
+      "kind": "commit",
+      "at": "2026-10-09T10:57:14-03:00",
+      "subject": "Stop reporting configured AI adapters as available",
+      "sha": "37a1a99587a67692be1e9f82bee639edcf1eb38d"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10179,23 +10193,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:37fe3911f0d3",
+      "id": "evidence:repository:64c382e20c02",
       "kind": "evidence",
-      "at": "2026-10-09T10:54:07-03:00",
+      "at": "2026-10-09T10:57:14-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:37fe3911f0d3",
+      "id": "event:repository-scan:64c382e20c02",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T10:54:07-03:00"
+      "at": "2026-10-09T10:57:14-03:00"
     },
     {
-      "id": "event:commit-observed:198cfc1b9fb2",
+      "id": "event:commit-observed:37a1a99587a6",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T10:54:07-03:00"
+      "at": "2026-10-09T10:57:14-03:00"
     }
   ],
   "paths": [
@@ -10230,11 +10244,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:b0be404807da"
+        "evidence:test:48c37854a6e9"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T10:54:07-03:00"
+      "last_validated": "2026-10-09T10:57:14-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10257,20 +10271,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:37fe3911f0d3",
+      "id": "evidence:repository:64c382e20c02",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T10:54:07-03:00",
+      "observed_at": "2026-10-09T10:57:14-03:00",
       "status": "observed",
-      "detail": "408 files indexed at revision 198cfc1b9fb26ec4e15f9959f86ef00990ab71b5"
+      "detail": "408 files indexed at revision 37a1a99587a67692be1e9f82bee639edcf1eb38d"
     },
     {
-      "id": "evidence:test:b0be404807da",
+      "id": "evidence:test:48c37854a6e9",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T10:54:07-03:00",
+      "observed_at": "2026-10-09T10:57:14-03:00",
       "status": "tested",
-      "detail": "205 passed in 7.62s"
+      "detail": "206 passed in 7.58s"
     }
   ],
   "decisions": [
@@ -10373,36 +10387,31 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:37fe3911f0d3",
+      "id": "event:repository-scan:64c382e20c02",
       "type": "repository_scanned",
-      "at": "2026-10-09T10:54:07-03:00",
-      "revision": "198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "at": "2026-10-09T10:57:14-03:00",
+      "revision": "37a1a99587a67692be1e9f82bee639edcf1eb38d",
       "file_count": 408,
-      "evidence_id": "evidence:repository:37fe3911f0d3"
+      "evidence_id": "evidence:repository:64c382e20c02"
     },
     {
-      "id": "event:commit-observed:198cfc1b9fb2",
+      "id": "event:commit-observed:37a1a99587a6",
       "type": "commit_observed",
-      "at": "2026-10-09T10:54:07-03:00",
-      "revision": "198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "at": "2026-10-09T10:57:14-03:00",
+      "revision": "37a1a99587a67692be1e9f82bee639edcf1eb38d",
       "branch": "main",
-      "subject": "Fix local AI context and memory safety gates",
+      "subject": "Stop reporting configured AI adapters as available",
       "changed_files": [
-        ".github/workflows/abs-vps-reserve.yml",
-        "abs_core/intelligence.py",
-        "abs_core/local_ai_adapter.py",
-        "abs_core/runtime.py",
-        "scripts/ops/local_ai_full_operation.sh",
-        "tests/test_ai_adapters.py",
-        "tests/test_intelligence_routing.py"
+        "abs_core/v3.py",
+        "tests/test_v3.py"
       ]
     },
     {
-      "id": "event:test:b0be404807da",
+      "id": "event:test:48c37854a6e9",
       "type": "tests_observed",
-      "at": "2026-10-09T10:54:07-03:00",
+      "at": "2026-10-09T10:57:14-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:b0be404807da"
+      "evidence_id": "evidence:test:48c37854a6e9"
     }
   ],
   "knowledge_sources": [
@@ -10458,7 +10467,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "0797aa4cce45c3f62902fc5aa1b28910b7313745c5900ae8e7b2a598f81b3060"
+      "sha256": "58385897c5be4a115cd2b6e708684696af19ef34bbeb41678f903a13ef5d9f80"
     },
     {
       "id": "source:session",
@@ -44317,12 +44326,96 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:37fe3911f0d3",
-      "source": "event:repository-scan:37fe3911f0d3",
-      "relation": "generated",
-      "target": "evidence:repository:37fe3911f0d3",
+      "id": "rel:commit-precedes:198cfc1b9fb2:f127340eb53a",
+      "source": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "relation": "precedes",
+      "target": "commit:f127340eb53a09c49876cde5dc22ed53ec5c3138",
       "status": "asserted",
-      "at": "2026-10-09T10:54:07-03:00",
+      "at": "2026-10-09T13:54:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f127340eb53a:032adc3624d7",
+      "source": "commit:f127340eb53a09c49876cde5dc22ed53ec5c3138",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T13:54:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f127340eb53a:d64178c49886",
+      "source": "commit:f127340eb53a09c49876cde5dc22ed53ec5c3138",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T13:54:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f127340eb53a:37a1a99587a6",
+      "source": "commit:f127340eb53a09c49876cde5dc22ed53ec5c3138",
+      "relation": "precedes",
+      "target": "commit:37a1a99587a67692be1e9f82bee639edcf1eb38d",
+      "status": "asserted",
+      "at": "2026-10-09T10:57:14-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:37a1a99587a6:04f1341ba654",
+      "source": "commit:37a1a99587a67692be1e9f82bee639edcf1eb38d",
+      "relation": "changed",
+      "target": "file:abs_core/v3.py",
+      "status": "asserted",
+      "at": "2026-10-09T10:57:14-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:37a1a99587a6:3014122fb6b6",
+      "source": "commit:37a1a99587a67692be1e9f82bee639edcf1eb38d",
+      "relation": "changed",
+      "target": "file:tests/test_v3.py",
+      "status": "asserted",
+      "at": "2026-10-09T10:57:14-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:64c382e20c02",
+      "source": "event:repository-scan:64c382e20c02",
+      "relation": "generated",
+      "target": "evidence:repository:64c382e20c02",
+      "status": "asserted",
+      "at": "2026-10-09T10:57:14-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -44331,12 +44424,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:198cfc1b9fb2",
-      "source": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "id": "rel:scan-commit:37a1a99587a6",
+      "source": "commit:37a1a99587a67692be1e9f82bee639edcf1eb38d",
       "relation": "observed_by",
-      "target": "event:repository-scan:37fe3911f0d3",
+      "target": "event:repository-scan:64c382e20c02",
       "status": "asserted",
-      "at": "2026-10-09T10:54:07-03:00",
+      "at": "2026-10-09T10:57:14-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
