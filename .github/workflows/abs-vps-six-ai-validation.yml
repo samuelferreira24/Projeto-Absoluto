@@ -75,7 +75,7 @@ jobs:
               if [ "$curl_rc" -ne 0 ]; then
                 echo "FAIL: HTTP request failed."
                 echo "VALIDATION=FAIL"
-              elif printf '%s\\n' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); expected=sys.argv[1].upper(); cap=sys.argv[2]; model=sys.argv[3]; assert d.get("work_state")=="completed", d; assert expected in str(d.get("response","")).upper(), d; assert d.get("resource",{}).get("metadata",{}).get("model")==model, d.get("resource"); p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert any(isinstance(x,dict) and x.get("capability_id")==cap for x in p), p; print("ABS MODEL VIA V3 PASS; capability="+cap+"; model="+model)' "$expected" "$capability" "$model"; then
+              elif printf '%s\\n' "$response" | python3 -c 'import json,sys; d=json.JSONDecoder().raw_decode(sys.stdin.read().lstrip())[0]; expected=sys.argv[1].upper(); cap=sys.argv[2]; model=sys.argv[3]; assert d.get("work_state")=="completed", d; assert expected in str(d.get("response","")).upper(), d; assert d.get("resource",{}).get("metadata",{}).get("model")==model, d.get("resource"); p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert any(isinstance(x,dict) and x.get("capability_id")==cap for x in p), p; print("ABS MODEL VIA V3 PASS; capability="+cap+"; model="+model)' "$expected" "$capability" "$model"; then
                 echo "VALIDATION=PASS"
               else
                 echo "VALIDATION=FAIL"
