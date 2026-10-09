@@ -1,0 +1,25 @@
+name: ABS Browser Workflow YAML Validation
+
+on:
+  push:
+    paths:
+      - ".github/workflows/abs-vps-command.yml"
+      - ".github/workflows/abs-vps-prebuild-build-all.yml"
+      - ".github/workflows/abs-browser-yaml-diagnostic.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  yaml-parse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse workflow YAML syntax
+        shell: bash
+        run: |
+          ruby -e 'require "yaml"; ARGV.each { |f| YAML.parse_file(f); puts "YAML syntax OK: #{f}" }' \
+            .github/workflows/abs-vps-command.yml \
+            .github/workflows/abs-vps-prebuild-build-all.yml \
+            .github/workflows/abs-browser-yaml-diagnostic.yml
