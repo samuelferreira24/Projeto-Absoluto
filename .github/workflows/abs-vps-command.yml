@@ -101,6 +101,33 @@ jobs:
               python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["type"]=="operational_result" and d["completed"] is True, d; p=d["plan"]; assert p["source"]=="model" and p["intelligence_id"], p; print("ABS V3 OPERATIONAL INTELLIGENCE HTTP PASS"); print(json.dumps(d)[:12000])' <<<"$objective_json"
               result="$objective_json"
               ;;
+            v3-local-ai-test)
+              set +e
+              available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+              if [ "$available_kb" -lt 1572864 ]; then
+                result="SKIP: MemAvailable below 1.5 GiB; ABS local model was not called. $(free -h | tail -n 2 | tr '\\n' ' ')"
+              else
+                chat_json="$(curl -sS --max-time 90 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d '{"message":"Say ABS_LOCAL_AI_OK and nothing else.","approved":true,"context":{"capability_id":"local-ai:qwen3.5-0.8b","max_tokens":32,"temperature":0,"think":false,"keep_alive":0}}' 2>&1)"
+                curl_rc=$?
+                {
+                  echo "[curl_rc] $curl_rc"
+                  echo "[chat]"
+                  echo "$chat_json"
+                  if [ "$curl_rc" -eq 0 ]; then
+                    if echo "$chat_json" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("work_state")=="completed", d; assert "ABS_LOCAL_AI_OK" in str(d.get("response","")).upper(), d; p=d.get("provenance") or {}; assert p.get("capability_id")=="local-ai:qwen3.5-0.8b", p; print("ABS V3 LOCAL AI INTEGRATION PASS")'; then
+                      echo "[validation] PASS"
+                    else
+                      echo "[validation] FAIL"
+                    fi
+                  else
+                    echo "[validation] FAIL: HTTP request did not complete"
+                  fi
+                  echo
+                  free -h
+                } > /tmp/abs-v3-local-ai-result.txt
+                result="$(cat /tmp/abs-v3-local-ai-result.txt)"
+              fi
+              ;;
             v3-chat-test)
               set +e
               chat_json="$(curl -sS --max-time 180 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d '{"message":"Reply briefly with ABS_V3_CHAT_OK.","approved":true}' 2>&1)"
@@ -307,6 +334,7 @@ jobs:
           /abs v2-test
           /abs v3-test
           /abs v3-live-test
+          /abs v3-local-ai-test
           /abs v3-chat-test
           /abs openclaw-v2-test
           /abs openclaw-install
