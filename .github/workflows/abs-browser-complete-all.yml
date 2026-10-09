@@ -244,6 +244,17 @@ jobs:
 
           echo
           echo "=== Private mobile access ==="
+          if ! command -v tailscale >/dev/null 2>&1; then
+            if curl -fsSL --max-time 45 https://tailscale.com/install.sh -o "$RUNNER_TEMP/abs-tailscale-install.sh"; then
+              if sudo -n sh "$RUNNER_TEMP/abs-tailscale-install.sh" >/dev/null 2>&1; then
+                pass "Installed the official Tailscale client; account authentication remains separate."
+              else
+                blocked "Tailscale client installation failed; browser remains firewall-protected and loopback-only."
+              fi
+            else
+              blocked "Could not retrieve the official Tailscale installer; no public access path was opened."
+            fi
+          fi
           if command -v tailscale >/dev/null 2>&1 && sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
             if sudo -n tailscale serve --bg http://127.0.0.1:3000 >/dev/null 2>&1; then
               pass "Tailscale Serve configured for private HTTPS access."
@@ -252,7 +263,7 @@ jobs:
               blocked "Tailscale is connected but private HTTPS Serve could not be configured."
             fi
           else
-            blocked "Tailscale is not authenticated/connected. Browser and CDP remain loopback-only; no public port was opened."
+            blocked "Tailscale is installed or attempted but not authenticated/connected. The account owner must complete Tailscale login; browser ports remain denied by UFW."
           fi
           echo
           note "Credential file remains private at $HOME/.config/abs-browser/browser.env (mode 600); never publish its contents."
