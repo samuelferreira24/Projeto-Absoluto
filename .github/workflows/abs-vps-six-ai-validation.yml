@@ -247,7 +247,7 @@ jobs:
           esac
           {
             echo 'result<<ABS_RESULT_EOF'
-            cat "$result_file"
+            tail -c 12000 "$result_file"
             echo 'ABS_RESULT_EOF'
           } >> "$GITHUB_OUTPUT"
           if [[ "$command" == test-* ]] && ! grep -q 'VALIDATION=PASS' "$result_file"; then
