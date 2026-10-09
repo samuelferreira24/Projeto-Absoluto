@@ -83,8 +83,8 @@ def test_turn_routes_to_the_exact_explicit_capability(monkeypatch):
     from abs_core.intelligence import CognitiveRuntime, IntelligenceRegistry, IntelligenceResource
 
     caps = {
-        "local-ai:a": SimpleNamespace(id="local-ai:a", kind="local_ai", metadata={"conversational": True}),
-        "local-ai:b": SimpleNamespace(id="local-ai:b", kind="local_ai", metadata={"conversational": True}),
+        "local-ai:a": SimpleNamespace(id="local-ai:a", name="A", kind="local_ai", metadata={"conversational": True}),
+        "local-ai:b": SimpleNamespace(id="local-ai:b", name="B", kind="local_ai", metadata={"conversational": True}),
     }
 
     class CapabilitySet:
