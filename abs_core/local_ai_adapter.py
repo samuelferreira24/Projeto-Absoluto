@@ -48,6 +48,14 @@ class LocalAICapability:
             max_tokens = 96
         max_tokens = max(1, min(max_tokens, 1024))
 
+        # Keep the runtime context explicit: model defaults can allocate a KV cache
+        # far larger than the VPS can sustain. Ollama expects num_ctx in options.
+        try:
+            num_ctx = int(context.get("num_ctx", os.getenv("ABS_LOCAL_AI_NUM_CTX", "2048")))
+        except (TypeError, ValueError):
+            num_ctx = 2048
+        num_ctx = max(512, min(num_ctx, 8192))
+
         try:
             temperature = float(context.get("temperature", os.getenv("ABS_LOCAL_AI_TEMPERATURE", "0.2")))
         except (TypeError, ValueError):
@@ -74,7 +82,7 @@ class LocalAICapability:
                 "messages": messages,
                 "stream": False,
                 "think": bool(think),
-                "options": {"num_predict": max_tokens, "temperature": temperature},
+                "options": {"num_predict": max_tokens, "temperature": temperature, "num_ctx": num_ctx},
             }
             if "keep_alive" in context:
                 payload["keep_alive"] = context["keep_alive"]
