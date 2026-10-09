@@ -279,15 +279,31 @@ for line in text.splitlines():
 print("yes" if tag in models else "no")
 PY
 )"
-      if [ "$referenced" != "no" ]; then
+      if [ "$tag" = "gemma4:e2b" ] && [ "$gemma_vision_pass" -ne 1 ]; then
+        echo "CLEANUP_KEEP tag=$tag reason=selected_Gemma_vision_not_proven"
+      elif [ "$referenced" != "no" ]; then
         echo "CLEANUP_KEEP tag=$tag reason=config_reference_or_unknown"
       elif ollama list | awk 'NR>1 {print $1}' | grep -Fxq "$tag"; then
+        digest="$(python3 - "$backup/ollama-tags-before.json" "$tag" <<'PY'
+import json,sys
+data=json.load(open(sys.argv[1])).get("models",[])
+matches=[x for x in data if x.get("name")==sys.argv[2]]
+if len(matches)==1 and matches[0].get("digest"):
+    print(matches[0]["digest"])
+else:
+    print("ambiguous")
+PY
+)"
+        if [ "$digest" = "ambiguous" ]; then
+          echo "CLEANUP_KEEP tag=$tag reason=manifest_digest_ambiguous"
+          continue
+        fi
         slug="$(printf '%s' "$tag" | tr '/:' '__')"
         if ollama show "$tag" --modelfile > "$backup/removed-$slug.modelfile" 2>&1; then
           if ollama rm "$tag"; then
-            echo "CLEANUP_REMOVED tag=$tag modelfile_backup=$backup/removed-$slug.modelfile"
+            echo "CLEANUP_REMOVED tag=$tag digest=$digest modelfile_backup=$backup/removed-$slug.modelfile"
           else
-            echo "CLEANUP_FAIL tag=$tag reason=ollama_rm_failed"
+            echo "CLEANUP_FAIL tag=$tag digest=$digest reason=ollama_rm_failed"
           fi
         else
           echo "CLEANUP_KEEP tag=$tag reason=manifest_backup_failed"
