@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from .v2 import ABSV2Orchestrator
+from .models import WorkState
 
 class CostClass(str, Enum):
     FREE_LOCAL="free_local"; FREE_EXTERNAL="free_external"; SUBSCRIPTION="subscription"; PAID_API="paid_api"
@@ -391,8 +392,17 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
                     self.store.save(work)
                     return work
                 if decision.disposition is WorkDisposition.WAIT:
-                    self.queue.push(work_id,10 if priority=="critical" else 0)
-                    work.context["_v3"]={"status":"waiting","reason":decision.reason,"policy":decision.policy.value}
+                    # There is no background queue consumer yet. Persist a retryable
+                    # paused work rather than leaking an in-memory queue entry forever.
+                    work.state=WorkState.PAUSED
+                    work.context["_v3"]={
+                        "status":"waiting",
+                        "reason":decision.reason,
+                        "policy":decision.policy.value,
+                        "retryable":True,
+                        "capacity_state":decision.capacity.state.value,
+                    }
+                    self.v3_state.event(work.id,"work.waiting",work.context["_v3"])
                     self.store.save(work)
                     self.telemetry.inc("wait")
                     return work
