@@ -63,7 +63,7 @@ fi
 if [ -n "$model_root" ] && sudo test -d "$model_root/manifests"; then
   echo "OLLAMA_STORE_ROOT=$model_root"
   sudo python3 - "$model_root/manifests" <<'PYMANIFEST'
-import json,os,sys
+import hashlib,json,os,sys
 root=sys.argv[1]
 found=0
 for base,dirs,files in os.walk(root):
@@ -77,7 +77,8 @@ for base,dirs,files in os.walk(root):
             layers=data.get("layers",[])
             digest=",".join(str(x.get("digest","")) for x in layers if x.get("mediaType","").endswith("model"))
             sizes=",".join(str(x.get("size","")) for x in layers if x.get("mediaType","").endswith("model"))
-            print("OLLAMA_MANIFEST path=%s model_digest=%s model_bytes=%s" % (rel,digest,sizes))
+            manifest_sha256=hashlib.sha256(open(path,"rb").read()).hexdigest()
+            print("OLLAMA_MANIFEST path=%s manifest_sha256=%s model_digest=%s model_bytes=%s" % (rel,manifest_sha256,digest,sizes))
             found+=1
         except Exception as exc:
             print("OLLAMA_MANIFEST_READ_FAIL path=%s error=%s" % (rel,type(exc).__name__))
