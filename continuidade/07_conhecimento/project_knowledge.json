@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T16:43:06-03:00",
-  "source_revision": "7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
+  "generated_at": "2026-10-09T16:44:20-03:00",
+  "source_revision": "d0c7d9a8aaf61347c046e1e8361f071dcd8b714c",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
-      "commit_subject": "Document VPS cleanup and six local AI validation"
+      "revision": "d0c7d9a8aaf61347c046e1e8361f071dcd8b714c",
+      "commit_subject": "Audit exact Ollama manifests for duplicate Ministral tags"
     }
   ],
   "tools": [
@@ -10288,6 +10288,20 @@
       "sha": "7f72054d340a6a2a3c2e3708dde7a0460a8f786c"
     },
     {
+      "id": "commit:b178fd9890ca679aff3b54e5148d11e835489e6e",
+      "kind": "commit",
+      "at": "2026-10-09T19:43:32Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "b178fd9890ca679aff3b54e5148d11e835489e6e"
+    },
+    {
+      "id": "commit:d0c7d9a8aaf61347c046e1e8361f071dcd8b714c",
+      "kind": "commit",
+      "at": "2026-10-09T16:44:20-03:00",
+      "subject": "Audit exact Ollama manifests for duplicate Ministral tags",
+      "sha": "d0c7d9a8aaf61347c046e1e8361f071dcd8b714c"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10400,23 +10414,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:45cc1323ee3e",
+      "id": "evidence:repository:c446e66c72ad",
       "kind": "evidence",
-      "at": "2026-10-09T16:43:06-03:00",
+      "at": "2026-10-09T16:44:20-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:45cc1323ee3e",
+      "id": "event:repository-scan:c446e66c72ad",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T16:43:06-03:00"
+      "at": "2026-10-09T16:44:20-03:00"
     },
     {
-      "id": "event:commit-observed:7f72054d340a",
+      "id": "event:commit-observed:d0c7d9a8aaf6",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T16:43:06-03:00"
+      "at": "2026-10-09T16:44:20-03:00"
     }
   ],
   "paths": [
@@ -10451,11 +10465,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:f5830513d2e4"
+        "evidence:test:83a5029f092e"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T16:43:06-03:00"
+      "last_validated": "2026-10-09T16:44:20-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10478,20 +10492,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:45cc1323ee3e",
+      "id": "evidence:repository:c446e66c72ad",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T16:43:06-03:00",
+      "observed_at": "2026-10-09T16:44:20-03:00",
       "status": "observed",
-      "detail": "413 files indexed at revision 7f72054d340a6a2a3c2e3708dde7a0460a8f786c"
+      "detail": "413 files indexed at revision d0c7d9a8aaf61347c046e1e8361f071dcd8b714c"
     },
     {
-      "id": "evidence:test:f5830513d2e4",
+      "id": "evidence:test:83a5029f092e",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T16:43:06-03:00",
+      "observed_at": "2026-10-09T16:44:20-03:00",
       "status": "tested",
-      "detail": "211 passed in 8.90s"
+      "detail": "211 passed in 7.14s"
     }
   ],
   "decisions": [
@@ -10594,30 +10608,31 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:45cc1323ee3e",
+      "id": "event:repository-scan:c446e66c72ad",
       "type": "repository_scanned",
-      "at": "2026-10-09T16:43:06-03:00",
-      "revision": "7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
+      "at": "2026-10-09T16:44:20-03:00",
+      "revision": "d0c7d9a8aaf61347c046e1e8361f071dcd8b714c",
       "file_count": 413,
-      "evidence_id": "evidence:repository:45cc1323ee3e"
+      "evidence_id": "evidence:repository:c446e66c72ad"
     },
     {
-      "id": "event:commit-observed:7f72054d340a",
+      "id": "event:commit-observed:d0c7d9a8aaf6",
       "type": "commit_observed",
-      "at": "2026-10-09T16:43:06-03:00",
-      "revision": "7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
+      "at": "2026-10-09T16:44:20-03:00",
+      "revision": "d0c7d9a8aaf61347c046e1e8361f071dcd8b714c",
       "branch": "main",
-      "subject": "Document VPS cleanup and six local AI validation",
+      "subject": "Audit exact Ollama manifests for duplicate Ministral tags",
       "changed_files": [
-        "docs/03_planejamento/RELATORIO_LIMPEZA_VPS_E_VALIDACAO_IAS_LOCAIS_2026-10-09.md"
+        ".github/workflows/abs-vps-reserve.yml",
+        "scripts/ops/vps_inventory_audit.sh"
       ]
     },
     {
-      "id": "event:test:f5830513d2e4",
+      "id": "event:test:83a5029f092e",
       "type": "tests_observed",
-      "at": "2026-10-09T16:43:06-03:00",
+      "at": "2026-10-09T16:44:20-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:f5830513d2e4"
+      "evidence_id": "evidence:test:83a5029f092e"
     }
   ],
   "knowledge_sources": [
@@ -10673,7 +10688,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "22fcef80b2c3f98158f399d2ea823b994d1884c363886c4452f140f9871e0749"
+      "sha256": "33b399aff16ab6be6449c5bd525fd0fc8245a93e6ae6a66e7abc3445e7a3fec0"
     },
     {
       "id": "source:session",
@@ -45680,12 +45695,96 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:45cc1323ee3e",
-      "source": "event:repository-scan:45cc1323ee3e",
-      "relation": "generated",
-      "target": "evidence:repository:45cc1323ee3e",
+      "id": "rel:commit-precedes:7f72054d340a:b178fd9890ca",
+      "source": "commit:7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
+      "relation": "precedes",
+      "target": "commit:b178fd9890ca679aff3b54e5148d11e835489e6e",
       "status": "asserted",
-      "at": "2026-10-09T16:43:06-03:00",
+      "at": "2026-10-09T19:43:32Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b178fd9890ca:032adc3624d7",
+      "source": "commit:b178fd9890ca679aff3b54e5148d11e835489e6e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T19:43:32Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b178fd9890ca:d64178c49886",
+      "source": "commit:b178fd9890ca679aff3b54e5148d11e835489e6e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T19:43:32Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b178fd9890ca:d0c7d9a8aaf6",
+      "source": "commit:b178fd9890ca679aff3b54e5148d11e835489e6e",
+      "relation": "precedes",
+      "target": "commit:d0c7d9a8aaf61347c046e1e8361f071dcd8b714c",
+      "status": "asserted",
+      "at": "2026-10-09T16:44:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d0c7d9a8aaf6:3ea533262670",
+      "source": "commit:d0c7d9a8aaf61347c046e1e8361f071dcd8b714c",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-reserve.yml",
+      "status": "asserted",
+      "at": "2026-10-09T16:44:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d0c7d9a8aaf6:a42b6110d941",
+      "source": "commit:d0c7d9a8aaf61347c046e1e8361f071dcd8b714c",
+      "relation": "changed",
+      "target": "file:scripts/ops/vps_inventory_audit.sh",
+      "status": "asserted",
+      "at": "2026-10-09T16:44:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:c446e66c72ad",
+      "source": "event:repository-scan:c446e66c72ad",
+      "relation": "generated",
+      "target": "evidence:repository:c446e66c72ad",
+      "status": "asserted",
+      "at": "2026-10-09T16:44:20-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -45694,12 +45793,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:7f72054d340a",
-      "source": "commit:7f72054d340a6a2a3c2e3708dde7a0460a8f786c",
+      "id": "rel:scan-commit:d0c7d9a8aaf6",
+      "source": "commit:d0c7d9a8aaf61347c046e1e8361f071dcd8b714c",
       "relation": "observed_by",
-      "target": "event:repository-scan:45cc1323ee3e",
+      "target": "event:repository-scan:c446e66c72ad",
       "status": "asserted",
-      "at": "2026-10-09T16:43:06-03:00",
+      "at": "2026-10-09T16:44:20-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
