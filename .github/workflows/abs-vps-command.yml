@@ -1,5 +1,9 @@
 name: ABS VPS Command Channel
 
+concurrency:
+  group: abs-vps-shared-tree
+  cancel-in-progress: false
+
 on:
   issue_comment:
     types: [created]
