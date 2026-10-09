@@ -1,1 +1,1 @@
-test-qwen-0.8b
+test-qwen-2b
