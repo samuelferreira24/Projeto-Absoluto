@@ -231,3 +231,45 @@ Não há necessidade de reconstruir o contexto conceitual do ABS a partir do zer
 
 O ABS está sendo construído agora, mas o ABS não termina agora.
 A V1 é fundação. A construção continua por experimentos, evidências, integração, aprendizado e evolução.
+
+## 23. ESTABILIZAÇÃO DOS RUNNERS E PRIMEIRA INTEGRAÇÃO LOCAL — 2026-10-09
+
+### Estado confirmado na VPS
+
+- Runner principal `abs-vps-01`: `active/running`, conectado ao GitHub Actions.
+- Runner reserva `abs-vps-01-reserve`: `active/running`, conectado ao GitHub Actions.
+- Ambos têm `Restart=on-failure`, limite de memória de 1 GiB, limite de swap de 512 MiB e encerramento de processos-filhos com `KillMode=control-group`.
+- ABS: health `alive`, versão V3.
+- Última validação V3: `queue_depth=0`, `active_executions=0`, capacidade `healthy`.
+- Última medição: cerca de 4,3 GiB de RAM disponível e 16 GiB livres em disco.
+- Suite: `202 passed`; `compileall` passou.
+
+### Causas corrigidas
+
+1. O workflow de saúde de IA local executava automaticamente uma bateria de seis modelos a cada 30 minutos. A bateria foi desativada; o workflow agora é manual e testa um único modelo pequeno.
+2. A validação automática rodava a cada 10 minutos e executava testes completos na mesma árvore de trabalho compartilhada da VPS. O agendamento foi removido, o checkout foi isolado no workspace do runner e a validação automática foi reduzida a verificações HTTP leves.
+3. Os runners tinham risco de deixar processos-filhos vivos após interrupções. Os dois serviços agora usam política de reinício e limites de recursos.
+4. O Ollama foi protegido por override systemd: `MemoryHigh=3200M`, `MemoryMax=3584M`, `MemorySwapMax=1G`, `Restart=on-failure`.
+5. O V3 adicionava trabalhos à fila em memória quando a capacidade estava crítica, mas não existia consumidor de fila para removê-los. A espera agora persiste o trabalho como `paused/retryable`, sem deixar uma entrada fantasma. A validação de capacidade também preserva a negação de capacidades desconhecidas e permite o echo/teste leve sob pressão.
+6. O adaptador local usa a API nativa `/api/chat` do Ollama em loopback, limita a geração por padrão a 96 tokens, desativa thinking por padrão e permite parâmetros por contexto. A rota de teste pode usar 32 tokens e `keep_alive=0`.
+
+### Primeira IA local validada ponta a ponta
+
+- Capacidade: `local-ai:qwen3.5-0.8b`.
+- Teste via ABS `POST /chat`: **PASS**.
+- Resposta observada: `ABS_LOCAL_AI_OK`.
+- `work_state=completed`, proveniência aponta para `local-ai:qwen3.5-0.8b`, verificação `accepted=true`.
+- Após o teste, `/api/ps` mostrou `models=[]`; a RAM disponível voltou para cerca de 4,3 GiB.
+- A bateria `local-ai-test-all` permanece bloqueada. Os outros modelos aparecem no registro, mas ainda não estão validados individualmente ponta a ponta.
+
+### Regras para continuar a integração
+
+1. Testar uma IA/modelo por vez; não reativar a bateria dos seis modelos.
+2. Manter a verificação de memória antes de inferências.
+3. Começar pelo Qwen 0.8B já validado; avaliar Qwen 2B somente como experimento isolado e com monitoramento. Não executar automaticamente Gemma4 E2B/E4B neste VPS de 5,7 GiB.
+4. Depois de cada alteração de código: testes, deploy controlado com `/abs start`, teste funcional e verificação de `/v3/status`.
+5. Não confundir “registrado/disponível” com “testado ponta a ponta”. Só o Qwen 0.8B tem evidência de integração local concluída neste checkpoint.
+6. Comandos de operação são enviados como comentários no canal GitHub #121, por exemplo: `/abs runner-health`, `/abs v3-test`, `/abs v3-local-ai-test`, `/abs local-ai-status`, `/abs-reserve status` e `/abs-reserve local-ai-smoke`.
+
+Este checkpoint substitui qualquer afirmação anterior de que a fila, os runners ou a integração local ainda não foram validados. A infraestrutura base e o primeiro modelo local estão operacionais; a integração das demais IAs deve continuar de forma sequencial e verificável.
+
