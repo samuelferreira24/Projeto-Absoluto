@@ -344,7 +344,7 @@ jobs:
           fi
           echo
           note "Credential file remains private at $HOME/.config/abs-browser/browser.env (mode 600); never publish its contents."
-          note "Browser UI port 3000 and CDP port 9222 are bound to 127.0.0.1 only."
+          note "CDP is loopback-only at 127.0.0.1:9222; UFW explicitly denies inbound TCP 3000, 3001 and 9222. Tailscale Serve waits for account authentication."
           DEPLOY_STARTED=0
           CONTAINER_STOPPED=0
           DROPIN_CHANGED=0
