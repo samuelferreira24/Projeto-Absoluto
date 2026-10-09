@@ -220,7 +220,6 @@ d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(
   fi
   echo
 }
-test_gemma_vision
 
 test_qwen_vision() {
   model='qwen3.5:4b'
@@ -261,6 +260,7 @@ d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(
   echo
 }
 test_qwen_vision
+test_gemma_vision
 test_model 'qwen3.5:0.8b' 'ABS_QWEN08_OK' 1200 90
 test_model 'qwen3.5:2b' 'ABS_QWEN2B_OK' 2600 150
 test_model 'qwen3.5:4b' 'ABS_QWEN4B_OK' 3400 300
