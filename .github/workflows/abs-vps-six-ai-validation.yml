@@ -1,0 +1,145 @@
+name: ABS VPS Six AI Validation
+
+on:
+  push:
+    branches:
+      - ops/vps-six-ai-validation
+    paths:
+      - ".github/operations/vps-command.txt"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: abs-vps-six-ai-validation
+  cancel-in-progress: false
+
+jobs:
+  validate-one:
+    runs-on: [self-hosted, abs-vps-01]
+    timeout-minutes: 8
+    steps:
+      - name: Checkout isolated workspace
+        uses: actions/checkout@v4
+
+      - name: Run one allowlisted validation
+        id: test
+        shell: bash
+        run: |
+          set -u
+          command="$(tr -d '\r\n' < .github/operations/vps-command.txt)"
+          result_file="$(mktemp)"
+          run_model_test() {
+            local capability="$1" model="$2" expected="$3" min_kb="$4" min_ollama_bytes="$5"
+            local available_kb ollama_max response curl_rc
+            available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+            ollama_max="$(systemctl show ollama.service -p MemoryMax --value 2>/dev/null || echo 0)"
+            case "$ollama_max" in
+              ""|infinity|max) ollama_max=9223372036854775807 ;;
+            esac
+            {
+              echo "[model] $model"
+              echo "[capability] $capability"
+              echo "[MemAvailable_kB] $available_kb"
+              echo "[Ollama MemoryMax bytes] $ollama_max"
+              if [ "$available_kb" -lt "$min_kb" ]; then
+                echo "BLOCKED_SAFE: insufficient available RAM; model was not loaded."
+                free -h
+                return 0
+              fi
+              if [ "$ollama_max" -lt "$min_ollama_bytes" ]; then
+                echo "BLOCKED_SAFE: Ollama MemoryMax is below the model's approximate on-disk size; not loading to avoid OOM."
+                free -h
+                return 0
+              fi
+              echo "[ABS /chat request]"
+              response="$(curl -sS --max-time 150 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d "{\"message\":\"Reply exactly $expected and nothing else.\",\"approved\":true,\"context\":{\"capability_id\":\"$capability\",\"max_tokens\":16,\"temperature\":0,\"think\":false,\"keep_alive\":0,\"timeout\":120}}" 2>&1)"
+              curl_rc=$?
+              echo "[curl_rc] $curl_rc"
+              printf '%s\n' "$response" | head -c 5000
+              echo
+              if [ "$curl_rc" -ne 0 ]; then
+                echo "FAIL: HTTP request failed."
+                free -h
+                return 0
+              fi
+              if printf '%s\n' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); expected=sys.argv[1].upper(); cap=sys.argv[2]; assert d.get("work_state")=="completed", d; assert expected in str(d.get("response","")).upper(), d; p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert any(isinstance(x,dict) and x.get("capability_id")==cap for x in p), p; print("ABS MODEL VIA V3 PASS; capability="+cap)' "$expected" "$capability"; then
+                echo "VALIDATION=PASS"
+              else
+                echo "VALIDATION=FAIL"
+              fi
+              echo "[active Ollama models after keep_alive=0]"
+              curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
+              echo
+              free -h
+            } > "$result_file" 2>&1
+          }
+
+          case "$command" in
+            status)
+              {
+                echo "[host]"; hostname
+                echo "[ABS health]"; curl -fsS --max-time 10 http://127.0.0.1:8787/health
+                echo
+                echo "[V3 status]"; curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status
+                echo
+                echo "[Ollama service limits]"
+                systemctl show ollama.service -p ActiveState -p SubState -p MemoryCurrent -p MemoryPeak -p MemoryMax -p MemorySwapMax
+                echo "[Ollama installed models]"; ollama list
+                echo "[Ollama active models]"; curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
+                echo
+                echo "[RAM]"; free -h
+                echo "[disk]"; df -h /
+              } > "$result_file" 2>&1
+              ;;
+            test-qwen-0.8b)
+              run_model_test "local-ai:qwen3.5-0.8b" "qwen3.5:0.8b" "ABS_QWEN_08B_OK" 1572864 0
+              ;;
+            test-qwen-2b)
+              run_model_test "local-ai:qwen3.5-2b" "qwen3.5:2b" "ABS_QWEN_2B_OK" 4194304 0
+              ;;
+            test-qwen-4b)
+              run_model_test "local-ai:qwen3.5-4b" "qwen3.5:4b" "ABS_QWEN_4B_OK" 4194304 3300000000
+              ;;
+            test-ministral-3b)
+              run_model_test "local-ai:ministral-3b" "ministral-3:3b" "ABS_MINISTRAL_3B_OK" 4194304 2900000000
+              ;;
+            test-gemma-e2b)
+              run_model_test "local-ai:gemma4-e2b" "gemma4:e2b" "ABS_GEMMA_E2B_OK" 4718592 4500000000
+              ;;
+            test-gemma-e4b)
+              run_model_test "local-ai:gemma4-e4b" "gemma4:e4b" "ABS_GEMMA_E4B_OK" 6291456 6500000000
+              ;;
+            *)
+              printf 'REJECTED: command not allowlisted: %s\n' "$command" > "$result_file"
+              ;;
+          esac
+          {
+            echo 'result<<ABS_RESULT_EOF'
+            cat "$result_file"
+            echo 'ABS_RESULT_EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Publish result to ABS VPS issue
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.test.outputs.result }}
+          COMMAND: ${{ github.event.head_commit.message }}
+        with:
+          script: |
+            const body = [
+              '### ABS VPS — validação sequencial das seis IAs',
+              '',
+              'Comando: `' + (process.env.COMMAND || 'não informado') + '`',
+              '',
+              'OUTPUT_START',
+              (process.env.RESULT || '(sem saída)').slice(0, 12000),
+              'OUTPUT_END'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: 121,
+              body
+            });
