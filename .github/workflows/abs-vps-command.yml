@@ -504,19 +504,37 @@ jobs:
             const canceled = [];
             const failures = [];
             // Explicitly drain the known wedged command runs; broad pagination follows.
-            const knownStaleRunIds = [37878328843, 37878595391, 37878551371, 37878529656, 37878508294, 37878648462];
-            for (const run_id of knownStaleRunIds) {
-              if (run_id === Number(process.env.GITHUB_RUN_ID)) continue;
+            const currentRunId = Number(process.env.GITHUB_RUN_ID);
+            const cancelRun = async (run_id, name) => {
+              if (run_id === currentRunId) return;
               try {
-                await github.rest.actions.cancelWorkflowRun({
+                const detail = await github.rest.actions.getWorkflowRun({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   run_id
                 });
-                canceled.push({id: run_id, name: 'known stale ABS VPS Command Channel run', status: 'queued/in_progress'});
+                if (detail.data.status === 'completed') return;
+                if (detail.data.status === 'in_progress') {
+                  await github.rest.actions.forceCancelWorkflowRun({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    run_id
+                  });
+                } else {
+                  await github.rest.actions.cancelWorkflowRun({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    run_id
+                  });
+                }
+                canceled.push({id: run_id, name, status: detail.data.status});
               } catch (error) {
-                failures.push({id: run_id, name: 'known stale ABS VPS Command Channel run', error: String(error.message || error).slice(0, 180)});
+                failures.push({id: run_id, name, error: String(error.message || error).slice(0, 180)});
               }
+            };
+            const knownStaleRunIds = [37878328843, 37878595391, 37878551371, 37878529656, 37878508294, 37878648462, 37878704558];
+            for (const run_id of knownStaleRunIds) {
+              await cancelRun(run_id, 'known stale ABS VPS Command Channel run');
             }
             for (const status of ['queued', 'in_progress', 'pending']) {
               for (let page = 1; page <= 10; page++) {
@@ -530,17 +548,8 @@ jobs:
                 const runs = response.data.workflow_runs || [];
                 if (runs.length === 0) break;
                 for (const run of runs) {
-                  if (!targets.has(run.name) || run.id === Number(process.env.GITHUB_RUN_ID)) continue;
-                  try {
-                    await github.rest.actions.cancelWorkflowRun({
-                      owner: context.repo.owner,
-                      repo: context.repo.repo,
-                      run_id: run.id
-                    });
-                    canceled.push({id: run.id, name: run.name, status: run.status});
-                  } catch (error) {
-                    failures.push({id: run.id, name: run.name, error: String(error.message || error).slice(0, 180)});
-                  }
+                  if (!targets.has(run.name) || run.id === currentRunId) continue;
+                  await cancelRun(run.id, run.name);
                 }
               }
             }
