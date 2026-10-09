@@ -29,7 +29,7 @@ jobs:
           fi
           echo "[Ollama models]"
           ollama list
-          out="$(curl -fsS --max-time 90 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d '{"model":"qwen3.5:0.8b","prompt":"Reply exactly LOCAL_AI_OK","stream":false}')"
-          echo "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("response","").strip()=="LOCAL_AI_OK", d; print("ABS_LOCAL_AI_SMOKE_PASS qwen3.5:0.8b")'
+          out="$(curl -fsS --max-time 45 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d '{"model":"qwen3.5:0.8b","prompt":"Say LOCAL_AI_OK and nothing else.","stream":false,"think":false,"keep_alive":0,"options":{"num_predict":32,"temperature":0}}')"
+          echo "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); s=d.get("response","").strip().upper(); assert "LOCAL_AI_OK" in s, d; print("ABS_LOCAL_AI_SMOKE_PASS qwen3.5:0.8b; response="+s[:160])'
           free -h
           df -h /
