@@ -12,13 +12,13 @@ permissions:
   issues: write
 
 concurrency:
-  group: abs-vps-six-ai-validation
+  group: abs-vps-shared-tree
   cancel-in-progress: false
 
 jobs:
   validate-one:
     runs-on: [self-hosted, abs-vps-01]
-    timeout-minutes: 8
+    timeout-minutes: 25
     steps:
       - name: Checkout isolated workspace
         uses: actions/checkout@v4
@@ -79,7 +79,136 @@ jobs:
             } > "$result_file" 2>&1
           }
 
+
+          install_gguf() {
+            local model_tag="$1" url="$2" file="$3" min_bytes="$4" max_bytes="$5" min_free_kb="$6"
+            {
+              echo "[install tag] $model_tag"
+              if ollama list | awk 'NR>1 {print $1}' | grep -Fxq "$model_tag"; then
+                echo "Model tag already exists."
+                echo "OPERATION=PASS"
+                return 0
+              fi
+              local available_kb free_kb active size
+              available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+              free_kb="$(df -Pk / | awk 'NR==2 {print $4}')"
+              echo "[MemAvailable_kB] $available_kb"
+              echo "[disk_free_kB] $free_kb"
+              if [ "$available_kb" -lt 4194304 ] || [ "$free_kb" -lt "$min_free_kb" ]; then
+                echo "BLOCKED_SAFE: memory or disk preflight failed; no download started."
+                return 1
+              fi
+              active="$(curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps)" || { echo "FAIL: Ollama API unavailable."; return 1; }
+              if ! printf '%s' "$active" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert not d.get("models"), d; print("No active Ollama models.")'; then
+                echo "BLOCKED_SAFE: an Ollama model is still active."
+                return 1
+              fi
+              rm -f "$file" /tmp/abs-gguf.Modelfile
+              if ! curl -fL --retry 3 --connect-timeout 20 --max-time 1200 -o "$file" "$url"; then
+                echo "FAIL: GGUF download failed."
+                rm -f "$file"
+                return 1
+              fi
+              size="$(stat -c%s "$file")"
+              echo "[download_bytes] $size"
+              if [ "$size" -lt "$min_bytes" ] || [ "$size" -gt "$max_bytes" ]; then
+                echo "FAIL: downloaded file size outside expected range."
+                rm -f "$file"
+                return 1
+              fi
+              printf 'FROM %s\nPARAMETER num_ctx 2048\nPARAMETER temperature 0\n' "$file" > /tmp/abs-gguf.Modelfile
+              if ! ollama create "$model_tag" -f /tmp/abs-gguf.Modelfile; then
+                echo "FAIL: Ollama could not import GGUF."
+                rm -f "$file" /tmp/abs-gguf.Modelfile
+                return 1
+              fi
+              rm -f "$file" /tmp/abs-gguf.Modelfile
+              ollama list
+              echo "OPERATION=PASS"
+            } > "$result_file" 2>&1
+          }
+
+          switch_model() {
+            local capability="$1" from_entry="$2" to_entry="$3" target_tag="$4"
+            {
+              echo "[switch capability] $capability"
+              echo "[target tag] $target_tag"
+              if ! ollama list | awk 'NR>1 {print $1}' | grep -Fxq "$target_tag"; then
+                echo "FAIL: target model tag is not installed."
+                return 1
+              fi
+              local active
+              active="$(curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps)" || { echo "FAIL: Ollama API unavailable."; return 1; }
+              if ! printf '%s' "$active" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert not d.get("models"), d; print("No active Ollama models.")'; then
+                echo "BLOCKED_SAFE: unload the active model before changing routing."
+                return 1
+              fi
+              if ! sudo python3 - "$from_entry" "$to_entry" <<'PYMAP'
+          from pathlib import Path
+          import sys
+          p = Path("/etc/abs-local-models.env")
+          s = p.read_text()
+          old, new = sys.argv[1], sys.argv[2]
+          if new in s:
+              print("Mapping already set.")
+          elif old in s:
+              p.write_text(s.replace(old, new, 1))
+              print("Mapping updated.")
+          else:
+              raise SystemExit("Expected model mapping not found; refusing to alter config.")
+          PYMAP
+              then
+                echo "FAIL: could not update model map."
+                return 1
+              fi
+              if ! sudo systemctl restart abs.service; then
+                echo "FAIL: ABS restart failed."
+                return 1
+              fi
+              sleep 4
+              if ! curl -fsS --max-time 10 http://127.0.0.1:8787/health; then
+                echo "FAIL: ABS health check failed after routing change."
+                return 1
+              fi
+              echo
+              if ! curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status | python3 -c 'import json,sys; d=json.load(sys.stdin); cap,tag=sys.argv[1:3]; r=next(x for x in d["intelligence"] if x.get("id")==cap); assert r.get("metadata",{}).get("model")==tag, r; print("ROUTING PASS: "+cap+" -> "+tag)' "$capability" "$target_tag"; then
+                echo "FAIL: ABS registry does not show the target model."
+                return 1
+              fi
+              echo "OPERATION=PASS"
+            } > "$result_file" 2>&1
+          }
+
           case "$command" in
+
+            install-qwen4b-q3)
+              if install_gguf "qwen3.5:4b-q3" "https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q3_K_S.gguf?download=true" "/tmp/qwen3.5-4b-q3.gguf" 2100000000 2700000000 6291456; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+            install-gemma-e2b-q3)
+              if install_gguf "gemma4:e2b-q3" "https://huggingface.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF/resolve/main/gemma-4-e2b-q3ks.gguf?download=true" "/tmp/gemma4-e2b-q3.gguf" 2800000000 3500000000 8388608; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+            install-gemma-e4b-q2)
+              if install_gguf "gemma4:e4b-i1-q2" "https://huggingface.co/mradermacher/gemma-4-E4B-it-i1-GGUF/resolve/main/gemma-4-E4B-it.i1-Q2_K.gguf?download=true" "/tmp/gemma4-e4b-q2.gguf" 4200000000 4800000000 10485760; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+            switch-qwen4b-q3)
+              if switch_model "local-ai:qwen3.5-4b" "qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b" "qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b-q3" "qwen3.5:4b-q3"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+            rollback-qwen4b)
+              if switch_model "local-ai:qwen3.5-4b" "qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b-q3" "qwen3.5-4b|http://127.0.0.1:11434|qwen3.5:4b" "qwen3.5:4b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+            switch-gemma-e2b-q3)
+              if switch_model "local-ai:gemma4-e2b" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b-q3" "gemma4:e2b-q3"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+            rollback-gemma-e2b)
+              if switch_model "local-ai:gemma4-e2b" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b-q3" "gemma4-e2b|http://127.0.0.1:11434|gemma4:e2b" "gemma4:e2b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+            switch-gemma-e4b-q2)
+              if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b-i1-q2" "gemma4:e4b-i1-q2"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+            rollback-gemma-e4b)
+              if switch_model "local-ai:gemma4-e4b" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b-i1-q2" "gemma4-e4b|http://127.0.0.1:11434|gemma4:e4b" "gemma4:e4b"; then :; else echo "OPERATION=FAIL" >> "$result_file"; fi
+              ;;
+
             status)
               {
                 echo "[host]"; hostname
@@ -125,6 +254,10 @@ jobs:
           } >> "$GITHUB_OUTPUT"
           if [[ "$command" == test-* ]] && ! grep -q 'VALIDATION=PASS' "$result_file"; then
             echo "Model validation did not pass: $command" >&2
+            exit 1
+          fi
+          if [[ "$command" == install-* || "$command" == switch-* || "$command" == rollback-* ]] && ! grep -q 'OPERATION=PASS' "$result_file"; then
+            echo "Model maintenance operation did not pass: $command" >&2
             exit 1
           fi
 
