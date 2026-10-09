@@ -420,7 +420,6 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Report result
-        if: github.event_name == 'issue_comment'
         uses: actions/github-script@v7
         env:
           RESULT: ${{ steps.command.outputs.result }}
@@ -428,7 +427,7 @@ jobs:
           COMMENT_ID: ${{ github.event.comment.id }}
         with:
           script: |
-            const issue_number = context.issue.number;
+            const issue_number = context.issue.number || 121;
             const result = process.env.RESULT || '(sem saída)';
             const request = process.env.REQUEST || '';
             const commentId = process.env.COMMENT_ID || '';
