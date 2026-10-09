@@ -199,14 +199,6 @@ jobs:
           note "Credential file is at $HOME/.config/abs-browser/browser.env with mode 600; retrieve it only in an authenticated SSH session and never paste it into an issue."
           echo
 
-          cp "$REPORT" "$RUNNER_TEMP/abs-browser-report-publish.txt"
-          {
-            echo 'result<<ABS_BUILD_EOF'
-            sed -E 's/(CUSTOM_PASSWORD=)[^ ]+/\1[REDACTED]/g; s/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[=: ][^ ]*/\1=[REDACTED]/Ig' "$REPORT" | tail -c 12000
-            echo
-            echo 'ABS_BUILD_EOF'
-          } >> "$GITHUB_OUTPUT"
-
       - name: Publish sanitized result
         if: always()
         uses: actions/github-script@v7
