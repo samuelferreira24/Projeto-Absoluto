@@ -151,3 +151,8 @@ No commit `c61944f60318c0df42c279360ce076b0f74ba25a` da branch de planejamento, 
 - [Project Knowledge Tests — sucesso](https://github.com/samuelferreira24/Projeto-Absoluto/actions/runs/37887671400): testes de conhecimento do projeto, avaliador de caminhos e navegação V1/V2.
 
 **Interpretação correta:** os workflows testaram o código-base do commit e todos passaram. Como as alterações desta branch são documentais, isso não comprova a conclusão das 27 capacidades parciais nem valida o runtime atual da VPS. Também não constitui teste específico de navegador automatizado, sandbox, backup/restauração ou execução 24/7.
+
+
+## Achado concreto da inspeção do ciclo operacional
+
+A inspeção identificou um risco no planejador: uma etapa sem `capability_id` pode deixar o executor selecionar a capacidade padrão. A correção e o teste de regressão estão em PR #128. Os três workflows de CI passaram no commit da correção, incluindo a suíte `pytest -q tests`. A correção ainda não foi mesclada nem implantada; manter este achado aberto até revisão e confirmação no runtime aplicável.
