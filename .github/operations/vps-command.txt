@@ -1,1 +1,1 @@
-install-qwen4b-q3
+switch-qwen4b-q3
