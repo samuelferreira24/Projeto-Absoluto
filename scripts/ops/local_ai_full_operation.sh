@@ -135,12 +135,9 @@ PY
   fi
   echo
 }
-test_model 'qwen3.5:0.8b' 'ABS_QWEN08_OK' 1200 90
-test_model 'qwen3.5:2b' 'ABS_QWEN2B_OK' 2600 150
-test_model 'qwen3.5:4b' 'ABS_QWEN4B_OK' 3400 300
-test_model 'ministral-3:3b' 'ABS_MINISTRAL3B_OK' 3000 300
-test_model 'hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S' 'ABS_GEMMA_E2B_Q3_OK' 3200 300
-test_model 'phi4-mini:3.8b' 'ABS_PHI4MINI_OK' 3200 300
+# Direct model tests run after image tests so they cannot consume the RAM
+# required to establish multimodal capability.
+
 
 # Complementary capability tests do not alter the six-model chat pass count.
 ministral_tool_pass=0
@@ -264,6 +261,12 @@ d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(
   echo
 }
 test_qwen_vision
+test_model 'qwen3.5:0.8b' 'ABS_QWEN08_OK' 1200 90
+test_model 'qwen3.5:2b' 'ABS_QWEN2B_OK' 2600 150
+test_model 'qwen3.5:4b' 'ABS_QWEN4B_OK' 3400 300
+test_model 'ministral-3:3b' 'ABS_MINISTRAL3B_OK' 3000 300
+test_model 'hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S' 'ABS_GEMMA_E2B_Q3_OK' 3200 300
+test_model 'phi4-mini:3.8b' 'ABS_PHI4MINI_OK' 3200 300
 
 # Run tool-call checks after vision so one heavy tool test cannot starve image tests.
 test_tool_call 'ministral-3:3b' 'ABS_MINISTRAL_TOOL_OK' 3000 300
