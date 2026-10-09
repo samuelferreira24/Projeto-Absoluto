@@ -1,19 +1,19 @@
 name: ABS Automatic Integration Validation
 
 on:
-  schedule:
-    - cron: '*/10 * * * *'
   push:
     branches: [main]
     paths:
       - 'abs_core/**'
       - 'tests/**'
-      - '.github/workflows/abs-auto-integration.yml'
-      - '.github/workflows/abs-vps-reserve.yml'
 
 permissions:
   contents: read
   issues: write
+
+concurrency:
+  group: abs-auto-integration
+  cancel-in-progress: true
 
 jobs:
   validate:
