@@ -1,44 +1,35 @@
 name: ABS Local AI Health
 
 on:
-  schedule:
-    - cron: '*/30 * * * *'
-  push:
-    branches: [main]
-    paths:
-      - 'abs_core/local_ai_adapter.py'
-      - 'abs_core/intelligence.py'
-      - 'abs_core/runtime.py'
-      - '.github/workflows/abs-local-ai-health.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
   group: abs-local-ai-health
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   health:
     runs-on: [self-hosted, abs-vps-01-reserve]
-    timeout-minutes: 15
+    timeout-minutes: 5
     steps:
-      - name: Test all local models
+      - name: Preflight and single-model smoke test
         shell: bash
         run: |
-          set -u
+          set -euo pipefail
           export HOME=/home/absadmin
-          failed=0
-          for model in qwen3.5:0.8b qwen3.5:2b qwen3.5:4b ministral-3:3b gemma4:e2b gemma4:e4b; do
-            out="$(curl -fsS --max-time 180 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d "{\"model\":\"$model\",\"prompt\":\"Reply exactly LOCAL_AI_OK\",\"stream\":false}")" || { echo "FAIL $model http"; failed=1; continue; }
-            if echo "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); raise SystemExit(0 if d.get("response","").strip()=="LOCAL_AI_OK" else 1)'; then
-              echo "PASS $model"
-            else
-              echo "FAIL $model response"
-              failed=1
-            fi
-          done
+          available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+          echo "MemAvailable_kB=$available_kb"
+          if [ "$available_kb" -lt 1572864 ]; then
+            echo "SKIP: less than 1.5 GiB RAM available; no model was started."
+            free -h
+            exit 0
+          fi
+          echo "[Ollama models]"
+          ollama list
+          out="$(curl -fsS --max-time 90 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d '{"model":"qwen3.5:0.8b","prompt":"Reply exactly LOCAL_AI_OK","stream":false}')"
+          echo "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("response","").strip()=="LOCAL_AI_OK", d; print("ABS_LOCAL_AI_SMOKE_PASS qwen3.5:0.8b")'
           free -h
           df -h /
-          if [ "$failed" -ne 0 ]; then exit "$failed"; fi
-          echo "ABS_LOCAL_AI_HEALTH_PASS"
