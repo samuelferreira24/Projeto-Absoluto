@@ -1,13 +1,13 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T18:22:10-03:00",
-  "source_revision": "0ddedc572b0e947fd473f8462a901b98c8c86516",
+  "generated_at": "2026-10-09T18:24:33-03:00",
+  "source_revision": "22a380afb0748c3071663be242a22017e7c126c6",
   "components": [
     {
       "id": "component:abs_core",
       "kind": "abs_core",
-      "file_count": 59
+      "file_count": 60
     },
     {
       "id": "component:cerebro",
@@ -37,7 +37,7 @@
     {
       "id": "component:tests",
       "kind": "tests",
-      "file_count": 65
+      "file_count": 66
     }
   ],
   "capabilities": [
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "0ddedc572b0e947fd473f8462a901b98c8c86516",
-      "commit_subject": "Correct profile archive ownership and verify restored file hashes"
+      "revision": "22a380afb0748c3071663be242a22017e7c126c6",
+      "commit_subject": "Add loopback-only Chromium DevTools channel for ABS integration"
     }
   ],
   "tools": [
@@ -1908,6 +1908,11 @@
       "id": "file:abs_core/bridge.py",
       "kind": "file",
       "path": "abs_core/bridge.py"
+    },
+    {
+      "id": "file:abs_core/browser_adapter.py",
+      "kind": "file",
+      "path": "abs_core/browser_adapter.py"
     },
     {
       "id": "file:abs_core/capabilities.py",
@@ -3368,6 +3373,11 @@
       "id": "file:tests/test_ai_adapters.py",
       "kind": "file",
       "path": "tests/test_ai_adapters.py"
+    },
+    {
+      "id": "file:tests/test_browser_adapter.py",
+      "kind": "file",
+      "path": "tests/test_browser_adapter.py"
     },
     {
       "id": "file:tests/test_cerebro_abs_core_convergence.py",
@@ -10515,6 +10525,41 @@
       "sha": "0ddedc572b0e947fd473f8462a901b98c8c86516"
     },
     {
+      "id": "commit:001266b3901fb08b0dfd51cb61529d2e33980510",
+      "kind": "commit",
+      "at": "2026-10-09T21:22:30Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "001266b3901fb08b0dfd51cb61529d2e33980510"
+    },
+    {
+      "id": "commit:b5cdd2d77ff0c8d3a05b6a7dae201bb55860763e",
+      "kind": "commit",
+      "at": "2026-10-09T18:24:06-03:00",
+      "subject": "Add safety-bounded Chromium control adapter",
+      "sha": "b5cdd2d77ff0c8d3a05b6a7dae201bb55860763e"
+    },
+    {
+      "id": "commit:aeaf3315b1e0c7751d483c13b7e9f9b371468ed5",
+      "kind": "commit",
+      "at": "2026-10-09T18:24:13-03:00",
+      "subject": "Test ABS browser adapter security boundaries",
+      "sha": "aeaf3315b1e0c7751d483c13b7e9f9b371468ed5"
+    },
+    {
+      "id": "commit:6263976b87d1c8b5d9863dc140127443bbbb2c74",
+      "kind": "commit",
+      "at": "2026-10-09T18:24:20-03:00",
+      "subject": "Register browser control capability when loopback CDP is configured",
+      "sha": "6263976b87d1c8b5d9863dc140127443bbbb2c74"
+    },
+    {
+      "id": "commit:22a380afb0748c3071663be242a22017e7c126c6",
+      "kind": "commit",
+      "at": "2026-10-09T18:24:33-03:00",
+      "subject": "Add loopback-only Chromium DevTools channel for ABS integration",
+      "sha": "22a380afb0748c3071663be242a22017e7c126c6"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10627,23 +10672,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:532fec4f0bf6",
+      "id": "evidence:repository:af3f0964a0ea",
       "kind": "evidence",
-      "at": "2026-10-09T18:22:10-03:00",
+      "at": "2026-10-09T18:24:33-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:532fec4f0bf6",
+      "id": "event:repository-scan:af3f0964a0ea",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T18:22:10-03:00"
+      "at": "2026-10-09T18:24:33-03:00"
     },
     {
-      "id": "event:commit-observed:0ddedc572b0e",
+      "id": "event:commit-observed:22a380afb074",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T18:22:10-03:00"
+      "at": "2026-10-09T18:24:33-03:00"
     }
   ],
   "paths": [
@@ -10678,11 +10723,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:051ea2fba0f8"
+        "evidence:test:98d9c1ff67c5"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T18:22:10-03:00"
+      "last_validated": "2026-10-09T18:24:33-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10705,20 +10750,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:532fec4f0bf6",
+      "id": "evidence:repository:af3f0964a0ea",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T18:22:10-03:00",
+      "observed_at": "2026-10-09T18:24:33-03:00",
       "status": "observed",
-      "detail": "415 files indexed at revision 0ddedc572b0e947fd473f8462a901b98c8c86516"
+      "detail": "417 files indexed at revision 22a380afb0748c3071663be242a22017e7c126c6"
     },
     {
-      "id": "evidence:test:051ea2fba0f8",
+      "id": "evidence:test:98d9c1ff67c5",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T18:22:10-03:00",
+      "observed_at": "2026-10-09T18:24:33-03:00",
       "status": "tested",
-      "detail": "211 passed in 7.60s"
+      "detail": "223 passed in 7.73s"
     }
   ],
   "decisions": [
@@ -10821,30 +10866,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:532fec4f0bf6",
+      "id": "event:repository-scan:af3f0964a0ea",
       "type": "repository_scanned",
-      "at": "2026-10-09T18:22:10-03:00",
-      "revision": "0ddedc572b0e947fd473f8462a901b98c8c86516",
-      "file_count": 415,
-      "evidence_id": "evidence:repository:532fec4f0bf6"
+      "at": "2026-10-09T18:24:33-03:00",
+      "revision": "22a380afb0748c3071663be242a22017e7c126c6",
+      "file_count": 417,
+      "evidence_id": "evidence:repository:af3f0964a0ea"
     },
     {
-      "id": "event:commit-observed:0ddedc572b0e",
+      "id": "event:commit-observed:22a380afb074",
       "type": "commit_observed",
-      "at": "2026-10-09T18:22:10-03:00",
-      "revision": "0ddedc572b0e947fd473f8462a901b98c8c86516",
+      "at": "2026-10-09T18:24:33-03:00",
+      "revision": "22a380afb0748c3071663be242a22017e7c126c6",
       "branch": "main",
-      "subject": "Correct profile archive ownership and verify restored file hashes",
+      "subject": "Add loopback-only Chromium DevTools channel for ABS integration",
       "changed_files": [
         ".github/workflows/abs-vps-prebuild-build-all.yml"
       ]
     },
     {
-      "id": "event:test:051ea2fba0f8",
+      "id": "event:test:98d9c1ff67c5",
       "type": "tests_observed",
-      "at": "2026-10-09T18:22:10-03:00",
+      "at": "2026-10-09T18:24:33-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:051ea2fba0f8"
+      "evidence_id": "evidence:test:98d9c1ff67c5"
     }
   ],
   "knowledge_sources": [
@@ -10900,7 +10945,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "299953982ab13b01345468ceb54e4675988c246b9c66eba74d890e1f12c0803a"
+      "sha256": "d594bc46350aec0e0e2d17016652c1ee4191de4dc4b6a805a16f9753310c6a82"
     },
     {
       "id": "source:session",
@@ -46985,12 +47030,166 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:532fec4f0bf6",
-      "source": "event:repository-scan:532fec4f0bf6",
-      "relation": "generated",
-      "target": "evidence:repository:532fec4f0bf6",
+      "id": "rel:commit-precedes:0ddedc572b0e:001266b3901f",
+      "source": "commit:0ddedc572b0e947fd473f8462a901b98c8c86516",
+      "relation": "precedes",
+      "target": "commit:001266b3901fb08b0dfd51cb61529d2e33980510",
       "status": "asserted",
-      "at": "2026-10-09T18:22:10-03:00",
+      "at": "2026-10-09T21:22:30Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:001266b3901f:032adc3624d7",
+      "source": "commit:001266b3901fb08b0dfd51cb61529d2e33980510",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T21:22:30Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:001266b3901f:d64178c49886",
+      "source": "commit:001266b3901fb08b0dfd51cb61529d2e33980510",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T21:22:30Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:001266b3901f:b5cdd2d77ff0",
+      "source": "commit:001266b3901fb08b0dfd51cb61529d2e33980510",
+      "relation": "precedes",
+      "target": "commit:b5cdd2d77ff0c8d3a05b6a7dae201bb55860763e",
+      "status": "asserted",
+      "at": "2026-10-09T18:24:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b5cdd2d77ff0:709e72a54ff7",
+      "source": "commit:b5cdd2d77ff0c8d3a05b6a7dae201bb55860763e",
+      "relation": "changed",
+      "target": "file:abs_core/browser_adapter.py",
+      "status": "asserted",
+      "at": "2026-10-09T18:24:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b5cdd2d77ff0:aeaf3315b1e0",
+      "source": "commit:b5cdd2d77ff0c8d3a05b6a7dae201bb55860763e",
+      "relation": "precedes",
+      "target": "commit:aeaf3315b1e0c7751d483c13b7e9f9b371468ed5",
+      "status": "asserted",
+      "at": "2026-10-09T18:24:13-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:aeaf3315b1e0:d40a8c76c965",
+      "source": "commit:aeaf3315b1e0c7751d483c13b7e9f9b371468ed5",
+      "relation": "changed",
+      "target": "file:tests/test_browser_adapter.py",
+      "status": "asserted",
+      "at": "2026-10-09T18:24:13-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:aeaf3315b1e0:6263976b87d1",
+      "source": "commit:aeaf3315b1e0c7751d483c13b7e9f9b371468ed5",
+      "relation": "precedes",
+      "target": "commit:6263976b87d1c8b5d9863dc140127443bbbb2c74",
+      "status": "asserted",
+      "at": "2026-10-09T18:24:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6263976b87d1:7e20f933dbaf",
+      "source": "commit:6263976b87d1c8b5d9863dc140127443bbbb2c74",
+      "relation": "changed",
+      "target": "file:abs_core/runtime.py",
+      "status": "asserted",
+      "at": "2026-10-09T18:24:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:6263976b87d1:22a380afb074",
+      "source": "commit:6263976b87d1c8b5d9863dc140127443bbbb2c74",
+      "relation": "precedes",
+      "target": "commit:22a380afb0748c3071663be242a22017e7c126c6",
+      "status": "asserted",
+      "at": "2026-10-09T18:24:33-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:22a380afb074:868bab1bcfbe",
+      "source": "commit:22a380afb0748c3071663be242a22017e7c126c6",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-prebuild-build-all.yml",
+      "status": "asserted",
+      "at": "2026-10-09T18:24:33-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:af3f0964a0ea",
+      "source": "event:repository-scan:af3f0964a0ea",
+      "relation": "generated",
+      "target": "evidence:repository:af3f0964a0ea",
+      "status": "asserted",
+      "at": "2026-10-09T18:24:33-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -46999,12 +47198,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:0ddedc572b0e",
-      "source": "commit:0ddedc572b0e947fd473f8462a901b98c8c86516",
+      "id": "rel:scan-commit:22a380afb074",
+      "source": "commit:22a380afb0748c3071663be242a22017e7c126c6",
       "relation": "observed_by",
-      "target": "event:repository-scan:532fec4f0bf6",
+      "target": "event:repository-scan:af3f0964a0ea",
       "status": "asserted",
-      "at": "2026-10-09T18:22:10-03:00",
+      "at": "2026-10-09T18:24:33-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
