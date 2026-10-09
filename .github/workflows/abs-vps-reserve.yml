@@ -131,6 +131,20 @@ jobs:
                 curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps || true
               fi
               ;;
+            vps-safe-cache-cleanup)
+              cd "$HOME/Projeto-Absoluto"
+              git fetch origin main --quiet
+              git reset --hard origin/main --quiet
+              cleanup_log="/tmp/abs-vps-safe-cache-cleanup-${GITHUB_RUN_ID:-manual}.log"
+              if bash scripts/ops/vps_safe_cache_cleanup.sh > "$cleanup_log" 2>&1; then
+                cleanup_rc=0
+              else
+                cleanup_rc=$?
+              fi
+              summary="$( { grep -E '^(ABS_VPS_SAFE_CACHE_CLEANUP_BEGIN|CACHE_CLEANUP_BLOCKED|NPM_CACHE_CLEAN_|APT_CACHE_CLEAN_|PHYSICAL_BYTES_RECOVERED=|PRESERVED:|LOG=|ABS_VPS_SAFE_CACHE_CLEANUP_END|Mem:|Swap:|Filesystem|/dev/sda1|=== (PRECHECK|POSTCHECK) ===)' "$cleanup_log" || true; } | tail -n 60)"
+              result="$(printf 'SCRIPT_EXIT=%s\n%s\nFULL_LOG=%s' "$cleanup_rc" "$summary" "$cleanup_log")"
+              result="${result:0:6000}"
+              ;;
             vps-inventory-audit)
               cd "$HOME/Projeto-Absoluto"
               git fetch origin main --quiet
@@ -163,7 +177,7 @@ jobs:
               result="DISABLED: six-model batch is blocked. Use /abs-reserve local-ai-smoke to test one small model at a time."
               ;;
             *)
-              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve vps-inventory-audit, /abs-reserve runner-main-diagnose, /abs-reserve runner-stabilize-main, /abs-reserve restart-abs, /abs-reserve v3-test, /abs-reserve integrate-test, /abs-reserve local-ai-smoke ou /abs-reserve local-ai-full-operation."
+              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve vps-inventory-audit, /abs-reserve vps-safe-cache-cleanup, /abs-reserve runner-main-diagnose, /abs-reserve runner-stabilize-main, /abs-reserve restart-abs, /abs-reserve v3-test, /abs-reserve integrate-test, /abs-reserve local-ai-smoke ou /abs-reserve local-ai-full-operation."
               ;;
           esac
           {
