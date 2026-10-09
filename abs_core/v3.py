@@ -329,19 +329,28 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
         priority=str(context.get("priority") or "normal")
         snap,allowed=self.capacity.admission(priority,self.queue.depth()); policy=self.cost_policy.policy(context)
         budget=CostBudget(float(context.get("max_spend",os.getenv("ABS_MAX_SPEND","0")) or 0),float(context.get("spent",0) or 0))
-        if not allowed:return V3Decision(WorkDisposition.WAIT,None,None,"capacity_critical",snap,policy)
         explicit=str(context.get("capability_id") or "")
         if explicit:
             try:
                 cap=self.registry.get(explicit)
-                if "ai" not in str(getattr(cap,"kind","")).lower():
-                    return V3Decision(WorkDisposition.EXECUTE,explicit,CostClass.FREE_EXTERNAL,"explicit_non_ai_capability",snap,policy)
-                candidate=self._candidate(cap)
-                if not self.cost_policy.admissible(candidate,policy,budget):
-                    return V3Decision(WorkDisposition.WAIT,explicit,candidate.cost_class,"explicit_intelligence_not_admissible",snap,policy)
-                return V3Decision(WorkDisposition.EXECUTE,explicit,candidate.cost_class,"explicit_intelligence",snap,policy)
             except KeyError:
+                # Invalid requests remain a policy denial even when the host is under pressure.
                 return V3Decision(WorkDisposition.DENY,explicit,None,"unknown_capability",snap,policy)
+            kind=str(getattr(cap,"kind","")).lower()
+            # Tiny deterministic test capabilities must remain available for health checks,
+            # recovery and CI even when expensive work is paused by the capacity governor.
+            if kind=="test" or explicit=="echo":
+                return V3Decision(WorkDisposition.EXECUTE,explicit,CostClass.FREE_EXTERNAL,"explicit_safe_test_capability",snap,policy)
+            if not allowed:
+                return V3Decision(WorkDisposition.WAIT,explicit,None,"capacity_critical",snap,policy)
+            if "ai" not in kind:
+                return V3Decision(WorkDisposition.EXECUTE,explicit,CostClass.FREE_EXTERNAL,"explicit_non_ai_capability",snap,policy)
+            candidate=self._candidate(cap)
+            if not self.cost_policy.admissible(candidate,policy,budget):
+                return V3Decision(WorkDisposition.WAIT,explicit,candidate.cost_class,"explicit_intelligence_not_admissible",snap,policy)
+            return V3Decision(WorkDisposition.EXECUTE,explicit,candidate.cost_class,"explicit_intelligence",snap,policy)
+        if not allowed:
+            return V3Decision(WorkDisposition.WAIT,None,None,"capacity_critical",snap,policy)
         ai=[self._candidate(c) for c in self.registry.list() if "ai" in str(getattr(c,"kind","")).lower()]
         ranked=self.selector.rank(ai,policy,budget,set(context.get("required_capabilities") or ()))
         preferred=str(context.get("intelligence_id") or "")
