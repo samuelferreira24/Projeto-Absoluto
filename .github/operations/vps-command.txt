@@ -1,1 +1,1 @@
-switch-qwen4b-q3
+test-qwen-4b
