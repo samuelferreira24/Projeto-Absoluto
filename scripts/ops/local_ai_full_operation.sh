@@ -209,7 +209,7 @@ print(json.dumps({
 }))
 PY
 )"
-  response="$(curl -sS --max-time 300 http://127.0.0.1:11434/api/chat -H 'Content-Type: application/json' -d "$payload" 2>&1)"
+  response="$(curl -sS --max-time 120 http://127.0.0.1:11434/api/chat -H 'Content-Type: application/json' -d "$payload" 2>&1)"
   rc=$?
   if [ "$rc" -eq 0 ] && printf '%s' "$response" | python3 -c 'import json,sys
 d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(); assert "ABS_GEMMA_VISION_OK" in s, s; print("vision_response="+s[:120])' && assert_unloaded; then
@@ -222,8 +222,9 @@ d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(
 }
 
 test_qwen_vision() {
-  model='qwen3.5:4b'
-  if ! wait_for_memory 3400 90; then
+  # Qwen 3.5 0.8B supports image input and fits this VPS with much more headroom.
+  model='qwen3.5:0.8b'
+  if ! wait_for_memory 1500 60; then
     echo "VISION_RESULT SKIP_MEMORY model=$model"
     return
   fi
