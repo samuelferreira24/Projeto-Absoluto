@@ -37,6 +37,15 @@ jobs:
           REPORT="$RUNNER_TEMP/abs-browser-build-report.txt"
           install -m 600 /dev/null "$REPORT"
           exec > >(tee -a "$REPORT") 2>&1
+          publish_result() {
+            {
+              echo 'result<<ABS_BUILD_EOF'
+              sed -E 's/(CUSTOM_PASSWORD=)[^ ]+/\\1[REDACTED]/g; s/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[=: ][^ ]*/\\1=[REDACTED]/Ig' "$REPORT" | tail -c 12000
+              echo
+              echo 'ABS_BUILD_EOF'
+            } >> "$GITHUB_OUTPUT"
+          }
+          trap publish_result EXIT
 
           pass(){ printf 'PASS | %s\n' "$*"; }
           fail(){ printf 'FAIL | %s\n' "$*"; }
