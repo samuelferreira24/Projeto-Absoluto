@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T10:40:58-03:00",
-  "source_revision": "ad38794c551d63417917bdae303ee43c17e90d60",
+  "generated_at": "2026-10-09T10:54:07-03:00",
+  "source_revision": "198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "ad38794c551d63417917bdae303ee43c17e90d60",
-      "commit_subject": "Add controlled full local AI operation runner"
+      "revision": "198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "commit_subject": "Fix local AI context and memory safety gates"
     }
   ],
   "tools": [
@@ -10053,6 +10053,20 @@
       "sha": "ad38794c551d63417917bdae303ee43c17e90d60"
     },
     {
+      "id": "commit:c2bb92de3e46181346fe2df5ee59e67b10de2662",
+      "kind": "commit",
+      "at": "2026-10-09T13:41:16Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "c2bb92de3e46181346fe2df5ee59e67b10de2662"
+    },
+    {
+      "id": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "kind": "commit",
+      "at": "2026-10-09T10:54:07-03:00",
+      "subject": "Fix local AI context and memory safety gates",
+      "sha": "198cfc1b9fb26ec4e15f9959f86ef00990ab71b5"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10165,23 +10179,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:f014e994edf7",
+      "id": "evidence:repository:37fe3911f0d3",
       "kind": "evidence",
-      "at": "2026-10-09T10:40:58-03:00",
+      "at": "2026-10-09T10:54:07-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:f014e994edf7",
+      "id": "event:repository-scan:37fe3911f0d3",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T10:40:58-03:00"
+      "at": "2026-10-09T10:54:07-03:00"
     },
     {
-      "id": "event:commit-observed:ad38794c551d",
+      "id": "event:commit-observed:198cfc1b9fb2",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T10:40:58-03:00"
+      "at": "2026-10-09T10:54:07-03:00"
     }
   ],
   "paths": [
@@ -10216,11 +10230,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:62cfc4625d0a"
+        "evidence:test:b0be404807da"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T10:40:58-03:00"
+      "last_validated": "2026-10-09T10:54:07-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10243,20 +10257,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:f014e994edf7",
+      "id": "evidence:repository:37fe3911f0d3",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T10:40:58-03:00",
+      "observed_at": "2026-10-09T10:54:07-03:00",
       "status": "observed",
-      "detail": "408 files indexed at revision ad38794c551d63417917bdae303ee43c17e90d60"
+      "detail": "408 files indexed at revision 198cfc1b9fb26ec4e15f9959f86ef00990ab71b5"
     },
     {
-      "id": "evidence:test:62cfc4625d0a",
+      "id": "evidence:test:b0be404807da",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T10:40:58-03:00",
+      "observed_at": "2026-10-09T10:54:07-03:00",
       "status": "tested",
-      "detail": "203 passed in 7.01s"
+      "detail": "205 passed in 7.62s"
     }
   ],
   "decisions": [
@@ -10359,32 +10373,36 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:f014e994edf7",
+      "id": "event:repository-scan:37fe3911f0d3",
       "type": "repository_scanned",
-      "at": "2026-10-09T10:40:58-03:00",
-      "revision": "ad38794c551d63417917bdae303ee43c17e90d60",
+      "at": "2026-10-09T10:54:07-03:00",
+      "revision": "198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
       "file_count": 408,
-      "evidence_id": "evidence:repository:f014e994edf7"
+      "evidence_id": "evidence:repository:37fe3911f0d3"
     },
     {
-      "id": "event:commit-observed:ad38794c551d",
+      "id": "event:commit-observed:198cfc1b9fb2",
       "type": "commit_observed",
-      "at": "2026-10-09T10:40:58-03:00",
-      "revision": "ad38794c551d63417917bdae303ee43c17e90d60",
+      "at": "2026-10-09T10:54:07-03:00",
+      "revision": "198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
       "branch": "main",
-      "subject": "Add controlled full local AI operation runner",
+      "subject": "Fix local AI context and memory safety gates",
       "changed_files": [
         ".github/workflows/abs-vps-reserve.yml",
+        "abs_core/intelligence.py",
+        "abs_core/local_ai_adapter.py",
         "abs_core/runtime.py",
-        "scripts/ops/local_ai_full_operation.sh"
+        "scripts/ops/local_ai_full_operation.sh",
+        "tests/test_ai_adapters.py",
+        "tests/test_intelligence_routing.py"
       ]
     },
     {
-      "id": "event:test:62cfc4625d0a",
+      "id": "event:test:b0be404807da",
       "type": "tests_observed",
-      "at": "2026-10-09T10:40:58-03:00",
+      "at": "2026-10-09T10:54:07-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:62cfc4625d0a"
+      "evidence_id": "evidence:test:b0be404807da"
     }
   ],
   "knowledge_sources": [
@@ -10440,7 +10458,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "d2ff0c5b8d83e9e7feabca470856728f385f3cb34e0ba9cb7fd9499188c76552"
+      "sha256": "0797aa4cce45c3f62902fc5aa1b28910b7313745c5900ae8e7b2a598f81b3060"
     },
     {
       "id": "source:session",
@@ -44145,12 +44163,166 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:f014e994edf7",
-      "source": "event:repository-scan:f014e994edf7",
-      "relation": "generated",
-      "target": "evidence:repository:f014e994edf7",
+      "id": "rel:commit-precedes:ad38794c551d:c2bb92de3e46",
+      "source": "commit:ad38794c551d63417917bdae303ee43c17e90d60",
+      "relation": "precedes",
+      "target": "commit:c2bb92de3e46181346fe2df5ee59e67b10de2662",
       "status": "asserted",
-      "at": "2026-10-09T10:40:58-03:00",
+      "at": "2026-10-09T13:41:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c2bb92de3e46:032adc3624d7",
+      "source": "commit:c2bb92de3e46181346fe2df5ee59e67b10de2662",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T13:41:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c2bb92de3e46:d64178c49886",
+      "source": "commit:c2bb92de3e46181346fe2df5ee59e67b10de2662",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T13:41:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c2bb92de3e46:198cfc1b9fb2",
+      "source": "commit:c2bb92de3e46181346fe2df5ee59e67b10de2662",
+      "relation": "precedes",
+      "target": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "status": "asserted",
+      "at": "2026-10-09T10:54:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:198cfc1b9fb2:3ea533262670",
+      "source": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-reserve.yml",
+      "status": "asserted",
+      "at": "2026-10-09T10:54:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:198cfc1b9fb2:7fe5bf87e5fb",
+      "source": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "relation": "changed",
+      "target": "file:abs_core/intelligence.py",
+      "status": "asserted",
+      "at": "2026-10-09T10:54:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:198cfc1b9fb2:2ebb9d14537a",
+      "source": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "relation": "changed",
+      "target": "file:abs_core/local_ai_adapter.py",
+      "status": "asserted",
+      "at": "2026-10-09T10:54:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:198cfc1b9fb2:7e20f933dbaf",
+      "source": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "relation": "changed",
+      "target": "file:abs_core/runtime.py",
+      "status": "asserted",
+      "at": "2026-10-09T10:54:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:198cfc1b9fb2:bc92442f76cc",
+      "source": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "relation": "changed",
+      "target": "file:scripts/ops/local_ai_full_operation.sh",
+      "status": "asserted",
+      "at": "2026-10-09T10:54:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:198cfc1b9fb2:e43e15d41c16",
+      "source": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "relation": "changed",
+      "target": "file:tests/test_ai_adapters.py",
+      "status": "asserted",
+      "at": "2026-10-09T10:54:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:198cfc1b9fb2:992eca564850",
+      "source": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
+      "relation": "changed",
+      "target": "file:tests/test_intelligence_routing.py",
+      "status": "asserted",
+      "at": "2026-10-09T10:54:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:37fe3911f0d3",
+      "source": "event:repository-scan:37fe3911f0d3",
+      "relation": "generated",
+      "target": "evidence:repository:37fe3911f0d3",
+      "status": "asserted",
+      "at": "2026-10-09T10:54:07-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -44159,12 +44331,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:ad38794c551d",
-      "source": "commit:ad38794c551d63417917bdae303ee43c17e90d60",
+      "id": "rel:scan-commit:198cfc1b9fb2",
+      "source": "commit:198cfc1b9fb26ec4e15f9959f86ef00990ab71b5",
       "relation": "observed_by",
-      "target": "event:repository-scan:f014e994edf7",
+      "target": "event:repository-scan:37fe3911f0d3",
       "status": "asserted",
-      "at": "2026-10-09T10:40:58-03:00",
+      "at": "2026-10-09T10:54:07-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
