@@ -8,6 +8,10 @@
 
 ---
 
+## 0. Pesquisa de capacidades — pré-requisito de arquitetura
+
+Antes de fechar a arquitetura-alvo, consultar [Pesquisa de Capacidades que o ABS Deve Possuir V4](PESQUISA_CAPACIDADES_QUE_O_ABS_DEVE_POSSUIR_V4.md). Ela amplia o tabuleiro histórico de 72 capacidades com uma taxonomia externa e exige uma matriz de reconciliação com o catálogo canônico, código, testes e evidência operacional. Não tratar a taxonomia como ordem para instalar tudo: separar requisitos centrais, capacidades condicionais, capacidades já existentes, lacunas e itens não validados. A arquitetura final só deve ser consolidada depois dessa reconciliação.
+
 ## 1. Decisão de enquadramento
 
 O Projeto Absoluto é maior que o ABS. O **ABS geral / Sistema Absoluto** é o ecossistema aberto de capacidades e recursos do Imperador. O **ABS em construção** é o sistema operador/orquestrador desse ecossistema. A V4 trata do ABS em construção, sem pretender encerrar ou limitar o ecossistema inteiro.
