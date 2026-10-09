@@ -61,14 +61,27 @@ def test_v3_candidate_maps_to_real_capability_id():
     assert "chat" in candidate.capabilities
 
 
-def test_v3_explicit_unknown_capability_is_denied():
-    from abs_core.v3 import ABSV3Orchestrator, WorkDisposition
+def test_v3_explicit_unknown_capability_is_denied_even_when_critical():
+    from abs_core.v3 import ABSV3Orchestrator, WorkDisposition, CapacitySnapshot, CapacityState
     from abs_core.capabilities import CapabilityRegistry
     from abs_core.store import WorkStore
     o=ABSV3Orchestrator(CapabilityRegistry(), WorkStore(":memory:"))
+    critical=CapacitySnapshot(3,1.0,1,0,1,CapacityState.CRITICAL,1,0.0)
+    o.capacity.admission=lambda priority,depth:(critical,False)
     w=o.create("test", {})
     d=o._gate(w, {"capability_id":"does-not-exist"})
     assert d.disposition is WorkDisposition.DENY
+
+
+def test_v3_explicit_echo_executes_when_capacity_is_critical():
+    from abs_core.runtime import build_runtime
+    from abs_core.v3 import CapacitySnapshot, CapacityState
+    rt=build_runtime(":memory:")
+    critical=CapacitySnapshot(3,1.0,1,0,1,CapacityState.CRITICAL,1,0.0)
+    rt.orchestrator.capacity.admission=lambda priority,depth:(critical,False)
+    work=rt.orchestrator.create("V3 safe echo under pressure", {"capability_id":"echo"})
+    done=rt.orchestrator.run(work.id, "echo")
+    assert done.state.value=="completed"
 
 
 def test_v3_explicit_echo_executes_end_to_end():
