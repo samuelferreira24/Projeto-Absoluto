@@ -30,6 +30,29 @@ jobs:
           set -euo pipefail
           command="${REQUEST#'/abs-reserve '}"
           case "$command" in
+            runner-main-diagnose)
+              service="actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01.service"
+              {
+                echo "[unit]"
+                sudo systemctl show "$service" -p ActiveState -p SubState -p Result -p MainPID -p Restart -p RestartUSec -p MemoryCurrent -p MemoryPeak -p MemoryMax -p MemorySwapMax -p KillMode -p TimeoutStopUSec
+                echo
+                echo "[status]"
+                sudo systemctl status "$service" --no-pager -l || true
+                echo
+                echo "[journal]"
+                sudo journalctl -u "$service" -n 50 --no-pager || true
+                echo
+                echo "[processes]"
+                pgrep -af 'Runner.Listener|Runner.Worker|runsvc.sh' || true
+                echo
+                echo "[ABS health]"
+                curl -fsS --max-time 10 http://127.0.0.1:8787/health || true
+                echo
+                echo "[memory]"
+                free -h
+              } > /tmp/abs-main-runner-diagnose.txt 2>&1
+              result="$(cat /tmp/abs-main-runner-diagnose.txt)"
+              ;;
             runner-stabilize-main)
               service="actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01.service"
               sudo install -d -m 0755 "/etc/systemd/system/$service.d"
@@ -77,7 +100,7 @@ jobs:
               result="DISABLED: six-model batch is blocked during runner stabilization. First complete /abs runner-health and /abs-reserve status; then test one model at a time."
               ;;
             *)
-              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve runner-stabilize-main, /abs-reserve restart-abs, /abs-reserve v3-test ou /abs-reserve integrate-test."
+              result="Comando não permitido: $command. Use /abs-reserve status, /abs-reserve runner-main-diagnose, /abs-reserve runner-stabilize-main, /abs-reserve restart-abs, /abs-reserve v3-test ou /abs-reserve integrate-test."
               ;;
           esac
           {
