@@ -45,10 +45,10 @@ class LocalAICapability:
             endpoint += "/v1/chat/completions"
 
         try:
-            max_tokens = int(context.get("max_tokens", os.getenv("ABS_LOCAL_AI_MAX_TOKENS", "256")))
+            max_tokens = int(context.get("max_tokens", os.getenv("ABS_LOCAL_AI_MAX_TOKENS", "96")))
         except (TypeError, ValueError):
-            max_tokens = 256
-        max_tokens = max(1, min(max_tokens, 2048))
+            max_tokens = 96
+        max_tokens = max(1, min(max_tokens, 1024))
 
         try:
             temperature = float(context.get("temperature", os.getenv("ABS_LOCAL_AI_TEMPERATURE", "0.2")))
@@ -60,28 +60,52 @@ class LocalAICapability:
         if think is None:
             think = os.getenv("ABS_LOCAL_AI_THINK", "false").strip().lower() in {"1", "true", "yes", "on"}
 
-        payload = {
-            "model": self.model,
-            "messages": messages,
-            "max_tokens": max_tokens,
-            "temperature": temperature,
-            "stream": False,
-            "think": bool(think),
-        }
-        if "keep_alive" in context:
-            payload["keep_alive"] = context["keep_alive"]
+        try:
+            timeout = int(context.get("timeout", self.timeout))
+        except (TypeError, ValueError):
+            timeout = self.timeout
+        timeout = max(1, min(timeout, 300))
 
-        data = _post_json(endpoint, {}, payload, self.timeout)
-        choices = data.get("choices") or []
-        if not choices:
-            raise RuntimeError("Local AI returned no choices.")
-        message = choices[0].get("message") or {}
-        text = message.get("content")
-        if isinstance(text, list):
-            text = "".join(
-                item.get("text", "") for item in text
-                if isinstance(item, dict) and item.get("type") == "text"
-            )
+        native_ollama = endpoint.startswith(("http://127.0.0.1:11434", "http://localhost:11434"))
+        if native_ollama:
+            native_endpoint = endpoint
+            if native_endpoint.endswith("/v1"):
+                native_endpoint = native_endpoint[:-3]
+            payload = {
+                "model": self.model,
+                "messages": messages,
+                "stream": False,
+                "think": bool(think),
+                "options": {"num_predict": max_tokens, "temperature": temperature},
+            }
+            if "keep_alive" in context:
+                payload["keep_alive"] = context["keep_alive"]
+            data = _post_json(f"{native_endpoint}/api/chat", {}, payload, timeout)
+            message = data.get("message") or {}
+            text = message.get("content")
+            if not text and message.get("thinking"):
+                text = message.get("thinking")
+        else:
+            if not endpoint.endswith("/chat/completions"):
+                endpoint += "/v1/chat/completions"
+            payload = {
+                "model": self.model,
+                "messages": messages,
+                "max_tokens": max_tokens,
+                "temperature": temperature,
+                "stream": False,
+            }
+            data = _post_json(endpoint, {}, payload, timeout)
+            choices = data.get("choices") or []
+            if not choices:
+                raise RuntimeError("Local AI returned no choices.")
+            message = choices[0].get("message") or {}
+            text = message.get("content")
+            if isinstance(text, list):
+                text = "".join(
+                    item.get("text", "") for item in text
+                    if isinstance(item, dict) and item.get("type") == "text"
+                )
         if not text:
             raise RuntimeError("Local AI returned no text content.")
         return {
