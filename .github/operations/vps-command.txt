@@ -1,1 +1,1 @@
-status
+switch-qwen4b-q3
