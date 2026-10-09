@@ -44,7 +44,7 @@ def test_memory_pressure_reduces_large_local_model_priority(monkeypatch):
     runtime.intelligence = _runtime_with_resources()
     monkeypatch.setattr(
         "builtins.open",
-        lambda *args, **kwargs: __import__("io").StringIO("MemAvailable:       1800000 kB\n"),
+        lambda *args, **kwargs: __import__("io").StringIO("MemAvailable:       2600000 kB\n"),
     )
     ranked = runtime._rank_resources({"context": {}, "preferred_resource": None})
     assert ranked[0].capability_id == "local-ai:qwen3.5-0.8b"
@@ -56,10 +56,22 @@ def test_explicit_large_model_preference_cannot_bypass_memory_gate(monkeypatch):
     runtime.intelligence = _runtime_with_resources()
     monkeypatch.setattr(
         "builtins.open",
-        lambda *args, **kwargs: __import__("io").StringIO("MemAvailable:       1800000 kB\\n"),
+        lambda *args, **kwargs: __import__("io").StringIO("MemAvailable:       2600000 kB\\n"),
     )
     ranked = runtime._rank_resources(
         {"context": {"capability_id": "local-ai:qwen3.5-4b"}, "preferred_resource": None}
     )
     assert all(item.capability_id != "local-ai:qwen3.5-4b" for item in ranked)
     assert ranked and ranked[0].capability_id == "local-ai:qwen3.5-0.8b"
+
+
+def test_unknown_memory_fails_closed_for_sized_local_models(monkeypatch):
+    runtime = CognitiveRuntime.__new__(CognitiveRuntime)
+    runtime.intelligence = _runtime_with_resources()
+
+    def unavailable(*args, **kwargs):
+        raise OSError("meminfo unavailable")
+
+    monkeypatch.setattr("builtins.open", unavailable)
+    ranked = runtime._rank_resources({"context": {}, "preferred_resource": None})
+    assert ranked == []
