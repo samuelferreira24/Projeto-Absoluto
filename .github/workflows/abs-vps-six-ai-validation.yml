@@ -6,6 +6,7 @@ on:
       - ops/vps-six-ai-validation
     paths:
       - ".github/operations/vps-command.txt"
+      - ".github/workflows/abs-vps-six-ai-validation.yml"
 
 permissions:
   contents: read
@@ -263,7 +264,7 @@ jobs:
               run_model_test "local-ai:ministral-3b" "ministral-3:3b" "M3_OK" 4194304 2900000000 180 210 8
               ;;
             test-gemma-e2b)
-              run_model_test "local-ai:gemma4-e2b" "hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S" "GE2_OK" 4194304 0 240 270 8
+              run_model_test "local-ai:gemma4-e2b" "hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S" "GE2_OK" 3800000 0 240 270 8
               ;;
             test-gemma-e4b)
               run_model_test "local-ai:gemma4-e4b" "hf.co/mradermacher/gemma-4-E4B-it-i1-GGUF:Q2_K" "GE4_OK" 4404019 0 300 330 8
