@@ -634,6 +634,23 @@ jobs:
               } > /tmp/abs-browser-cdp-probe.txt 2>&1
               result="$(cat /tmp/abs-browser-cdp-probe.txt)"
               ;;
+            tailnet-status)
+              set +e
+              {
+                echo "[Tailscale backend]"
+                timeout 8s sudo -n tailscale status --json 2>&1 | python3 -c 'import json,sys; d=json.load(sys.stdin); print("BackendState="+str(d.get("BackendState","unknown"))); print("SelfDNSName="+str((d.get("Self") or {}).get("DNSName","unknown"))); print("CurrentTailnet="+str((d.get("CurrentTailnet") or {}).get("Name","unknown")))' 2>&1 || true
+                echo
+                echo "[Tailscale Serve configuration]"
+                timeout 8s sudo -n tailscale serve status 2>&1 || true
+                echo
+                echo "[Serve waiter service]"
+                sudo -n systemctl show abs-browser-tailnet-serve.service -p ActiveState -p SubState -p Result -p MainPID 2>&1 || true
+                echo
+                echo "[Tailscale CLI processes]"
+                ps -eo pid,ppid,stat,etime,wchan:24,args | grep -E '[t]ailscale (serve|status)' || true
+              } > /tmp/abs-tailnet-status.txt 2>&1
+              result="$(cat /tmp/abs-tailnet-status.txt)"
+              ;;
             browser-diagnose)
               set +e
               {
