@@ -87,16 +87,7 @@ jobs:
           echo "=== Exposure audit (read-only) ==="
           sudo docker ps --format '{{.Names}} {{.Ports}}' | grep -E '0\.0\.0\.0:8080|\[::\]:8080|0\.0\.0\.0:9222|\[::\]:9222' && note "Public Docker-published port(s) require separate review; existing proxy will not be changed automatically." || pass "No matching public 8080/CDP mapping in current container list"
           sudo ufw status verbose 2>/dev/null || true
-          if sudo docker inspect abs-browser-ui >/dev/null 2>&1; then
-            note "Existing abs-browser-ui container found; reusing it and preserving its config volume."
-            EXISTING_STATE="$(sudo docker inspect abs-browser-ui --format '{{.State.Status}}')"
-            if [ "$EXISTING_STATE" != "running" ]; then
-              sudo docker start abs-browser-ui >/dev/null
-              pass "Started existing stopped browser container without removing it."
-            fi
-          else
-            echo
-            echo "=== Browser deployment ==="
+          deploy_browser() {
             install -d -m 750 "$HOME/.config/abs-browser"
             install -d -m 750 "$HOME/abs-browser/config" "$HOME/abs-browser/backups"
             chmod 700 "$HOME/.config/abs-browser" "$HOME/abs-browser/config" "$HOME/abs-browser/backups"
@@ -106,11 +97,22 @@ jobs:
               USERNAME="absimperador"
               PASSWORD="$(openssl rand -hex 24)"
               umask 077
-              printf 'CUSTOM_USER=%s\nCUSTOM_PASSWORD=%s\nTITLE=ABS Browser\n' "$USERNAME" "$PASSWORD" > "$ENVFILE"
+              printf 'CUSTOM_USER=%s\nPASSWORD=%s\nTITLE=ABS Browser\n' "$USERNAME" "$PASSWORD" > "$ENVFILE"
               chmod 600 "$ENVFILE"
               unset PASSWORD
               pass "Generated browser credential stored in a mode-600 host file; never printed to logs."
             else
+              # linuxserver/chromium uses PASSWORD, not CUSTOM_PASSWORD. Migrate the
+              # existing secret in-place without printing it or changing its value.
+              if ! grep -q '^PASSWORD=' "$ENVFILE"; then
+                OLD_PASSWORD="$(sed -n 's/^CUSTOM_PASSWORD=//p' "$ENVFILE" | head -n 1)"
+                if [ -n "$OLD_PASSWORD" ]; then
+                  printf '\nPASSWORD=%s\n' "$OLD_PASSWORD" >> "$ENVFILE"
+                  chmod 600 "$ENVFILE"
+                  unset OLD_PASSWORD
+                  pass "Migrated existing protected credential key to the image-supported PASSWORD variable."
+                fi
+              fi
               pass "Reusing existing protected browser credential file."
             fi
 
@@ -118,11 +120,11 @@ jobs:
               sudo docker pull lscr.io/linuxserver/chromium:latest
             fi
 
+            # No --init: linuxserver's s6 overlay must itself be PID 1.
             # Bind only to IPv4 loopback. No public host port, no CDP port.
             sudo docker run -d \
               --name abs-browser-ui \
               --restart unless-stopped \
-              --init \
               --security-opt no-new-privileges:true \
               --cap-drop NET_RAW \
               --memory 1280m --memory-swap 1792m --cpus 1.50 --pids-limit 512 \
@@ -133,6 +135,25 @@ jobs:
               -v "$HOME/abs-browser/config:/config" \
               lscr.io/linuxserver/chromium:latest
             pass "Browser container created with persistent /config and loopback-only port binding."
+          }
+
+          if sudo docker inspect abs-browser-ui >/dev/null 2>&1; then
+            EXISTING_STATE="$(sudo docker inspect abs-browser-ui --format '{{.State.Status}}')"
+            EXISTING_LOGS="$(sudo docker logs --tail 30 abs-browser-ui 2>&1 || true)"
+            if printf '%s' "$EXISTING_LOGS" | grep -q 's6-overlay-suexec: fatal: can only run as pid 1'; then
+              note "Confirmed startup failure caused by incompatible --init wrapper; replacing only the failed abs-browser-ui container. The persistent host config directory is preserved."
+              sudo docker rm -f abs-browser-ui >/dev/null
+              deploy_browser
+            elif [ "$EXISTING_STATE" != "running" ]; then
+              sudo docker start abs-browser-ui >/dev/null
+              pass "Started existing browser container without removing it."
+            else
+              pass "Existing browser container is already running; reusing it."
+            fi
+          else
+            echo
+            echo "=== Browser deployment ==="
+            deploy_browser
           fi
 
           echo
