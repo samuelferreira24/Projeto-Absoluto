@@ -76,6 +76,27 @@ echo "=== SEQUENTIAL DIRECT SMOKE TESTS ==="
 # Test one model at a time with 2048 context, short output and keep_alive=0.
 # Thresholds include a small OS/ABS margin; a skipped model is not counted as PASS.
 # A successful response is not a pass unless Ollama confirms the model unloaded.
+# Wait for reclaimable memory after keep_alive=0; never lower safety thresholds to force a test.
+wait_for_memory() {
+  required_mb="$1"; max_wait_s="$2"
+  [ -z "$max_wait_s" ] && max_wait_s=90
+  attempts=$((max_wait_s / 5))
+  [ "$attempts" -lt 1 ] && attempts=1
+  attempt=0
+  while [ "$attempt" -lt "$attempts" ]; do
+    available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+    if [ "$available_kb" -ge "$((required_mb * 1024))" ]; then
+      echo "MEMORY_WAIT_PASS available_mb=$((available_kb / 1024)) required_mb=$required_mb waited_s=$((attempt * 5))"
+      return 0
+    fi
+    sleep 5
+    attempt=$((attempt + 1))
+  done
+  available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+  echo "MEMORY_WAIT_TIMEOUT available_mb=$((available_kb / 1024)) required_mb=$required_mb waited_s=$((attempt * 5))"
+  return 1
+}
+
 assert_unloaded() {
   active_json="$(curl -fsS --max-time 5 http://127.0.0.1:11434/api/ps 2>&1)" || {
     echo "UNLOAD_FAIL reason=api_ps_unavailable"
@@ -94,9 +115,8 @@ test_model() {
     echo "RESULT SKIP_NOT_INSTALLED model=$model"
     return
   fi
-  available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
-  if [ "$available_kb" -lt "$((min_mb * 1024))" ]; then
-    echo "RESULT SKIP_MEMORY model=$model available_mb=$((available_kb / 1024)) required_mb=$min_mb"
+  if ! wait_for_memory "$min_mb" 90; then
+    echo "RESULT SKIP_MEMORY model=$model"
     return
   fi
   before="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
@@ -129,9 +149,8 @@ gemma_vision_pass=0
 qwen_vision_pass=0
 test_tool_call() {
   model="$1"; marker="$2"; min_mb="$3"; timeout_s="$4"
-  available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
-  if [ "$available_kb" -lt "$((min_mb * 1024))" ]; then
-    echo "TOOL_RESULT SKIP_MEMORY model=$model available_mb=$((available_kb / 1024)) required_mb=$min_mb"
+  if ! wait_for_memory "$min_mb" 90; then
+    echo "TOOL_RESULT SKIP_MEMORY model=$model"
     return
   fi
   payload="$(python3 - "$model" "$marker" <<'PY'
@@ -166,14 +185,10 @@ raise SystemExit("expected tool call not returned")' "$marker" && assert_unloade
   fi
   echo
 }
-test_tool_call 'ministral-3:3b' 'ABS_MINISTRAL_TOOL_OK' 3000 300
-test_tool_call 'phi4-mini:3.8b' 'ABS_PHI_TOOL_OK' 2800 300
-
 test_gemma_vision() {
   model='hf.co/dahus/gemma-4-e2b-it-Q3_K_S-GGUF:Q3_K_S'
-  available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
-  if [ "$available_kb" -lt 3072000 ]; then
-    echo "VISION_RESULT SKIP_MEMORY model=$model available_mb=$((available_kb / 1024)) required_mb=3000"
+  if ! wait_for_memory 3000 90; then
+    echo "VISION_RESULT SKIP_MEMORY model=$model"
     return
   fi
   image_b64="$(python3 - <<'PY'
@@ -212,9 +227,8 @@ test_gemma_vision
 
 test_qwen_vision() {
   model='qwen3.5:4b'
-  available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
-  if [ "$available_kb" -lt 3481600 ]; then
-    echo "VISION_RESULT SKIP_MEMORY model=$model available_mb=$((available_kb / 1024)) required_mb=3400"
+  if ! wait_for_memory 3400 90; then
+    echo "VISION_RESULT SKIP_MEMORY model=$model"
     return
   fi
   image_b64="$(python3 - <<'PY'
@@ -251,6 +265,10 @@ d=json.load(sys.stdin); s=((d.get("message") or {}).get("content") or "").upper(
 }
 test_qwen_vision
 
+# Run tool-call checks after vision so one heavy tool test cannot starve image tests.
+test_tool_call 'ministral-3:3b' 'ABS_MINISTRAL_TOOL_OK' 3000 300
+test_tool_call 'phi4-mini:3.8b' 'ABS_PHI_TOOL_OK' 2800 300
+
 echo "=== DIRECT TEST SUMMARY ==="
 grep '^RESULT ' "$log" || true
 pass_count="$(grep '^RESULT PASS ' "$log" | sed -E 's/.*model=([^ ]+).*/\1/' | sort -u | wc -l | tr -d ' ')"
@@ -274,6 +292,18 @@ ENV
   integration_total=0
   test_abs_model() {
     cap="$1"; marker="$2"; integration_total=$((integration_total+1))
+    case "$cap" in
+      qwen3.5-0.8b) required_mb=2600 ;;
+      qwen3.5-2b) required_mb=3800 ;;
+      qwen3.5-4b|ministral-3b) required_mb=4050 ;;
+      gemma4-e2b-q3) required_mb=4000 ;;
+      phi4-mini-3.8b) required_mb=3700 ;;
+      *) required_mb=3000 ;;
+    esac
+    if ! wait_for_memory "$required_mb" 90; then
+      echo "ABS_INTEGRATION_FAIL capability=$cap reason=memory_not_recovered"
+      return
+    fi
     json="$(curl -sS --max-time 300 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d "$(python3 - "$cap" "$marker" <<'PY'
 import json,sys
 print(json.dumps({"message":"Reply with exactly "+sys.argv[2]+" and nothing else.","approved":True,"context":{"capability_id":"local-ai:"+sys.argv[1],"max_tokens":24,"temperature":0,"think":False,"keep_alive":0,"timeout":280}}))
