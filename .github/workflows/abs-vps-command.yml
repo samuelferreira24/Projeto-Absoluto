@@ -132,7 +132,7 @@ jobs:
               set +e
               available_kb="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
               if [ "$available_kb" -lt 4194304 ]; then
-                result="SKIP: MemAvailable below 4 GiB; ABS Qwen 2B integration was not called. $(free -h | tail -n 2 | tr '\\n' ' ')"
+                result="SKIP: MemAvailable below 4 GiB; ABS Qwen 2B integration was not called. $(free -h | tail -n 2 | tr '\n' ' ')"
               else
                 chat_json="$(curl -sS --max-time 150 -X POST http://127.0.0.1:8787/chat -H 'Content-Type: application/json' -d '{"message":"Reply exactly ABS_LOCAL_AI_QWEN2B_OK.","approved":true,"context":{"capability_id":"local-ai:qwen3.5-2b","max_tokens":16,"temperature":0,"think":false,"keep_alive":0,"timeout":120}}' 2>&1)"
                 curl_rc=$?
