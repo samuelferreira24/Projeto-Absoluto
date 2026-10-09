@@ -38,7 +38,41 @@ jobs:
               echo 'ABS_COMPLETE_EOF'
             } >> "$GITHUB_OUTPUT"
           }
-          trap publish_result EXIT
+          DEPLOY_STARTED=0
+          CONTAINER_STOPPED=0
+          DROPIN_CHANGED=0
+          DROPIN_HAD_OLD=0
+          ROLLBACK="/tmp/abs-browser-dropin.rollback"
+          rollback_and_publish() {
+            rc=$?
+            trap - EXIT
+            if [ "$rc" -ne 0 ]; then
+              echo "ROLLBACK | command failed with exit=$rc; restoring safe visual-browser state where possible."
+              if [ "${DROPIN_CHANGED:-0}" -eq 1 ]; then
+                if [ "${DROPIN_HAD_OLD:-0}" -eq 1 ] && [ -f "$ROLLBACK" ]; then
+                  sudo -n cp "$ROLLBACK" "${DROPIN:-/etc/systemd/system/abs.service.d/20-browser.conf}" || true
+                else
+                  sudo -n rm -f "${DROPIN:-/etc/systemd/system/abs.service.d/20-browser.conf}" || true
+                fi
+                sudo -n systemctl daemon-reload || true
+                sudo -n systemctl restart abs.service || true
+              fi
+              if [ "${DEPLOY_STARTED:-0}" -eq 1 ] && [ -n "${PROFILE_MOUNT:-}" ] && [ -n "${ENVFILE:-}" ] && [ -n "${CONTAINER_IMAGE:-}" ]; then
+                sudo -n docker rm -f abs-browser-ui >/dev/null 2>&1 || true
+                sudo -n docker run -d --name abs-browser-ui --restart unless-stopped --security-opt no-new-privileges:true --cap-drop NET_RAW --memory 1280m --memory-swap 1792m --cpus 1.50 --pids-limit 512 --shm-size 512m --env-file "$ENVFILE" -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC -p 127.0.0.1:3000:3000 -v "$PROFILE_MOUNT:/config" "$CONTAINER_IMAGE" >/dev/null 2>&1 || true
+                for i in $(seq 1 12); do
+                  code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 4 http://127.0.0.1:3000/ 2>/dev/null || true)"
+                  if printf '%s' "$code" | grep -Eq '^(200|301|302|401|403)$'; then echo "ROLLBACK | visual-only browser HTTP=$code"; break; fi
+                  sleep 5
+                done
+              elif [ "${CONTAINER_STOPPED:-0}" -eq 1 ]; then
+                sudo -n docker start abs-browser-ui >/dev/null 2>&1 || true
+              fi
+            fi
+            publish_result
+            exit "$rc"
+          }
+          trap rollback_and_publish EXIT
           pass(){ printf 'PASS | %s\n' "$*"; }
           fail(){ printf 'FAIL | %s\n' "$*"; }
           blocked(){ printf 'BLOCKED | %s\n' "$*"; }
@@ -80,6 +114,7 @@ jobs:
           echo
           echo "=== Consistent profile backup and restore test ==="
           sudo -n docker stop --time 30 abs-browser-ui >/dev/null
+          CONTAINER_STOPPED=1
           BACKUP="$HOME/abs-browser/backups/profile-$(date -u +%F).tar.gz"
           TEMP_BACKUP="$BACKUP.partial"
           tar -czf "$TEMP_BACKUP" -C "$HOME/abs-browser" config
@@ -117,7 +152,7 @@ jobs:
             exit 0
           fi
           for port in 3000 3001 9222; do
-            if ! sudo -n ufw status | grep -Eq "^$port/tcp[[:space:]]+DENY IN"; then
+            if ! sudo -n ufw status | grep -Eq "^$port/tcp[[:space:]]+DENY([[:space:]]|$)"; then
               sudo -n ufw deny "$port/tcp" comment "ABS browser private-only" >/dev/null
             fi
           done
@@ -137,8 +172,14 @@ jobs:
             pass "Created persistent non-default CDP profile directory."
           fi
 
+          # Browser is stopped: remove only stale process lock files from the copied CDP profile.
+          rm -f "$CDP_PROFILE"/SingletonCookie "$CDP_PROFILE"/SingletonLock "$CDP_PROFILE"/SingletonSocket
+          pass "Cleared stale singleton lock files in the copied CDP profile while stopped."
+
           echo
           echo "=== Browser container with host-loopback CDP ==="
+          DEPLOY_STARTED=1
+          CONTAINER_STOPPED=0
           sudo -n docker rm -f abs-browser-ui >/dev/null
           sudo -n docker run -d \
             --name abs-browser-ui \
@@ -153,6 +194,7 @@ jobs:
             -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222" \
             -v "$PROFILE_MOUNT:/config" \
             "$CONTAINER_IMAGE"
+          CONTAINER_STOPPED=0
           UI_READY=0
           CDP_READY=0
           for i in $(seq 1 24); do
@@ -169,7 +211,7 @@ jobs:
           if [ "$NETWORK_MODE" = "host" ]; then
             UFW_FINAL="$(sudo -n ufw status 2>&1)"
             for port in 3000 3001 9222; do
-              printf '%s' "$UFW_FINAL" | grep -Eq "^$port/tcp[[:space:]]+DENY IN" || { fail "Missing explicit UFW deny for host port $port"; exit 1; }
+              printf '%s' "$UFW_FINAL" | grep -Eq "^$port/tcp[[:space:]]+DENY([[:space:]]|$)" || { fail "Missing explicit UFW deny for host port $port"; exit 1; }
             done
             pass "Host network used for Chromium loopback CDP; UFW explicitly denies all browser ports from inbound traffic"
           else
@@ -206,8 +248,9 @@ jobs:
               if [ "$CDP_READY" -eq 1 ]; then
                 DROPIN="/etc/systemd/system/abs.service.d/20-browser.conf"
                 ROLLBACK="/tmp/abs-browser-dropin.rollback"
-                if sudo -n test -f "$DROPIN"; then sudo -n cp "$DROPIN" "$ROLLBACK"; else rm -f "$ROLLBACK"; fi
+                if sudo -n test -f "$DROPIN"; then sudo -n cp "$DROPIN" "$ROLLBACK"; DROPIN_HAD_OLD=1; else rm -f "$ROLLBACK"; DROPIN_HAD_OLD=0; fi
                 sudo -n install -d -m 0755 /etc/systemd/system/abs.service.d
+                DROPIN_CHANGED=1
                 printf '[Service]\nEnvironment=ABS_BROWSER_CDP_URL=http://127.0.0.1:9222\n' | sudo -n tee "$DROPIN" >/dev/null
                 sudo -n systemctl daemon-reload
                 sudo -n systemctl restart abs.service
@@ -268,6 +311,9 @@ jobs:
           echo
           note "Credential file remains private at $HOME/.config/abs-browser/browser.env (mode 600); never publish its contents."
           note "Browser UI port 3000 and CDP port 9222 are bound to 127.0.0.1 only."
+          DEPLOY_STARTED=0
+          CONTAINER_STOPPED=0
+          DROPIN_CHANGED=0
           echo "ABS BROWSER COMPLETE-ALL FINISHED"
 
       - name: Publish sanitized report
