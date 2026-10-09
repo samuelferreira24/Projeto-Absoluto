@@ -6,6 +6,7 @@ on:
     paths:
       - 'abs_core/**'
       - 'tests/**'
+      - '.github/workflows/abs-auto-integration.yml'
 
 permissions:
   contents: read
@@ -20,13 +21,12 @@ jobs:
     runs-on: [self-hosted, abs-vps-01-reserve]
     timeout-minutes: 15
     steps:
+      - name: Checkout repository in runner workspace
+        uses: actions/checkout@v4
       - name: Validate ABS on reserve VPS
         shell: bash
         run: |
           set -euo pipefail
-          cd "$HOME/Projeto-Absoluto"
-          git fetch origin main --quiet
-          git reset --hard origin/main --quiet
           python3 -m compileall -q abs_core
           python3 -m pytest -q tests
           health="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
