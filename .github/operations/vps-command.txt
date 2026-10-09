@@ -1,1 +1,1 @@
-install-gemma-e4b-iq2m
+switch-gemma-e4b-iq2m
