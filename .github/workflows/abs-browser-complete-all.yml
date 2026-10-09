@@ -305,8 +305,9 @@ jobs:
           set -euo pipefail
           while true; do
             if tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
-              tailscale serve --bg http://127.0.0.1:3000
-              exit 0
+              if timeout 20s tailscale serve --bg --yes http://127.0.0.1:3000; then
+                exit 0
+              fi
             fi
             sleep 30
           done
@@ -332,15 +333,18 @@ jobs:
             sudo -n systemctl enable --now abs-browser-tailnet-serve.service >/dev/null
             pass "Tailscale Serve waiter installed; private HTTPS will configure automatically after account authentication."
           fi
-          if command -v tailscale >/dev/null 2>&1 && sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
-            if sudo -n tailscale serve --bg http://127.0.0.1:3000 >/dev/null 2>&1; then
-              pass "Tailscale Serve configured for private HTTPS access."
-              sudo -n tailscale status --json | python3 -c 'import json,sys; d=json.load(sys.stdin); print("Tailnet state="+str(d.get("BackendState","unknown")))'
+          if command -v tailscale >/dev/null 2>&1 && timeout 8s sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
+            SERVE_STATUS="$(timeout 8s sudo -n tailscale serve status 2>&1 || true)"
+            if printf '%s' "$SERVE_STATUS" | grep -Eq '127\.0\.0\.1:3000|localhost:3000|http://127\.0\.0\.1:3000'; then
+              pass "Tailscale Serve reports the browser backend configured for private tailnet access."
+              printf '%s\n' "$SERVE_STATUS" | head -n 12
+              sudo -n tailscale status --json | python3 -c 'import json,sys; d=json.load(sys.stdin); print("Tailnet state="+str(d.get("BackendState","unknown"))); print("Tailnet DNS="+str((d.get("Self") or {}).get("DNSName","unknown")))'
             else
-              blocked "Tailscale is connected but private HTTPS Serve could not be configured."
+              blocked "Tailscale is connected, but Serve is not confirmed. The bounded background waiter will retry; no public port was opened."
+              printf '%s\n' "$SERVE_STATUS" | head -n 8
             fi
           else
-            blocked "Tailscale is installed or attempted but not authenticated/connected. The account owner must complete Tailscale login; browser ports remain denied by UFW."
+            blocked "Tailscale is not authenticated/connected. The background waiter will retry; browser ports remain denied by UFW."
           fi
           echo
           note "Credential file remains private at $HOME/.config/abs-browser/browser.env (mode 600); never publish its contents."
