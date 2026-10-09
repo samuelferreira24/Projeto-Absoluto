@@ -293,8 +293,13 @@ ENV
   sleep 3
   integration_ok=0
   integration_total=0
+  integration_memory_blocked=0
   test_abs_model() {
     cap="$1"; marker="$2"; integration_total=$((integration_total+1))
+    if [ "$integration_memory_blocked" -eq 1 ]; then
+      echo "ABS_INTEGRATION_SKIP capability=$cap reason=previous_memory_preflight_failed"
+      return
+    fi
     case "$cap" in
       qwen3.5-0.8b) required_mb=2600 ;;
       qwen3.5-2b) required_mb=3800 ;;
@@ -304,6 +309,7 @@ ENV
       *) required_mb=3000 ;;
     esac
     if ! wait_for_memory "$required_mb" 90; then
+      integration_memory_blocked=1
       echo "ABS_INTEGRATION_FAIL capability=$cap reason=memory_not_recovered"
       return
     fi
