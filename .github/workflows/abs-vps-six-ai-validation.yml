@@ -48,6 +48,16 @@ jobs:
                 free -h
                 return 0
               fi
+              if [ "$capability" = "local-ai:gemma4-e4b" ]; then
+                local swap_free_kb
+                swap_free_kb="$(awk '/SwapFree:/ {print $2}' /proc/meminfo)"
+                echo "[SwapFree_kB] $swap_free_kb"
+                if [ "$swap_free_kb" -lt 600000 ]; then
+                  echo "BLOCKED_SAFE: E4B requires at least 600000 kB free swap; model was not loaded."
+                  free -h
+                  return 0
+                fi
+              fi
               if [ "$ollama_max" -lt "$min_ollama_bytes" ]; then
                 echo "BLOCKED_SAFE: Ollama MemoryMax is below the model's approximate on-disk size; not loading to avoid OOM."
                 free -h
