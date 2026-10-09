@@ -13,11 +13,11 @@ permissions:
 
 concurrency:
   group: abs-vps-shared-tree
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate-one:
-    runs-on: [self-hosted, abs-vps-01]
+    runs-on: [self-hosted, abs-vps-01-reserve]
     timeout-minutes: 25
     steps:
       - name: Checkout isolated workspace
