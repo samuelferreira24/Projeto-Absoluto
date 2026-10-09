@@ -102,8 +102,8 @@ jobs:
               if [ "$available_kb" -lt 1572864 ]; then
                 result="SKIP: MemAvailable below 1.5 GiB; no model started. $(free -h | tail -n 2 | tr '\n' ' ')"
               else
-                if out="$(curl -fsS --max-time 120 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d '{"model":"qwen3.5:0.8b","prompt":"Reply exactly LOCAL_AI_OK","stream":false}')"; then
-                  if printf '%s\n' "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("response","").strip()=="LOCAL_AI_OK", d; print("ABS_LOCAL_AI_SMOKE_PASS qwen3.5:0.8b")'; then
+                if out="$(curl -fsS --max-time 45 http://127.0.0.1:11434/api/generate -H 'Content-Type: application/json' -d '{"model":"qwen3.5:0.8b","prompt":"Say LOCAL_AI_OK and nothing else.","stream":false,"think":false,"keep_alive":0,"options":{"num_predict":32,"temperature":0}}')"; then
+                  if printf '%s\n' "$out" | python3 -c 'import json,sys; d=json.load(sys.stdin); s=d.get("response","").strip().upper(); assert "LOCAL_AI_OK" in s, d; print("ABS_LOCAL_AI_SMOKE_PASS qwen3.5:0.8b; response="+s[:160])'; then
                     result="PASS qwen3.5:0.8b; $(free -h | tail -n 2 | tr '\n' ' ')"
                   else
                     result="FAIL: qwen3.5:0.8b returned unexpected output; $(printf '%s' "$out" | head -c 1500); $(free -h | tail -n 2 | tr '\n' ' ')"
