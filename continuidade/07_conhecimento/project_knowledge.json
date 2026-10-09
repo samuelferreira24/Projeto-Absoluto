@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T01:08:50-03:00",
-  "source_revision": "9eb45ebd73746a9dd77b98738afb0b8dabf33454",
+  "generated_at": "2026-10-09T01:09:36-03:00",
+  "source_revision": "27cc079d7abbad5e0bf73585ca81578ea70fa1a8",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "9eb45ebd73746a9dd77b98738afb0b8dabf33454",
-      "commit_subject": "Share global concurrency lock for ABS VPS runner channels"
+      "revision": "27cc079d7abbad5e0bf73585ca81578ea70fa1a8",
+      "commit_subject": "Apply shared VPS lock only to executable reserve commands"
     }
   ],
   "tools": [
@@ -9999,6 +9999,27 @@
       "sha": "9eb45ebd73746a9dd77b98738afb0b8dabf33454"
     },
     {
+      "id": "commit:c6cfdef5ac53412b14026e6662b663bd7002b824",
+      "kind": "commit",
+      "at": "2026-10-09T04:09:11Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "c6cfdef5ac53412b14026e6662b663bd7002b824"
+    },
+    {
+      "id": "commit:86c426093e171162443794fb098912264cd7f729",
+      "kind": "commit",
+      "at": "2026-10-09T01:09:33-03:00",
+      "subject": "Apply shared VPS lock only to executable commands",
+      "sha": "86c426093e171162443794fb098912264cd7f729"
+    },
+    {
+      "id": "commit:27cc079d7abbad5e0bf73585ca81578ea70fa1a8",
+      "kind": "commit",
+      "at": "2026-10-09T01:09:36-03:00",
+      "subject": "Apply shared VPS lock only to executable reserve commands",
+      "sha": "27cc079d7abbad5e0bf73585ca81578ea70fa1a8"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10111,23 +10132,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:c18e50b2a68d",
+      "id": "evidence:repository:3b4160bc320f",
       "kind": "evidence",
-      "at": "2026-10-09T01:08:50-03:00",
+      "at": "2026-10-09T01:09:36-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:c18e50b2a68d",
+      "id": "event:repository-scan:3b4160bc320f",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T01:08:50-03:00"
+      "at": "2026-10-09T01:09:36-03:00"
     },
     {
-      "id": "event:commit-observed:9eb45ebd7374",
+      "id": "event:commit-observed:27cc079d7abb",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T01:08:50-03:00"
+      "at": "2026-10-09T01:09:36-03:00"
     }
   ],
   "paths": [
@@ -10162,11 +10183,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:c1fb9700bf90"
+        "evidence:test:ec723238be2d"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T01:08:50-03:00"
+      "last_validated": "2026-10-09T01:09:36-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10189,20 +10210,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:c18e50b2a68d",
+      "id": "evidence:repository:3b4160bc320f",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T01:08:50-03:00",
+      "observed_at": "2026-10-09T01:09:36-03:00",
       "status": "observed",
-      "detail": "407 files indexed at revision 9eb45ebd73746a9dd77b98738afb0b8dabf33454"
+      "detail": "407 files indexed at revision 27cc079d7abbad5e0bf73585ca81578ea70fa1a8"
     },
     {
-      "id": "evidence:test:c1fb9700bf90",
+      "id": "evidence:test:ec723238be2d",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T01:08:50-03:00",
+      "observed_at": "2026-10-09T01:09:36-03:00",
       "status": "tested",
-      "detail": "202 passed in 8.38s"
+      "detail": "202 passed in 6.98s"
     }
   ],
   "decisions": [
@@ -10305,30 +10326,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:c18e50b2a68d",
+      "id": "event:repository-scan:3b4160bc320f",
       "type": "repository_scanned",
-      "at": "2026-10-09T01:08:50-03:00",
-      "revision": "9eb45ebd73746a9dd77b98738afb0b8dabf33454",
+      "at": "2026-10-09T01:09:36-03:00",
+      "revision": "27cc079d7abbad5e0bf73585ca81578ea70fa1a8",
       "file_count": 407,
-      "evidence_id": "evidence:repository:c18e50b2a68d"
+      "evidence_id": "evidence:repository:3b4160bc320f"
     },
     {
-      "id": "event:commit-observed:9eb45ebd7374",
+      "id": "event:commit-observed:27cc079d7abb",
       "type": "commit_observed",
-      "at": "2026-10-09T01:08:50-03:00",
-      "revision": "9eb45ebd73746a9dd77b98738afb0b8dabf33454",
+      "at": "2026-10-09T01:09:36-03:00",
+      "revision": "27cc079d7abbad5e0bf73585ca81578ea70fa1a8",
       "branch": "main",
-      "subject": "Share global concurrency lock for ABS VPS runner channels",
+      "subject": "Apply shared VPS lock only to executable reserve commands",
       "changed_files": [
         ".github/workflows/abs-vps-reserve.yml"
       ]
     },
     {
-      "id": "event:test:c1fb9700bf90",
+      "id": "event:test:ec723238be2d",
       "type": "tests_observed",
-      "at": "2026-10-09T01:08:50-03:00",
+      "at": "2026-10-09T01:09:36-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:c1fb9700bf90"
+      "evidence_id": "evidence:test:ec723238be2d"
     }
   ],
   "knowledge_sources": [
@@ -10384,7 +10405,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "d5663082d34672489fc99b6449f8af6591527c84bd4d381d43b1f6643c60830e"
+      "sha256": "d86f776389d2b421a0ff24c211a9adb01b037add44fb4fdbfee5e674054566c1"
     },
     {
       "id": "source:session",
@@ -43795,12 +43816,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:c18e50b2a68d",
-      "source": "event:repository-scan:c18e50b2a68d",
-      "relation": "generated",
-      "target": "evidence:repository:c18e50b2a68d",
+      "id": "rel:commit-precedes:9eb45ebd7374:c6cfdef5ac53",
+      "source": "commit:9eb45ebd73746a9dd77b98738afb0b8dabf33454",
+      "relation": "precedes",
+      "target": "commit:c6cfdef5ac53412b14026e6662b663bd7002b824",
       "status": "asserted",
-      "at": "2026-10-09T01:08:50-03:00",
+      "at": "2026-10-09T04:09:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c6cfdef5ac53:032adc3624d7",
+      "source": "commit:c6cfdef5ac53412b14026e6662b663bd7002b824",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T04:09:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c6cfdef5ac53:d64178c49886",
+      "source": "commit:c6cfdef5ac53412b14026e6662b663bd7002b824",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T04:09:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c6cfdef5ac53:86c426093e17",
+      "source": "commit:c6cfdef5ac53412b14026e6662b663bd7002b824",
+      "relation": "precedes",
+      "target": "commit:86c426093e171162443794fb098912264cd7f729",
+      "status": "asserted",
+      "at": "2026-10-09T01:09:33-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:86c426093e17:1734be446032",
+      "source": "commit:86c426093e171162443794fb098912264cd7f729",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-09T01:09:33-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:86c426093e17:27cc079d7abb",
+      "source": "commit:86c426093e171162443794fb098912264cd7f729",
+      "relation": "precedes",
+      "target": "commit:27cc079d7abbad5e0bf73585ca81578ea70fa1a8",
+      "status": "asserted",
+      "at": "2026-10-09T01:09:36-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:27cc079d7abb:3ea533262670",
+      "source": "commit:27cc079d7abbad5e0bf73585ca81578ea70fa1a8",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-reserve.yml",
+      "status": "asserted",
+      "at": "2026-10-09T01:09:36-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:3b4160bc320f",
+      "source": "event:repository-scan:3b4160bc320f",
+      "relation": "generated",
+      "target": "evidence:repository:3b4160bc320f",
+      "status": "asserted",
+      "at": "2026-10-09T01:09:36-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -43809,12 +43928,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:9eb45ebd7374",
-      "source": "commit:9eb45ebd73746a9dd77b98738afb0b8dabf33454",
+      "id": "rel:scan-commit:27cc079d7abb",
+      "source": "commit:27cc079d7abbad5e0bf73585ca81578ea70fa1a8",
       "relation": "observed_by",
-      "target": "event:repository-scan:c18e50b2a68d",
+      "target": "event:repository-scan:3b4160bc320f",
       "status": "asserted",
-      "at": "2026-10-09T01:08:50-03:00",
+      "at": "2026-10-09T01:09:36-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
