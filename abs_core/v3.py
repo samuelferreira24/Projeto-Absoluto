@@ -350,7 +350,32 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
             if kind=="test" or explicit=="echo":
                 return V3Decision(WorkDisposition.EXECUTE,explicit,CostClass.FREE_EXTERNAL,"explicit_safe_test_capability",snap,policy)
             if not allowed:
-                return V3Decision(WorkDisposition.WAIT,explicit,None,"capacity_critical",snap,policy)
+                # CPU/load pressure should pause expensive remote work, but it must
+                # not deadlock a single explicitly requested local model when RAM
+                # has been measured and a strict model-specific reserve is available.
+                local_memory_safe = False
+                if (
+                    kind == "local_ai"
+                    and snap.state is CapacityState.CRITICAL
+                    and self.queue.depth() == 0
+                    and self._active == 0
+                ):
+                    try:
+                        with open("/proc/meminfo", "r", encoding="utf-8") as handle:
+                            mem = next(float(line.split()[1]) for line in handle if line.startswith("MemAvailable:"))
+                        available_mb = mem / 1024.0
+                        estimated_mb = float(getattr(cap, "metadata", {}).get("estimated_memory_mb", 0) or 0)
+                        reserve_mb = float(os.getenv("ABS_LOCAL_AI_MEMORY_RESERVE_MB", "768"))
+                        local_memory_safe = (
+                            estimated_mb > 0
+                            and available_mb >= estimated_mb + reserve_mb
+                        )
+                    except (OSError, ValueError, StopIteration, IndexError):
+                        local_memory_safe = False
+                if not local_memory_safe:
+                    return V3Decision(WorkDisposition.WAIT,explicit,None,"capacity_critical",snap,policy)
+                # Continue to the ordinary cost-policy check below. This exception
+                # only admits one explicitly requested local AI with a RAM margin.
             if "ai" not in kind:
                 return V3Decision(WorkDisposition.EXECUTE,explicit,CostClass.FREE_EXTERNAL,"explicit_non_ai_capability",snap,policy)
             candidate=self._candidate(cap)
