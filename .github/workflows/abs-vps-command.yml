@@ -114,7 +114,7 @@ jobs:
                   echo "[chat]"
                   echo "$chat_json"
                   if [ "$curl_rc" -eq 0 ]; then
-                    if echo "$chat_json" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("work_state")=="completed", d; assert "ABS_LOCAL_AI_OK" in str(d.get("response","")).upper(), d; p=d.get("provenance") or {}; assert p.get("capability_id")=="local-ai:qwen3.5-0.8b", p; print("ABS V3 LOCAL AI INTEGRATION PASS")'; then
+                    if echo "$chat_json" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("work_state")=="completed", d; assert "ABS_LOCAL_AI_OK" in str(d.get("response","")).upper(), d; p=d.get("provenance") or []; p=p if isinstance(p,list) else [p]; assert any(isinstance(x,dict) and x.get("capability_id")=="local-ai:qwen3.5-0.8b" for x in p), p; print("ABS V3 LOCAL AI INTEGRATION PASS")'; then
                       echo "[validation] PASS"
                     else
                       echo "[validation] FAIL"
