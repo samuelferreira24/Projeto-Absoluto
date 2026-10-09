@@ -165,3 +165,27 @@ def test_capacity_wait_does_not_leave_phantom_queue_entry():
     assert paused.context["_v3"]["retryable"] is True
     assert rt.orchestrator.queue.depth() == 0
 
+
+
+def test_v3_status_does_not_claim_unverified_local_ai_available():
+    from abs_core.v3 import ABSV3Orchestrator
+    from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
+    from abs_core.store import WorkStore
+
+    registry = CapabilityRegistry()
+    registry.register(CapabilityRecord(
+        "local-ai:qwen3.5-0.8b",
+        "Qwen 0.8B",
+        "local_ai",
+        object(),
+        metadata={
+            "cost_class": "free_local",
+            "capabilities": ["chat"],
+            "capabilities_unverified": ["reasoning", "tools"],
+        },
+    ))
+    orchestrator = ABSV3Orchestrator(registry, WorkStore(":memory:"))
+    item = next(x for x in orchestrator.status()["intelligence"] if x["id"] == "local-ai:qwen3.5-0.8b")
+    assert item["status"] == "configured"
+    assert item["capabilities"] == ["chat"]
+    assert item["capabilities_unverified"] == ["reasoning", "tools"]

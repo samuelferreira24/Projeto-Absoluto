@@ -270,10 +270,17 @@ class ABSV3Orchestrator(ABSV2Orchestrator):
             kind = str(getattr(cap, "kind", "")).lower()
             if "ai" in kind:
                 meta = dict(getattr(cap, "metadata", {}) or {})
+                # Registration is configuration, not evidence of a healthy
+                # endpoint or a successful model invocation. Only a separate
+                # health verifier may set health_status=available.
+                status = str(meta.get("health_status") or "configured").lower()
+                if status not in {"available", "configured", "degraded", "offline", "unverified"}:
+                    status = "configured"
                 intelligence.append({
                     "id": cap.id, "name": cap.name, "kind": cap.kind,
-                    "status": "available", "cost_class": meta.get("cost_class"),
+                    "status": status, "cost_class": meta.get("cost_class"),
                     "capabilities": list(meta.get("capabilities") or ()),
+                    "capabilities_unverified": list(meta.get("capabilities_unverified") or ()),
                     "local": kind == "local_ai",
                 })
         return {"version":"v3","capacity":asdict(s)|{"state":s.state.value},
