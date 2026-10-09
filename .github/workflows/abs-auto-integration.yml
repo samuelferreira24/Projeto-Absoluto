@@ -21,18 +21,17 @@ jobs:
     runs-on: [self-hosted, abs-vps-01-reserve]
     timeout-minutes: 15
     steps:
-      - name: Checkout repository in runner workspace
-        uses: actions/checkout@v4
-      - name: Validate ABS on reserve VPS
+      - name: Check live ABS without competing with the test suite
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m compileall -q abs_core
-          python3 -m pytest -q tests
           health="$(curl -fsS --max-time 10 http://127.0.0.1:8787/health)"
           v3="$(curl -fsS --max-time 10 http://127.0.0.1:8787/v3/status)"
+          intelligence="$(curl -fsS --max-time 10 http://127.0.0.1:8787/intelligence)"
           python3 -c 'import json,sys; d=json.loads(sys.argv[1]); assert d.get("status") == "alive", d' "$health"
-          python3 -c 'import json,sys; d=json.loads(sys.argv[1]); assert d.get("version") == "v3", d' "$v3"
+          python3 -c 'import json,sys; d=json.loads(sys.argv[1]); assert d.get("version") == "v3" and d.get("queue_depth", 0) == 0, d' "$v3"
+          python3 -c 'import json,sys; d=json.loads(sys.argv[1]); ids={x.get("capability_id") for x in d.get("intelligences", [])}; assert "local-ai:qwen3.5-0.8b" in ids, ids' "$intelligence"
           echo "ABS_AUTO_INTEGRATION_PASS"
           echo "$health"
           echo "$v3"
+          echo "$intelligence"
