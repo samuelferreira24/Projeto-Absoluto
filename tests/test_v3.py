@@ -189,3 +189,65 @@ def test_v3_status_does_not_claim_unverified_local_ai_available():
     assert item["status"] == "configured"
     assert item["capabilities"] == ["chat"]
     assert item["capabilities_unverified"] == ["reasoning", "tools"]
+
+
+def _critical_v3_with_local_model():
+    from abs_core.v3 import ABSV3Orchestrator
+    from abs_core.capabilities import CapabilityRecord, CapabilityRegistry
+    from abs_core.store import WorkStore
+
+    registry = CapabilityRegistry()
+    registry.register(CapabilityRecord(
+        "local-ai:qwen3.5-0.8b",
+        "Qwen 0.8B",
+        "local_ai",
+        object(),
+        metadata={
+            "cost_class": "free_local",
+            "capabilities": ["chat"],
+            "estimated_memory_mb": 1800,
+        },
+    ))
+    orchestrator = ABSV3Orchestrator(registry, WorkStore(":memory:"))
+    critical = CapacitySnapshot(
+        3, 1.1, 100_000_000, 4_200_000_000, 6_100_000_000,
+        CapacityState.CRITICAL, 1, 0.0,
+    )
+    orchestrator.capacity.admission = lambda priority, depth: (critical, False)
+    return orchestrator
+
+
+def test_v3_critical_cpu_pressure_allows_single_local_ai_with_ram_reserve(monkeypatch):
+    import io
+    from types import SimpleNamespace
+    from abs_core.v3 import WorkDisposition
+
+    orchestrator = _critical_v3_with_local_model()
+    monkeypatch.setattr(
+        "builtins.open",
+        lambda *args, **kwargs: io.StringIO("MemAvailable: 4200000 kB\\n"),
+    )
+    decision = orchestrator._gate(
+        SimpleNamespace(),
+        {"capability_id": "local-ai:qwen3.5-0.8b"},
+    )
+    assert decision.disposition is WorkDisposition.EXECUTE
+    assert decision.reason == "explicit_intelligence"
+
+
+def test_v3_critical_cpu_pressure_blocks_local_ai_without_ram_reserve(monkeypatch):
+    import io
+    from types import SimpleNamespace
+    from abs_core.v3 import WorkDisposition
+
+    orchestrator = _critical_v3_with_local_model()
+    monkeypatch.setattr(
+        "builtins.open",
+        lambda *args, **kwargs: io.StringIO("MemAvailable: 2000000 kB\\n"),
+    )
+    decision = orchestrator._gate(
+        SimpleNamespace(),
+        {"capability_id": "local-ai:qwen3.5-0.8b"},
+    )
+    assert decision.disposition is WorkDisposition.WAIT
+    assert decision.reason == "capacity_critical"
