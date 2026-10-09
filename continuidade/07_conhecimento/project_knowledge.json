@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T17:59:05-03:00",
-  "source_revision": "42987c021ead06f55ebdf3dc9f993efbe5ced3a9",
+  "generated_at": "2026-10-09T17:59:45-03:00",
+  "source_revision": "51fdba0841f355da4c70ec6049db313f1ea142c0",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "42987c021ead06f55ebdf3dc9f993efbe5ced3a9",
-      "commit_subject": "Adicionar simulação pré-construção da arquitetura ABS/browser"
+      "revision": "51fdba0841f355da4c70ec6049db313f1ea142c0",
+      "commit_subject": "Ampliar simulação pré-build com Docker, firewall e fluxos de falha"
     }
   ],
   "tools": [
@@ -10363,6 +10363,20 @@
       "sha": "42987c021ead06f55ebdf3dc9f993efbe5ced3a9"
     },
     {
+      "id": "commit:bcf7d6e81d76ab708031899fd52b20efc518ba46",
+      "kind": "commit",
+      "at": "2026-10-09T20:59:24Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "bcf7d6e81d76ab708031899fd52b20efc518ba46"
+    },
+    {
+      "id": "commit:51fdba0841f355da4c70ec6049db313f1ea142c0",
+      "kind": "commit",
+      "at": "2026-10-09T17:59:45-03:00",
+      "subject": "Ampliar simulação pré-build com Docker, firewall e fluxos de falha",
+      "sha": "51fdba0841f355da4c70ec6049db313f1ea142c0"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -10475,23 +10489,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:75ffe8811ab2",
+      "id": "evidence:repository:d7f91f4fe62f",
       "kind": "evidence",
-      "at": "2026-10-09T17:59:05-03:00",
+      "at": "2026-10-09T17:59:45-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:75ffe8811ab2",
+      "id": "event:repository-scan:d7f91f4fe62f",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T17:59:05-03:00"
+      "at": "2026-10-09T17:59:45-03:00"
     },
     {
-      "id": "event:commit-observed:42987c021ead",
+      "id": "event:commit-observed:51fdba0841f3",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T17:59:05-03:00"
+      "at": "2026-10-09T17:59:45-03:00"
     }
   ],
   "paths": [
@@ -10526,11 +10540,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:12dae9fa540a"
+        "evidence:test:e38fb466f402"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T17:59:05-03:00"
+      "last_validated": "2026-10-09T17:59:45-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -10553,20 +10567,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:75ffe8811ab2",
+      "id": "evidence:repository:d7f91f4fe62f",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T17:59:05-03:00",
+      "observed_at": "2026-10-09T17:59:45-03:00",
       "status": "observed",
-      "detail": "414 files indexed at revision 42987c021ead06f55ebdf3dc9f993efbe5ced3a9"
+      "detail": "414 files indexed at revision 51fdba0841f355da4c70ec6049db313f1ea142c0"
     },
     {
-      "id": "evidence:test:12dae9fa540a",
+      "id": "evidence:test:e38fb466f402",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T17:59:05-03:00",
+      "observed_at": "2026-10-09T17:59:45-03:00",
       "status": "tested",
-      "detail": "211 passed in 7.55s"
+      "detail": "211 passed in 7.18s"
     }
   ],
   "decisions": [
@@ -10669,30 +10683,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:75ffe8811ab2",
+      "id": "event:repository-scan:d7f91f4fe62f",
       "type": "repository_scanned",
-      "at": "2026-10-09T17:59:05-03:00",
-      "revision": "42987c021ead06f55ebdf3dc9f993efbe5ced3a9",
+      "at": "2026-10-09T17:59:45-03:00",
+      "revision": "51fdba0841f355da4c70ec6049db313f1ea142c0",
       "file_count": 414,
-      "evidence_id": "evidence:repository:75ffe8811ab2"
+      "evidence_id": "evidence:repository:d7f91f4fe62f"
     },
     {
-      "id": "event:commit-observed:42987c021ead",
+      "id": "event:commit-observed:51fdba0841f3",
       "type": "commit_observed",
-      "at": "2026-10-09T17:59:05-03:00",
-      "revision": "42987c021ead06f55ebdf3dc9f993efbe5ced3a9",
+      "at": "2026-10-09T17:59:45-03:00",
+      "revision": "51fdba0841f355da4c70ec6049db313f1ea142c0",
       "branch": "main",
-      "subject": "Adicionar simulação pré-construção da arquitetura ABS/browser",
+      "subject": "Ampliar simulação pré-build com Docker, firewall e fluxos de falha",
       "changed_files": [
         ".github/workflows/abs-vps-prebuild-simulation.yml"
       ]
     },
     {
-      "id": "event:test:12dae9fa540a",
+      "id": "event:test:e38fb466f402",
       "type": "tests_observed",
-      "at": "2026-10-09T17:59:05-03:00",
+      "at": "2026-10-09T17:59:45-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:12dae9fa540a"
+      "evidence_id": "evidence:test:e38fb466f402"
     }
   ],
   "knowledge_sources": [
@@ -10748,7 +10762,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "c3e6a52f0d51c7f0f24e2c37d69b8714bd50c10ced07fe8d4398eb2ae396f6d1"
+      "sha256": "8e7e2557e082e605ad84d8c26ef2e3dcd570a18f0b691b5dbe4a3da876cab08a"
     },
     {
       "id": "source:session",
@@ -46119,12 +46133,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:75ffe8811ab2",
-      "source": "event:repository-scan:75ffe8811ab2",
-      "relation": "generated",
-      "target": "evidence:repository:75ffe8811ab2",
+      "id": "rel:commit-precedes:42987c021ead:bcf7d6e81d76",
+      "source": "commit:42987c021ead06f55ebdf3dc9f993efbe5ced3a9",
+      "relation": "precedes",
+      "target": "commit:bcf7d6e81d76ab708031899fd52b20efc518ba46",
       "status": "asserted",
-      "at": "2026-10-09T17:59:05-03:00",
+      "at": "2026-10-09T20:59:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bcf7d6e81d76:032adc3624d7",
+      "source": "commit:bcf7d6e81d76ab708031899fd52b20efc518ba46",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-09T20:59:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bcf7d6e81d76:d64178c49886",
+      "source": "commit:bcf7d6e81d76ab708031899fd52b20efc518ba46",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-09T20:59:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:bcf7d6e81d76:51fdba0841f3",
+      "source": "commit:bcf7d6e81d76ab708031899fd52b20efc518ba46",
+      "relation": "precedes",
+      "target": "commit:51fdba0841f355da4c70ec6049db313f1ea142c0",
+      "status": "asserted",
+      "at": "2026-10-09T17:59:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:51fdba0841f3:66a2f5181ba1",
+      "source": "commit:51fdba0841f355da4c70ec6049db313f1ea142c0",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-prebuild-simulation.yml",
+      "status": "asserted",
+      "at": "2026-10-09T17:59:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:d7f91f4fe62f",
+      "source": "event:repository-scan:d7f91f4fe62f",
+      "relation": "generated",
+      "target": "evidence:repository:d7f91f4fe62f",
+      "status": "asserted",
+      "at": "2026-10-09T17:59:45-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -46133,12 +46217,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:42987c021ead",
-      "source": "commit:42987c021ead06f55ebdf3dc9f993efbe5ced3a9",
+      "id": "rel:scan-commit:51fdba0841f3",
+      "source": "commit:51fdba0841f355da4c70ec6049db313f1ea142c0",
       "relation": "observed_by",
-      "target": "event:repository-scan:75ffe8811ab2",
+      "target": "event:repository-scan:d7f91f4fe62f",
       "status": "asserted",
-      "at": "2026-10-09T17:59:05-03:00",
+      "at": "2026-10-09T17:59:45-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
