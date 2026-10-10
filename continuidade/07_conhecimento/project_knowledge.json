@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:47:47-03:00",
-  "source_revision": "2b172a1583208e45ed28218e5e1f117b6cf07067",
+  "generated_at": "2026-10-10T16:48:54-03:00",
+  "source_revision": "9bf320dc6959ab16404a15ba884f9fc9df61f018",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 155
+      "file_count": 159
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "2b172a1583208e45ed28218e5e1f117b6cf07067",
-      "commit_subject": "Verificar entrypoints e TLS do proxy antes de publicar MCP"
+      "revision": "9bf320dc6959ab16404a15ba884f9fc9df61f018",
+      "commit_subject": "Adicionar chave pública para entrega criptografada do token MCP"
     }
   ],
   "tools": [
@@ -3478,6 +3478,26 @@
       "id": "file:scripts/termux/install_abs_updater_service.sh",
       "kind": "file",
       "path": "scripts/termux/install_abs_updater_service.sh"
+    },
+    {
+      "id": "file:services/vps-mcp/Dockerfile",
+      "kind": "file",
+      "path": "services/vps-mcp/Dockerfile"
+    },
+    {
+      "id": "file:services/vps-mcp/README.md",
+      "kind": "file",
+      "path": "services/vps-mcp/README.md"
+    },
+    {
+      "id": "file:services/vps-mcp/main.py",
+      "kind": "file",
+      "path": "services/vps-mcp/main.py"
+    },
+    {
+      "id": "file:services/vps-mcp/token-encryption-public.pem",
+      "kind": "file",
+      "path": "services/vps-mcp/token-encryption-public.pem"
     },
     {
       "id": "file:tests/00_README.md",
@@ -12837,6 +12857,41 @@
       "sha": "2b172a1583208e45ed28218e5e1f117b6cf07067"
     },
     {
+      "id": "commit:6ccc126659888583a4da5d71d5016b6f491a189c",
+      "kind": "commit",
+      "at": "2026-10-10T19:48:08Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "6ccc126659888583a4da5d71d5016b6f491a189c"
+    },
+    {
+      "id": "commit:4674675210ac1e6aa1c90a30ca1989a1db0d1205",
+      "kind": "commit",
+      "at": "2026-10-10T16:48:37-03:00",
+      "subject": "Adicionar servidor MCP autenticado para administração da VPS",
+      "sha": "4674675210ac1e6aa1c90a30ca1989a1db0d1205"
+    },
+    {
+      "id": "commit:a022d3527352818a08e4fa70b613da0f3b70e647",
+      "kind": "commit",
+      "at": "2026-10-10T16:48:40-03:00",
+      "subject": "Adicionar imagem Docker do servidor MCP de administração",
+      "sha": "a022d3527352818a08e4fa70b613da0f3b70e647"
+    },
+    {
+      "id": "commit:5596eb475c791e0329002c3ac5bfe788a626ea6b",
+      "kind": "commit",
+      "at": "2026-10-10T16:48:43-03:00",
+      "subject": "Documentar canal MCP independente da VPS",
+      "sha": "5596eb475c791e0329002c3ac5bfe788a626ea6b"
+    },
+    {
+      "id": "commit:9bf320dc6959ab16404a15ba884f9fc9df61f018",
+      "kind": "commit",
+      "at": "2026-10-10T16:48:54-03:00",
+      "subject": "Adicionar chave pública para entrega criptografada do token MCP",
+      "sha": "9bf320dc6959ab16404a15ba884f9fc9df61f018"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -12949,23 +13004,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:9dd6f119e113",
+      "id": "evidence:repository:44eb0f79a750",
       "kind": "evidence",
-      "at": "2026-10-10T16:47:47-03:00",
+      "at": "2026-10-10T16:48:54-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:9dd6f119e113",
+      "id": "event:repository-scan:44eb0f79a750",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:47:47-03:00"
+      "at": "2026-10-10T16:48:54-03:00"
     },
     {
-      "id": "event:commit-observed:2b172a158320",
+      "id": "event:commit-observed:9bf320dc6959",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:47:47-03:00"
+      "at": "2026-10-10T16:48:54-03:00"
     }
   ],
   "paths": [
@@ -13000,11 +13055,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:bad6a0a1b992"
+        "evidence:test:965bd418e5de"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:47:47-03:00"
+      "last_validated": "2026-10-10T16:48:54-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13027,20 +13082,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:9dd6f119e113",
+      "id": "evidence:repository:44eb0f79a750",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:47:47-03:00",
+      "observed_at": "2026-10-10T16:48:54-03:00",
       "status": "observed",
-      "detail": "442 files indexed at revision 2b172a1583208e45ed28218e5e1f117b6cf07067"
+      "detail": "446 files indexed at revision 9bf320dc6959ab16404a15ba884f9fc9df61f018"
     },
     {
-      "id": "evidence:test:bad6a0a1b992",
+      "id": "evidence:test:965bd418e5de",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:47:47-03:00",
+      "observed_at": "2026-10-10T16:48:54-03:00",
       "status": "tested",
-      "detail": "225 passed in 8.27s"
+      "detail": "225 passed in 7.28s"
     }
   ],
   "decisions": [
@@ -13143,30 +13198,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:9dd6f119e113",
+      "id": "event:repository-scan:44eb0f79a750",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:47:47-03:00",
-      "revision": "2b172a1583208e45ed28218e5e1f117b6cf07067",
-      "file_count": 442,
-      "evidence_id": "evidence:repository:9dd6f119e113"
+      "at": "2026-10-10T16:48:54-03:00",
+      "revision": "9bf320dc6959ab16404a15ba884f9fc9df61f018",
+      "file_count": 446,
+      "evidence_id": "evidence:repository:44eb0f79a750"
     },
     {
-      "id": "event:commit-observed:2b172a158320",
+      "id": "event:commit-observed:9bf320dc6959",
       "type": "commit_observed",
-      "at": "2026-10-10T16:47:47-03:00",
-      "revision": "2b172a1583208e45ed28218e5e1f117b6cf07067",
+      "at": "2026-10-10T16:48:54-03:00",
+      "revision": "9bf320dc6959ab16404a15ba884f9fc9df61f018",
       "branch": "main",
-      "subject": "Verificar entrypoints e TLS do proxy antes de publicar MCP",
+      "subject": "Adicionar chave pública para entrega criptografada do token MCP",
       "changed_files": [
-        ".github/workflows/vps-admin-command.yml"
+        "services/vps-mcp/token-encryption-public.pem"
       ]
     },
     {
-      "id": "event:test:bad6a0a1b992",
+      "id": "event:test:965bd418e5de",
       "type": "tests_observed",
-      "at": "2026-10-10T16:47:47-03:00",
+      "at": "2026-10-10T16:48:54-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:bad6a0a1b992"
+      "evidence_id": "evidence:test:965bd418e5de"
     }
   ],
   "knowledge_sources": [
@@ -13222,7 +13277,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "079916ffc09c1b3ac96c04776fa9865efe330137731d9b314e33075e603ac5d3"
+      "sha256": "ade7915792aeca6fc9a1e39f6d2d01fa77a6044786b9fb273e64d51ce61dddd4"
     },
     {
       "id": "source:session",
@@ -59849,12 +59904,166 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:9dd6f119e113",
-      "source": "event:repository-scan:9dd6f119e113",
-      "relation": "generated",
-      "target": "evidence:repository:9dd6f119e113",
+      "id": "rel:commit-precedes:2b172a158320:6ccc12665988",
+      "source": "commit:2b172a1583208e45ed28218e5e1f117b6cf07067",
+      "relation": "precedes",
+      "target": "commit:6ccc126659888583a4da5d71d5016b6f491a189c",
       "status": "asserted",
-      "at": "2026-10-10T16:47:47-03:00",
+      "at": "2026-10-10T19:48:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6ccc12665988:032adc3624d7",
+      "source": "commit:6ccc126659888583a4da5d71d5016b6f491a189c",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:48:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6ccc12665988:d64178c49886",
+      "source": "commit:6ccc126659888583a4da5d71d5016b6f491a189c",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:48:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:6ccc12665988:4674675210ac",
+      "source": "commit:6ccc126659888583a4da5d71d5016b6f491a189c",
+      "relation": "precedes",
+      "target": "commit:4674675210ac1e6aa1c90a30ca1989a1db0d1205",
+      "status": "asserted",
+      "at": "2026-10-10T16:48:37-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:4674675210ac:9de986f4b2e2",
+      "source": "commit:4674675210ac1e6aa1c90a30ca1989a1db0d1205",
+      "relation": "changed",
+      "target": "file:services/vps-mcp/main.py",
+      "status": "asserted",
+      "at": "2026-10-10T16:48:37-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:4674675210ac:a022d3527352",
+      "source": "commit:4674675210ac1e6aa1c90a30ca1989a1db0d1205",
+      "relation": "precedes",
+      "target": "commit:a022d3527352818a08e4fa70b613da0f3b70e647",
+      "status": "asserted",
+      "at": "2026-10-10T16:48:40-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a022d3527352:0067e0760707",
+      "source": "commit:a022d3527352818a08e4fa70b613da0f3b70e647",
+      "relation": "changed",
+      "target": "file:services/vps-mcp/Dockerfile",
+      "status": "asserted",
+      "at": "2026-10-10T16:48:40-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a022d3527352:5596eb475c79",
+      "source": "commit:a022d3527352818a08e4fa70b613da0f3b70e647",
+      "relation": "precedes",
+      "target": "commit:5596eb475c791e0329002c3ac5bfe788a626ea6b",
+      "status": "asserted",
+      "at": "2026-10-10T16:48:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:5596eb475c79:bdf262f55149",
+      "source": "commit:5596eb475c791e0329002c3ac5bfe788a626ea6b",
+      "relation": "changed",
+      "target": "file:services/vps-mcp/README.md",
+      "status": "asserted",
+      "at": "2026-10-10T16:48:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:5596eb475c79:9bf320dc6959",
+      "source": "commit:5596eb475c791e0329002c3ac5bfe788a626ea6b",
+      "relation": "precedes",
+      "target": "commit:9bf320dc6959ab16404a15ba884f9fc9df61f018",
+      "status": "asserted",
+      "at": "2026-10-10T16:48:54-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:9bf320dc6959:566bab848d3a",
+      "source": "commit:9bf320dc6959ab16404a15ba884f9fc9df61f018",
+      "relation": "changed",
+      "target": "file:services/vps-mcp/token-encryption-public.pem",
+      "status": "asserted",
+      "at": "2026-10-10T16:48:54-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:44eb0f79a750",
+      "source": "event:repository-scan:44eb0f79a750",
+      "relation": "generated",
+      "target": "evidence:repository:44eb0f79a750",
+      "status": "asserted",
+      "at": "2026-10-10T16:48:54-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -59863,12 +60072,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:2b172a158320",
-      "source": "commit:2b172a1583208e45ed28218e5e1f117b6cf07067",
+      "id": "rel:scan-commit:9bf320dc6959",
+      "source": "commit:9bf320dc6959ab16404a15ba884f9fc9df61f018",
       "relation": "observed_by",
-      "target": "event:repository-scan:9dd6f119e113",
+      "target": "event:repository-scan:44eb0f79a750",
       "status": "asserted",
-      "at": "2026-10-10T16:47:47-03:00",
+      "at": "2026-10-10T16:48:54-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
