@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:54:58-03:00",
-  "source_revision": "1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
+  "generated_at": "2026-10-10T16:56:08-03:00",
+  "source_revision": "7f520aee3d35f195eba95a3e530122a7ef5817c5",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
-      "commit_subject": "Adicionar teste autenticado de descoberta das ferramentas MCP"
+      "revision": "7f520aee3d35f195eba95a3e530122a7ef5817c5",
+      "commit_subject": "Corrigir sintaxe YAML do diagnóstico MCP"
     }
   ],
   "tools": [
@@ -12965,6 +12965,20 @@
       "sha": "1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e"
     },
     {
+      "id": "commit:f34f05edf25acda5bd0a6ed83ad381ff1ff7d7c0",
+      "kind": "commit",
+      "at": "2026-10-10T19:55:17Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "f34f05edf25acda5bd0a6ed83ad381ff1ff7d7c0"
+    },
+    {
+      "id": "commit:7f520aee3d35f195eba95a3e530122a7ef5817c5",
+      "kind": "commit",
+      "at": "2026-10-10T16:56:08-03:00",
+      "subject": "Corrigir sintaxe YAML do diagnóstico MCP",
+      "sha": "7f520aee3d35f195eba95a3e530122a7ef5817c5"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -13077,23 +13091,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:397843421181",
+      "id": "evidence:repository:39cd4f9f1470",
       "kind": "evidence",
-      "at": "2026-10-10T16:54:58-03:00",
+      "at": "2026-10-10T16:56:08-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:397843421181",
+      "id": "event:repository-scan:39cd4f9f1470",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:54:58-03:00"
+      "at": "2026-10-10T16:56:08-03:00"
     },
     {
-      "id": "event:commit-observed:1f6064a1a9ed",
+      "id": "event:commit-observed:7f520aee3d35",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:54:58-03:00"
+      "at": "2026-10-10T16:56:08-03:00"
     }
   ],
   "paths": [
@@ -13128,11 +13142,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:77c460a558a8"
+        "evidence:test:7a3aac4d2daf"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:54:58-03:00"
+      "last_validated": "2026-10-10T16:56:08-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13155,20 +13169,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:397843421181",
+      "id": "evidence:repository:39cd4f9f1470",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:54:58-03:00",
+      "observed_at": "2026-10-10T16:56:08-03:00",
       "status": "observed",
-      "detail": "448 files indexed at revision 1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e"
+      "detail": "448 files indexed at revision 7f520aee3d35f195eba95a3e530122a7ef5817c5"
     },
     {
-      "id": "evidence:test:77c460a558a8",
+      "id": "evidence:test:7a3aac4d2daf",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:54:58-03:00",
+      "observed_at": "2026-10-10T16:56:08-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.42s"
+      "detail": "225 passed in 7.37s"
     }
   ],
   "decisions": [
@@ -13271,30 +13285,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:397843421181",
+      "id": "event:repository-scan:39cd4f9f1470",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:54:58-03:00",
-      "revision": "1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
+      "at": "2026-10-10T16:56:08-03:00",
+      "revision": "7f520aee3d35f195eba95a3e530122a7ef5817c5",
       "file_count": 448,
-      "evidence_id": "evidence:repository:397843421181"
+      "evidence_id": "evidence:repository:39cd4f9f1470"
     },
     {
-      "id": "event:commit-observed:1f6064a1a9ed",
+      "id": "event:commit-observed:7f520aee3d35",
       "type": "commit_observed",
-      "at": "2026-10-10T16:54:58-03:00",
-      "revision": "1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
+      "at": "2026-10-10T16:56:08-03:00",
+      "revision": "7f520aee3d35f195eba95a3e530122a7ef5817c5",
       "branch": "main",
-      "subject": "Adicionar teste autenticado de descoberta das ferramentas MCP",
+      "subject": "Corrigir sintaxe YAML do diagnóstico MCP",
       "changed_files": [
         ".github/workflows/vps-admin-command.yml"
       ]
     },
     {
-      "id": "event:test:77c460a558a8",
+      "id": "event:test:7a3aac4d2daf",
       "type": "tests_observed",
-      "at": "2026-10-10T16:54:58-03:00",
+      "at": "2026-10-10T16:56:08-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:77c460a558a8"
+      "evidence_id": "evidence:test:7a3aac4d2daf"
     }
   ],
   "knowledge_sources": [
@@ -13350,7 +13364,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "0521c4133661120caee412f833dadc47babc3710bd651efccad1dd9b3ad0e942"
+      "sha256": "7e3b4e0511bc2b8c6a4d1288fba0eee6ea6e4737949a0a0aa7df54a60b847cb3"
     },
     {
       "id": "source:session",
@@ -60439,12 +60453,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:397843421181",
-      "source": "event:repository-scan:397843421181",
-      "relation": "generated",
-      "target": "evidence:repository:397843421181",
+      "id": "rel:commit-precedes:1f6064a1a9ed:f34f05edf25a",
+      "source": "commit:1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
+      "relation": "precedes",
+      "target": "commit:f34f05edf25acda5bd0a6ed83ad381ff1ff7d7c0",
       "status": "asserted",
-      "at": "2026-10-10T16:54:58-03:00",
+      "at": "2026-10-10T19:55:17Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f34f05edf25a:032adc3624d7",
+      "source": "commit:f34f05edf25acda5bd0a6ed83ad381ff1ff7d7c0",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:55:17Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f34f05edf25a:d64178c49886",
+      "source": "commit:f34f05edf25acda5bd0a6ed83ad381ff1ff7d7c0",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:55:17Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f34f05edf25a:7f520aee3d35",
+      "source": "commit:f34f05edf25acda5bd0a6ed83ad381ff1ff7d7c0",
+      "relation": "precedes",
+      "target": "commit:7f520aee3d35f195eba95a3e530122a7ef5817c5",
+      "status": "asserted",
+      "at": "2026-10-10T16:56:08-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7f520aee3d35:d2156db4a874",
+      "source": "commit:7f520aee3d35f195eba95a3e530122a7ef5817c5",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-admin-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T16:56:08-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:39cd4f9f1470",
+      "source": "event:repository-scan:39cd4f9f1470",
+      "relation": "generated",
+      "target": "evidence:repository:39cd4f9f1470",
+      "status": "asserted",
+      "at": "2026-10-10T16:56:08-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -60453,12 +60537,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:1f6064a1a9ed",
-      "source": "commit:1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
+      "id": "rel:scan-commit:7f520aee3d35",
+      "source": "commit:7f520aee3d35f195eba95a3e530122a7ef5817c5",
       "relation": "observed_by",
-      "target": "event:repository-scan:397843421181",
+      "target": "event:repository-scan:39cd4f9f1470",
       "status": "asserted",
-      "at": "2026-10-10T16:54:58-03:00",
+      "at": "2026-10-10T16:56:08-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
