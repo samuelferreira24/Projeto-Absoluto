@@ -1330,6 +1330,13 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-backup-test)
+              {
+                echo "[Queue one immediate Code Server volume backup]"
+                sudo -n docker exec coolify php artisan tinker --execute='$b=App\Models\ScheduledVolumeBackup::where("backupable_type","App\\Models\\LocalPersistentVolume")->where("backupable_id",5)->firstOrFail(); App\Jobs\VolumeBackupJob::dispatch($b); echo json_encode(["queued"=>true,"backup_schedule_id"=>$b->id,"target_id"=>$b->backupable_id,"frequency"=>$b->frequency],JSON_PRETTY_PRINT),PHP_EOL;' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-backup-configure)
               {
                 echo "[Configure daily local backup for Code Server config volume]"
