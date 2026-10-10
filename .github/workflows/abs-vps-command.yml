@@ -1272,6 +1272,22 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-locale-deep-inspect)
+              {
+                echo "[Laravel locale files and env override support]"
+                sudo -n docker exec coolify sh -lc 'grep -RniE "APP_LOCALE|config\([\x27\x22]app.locale|app.locale|pt-br.json|locale.*localStorage|setLocale|language" /var/www/html/config /var/www/html/resources/js /var/www/html/resources/views /var/www/html/app/Livewire 2>/dev/null | head -n 120' 2>&1 || true
+                echo
+                echo "[Existing translation keys versus source strings]"
+                sudo -n docker exec coolify php -r '$f="/var/www/html/lang/pt-br.json"; $d=json_decode(file_get_contents($f),true) ?: []; echo "keys=".count($d).PHP_EOL; echo "app_config_locale=".(require "/var/www/html/config/app.php")["locale"].PHP_EOL; foreach (["Dashboard","Projects","Servers","Settings","Logout","Applications","Services","Terminal","Deploy","Backups"] as $k) echo $k." => ".($d[$k] ?? "(missing)").PHP_EOL;' 2>&1 || true
+                echo
+                echo "[Dashboard HTTPS redirect location]"
+                curl -sS -k -I --max-time 10 'https://coolify.207.180.3.245.sslip.io/' 2>&1 | grep -Ei '^(HTTP/|location:|content-type:)' | head -n 12
+                echo
+                echo "[Code Server HTTPS redirect location]"
+                curl -sS -k -I --max-time 10 'https://codeserver-bb55qbolrf4pqfl45gomnzyl.207.180.3.245.sslip.io/' 2>&1 | grep -Ei '^(HTTP/|location:|content-type:)' | head -n 12
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-verify)
               {
                 echo "[Code Server container health and runtime settings — secrets omitted]"
