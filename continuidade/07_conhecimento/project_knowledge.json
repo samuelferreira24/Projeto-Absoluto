@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T01:05:05-03:00",
-  "source_revision": "2949b0f8305db8aeb086acca594e307f5f51ead3",
+  "generated_at": "2026-10-10T01:06:08-03:00",
+  "source_revision": "2d69990aac7a7f2634486df004f6ba7ab839caaa",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "2949b0f8305db8aeb086acca594e307f5f51ead3",
-      "commit_subject": "Bound source diagnostic output to avoid oversized runner payloads"
+      "revision": "2d69990aac7a7f2634486df004f6ba7ab839caaa",
+      "commit_subject": "Use the active visible Selkies video surface for toolbar tap coordinates"
     }
   ],
   "tools": [
@@ -11330,6 +11330,20 @@
       "sha": "2949b0f8305db8aeb086acca594e307f5f51ead3"
     },
     {
+      "id": "commit:22f619fe50e017680d3b7016b5b2d1656dee020f",
+      "kind": "commit",
+      "at": "2026-10-10T04:05:25Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "22f619fe50e017680d3b7016b5b2d1656dee020f"
+    },
+    {
+      "id": "commit:2d69990aac7a7f2634486df004f6ba7ab839caaa",
+      "kind": "commit",
+      "at": "2026-10-10T01:06:08-03:00",
+      "subject": "Use the active visible Selkies video surface for toolbar tap coordinates",
+      "sha": "2d69990aac7a7f2634486df004f6ba7ab839caaa"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11442,23 +11456,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:52d6017e264b",
+      "id": "evidence:repository:5001db3cf39c",
       "kind": "evidence",
-      "at": "2026-10-10T01:05:05-03:00",
+      "at": "2026-10-10T01:06:08-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:52d6017e264b",
+      "id": "event:repository-scan:5001db3cf39c",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T01:05:05-03:00"
+      "at": "2026-10-10T01:06:08-03:00"
     },
     {
-      "id": "event:commit-observed:2949b0f8305d",
+      "id": "event:commit-observed:2d69990aac7a",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T01:05:05-03:00"
+      "at": "2026-10-10T01:06:08-03:00"
     }
   ],
   "paths": [
@@ -11493,11 +11507,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:0fe96fb13346"
+        "evidence:test:2f28ee8117b3"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T01:05:05-03:00"
+      "last_validated": "2026-10-10T01:06:08-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11520,20 +11534,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:52d6017e264b",
+      "id": "evidence:repository:5001db3cf39c",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T01:05:05-03:00",
+      "observed_at": "2026-10-10T01:06:08-03:00",
       "status": "observed",
-      "detail": "430 files indexed at revision 2949b0f8305db8aeb086acca594e307f5f51ead3"
+      "detail": "430 files indexed at revision 2d69990aac7a7f2634486df004f6ba7ab839caaa"
     },
     {
-      "id": "evidence:test:0fe96fb13346",
+      "id": "evidence:test:2f28ee8117b3",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T01:05:05-03:00",
+      "observed_at": "2026-10-10T01:06:08-03:00",
       "status": "tested",
-      "detail": "225 passed in 8.77s"
+      "detail": "225 passed in 7.67s"
     }
   ],
   "decisions": [
@@ -11636,30 +11650,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:52d6017e264b",
+      "id": "event:repository-scan:5001db3cf39c",
       "type": "repository_scanned",
-      "at": "2026-10-10T01:05:05-03:00",
-      "revision": "2949b0f8305db8aeb086acca594e307f5f51ead3",
+      "at": "2026-10-10T01:06:08-03:00",
+      "revision": "2d69990aac7a7f2634486df004f6ba7ab839caaa",
       "file_count": 430,
-      "evidence_id": "evidence:repository:52d6017e264b"
+      "evidence_id": "evidence:repository:5001db3cf39c"
     },
     {
-      "id": "event:commit-observed:2949b0f8305d",
+      "id": "event:commit-observed:2d69990aac7a",
       "type": "commit_observed",
-      "at": "2026-10-10T01:05:05-03:00",
-      "revision": "2949b0f8305db8aeb086acca594e307f5f51ead3",
+      "at": "2026-10-10T01:06:08-03:00",
+      "revision": "2d69990aac7a7f2634486df004f6ba7ab839caaa",
       "branch": "main",
-      "subject": "Bound source diagnostic output to avoid oversized runner payloads",
+      "subject": "Use the active visible Selkies video surface for toolbar tap coordinates",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        ".github/workflows/abs-browser-mobile-native.yml"
       ]
     },
     {
-      "id": "event:test:0fe96fb13346",
+      "id": "event:test:2f28ee8117b3",
       "type": "tests_observed",
-      "at": "2026-10-10T01:05:05-03:00",
+      "at": "2026-10-10T01:06:08-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:0fe96fb13346"
+      "evidence_id": "evidence:test:2f28ee8117b3"
     }
   ],
   "knowledge_sources": [
@@ -11715,7 +11729,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "149c30a3fc7e4ffef05de15d6bbfedcce666b14cb6f64101eca6073373186352"
+      "sha256": "2ea3b30ab7b13e4865bab3464cc1e2bb1d1e5f89f6227d1775831b0711976fa6"
     },
     {
       "id": "source:session",
@@ -51244,12 +51258,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:52d6017e264b",
-      "source": "event:repository-scan:52d6017e264b",
-      "relation": "generated",
-      "target": "evidence:repository:52d6017e264b",
+      "id": "rel:commit-precedes:2949b0f8305d:22f619fe50e0",
+      "source": "commit:2949b0f8305db8aeb086acca594e307f5f51ead3",
+      "relation": "precedes",
+      "target": "commit:22f619fe50e017680d3b7016b5b2d1656dee020f",
       "status": "asserted",
-      "at": "2026-10-10T01:05:05-03:00",
+      "at": "2026-10-10T04:05:25Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:22f619fe50e0:032adc3624d7",
+      "source": "commit:22f619fe50e017680d3b7016b5b2d1656dee020f",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T04:05:25Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:22f619fe50e0:d64178c49886",
+      "source": "commit:22f619fe50e017680d3b7016b5b2d1656dee020f",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T04:05:25Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:22f619fe50e0:2d69990aac7a",
+      "source": "commit:22f619fe50e017680d3b7016b5b2d1656dee020f",
+      "relation": "precedes",
+      "target": "commit:2d69990aac7a7f2634486df004f6ba7ab839caaa",
+      "status": "asserted",
+      "at": "2026-10-10T01:06:08-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2d69990aac7a:97a2cc349a21",
+      "source": "commit:2d69990aac7a7f2634486df004f6ba7ab839caaa",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-native.yml",
+      "status": "asserted",
+      "at": "2026-10-10T01:06:08-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:5001db3cf39c",
+      "source": "event:repository-scan:5001db3cf39c",
+      "relation": "generated",
+      "target": "evidence:repository:5001db3cf39c",
+      "status": "asserted",
+      "at": "2026-10-10T01:06:08-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -51258,12 +51342,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:2949b0f8305d",
-      "source": "commit:2949b0f8305db8aeb086acca594e307f5f51ead3",
+      "id": "rel:scan-commit:2d69990aac7a",
+      "source": "commit:2d69990aac7a7f2634486df004f6ba7ab839caaa",
       "relation": "observed_by",
-      "target": "event:repository-scan:52d6017e264b",
+      "target": "event:repository-scan:5001db3cf39c",
       "status": "asserted",
-      "at": "2026-10-10T01:05:05-03:00",
+      "at": "2026-10-10T01:06:08-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
