@@ -191,7 +191,7 @@ jobs:
             --shm-size 512m \
             --env-file "$ENVFILE" \
             -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC \
-            -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222" \
+            -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222 --enable-touch-events --touch-events=enabled --window-size=412,915 --force-device-scale-factor=1" \
             -v "$PROFILE_MOUNT:/config" \
             "$CONTAINER_IMAGE"
           CONTAINER_STOPPED=0
@@ -220,6 +220,8 @@ jobs:
           fi
           [ "$UI_READY" -eq 1 ] || { fail "Browser UI did not become ready; inspect private host logs."; exit 1; }
           pass "Visual browser is running with persistent profile and loopback-only UI"
+          CHROME_ARGS="$(sudo -n docker exec abs-browser-ui sh -lc 'ps -eo args | grep -E "[c]hromium" | head -n 3' 2>/dev/null || true)"
+          if printf '%s' "$CHROME_ARGS" | grep -q -- '--touch-events=enabled'; then pass "Chromium touch events enabled for phone interaction"; else note "Touch-event flag not visible in process args; confirm touch handling in the phone UI."; fi
           if [ "$CDP_READY" -eq 1 ]; then
             pass "Chromium DevTools endpoint responds on loopback"
           else
