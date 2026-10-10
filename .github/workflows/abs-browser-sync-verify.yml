@@ -19,6 +19,20 @@ jobs:
         id: check
         shell: bash
         run: |
+          REPORT="$RUNNER_TEMP/abs-sync-verify.txt"
+          install -m 600 /dev/null "$REPORT"
+          exec > >(tee -a "$REPORT") 2>&1
+          finish() {
+            rc=$?
+            {
+              echo 'result<<ABS_SYNC_EOF'
+              tail -c 8000 "$REPORT"
+              echo
+              echo 'ABS_SYNC_EOF'
+            } >> "$GITHUB_OUTPUT"
+            exit "$rc"
+          }
+          trap finish EXIT
           set -Eeuo pipefail
           echo "ABS BROWSER SYNC VERIFICATION"
           echo "Host=$(hostname)"
@@ -77,19 +91,21 @@ jobs:
             process.exit(7);
           });
           NODE
-        env:
-          NODE_OPTIONS: --no-warnings
       - name: Publish result
         if: always()
         uses: actions/github-script@v7
         env:
           RESULT: ${{ steps.check.outcome }}
+          DETAILS: ${{ steps.check.outputs.result }}
         with:
           script: |
             const body = [
               '### ABS BROWSER SYNC VERIFICATION',
               '',
               'Workflow outcome: ' + (process.env.RESULT || 'unknown'),
+              '',
+              (process.env.DETAILS || 'No diagnostic detail was captured.').slice(0, 8000),
+              '',
               'Read-only check. No tabs, browser settings, profile, services, or conversation content were modified.'
             ].join('\\n');
             await github.rest.issues.createComment({
