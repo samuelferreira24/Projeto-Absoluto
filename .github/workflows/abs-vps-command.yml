@@ -1204,6 +1204,16 @@ jobs:
                   echo "backup_artifact_not_found_on_host"
                 fi
                 echo
+                echo "[Recovery key presence and filesystem permissions — key value never shown]"
+                if sudo -n grep -q '^APP_KEY=base64:' /data/coolify/source/.env; then echo "APP_KEY_present=true"; else echo "APP_KEY_present=false"; fi
+                sudo -n stat -c 'env_file_mode=%a owner=%U:%G' /data/coolify/source/.env 2>&1 || true
+                sudo -n stat -c 'backup_dir_mode=%a owner=%U:%G' /data/coolify/backups 2>&1 || true
+                if [ -n "$artifact" ]; then sudo -n stat -c 'backup_file_mode=%a owner=%U:%G' "$artifact" 2>&1 || true; fi
+                echo
+                echo "[Temporary restore database cleanup check]"
+                temp_db="$(sudo -n docker exec coolify-db sh -lc 'psql -At -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d postgres -c "SELECT 1 FROM pg_database WHERE datname = \$\$abs_coolify_restore_test\$\$;"' 2>&1)"
+                if [ "$temp_db" = "1" ]; then echo "temporary_restore_database_remaining=true"; else echo "temporary_restore_database_remaining=false"; fi
+                echo
                 echo "[Current backup schedule — safe fields only]"
                 sudo -n docker exec coolify php artisan tinker --execute='$b = App\Models\ScheduledDatabaseBackup::where("database_id",0)->where("team_id",0)->first(); echo json_encode(["schedule_exists"=>(bool)$b,"enabled"=>$b ? (bool)$b->enabled : null,"frequency"=>$b ? $b->frequency : null,"retention_count"=>$b ? $b->database_backup_retention_amount_locally : null,"retention_days"=>$b ? $b->database_backup_retention_days_locally : null,"retention_max_gb"=>$b ? $b->database_backup_retention_max_storage_locally : null,"local_enabled"=>$b ? !(bool)$b->disable_local_backup : null,"s3_enabled"=>$b ? (bool)$b->save_s3 : null], JSON_PRETTY_PRINT), PHP_EOL;' 2>&1 || true
               } > /tmp/abs-vps-result.txt
