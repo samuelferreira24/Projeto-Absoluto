@@ -74,6 +74,21 @@ def test_projection_contains_bidirectional_trajectory(tmp_path: Path):
     assert "## Relações de trajetória" in projection
 
 
+def test_strict_validation_handles_trajectories_deeper_than_recursion_limit():
+    size = 1500
+    nodes = [{"id": f"N{i}"} for i in range(size)]
+    relations = [
+        {"id": f"r{i}", "source": f"N{i}", "relation": "precedes", "target": f"N{i + 1}"}
+        for i in range(size - 1)
+    ]
+    graph = TrajectoryGraph(nodes, relations)
+    assert graph.validate() == []
+
+    relations.append({"id": "cycle", "source": f"N{size - 1}", "relation": "precedes", "target": "N0"})
+    graph_with_cycle = TrajectoryGraph(nodes, relations)
+    assert any(issue.kind == "strict_cycle" for issue in graph_with_cycle.validate())
+
+
 def test_non_strict_cycles_do_not_repeat_paths():
     graph = TrajectoryGraph(
         [{"id": "A"}, {"id": "B"}, {"id": "C"}],
