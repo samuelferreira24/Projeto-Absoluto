@@ -33,6 +33,17 @@ Prioridade imediata:
 5. aceitação operacional no VPS.
 
 
+
+## Nota de escopo e continuidade — 2026-10-10
+
+Este documento registra o marco histórico de fechamento do **ABS V1 Core**. Não declara que a versão atual do ABS em construção seja V1 e não deve ser usado como ponto de reinício do desenvolvimento.
+
+O estado de continuidade recuperado registra **ABS V3 ativo** e **V4 Completa planejada**, com trabalho documental e matrizes de fechamento no PR #127. Consulte a continuidade atual e o plano do ambiente de trabalho antes de definir a próxima tarefa:
+- `continuidade/07_conhecimento/SESSAO_ATUAL.md`
+- `docs/03_planejamento/PLANO_AMBIENTE_TRABALHO_VPS_ANDROID.md`
+- https://github.com/samuelferreira24/Projeto-Absoluto/pull/127
+
+
 ## Plano operacional detalhado — ambiente de trabalho na VPS
 
 A prioridade de construir um ambiente de desenvolvimento remoto pelo celular foi detalhada em:
