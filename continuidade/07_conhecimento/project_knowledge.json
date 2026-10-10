@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T23:07:57-03:00",
-  "source_revision": "a800e8876e8a61647c8bc60b39bb946ec58f09b2",
+  "generated_at": "2026-10-09T23:18:45-03:00",
+  "source_revision": "864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 137
+      "file_count": 141
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "a800e8876e8a61647c8bc60b39bb946ec58f09b2",
-      "commit_subject": "Corrige build do bundle de gestos móveis ABS"
+      "revision": "864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
+      "commit_subject": "Cria web app móvel espelhado para o navegador ABS"
     }
   ],
   "tools": [
@@ -983,6 +983,11 @@
       "id": "file:.github/workflows/abs-browser-mobile-test.yml",
       "kind": "file",
       "path": ".github/workflows/abs-browser-mobile-test.yml"
+    },
+    {
+      "id": "file:.github/workflows/abs-browser-mobile-webapp.yml",
+      "kind": "file",
+      "path": ".github/workflows/abs-browser-mobile-webapp.yml"
     },
     {
       "id": "file:.github/workflows/abs-browser-yaml-diagnostic.yml",
@@ -1893,6 +1898,21 @@
       "id": "file:Visao_Geral.md",
       "kind": "file",
       "path": "Visao_Geral.md"
+    },
+    {
+      "id": "file:abs_browser/mobile_webapp/package.json",
+      "kind": "file",
+      "path": "abs_browser/mobile_webapp/package.json"
+    },
+    {
+      "id": "file:abs_browser/mobile_webapp/public/index.html",
+      "kind": "file",
+      "path": "abs_browser/mobile_webapp/public/index.html"
+    },
+    {
+      "id": "file:abs_browser/mobile_webapp/server.js",
+      "kind": "file",
+      "path": "abs_browser/mobile_webapp/server.js"
     },
     {
       "id": "file:abs_core/README.md",
@@ -11059,6 +11079,20 @@
       "sha": "a800e8876e8a61647c8bc60b39bb946ec58f09b2"
     },
     {
+      "id": "commit:ed6609bb6983396ddb327842720c97ecacefc901",
+      "kind": "commit",
+      "at": "2026-10-10T02:08:16Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "ed6609bb6983396ddb327842720c97ecacefc901"
+    },
+    {
+      "id": "commit:864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
+      "kind": "commit",
+      "at": "2026-10-09T23:18:45-03:00",
+      "subject": "Cria web app móvel espelhado para o navegador ABS",
+      "sha": "864187c0ae61f30d2abe4dc3d8a3d4045cb00a67"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11171,23 +11205,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:c6691f0fd71d",
+      "id": "evidence:repository:ac6bfb77f66d",
       "kind": "evidence",
-      "at": "2026-10-09T23:07:57-03:00",
+      "at": "2026-10-09T23:18:45-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:c6691f0fd71d",
+      "id": "event:repository-scan:ac6bfb77f66d",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T23:07:57-03:00"
+      "at": "2026-10-09T23:18:45-03:00"
     },
     {
-      "id": "event:commit-observed:a800e8876e8a",
+      "id": "event:commit-observed:864187c0ae61",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T23:07:57-03:00"
+      "at": "2026-10-09T23:18:45-03:00"
     }
   ],
   "paths": [
@@ -11222,11 +11256,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:410431a87ec4"
+        "evidence:test:23710d153163"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T23:07:57-03:00"
+      "last_validated": "2026-10-09T23:18:45-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11249,20 +11283,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:c6691f0fd71d",
+      "id": "evidence:repository:ac6bfb77f66d",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T23:07:57-03:00",
+      "observed_at": "2026-10-09T23:18:45-03:00",
       "status": "observed",
-      "detail": "423 files indexed at revision a800e8876e8a61647c8bc60b39bb946ec58f09b2"
+      "detail": "427 files indexed at revision 864187c0ae61f30d2abe4dc3d8a3d4045cb00a67"
     },
     {
-      "id": "evidence:test:410431a87ec4",
+      "id": "evidence:test:23710d153163",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T23:07:57-03:00",
+      "observed_at": "2026-10-09T23:18:45-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.52s"
+      "detail": "225 passed in 7.55s"
     }
   ],
   "decisions": [
@@ -11365,30 +11399,33 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:c6691f0fd71d",
+      "id": "event:repository-scan:ac6bfb77f66d",
       "type": "repository_scanned",
-      "at": "2026-10-09T23:07:57-03:00",
-      "revision": "a800e8876e8a61647c8bc60b39bb946ec58f09b2",
-      "file_count": 423,
-      "evidence_id": "evidence:repository:c6691f0fd71d"
+      "at": "2026-10-09T23:18:45-03:00",
+      "revision": "864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
+      "file_count": 427,
+      "evidence_id": "evidence:repository:ac6bfb77f66d"
     },
     {
-      "id": "event:commit-observed:a800e8876e8a",
+      "id": "event:commit-observed:864187c0ae61",
       "type": "commit_observed",
-      "at": "2026-10-09T23:07:57-03:00",
-      "revision": "a800e8876e8a61647c8bc60b39bb946ec58f09b2",
+      "at": "2026-10-09T23:18:45-03:00",
+      "revision": "864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
       "branch": "main",
-      "subject": "Corrige build do bundle de gestos móveis ABS",
+      "subject": "Cria web app móvel espelhado para o navegador ABS",
       "changed_files": [
-        ".github/workflows/abs-browser-mobile-native.yml"
+        ".github/workflows/abs-browser-mobile-webapp.yml",
+        "abs_browser/mobile_webapp/package.json",
+        "abs_browser/mobile_webapp/public/index.html",
+        "abs_browser/mobile_webapp/server.js"
       ]
     },
     {
-      "id": "event:test:410431a87ec4",
+      "id": "event:test:23710d153163",
       "type": "tests_observed",
-      "at": "2026-10-09T23:07:57-03:00",
+      "at": "2026-10-09T23:18:45-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:410431a87ec4"
+      "evidence_id": "evidence:test:23710d153163"
     }
   ],
   "knowledge_sources": [
@@ -11444,7 +11481,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "39a6ad73e289b9108139c396d8fe745559af28cbc896f23e7b542eba8de50e45"
+      "sha256": "9b4040e39a9a0e7368501f492b48e217a28d031b9d8b0e0be29635a38cc6ab3c"
     },
     {
       "id": "source:session",
@@ -49615,12 +49652,124 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:c6691f0fd71d",
-      "source": "event:repository-scan:c6691f0fd71d",
-      "relation": "generated",
-      "target": "evidence:repository:c6691f0fd71d",
+      "id": "rel:commit-precedes:a800e8876e8a:ed6609bb6983",
+      "source": "commit:a800e8876e8a61647c8bc60b39bb946ec58f09b2",
+      "relation": "precedes",
+      "target": "commit:ed6609bb6983396ddb327842720c97ecacefc901",
       "status": "asserted",
-      "at": "2026-10-09T23:07:57-03:00",
+      "at": "2026-10-10T02:08:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ed6609bb6983:032adc3624d7",
+      "source": "commit:ed6609bb6983396ddb327842720c97ecacefc901",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T02:08:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ed6609bb6983:d64178c49886",
+      "source": "commit:ed6609bb6983396ddb327842720c97ecacefc901",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T02:08:16Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:ed6609bb6983:864187c0ae61",
+      "source": "commit:ed6609bb6983396ddb327842720c97ecacefc901",
+      "relation": "precedes",
+      "target": "commit:864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
+      "status": "asserted",
+      "at": "2026-10-09T23:18:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:864187c0ae61:0d2cf9218065",
+      "source": "commit:864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-webapp.yml",
+      "status": "asserted",
+      "at": "2026-10-09T23:18:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:864187c0ae61:2b2d653d9981",
+      "source": "commit:864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
+      "relation": "changed",
+      "target": "file:abs_browser/mobile_webapp/package.json",
+      "status": "asserted",
+      "at": "2026-10-09T23:18:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:864187c0ae61:7eee040de4a5",
+      "source": "commit:864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
+      "relation": "changed",
+      "target": "file:abs_browser/mobile_webapp/public/index.html",
+      "status": "asserted",
+      "at": "2026-10-09T23:18:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:864187c0ae61:05dc5d4de3f3",
+      "source": "commit:864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
+      "relation": "changed",
+      "target": "file:abs_browser/mobile_webapp/server.js",
+      "status": "asserted",
+      "at": "2026-10-09T23:18:45-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:ac6bfb77f66d",
+      "source": "event:repository-scan:ac6bfb77f66d",
+      "relation": "generated",
+      "target": "evidence:repository:ac6bfb77f66d",
+      "status": "asserted",
+      "at": "2026-10-09T23:18:45-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -49629,12 +49778,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:a800e8876e8a",
-      "source": "commit:a800e8876e8a61647c8bc60b39bb946ec58f09b2",
+      "id": "rel:scan-commit:864187c0ae61",
+      "source": "commit:864187c0ae61f30d2abe4dc3d8a3d4045cb00a67",
       "relation": "observed_by",
-      "target": "event:repository-scan:c6691f0fd71d",
+      "target": "event:repository-scan:ac6bfb77f66d",
       "status": "asserted",
-      "at": "2026-10-09T23:07:57-03:00",
+      "at": "2026-10-09T23:18:45-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
