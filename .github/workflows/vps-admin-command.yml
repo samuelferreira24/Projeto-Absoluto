@@ -1,0 +1,166 @@
+name: VPS Direct Administration Channel
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  execute:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      startsWith(github.event.comment.body, '/vps ')
+    concurrency:
+      group: vps-admin-readonly
+      cancel-in-progress: false
+    runs-on: [self-hosted]
+    timeout-minutes: 5
+
+    steps:
+      - name: Execute allowlisted VPS diagnostic
+        id: command
+        shell: bash
+        env:
+          REQUEST: ${{ github.event.comment.body }}
+        run: |
+          set -u
+          command="${REQUEST#'/vps '}"
+          result=""
+
+          case "$command" in
+            help)
+              result='Available commands:
+          /vps help
+          /vps status
+          /vps services
+          /vps docker
+          /vps coolify
+          /vps workspace'
+              ;;
+            status)
+              {
+                echo "[host]"
+                hostname
+                id
+                echo
+                echo "[uptime and load]"
+                uptime
+                echo
+                echo "[memory]"
+                free -h
+                echo
+                echo "[disk]"
+                df -h /
+                echo
+                echo "[CPU]"
+                nproc
+              } > /tmp/vps-admin-result.txt 2>&1
+              result="$(cat /tmp/vps-admin-result.txt)"
+              ;;
+            services)
+              {
+                echo "[SSH, network, Docker, Coolify, and control runners]"
+                sudo -n systemctl show \
+                  ssh.service tailscaled.service docker.service \
+                  actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01.service \
+                  actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01-reserve.service \
+                  -p Id -p ActiveState -p SubState -p Result 2>&1 || true
+                echo
+                echo "[related service units]"
+                systemctl list-units --type=service --state=running --no-legend \
+                  | grep -Ei 'coolify|code-server|tailscale|actions.runner|docker|ssh' \
+                  | head -n 60 || true
+              } > /tmp/vps-admin-result.txt 2>&1
+              result="$(cat /tmp/vps-admin-result.txt)"
+              ;;
+            docker)
+              {
+                echo "[Docker version]"
+                docker --version 2>&1 || true
+                echo
+                echo "[running containers; environment values omitted]"
+                sudo -n docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' 2>&1 || true
+                echo
+                echo "[Docker resource use]"
+                sudo -n docker stats --no-stream --format 'table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.PIDs}}' 2>&1 || true
+              } > /tmp/vps-admin-result.txt 2>&1
+              result="$(cat /tmp/vps-admin-result.txt)"
+              ;;
+            coolify)
+              {
+                echo "[Coolify container status]"
+                sudo -n docker inspect coolify --format 'state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}not-configured{{end}} restarts={{.RestartCount}} image={{.Config.Image}}' 2>&1 || true
+                echo
+                echo "[Coolify HTTP endpoint; response body and cookies omitted]"
+                curl -sS -o /dev/null -D - --max-time 8 http://127.0.0.1:8000 2>&1 \
+                  | grep -Ei '^(HTTP/|content-type:|location:|server:)' | head -n 12 || true
+                echo
+                echo "[Coolify proxy]"
+                sudo -n docker inspect coolify-proxy --format 'state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}not-configured{{end}} image={{.Config.Image}}' 2>&1 || true
+              } > /tmp/vps-admin-result.txt 2>&1
+              result="$(cat /tmp/vps-admin-result.txt)"
+              ;;
+            workspace)
+              {
+                echo "[repository path]"
+                if [ -d "$HOME/Projeto-Absoluto/.git" ]; then
+                  git -C "$HOME/Projeto-Absoluto" rev-parse --show-toplevel
+                  git -C "$HOME/Projeto-Absoluto" rev-parse --short HEAD
+                  git -C "$HOME/Projeto-Absoluto" status --short
+                else
+                  echo "Repository not present at expected path"
+                fi
+                echo
+                echo "[administration paths]"
+                for p in /home/absadmin/actions-runner /home/absadmin/actions-runner-reserve /data/coolify; do
+                  if [ -e "$p" ]; then
+                    stat -c '%A %U:%G %n' "$p" 2>&1
+                  else
+                    echo "missing: $p"
+                  fi
+                done
+              } > /tmp/vps-admin-result.txt 2>&1
+              result="$(cat /tmp/vps-admin-result.txt)"
+              ;;
+            *)
+              result="Comando não permitido: $command. Use /vps help. Nenhum comando arbitrário é executado."
+              ;;
+          esac
+
+          echo "command=$command" >> "$GITHUB_OUTPUT"
+          {
+            echo 'result<<VPS_RESULT_EOF'
+            printf '%s\n' "$result"
+            echo 'VPS_RESULT_EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Report result
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.command.outputs.result }}
+          REQUEST: ${{ github.event.comment.body }}
+        with:
+          script: |
+            const issue_number = context.issue.number || 121;
+            const result = process.env.RESULT || '(sem saída)';
+            const request = process.env.REQUEST || '';
+            const body = [
+              '### VPS Admin — canal independente',
+              '',
+              'COMMAND_MARKER' + request + 'COMMAND_MARKER',
+              '',
+              'OUTPUT_START',
+              result.slice(0, 12000),
+              'OUTPUT_END'
+            ].join('\\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              body
+            });
