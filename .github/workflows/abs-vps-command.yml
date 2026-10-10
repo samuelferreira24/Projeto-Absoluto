@@ -1347,6 +1347,27 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-backup-restore-test)
+              {
+                set -e
+                archive="$(find /data/coolify/backups/volumes/root-team-0/q7clue1dcxpkcfdjgi3fmb7m -maxdepth 1 -type f -name '*.tar.gz' -printf '%T@ %p\\n' 2>/dev/null | sort -nr | head -n 1 | cut -d' ' -f2-)"
+                if [ -z "$archive" ] || [ ! -f "$archive" ]; then echo "RESTORE_TEST=FAIL archive_missing"; exit 0; fi
+                echo "[Code Server volume backup archive integrity]"
+                tar -tzf "$archive" >/dev/null
+                echo "archive_integrity=PASS"
+                tmp="$(mktemp -d /tmp/abs-code-server-restore-test.XXXXXX)"
+                chmod 700 "$tmp"
+                trap 'rm -rf "$tmp"' EXIT
+                tar -xzf "$archive" -C "$tmp"
+                count="$(find "$tmp" -type f | wc -l | tr -d ' ')"
+                echo "temporary_restore=PASS"
+                echo "restored_file_count=$count"
+                echo "restored_bytes=$(du -sb "$tmp" | cut -f1)"
+                test "$count" -gt 0
+                echo "temporary_restore_cleanup=scheduled"
+              } > /tmp/abs-vps-result.txt 2>&1 || { cat /tmp/abs-vps-result.txt; exit 1; }
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-backup-verify)
               {
                 echo "[Latest Code Server volume backup execution]"
