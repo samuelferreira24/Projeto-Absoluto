@@ -31,6 +31,9 @@ jobs:
         run: |
           set -Eeuo pipefail
           REPORT="$RUNNER_TEMP/abs-browser-mobile-webapp.txt"
+          APP_SERVICE_STARTED=0
+          ROUTE_ADDED=0
+          ROUTE_WAS_PRESENT=0
           install -m 600 /dev/null "$REPORT"
           exec > >(tee -a "$REPORT") 2>&1
           publish_result() {
@@ -44,6 +47,16 @@ jobs:
           finish() {
             rc=$?
             trap - EXIT
+            if [ "$rc" -ne 0 ]; then
+              if [ "$ROUTE_ADDED" -eq 1 ] && [ "$ROUTE_WAS_PRESENT" -eq 0 ]; then
+                sudo -n tailscale serve --set-path=/abs-mobile off >/dev/null 2>&1 || true
+                echo "ROLLBACK | Removed the route created by this failed deployment."
+              fi
+              if [ "$APP_SERVICE_STARTED" -eq 1 ]; then
+                sudo -n systemctl disable --now abs-browser-mobile-webapp.service >/dev/null 2>&1 || true
+                echo "ROLLBACK | Failed mobile app stopped; existing browser and profile were not changed."
+              fi
+            fi
             publish_result
             exit "$rc"
           }
@@ -71,6 +84,18 @@ jobs:
           APP="$HOME/abs-browser/mobile-webapp"
           [ -s "$SOURCE/server.js" ] && [ -s "$SOURCE/public/index.html" ] && [ -s "$SOURCE/package.json" ] || { fail "Mobile web app source files are incomplete."; exit 1; }
           node --check "$SOURCE/server.js"
+          node --check "$SOURCE/smoke-test.js"
+          python3 - "$SOURCE/public/index.html" "$RUNNER_TEMP/abs-mobile-ui.js" <<'PY'
+          import re,sys
+          from pathlib import Path
+          html=Path(sys.argv[1]).read_text()
+          scripts=re.findall(r'<script>(.*?)</script>',html,re.S)
+          if len(scripts)!=1 or 'ABS Browser' not in html or 'typing-active' not in html:
+              raise SystemExit('FAIL | UI source structure/keyboard proxy check failed.')
+          Path(sys.argv[2]).write_text(scripts[0])
+          PY
+          node --check "$RUNNER_TEMP/abs-mobile-ui.js"
+          pass "Server, isolated end-to-end audit and embedded mobile UI JavaScript pass syntax checks."
           install -d -m 700 "$APP" "$APP/public"
           install -m 600 "$SOURCE/server.js" "$APP/server.js"
           install -m 600 "$SOURCE/package.json" "$APP/package.json"
@@ -120,32 +145,15 @@ jobs:
           [ "$READY" -eq 1 ] || { sudo -n journalctl -u abs-browser-mobile-webapp.service -n 35 --no-pager; fail "Mobile mirror service failed health check."; exit 1; }
           curl -fsS --max-time 8 http://127.0.0.1:3010/api/state | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("ok") is True and d.get("connected") is True; assert d.get("viewport",{}).get("width",0)>0; print("PASS | CDP state query and page viewport verified.")'
           pass "Web app is serving on loopback only at 127.0.0.1:3010; Chromium was not restarted."
-          APP="$APP" node <<'NODE'
-          const WebSocket = require(process.env.APP + '/node_modules/ws');
-          const ws = new WebSocket('ws://127.0.0.1:3010/stream');
-          let finished = false;
-          const timer = setTimeout(() => finish(new Error('No screencast frame received within 12 seconds.')), 12000);
-          function finish(err) {
-            if (finished) return;
-            finished = true;
-            clearTimeout(timer);
-            try { ws.close(); } catch {}
-            if (err) { console.error('FAIL | Live screencast stream: ' + err.message); process.exitCode = 1; }
-            else console.log('PASS | Live Chromium screencast frame received over the mobile app WebSocket.');
-          }
-          ws.on('message', raw => {
-            let m;
-            try { m = JSON.parse(raw.toString()); } catch { return; }
-            if (m.type === 'frame' && typeof m.data === 'string' && m.data.length > 100) finish();
-            if (m.type === 'error') finish(new Error(m.message || 'CDP stream error.'));
-          });
-          ws.on('error', e => finish(e));
-          NODE
-          pass "The private mirror is returning actual Chromium page frames, not just a healthy HTTP endpoint."
+          ABS_BROWSER_APP_DIR="$APP" node "$GITHUB_WORKSPACE/abs_browser/mobile_webapp/smoke-test.js"
+          pass "End-to-end audit passed: live stream, isolated touch-to-focus, one-finger scroll and two-finger pinch."
+
 
           if command -v tailscale >/dev/null 2>&1 && timeout 8s sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
+            if timeout 8s sudo -n tailscale serve status 2>&1 | grep -q '/abs-mobile'; then ROUTE_WAS_PRESENT=1; fi
             sudo -n tailscale serve --bg --yes --set-path=/abs-mobile http://127.0.0.1:3010 >/dev/null
-            timeout 8s sudo -n tailscale serve status 2>&1 | grep -q '3010' || { fail "Private Tailscale route did not confirm port 3010. App remains loopback-only."; exit 1; }
+            if [ "$ROUTE_WAS_PRESENT" -eq 0 ]; then ROUTE_ADDED=1; fi
+            timeout 8s sudo -n tailscale serve status 2>&1 | grep -q '3010' || { fail "Private Tailscale route did not confirm port 3010."; exit 1; }
             pass "Private Tailscale Serve route /abs-mobile configured; no public port opened."
           else
             blocked "Tailscale is not authenticated/running. App is installed locally but remote phone access remains blocked until private Tailscale access is active."
