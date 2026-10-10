@@ -685,7 +685,16 @@ jobs:
                 sudo -n docker inspect abs-browser-ui --format 'status={{.State.Status}} exit={{.State.ExitCode}} error={{.State.Error}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}' 2>&1 || true
                 echo
                 echo "[health/ports/mounts/limits]"
-                sudo -n docker inspect abs-browser-ui --format 'health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} ports={{json .HostConfig.PortBindings}} memory={{.HostConfig.Memory}} memory_swap={{.HostConfig.MemorySwap}} cpus={{.HostConfig.NanoCpus}} pids={{.HostConfig.PidsLimit}}' 2>&1 || true
+                sudo -n docker inspect abs-browser-ui --format 'ports={{json .HostConfig.PortBindings}} network={{.HostConfig.NetworkMode}} memory={{.HostConfig.Memory}} memory_swap={{.HostConfig.MemorySwap}} cpus={{.HostConfig.NanoCpus}} pids={{.HostConfig.PidsLimit}}' 2>&1 || true
+                echo
+                echo "[mobile touch configuration]"
+                BROWSER_ENV="$(sudo -n docker inspect abs-browser-ui --format '{{range .Config.Env}}{{println .}}{{end}}' 2>/dev/null || true)"
+                if printf '%s\\n' "$BROWSER_ENV" | grep -qx 'SELKIES_UI_SIDEBAR_SHOW_TRACKPAD=true' && printf '%s\\n' "$BROWSER_ENV" | grep -qx 'SELKIES_SCALING_DPI=120' && printf '%s\\n' "$BROWSER_ENV" | grep -qx 'SELKIES_ENABLE_CURSORS=false'; then
+                  echo "PASS | Mobile trackpad-mode toggle visible, larger UI scaling enabled, remote cursor rendering disabled"
+                else
+                  echo "WARN | One or more mobile touch settings are missing"
+                fi
+                sudo -n docker exec abs-browser-ui sh -lc 'ps -eo args | grep -E "[c]hromium" | head -n 2' 2>&1 || true
                 echo
                 echo "[sanitized startup errors]"
                 sudo -n docker logs --tail 160 abs-browser-ui 2>&1 | grep -Ei 'error|fatal|permission|failed|denied|exit|listen|port|supervisor|s6-' | sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[=: ][^ ]*/\\1=[REDACTED]/Ig' | tail -n 80 || true
