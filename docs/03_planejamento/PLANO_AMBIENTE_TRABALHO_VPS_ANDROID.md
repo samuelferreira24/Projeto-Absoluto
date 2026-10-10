@@ -5,7 +5,23 @@
 **Escopo:** transformar a VPS existente em um ambiente de trabalho remoto integrado, seguro, persistente e recuperável, operável pelo Android.  
 **Regra de precedência:** aproveitar e auditar o que já existe; não reinstalar nem substituir componentes sem necessidade comprovada.
 
-## 1. Objetivo e ordem de construção
+## 1. Contexto de versão e continuidade do ABS
+
+Este plano **não** determina que o ABS deva voltar à V1, ser reconstruído do zero ou seguir uma nova sequência de versões menores. O objetivo é melhorar as ferramentas e a infraestrutura de trabalho para continuar a construção existente, preservando código, testes, decisões, pesquisas e integrações.
+
+**Estado de referência recuperado em 2026-10-10:**
+- O ABS em construção está documentado como **V3 ativo**.
+- A **V4 Completa** é o próximo alvo de evolução já planejado; o plano mestre, a pesquisa de capacidades e as matrizes de fechamento estão em revisão no PR #127, que estava aberto e em rascunho no momento da consulta.
+- A V4 planejada não deve ser descrita como totalmente implementada ou validada. O estado real deve ser reconciliado com os documentos, código, testes e evidências do repositório antes de afirmar progresso.
+- O documento `FECHAMENTO_ABS_V1_CORE.md` registra um marco histórico do núcleo; não é indicação de que a versão atual seja V1 nem autorização para recomeçar dali.
+
+Referências para retomar a evolução existente:
+- [PR #127 — Plano mestre ABS V4 Completa](https://github.com/samuelferreira24/Projeto-Absoluto/pull/127)
+- [PR #128 — negar planos operacionais com capacidades não vinculadas](https://github.com/samuelferreira24/Projeto-Absoluto/pull/128)
+
+A infraestrutura de trabalho é uma melhoria das condições de construção, não uma reinicialização do ABS nem uma troca automática de versão. Qualquer correção ou melhoria do ABS deve partir do estado real e preservar o que já funciona.
+
+## 2. Objetivo e ordem de construção
 
 A construção seguirá três etapas distintas:
 
@@ -105,9 +121,12 @@ Considerar a primeira etapa pronta quando:
 - [ ] existe rota de emergência documentada e testada;
 - [ ] as limitações e os riscos remanescentes estão registrados.
 
-### Fase F — Construção do ABS sobre essa base
+### Fase F — Retomar e continuar a evolução existente do ABS
 
-- Usar o ambiente validado para desenvolvimento, testes, pesquisa, documentação e implantação do ABS.
+- Retomar a partir do estado real do ABS já construído, sem recomeçar pela V1 nem recriar componentes existentes.
+- Usar o ambiente validado para desenvolvimento, testes, pesquisa, documentação e implantação.
+- Reconciliar o estado de V3 ativo e o planejamento da V4 Completa com a branch principal, PRs em andamento, código, testes e evidências antes de decidir o próximo trabalho.
+- Preservar e revisar os PRs já existentes; não presumir que documentos em PR já estejam incorporados à branch principal.
 - Manter Git e testes como trilha verificável das alterações.
 - Não confundir a infraestrutura operacional com o ABS em construção: a infraestrutura é um recurso que o ABS poderá usar, não a definição do ABS.
 
