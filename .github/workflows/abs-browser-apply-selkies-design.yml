@@ -1,0 +1,309 @@
+name: ABS Apply Selkies-Inspired Remote Browser Design
+on:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: abs-remotebrowser-selkies-theme
+  cancel-in-progress: false
+jobs:
+  redesign:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser apply-selkies-design'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 35
+    steps:
+      - name: Build and test redesigned interface before swapping port 3010
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          REPORT="$RUNNER_TEMP/abs-remotebrowser-selkies-theme.txt"
+          exec > >(tee "$REPORT") 2>&1
+          pass(){ echo "PASS | $*"; }
+          fail(){ echo "FAIL | $*"; exit 1; }
+          HOST_IP="100.119.8.119"
+          [ "$(hostname)" = "abs-vps-01" ] || fail "Unexpected host; no changes made."
+          sudo -n docker info >/dev/null
+          ip -4 -o addr show tailscale0 | awk '{print $4}' | cut -d/ -f1 | grep -Fxq "$HOST_IP" || fail "Expected Tailscale IP is not assigned."
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || fail "ABS health check failed."
+          sudo -n docker inspect abs-remotebrowser >/dev/null || fail "Current Remote Browser container not found; refusing deployment."
+          if sudo -n docker ps -a --format '{{.Names}}' | grep -Fxq 'abs-remotebrowser-rollback-20261010'; then
+            fail "Rollback container name already exists; refusing to overwrite a previous rollback."
+          fi
+          WORK="$HOME/abs-remotebrowser-selkies-theme-build"
+          if [ -d "$WORK/.git" ]; then
+            git -C "$WORK" fetch --depth 1 origin main
+            git -C "$WORK" reset --hard FETCH_HEAD
+          else
+            rm -rf "$WORK"
+            git clone --depth 1 https://github.com/yvonuk/remotebrowser.git "$WORK"
+          fi
+          HTML="$WORK/src/public/index.html"
+          [ -s "$HTML" ] || fail "Remote Browser frontend HTML missing."
+          cp "$HTML" "$RUNNER_TEMP/remote-browser-index-original.html"
+          python3 - "$HTML" <<'PY'
+          from pathlib import Path
+          import sys
+          p = Path(sys.argv[1])
+          html = p.read_text()
+          marker = "/* ABS SELKIES-INSPIRED DESIGN v1 */"
+          if marker in html:
+              raise SystemExit("Design marker already exists in upstream HTML; refusing duplicate injection.")
+          if html.count("</style>") < 1:
+              raise SystemExit("Could not locate inline stylesheet; no files changed.")
+          css = r"""
+          /* ABS SELKIES-INSPIRED DESIGN v1 */
+          :root {
+            --bg-base: #181818;
+            --bg-surface: #242424;
+            --bg-elevated: #303030;
+            --bg-hover: #3b3b3b;
+            --border-color: rgba(255,255,255,.12);
+            --border-accent: rgba(100,181,246,.55);
+            --text-primary: #f5f5f5;
+            --text-secondary: #c2c2c2;
+            --text-muted: #929292;
+            --accent-blue: #64b5f6;
+            --accent-blue-hover: #90caf9;
+            --accent-green: #81c784;
+            --accent-amber: #ffca28;
+            --accent-red: #ef5350;
+            --shadow-lg: 0 8px 24px rgba(0,0,0,.38);
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+            --font-sans: Roboto, "Noto Sans", system-ui, -apple-system, sans-serif;
+          }
+          html, body {
+            background: #181818;
+            color: #f5f5f5;
+            overscroll-behavior: none;
+          }
+          .app-header {
+            height: 42px;
+            min-height: 42px;
+            background: #202020;
+            border-bottom: 1px solid #3b3b3b;
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+          .brand-logo-img {
+            filter: none;
+            opacity: .88;
+          }
+          .brand-title { font-weight: 600; letter-spacing: .01em; }
+          .brand-sub { color: #aaa; }
+          .header-link { color: #90caf9; }
+          .stat-pill {
+            background: #303030;
+            border-color: #454545;
+            color: #d0d0d0;
+          }
+          .tab-bar-container {
+            background: #202020;
+            border-bottom-color: #3c3c3c;
+            padding-left: 6px;
+            padding-right: 6px;
+          }
+          .tab-item {
+            background: #292929;
+            border-color: #424242;
+            color: #c6c6c6;
+            border-radius: 5px 5px 0 0;
+          }
+          .tab-item:hover, .tab-item.active {
+            background: #383838;
+            color: #fff;
+          }
+          .tab-item.active {
+            border-top-color: #64b5f6;
+          }
+          .browser-toolbar {
+            min-height: 46px;
+            background: #303030;
+            border-bottom: 1px solid #424242;
+            padding: 5px 8px;
+            gap: 5px;
+          }
+          .btn-nav {
+            width: 34px;
+            height: 34px;
+            color: #ddd;
+            border-radius: 5px;
+          }
+          .btn-nav:hover:not(:disabled) {
+            background: #454545;
+            border-color: #555;
+          }
+          .address-bar-wrapper {
+            background: #1e1e1e;
+            border-color: #4a4a4a;
+            border-radius: 6px;
+          }
+          .address-bar-wrapper:focus-within {
+            border-color: #64b5f6;
+            box-shadow: 0 0 0 1px rgba(100,181,246,.25);
+          }
+          .address-input { color: #f5f5f5; }
+          .select-control, .input-control {
+            background: #242424;
+            border-color: #4a4a4a;
+            color: #e0e0e0;
+            border-radius: 4px;
+          }
+          .mobile-controls-panel {
+            background: #292929;
+            border-bottom-color: #424242;
+          }
+          .viewport-container {
+            background: #000;
+            overscroll-behavior: none;
+          }
+          .text-input-assistant {
+            background: #292929;
+            border-top-color: #64b5f6;
+            padding-bottom: max(10px, env(safe-area-inset-bottom));
+          }
+          .assistant-input {
+            background: #1e1e1e;
+            border-color: #555;
+            color: #fff;
+          }
+          .btn-assistant-dismiss { color: #ccc; }
+          .header-alert-btn {
+            background: #382626;
+            border-color: #684040;
+            color: #ffcaca;
+          }
+          .modal-card, .modal-box {
+            background: #292929;
+            border-color: #454545;
+          }
+          .btn-modal-primary { background: #1976d2; }
+          @media (max-width: 768px) {
+            .app-header { height: 40px; min-height: 40px; padding: 0 8px; }
+            .brand { gap: 6px; }
+            .brand-logo-img { width: 20px; height: 20px; }
+            .browser-toolbar { min-height: 48px; padding: 5px 6px; gap: 4px; }
+            .nav-buttons-group { gap: 2px; }
+            .btn-nav { width: 36px; height: 36px; }
+            .address-bar-wrapper { height: 36px; padding: 0 8px; gap: 6px; }
+            .address-input { font-size: 16px; }
+            .mobile-controls-panel { padding: 8px; gap: 8px; }
+            .mobile-controls-panel .select-control { min-height: 36px; }
+            .text-input-assistant { gap: 6px; padding-left: 8px; padding-right: 8px; }
+          }
+          @media (max-width: 440px) {
+            .app-header { padding: 0 6px; }
+            .brand-sub { display: none; }
+            .header-stats { gap: 5px; }
+            .stat-pill { padding: 3px 5px; }
+            .tab-bar-container { height: 34px; }
+            .tab-item { height: 29px; min-width: 72px; }
+            .browser-toolbar { min-height: 46px; }
+            .btn-nav { width: 32px; height: 34px; }
+            .address-bar-wrapper { height: 34px; }
+          }
+          """
+          html = html.replace("</style>", css + "
+</style>", 1)
+          p.write_text(html)
+          if marker not in html:
+              raise SystemExit("Theme marker validation failed.")
+          print("PASS | Added isolated Selkies-inspired visual stylesheet; browser event handlers and API code unchanged.")
+          PY
+          cat > "$WORK/Dockerfile.abs" <<'DOCKER'
+          FROM mcr.microsoft.com/playwright:v1.62.1-noble
+          WORKDIR /app
+          COPY package*.json ./
+          RUN npm ci
+          COPY . .
+          RUN npm run build && mkdir -p logs && chown -R pwuser:pwuser /app
+          USER pwuser
+          EXPOSE 3000
+          CMD ["npm","start"]
+          DOCKER
+          sudo -n docker build --pull -f "$WORK/Dockerfile.abs" -t abs-remotebrowser:selkies-theme-v1 "$WORK"
+          sudo -n docker rm -f abs-remotebrowser-selkies-candidate >/dev/null 2>&1 || true
+          sudo -n docker run -d --name abs-remotebrowser-selkies-candidate --restart no --memory=2g --cpus=2 --pids-limit=512 --shm-size=1g -p "$HOST_IP:3011:3000" abs-remotebrowser:selkies-theme-v1
+          candidate_ok=0
+          for i in $(seq 1 45); do
+            if curl -fsS --max-time 3 "http://$HOST_IP:3011/" -o "$RUNNER_TEMP/abs-browser-themed-candidate.html"; then candidate_ok=1; break; fi
+            sleep 2
+          done
+          [ "$candidate_ok" = 1 ] || { sudo -n docker logs --tail 100 abs-remotebrowser-selkies-candidate; fail "Candidate UI failed; existing port 3010 untouched."; }
+          grep -Fq 'ABS SELKIES-INSPIRED DESIGN v1' "$RUNNER_TEMP/abs-browser-themed-candidate.html" || fail "Theme stylesheet marker missing from served page."
+          curl -fsS --max-time 20 "http://$HOST_IP:3011/api/session?sessionId=abs-themed-candidate-test" > "$RUNNER_TEMP/abs-browser-themed-session.json" || fail "Chromium session API failed; existing port 3010 untouched."
+          python3 - "$RUNNER_TEMP/abs-browser-themed-session.json" <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1]))
+          assert d.get("sessionId") == "abs-themed-candidate-test", d
+          assert isinstance(d.get("tabs"), list), d
+          print("PASS | Candidate serves redesigned UI and Chromium session API.")
+          PY
+          pass "Candidate design validated on private port 3011."
+          # Save the current container, without deleting its image or writable layer, for rollback.
+          sudo -n docker stop abs-remotebrowser
+          sudo -n docker rename abs-remotebrowser abs-remotebrowser-rollback-20261010
+          sudo -n docker rm -f abs-remotebrowser-selkies-candidate >/dev/null
+          if ! sudo -n docker run -d --name abs-remotebrowser --restart unless-stopped --memory=2g --cpus=2 --pids-limit=512 --shm-size=1g -p "$HOST_IP:3010:3000" abs-remotebrowser:selkies-theme-v1; then
+            sudo -n docker rename abs-remotebrowser-rollback-20261010 abs-remotebrowser
+            sudo -n docker start abs-remotebrowser
+            fail "New container failed to start; previous container restored."
+          fi
+          live_ok=0
+          for i in $(seq 1 35); do
+            if curl -fsS --max-time 3 "http://$HOST_IP:3010/" -o "$RUNNER_TEMP/abs-browser-themed-live.html"; then live_ok=1; break; fi
+            sleep 2
+          done
+          if [ "$live_ok" != 1 ] || ! grep -Fq 'ABS SELKIES-INSPIRED DESIGN v1' "$RUNNER_TEMP/abs-browser-themed-live.html"; then
+            sudo -n docker rm -f abs-remotebrowser || true
+            sudo -n docker rename abs-remotebrowser-rollback-20261010 abs-remotebrowser
+            sudo -n docker start abs-remotebrowser
+            fail "Port 3010 validation failed; previous container restored."
+          fi
+          curl -fsS --max-time 20 "http://$HOST_IP:3010/api/session?sessionId=abs-themed-live-test" > "$RUNNER_TEMP/abs-browser-themed-live-session.json" || {
+            sudo -n docker rm -f abs-remotebrowser || true
+            sudo -n docker rename abs-remotebrowser-rollback-20261010 abs-remotebrowser
+            sudo -n docker start abs-remotebrowser
+            fail "Live Chromium session test failed; previous container restored."
+          }
+          python3 - "$RUNNER_TEMP/abs-browser-themed-live-session.json" <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1]))
+          assert d.get("sessionId") == "abs-themed-live-test", d
+          assert isinstance(d.get("tabs"), list), d
+          print("PASS | Live UI and Chromium session API passed on port 3010.")
+          PY
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || fail "ABS health check failed after UI swap; browser rollback retained."
+          {
+            echo
+            echo "### SELKIES-INSPIRED REMOTE BROWSER REDESIGN"
+            echo "PASS | New visual stylesheet built and tested on temporary private port 3011 before deployment."
+            echo "PASS | Remote Browser is live at http://$HOST_IP:3010/"
+            echo "PASS | Chromium session API responds."
+            echo "PASS | Existing Selkies container, service, port and profile were not changed."
+            echo "PASS | Previous Remote Browser container retained as abs-remotebrowser-rollback-20261010 for rollback."
+            echo "NOTE | Only the Remote Browser frontend CSS was changed; browser API and input event handlers were not modified."
+          } >> "$REPORT"
+          cat "$REPORT"
+      - name: Report result
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          REPORT_FILE: ${{ runner.temp }}/abs-remotebrowser-selkies-theme.txt
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync(process.env.REPORT_FILE) ? fs.readFileSync(process.env.REPORT_FILE, 'utf8') : 'No deployment report was produced.';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '### REMOTE BROWSER DESIGN UPDATE\n\n' + report.slice(-12000)
+            });
