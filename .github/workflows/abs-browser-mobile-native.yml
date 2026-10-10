@@ -535,14 +535,14 @@ jobs:
           }
           function normalizeAddress(raw) {
             const value = String(raw || '').trim();
-            if (!value || value.length > 2048 || /[\\r\\n\\0]/.test(value)) throw new Error('invalid_address');
-            if (/^https?:\\/\\//i.test(value)) {
+            if (!value || value.length > 2048 || /[\r\n\0]/.test(value)) throw new Error('invalid_address');
+            if (/^https?:\/\//i.test(value)) {
               const parsed = new URL(value);
               if (!['http:', 'https:'].includes(parsed.protocol) || !parsed.hostname) throw new Error('invalid_address');
               return parsed.href;
             }
             if (/^[a-z][a-z0-9+.-]*:/i.test(value) || value.startsWith('//')) throw new Error('scheme_not_allowed');
-            if (/\\s/.test(value) || !value.includes('.')) return 'https://www.google.com/search?q=' + encodeURIComponent(value);
+            if (/\s/.test(value) || !value.includes('.')) return 'https://www.google.com/search?q=' + encodeURIComponent(value);
             const parsed = new URL('https://' + value);
             if (!parsed.hostname || parsed.hostname.includes(' ')) throw new Error('invalid_address');
             return parsed.href;
@@ -557,7 +557,7 @@ jobs:
             }
             if (path === '/abs-keyboard-focus' && req.method === 'POST') {
               const origin = req.headers.origin || '';
-              if (origin && !/^https:\\/\\/abs-vps-01\\.tailc75f22\\.ts\\.net$/.test(origin)) {
+              if (origin && !/^https:\/\/abs-vps-01\.tailc75f22\.ts\.net$/.test(origin)) {
                 res.writeHead(403); res.end(JSON.stringify({error:'origin_denied'})); return;
               }
               let body = '';
