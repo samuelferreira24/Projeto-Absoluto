@@ -789,6 +789,31 @@ jobs:
               } > /tmp/abs-browser-client-inspect.txt 2>&1
               result="$(cat /tmp/abs-browser-client-inspect.txt)"
               ;;
+            browser-safe-relief)
+              set +e
+              {
+                echo "[before: limits and live use]"
+                sudo -n docker inspect abs-browser-ui abs-remotebrowser --format '{{.Name}} mem={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}} nanoCPU={{.HostConfig.NanoCpus}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}' 2>&1
+                sudo -n docker stats --no-stream --format '{{.Name}} cpu={{.CPUPerc}} mem={{.MemUsage}} pids={{.PIDs}}' abs-browser-ui abs-remotebrowser 2>&1
+                echo
+                echo "[apply reversible live resource tuning; no restart]"
+                sudo -n docker update --memory=1792m --memory-swap=2048m --cpus=2.0 abs-browser-ui 2>&1
+                UI_RC=$?
+                sudo -n docker update --cpus=0.75 abs-remotebrowser 2>&1
+                REMOTE_RC=$?
+                echo "selkies_update_rc=$UI_RC remote_browser_cpu_update_rc=$REMOTE_RC"
+                echo
+                echo "[after: limits and live use]"
+                sudo -n docker inspect abs-browser-ui abs-remotebrowser --format '{{.Name}} state={{.State.Status}} mem={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}} nanoCPU={{.HostConfig.NanoCpus}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}' 2>&1
+                sudo -n docker stats --no-stream --format '{{.Name}} cpu={{.CPUPerc}} mem={{.MemUsage}} pids={{.PIDs}}' abs-browser-ui abs-remotebrowser 2>&1
+                echo
+                echo "[host pressure and ABS health]"
+                free -h
+                cat /proc/pressure/cpu /proc/pressure/memory 2>/dev/null || true
+                curl -fsS --max-time 8 http://127.0.0.1:8787/health 2>&1 || true
+              } > /tmp/abs-browser-safe-relief.txt 2>&1
+              result="$(cat /tmp/abs-browser-safe-relief.txt)"
+              ;;
             browser-deploy-origin)
               set +e
               {
