@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:47:08-03:00",
-  "source_revision": "8cc0d24613031741f637daa1f497914cfc49be2f",
+  "generated_at": "2026-10-10T16:47:47-03:00",
+  "source_revision": "2b172a1583208e45ed28218e5e1f117b6cf07067",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "8cc0d24613031741f637daa1f497914cfc49be2f",
-      "commit_subject": "Inspecionar configuração de roteamento HTTPS existente sem segredos"
+      "revision": "2b172a1583208e45ed28218e5e1f117b6cf07067",
+      "commit_subject": "Verificar entrypoints e TLS do proxy antes de publicar MCP"
     }
   ],
   "tools": [
@@ -12823,6 +12823,20 @@
       "sha": "8cc0d24613031741f637daa1f497914cfc49be2f"
     },
     {
+      "id": "commit:afe98cf2faf1aca2586a194a5762462462da1612",
+      "kind": "commit",
+      "at": "2026-10-10T19:47:28Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "afe98cf2faf1aca2586a194a5762462462da1612"
+    },
+    {
+      "id": "commit:2b172a1583208e45ed28218e5e1f117b6cf07067",
+      "kind": "commit",
+      "at": "2026-10-10T16:47:47-03:00",
+      "subject": "Verificar entrypoints e TLS do proxy antes de publicar MCP",
+      "sha": "2b172a1583208e45ed28218e5e1f117b6cf07067"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -12935,23 +12949,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:0b9074fe933e",
+      "id": "evidence:repository:9dd6f119e113",
       "kind": "evidence",
-      "at": "2026-10-10T16:47:08-03:00",
+      "at": "2026-10-10T16:47:47-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:0b9074fe933e",
+      "id": "event:repository-scan:9dd6f119e113",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:47:08-03:00"
+      "at": "2026-10-10T16:47:47-03:00"
     },
     {
-      "id": "event:commit-observed:8cc0d2461303",
+      "id": "event:commit-observed:2b172a158320",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:47:08-03:00"
+      "at": "2026-10-10T16:47:47-03:00"
     }
   ],
   "paths": [
@@ -12986,11 +13000,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:2e2131d2cc8a"
+        "evidence:test:bad6a0a1b992"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:47:08-03:00"
+      "last_validated": "2026-10-10T16:47:47-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13013,20 +13027,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:0b9074fe933e",
+      "id": "evidence:repository:9dd6f119e113",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:47:08-03:00",
+      "observed_at": "2026-10-10T16:47:47-03:00",
       "status": "observed",
-      "detail": "442 files indexed at revision 8cc0d24613031741f637daa1f497914cfc49be2f"
+      "detail": "442 files indexed at revision 2b172a1583208e45ed28218e5e1f117b6cf07067"
     },
     {
-      "id": "evidence:test:2e2131d2cc8a",
+      "id": "evidence:test:bad6a0a1b992",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:47:08-03:00",
+      "observed_at": "2026-10-10T16:47:47-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.82s"
+      "detail": "225 passed in 8.27s"
     }
   ],
   "decisions": [
@@ -13129,30 +13143,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:0b9074fe933e",
+      "id": "event:repository-scan:9dd6f119e113",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:47:08-03:00",
-      "revision": "8cc0d24613031741f637daa1f497914cfc49be2f",
+      "at": "2026-10-10T16:47:47-03:00",
+      "revision": "2b172a1583208e45ed28218e5e1f117b6cf07067",
       "file_count": 442,
-      "evidence_id": "evidence:repository:0b9074fe933e"
+      "evidence_id": "evidence:repository:9dd6f119e113"
     },
     {
-      "id": "event:commit-observed:8cc0d2461303",
+      "id": "event:commit-observed:2b172a158320",
       "type": "commit_observed",
-      "at": "2026-10-10T16:47:08-03:00",
-      "revision": "8cc0d24613031741f637daa1f497914cfc49be2f",
+      "at": "2026-10-10T16:47:47-03:00",
+      "revision": "2b172a1583208e45ed28218e5e1f117b6cf07067",
       "branch": "main",
-      "subject": "Inspecionar configuração de roteamento HTTPS existente sem segredos",
+      "subject": "Verificar entrypoints e TLS do proxy antes de publicar MCP",
       "changed_files": [
         ".github/workflows/vps-admin-command.yml"
       ]
     },
     {
-      "id": "event:test:2e2131d2cc8a",
+      "id": "event:test:bad6a0a1b992",
       "type": "tests_observed",
-      "at": "2026-10-10T16:47:08-03:00",
+      "at": "2026-10-10T16:47:47-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:2e2131d2cc8a"
+      "evidence_id": "evidence:test:bad6a0a1b992"
     }
   ],
   "knowledge_sources": [
@@ -13208,7 +13222,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "5862ec3aa9583a4a8587ba497f348e54154ba382961f9a3dac0f2c654fcf99a0"
+      "sha256": "079916ffc09c1b3ac96c04776fa9865efe330137731d9b314e33075e603ac5d3"
     },
     {
       "id": "source:session",
@@ -59765,12 +59779,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:0b9074fe933e",
-      "source": "event:repository-scan:0b9074fe933e",
-      "relation": "generated",
-      "target": "evidence:repository:0b9074fe933e",
+      "id": "rel:commit-precedes:8cc0d2461303:afe98cf2faf1",
+      "source": "commit:8cc0d24613031741f637daa1f497914cfc49be2f",
+      "relation": "precedes",
+      "target": "commit:afe98cf2faf1aca2586a194a5762462462da1612",
       "status": "asserted",
-      "at": "2026-10-10T16:47:08-03:00",
+      "at": "2026-10-10T19:47:28Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:afe98cf2faf1:032adc3624d7",
+      "source": "commit:afe98cf2faf1aca2586a194a5762462462da1612",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:47:28Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:afe98cf2faf1:d64178c49886",
+      "source": "commit:afe98cf2faf1aca2586a194a5762462462da1612",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:47:28Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:afe98cf2faf1:2b172a158320",
+      "source": "commit:afe98cf2faf1aca2586a194a5762462462da1612",
+      "relation": "precedes",
+      "target": "commit:2b172a1583208e45ed28218e5e1f117b6cf07067",
+      "status": "asserted",
+      "at": "2026-10-10T16:47:47-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2b172a158320:d2156db4a874",
+      "source": "commit:2b172a1583208e45ed28218e5e1f117b6cf07067",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-admin-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T16:47:47-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:9dd6f119e113",
+      "source": "event:repository-scan:9dd6f119e113",
+      "relation": "generated",
+      "target": "evidence:repository:9dd6f119e113",
+      "status": "asserted",
+      "at": "2026-10-10T16:47:47-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -59779,12 +59863,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:8cc0d2461303",
-      "source": "commit:8cc0d24613031741f637daa1f497914cfc49be2f",
+      "id": "rel:scan-commit:2b172a158320",
+      "source": "commit:2b172a1583208e45ed28218e5e1f117b6cf07067",
       "relation": "observed_by",
-      "target": "event:repository-scan:0b9074fe933e",
+      "target": "event:repository-scan:9dd6f119e113",
       "status": "asserted",
-      "at": "2026-10-10T16:47:08-03:00",
+      "at": "2026-10-10T16:47:47-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
