@@ -693,21 +693,21 @@ jobs:
               set +e
               {
                 echo "[Selkies keyboard and IME implementation]"
-                sudo -n docker exec abs-browser-ui sh -lc 'for f in /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/src/selkies-core.js /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/src/selkies-ws-core.js /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/src/selkies-wr-core.js /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/assets/selkies-core-*.js /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/assets/index-*.js; do [ -f "$f" ] || continue; echo "=== $f ==="; grep -nEi "keyboard|textarea|composition|beforeinput|inputmode|focusin|focusout|showKeyboard|keyboardButton" "$f" 2>/dev/null | head -n 35; done' 2>&1
+                sudo -n docker exec abs-browser-ui sh -lc 'for f in /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/src/selkies-core.js /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/src/selkies-ws-core.js /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/src/selkies-wr-core.js /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/assets/selkies-core-*.js /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/assets/index-*.js; do [ -f "$f" ] || continue; echo "=== $(basename "$f") ==="; grep -oE ".{0,90}(keyboard|textarea|composition|beforeinput|inputmode|focusin|focusout|showKeyboard|keyboardButton).{0,120}" "$f" 2>/dev/null | head -n 12; done' 2>&1
                 echo
-                echo "[Existing browser extensions]"
-                find "$HOME/abs-browser/config" -maxdepth 5 -type f -name manifest.json -print 2>/dev/null | head -n 20
+                echo "[Existing custom browser extensions]"
+                find "$HOME/abs-browser/config" -maxdepth 4 -type f -name manifest.json -path '*abs-*' -print 2>/dev/null | head -n 10
                 echo
                 echo "[Nginx websocket proxy routes]"
-                sudo -n docker exec abs-browser-ui sh -lc 'grep -RniE "location|proxy_pass|websocket" /config/nginx /etc/nginx 2>/dev/null | head -n 70' 2>&1
+                sudo -n docker exec abs-browser-ui sh -lc 'grep -RniE "location|proxy_pass|websocket" /config/nginx /etc/nginx 2>/dev/null | head -n 40' 2>&1 | cut -c1-220
                 echo
-                echo "[Current services]"
-                sudo -n ss -ltnp 2>&1 | grep -E ':(3000|3001|9222|9223)[[:space:]]' || true
+                echo "[Current listeners]"
+                sudo -n ss -ltnp 2>&1 | grep -E ':(3000|3001|9222|9223)[[:space:]]' | cut -c1-220 || true
                 echo
                 echo "[ABS health]"
                 curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null && echo PASS || echo FAIL
               } > /tmp/abs-browser-keyboard-inspect.txt 2>&1
-              result="$(cat /tmp/abs-browser-keyboard-inspect.txt)"
+              result="$(tail -c 8000 /tmp/abs-browser-keyboard-inspect.txt)"
               ;;
             browser-client-inspect)
               set +e
