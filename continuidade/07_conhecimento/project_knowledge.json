@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T23:56:35-03:00",
-  "source_revision": "e6c61e6785d43706afb037529403661d13b21b29",
+  "generated_at": "2026-10-10T00:01:24-03:00",
+  "source_revision": "54b7181c20b0db7211fa35af85559f2403e9b98d",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 145
+      "file_count": 144
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "e6c61e6785d43706afb037529403661d13b21b29",
-      "commit_subject": "Fix private mobile mirror path routing"
+      "revision": "54b7181c20b0db7211fa35af85559f2403e9b98d",
+      "commit_subject": "Serve ABS mobile mirror directly on the private tailnet address"
     }
   ],
   "tools": [
@@ -11211,6 +11211,20 @@
       "sha": "e6c61e6785d43706afb037529403661d13b21b29"
     },
     {
+      "id": "commit:6da22a93c4d6353a1a9806edb2bd51f78e2519d2",
+      "kind": "commit",
+      "at": "2026-10-10T02:56:57Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "6da22a93c4d6353a1a9806edb2bd51f78e2519d2"
+    },
+    {
+      "id": "commit:54b7181c20b0db7211fa35af85559f2403e9b98d",
+      "kind": "commit",
+      "at": "2026-10-10T00:01:24-03:00",
+      "subject": "Serve ABS mobile mirror directly on the private tailnet address",
+      "sha": "54b7181c20b0db7211fa35af85559f2403e9b98d"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11323,23 +11337,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:339e1195911a",
+      "id": "evidence:repository:9866f99f1d86",
       "kind": "evidence",
-      "at": "2026-10-09T23:56:35-03:00",
+      "at": "2026-10-10T00:01:24-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:339e1195911a",
+      "id": "event:repository-scan:9866f99f1d86",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T23:56:35-03:00"
+      "at": "2026-10-10T00:01:24-03:00"
     },
     {
-      "id": "event:commit-observed:e6c61e6785d4",
+      "id": "event:commit-observed:54b7181c20b0",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T23:56:35-03:00"
+      "at": "2026-10-10T00:01:24-03:00"
     }
   ],
   "paths": [
@@ -11374,11 +11388,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:54d8bb0392d1"
+        "evidence:test:c2f5e85aaf3c"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T23:56:35-03:00"
+      "last_validated": "2026-10-10T00:01:24-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11401,20 +11415,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:339e1195911a",
+      "id": "evidence:repository:9866f99f1d86",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T23:56:35-03:00",
+      "observed_at": "2026-10-10T00:01:24-03:00",
       "status": "observed",
-      "detail": "431 files indexed at revision e6c61e6785d43706afb037529403661d13b21b29"
+      "detail": "430 files indexed at revision 54b7181c20b0db7211fa35af85559f2403e9b98d"
     },
     {
-      "id": "evidence:test:54d8bb0392d1",
+      "id": "evidence:test:c2f5e85aaf3c",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T23:56:35-03:00",
+      "observed_at": "2026-10-10T00:01:24-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.50s"
+      "detail": "225 passed in 6.89s"
     }
   ],
   "decisions": [
@@ -11517,33 +11531,35 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:339e1195911a",
+      "id": "event:repository-scan:9866f99f1d86",
       "type": "repository_scanned",
-      "at": "2026-10-09T23:56:35-03:00",
-      "revision": "e6c61e6785d43706afb037529403661d13b21b29",
-      "file_count": 431,
-      "evidence_id": "evidence:repository:339e1195911a"
+      "at": "2026-10-10T00:01:24-03:00",
+      "revision": "54b7181c20b0db7211fa35af85559f2403e9b98d",
+      "file_count": 430,
+      "evidence_id": "evidence:repository:9866f99f1d86"
     },
     {
-      "id": "event:commit-observed:e6c61e6785d4",
+      "id": "event:commit-observed:54b7181c20b0",
       "type": "commit_observed",
-      "at": "2026-10-09T23:56:35-03:00",
-      "revision": "e6c61e6785d43706afb037529403661d13b21b29",
+      "at": "2026-10-10T00:01:24-03:00",
+      "revision": "54b7181c20b0db7211fa35af85559f2403e9b98d",
       "branch": "main",
-      "subject": "Fix private mobile mirror path routing",
+      "subject": "Serve ABS mobile mirror directly on the private tailnet address",
       "changed_files": [
         ".github/workflows/abs-browser-mobile-http.yml",
         ".github/workflows/abs-browser-mobile-webapp-rollback.yml",
         ".github/workflows/abs-browser-mobile-webapp-verify.yml",
-        ".github/workflows/abs-browser-mobile-webapp.yml"
+        ".github/workflows/abs-browser-mobile-webapp.yml",
+        "abs_browser/mobile_webapp/public/index.html",
+        "abs_browser/mobile_webapp/smoke-test.js"
       ]
     },
     {
-      "id": "event:test:54d8bb0392d1",
+      "id": "event:test:c2f5e85aaf3c",
       "type": "tests_observed",
-      "at": "2026-10-09T23:56:35-03:00",
+      "at": "2026-10-10T00:01:24-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:54d8bb0392d1"
+      "evidence_id": "evidence:test:c2f5e85aaf3c"
     }
   ],
   "knowledge_sources": [
@@ -11599,7 +11615,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "750659f356c75236e99689803fb996e2017ef4cbd63a21dd52f553ac7cd7d1c8"
+      "sha256": "84a37b00e235d19135d864c3ba5e314ec3e503842a58f088a2bda82721149517"
     },
     {
       "id": "source:session",
@@ -50470,12 +50486,152 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:339e1195911a",
-      "source": "event:repository-scan:339e1195911a",
-      "relation": "generated",
-      "target": "evidence:repository:339e1195911a",
+      "id": "rel:commit-precedes:e6c61e6785d4:6da22a93c4d6",
+      "source": "commit:e6c61e6785d43706afb037529403661d13b21b29",
+      "relation": "precedes",
+      "target": "commit:6da22a93c4d6353a1a9806edb2bd51f78e2519d2",
       "status": "asserted",
-      "at": "2026-10-09T23:56:35-03:00",
+      "at": "2026-10-10T02:56:57Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6da22a93c4d6:032adc3624d7",
+      "source": "commit:6da22a93c4d6353a1a9806edb2bd51f78e2519d2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T02:56:57Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6da22a93c4d6:d64178c49886",
+      "source": "commit:6da22a93c4d6353a1a9806edb2bd51f78e2519d2",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T02:56:57Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:6da22a93c4d6:54b7181c20b0",
+      "source": "commit:6da22a93c4d6353a1a9806edb2bd51f78e2519d2",
+      "relation": "precedes",
+      "target": "commit:54b7181c20b0db7211fa35af85559f2403e9b98d",
+      "status": "asserted",
+      "at": "2026-10-10T00:01:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:54b7181c20b0:e07332ff7cb3",
+      "source": "commit:54b7181c20b0db7211fa35af85559f2403e9b98d",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-http.yml",
+      "status": "asserted",
+      "at": "2026-10-10T00:01:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:54b7181c20b0:1da1414f33ac",
+      "source": "commit:54b7181c20b0db7211fa35af85559f2403e9b98d",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-webapp-rollback.yml",
+      "status": "asserted",
+      "at": "2026-10-10T00:01:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:54b7181c20b0:6e6f6933556b",
+      "source": "commit:54b7181c20b0db7211fa35af85559f2403e9b98d",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-webapp-verify.yml",
+      "status": "asserted",
+      "at": "2026-10-10T00:01:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:54b7181c20b0:0d2cf9218065",
+      "source": "commit:54b7181c20b0db7211fa35af85559f2403e9b98d",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-webapp.yml",
+      "status": "asserted",
+      "at": "2026-10-10T00:01:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:54b7181c20b0:7eee040de4a5",
+      "source": "commit:54b7181c20b0db7211fa35af85559f2403e9b98d",
+      "relation": "changed",
+      "target": "file:abs_browser/mobile_webapp/public/index.html",
+      "status": "asserted",
+      "at": "2026-10-10T00:01:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:54b7181c20b0:20438c0f7438",
+      "source": "commit:54b7181c20b0db7211fa35af85559f2403e9b98d",
+      "relation": "changed",
+      "target": "file:abs_browser/mobile_webapp/smoke-test.js",
+      "status": "asserted",
+      "at": "2026-10-10T00:01:24-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:9866f99f1d86",
+      "source": "event:repository-scan:9866f99f1d86",
+      "relation": "generated",
+      "target": "evidence:repository:9866f99f1d86",
+      "status": "asserted",
+      "at": "2026-10-10T00:01:24-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -50484,12 +50640,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:e6c61e6785d4",
-      "source": "commit:e6c61e6785d43706afb037529403661d13b21b29",
+      "id": "rel:scan-commit:54b7181c20b0",
+      "source": "commit:54b7181c20b0db7211fa35af85559f2403e9b98d",
       "relation": "observed_by",
-      "target": "event:repository-scan:339e1195911a",
+      "target": "event:repository-scan:9866f99f1d86",
       "status": "asserted",
-      "at": "2026-10-09T23:56:35-03:00",
+      "at": "2026-10-10T00:01:24-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
