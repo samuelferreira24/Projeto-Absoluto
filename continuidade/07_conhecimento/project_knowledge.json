@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:41:48-03:00",
-  "source_revision": "cbc0fe6423b373bd971930de258e62f6bd7822f9",
+  "generated_at": "2026-10-10T16:46:06-03:00",
+  "source_revision": "e7d2abbceb1e0400750ace43b814900a383c2d0b",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "cbc0fe6423b373bd971930de258e62f6bd7822f9",
-      "commit_subject": "Adicionar canal independente de administração da VPS"
+      "revision": "e7d2abbceb1e0400750ace43b814900a383c2d0b",
+      "commit_subject": "Adicionar diagnóstico seguro da rede do proxy para MCP"
     }
   ],
   "tools": [
@@ -12795,6 +12795,20 @@
       "sha": "cbc0fe6423b373bd971930de258e62f6bd7822f9"
     },
     {
+      "id": "commit:d41a930ea4750b10869dfdf6e694785fa57cdc90",
+      "kind": "commit",
+      "at": "2026-10-10T19:42:08Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "d41a930ea4750b10869dfdf6e694785fa57cdc90"
+    },
+    {
+      "id": "commit:e7d2abbceb1e0400750ace43b814900a383c2d0b",
+      "kind": "commit",
+      "at": "2026-10-10T16:46:06-03:00",
+      "subject": "Adicionar diagnóstico seguro da rede do proxy para MCP",
+      "sha": "e7d2abbceb1e0400750ace43b814900a383c2d0b"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -12907,23 +12921,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:9582000a99bf",
+      "id": "evidence:repository:8e7ebd5e17f9",
       "kind": "evidence",
-      "at": "2026-10-10T16:41:48-03:00",
+      "at": "2026-10-10T16:46:06-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:9582000a99bf",
+      "id": "event:repository-scan:8e7ebd5e17f9",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:41:48-03:00"
+      "at": "2026-10-10T16:46:06-03:00"
     },
     {
-      "id": "event:commit-observed:cbc0fe6423b3",
+      "id": "event:commit-observed:e7d2abbceb1e",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:41:48-03:00"
+      "at": "2026-10-10T16:46:06-03:00"
     }
   ],
   "paths": [
@@ -12958,11 +12972,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:640fa07f3d09"
+        "evidence:test:0f1e60cce530"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:41:48-03:00"
+      "last_validated": "2026-10-10T16:46:06-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -12985,20 +12999,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:9582000a99bf",
+      "id": "evidence:repository:8e7ebd5e17f9",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:41:48-03:00",
+      "observed_at": "2026-10-10T16:46:06-03:00",
       "status": "observed",
-      "detail": "442 files indexed at revision cbc0fe6423b373bd971930de258e62f6bd7822f9"
+      "detail": "442 files indexed at revision e7d2abbceb1e0400750ace43b814900a383c2d0b"
     },
     {
-      "id": "evidence:test:640fa07f3d09",
+      "id": "evidence:test:0f1e60cce530",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:41:48-03:00",
+      "observed_at": "2026-10-10T16:46:06-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.44s"
+      "detail": "225 passed in 8.31s"
     }
   ],
   "decisions": [
@@ -13101,30 +13115,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:9582000a99bf",
+      "id": "event:repository-scan:8e7ebd5e17f9",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:41:48-03:00",
-      "revision": "cbc0fe6423b373bd971930de258e62f6bd7822f9",
+      "at": "2026-10-10T16:46:06-03:00",
+      "revision": "e7d2abbceb1e0400750ace43b814900a383c2d0b",
       "file_count": 442,
-      "evidence_id": "evidence:repository:9582000a99bf"
+      "evidence_id": "evidence:repository:8e7ebd5e17f9"
     },
     {
-      "id": "event:commit-observed:cbc0fe6423b3",
+      "id": "event:commit-observed:e7d2abbceb1e",
       "type": "commit_observed",
-      "at": "2026-10-10T16:41:48-03:00",
-      "revision": "cbc0fe6423b373bd971930de258e62f6bd7822f9",
+      "at": "2026-10-10T16:46:06-03:00",
+      "revision": "e7d2abbceb1e0400750ace43b814900a383c2d0b",
       "branch": "main",
-      "subject": "Adicionar canal independente de administração da VPS",
+      "subject": "Adicionar diagnóstico seguro da rede do proxy para MCP",
       "changed_files": [
         ".github/workflows/vps-admin-command.yml"
       ]
     },
     {
-      "id": "event:test:640fa07f3d09",
+      "id": "event:test:0f1e60cce530",
       "type": "tests_observed",
-      "at": "2026-10-10T16:41:48-03:00",
+      "at": "2026-10-10T16:46:06-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:640fa07f3d09"
+      "evidence_id": "evidence:test:0f1e60cce530"
     }
   ],
   "knowledge_sources": [
@@ -13180,7 +13194,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "a2b5947eae640538daed1c528c4b89109407b74faae3b8e5d44a68a27e21b200"
+      "sha256": "125b2bdad7dd35e3173beea18ff3669984d2a2fc051b758fbd9ac7a1f7bac7e1"
     },
     {
       "id": "source:session",
@@ -59597,12 +59611,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:9582000a99bf",
-      "source": "event:repository-scan:9582000a99bf",
-      "relation": "generated",
-      "target": "evidence:repository:9582000a99bf",
+      "id": "rel:commit-precedes:cbc0fe6423b3:d41a930ea475",
+      "source": "commit:cbc0fe6423b373bd971930de258e62f6bd7822f9",
+      "relation": "precedes",
+      "target": "commit:d41a930ea4750b10869dfdf6e694785fa57cdc90",
       "status": "asserted",
-      "at": "2026-10-10T16:41:48-03:00",
+      "at": "2026-10-10T19:42:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d41a930ea475:032adc3624d7",
+      "source": "commit:d41a930ea4750b10869dfdf6e694785fa57cdc90",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:42:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d41a930ea475:d64178c49886",
+      "source": "commit:d41a930ea4750b10869dfdf6e694785fa57cdc90",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:42:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:d41a930ea475:e7d2abbceb1e",
+      "source": "commit:d41a930ea4750b10869dfdf6e694785fa57cdc90",
+      "relation": "precedes",
+      "target": "commit:e7d2abbceb1e0400750ace43b814900a383c2d0b",
+      "status": "asserted",
+      "at": "2026-10-10T16:46:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e7d2abbceb1e:d2156db4a874",
+      "source": "commit:e7d2abbceb1e0400750ace43b814900a383c2d0b",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-admin-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T16:46:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:8e7ebd5e17f9",
+      "source": "event:repository-scan:8e7ebd5e17f9",
+      "relation": "generated",
+      "target": "evidence:repository:8e7ebd5e17f9",
+      "status": "asserted",
+      "at": "2026-10-10T16:46:06-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -59611,12 +59695,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:cbc0fe6423b3",
-      "source": "commit:cbc0fe6423b373bd971930de258e62f6bd7822f9",
+      "id": "rel:scan-commit:e7d2abbceb1e",
+      "source": "commit:e7d2abbceb1e0400750ace43b814900a383c2d0b",
       "relation": "observed_by",
-      "target": "event:repository-scan:9582000a99bf",
+      "target": "event:repository-scan:8e7ebd5e17f9",
       "status": "asserted",
-      "at": "2026-10-10T16:41:48-03:00",
+      "at": "2026-10-10T16:46:06-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
