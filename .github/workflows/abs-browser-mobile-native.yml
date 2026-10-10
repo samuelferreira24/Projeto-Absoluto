@@ -240,20 +240,29 @@ jobs:
           anchor = "  const populateAudioDevices = useCallback(async () => {"
           if s.count(anchor) != 1:
               raise SystemExit(f"FAIL | Sidebar keyboard insertion anchor expected once, found {s.count(anchor)}")
-          insert = """  // ABS_MOBILE_AUTO_KEYBOARD_V1: let the phone keyboard open on a tap in Chromium's remote toolbar.
-          // Touch V2 is required because Selkies prevents the touch default, suppressing synthesized pointer events.
-          // ABS_MOBILE_FOCUS_BRIDGE_V1 reports only whether a page text field is focused; it cannot execute browser commands.
+          insert = """  // ABS_MOBILE_AUTO_KEYBOARD_CAPTURE_V3: detect taps before Selkies can consume them.
+          // This observes only touch geometry and focus outcomes; it never reads entered text.
           useEffect(() => {
-            console.info('ABS_MOBILE_AUTO_KEYBOARD_V1');
-            console.info('ABS_MOBILE_AUTO_KEYBOARD_TOUCH_V2');
-            console.info('ABS_MOBILE_FOCUS_BRIDGE_V1');
-            let overlay = null;
+            console.info('ABS_MOBILE_AUTO_KEYBOARD_CAPTURE_V3');
             let start = null;
-            let observer = null;
+            const state = { touches: 0, toolbarTaps: 0, focusAttempts: 0, focusSuccess: 0, last: 'idle' };
+            window.__ABS_MOBILE_KEYBOARD_DIAGNOSTICS__ = state;
+            const findRemoteRect = () => {
+              for (const id of ['videoCanvas', 'stream', 'overlayInput']) {
+                const el = document.getElementById(id);
+                if (!el) continue;
+                const r = el.getBoundingClientRect();
+                if (r.width > 100 && r.height > 100) return { el, r, id };
+              }
+              return null;
+            };
             const onTouchStart = (event) => {
-              const touch = event.changedTouches && event.changedTouches[0];
-              if (!touch || !event.isTrusted) return;
-              start = { x: touch.clientX, y: touch.clientY, at: Date.now() };
+              if (!event.isTrusted || !event.changedTouches || !event.changedTouches.length) return;
+              const touch = event.changedTouches[0];
+              const remote = findRemoteRect();
+              state.touches++;
+              state.last = 'touchstart:' + (remote ? remote.id : 'no-remote-rect');
+              start = { x: touch.clientX, y: touch.clientY, at: Date.now(), remoteId: remote && remote.id };
             };
             const onTouchEnd = (event) => {
               const origin = start;
@@ -262,50 +271,53 @@ jobs:
               if (!origin || !touch || !event.isTrusted) return;
               const dx = touch.clientX - origin.x;
               const dy = touch.clientY - origin.y;
-              if ((dx * dx + dy * dy) > 144 || Date.now() - origin.at > 700) return;
-              const rect = overlay && overlay.getBoundingClientRect();
-              if (!rect || !rect.height) return;
-              const y = (touch.clientY - rect.top) / rect.height;
-              // Focus the IME assist field synchronously during the trusted touch gesture.
-              if (y >= 0.035 && y <= 0.135) {
-                handleShowVirtualKeyboard();
+              if ((dx * dx + dy * dy) > 196 || Date.now() - origin.at > 800) {
+                state.last = 'ignored-movement-or-long-touch';
                 return;
               }
-              // Preserve the existing optional page-field focus bridge for non-toolbar taps.
+              const remote = findRemoteRect();
+              if (!remote) {
+                state.last = 'no-remote-rect-at-end';
+                return;
+              }
+              const r = remote.r;
+              if (touch.clientX < r.left || touch.clientX > r.right || touch.clientY < r.top || touch.clientY > r.bottom) {
+                state.last = 'touch-outside-remote-view:' + remote.id;
+                return;
+              }
+              const y = (touch.clientY - r.top) / r.height;
+              state.last = 'tap:' + remote.id + ':y=' + y.toFixed(3);
+              // Chromium's address/search toolbar occupies the upper band of its streamed viewport.
+              if (y >= 0.025 && y <= 0.16) {
+                state.toolbarTaps++;
+                state.focusAttempts++;
+                console.info('ABS_MOBILE_KEYBOARD_FOCUS_ATTEMPT', JSON.stringify({ target: remote.id, y: Number(y.toFixed(3)), trusted: true, inputPresent: !!document.getElementById('keyboard-input-assist') }));
+                // Run in the trusted touch handler so Android can associate focus with user activation.
+                handleShowVirtualKeyboard();
+                window.requestAnimationFrame(() => {
+                  const input = document.getElementById('keyboard-input-assist');
+                  state.focusSuccess = input && document.activeElement === input ? state.focusSuccess + 1 : state.focusSuccess;
+                  state.last = input && document.activeElement === input ? 'focus-element-active' : 'focus-element-not-active';
+                  console.info('ABS_MOBILE_KEYBOARD_FOCUS_RESULT', JSON.stringify({ inputPresent: !!input, active: !!input && document.activeElement === input, activeTag: document.activeElement && document.activeElement.tagName }));
+                });
+                return;
+              }
+              // Keep the existing page-field focus bridge, but only after a tap inside the remote view.
               window.setTimeout(async () => {
                 try {
-                  const response = await fetch('/abs-keyboard-focus', {
-                    credentials: 'same-origin',
-                    cache: 'no-store',
-                    signal: AbortSignal.timeout(900)
-                  });
+                  const response = await fetch('/abs-keyboard-focus', { credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(900) });
                   if (!response.ok) return;
-                  const state = await response.json();
-                  if (state && state.focused === true) handleShowVirtualKeyboard();
+                  const pageState = await response.json();
+                  if (pageState && pageState.focused === true) handleShowVirtualKeyboard();
                 } catch (_) {}
               }, 180);
             };
-            const attach = () => {
-              const candidate = document.getElementById('overlayInput');
-              if (!candidate || candidate === overlay) return;
-              if (overlay) {
-                overlay.removeEventListener('touchstart', onTouchStart);
-                overlay.removeEventListener('touchend', onTouchEnd);
-              }
-              overlay = candidate;
-              overlay.addEventListener('touchstart', onTouchStart, { passive: true });
-              overlay.addEventListener('touchend', onTouchEnd, { passive: true });
-            };
-            // The core may create the overlay after the dashboard mounts; do not silently skip attachment.
-            attach();
-            observer = new MutationObserver(attach);
-            observer.observe(document.documentElement, { childList: true, subtree: true });
+            document.addEventListener('touchstart', onTouchStart, { capture: true, passive: true });
+            document.addEventListener('touchend', onTouchEnd, { capture: true, passive: true });
             return () => {
-              if (observer) observer.disconnect();
-              if (overlay) {
-                overlay.removeEventListener('touchstart', onTouchStart);
-                overlay.removeEventListener('touchend', onTouchEnd);
-              }
+              document.removeEventListener('touchstart', onTouchStart, true);
+              document.removeEventListener('touchend', onTouchEnd, true);
+              delete window.__ABS_MOBILE_KEYBOARD_DIAGNOSTICS__;
             };
           }, [handleShowVirtualKeyboard]);
 
