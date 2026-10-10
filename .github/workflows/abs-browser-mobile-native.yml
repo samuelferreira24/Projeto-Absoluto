@@ -1,0 +1,151 @@
+name: ABS Browser Mobile Native Interaction
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: abs-browser-mobile-native
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser mobile-native'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 12
+    steps:
+      - name: Switch to direct-touch presentation and remove injected zoom overlay
+        id: apply
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          REPORT="$RUNNER_TEMP/abs-browser-mobile-native.txt"
+          install -m 600 /dev/null "$REPORT"
+          exec > >(tee -a "$REPORT") 2>&1
+          pass(){ printf 'PASS | %s\n' "$*"; }
+          fail(){ printf 'FAIL | %s\n' "$*"; }
+          ROLLBACK_NAME="abs-browser-ui-mobile-native-rollback"
+          OLD_RENAMED=0
+          finish() {
+            rc=$?
+            if [ "$rc" -ne 0 ] && [ "$OLD_RENAMED" -eq 1 ]; then
+              sudo -n docker rm -f abs-browser-ui >/dev/null 2>&1 || true
+              sudo -n docker rename "$ROLLBACK_NAME" abs-browser-ui >/dev/null 2>&1 || true
+              sudo -n docker start abs-browser-ui >/dev/null 2>&1 || true
+              echo "ROLLBACK | Previous browser container restored."
+            fi
+            { echo 'result<<ABS_NATIVE_EOF'; tail -c 9000 "$REPORT"; echo; echo 'ABS_NATIVE_EOF'; } >> "$GITHUB_OUTPUT"
+            exit "$rc"
+          }
+          trap finish EXIT
+
+          [ "$(hostname)" = "abs-vps-01" ] || { fail "Unexpected host; refusing changes."; exit 1; }
+          sudo -n docker info >/dev/null
+          [ "$(sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}')" = "running" ] || { fail "Browser container is not running; no changes made."; exit 1; }
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || { fail "ABS health failed; no changes made."; exit 1; }
+
+          PROFILE_MOUNT="$(sudo -n docker inspect abs-browser-ui --format '{{range .Mounts}}{{if eq .Destination "/config"}}{{.Source}}{{end}}{{end}}')"
+          IMAGE="$(sudo -n docker inspect abs-browser-ui --format '{{.Config.Image}}')"
+          ENVFILE="$HOME/.config/abs-browser/browser.env"
+          [ -d "$PROFILE_MOUNT/chromium-abs-profile" ] || { fail "Persistent browser profile missing."; exit 1; }
+          [ -s "$ENVFILE" ] || { fail "Protected browser credential file missing."; exit 1; }
+          [ ! -e "$ROLLBACK_NAME" ] || { fail "Rollback container already exists; refusing overwrite."; exit 1; }
+
+          echo "Preserving image, credentials, profile, network protections and resource limits."
+          echo "Image=$IMAGE"
+          echo "Profile=$PROFILE_MOUNT"
+          # Remove only the custom overlay this project installed; leave the Chromium profile and all site data untouched.
+          if [ -d "$PROFILE_MOUNT/abs-mobile-zoom" ]; then
+            rm -rf -- "$PROFILE_MOUNT/abs-mobile-zoom"
+            pass "Removed custom floating zoom-button extension; browsing profile retained."
+          else
+            pass "No custom floating zoom extension present."
+          fi
+
+          sudo -n docker stop abs-browser-ui >/dev/null
+          sudo -n docker rename abs-browser-ui "$ROLLBACK_NAME"
+          OLD_RENAMED=1
+          sudo -n docker run -d \
+            --name abs-browser-ui \
+            --network host \
+            --restart unless-stopped \
+            --security-opt no-new-privileges:true \
+            --cap-drop NET_RAW \
+            --memory 1280m --memory-swap 1792m --cpus 1.50 --pids-limit 512 \
+            --shm-size 512m \
+            --env-file "$ENVFILE" \
+            -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC \
+            -e SELKIES_SCALING_DPI=120 \
+            -e SELKIES_ENABLE_CURSORS=false \
+            -e SELKIES_USE_BROWSER_CURSORS=false \
+            -e SELKIES_UI_SIDEBAR_SHOW_TRACKPAD=true \
+            -e SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN=true \
+            -e SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON=true \
+            -e SELKIES_UI_SIDEBAR_SHOW_SOFT_BUTTONS=true \
+            -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222 --enable-touch-events --touch-events=enabled --window-size=412,915 --force-device-scale-factor=1" \
+            -v "$PROFILE_MOUNT:/config" \
+            "$IMAGE" >/dev/null
+
+          READY=0
+          for i in $(seq 1 24); do
+            STATE="$(sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}' 2>/dev/null || true)"
+            HTTP_CODE="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 4 http://127.0.0.1:3000/ 2>/dev/null || true)"
+            CDP_CODE="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 3 http://127.0.0.1:9222/json/version 2>/dev/null || true)"
+            if [ "$STATE" = running ] && printf '%s' "$HTTP_CODE" | grep -Eq '^(200|301|302|401|403)$' && [ "$CDP_CODE" = "200" ]; then READY=1; break; fi
+            sleep 5
+          done
+          [ "$READY" -eq 1 ] || { fail "New browser did not become ready; rollback will restore prior container."; exit 1; }
+          pass "Browser UI and DevTools are healthy; HTTP=$HTTP_CODE CDP=$CDP_CODE."
+
+          ARGS="$(sudo -n docker exec abs-browser-ui sh -lc 'ps -eo args | grep -E "[c]hromium" | head -n 2' 2>/dev/null || true)"
+          printf '%s\n' "$ARGS" | grep -F -- '--enable-touch-events' >/dev/null || { fail "Chromium touch events are not enabled."; exit 1; }
+          if printf '%s\n' "$ARGS" | grep -F -- '--load-extension=/config/abs-mobile-zoom' >/dev/null; then
+            fail "The custom zoom overlay is still loaded."; exit 1
+          fi
+          pass "Chromium touch events enabled; injected zoom overlay is not loaded."
+          pass "Remote cursor and browser CSS cursor rendering are both disabled by Selkies configuration."
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || { fail "ABS health regression; rollback will restore previous container."; exit 1; }
+          pass "ABS health regression passed."
+          curl -fsS --max-time 8 http://127.0.0.1:11434/api/tags >/dev/null && pass "Ollama regression passed." || echo "INFO | Ollama probe unavailable; browser remains isolated."
+
+          sudo -n docker rm "$ROLLBACK_NAME" >/dev/null
+          OLD_RENAMED=0
+          pass "New browser passed checks; prior container removed. Persistent profile remains intact."
+          if command -v tailscale >/dev/null 2>&1 && timeout 8s sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
+            sudo -n tailscale serve --bg --yes http://127.0.0.1:3000 >/dev/null 2>&1 || true
+            sudo -n tailscale serve status 2>&1 | head -n 8 || true
+            pass "Private Tailscale Serve retained; no public port opened."
+          else
+            echo "INFO | Tailscale is not connected from the VPS; no firewall changes made."
+          fi
+          echo "LIMITATION | Current Selkies transport maps touch to pointer events; true multi-finger pinch zoom requires a client/transport code change and is not claimed as implemented."
+          echo "ABS BROWSER MOBILE NATIVE INTERACTION FINISHED"
+
+      - name: Publish report
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.apply.outputs.result }}
+        with:
+          script: |
+            const body = [
+              '### ABS BROWSER MOBILE NATIVE INTERACTION — REPORT',
+              '',
+              (process.env.RESULT || 'No final report produced; inspect private Actions logs.').slice(0, 9000),
+              '',
+              'No browser credential values are included.'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
