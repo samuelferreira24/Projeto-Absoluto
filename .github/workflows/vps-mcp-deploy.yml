@@ -1,0 +1,169 @@
+name: VPS MCP Deployment
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  deploy:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/vps-mcp deploy'
+    concurrency:
+      group: vps-mcp-deploy
+      cancel-in-progress: false
+    runs-on: [self-hosted]
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout trusted repository source
+        uses: actions/checkout@v4
+
+      - name: Build and deploy authenticated MCP service
+        id: deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "[host]"
+          hostname
+          echo
+
+          echo "[prepare private configuration]"
+          sudo install -d -m 700 /opt/vps-mcp
+          if ! sudo test -s /opt/vps-mcp/api_token; then
+            openssl rand -hex 32 | sudo tee /opt/vps-mcp/api_token >/dev/null
+            sudo chmod 600 /opt/vps-mcp/api_token
+          fi
+          token="$(sudo cat /opt/vps-mcp/api_token)"
+          printf 'VPS_MCP_API_KEY=%s\nVPS_HOST_LABEL=abs-vps-01\nVPS_MCP_MUTABLE_CONTAINERS=code-server-bb55qbolrf4pqfl45gomnzyl\n' "$token" \
+            | sudo tee /opt/vps-mcp/.env >/dev/null
+          sudo chmod 600 /opt/vps-mcp/.env
+          unset token
+
+          echo "[prepare workspace]"
+          sudo install -d -o absadmin -g absadmin -m 750 /home/absadmin/vps-workspace
+          sudo install -d -o absadmin -g absadmin -m 750 /home/absadmin/vps-workspace/deployments
+
+          echo "[build MCP image]"
+          sudo docker build --pull -t abs-vps-mcp:0.1.0 services/vps-mcp
+
+          echo "[replace only the dedicated MCP container]"
+          sudo docker rm -f vps-mcp >/dev/null 2>&1 || true
+          sudo docker run -d \
+            --name vps-mcp \
+            --restart unless-stopped \
+            --network coolify \
+            --env-file /opt/vps-mcp/.env \
+            --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+            --mount type=bind,src=/home/absadmin/Projeto-Absoluto,dst=/repo \
+            --mount type=bind,src=/home/absadmin/vps-workspace,dst=/workspace \
+            --mount type=bind,src=/,dst=/host,readonly \
+            --mount type=bind,src=/proc,dst=/host/proc,readonly \
+            --label traefik.enable=true \
+            --label traefik.docker.network=coolify \
+            --label 'traefik.http.routers.vps-mcp.rule=Host(\`mcp.207.180.3.245.sslip.io\`)' \
+            --label traefik.http.routers.vps-mcp.entrypoints=https \
+            --label traefik.http.routers.vps-mcp.tls=true \
+            --label traefik.http.routers.vps-mcp.tls.certresolver=letsencrypt \
+            --label traefik.http.services.vps-mcp.loadbalancer.server.port=8788 \
+            abs-vps-mcp:0.1.0 >/dev/null
+
+          echo "[wait for health endpoint and TLS]"
+          healthy=0
+          for i in $(seq 1 24); do
+            if curl -fsS --max-time 5 https://mcp.207.180.3.245.sslip.io/healthz >/dev/null 2>&1; then
+              healthy=1
+              break
+            fi
+            sleep 5
+          done
+          if [ "$healthy" -ne 1 ]; then
+            echo "Health/TLS verification failed."
+            sudo docker logs --tail 80 vps-mcp 2>&1 | sed -E 's/(PASSWORD|TOKEN|SECRET|API_KEY)=([^ ]+)/\1=[REDACTED]/Ig' | tail -n 80 || true
+            exit 1
+          fi
+
+          echo "[verify unauthenticated MCP requests are denied]"
+          unauth_code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 8 https://mcp.207.180.3.245.sslip.io/mcp || true)"
+          if [ "$unauth_code" != "401" ]; then
+            echo "Expected unauthenticated MCP request to return 401; received $unauth_code"
+            exit 1
+          fi
+
+          echo "[verify authenticated MCP initialize]"
+          token="$(sudo cat /opt/vps-mcp/api_token)"
+          init_code="$(curl -sS -o /tmp/vps-mcp-init-response.json -w '%{http_code}' \
+            --max-time 12 \
+            -X POST 'https://mcp.207.180.3.245.sslip.io/mcp' \
+            -H "Authorization: Bearer $token" \
+            -H 'Content-Type: application/json' \
+            -H 'Accept: application/json, text/event-stream' \
+            --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"vps-mcp-deploy-check","version":"0.1.0"}}}' || true)"
+          unset token
+          if [ "$init_code" != "200" ]; then
+            echo "Authenticated MCP initialize failed with HTTP $init_code."
+            head -c 2000 /tmp/vps-mcp-init-response.json || true
+            echo
+            sudo docker logs --tail 80 vps-mcp 2>&1 | sed -E 's/(PASSWORD|TOKEN|SECRET|API_KEY)=([^ ]+)/\1=[REDACTED]/Ig' | tail -n 80 || true
+            exit 1
+          fi
+
+          echo "[encrypt token for private handoff; ciphertext only]"
+          sudo cat /opt/vps-mcp/api_token > /tmp/vps-mcp-token.txt
+          openssl pkeyutl -encrypt \
+            -pubin -inkey services/vps-mcp/token-encryption-public.pem \
+            -in /tmp/vps-mcp-token.txt -out /tmp/vps-mcp-token.enc \
+            -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+          encrypted_token="$(base64 -w0 /tmp/vps-mcp-token.enc)"
+          rm -f /tmp/vps-mcp-token.txt /tmp/vps-mcp-token.enc /tmp/vps-mcp-init-response.json
+
+          echo "summary<<VPS_MCP_SUMMARY_EOF" >> "$GITHUB_OUTPUT"
+          echo "deploy=PASS" >> "$GITHUB_OUTPUT"
+          echo "health=https://mcp.207.180.3.245.sslip.io/healthz (HTTP 200)" >> "$GITHUB_OUTPUT"
+          echo "unauthenticated_mcp=DENIED (HTTP 401)" >> "$GITHUB_OUTPUT"
+          echo "authenticated_mcp_initialize=PASS (HTTP 200)" >> "$GITHUB_OUTPUT"
+          echo "container=vps-mcp" >> "$GITHUB_OUTPUT"
+          echo "endpoint=https://mcp.207.180.3.245.sslip.io/mcp" >> "$GITHUB_OUTPUT"
+          echo "VPS_MCP_SUMMARY_EOF" >> "$GITHUB_OUTPUT"
+          echo "encrypted_token=$encrypted_token" >> "$GITHUB_OUTPUT"
+          unset encrypted_token
+
+      - name: Report deployment result
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          DEPLOY_OUTCOME: \${{ steps.deploy.outcome }}
+          SUMMARY: \${{ steps.deploy.outputs.summary }}
+          ENCRYPTED_TOKEN: \${{ steps.deploy.outputs.encrypted_token }}
+        with:
+          script: |
+            const outcome = process.env.DEPLOY_OUTCOME || 'unknown';
+            const summary = process.env.SUMMARY || 'Deployment did not complete; inspect this workflow run for failure details.';
+            const encrypted = process.env.ENCRYPTED_TOKEN || '';
+            const lines = [
+              '### VPS MCP — deployment result',
+              '',
+              'Status: ' + outcome,
+              '',
+              summary,
+              ''
+            ];
+            if (encrypted) {
+              lines.push('Encrypted token handoff (RSA-OAEP; ciphertext only):');
+              lines.push('\`' + encrypted + '\`');
+              lines.push('');
+              lines.push('The value above is encrypted to the deployment operator public key and is not the API token.');
+            }
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: 121,
+              body: lines.join('\\n').slice(0, 12000)
+            });
