@@ -853,6 +853,20 @@ jobs:
               } > /tmp/abs-browser-source-inspect.txt 2>&1
               result="$(cat /tmp/abs-browser-source-inspect.txt)"
               ;;
+            browser-stop-alternative)
+              set -e
+              echo "[before]"
+              sudo -n docker inspect abs-remotebrowser --format 'name={{.Name}} state={{.State.Status}} restart_policy={{.HostConfig.RestartPolicy.Name}} restarts={{.RestartCount}}'
+              echo "[stop alternative browser only; preserve container and data]"
+              sudo -n docker stop --time 15 abs-remotebrowser
+              echo "[after]"
+              sudo -n docker inspect abs-remotebrowser --format 'name={{.Name}} state={{.State.Status}} exit={{.State.ExitCode}} restart_policy={{.HostConfig.RestartPolicy.Name}} restarts={{.RestartCount}}'
+              echo "[primary browser remains running]"
+              sudo -n docker inspect abs-browser-ui --format 'name={{.Name}} state={{.State.Status}} restarts={{.RestartCount}}'
+              echo "[ABS health]"
+              curl -fsS --max-time 8 http://127.0.0.1:8787/health
+              result="Alternative browser stopped; container and data preserved. Start it later with the approved VPS maintenance procedure."
+              ;;
             browser-runtime-summary)
               set +e
               {
