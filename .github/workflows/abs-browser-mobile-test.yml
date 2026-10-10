@@ -45,7 +45,7 @@ jobs:
           [ -n "$CORE" ] && [ -n "$DASH" ] || { fail "Could not locate active Selkies bundles."; exit 1; }
           sudo -n docker exec abs-browser-ui grep -q 'ABS_MOBILE_TOUCH_GESTURES_V1' "$CORE" || { fail "Active core bundle lacks native touch gesture marker."; exit 1; }
           sudo -n docker exec abs-browser-ui grep -q 'ABS_MOBILE_AUTO_KEYBOARD_V1' "$DASH" || { fail "Active dashboard bundle lacks keyboard assistance marker."; exit 1; }
-          sudo -n docker exec abs-browser-ui grep -q 'ABS_MOBILE_AUTO_KEYBOARD_TOUCH_V2' "$DASH" || { fail "Active dashboard bundle lacks trusted touch-event keyboard trigger V2."; exit 1; }
+          sudo -n docker exec abs-browser-ui grep -q 'ABS_MOBILE_AUTO_KEYBOARD_CAPTURE_V3' "$DASH" || { fail "Active dashboard bundle lacks capture-phase remote-view keyboard trigger V3."; exit 1; }
           sudo -n docker exec abs-browser-ui grep -q 'ABS_MOBILE_FOCUS_BRIDGE_V1' "$DASH" || { fail "Active dashboard bundle lacks webpage focus bridge marker."; exit 1; }
           ARGS="$(sudo -n docker exec abs-browser-ui sh -lc 'ps -eo args | grep -E "[c]hromium" | head -n 2')"
           printf '%s\n' "$ARGS" | grep -F -- '--enable-touch-events' >/dev/null || { fail "Chromium touch events are not enabled."; exit 1; }
