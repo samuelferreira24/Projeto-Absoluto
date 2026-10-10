@@ -20,7 +20,7 @@ jobs:
       github.event.comment.user.login == 'samuelferreira24' &&
       github.event.comment.body == '/abs-browser mobile-native'
     runs-on: [self-hosted, abs-vps-01-reserve]
-    timeout-minutes: 12
+    timeout-minutes: 35
     steps:
       - name: Switch to direct-touch presentation and remove injected zoom overlay
         id: apply
@@ -62,6 +62,215 @@ jobs:
           echo "Preserving image, credentials, profile, network protections and resource limits."
           echo "Image=$IMAGE"
           echo "Profile=$PROFILE_MOUNT"
+          echo "=== Build touch-native Selkies client (pinned upstream 2.0.0) ==="
+          AVAILABLE_KB="$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)"
+          DISK_FREE_KB="$(df -Pk / | awk 'NR==2 {print $4}')"
+          if [ "$AVAILABLE_KB" -lt 2621440 ] || [ "$DISK_FREE_KB" -lt 8388608 ]; then
+            fail "Resource guard: need at least 2.5 GiB available RAM and 8 GiB disk free to build safely; current browser left untouched."
+            exit 1
+          fi
+          command -v git >/dev/null
+          command -v node >/dev/null
+          command -v npm >/dev/null
+          SOURCE_DIR="$HOME/abs-browser/selkies-source"
+          CORE_DIR="$SOURCE_DIR/addons/selkies-web-core"
+          DASH_DIR="$SOURCE_DIR/addons/selkies-dashboard"
+          if [ -d "$SOURCE_DIR/.git" ]; then
+            git -C "$SOURCE_DIR" fetch --depth 1 origin tag 2.0.0
+            git -C "$SOURCE_DIR" checkout -f 2.0.0
+            git -C "$SOURCE_DIR" reset --hard 2.0.0
+            git -C "$SOURCE_DIR" clean -fdx
+          else
+            git clone --depth 1 --branch 2.0.0 https://github.com/selkies-project/selkies.git "$SOURCE_DIR"
+          fi
+          pass "Fetched pinned Selkies 2.0.0 source into the dedicated ABS browser workspace."
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path.home() / "abs-browser/selkies-source/addons/selkies-web-core/lib/input.js"
+          s = p.read_text()
+          def replace_once(old, new, label):
+              global s
+              count = s.count(old)
+              if count != 1:
+                  raise SystemExit(f"FAIL | Selkies patch anchor {label!r} expected once, found {count}; browser was not stopped.")
+              s = s.replace(old, new, 1)
+
+          replace_once(
+              """this._trackpadLastScrollCentroid = null;
+                  this._touchScrollLastCentroid = null;
+                  this.inputAttached = false;""",
+              """this._trackpadLastScrollCentroid = null;
+                  this._touchScrollLastCentroid = null;
+                  this._touchScrollLastDistance = null;
+                  this._touchGestureMode = null;
+                  this._touchPinchAccum = 0;
+                  this._singleTouchScrollAccumY = 0;
+                  this._singleTouchScrollAccumX = 0;
+                  this._isSingleFingerScroll = false;
+                  this.inputAttached = false;""",
+              "constructor-state")
+          replace_once(
+              """currentX: touch.clientX, currentY: touch.clientY,
+                          startTime: now, identifier: touch.identifier,""",
+              """currentX: touch.clientX, currentY: touch.clientY,
+                          lastScrollX: touch.clientX, lastScrollY: touch.clientY,
+                          startTime: now, identifier: touch.identifier,""",
+              "touch-origin")
+          replace_once(
+              """this._touchScrollLastCentroid = {
+                              x: (touches[0].currentX + touches[1].currentX) / 2,
+                              y: (touches[0].currentY + touches[1].currentY) / 2
+                          };""",
+              """this._touchScrollLastCentroid = {
+                              x: (touches[0].currentX + touches[1].currentX) / 2,
+                              y: (touches[0].currentY + touches[1].currentY) / 2
+                          };
+                          this._touchScrollLastDistance = Math.hypot(
+                              touches[0].currentX - touches[1].currentX,
+                              touches[0].currentY - touches[1].currentY
+                          );
+                          this._touchGestureMode = null;
+                          this._touchPinchAccum = 0;""",
+              "two-finger-origin")
+          replace_once(
+              """if (this._touchScrollLastCentroid) {
+                          const deltaX = curr_avg_x - this._touchScrollLastCentroid.x;
+                          const deltaY = curr_avg_y - this._touchScrollLastCentroid.y;
+                          const SCROLL_THRESHOLD = 2;
+                          if (Math.abs(deltaY) > SCROLL_THRESHOLD) this._triggerMouseWheel(deltaY < 0 ? 'down' : 'up', 1);
+                          if (Math.abs(deltaX) > SCROLL_THRESHOLD) this._triggerHorizontalMouseWheel(deltaX < 0 ? 'left' : 'right', 1);
+                      }
+                      this._touchScrollLastCentroid = { x: curr_avg_x, y: curr_avg_y };""",
+              """if (this._touchScrollLastCentroid) {
+                          const deltaX = curr_avg_x - this._touchScrollLastCentroid.x;
+                          const deltaY = curr_avg_y - this._touchScrollLastCentroid.y;
+                          const currDistance = Math.hypot(
+                              touches[0].currentX - touches[1].currentX,
+                              touches[0].currentY - touches[1].currentY
+                          );
+                          const deltaDistance = this._touchScrollLastDistance === null ? 0 : currDistance - this._touchScrollLastDistance;
+                          if (this._touchGestureMode === null) {
+                              if (Math.abs(deltaDistance) >= 6) this._touchGestureMode = 'pinch';
+                              else if (Math.abs(deltaX) >= 4 || Math.abs(deltaY) >= 4) this._touchGestureMode = 'scroll';
+                          }
+                          if (this._touchGestureMode === 'pinch') {
+                              this._touchPinchAccum += deltaDistance;
+                              while (Math.abs(this._touchPinchAccum) >= 20) {
+                                  const zoomDirection = this._touchPinchAccum > 0 ? 'up' : 'down';
+                                  this._sendKeyEvent(KeyTable.XK_Control_L, 'ControlLeft', true);
+                                  this._triggerMouseWheel(zoomDirection, 1);
+                                  this._sendKeyEvent(KeyTable.XK_Control_L, 'ControlLeft', false);
+                                  this._touchPinchAccum += this._touchPinchAccum > 0 ? -20 : 20;
+                              }
+                          } else if (this._touchGestureMode === 'scroll') {
+                              const SCROLL_THRESHOLD = 2;
+                              if (Math.abs(deltaY) > SCROLL_THRESHOLD) this._triggerMouseWheel(deltaY < 0 ? 'down' : 'up', 1);
+                              if (Math.abs(deltaX) > SCROLL_THRESHOLD) this._triggerHorizontalMouseWheel(deltaX < 0 ? 'left' : 'right', 1);
+                          }
+                          this._touchScrollLastDistance = currDistance;
+                      }
+                      this._touchScrollLastCentroid = { x: curr_avg_x, y: curr_avg_y };""",
+              "two-finger-pinch")
+          replace_once(
+              """if (this._activeTouchIdentifier === singleTouchID) {
+                          this._calculateTouchCoordinates({ clientX: touchData.currentX, clientY: touchData.currentY }); this._sendMouseState();
+                          activeTouchMoved = true; preventDefault = true;
+                      } else if (this._activeTouchIdentifier === null && !touchData.longPressCompleted) {
+                          const dx = touchData.currentX - touchData.startX;
+                          const dy = touchData.currentY - touchData.startY;
+                          const distSq = dx * dx + dy * dy;
+                          if (distSq >= TAP_THRESHOLD_DISTANCE_SQ_LOGICAL) {
+                              if (this._longPressTimer && singleTouchID === this._longPressTouchIdentifier) { clearTimeout(this._longPressTimer); this._longPressTimer = null; }
+                              this._activeTouchIdentifier = singleTouchID;
+                              this._calculateTouchCoordinates({ clientX: touchData.currentX, clientY: touchData.currentY });
+                              this.buttonMask |= 1; this._sendMouseState();
+                              activeTouchMoved = true; preventDefault = true;
+                          } else { preventDefault = true; }
+                      }""",
+              """if (this._activeTouchIdentifier === singleTouchID) {
+                          this._calculateTouchCoordinates({ clientX: touchData.currentX, clientY: touchData.currentY }); this._sendMouseState();
+                          activeTouchMoved = true; preventDefault = true;
+                      } else if (this._activeTouchIdentifier === null && !touchData.longPressCompleted) {
+                          const dx = touchData.currentX - touchData.startX;
+                          const dy = touchData.currentY - touchData.startY;
+                          const distSq = dx * dx + dy * dy;
+                          if (distSq >= TAP_THRESHOLD_DISTANCE_SQ_LOGICAL) {
+                              if (this._longPressTimer && singleTouchID === this._longPressTouchIdentifier) { clearTimeout(this._longPressTimer); this._longPressTimer = null; }
+                              this._isSingleFingerScroll = true;
+                              const scrollDX = touchData.currentX - touchData.lastScrollX;
+                              const scrollDY = touchData.currentY - touchData.lastScrollY;
+                              touchData.lastScrollX = touchData.currentX;
+                              touchData.lastScrollY = touchData.currentY;
+                              this._singleTouchScrollAccumY += scrollDY;
+                              this._singleTouchScrollAccumX += scrollDX;
+                              const PIXELS_PER_SCROLL_NOTCH = 28;
+                              while (Math.abs(this._singleTouchScrollAccumY) >= PIXELS_PER_SCROLL_NOTCH) {
+                                  const direction = this._singleTouchScrollAccumY < 0 ? 'down' : 'up';
+                                  this._triggerMouseWheel(direction, 1);
+                                  this._singleTouchScrollAccumY += this._singleTouchScrollAccumY < 0 ? PIXELS_PER_SCROLL_NOTCH : -PIXELS_PER_SCROLL_NOTCH;
+                              }
+                              while (Math.abs(this._singleTouchScrollAccumX) >= PIXELS_PER_SCROLL_NOTCH) {
+                                  const direction = this._singleTouchScrollAccumX < 0 ? 'left' : 'right';
+                                  this._triggerHorizontalMouseWheel(direction, 1);
+                                  this._singleTouchScrollAccumX += this._singleTouchScrollAccumX < 0 ? PIXELS_PER_SCROLL_NOTCH : -PIXELS_PER_SCROLL_NOTCH;
+                              }
+                              activeTouchMoved = true; preventDefault = true;
+                          } else { preventDefault = true; }
+                      }""",
+              "single-finger-scroll")
+          replace_once(
+              """this._isTwoFingerGesture = false;
+                          this._touchScrollLastCentroid = null;
+                      }""",
+              """this._isTwoFingerGesture = false;
+                          this._touchScrollLastCentroid = null;
+                          this._touchScrollLastDistance = null;
+                          this._touchGestureMode = null;
+                          this._touchPinchAccum = 0;
+                      }""",
+              "two-finger-reset")
+          replace_once(
+              """if (remainingTouchCount === 0) {
+                          this._activeTouchIdentifier = null; this._isTwoFingerGesture = false;
+                          this._touchScrollLastCentroid = null;
+                          if (this._longPressTimer) { clearTimeout(this._longPressTimer); this._longPressTimer = null; }
+                          this._longPressTouchIdentifier = null;
+                      }""",
+              """if (remainingTouchCount === 0) {
+                          this._activeTouchIdentifier = null; this._isTwoFingerGesture = false;
+                          this._touchScrollLastCentroid = null;
+                          this._touchScrollLastDistance = null;
+                          this._touchGestureMode = null;
+                          this._touchPinchAccum = 0;
+                          this._singleTouchScrollAccumY = 0;
+                          this._singleTouchScrollAccumX = 0;
+                          this._isSingleFingerScroll = false;
+                          if (this._longPressTimer) { clearTimeout(this._longPressTimer); this._longPressTimer = null; }
+                          this._longPressTouchIdentifier = null;
+                      }""",
+              "all-touch-reset")
+          s = "console.info('ABS_MOBILE_TOUCH_GESTURES_V1');\n" + s
+          p.write_text(s)
+          print("PASS | Patched direct touch: one-finger swipe scrolls, two-finger pinch sends Ctrl+wheel zoom, two-finger translation scrolls, taps and long-press remain.")
+          PY
+          export NODE_OPTIONS=--max-old-space-size=1024
+          (cd "$CORE_DIR" && npm ci --no-audit --no-fund && npm run build)
+          (cd "$DASH_DIR" && npm ci --no-audit --no-fund && npm run build)
+          CURRENT_ASSET_DIR="/lsiopy/lib/python3.13/site-packages/selkies/selkies_web/assets"
+          CURRENT_BUNDLE="$(sudo -n docker exec abs-browser-ui sh -lc 'find /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/assets -maxdepth 1 -type f -name "selkies-core-*.js" | head -n 1' | tr -d '\r')"
+          [ -n "$CURRENT_BUNDLE" ] || { fail "Could not identify the active Selkies core asset; existing browser remains running."; exit 1; }
+          BUNDLE_NAME="$(basename "$CURRENT_BUNDLE")"
+          BUILT_BUNDLE="$(find "$DASH_DIR/dist" -type f -name 'selkies-core-*.js' | head -n 1)"
+          [ -s "$BUILT_BUNDLE" ] || { fail "Patched Selkies core bundle was not produced; existing browser remains running."; exit 1; }
+          grep -q 'ABS_MOBILE_TOUCH_GESTURES_V1' "$BUILT_BUNDLE" || { fail "Build output does not contain the mobile gesture patch marker; existing browser remains running."; exit 1; }
+          OVERLAY_DIR="$HOME/abs-browser/selkies-mobile-overlay-$(date -u +%Y%m%d%H%M%S)"
+          install -d -m 755 "$OVERLAY_DIR"
+          cp "$BUILT_BUNDLE" "$OVERLAY_DIR/$BUNDLE_NAME"
+          chmod 644 "$OVERLAY_DIR/$BUNDLE_NAME"
+          CUSTOM_BUNDLE_HOST="$OVERLAY_DIR/$BUNDLE_NAME"
+          pass "Built and staged persistent custom Selkies core asset as $BUNDLE_NAME."
+          echo "CustomBundleSHA256=$(sha256sum "$CUSTOM_BUNDLE_HOST" | awk '{print $1}')"
+          echo
           # Remove only the custom overlay this project installed; leave the Chromium profile and all site data untouched.
           if [ -d "$PROFILE_MOUNT/abs-mobile-zoom" ]; then
             rm -rf -- "$PROFILE_MOUNT/abs-mobile-zoom"
@@ -93,6 +302,7 @@ jobs:
             -e SELKIES_UI_SIDEBAR_SHOW_SOFT_BUTTONS=true \
             -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222 --enable-touch-events --touch-events=enabled --window-size=412,915 --force-device-scale-factor=1 --lang=pt-BR --accept-lang=pt-BR,pt,en-US,en" \
             -v "$PROFILE_MOUNT:/config" \
+            -v "$CUSTOM_BUNDLE_HOST:$CURRENT_ASSET_DIR/$BUNDLE_NAME:ro" \
             "$IMAGE" >/dev/null
 
           READY=0
@@ -112,6 +322,10 @@ jobs:
             fail "The custom zoom overlay is still loaded."; exit 1
           fi
           pass "Chromium touch events enabled; injected zoom overlay is not loaded."
+          PATCHED_BUNDLE_SHA="$(sudo -n docker exec abs-browser-ui sha256sum "$CURRENT_ASSET_DIR/$BUNDLE_NAME" | awk '{print $1}')"
+          HOST_BUNDLE_SHA="$(sha256sum "$CUSTOM_BUNDLE_HOST" | awk '{print $1}')"
+          [ "$PATCHED_BUNDLE_SHA" = "$HOST_BUNDLE_SHA" ] || { fail "Mounted mobile gesture bundle SHA256 mismatch; rollback will restore prior browser."; exit 1; }
+          pass "Runtime is serving the persistent custom Selkies bundle (SHA256 verified): one-finger scroll and pinch-to-zoom patch loaded."
           printf "%s\\n" "$ARGS" | grep -F -- "--lang=pt-BR" >/dev/null || { fail "Portuguese (Brazil) browser locale flag is missing."; exit 1; }
           pass "Chromium configured for Portuguese (Brazil), including Accept-Language."
           pass "Synthetic remote cursor rendering is disabled; CSS cursor handling is enabled to avoid Selkies drawing a desktop cursor over direct touch."
@@ -129,7 +343,7 @@ jobs:
           else
             echo "INFO | Tailscale is not connected from the VPS; no firewall changes made."
           fi
-          echo "INFO | Selkies 2.0 direct-touch input implements two-finger pinch as Ctrl+wheel; the remote VPS cannot validate the physical phone gesture end-to-end, so that final behavior must be checked on the phone."
+          echo "PASS | Custom Selkies input now maps one-finger swipes to scroll and two-finger pinches to Ctrl+wheel zoom; two-finger translation scrolls. Physical-device gesture feel still depends on the phone browser and should be verified during normal use."
           echo "ABS BROWSER MOBILE NATIVE INTERACTION FINISHED"
 
       - name: Publish report
