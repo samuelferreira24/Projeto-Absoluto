@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T14:11:01-03:00",
-  "source_revision": "6fd365731431be59e9388a4b8b5ba1373b4ac81f",
+  "generated_at": "2026-10-10T14:12:29-03:00",
+  "source_revision": "2b0322bd6411209b7d5390022c6737f17d9bf016",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "6fd365731431be59e9388a4b8b5ba1373b4ac81f",
-      "commit_subject": "Configure Code Server timezone and HTTPS through Coolify"
+      "revision": "2b0322bd6411209b7d5390022c6737f17d9bf016",
+      "commit_subject": "Configure HTTPS hostname for Coolify dashboard"
     }
   ],
   "tools": [
@@ -12421,6 +12421,20 @@
       "sha": "6fd365731431be59e9388a4b8b5ba1373b4ac81f"
     },
     {
+      "id": "commit:7827b3ae8dbbfc26f7b2850c2ce10058ad7473fb",
+      "kind": "commit",
+      "at": "2026-10-10T17:11:21Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "7827b3ae8dbbfc26f7b2850c2ce10058ad7473fb"
+    },
+    {
+      "id": "commit:2b0322bd6411209b7d5390022c6737f17d9bf016",
+      "kind": "commit",
+      "at": "2026-10-10T14:12:29-03:00",
+      "subject": "Configure HTTPS hostname for Coolify dashboard",
+      "sha": "2b0322bd6411209b7d5390022c6737f17d9bf016"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -12533,23 +12547,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:3f28dfe4fc32",
+      "id": "evidence:repository:0ee38ccb71fa",
       "kind": "evidence",
-      "at": "2026-10-10T14:11:01-03:00",
+      "at": "2026-10-10T14:12:29-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:3f28dfe4fc32",
+      "id": "event:repository-scan:0ee38ccb71fa",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T14:11:01-03:00"
+      "at": "2026-10-10T14:12:29-03:00"
     },
     {
-      "id": "event:commit-observed:6fd365731431",
+      "id": "event:commit-observed:2b0322bd6411",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T14:11:01-03:00"
+      "at": "2026-10-10T14:12:29-03:00"
     }
   ],
   "paths": [
@@ -12584,11 +12598,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:e659a8e4ce41"
+        "evidence:test:b7ec40785cc9"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T14:11:01-03:00"
+      "last_validated": "2026-10-10T14:12:29-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -12611,20 +12625,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:3f28dfe4fc32",
+      "id": "evidence:repository:0ee38ccb71fa",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T14:11:01-03:00",
+      "observed_at": "2026-10-10T14:12:29-03:00",
       "status": "observed",
-      "detail": "440 files indexed at revision 6fd365731431be59e9388a4b8b5ba1373b4ac81f"
+      "detail": "440 files indexed at revision 2b0322bd6411209b7d5390022c6737f17d9bf016"
     },
     {
-      "id": "evidence:test:e659a8e4ce41",
+      "id": "evidence:test:b7ec40785cc9",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T14:11:01-03:00",
+      "observed_at": "2026-10-10T14:12:29-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.71s"
+      "detail": "225 passed in 8.30s"
     }
   ],
   "decisions": [
@@ -12727,30 +12741,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:3f28dfe4fc32",
+      "id": "event:repository-scan:0ee38ccb71fa",
       "type": "repository_scanned",
-      "at": "2026-10-10T14:11:01-03:00",
-      "revision": "6fd365731431be59e9388a4b8b5ba1373b4ac81f",
+      "at": "2026-10-10T14:12:29-03:00",
+      "revision": "2b0322bd6411209b7d5390022c6737f17d9bf016",
       "file_count": 440,
-      "evidence_id": "evidence:repository:3f28dfe4fc32"
+      "evidence_id": "evidence:repository:0ee38ccb71fa"
     },
     {
-      "id": "event:commit-observed:6fd365731431",
+      "id": "event:commit-observed:2b0322bd6411",
       "type": "commit_observed",
-      "at": "2026-10-10T14:11:01-03:00",
-      "revision": "6fd365731431be59e9388a4b8b5ba1373b4ac81f",
+      "at": "2026-10-10T14:12:29-03:00",
+      "revision": "2b0322bd6411209b7d5390022c6737f17d9bf016",
       "branch": "main",
-      "subject": "Configure Code Server timezone and HTTPS through Coolify",
+      "subject": "Configure HTTPS hostname for Coolify dashboard",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:e659a8e4ce41",
+      "id": "event:test:b7ec40785cc9",
       "type": "tests_observed",
-      "at": "2026-10-10T14:11:01-03:00",
+      "at": "2026-10-10T14:12:29-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:e659a8e4ce41"
+      "evidence_id": "evidence:test:b7ec40785cc9"
     }
   ],
   "knowledge_sources": [
@@ -12806,7 +12820,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "d83818527a193c9b3c37d8af06772a85e75bacfc2a13fd95e6ba5e40c0dc2138"
+      "sha256": "8fe9433bf70f295858bf9de65637b47c2392e15920f4efde5ff9c5b15bb399b3"
     },
     {
       "id": "source:session",
@@ -57459,12 +57473,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:3f28dfe4fc32",
-      "source": "event:repository-scan:3f28dfe4fc32",
-      "relation": "generated",
-      "target": "evidence:repository:3f28dfe4fc32",
+      "id": "rel:commit-precedes:6fd365731431:7827b3ae8dbb",
+      "source": "commit:6fd365731431be59e9388a4b8b5ba1373b4ac81f",
+      "relation": "precedes",
+      "target": "commit:7827b3ae8dbbfc26f7b2850c2ce10058ad7473fb",
       "status": "asserted",
-      "at": "2026-10-10T14:11:01-03:00",
+      "at": "2026-10-10T17:11:21Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7827b3ae8dbb:032adc3624d7",
+      "source": "commit:7827b3ae8dbbfc26f7b2850c2ce10058ad7473fb",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T17:11:21Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7827b3ae8dbb:d64178c49886",
+      "source": "commit:7827b3ae8dbbfc26f7b2850c2ce10058ad7473fb",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T17:11:21Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:7827b3ae8dbb:2b0322bd6411",
+      "source": "commit:7827b3ae8dbbfc26f7b2850c2ce10058ad7473fb",
+      "relation": "precedes",
+      "target": "commit:2b0322bd6411209b7d5390022c6737f17d9bf016",
+      "status": "asserted",
+      "at": "2026-10-10T14:12:29-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2b0322bd6411:1734be446032",
+      "source": "commit:2b0322bd6411209b7d5390022c6737f17d9bf016",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T14:12:29-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:0ee38ccb71fa",
+      "source": "event:repository-scan:0ee38ccb71fa",
+      "relation": "generated",
+      "target": "evidence:repository:0ee38ccb71fa",
+      "status": "asserted",
+      "at": "2026-10-10T14:12:29-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -57473,12 +57557,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:6fd365731431",
-      "source": "commit:6fd365731431be59e9388a4b8b5ba1373b4ac81f",
+      "id": "rel:scan-commit:2b0322bd6411",
+      "source": "commit:2b0322bd6411209b7d5390022c6737f17d9bf016",
       "relation": "observed_by",
-      "target": "event:repository-scan:3f28dfe4fc32",
+      "target": "event:repository-scan:0ee38ccb71fa",
       "status": "asserted",
-      "at": "2026-10-10T14:11:01-03:00",
+      "at": "2026-10-10T14:12:29-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
