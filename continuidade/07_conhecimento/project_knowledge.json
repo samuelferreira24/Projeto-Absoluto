@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:57:00-03:00",
-  "source_revision": "28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
+  "generated_at": "2026-10-10T16:57:51-03:00",
+  "source_revision": "d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 161
+      "file_count": 160
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
-      "commit_subject": "Remover bloco heredoc residual que invalidava workflow"
+      "revision": "d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
+      "commit_subject": "Remover ciphertext temporário após recuperação"
     }
   ],
   "tools": [
@@ -12993,6 +12993,20 @@
       "sha": "28aa0ae0d1a07180a23d1176f8148c31ab8bea5a"
     },
     {
+      "id": "commit:8413f06ee4b64d93bfd251a545504befe9bd4848",
+      "kind": "commit",
+      "at": "2026-10-10T19:57:26Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "8413f06ee4b64d93bfd251a545504befe9bd4848"
+    },
+    {
+      "id": "commit:d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
+      "kind": "commit",
+      "at": "2026-10-10T16:57:51-03:00",
+      "subject": "Remover ciphertext temporário após recuperação",
+      "sha": "d5ef8fcc6273c9280ffcb1868766e00fed6615c3"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -13105,23 +13119,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:b058f87cb119",
+      "id": "evidence:repository:36729f864eb2",
       "kind": "evidence",
-      "at": "2026-10-10T16:57:00-03:00",
+      "at": "2026-10-10T16:57:51-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:b058f87cb119",
+      "id": "event:repository-scan:36729f864eb2",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:57:00-03:00"
+      "at": "2026-10-10T16:57:51-03:00"
     },
     {
-      "id": "event:commit-observed:28aa0ae0d1a0",
+      "id": "event:commit-observed:d5ef8fcc6273",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:57:00-03:00"
+      "at": "2026-10-10T16:57:51-03:00"
     }
   ],
   "paths": [
@@ -13156,11 +13170,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:b6c82dd11792"
+        "evidence:test:9e91ae7f96dd"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:57:00-03:00"
+      "last_validated": "2026-10-10T16:57:51-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13183,20 +13197,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:b058f87cb119",
+      "id": "evidence:repository:36729f864eb2",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:57:00-03:00",
+      "observed_at": "2026-10-10T16:57:51-03:00",
       "status": "observed",
-      "detail": "448 files indexed at revision 28aa0ae0d1a07180a23d1176f8148c31ab8bea5a"
+      "detail": "447 files indexed at revision d5ef8fcc6273c9280ffcb1868766e00fed6615c3"
     },
     {
-      "id": "evidence:test:b6c82dd11792",
+      "id": "evidence:test:9e91ae7f96dd",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:57:00-03:00",
+      "observed_at": "2026-10-10T16:57:51-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.43s"
+      "detail": "225 passed in 7.14s"
     }
   ],
   "decisions": [
@@ -13299,30 +13313,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:b058f87cb119",
+      "id": "event:repository-scan:36729f864eb2",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:57:00-03:00",
-      "revision": "28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
-      "file_count": 448,
-      "evidence_id": "evidence:repository:b058f87cb119"
+      "at": "2026-10-10T16:57:51-03:00",
+      "revision": "d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
+      "file_count": 447,
+      "evidence_id": "evidence:repository:36729f864eb2"
     },
     {
-      "id": "event:commit-observed:28aa0ae0d1a0",
+      "id": "event:commit-observed:d5ef8fcc6273",
       "type": "commit_observed",
-      "at": "2026-10-10T16:57:00-03:00",
-      "revision": "28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
+      "at": "2026-10-10T16:57:51-03:00",
+      "revision": "d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
       "branch": "main",
-      "subject": "Remover bloco heredoc residual que invalidava workflow",
+      "subject": "Remover ciphertext temporário após recuperação",
       "changed_files": [
-        ".github/workflows/vps-admin-command.yml"
+        "tmp/vps-mcp-token-ciphertext.txt"
       ]
     },
     {
-      "id": "event:test:b6c82dd11792",
+      "id": "event:test:9e91ae7f96dd",
       "type": "tests_observed",
-      "at": "2026-10-10T16:57:00-03:00",
+      "at": "2026-10-10T16:57:51-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:b6c82dd11792"
+      "evidence_id": "evidence:test:9e91ae7f96dd"
     }
   ],
   "knowledge_sources": [
@@ -13378,7 +13392,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "0e3b2abda54dc7f60282cde94d738af3e6a887800c1dc6ba055125da381b45ff"
+      "sha256": "accd1e15fe89a0a1a9ef452e587b06b44d35921670d9b826dc02889e3b627de4"
     },
     {
       "id": "source:session",
@@ -60607,12 +60621,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:b058f87cb119",
-      "source": "event:repository-scan:b058f87cb119",
-      "relation": "generated",
-      "target": "evidence:repository:b058f87cb119",
+      "id": "rel:commit-precedes:28aa0ae0d1a0:8413f06ee4b6",
+      "source": "commit:28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
+      "relation": "precedes",
+      "target": "commit:8413f06ee4b64d93bfd251a545504befe9bd4848",
       "status": "asserted",
-      "at": "2026-10-10T16:57:00-03:00",
+      "at": "2026-10-10T19:57:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:8413f06ee4b6:032adc3624d7",
+      "source": "commit:8413f06ee4b64d93bfd251a545504befe9bd4848",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:57:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:8413f06ee4b6:d64178c49886",
+      "source": "commit:8413f06ee4b64d93bfd251a545504befe9bd4848",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:57:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:8413f06ee4b6:d5ef8fcc6273",
+      "source": "commit:8413f06ee4b64d93bfd251a545504befe9bd4848",
+      "relation": "precedes",
+      "target": "commit:d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
+      "status": "asserted",
+      "at": "2026-10-10T16:57:51-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d5ef8fcc6273:5a570aa644af",
+      "source": "commit:d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
+      "relation": "changed",
+      "target": "file:tmp/vps-mcp-token-ciphertext.txt",
+      "status": "asserted",
+      "at": "2026-10-10T16:57:51-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:36729f864eb2",
+      "source": "event:repository-scan:36729f864eb2",
+      "relation": "generated",
+      "target": "evidence:repository:36729f864eb2",
+      "status": "asserted",
+      "at": "2026-10-10T16:57:51-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -60621,12 +60705,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:28aa0ae0d1a0",
-      "source": "commit:28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
+      "id": "rel:scan-commit:d5ef8fcc6273",
+      "source": "commit:d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
       "relation": "observed_by",
-      "target": "event:repository-scan:b058f87cb119",
+      "target": "event:repository-scan:36729f864eb2",
       "status": "asserted",
-      "at": "2026-10-10T16:57:00-03:00",
+      "at": "2026-10-10T16:57:51-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
