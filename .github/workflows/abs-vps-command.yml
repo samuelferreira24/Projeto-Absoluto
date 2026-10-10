@@ -1330,6 +1330,13 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-backup-configure)
+              {
+                echo "[Configure daily local backup for Code Server config volume]"
+                sudo -n docker exec coolify php artisan tinker --execute='$v=App\Models\LocalPersistentVolume::findOrFail(5); if ($v->name !== "bb55qbolrf4pqfl45gomnzyl_code-server-config" || $v->resource_id !== 5) { throw new RuntimeException("Target volume identity mismatch; no changes made."); } $type=$v->getMorphClass(); $b=App\Models\ScheduledVolumeBackup::firstOrNew(["backupable_type"=>$type,"backupable_id"=>$v->id]); $created=!$b->exists; $b->fill(["team_id"=>0,"frequency"=>"30 1 * * *","enabled"=>true,"save_s3"=>false,"disable_local_backup"=>false,"stop_during_backup"=>false,"retention_amount_locally"=>7,"retention_days_locally"=>14,"retention_max_storage_locally"=>2,"retention_amount_s3"=>0,"retention_days_s3"=>0,"retention_max_storage_s3"=>0,"timeout"=>36000,"missing_backup_notification_days"=>0]); $b->save(); echo json_encode(["created"=>$created,"enabled"=>(bool)$b->fresh()->enabled,"frequency"=>$b->fresh()->frequency,"target_type"=>$type,"target_id"=>$v->id,"target_name"=>$v->name,"retention_count"=>$b->fresh()->retention_amount_locally,"retention_days"=>$b->fresh()->retention_days_locally,"local_backup"=>!(bool)$b->fresh()->disable_local_backup,"s3_enabled"=>(bool)$b->fresh()->save_s3],JSON_PRETTY_PRINT),PHP_EOL;' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-cleanup-audit)
               {
                 echo "[Code Server service records: IDs and route metadata only]"
