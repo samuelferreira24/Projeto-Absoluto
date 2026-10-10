@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T10:31:55-03:00",
-  "source_revision": "a7e06b48869813d7d01dced8f54251a8e8b25c15",
+  "generated_at": "2026-10-10T10:57:18-03:00",
+  "source_revision": "bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 144
+      "file_count": 145
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "a7e06b48869813d7d01dced8f54251a8e8b25c15",
-      "commit_subject": "Use stable build marker to verify address touch isolation"
+      "revision": "bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
+      "commit_subject": "Add rollback to upstream Selkies browser client"
     }
   ],
   "tools": [
@@ -1003,6 +1003,11 @@
       "id": "file:.github/workflows/abs-browser-mobile-webapp.yml",
       "kind": "file",
       "path": ".github/workflows/abs-browser-mobile-webapp.yml"
+    },
+    {
+      "id": "file:.github/workflows/abs-browser-stock-selkies.yml",
+      "kind": "file",
+      "path": ".github/workflows/abs-browser-stock-selkies.yml"
     },
     {
       "id": "file:.github/workflows/abs-browser-yaml-diagnostic.yml",
@@ -11484,6 +11489,20 @@
       "sha": "a7e06b48869813d7d01dced8f54251a8e8b25c15"
     },
     {
+      "id": "commit:7415a703bc24dd3e99e10ea325e8b619c1c95797",
+      "kind": "commit",
+      "at": "2026-10-10T13:32:13Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "7415a703bc24dd3e99e10ea325e8b619c1c95797"
+    },
+    {
+      "id": "commit:bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
+      "kind": "commit",
+      "at": "2026-10-10T10:57:18-03:00",
+      "subject": "Add rollback to upstream Selkies browser client",
+      "sha": "bb29d70147d7b5f84f5f4ff28d8fce966f8056cd"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11596,23 +11615,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:008255282aae",
+      "id": "evidence:repository:f5ed79db335d",
       "kind": "evidence",
-      "at": "2026-10-10T10:31:55-03:00",
+      "at": "2026-10-10T10:57:18-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:008255282aae",
+      "id": "event:repository-scan:f5ed79db335d",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:31:55-03:00"
+      "at": "2026-10-10T10:57:18-03:00"
     },
     {
-      "id": "event:commit-observed:a7e06b488698",
+      "id": "event:commit-observed:bb29d70147d7",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T10:31:55-03:00"
+      "at": "2026-10-10T10:57:18-03:00"
     }
   ],
   "paths": [
@@ -11647,11 +11666,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:e0d5ebf41c58"
+        "evidence:test:7d8f1079f065"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T10:31:55-03:00"
+      "last_validated": "2026-10-10T10:57:18-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11674,20 +11693,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:008255282aae",
+      "id": "evidence:repository:f5ed79db335d",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T10:31:55-03:00",
+      "observed_at": "2026-10-10T10:57:18-03:00",
       "status": "observed",
-      "detail": "430 files indexed at revision a7e06b48869813d7d01dced8f54251a8e8b25c15"
+      "detail": "431 files indexed at revision bb29d70147d7b5f84f5f4ff28d8fce966f8056cd"
     },
     {
-      "id": "evidence:test:e0d5ebf41c58",
+      "id": "evidence:test:7d8f1079f065",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T10:31:55-03:00",
+      "observed_at": "2026-10-10T10:57:18-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.74s"
+      "detail": "225 passed in 11.34s"
     }
   ],
   "decisions": [
@@ -11790,30 +11809,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:008255282aae",
+      "id": "event:repository-scan:f5ed79db335d",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:31:55-03:00",
-      "revision": "a7e06b48869813d7d01dced8f54251a8e8b25c15",
-      "file_count": 430,
-      "evidence_id": "evidence:repository:008255282aae"
+      "at": "2026-10-10T10:57:18-03:00",
+      "revision": "bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
+      "file_count": 431,
+      "evidence_id": "evidence:repository:f5ed79db335d"
     },
     {
-      "id": "event:commit-observed:a7e06b488698",
+      "id": "event:commit-observed:bb29d70147d7",
       "type": "commit_observed",
-      "at": "2026-10-10T10:31:55-03:00",
-      "revision": "a7e06b48869813d7d01dced8f54251a8e8b25c15",
+      "at": "2026-10-10T10:57:18-03:00",
+      "revision": "bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
       "branch": "main",
-      "subject": "Use stable build marker to verify address touch isolation",
+      "subject": "Add rollback to upstream Selkies browser client",
       "changed_files": [
-        ".github/workflows/abs-browser-mobile-native.yml"
+        ".github/workflows/abs-browser-stock-selkies.yml"
       ]
     },
     {
-      "id": "event:test:e0d5ebf41c58",
+      "id": "event:test:7d8f1079f065",
       "type": "tests_observed",
-      "at": "2026-10-10T10:31:55-03:00",
+      "at": "2026-10-10T10:57:18-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:e0d5ebf41c58"
+      "evidence_id": "evidence:test:7d8f1079f065"
     }
   ],
   "knowledge_sources": [
@@ -11869,7 +11888,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "1b85b6bf58e47264cd3ec37ca2ff4152a53709630b1269ef20402b20f9184502"
+      "sha256": "3fb8fc02cdf2b5592fcb54c209bee767dc6819fcce66ce3a446de821c45712fa"
     },
     {
       "id": "source:session",
@@ -52154,12 +52173,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:008255282aae",
-      "source": "event:repository-scan:008255282aae",
-      "relation": "generated",
-      "target": "evidence:repository:008255282aae",
+      "id": "rel:commit-precedes:a7e06b488698:7415a703bc24",
+      "source": "commit:a7e06b48869813d7d01dced8f54251a8e8b25c15",
+      "relation": "precedes",
+      "target": "commit:7415a703bc24dd3e99e10ea325e8b619c1c95797",
       "status": "asserted",
-      "at": "2026-10-10T10:31:55-03:00",
+      "at": "2026-10-10T13:32:13Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7415a703bc24:032adc3624d7",
+      "source": "commit:7415a703bc24dd3e99e10ea325e8b619c1c95797",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T13:32:13Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:7415a703bc24:d64178c49886",
+      "source": "commit:7415a703bc24dd3e99e10ea325e8b619c1c95797",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T13:32:13Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:7415a703bc24:bb29d70147d7",
+      "source": "commit:7415a703bc24dd3e99e10ea325e8b619c1c95797",
+      "relation": "precedes",
+      "target": "commit:bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
+      "status": "asserted",
+      "at": "2026-10-10T10:57:18-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bb29d70147d7:0c71d94d02b4",
+      "source": "commit:bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-stock-selkies.yml",
+      "status": "asserted",
+      "at": "2026-10-10T10:57:18-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:f5ed79db335d",
+      "source": "event:repository-scan:f5ed79db335d",
+      "relation": "generated",
+      "target": "evidence:repository:f5ed79db335d",
+      "status": "asserted",
+      "at": "2026-10-10T10:57:18-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -52168,12 +52257,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:a7e06b488698",
-      "source": "commit:a7e06b48869813d7d01dced8f54251a8e8b25c15",
+      "id": "rel:scan-commit:bb29d70147d7",
+      "source": "commit:bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
       "relation": "observed_by",
-      "target": "event:repository-scan:008255282aae",
+      "target": "event:repository-scan:f5ed79db335d",
       "status": "asserted",
-      "at": "2026-10-10T10:31:55-03:00",
+      "at": "2026-10-10T10:57:18-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
