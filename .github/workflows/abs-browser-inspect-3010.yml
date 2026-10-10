@@ -1,0 +1,76 @@
+name: ABS Inspect Browser Interface Port 3010
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  inspect:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser inspect-3010'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 5
+    steps:
+      - name: Identify the service owning port 3010 without changing it
+        shell: bash
+        run: |
+          set -u
+          REPORT="$RUNNER_TEMP/abs-port3010-inspect.txt"
+          exec > >(tee "$REPORT") 2>&1
+          echo "[host]"; hostname
+          echo
+          echo "[listener]"
+          sudo -n ss -ltnp 'sport = :3010' 2>&1 || true
+          echo
+          echo "[processes listening on 3010]"
+          PIDS="$(sudo -n ss -ltnp 'sport = :3010' 2>/dev/null | grep -oE 'pid=[0-9]+' | cut -d= -f2 | sort -u || true)"
+          if [ -z "$PIDS" ]; then echo "No process PID extracted."; fi
+          for PID in $PIDS; do
+            echo "--- PID $PID ---"
+            sudo -n ps -p "$PID" -o pid,ppid,user,comm,args 2>&1 || true
+            echo "[exe]"; sudo -n readlink "/proc/$PID/exe" 2>&1 || true
+            echo "[cwd]"; sudo -n readlink "/proc/$PID/cwd" 2>&1 || true
+            echo "[cgroup]"; sudo -n cat "/proc/$PID/cgroup" 2>&1 || true
+            echo "[systemd status for PID]"; sudo -n systemctl status "$PID" --no-pager -l 2>&1 | head -n 35 || true
+            PPID="$(sudo -n ps -p "$PID" -o ppid= | tr -d ' ')"
+            if [ -n "$PPID" ] && [ "$PPID" != "0" ]; then
+              echo "[parent process]"
+              sudo -n ps -p "$PPID" -o pid,ppid,user,comm,args 2>&1 || true
+              echo "[parent cgroup]"
+              sudo -n cat "/proc/$PPID/cgroup" 2>&1 || true
+            fi
+          done
+          echo
+          echo "[matching systemd units]"
+          sudo -n systemctl list-units --type=service --all --no-legend | grep -Ei 'browser|3010|mobile|interface|webapp|remote' || true
+          echo
+          echo "[docker ports]"
+          sudo -n docker ps -a --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' | grep -E 'NAMES|3010|browser|mobile' || true
+          echo
+          echo "[new image availability]"
+          sudo -n docker image inspect abs-remotebrowser:yvonuk-main --format '{{.Id}}' 2>&1 || true
+          echo
+          echo "[health]"
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null && echo "ABS health PASS" || echo "ABS health FAIL"
+      - name: Report inspection
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          REPORT_FILE: ${{ runner.temp }}/abs-port3010-inspect.txt
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync(process.env.REPORT_FILE) ? fs.readFileSync(process.env.REPORT_FILE, 'utf8') : 'No inspection report was produced.';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '### PORT 3010 INSPECTION (read-only)\n\n' + report.slice(-10000)
+            });
