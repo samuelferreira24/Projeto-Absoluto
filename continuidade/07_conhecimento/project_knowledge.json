@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T10:29:05-03:00",
-  "source_revision": "efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
+  "generated_at": "2026-10-10T10:30:58-03:00",
+  "source_revision": "e2000df43797bc110bc679476f873bee45402883",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
-      "commit_subject": "Keep local address field focused during remote touch handling"
+      "revision": "e2000df43797bc110bc679476f873bee45402883",
+      "commit_subject": "Validate real address field touch isolation in browser build"
     }
   ],
   "tools": [
@@ -11449,6 +11449,27 @@
       "sha": "efcbc2df2d4f3dfa41cf0910db3936a6e7ade402"
     },
     {
+      "id": "commit:bc45842e8bebc4eda7ccd1562649e802cdd6a7d3",
+      "kind": "commit",
+      "at": "2026-10-10T13:29:24Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "bc45842e8bebc4eda7ccd1562649e802cdd6a7d3"
+    },
+    {
+      "id": "commit:c7c45d3386cc9e895b328bd0db4e1e184c615139",
+      "kind": "commit",
+      "at": "2026-10-10T10:30:50-03:00",
+      "subject": "Prevent remote keyboard hook from stealing real address input focus",
+      "sha": "c7c45d3386cc9e895b328bd0db4e1e184c615139"
+    },
+    {
+      "id": "commit:e2000df43797bc110bc679476f873bee45402883",
+      "kind": "commit",
+      "at": "2026-10-10T10:30:58-03:00",
+      "subject": "Validate real address field touch isolation in browser build",
+      "sha": "e2000df43797bc110bc679476f873bee45402883"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11561,23 +11582,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:25b6d7f7f04a",
+      "id": "evidence:repository:ff03c180d032",
       "kind": "evidence",
-      "at": "2026-10-10T10:29:05-03:00",
+      "at": "2026-10-10T10:30:58-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:25b6d7f7f04a",
+      "id": "event:repository-scan:ff03c180d032",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:29:05-03:00"
+      "at": "2026-10-10T10:30:58-03:00"
     },
     {
-      "id": "event:commit-observed:efcbc2df2d4f",
+      "id": "event:commit-observed:e2000df43797",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T10:29:05-03:00"
+      "at": "2026-10-10T10:30:58-03:00"
     }
   ],
   "paths": [
@@ -11612,11 +11633,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:362d9dc93abf"
+        "evidence:test:af21b5beb872"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T10:29:05-03:00"
+      "last_validated": "2026-10-10T10:30:58-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11639,20 +11660,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:25b6d7f7f04a",
+      "id": "evidence:repository:ff03c180d032",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T10:29:05-03:00",
+      "observed_at": "2026-10-10T10:30:58-03:00",
       "status": "observed",
-      "detail": "430 files indexed at revision efcbc2df2d4f3dfa41cf0910db3936a6e7ade402"
+      "detail": "430 files indexed at revision e2000df43797bc110bc679476f873bee45402883"
     },
     {
-      "id": "evidence:test:362d9dc93abf",
+      "id": "evidence:test:af21b5beb872",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T10:29:05-03:00",
+      "observed_at": "2026-10-10T10:30:58-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.65s"
+      "detail": "225 passed in 7.69s"
     }
   ],
   "decisions": [
@@ -11755,30 +11776,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:25b6d7f7f04a",
+      "id": "event:repository-scan:ff03c180d032",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:29:05-03:00",
-      "revision": "efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
+      "at": "2026-10-10T10:30:58-03:00",
+      "revision": "e2000df43797bc110bc679476f873bee45402883",
       "file_count": 430,
-      "evidence_id": "evidence:repository:25b6d7f7f04a"
+      "evidence_id": "evidence:repository:ff03c180d032"
     },
     {
-      "id": "event:commit-observed:efcbc2df2d4f",
+      "id": "event:commit-observed:e2000df43797",
       "type": "commit_observed",
-      "at": "2026-10-10T10:29:05-03:00",
-      "revision": "efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
+      "at": "2026-10-10T10:30:58-03:00",
+      "revision": "e2000df43797bc110bc679476f873bee45402883",
       "branch": "main",
-      "subject": "Keep local address field focused during remote touch handling",
+      "subject": "Validate real address field touch isolation in browser build",
       "changed_files": [
         ".github/workflows/abs-browser-mobile-native.yml"
       ]
     },
     {
-      "id": "event:test:362d9dc93abf",
+      "id": "event:test:af21b5beb872",
       "type": "tests_observed",
-      "at": "2026-10-10T10:29:05-03:00",
+      "at": "2026-10-10T10:30:58-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:362d9dc93abf"
+      "evidence_id": "evidence:test:af21b5beb872"
     }
   ],
   "knowledge_sources": [
@@ -11834,7 +11855,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "bb68cfd25fc32df5177cccf8ef5ee2429a39990e02f6c50dc42f64b14b28c9aa"
+      "sha256": "048290e53bc067575a63aa3915896368c97f9591e3cf1d93b986428a86ae30fb"
     },
     {
       "id": "source:session",
@@ -51951,12 +51972,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:25b6d7f7f04a",
-      "source": "event:repository-scan:25b6d7f7f04a",
-      "relation": "generated",
-      "target": "evidence:repository:25b6d7f7f04a",
+      "id": "rel:commit-precedes:efcbc2df2d4f:bc45842e8beb",
+      "source": "commit:efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
+      "relation": "precedes",
+      "target": "commit:bc45842e8bebc4eda7ccd1562649e802cdd6a7d3",
       "status": "asserted",
-      "at": "2026-10-10T10:29:05-03:00",
+      "at": "2026-10-10T13:29:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bc45842e8beb:032adc3624d7",
+      "source": "commit:bc45842e8bebc4eda7ccd1562649e802cdd6a7d3",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T13:29:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bc45842e8beb:d64178c49886",
+      "source": "commit:bc45842e8bebc4eda7ccd1562649e802cdd6a7d3",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T13:29:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:bc45842e8beb:c7c45d3386cc",
+      "source": "commit:bc45842e8bebc4eda7ccd1562649e802cdd6a7d3",
+      "relation": "precedes",
+      "target": "commit:c7c45d3386cc9e895b328bd0db4e1e184c615139",
+      "status": "asserted",
+      "at": "2026-10-10T10:30:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c7c45d3386cc:97a2cc349a21",
+      "source": "commit:c7c45d3386cc9e895b328bd0db4e1e184c615139",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-native.yml",
+      "status": "asserted",
+      "at": "2026-10-10T10:30:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:c7c45d3386cc:e2000df43797",
+      "source": "commit:c7c45d3386cc9e895b328bd0db4e1e184c615139",
+      "relation": "precedes",
+      "target": "commit:e2000df43797bc110bc679476f873bee45402883",
+      "status": "asserted",
+      "at": "2026-10-10T10:30:58-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e2000df43797:97a2cc349a21",
+      "source": "commit:e2000df43797bc110bc679476f873bee45402883",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-native.yml",
+      "status": "asserted",
+      "at": "2026-10-10T10:30:58-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:ff03c180d032",
+      "source": "event:repository-scan:ff03c180d032",
+      "relation": "generated",
+      "target": "evidence:repository:ff03c180d032",
+      "status": "asserted",
+      "at": "2026-10-10T10:30:58-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -51965,12 +52084,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:efcbc2df2d4f",
-      "source": "commit:efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
+      "id": "rel:scan-commit:e2000df43797",
+      "source": "commit:e2000df43797bc110bc679476f873bee45402883",
       "relation": "observed_by",
-      "target": "event:repository-scan:25b6d7f7f04a",
+      "target": "event:repository-scan:ff03c180d032",
       "status": "asserted",
-      "at": "2026-10-10T10:29:05-03:00",
+      "at": "2026-10-10T10:30:58-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
