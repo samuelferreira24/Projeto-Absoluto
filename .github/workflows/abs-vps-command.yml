@@ -768,8 +768,14 @@ jobs:
                   echo "Pinned Selkies source checkout not found."
                 fi
                 echo
+                echo "[Dashboard component mount conditions]"
+                grep -Rni -C 3 -E 'Sidebar|sidebarOpen|isSidebarOpen|showSidebar|setSidebar' "$HOME/abs-browser/selkies-source/addons/selkies-dashboard/src" --include='*.jsx' --include='*.js' 2>/dev/null | cut -c1-260 | head -n 90 || true
+                echo
                 echo "[All source declarations of overlayInput and keyboard-input-assist]"
                 grep -Rni -E 'overlayInput|keyboard-input-assist|videoCanvas|id=["'\''"]stream' "$HOME/abs-browser/selkies-source/addons/selkies-dashboard/src/components" "$HOME/abs-browser/selkies-source/addons/selkies-web-core/lib" --include='*.jsx' --include='*.js' 2>/dev/null | cut -c1-240 | head -n 24 || true
+                echo
+                echo "[Current private event telemetry]"
+                curl -fsS --max-time 3 http://127.0.0.1:9223/abs-keyboard-focus 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); print(json.dumps(d.get("diagnostics"),separators=(",",":")) if d.get("diagnostics") else "NO_TOUCH_DIAGNOSTICS_RECEIVED")' 2>&1 || true
                 echo
                 echo "[Source: input event implementation]"
                 grep -n -C 4 -E 'overlayInput|keyboardInputAssist|touchstart|touchend|pointerdown|pointerup' "$HOME/abs-browser/selkies-source/addons/selkies-web-core/lib/input.js" 2>/dev/null | head -n 100 || true
