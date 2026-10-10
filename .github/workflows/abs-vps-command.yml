@@ -1275,6 +1275,22 @@ jobs:
               } > /tmp/abs-vps-result.txt 2>&1
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-dashboard-verify)
+              {
+                echo "[Coolify HTTPS dashboard route — certificate validation enabled]"
+                curl -sS --max-time 15 -o /dev/null -w 'https_status=%{http_code} remote_ip=%{remote_ip} ssl_verify_result=%{ssl_verify_result}\\n' 'https://coolify.207.180.3.245.sslip.io' 2>&1 || true
+                echo
+                echo "[HTTP redirect behavior]"
+                curl -sS --max-time 15 -D - -o /dev/null 'http://coolify.207.180.3.245.sslip.io' 2>&1 | grep -Ei '^(HTTP/|Location:)' | head -n 5 || true
+                echo
+                echo "[Dashboard direct port fallback]"
+                curl -sS --max-time 10 -o /dev/null -w 'port_8000_http_status=%{http_code}\\n' 'http://127.0.0.1:8000' 2>&1 || true
+                echo
+                echo "[Coolify stack health]"
+                sudo -n docker ps --format '{{.Names}}|{{.Status}}' | grep -E '^coolify($|-)' || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-dashboard-domain)
               set -e
               {
