@@ -1275,6 +1275,17 @@ jobs:
               } > /tmp/abs-vps-result.txt 2>&1
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-dashboard-domain)
+              set -e
+              {
+                echo "[Configure HTTPS dashboard hostname using sslip.io DNS]"
+                sudo -n docker exec coolify php artisan tinker --execute='$settings=app("App\\Models\\InstanceSettings")->newQuery()->findOrFail(0); $server=app("App\\Models\\Server")->newQuery()->findOrFail(0); $settings->fqdn="https://coolify.207.180.3.245.sslip.io"; $settings->is_dashboard_force_https_enabled=true; $settings->save(); $result=$server->setupDynamicProxyConfiguration(); echo "fqdn=".$settings->fresh()->fqdn.PHP_EOL."force_https=".(bool)$settings->fresh()->is_dashboard_force_https_enabled.PHP_EOL."proxy_setup_called=true".PHP_EOL;' 2>&1
+                echo
+                echo "[Coolify container remains healthy]"
+                sudo -n docker inspect coolify --format 'state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} restarts={{.RestartCount}}' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-finalize)
               set -e
               {
