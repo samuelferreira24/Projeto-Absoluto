@@ -110,7 +110,8 @@ jobs:
           WantedBy=multi-user.target
           UNIT
           sudo -n systemctl daemon-reload
-          sudo -n systemctl enable --now abs-browser-mobile-webapp.service
+          sudo -n systemctl enable abs-browser-mobile-webapp.service
+          sudo -n systemctl restart abs-browser-mobile-webapp.service
           READY=0
           for i in $(seq 1 15); do
             if curl -fsS --max-time 2 http://127.0.0.1:3010/health >/dev/null; then READY=1; break; fi
