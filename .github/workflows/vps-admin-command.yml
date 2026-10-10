@@ -178,32 +178,7 @@ jobs:
                       echo "tools_list_parse=FAIL"
                       head -c 1000 /tmp/vps-mcp-tools-body.txt || true
                       echo
-                    fi'
-import json
-from pathlib import Path
-raw = Path("/tmp/vps-mcp-tools-body.txt").read_text(errors="replace")
-payloads = []
-for line in raw.splitlines():
-    line = line.strip()
-    if line.startswith("data:"):
-        line = line[5:].strip()
-    if line.startswith("{"):
-        try:
-            payloads.append(json.loads(line))
-        except Exception:
-            pass
-for payload in payloads:
-    result = payload.get("result", {})
-    tools = result.get("tools", [])
-    if tools:
-        print("tool_count=" + str(len(tools)))
-        print("tools=" + ", ".join(sorted(t.get("name", "?") for t in tools)))
-        break
-else:
-    print("tools_list_parse=FAIL")
-    print(raw[:1000])
-PYTOOLS
-                  fi
+                    fi                  fi
                   unset token
                   rm -f /tmp/vps-mcp-init-headers.txt /tmp/vps-mcp-init-body.txt /tmp/vps-mcp-tools-headers.txt /tmp/vps-mcp-tools-body.txt
                 fi
