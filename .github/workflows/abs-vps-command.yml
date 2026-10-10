@@ -1278,7 +1278,7 @@ jobs:
             coolify-code-server-deploy-status)
               {
                 echo "[Deployment activity metadata]"
-                sudo -n docker exec coolify php artisan tinker --execute='$a=app("db")->table("activity_log")->where("id",12)->first(); if ($a) { $x=(array)$a; $o=[]; foreach (["id","log_name","description","subject_type","subject_id","event","created_at","updated_at"] as $k) if (array_key_exists($k,$x)) $o[$k]=$x[$k]; echo json_encode($o,JSON_PRETTY_PRINT),PHP_EOL; } else echo "activity_id_12_not_found".PHP_EOL;' 2>&1 || true
+                sudo -n docker exec coolify php artisan tinker --execute='$a=app("db")->table("activity_log")->where("id",12)->first(); if ($a) { echo "activity_id=".$a->id." created_at=".$a->created_at.PHP_EOL; $items=json_decode($a->description,true); if (is_array($items)) foreach (array_slice($items,-25) as $i) { $v=$i["output"] ?? ""; $v=preg_replace("/(PASSWORD|TOKEN|SECRET|KEY)=([^ ]+)/i","$1=[REDACTED]",$v); echo $v; } else echo "description_not_json".PHP_EOL; } else echo "activity_id_12_not_found".PHP_EOL;' 2>&1 || true
                 echo
                 echo "[Service config timezone only]"
                 sudo -n docker exec coolify php artisan tinker --execute='$s=app("db")->table("services")->where("id",5)->first(); foreach (["docker_compose_raw","docker_compose"] as $k) { $v=$s->$k ?? ""; echo $k."_has_madrid=".(str_contains($v,"tz=europe/madrid")||str_contains($v,"tz=Europe/Madrid")?"true":"false")." ".$k."_has_sao_paulo=".(str_contains($v,"tz=America/Sao_Paulo")?"true":"false").PHP_EOL; }' 2>&1 || true
