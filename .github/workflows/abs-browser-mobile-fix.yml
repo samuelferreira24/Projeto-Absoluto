@@ -83,7 +83,7 @@ jobs:
             "name": "ABS Mobile Zoom Controls",
             "version": "1.0.0",
             "description": "Touch-friendly page zoom controls for the ABS remote Chromium browser.",
-            "permissions": ["tabs"],
+            "permissions": ["tabs", "scripting"],
             "host_permissions": ["http://*/*", "https://*/*"],
             "background": { "service_worker": "service-worker.js" },
             "content_scripts": [{
@@ -94,6 +94,18 @@ jobs:
           }
           MANIFEST
           cat > "$EXT/service-worker.js" <<'WORKER'
+          async function injectIntoTab(tabId) {
+            try { await chrome.scripting.executeScript({target:{tabId}, files:["content.js"]}); } catch (_) {}
+          }
+          async function injectIntoExistingTabs() {
+            const tabs = await chrome.tabs.query({url:["http://*/*","https://*/*"]});
+            for (const tab of tabs) if (typeof tab.id === "number") await injectIntoTab(tab.id);
+          }
+          chrome.runtime.onInstalled.addListener(() => { injectIntoExistingTabs(); });
+          chrome.runtime.onStartup.addListener(() => { injectIntoExistingTabs(); });
+          chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+            if (changeInfo.status === "complete" && tab.url && /^https?:/.test(tab.url)) injectIntoTab(tabId);
+          });
           chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             if (!message || message.type !== "abs-mobile-zoom" || !sender.tab || typeof sender.tab.id !== "number") return;
             const tabId = sender.tab.id;
