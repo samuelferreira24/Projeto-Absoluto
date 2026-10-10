@@ -1272,6 +1272,19 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-locale-runtime)
+              {
+                echo "[All locale-switching code references]"
+                sudo -n docker exec coolify sh -lc 'grep -RniE "setLocale|setlocale|app.locale|APP_LOCALE|pt-br.json|Accept-Language|locale" /var/www/html/app /var/www/html/bootstrap /var/www/html/routes /var/www/html/config /var/www/html/resources/js 2>/dev/null | head -n 160' 2>&1 || true
+                echo
+                echo "[Official Portuguese translation file metadata and representative keys]"
+                sudo -n docker exec coolify php -r '$f="/var/www/html/lang/pt-br.json"; $d=json_decode(file_get_contents($f),true) ?: []; echo "file_bytes=".filesize($f)." keys=".count($d).PHP_EOL; foreach (["Dashboard","Projects","Servers","Settings","Logout","Applications","Services","Deploy","Save","Cancel"] as $k) echo $k." => ".($d[$k] ?? "(not in translation file)").PHP_EOL;'
+                echo
+                echo "[Current runtime config cache]"
+                sudo -n docker exec coolify sh -lc 'ls -l /var/www/html/bootstrap/cache/config.php 2>/dev/null || true; grep -n "locale" /var/www/html/config/app.php | head -n 8'
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-locale-deep-inspect)
               {
                 echo "[Laravel locale files and env override support]"
