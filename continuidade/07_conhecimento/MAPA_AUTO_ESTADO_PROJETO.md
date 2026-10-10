@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 22a380afb0748c3071663be242a22017e7c126c6
-Momento da revisão: 2026-10-09T18:24:33-03:00
+Revisão observada: 759c8bca5f768a088c03ee53400a022ff4578511
+Momento da revisão: 2026-10-09T22:54:07-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -25,9 +25,9 @@ Momento da revisão: 2026-10-09T18:24:33-03:00
 - component:abs_core — abs_core (60 arquivos)
 - component:cerebro — cerebro (45 arquivos)
 - component:continuity — continuity (25 arquivos)
-- component:docs — docs (77 arquivos)
+- component:docs — docs (78 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
-- component:project — project (132 arquivos)
+- component:project — project (137 arquivos)
 - component:tests — tests (66 arquivos)
 
 ## Capacidades
@@ -125,6 +125,11 @@ Momento da revisão: 2026-10-09T18:24:33-03:00
 - file:"\360\237\221\224 Consultoria_ Projeto Comercial & Automa\303\247\303\243o _ OpenHands Cloud (1).mht" — None — estado: unknown
 - file:"docs/90_fontes/\360\237\221\224 Consultoria_ Projeto Comercial & Automa\303\247\303\243o _ OpenHands Cloud (1).mht" — None — estado: unknown
 - file:.github/workflows/abs-auto-integration.yml — None — estado: unknown
+- file:.github/workflows/abs-browser-complete-all.yml — None — estado: unknown
+- file:.github/workflows/abs-browser-mobile-fix.yml — None — estado: unknown
+- file:.github/workflows/abs-browser-mobile-native.yml — None — estado: unknown
+- file:.github/workflows/abs-browser-mobile-test.yml — None — estado: unknown
+- file:.github/workflows/abs-browser-yaml-diagnostic.yml — None — estado: unknown
 - file:.github/workflows/abs-core.yml — None — estado: unknown
 - file:.github/workflows/abs-local-ai-health.yml — None — estado: unknown
 - file:.github/workflows/abs-local-ai-installer.yml — None — estado: unknown
@@ -563,6 +568,7 @@ Momento da revisão: 2026-10-09T18:24:33-03:00
 - file:docs/ABS-CAPACIDADES-FUNDACAO-V1.md — None — estado: unknown
 - file:docs/ABS-GITHUB-TERMUX-BRIDGE-V1.md — None — estado: unknown
 - file:docs/ABS-GITHUB-TERMUX-TASK-TEMPLATE.md — None — estado: unknown
+- file:docs/ABS_BROWSER_CONTROL.md — None — estado: unknown
 - file:docs/Plano_Projeto.md — None — estado: unknown
 - file:docs/api/openapi.json — None — estado: unknown
 - file:docs/architecture/ABS_INTEGRATION_V1.md — None — estado: unknown
@@ -1656,6 +1662,69 @@ Momento da revisão: 2026-10-09T18:24:33-03:00
 - commit:aeaf3315b1e0c7751d483c13b7e9f9b371468ed5 — None — estado: unknown
 - commit:6263976b87d1c8b5d9863dc140127443bbbb2c74 — None — estado: unknown
 - commit:22a380afb0748c3071663be242a22017e7c126c6 — None — estado: unknown
+- commit:3923e8ba637f79b59ce5d3677f1a94a3654c90db — None — estado: unknown
+- commit:952561fc1b800c94d2902032cdb07d4c5a1cfcee — None — estado: unknown
+- commit:511fb2fcd0ad7a00ff3413bcc9dd9c6a172d0b5f — None — estado: unknown
+- commit:54c184fb67340589dfe2bc92f29596b01f14bd99 — None — estado: unknown
+- commit:6312fda6a49213db385639aa78b6f93ee67c7669 — None — estado: unknown
+- commit:bef7dfa349136888bfbd559b9105efbcef93dd9d — None — estado: unknown
+- commit:9d30581191c7c50d15911ec6b326462fefc5c61b — None — estado: unknown
+- commit:4c9edc9c954df5fd2eeec401f9f6d7e89371968e — None — estado: unknown
+- commit:93b59c8d4b46d138a976ca5d46ca52e68eb2a7ba — None — estado: unknown
+- commit:e3e76531900adb5f33cab1dcd7f8d57ddb71b03a — None — estado: unknown
+- commit:82d1005bd4a6662d86e13f63b92e2fa807eb01a2 — None — estado: unknown
+- commit:c90e5bf15916c303715f71ae105484316725198e — None — estado: unknown
+- commit:ec3266aecac0e1c3ccc7a86b8bf8cd6975caf055 — None — estado: unknown
+- commit:c6458762dd4b3f531d0e5a4e8549aae2ed53f8b4 — None — estado: unknown
+- commit:c22d0605fe320c963806b712535dac14130b3ee9 — None — estado: unknown
+- commit:5e3fc128c3c01429968dc80592cca2a9cd5012cd — None — estado: unknown
+- commit:b1776585024f658726dad212724db1e94fd85d20 — None — estado: unknown
+- commit:7a27414bdcc79cd895a6f29b0b427d8d72b8efee — None — estado: unknown
+- commit:b6df508fd960c67184697e4913987ee19691f86e — None — estado: unknown
+- commit:655ef1ac46d51838831fda02ce9b811fa0481d06 — None — estado: unknown
+- commit:334b28b9861d54c02060e56e303cc995b85ca2e3 — None — estado: unknown
+- commit:c291f90ab25f62caf10be67649e4cc6aa1d0688a — None — estado: unknown
+- commit:25ffec289e8688e6a83323ef03449c33bda40d1c — None — estado: unknown
+- commit:e6c525c958c1839fe157ade81602d8f714462dc9 — None — estado: unknown
+- commit:c04633491361374d950740a3f08533f7130c6221 — None — estado: unknown
+- commit:653c4a91a35dcdb344b5117a72490357f651b940 — None — estado: unknown
+- commit:982afea965c3ea0dedc7b1e11f9ad98564f40acb — None — estado: unknown
+- commit:70852a4079c24827885a6e4bc5e5a5bb1f8660a1 — None — estado: unknown
+- commit:993aa6be29c9d3fc0ca98ed5c00dc1dedb6f2ed9 — None — estado: unknown
+- commit:f1cda4a2aa2bdc7d2421e07e8235e20f70498185 — None — estado: unknown
+- commit:9e66e8ae49083640af2bedabec336935118ac5ce — None — estado: unknown
+- commit:1befab152907baa2d578f1a62a780d3912acb1f5 — None — estado: unknown
+- commit:c5fbb89dbe39d4f70e1fcfc546b11fad9180969b — None — estado: unknown
+- commit:888e75cdbc1abaeee7de1dce12388daf78a2e17a — None — estado: unknown
+- commit:98d37e46259bd6516b09f5d34425be250990c67f — None — estado: unknown
+- commit:d19781fccbf8cf5150731b314537d0e498fc47a7 — None — estado: unknown
+- commit:6ed5bacd4d45257e311771bea7068ff93251f9ea — None — estado: unknown
+- commit:7c22721d1240e48449e69ab7143ceaadb52add17 — None — estado: unknown
+- commit:282cdbf927948853d279b64e85ffea381d182143 — None — estado: unknown
+- commit:5ced9512dcfcc2648671bf1ca8bebd70a8961587 — None — estado: unknown
+- commit:92eb4c2f03c7fd5d21c8aff045725c8c003355ab — None — estado: unknown
+- commit:925776415d41a5f885d7f35f552d3b0255305e35 — None — estado: unknown
+- commit:6b5349bf7a2ac114a7312471ab58cbbeb4aae118 — None — estado: unknown
+- commit:39824edab6aa2cc8f3ec202cd29c6a0e9cfb0b32 — None — estado: unknown
+- commit:9c6e7587d0226b99a341297619e65106b7182e09 — None — estado: unknown
+- commit:1a7ea2399eb9db09999ceaf5b7cb93c3d52ce89d — None — estado: unknown
+- commit:b730dbc9d86ff80ee57a8b70c349d2a3d751bfcc — None — estado: unknown
+- commit:33e4e768ad2c7fe4a0be31d5064531e27ffa1fc5 — None — estado: unknown
+- commit:05a5a28701240c97968672cad346330facb0d231 — None — estado: unknown
+- commit:0ce9f7c9a30fed022160092d1627190a74c50a2f — None — estado: unknown
+- commit:45778f1985e64b137003ae72f1775421d2d25901 — None — estado: unknown
+- commit:ff701a7f113ff073cca75ce44a8cef72798ed0b1 — None — estado: unknown
+- commit:ce4491f446178440537d4b45af38414380a7f0a7 — None — estado: unknown
+- commit:92795d65577f35d100ff7a62eaa156914f4fa7a1 — None — estado: unknown
+- commit:13ff5e0ca2cf0023550dcaa3f717820461f8dc1a — None — estado: unknown
+- commit:a4cc14339843a0f6569cdd2df900933aa9ce5d6a — None — estado: unknown
+- commit:0e5890a6a417e3d168a4f34dcb2badd43af0d3f3 — None — estado: unknown
+- commit:58afa4bf0c3698698906c5ced633be369388da73 — None — estado: unknown
+- commit:eab44057e27e74ad66459364b7e530eb2e9557bb — None — estado: unknown
+- commit:3fc1123b542f4786fec9ec1f7aa16dbab3d585d7 — None — estado: unknown
+- commit:ae04a2fa1ccf49db8e74f6ef86030584b32a7ad8 — None — estado: unknown
+- commit:087c2f03c98a332bacb4478961dfc7b65b1cc07a — None — estado: unknown
+- commit:759c8bca5f768a088c03ee53400a022ff4578511 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1670,19 +1739,19 @@ Momento da revisão: 2026-10-09T18:24:33-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:af3f0964a0ea — None — estado: unknown
-- event:repository-scan:af3f0964a0ea — None — estado: unknown
-- event:commit-observed:22a380afb074 — None — estado: unknown
+- evidence:repository:03ca52b68a41 — None — estado: unknown
+- event:repository-scan:03ca52b68a41 — None — estado: unknown
+- event:commit-observed:759c8bca5f76 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:98d9c1ff67c5
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:7199707cb24b
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:af3f0964a0ea — repository_scanned — revisão: 22a380afb0748c3071663be242a22017e7c126c6
-- event:commit-observed:22a380afb074 — commit_observed — revisão: 22a380afb0748c3071663be242a22017e7c126c6
-- event:test:98d9c1ff67c5 — tests_observed — revisão: n/a
+- event:repository-scan:03ca52b68a41 — repository_scanned — revisão: 759c8bca5f768a088c03ee53400a022ff4578511
+- event:commit-observed:759c8bca5f76 — commit_observed — revisão: 759c8bca5f768a088c03ee53400a022ff4578511
+- event:test:7199707cb24b — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -4268,15 +4337,143 @@ Momento da revisão: 2026-10-09T18:24:33-03:00
 - commit:6263976b87d1c8b5d9863dc140127443bbbb2c74 — changed → file:abs_core/runtime.py — asserted
 - commit:6263976b87d1c8b5d9863dc140127443bbbb2c74 — precedes → commit:22a380afb0748c3071663be242a22017e7c126c6 — asserted
 - commit:22a380afb0748c3071663be242a22017e7c126c6 — changed → file:.github/workflows/abs-vps-prebuild-build-all.yml — asserted
-- event:repository-scan:af3f0964a0ea — generated → evidence:repository:af3f0964a0ea — asserted
-- commit:22a380afb0748c3071663be242a22017e7c126c6 — observed_by → event:repository-scan:af3f0964a0ea — asserted
+- commit:22a380afb0748c3071663be242a22017e7c126c6 — precedes → commit:3923e8ba637f79b59ce5d3677f1a94a3654c90db — asserted
+- commit:3923e8ba637f79b59ce5d3677f1a94a3654c90db — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:3923e8ba637f79b59ce5d3677f1a94a3654c90db — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:3923e8ba637f79b59ce5d3677f1a94a3654c90db — precedes → commit:952561fc1b800c94d2902032cdb07d4c5a1cfcee — asserted
+- commit:952561fc1b800c94d2902032cdb07d4c5a1cfcee — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:952561fc1b800c94d2902032cdb07d4c5a1cfcee — precedes → commit:511fb2fcd0ad7a00ff3413bcc9dd9c6a172d0b5f — asserted
+- commit:511fb2fcd0ad7a00ff3413bcc9dd9c6a172d0b5f — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:511fb2fcd0ad7a00ff3413bcc9dd9c6a172d0b5f — precedes → commit:54c184fb67340589dfe2bc92f29596b01f14bd99 — asserted
+- commit:54c184fb67340589dfe2bc92f29596b01f14bd99 — changed → file:.github/workflows/abs-browser-yaml-diagnostic.yml — asserted
+- commit:54c184fb67340589dfe2bc92f29596b01f14bd99 — precedes → commit:6312fda6a49213db385639aa78b6f93ee67c7669 — asserted
+- commit:6312fda6a49213db385639aa78b6f93ee67c7669 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:6312fda6a49213db385639aa78b6f93ee67c7669 — precedes → commit:bef7dfa349136888bfbd559b9105efbcef93dd9d — asserted
+- commit:bef7dfa349136888bfbd559b9105efbcef93dd9d — changed → file:.github/workflows/abs-vps-prebuild-build-all.yml — asserted
+- commit:bef7dfa349136888bfbd559b9105efbcef93dd9d — precedes → commit:9d30581191c7c50d15911ec6b326462fefc5c61b — asserted
+- commit:9d30581191c7c50d15911ec6b326462fefc5c61b — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:9d30581191c7c50d15911ec6b326462fefc5c61b — precedes → commit:4c9edc9c954df5fd2eeec401f9f6d7e89371968e — asserted
+- commit:4c9edc9c954df5fd2eeec401f9f6d7e89371968e — precedes → commit:93b59c8d4b46d138a976ca5d46ca52e68eb2a7ba — asserted
+- commit:93b59c8d4b46d138a976ca5d46ca52e68eb2a7ba — changed → file:.github/workflows/abs-browser-yaml-diagnostic.yml — asserted
+- commit:93b59c8d4b46d138a976ca5d46ca52e68eb2a7ba — precedes → commit:e3e76531900adb5f33cab1dcd7f8d57ddb71b03a — asserted
+- commit:e3e76531900adb5f33cab1dcd7f8d57ddb71b03a — changed → file:docs/ABS_BROWSER_CONTROL.md — asserted
+- commit:e3e76531900adb5f33cab1dcd7f8d57ddb71b03a — precedes → commit:82d1005bd4a6662d86e13f63b92e2fa807eb01a2 — asserted
+- commit:82d1005bd4a6662d86e13f63b92e2fa807eb01a2 — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:82d1005bd4a6662d86e13f63b92e2fa807eb01a2 — precedes → commit:c90e5bf15916c303715f71ae105484316725198e — asserted
+- commit:c90e5bf15916c303715f71ae105484316725198e — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:c90e5bf15916c303715f71ae105484316725198e — precedes → commit:ec3266aecac0e1c3ccc7a86b8bf8cd6975caf055 — asserted
+- commit:ec3266aecac0e1c3ccc7a86b8bf8cd6975caf055 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:ec3266aecac0e1c3ccc7a86b8bf8cd6975caf055 — precedes → commit:c6458762dd4b3f531d0e5a4e8549aae2ed53f8b4 — asserted
+- commit:c6458762dd4b3f531d0e5a4e8549aae2ed53f8b4 — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:c6458762dd4b3f531d0e5a4e8549aae2ed53f8b4 — precedes → commit:c22d0605fe320c963806b712535dac14130b3ee9 — asserted
+- commit:c22d0605fe320c963806b712535dac14130b3ee9 — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:c22d0605fe320c963806b712535dac14130b3ee9 — precedes → commit:5e3fc128c3c01429968dc80592cca2a9cd5012cd — asserted
+- commit:5e3fc128c3c01429968dc80592cca2a9cd5012cd — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:5e3fc128c3c01429968dc80592cca2a9cd5012cd — precedes → commit:b1776585024f658726dad212724db1e94fd85d20 — asserted
+- commit:b1776585024f658726dad212724db1e94fd85d20 — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:b1776585024f658726dad212724db1e94fd85d20 — precedes → commit:7a27414bdcc79cd895a6f29b0b427d8d72b8efee — asserted
+- commit:7a27414bdcc79cd895a6f29b0b427d8d72b8efee — changed → file:abs_core/browser_adapter.py — asserted
+- commit:7a27414bdcc79cd895a6f29b0b427d8d72b8efee — precedes → commit:b6df508fd960c67184697e4913987ee19691f86e — asserted
+- commit:b6df508fd960c67184697e4913987ee19691f86e — changed → file:tests/test_browser_adapter.py — asserted
+- commit:b6df508fd960c67184697e4913987ee19691f86e — precedes → commit:655ef1ac46d51838831fda02ce9b811fa0481d06 — asserted
+- commit:655ef1ac46d51838831fda02ce9b811fa0481d06 — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:655ef1ac46d51838831fda02ce9b811fa0481d06 — precedes → commit:334b28b9861d54c02060e56e303cc995b85ca2e3 — asserted
+- commit:334b28b9861d54c02060e56e303cc995b85ca2e3 — changed → file:docs/ABS_BROWSER_CONTROL.md — asserted
+- commit:334b28b9861d54c02060e56e303cc995b85ca2e3 — precedes → commit:c291f90ab25f62caf10be67649e4cc6aa1d0688a — asserted
+- commit:c291f90ab25f62caf10be67649e4cc6aa1d0688a — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:c291f90ab25f62caf10be67649e4cc6aa1d0688a — precedes → commit:25ffec289e8688e6a83323ef03449c33bda40d1c — asserted
+- commit:25ffec289e8688e6a83323ef03449c33bda40d1c — changed → file:docs/ABS_BROWSER_CONTROL.md — asserted
+- commit:25ffec289e8688e6a83323ef03449c33bda40d1c — precedes → commit:e6c525c958c1839fe157ade81602d8f714462dc9 — asserted
+- commit:e6c525c958c1839fe157ade81602d8f714462dc9 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:e6c525c958c1839fe157ade81602d8f714462dc9 — precedes → commit:c04633491361374d950740a3f08533f7130c6221 — asserted
+- commit:c04633491361374d950740a3f08533f7130c6221 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:c04633491361374d950740a3f08533f7130c6221 — precedes → commit:653c4a91a35dcdb344b5117a72490357f651b940 — asserted
+- commit:653c4a91a35dcdb344b5117a72490357f651b940 — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:653c4a91a35dcdb344b5117a72490357f651b940 — precedes → commit:982afea965c3ea0dedc7b1e11f9ad98564f40acb — asserted
+- commit:982afea965c3ea0dedc7b1e11f9ad98564f40acb — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:982afea965c3ea0dedc7b1e11f9ad98564f40acb — precedes → commit:70852a4079c24827885a6e4bc5e5a5bb1f8660a1 — asserted
+- commit:70852a4079c24827885a6e4bc5e5a5bb1f8660a1 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:70852a4079c24827885a6e4bc5e5a5bb1f8660a1 — precedes → commit:993aa6be29c9d3fc0ca98ed5c00dc1dedb6f2ed9 — asserted
+- commit:993aa6be29c9d3fc0ca98ed5c00dc1dedb6f2ed9 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:993aa6be29c9d3fc0ca98ed5c00dc1dedb6f2ed9 — precedes → commit:f1cda4a2aa2bdc7d2421e07e8235e20f70498185 — asserted
+- commit:f1cda4a2aa2bdc7d2421e07e8235e20f70498185 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:f1cda4a2aa2bdc7d2421e07e8235e20f70498185 — precedes → commit:9e66e8ae49083640af2bedabec336935118ac5ce — asserted
+- commit:9e66e8ae49083640af2bedabec336935118ac5ce — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:9e66e8ae49083640af2bedabec336935118ac5ce — precedes → commit:1befab152907baa2d578f1a62a780d3912acb1f5 — asserted
+- commit:1befab152907baa2d578f1a62a780d3912acb1f5 — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:1befab152907baa2d578f1a62a780d3912acb1f5 — precedes → commit:c5fbb89dbe39d4f70e1fcfc546b11fad9180969b — asserted
+- commit:c5fbb89dbe39d4f70e1fcfc546b11fad9180969b — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:c5fbb89dbe39d4f70e1fcfc546b11fad9180969b — precedes → commit:888e75cdbc1abaeee7de1dce12388daf78a2e17a — asserted
+- commit:888e75cdbc1abaeee7de1dce12388daf78a2e17a — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:888e75cdbc1abaeee7de1dce12388daf78a2e17a — precedes → commit:98d37e46259bd6516b09f5d34425be250990c67f — asserted
+- commit:98d37e46259bd6516b09f5d34425be250990c67f — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:98d37e46259bd6516b09f5d34425be250990c67f — precedes → commit:d19781fccbf8cf5150731b314537d0e498fc47a7 — asserted
+- commit:d19781fccbf8cf5150731b314537d0e498fc47a7 — changed → file:.github/workflows/abs-browser-complete-all.yml — asserted
+- commit:d19781fccbf8cf5150731b314537d0e498fc47a7 — precedes → commit:6ed5bacd4d45257e311771bea7068ff93251f9ea — asserted
+- commit:6ed5bacd4d45257e311771bea7068ff93251f9ea — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:6ed5bacd4d45257e311771bea7068ff93251f9ea — precedes → commit:7c22721d1240e48449e69ab7143ceaadb52add17 — asserted
+- commit:7c22721d1240e48449e69ab7143ceaadb52add17 — changed → file:.github/workflows/abs-browser-mobile-fix.yml — asserted
+- commit:7c22721d1240e48449e69ab7143ceaadb52add17 — precedes → commit:282cdbf927948853d279b64e85ffea381d182143 — asserted
+- commit:282cdbf927948853d279b64e85ffea381d182143 — changed → file:.github/workflows/abs-browser-mobile-fix.yml — asserted
+- commit:282cdbf927948853d279b64e85ffea381d182143 — precedes → commit:5ced9512dcfcc2648671bf1ca8bebd70a8961587 — asserted
+- commit:5ced9512dcfcc2648671bf1ca8bebd70a8961587 — changed → file:.github/workflows/abs-browser-mobile-test.yml — asserted
+- commit:5ced9512dcfcc2648671bf1ca8bebd70a8961587 — precedes → commit:92eb4c2f03c7fd5d21c8aff045725c8c003355ab — asserted
+- commit:92eb4c2f03c7fd5d21c8aff045725c8c003355ab — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:92eb4c2f03c7fd5d21c8aff045725c8c003355ab — precedes → commit:925776415d41a5f885d7f35f552d3b0255305e35 — asserted
+- commit:925776415d41a5f885d7f35f552d3b0255305e35 — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:925776415d41a5f885d7f35f552d3b0255305e35 — precedes → commit:6b5349bf7a2ac114a7312471ab58cbbeb4aae118 — asserted
+- commit:6b5349bf7a2ac114a7312471ab58cbbeb4aae118 — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:6b5349bf7a2ac114a7312471ab58cbbeb4aae118 — precedes → commit:39824edab6aa2cc8f3ec202cd29c6a0e9cfb0b32 — asserted
+- commit:39824edab6aa2cc8f3ec202cd29c6a0e9cfb0b32 — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:39824edab6aa2cc8f3ec202cd29c6a0e9cfb0b32 — precedes → commit:9c6e7587d0226b99a341297619e65106b7182e09 — asserted
+- commit:9c6e7587d0226b99a341297619e65106b7182e09 — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:9c6e7587d0226b99a341297619e65106b7182e09 — precedes → commit:1a7ea2399eb9db09999ceaf5b7cb93c3d52ce89d — asserted
+- commit:1a7ea2399eb9db09999ceaf5b7cb93c3d52ce89d — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:1a7ea2399eb9db09999ceaf5b7cb93c3d52ce89d — precedes → commit:b730dbc9d86ff80ee57a8b70c349d2a3d751bfcc — asserted
+- commit:b730dbc9d86ff80ee57a8b70c349d2a3d751bfcc — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:b730dbc9d86ff80ee57a8b70c349d2a3d751bfcc — precedes → commit:33e4e768ad2c7fe4a0be31d5064531e27ffa1fc5 — asserted
+- commit:33e4e768ad2c7fe4a0be31d5064531e27ffa1fc5 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:33e4e768ad2c7fe4a0be31d5064531e27ffa1fc5 — precedes → commit:05a5a28701240c97968672cad346330facb0d231 — asserted
+- commit:05a5a28701240c97968672cad346330facb0d231 — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:05a5a28701240c97968672cad346330facb0d231 — precedes → commit:0ce9f7c9a30fed022160092d1627190a74c50a2f — asserted
+- commit:0ce9f7c9a30fed022160092d1627190a74c50a2f — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:0ce9f7c9a30fed022160092d1627190a74c50a2f — precedes → commit:45778f1985e64b137003ae72f1775421d2d25901 — asserted
+- commit:45778f1985e64b137003ae72f1775421d2d25901 — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:45778f1985e64b137003ae72f1775421d2d25901 — precedes → commit:ff701a7f113ff073cca75ce44a8cef72798ed0b1 — asserted
+- commit:ff701a7f113ff073cca75ce44a8cef72798ed0b1 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:ff701a7f113ff073cca75ce44a8cef72798ed0b1 — precedes → commit:ce4491f446178440537d4b45af38414380a7f0a7 — asserted
+- commit:ce4491f446178440537d4b45af38414380a7f0a7 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:ce4491f446178440537d4b45af38414380a7f0a7 — precedes → commit:92795d65577f35d100ff7a62eaa156914f4fa7a1 — asserted
+- commit:92795d65577f35d100ff7a62eaa156914f4fa7a1 — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:92795d65577f35d100ff7a62eaa156914f4fa7a1 — precedes → commit:13ff5e0ca2cf0023550dcaa3f717820461f8dc1a — asserted
+- commit:13ff5e0ca2cf0023550dcaa3f717820461f8dc1a — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:13ff5e0ca2cf0023550dcaa3f717820461f8dc1a — precedes → commit:a4cc14339843a0f6569cdd2df900933aa9ce5d6a — asserted
+- commit:a4cc14339843a0f6569cdd2df900933aa9ce5d6a — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:a4cc14339843a0f6569cdd2df900933aa9ce5d6a — precedes → commit:0e5890a6a417e3d168a4f34dcb2badd43af0d3f3 — asserted
+- commit:0e5890a6a417e3d168a4f34dcb2badd43af0d3f3 — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:0e5890a6a417e3d168a4f34dcb2badd43af0d3f3 — precedes → commit:58afa4bf0c3698698906c5ced633be369388da73 — asserted
+- commit:58afa4bf0c3698698906c5ced633be369388da73 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:58afa4bf0c3698698906c5ced633be369388da73 — precedes → commit:eab44057e27e74ad66459364b7e530eb2e9557bb — asserted
+- commit:eab44057e27e74ad66459364b7e530eb2e9557bb — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:eab44057e27e74ad66459364b7e530eb2e9557bb — precedes → commit:3fc1123b542f4786fec9ec1f7aa16dbab3d585d7 — asserted
+- commit:3fc1123b542f4786fec9ec1f7aa16dbab3d585d7 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:3fc1123b542f4786fec9ec1f7aa16dbab3d585d7 — precedes → commit:ae04a2fa1ccf49db8e74f6ef86030584b32a7ad8 — asserted
+- commit:ae04a2fa1ccf49db8e74f6ef86030584b32a7ad8 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- commit:ae04a2fa1ccf49db8e74f6ef86030584b32a7ad8 — precedes → commit:087c2f03c98a332bacb4478961dfc7b65b1cc07a — asserted
+- commit:087c2f03c98a332bacb4478961dfc7b65b1cc07a — changed → file:.github/workflows/abs-browser-mobile-native.yml — asserted
+- commit:087c2f03c98a332bacb4478961dfc7b65b1cc07a — changed → file:.github/workflows/abs-browser-mobile-test.yml — asserted
+- commit:087c2f03c98a332bacb4478961dfc7b65b1cc07a — precedes → commit:759c8bca5f768a088c03ee53400a022ff4578511 — asserted
+- commit:759c8bca5f768a088c03ee53400a022ff4578511 — changed → file:abs_core/trajectory.py — asserted
+- commit:759c8bca5f768a088c03ee53400a022ff4578511 — changed → file:tests/test_trajectory.py — asserted
+- event:repository-scan:03ca52b68a41 — generated → evidence:repository:03ca52b68a41 — asserted
+- commit:759c8bca5f768a088c03ee53400a022ff4578511 — observed_by → event:repository-scan:03ca52b68a41 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:af3f0964a0ea — repository_scan — observed — 417 files indexed at revision 22a380afb0748c3071663be242a22017e7c126c6
-- evidence:test:98d9c1ff67c5 — test — tested — 223 passed in 7.73s
+- evidence:repository:03ca52b68a41 — repository_scan — observed — 423 files indexed at revision 759c8bca5f768a088c03ee53400a022ff4578511
+- evidence:test:7199707cb24b — test — tested — 225 passed in 6.49s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
