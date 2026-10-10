@@ -1272,64 +1272,6 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
-            coolify-locale-runtime)
-              {
-                echo "[All locale-switching code references]"
-                sudo -n docker exec coolify sh -lc 'grep -RniE "setLocale|setlocale|app.locale|APP_LOCALE|pt-br.json|Accept-Language|locale" /var/www/html/app /var/www/html/bootstrap /var/www/html/routes /var/www/html/config /var/www/html/resources/js 2>/dev/null | head -n 160' 2>&1 || true
-                echo
-                echo "[Official Portuguese translation file metadata and representative keys]"
-                sudo -n docker exec coolify php -r '$f="/var/www/html/lang/pt-br.json"; $d=json_decode(file_get_contents($f),true) ?: []; echo "file_bytes=".filesize($f)." keys=".count($d).PHP_EOL; foreach (["Dashboard","Projects","Servers","Settings","Logout","Applications","Services","Deploy","Save","Cancel"] as $k) echo $k." => ".($d[$k] ?? "(not in translation file)").PHP_EOL;'
-                echo
-                echo "[Current runtime config cache]"
-                sudo -n docker exec coolify sh -lc 'ls -l /var/www/html/bootstrap/cache/config.php 2>/dev/null || true; grep -n "locale" /var/www/html/config/app.php | head -n 8'
-              } > /tmp/abs-vps-result.txt
-              result="$(cat /tmp/abs-vps-result.txt)"
-              ;;
-            coolify-locale-deep-inspect)
-              {
-                echo "[Laravel locale files and env override support]"
-                sudo -n docker exec coolify sh -lc 'grep -RniE "APP_LOCALE|config\([\x27\x22]app.locale|app.locale|pt-br.json|locale.*localStorage|setLocale|language" /var/www/html/config /var/www/html/resources/js /var/www/html/resources/views /var/www/html/app/Livewire 2>/dev/null | head -n 120' 2>&1 || true
-                echo
-                echo "[Existing translation keys versus source strings]"
-                sudo -n docker exec coolify php -r '$f="/var/www/html/lang/pt-br.json"; $d=json_decode(file_get_contents($f),true) ?: []; echo "keys=".count($d).PHP_EOL; echo "app_config_locale=".(require "/var/www/html/config/app.php")["locale"].PHP_EOL; foreach (["Dashboard","Projects","Servers","Settings","Logout","Applications","Services","Terminal","Deploy","Backups"] as $k) echo $k." => ".($d[$k] ?? "(missing)").PHP_EOL;' 2>&1 || true
-                echo
-                echo "[Dashboard HTTPS redirect location]"
-                curl -sS -k -I --max-time 10 'https://coolify.207.180.3.245.sslip.io/' 2>&1 | grep -Ei '^(HTTP/|location:|content-type:)' | head -n 12
-                echo
-                echo "[Code Server HTTPS redirect location]"
-                curl -sS -k -I --max-time 10 'https://codeserver-bb55qbolrf4pqfl45gomnzyl.207.180.3.245.sslip.io/' 2>&1 | grep -Ei '^(HTTP/|location:|content-type:)' | head -n 12
-              } > /tmp/abs-vps-result.txt
-              result="$(cat /tmp/abs-vps-result.txt)"
-              ;;
-            coolify-volume-backup-records)
-              {
-                sudo -n docker exec coolify php artisan tinker --execute='$s=app("db")->getSchemaBuilder(); foreach(["local_persistent_volumes","local_file_volumes","service_applications","services","scheduled_volume_backups"] as $t){if(!$s->hasTable($t)){echo "missing=".$t.PHP_EOL;continue;} echo $t." columns=".implode(",",$s->getColumnListing($t)).PHP_EOL;} foreach(["local_persistent_volumes","local_file_volumes"] as $t){if(!$s->hasTable($t))continue; foreach(app("db")->table($t)->get() as $r){$a=(array)$r; $j=strtolower(json_encode($a)); if(str_contains($j,"code-server")||str_contains($j,"bb55qbol")||str_contains($j,"26sw5juk")) echo $t." ".json_encode($a,JSON_UNESCAPED_SLASHES).PHP_EOL;}}' 2>&1 || true
-              } > /tmp/abs-vps-result.txt
-              result="$(cat /tmp/abs-vps-result.txt)"
-              ;;
-            coolify-volume-backup-source)
-              {
-                echo "[ScheduledVolumeBackup model]"
-                sudo -n docker exec coolify sh -lc 'sed -n "1,180p" /var/www/html/app/Models/ScheduledVolumeBackup.php; echo; sed -n "400,470p" /var/www/html/app/Livewire/Project/Shared/Storages/VolumeBackups.php; echo; sed -n "1,150p" /var/www/html/app/Livewire/Project/Service/VolumeBackup/Index.php' 2>&1 | head -n 300
-                echo
-                echo "[Persistent volume records associated with Code Server]"
-                sudo -n docker exec coolify php artisan tinker --execute='$s=app("db")->getSchemaBuilder(); foreach(["local_persistent_volumes","local_file_volumes"] as $t){if(!$s->hasTable($t)){echo "missing_table=".$t.PHP_EOL;continue;} echo $t." columns=".implode(",",$s->getColumnListing($t)).PHP_EOL; foreach(app("db")->table($t)->get() as $r){$a=(array)$r; $j=strtolower(json_encode($a)); if(str_contains($j,"code-server")||str_contains($j,"bb55qbol")) echo json_encode(array_intersect_key($a,array_flip(["id","uuid","name","mount_path","resource_type","resource_id","service_id","created_at"])),JSON_UNESCAPED_SLASHES).PHP_EOL;}}' 2>&1 || true
-              } > /tmp/abs-vps-result.txt
-              result="$(cat /tmp/abs-vps-result.txt)"
-              ;;
-            coolify-volume-backup-preflight)
-              {
-                echo "[Scheduled volume backup schema and model]"
-                sudo -n docker exec coolify php artisan tinker --execute='$m=new App\\Models\\ScheduledVolumeBackup; echo "table=".$m->getTable().PHP_EOL; echo "fillable=".implode(",",$m->getFillable()).PHP_EOL; echo "casts=".json_encode($m->getCasts()).PHP_EOL; echo "backupable_morph_map=".json_encode(Illuminate\\Database\\Eloquent\\Relations\\Relation::morphMap()).PHP_EOL; $s=app("db")->getSchemaBuilder(); foreach(["scheduled_volume_backups","scheduled_volume_backup_executions","services","service_applications"] as $t){if($s->hasTable($t)) echo $t." columns=".implode(",",$s->getColumnListing($t)).PHP_EOL;}' 2>&1 || true
-                echo
-                echo "[Volume backup relationships and supported resource types]"
-                sudo -n docker exec coolify sh -lc 'grep -RniE "ScheduledVolumeBackup|scheduledVolumeBackups|backupable_type|function volumeBackups|volumeBackups\(" /var/www/html/app/Models /var/www/html/app/Livewire /var/www/html/database/migrations 2>/dev/null | head -n 100' 2>&1 || true
-                echo
-                echo "[Current Code Server persistent volume size]"
-                sudo -n docker run --rm -v bb55qbolrf4pqfl45gomnzyl_code-server-config:/data:ro alpine:3.22 sh -lc 'du -sh /data; find /data -maxdepth 3 -type f | wc -l' 2>&1 || true
-              } > /tmp/abs-vps-result.txt
-              result="$(cat /tmp/abs-vps-result.txt)"
-              ;;
             coolify-final-verify)
               {
                 echo "[Coolify stack health]"
@@ -1379,36 +1321,10 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
-            coolify-code-server-backup-test)
-              {
-                echo "[Queue one immediate Code Server volume backup]"
-                sudo -n docker exec coolify php artisan tinker --execute='$b=App\Models\ScheduledVolumeBackup::where("backupable_type","App\\Models\\LocalPersistentVolume")->where("backupable_id",5)->firstOrFail(); App\Jobs\VolumeBackupJob::dispatch($b); echo json_encode(["queued"=>true,"backup_schedule_id"=>$b->id,"target_id"=>$b->backupable_id,"frequency"=>$b->frequency],JSON_PRETTY_PRINT),PHP_EOL;' 2>&1 || true
-              } > /tmp/abs-vps-result.txt
-              result="$(cat /tmp/abs-vps-result.txt)"
-              ;;
             coolify-code-server-backup-configure)
               {
                 echo "[Configure daily local backup for Code Server config volume]"
                 sudo -n docker exec coolify php artisan tinker --execute='$v=App\Models\LocalPersistentVolume::findOrFail(5); if ($v->name !== "bb55qbolrf4pqfl45gomnzyl_code-server-config" || $v->resource_id !== 5) { throw new RuntimeException("Target volume identity mismatch; no changes made."); } $type=$v->getMorphClass(); $b=App\Models\ScheduledVolumeBackup::firstOrNew(["backupable_type"=>$type,"backupable_id"=>$v->id]); $created=!$b->exists; $b->fill(["team_id"=>0,"frequency"=>"30 1 * * *","enabled"=>true,"save_s3"=>false,"disable_local_backup"=>false,"stop_during_backup"=>false,"retention_amount_locally"=>7,"retention_days_locally"=>14,"retention_max_storage_locally"=>2,"retention_amount_s3"=>0,"retention_days_s3"=>0,"retention_max_storage_s3"=>0,"timeout"=>36000,"missing_backup_notification_days"=>0]); $b->save(); echo json_encode(["created"=>$created,"enabled"=>(bool)$b->fresh()->enabled,"frequency"=>$b->fresh()->frequency,"target_type"=>$type,"target_id"=>$v->id,"target_name"=>$v->name,"retention_count"=>$b->fresh()->retention_amount_locally,"retention_days"=>$b->fresh()->retention_days_locally,"local_backup"=>!(bool)$b->fresh()->disable_local_backup,"s3_enabled"=>(bool)$b->fresh()->save_s3],JSON_PRETTY_PRINT),PHP_EOL;' 2>&1 || true
-              } > /tmp/abs-vps-result.txt
-              result="$(cat /tmp/abs-vps-result.txt)"
-              ;;
-            coolify-code-server-cleanup-audit)
-              {
-                echo "[Code Server service records: IDs and route metadata only]"
-                sudo -n docker exec coolify php artisan tinker --execute='$rows=app("db")->table("services")->where("name","like","%code-server%")->orderBy("id")->get(); foreach($rows as $r){$apps=app("db")->table("service_applications")->where("service_id",$r->id)->get(); echo json_encode(["service_id"=>$r->id,"name"=>$r->name,"uuid"=>$r->uuid,"deleted_at"=>$r->deleted_at,"application_count"=>$apps->count(),"applications"=>$apps->map(fn($a)=>["uuid"=>$a->uuid,"fqdn"=>$a->fqdn,"image"=>$a->image])->values()],JSON_UNESCAPED_SLASHES).PHP_EOL;}' 2>&1 || true
-                echo
-                echo "[Code Server volumes and mounts]"
-                sudo -n docker volume ls --format '{{.Name}}' | grep -Ei 'code.?server|nx4a3xzy|lrm5h5ui|ahm46nsi|u30wfx4g|bb55qbol' | while read v; do sudo -n docker volume inspect "$v" --format '{{.Name}}|{{.Mountpoint}}' 2>/dev/null; done
-                echo
-                echo "[Running containers matching Code Server]"
-                sudo -n docker ps -a --filter name=code-server --format 'name={{.Names}} state={{.Status}} image={{.Image}} ports={{.Ports}}'
-                echo
-                echo "[Public Code Server page, following redirects with TLS verification]"
-                curl -sS --max-time 20 -L -o /dev/null -w 'final_http_status=%{http_code} redirects=%{num_redirects} final_url=%{url_effective} tls_verify=%{ssl_verify_result} content_type=%{content_type}\\n' 'https://codeserver-bb55qbolrf4pqfl45gomnzyl.207.180.3.245.sslip.io/' 2>&1 || true
-                echo
-                echo "[Public dashboard page, following redirects with TLS verification]"
-                curl -sS --max-time 20 -L -o /dev/null -w 'final_http_status=%{http_code} redirects=%{num_redirects} final_url=%{url_effective} tls_verify=%{ssl_verify_result} content_type=%{content_type}\\n' 'https://coolify.207.180.3.245.sslip.io/' 2>&1 || true
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
