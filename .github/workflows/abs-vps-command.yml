@@ -760,6 +760,9 @@ jobs:
                   echo "Pinned Selkies source checkout not found."
                 fi
                 echo
+                echo "[All source declarations of overlayInput and keyboard-input-assist]"
+                grep -Rni -C 3 -E 'id=["'\''"]overlayInput|id=["'\''"]keyboard-input-assist|overlayInput' "$HOME/abs-browser/selkies-source/addons/selkies-dashboard/src" "$HOME/abs-browser/selkies-source/addons/selkies-web-core/lib" 2>/dev/null | head -n 120 || true
+                echo
                 echo "[Source: input event implementation]"
                 grep -n -C 4 -E 'overlayInput|keyboardInputAssist|touchstart|touchend|pointerdown|pointerup' "$HOME/abs-browser/selkies-source/addons/selkies-web-core/lib/input.js" 2>/dev/null | head -n 100 || true
                 echo
