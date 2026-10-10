@@ -1106,6 +1106,12 @@ jobs:
                 echo "[Coolify backup-related database table names]"
                 sudo -n docker exec coolify php artisan tinker --execute='$tables = Illuminate\Support\Facades\Schema::getTableListing(); foreach ($tables as $t) { if (str_contains(strtolower($t), "backup") || str_contains(strtolower($t), "schedule") || str_contains(strtolower($t), "s3")) echo $t.PHP_EOL; }' 2>&1 || true
                 echo
+                echo "[Backup/schedule tables — column names and row counts only]"
+                sudo -n docker exec coolify php artisan tinker --execute='$tables = app("db")->getSchemaBuilder()->getTableListing(); foreach ($tables as $t) { $n = preg_replace("/^public\\\\./", "", $t); if (str_contains(strtolower($n), "backup") || str_contains(strtolower($n), "schedule") || str_contains(strtolower($n), "s3")) { $cols = app("db")->getSchemaBuilder()->getColumnListing($n); echo $n." rows=".app("db")->table($n)->count()." columns=".implode(",", $cols).PHP_EOL; } }' 2>&1 || true
+                echo
+                echo "[Coolify backup directories — disk use and file counts, no filenames]"
+                sudo -n sh -lc 'for p in /data/coolify/backups /data/coolify/databases /data/coolify/source; do if [ -d "$p" ]; then printf "%s: " "$p"; du -sh "$p" 2>/dev/null | cut -f1; printf "files="; find "$p" -type f 2>/dev/null | wc -l; else echo "$p: MISSING"; fi; done' 2>&1 || true
+                echo
                 echo "[Coolify backup-related setting names only — values intentionally omitted]"
                 sudo -n docker exec coolify php artisan tinker --execute='$s = App\Models\InstanceSettings::find(0); foreach (array_keys($s->getAttributes()) as $k) { if (str_contains(strtolower($k), "backup") || str_contains(strtolower($k), "s3") || str_contains(strtolower($k), "storage")) echo $k.PHP_EOL; }' 2>&1 || true
                 echo
