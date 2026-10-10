@@ -126,7 +126,7 @@ jobs:
           else
             echo "INFO | Tailscale is not connected from the VPS; no firewall changes made."
           fi
-          echo "LIMITATION | Current Selkies transport maps touch to pointer events; true multi-finger pinch zoom requires a client/transport code change and is not claimed as implemented."
+          echo "INFO | Selkies 2.0 direct-touch input implements two-finger pinch as Ctrl+wheel; the remote VPS cannot validate the physical phone gesture end-to-end, so that final behavior must be checked on the phone."
           echo "ABS BROWSER MOBILE NATIVE INTERACTION FINISHED"
 
       - name: Publish report
