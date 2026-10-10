@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T23:20:26-03:00",
-  "source_revision": "843509d79af191ee28d7c64e5b0e11916d358e9b",
+  "generated_at": "2026-10-09T23:22:06-03:00",
+  "source_revision": "00c3956c35775369753061419fead57e4dbf1426",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "843509d79af191ee28d7c64e5b0e11916d358e9b",
-      "commit_subject": "Valida o fluxo de vídeo do espelho móvel ABS"
+      "revision": "00c3956c35775369753061419fead57e4dbf1426",
+      "commit_subject": "Envia quadro inicial no espelho móvel ABS"
     }
   ],
   "tools": [
@@ -11107,6 +11107,20 @@
       "sha": "843509d79af191ee28d7c64e5b0e11916d358e9b"
     },
     {
+      "id": "commit:6494ed713a8cef7632630d7a220f4475e6c7a001",
+      "kind": "commit",
+      "at": "2026-10-10T02:20:46Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "6494ed713a8cef7632630d7a220f4475e6c7a001"
+    },
+    {
+      "id": "commit:00c3956c35775369753061419fead57e4dbf1426",
+      "kind": "commit",
+      "at": "2026-10-09T23:22:06-03:00",
+      "subject": "Envia quadro inicial no espelho móvel ABS",
+      "sha": "00c3956c35775369753061419fead57e4dbf1426"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11219,23 +11233,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:fd1256d536f1",
+      "id": "evidence:repository:7d7b5f84746e",
       "kind": "evidence",
-      "at": "2026-10-09T23:20:26-03:00",
+      "at": "2026-10-09T23:22:06-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:fd1256d536f1",
+      "id": "event:repository-scan:7d7b5f84746e",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T23:20:26-03:00"
+      "at": "2026-10-09T23:22:06-03:00"
     },
     {
-      "id": "event:commit-observed:843509d79af1",
+      "id": "event:commit-observed:00c3956c3577",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T23:20:26-03:00"
+      "at": "2026-10-09T23:22:06-03:00"
     }
   ],
   "paths": [
@@ -11270,11 +11284,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:85cf69c9111c"
+        "evidence:test:1068caf53a54"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T23:20:26-03:00"
+      "last_validated": "2026-10-09T23:22:06-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11297,20 +11311,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:fd1256d536f1",
+      "id": "evidence:repository:7d7b5f84746e",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T23:20:26-03:00",
+      "observed_at": "2026-10-09T23:22:06-03:00",
       "status": "observed",
-      "detail": "427 files indexed at revision 843509d79af191ee28d7c64e5b0e11916d358e9b"
+      "detail": "427 files indexed at revision 00c3956c35775369753061419fead57e4dbf1426"
     },
     {
-      "id": "evidence:test:85cf69c9111c",
+      "id": "evidence:test:1068caf53a54",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T23:20:26-03:00",
+      "observed_at": "2026-10-09T23:22:06-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.69s"
+      "detail": "225 passed in 7.66s"
     }
   ],
   "decisions": [
@@ -11413,30 +11427,31 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:fd1256d536f1",
+      "id": "event:repository-scan:7d7b5f84746e",
       "type": "repository_scanned",
-      "at": "2026-10-09T23:20:26-03:00",
-      "revision": "843509d79af191ee28d7c64e5b0e11916d358e9b",
+      "at": "2026-10-09T23:22:06-03:00",
+      "revision": "00c3956c35775369753061419fead57e4dbf1426",
       "file_count": 427,
-      "evidence_id": "evidence:repository:fd1256d536f1"
+      "evidence_id": "evidence:repository:7d7b5f84746e"
     },
     {
-      "id": "event:commit-observed:843509d79af1",
+      "id": "event:commit-observed:00c3956c3577",
       "type": "commit_observed",
-      "at": "2026-10-09T23:20:26-03:00",
-      "revision": "843509d79af191ee28d7c64e5b0e11916d358e9b",
+      "at": "2026-10-09T23:22:06-03:00",
+      "revision": "00c3956c35775369753061419fead57e4dbf1426",
       "branch": "main",
-      "subject": "Valida o fluxo de vídeo do espelho móvel ABS",
+      "subject": "Envia quadro inicial no espelho móvel ABS",
       "changed_files": [
-        ".github/workflows/abs-browser-mobile-webapp.yml"
+        ".github/workflows/abs-browser-mobile-webapp.yml",
+        "abs_browser/mobile_webapp/server.js"
       ]
     },
     {
-      "id": "event:test:85cf69c9111c",
+      "id": "event:test:1068caf53a54",
       "type": "tests_observed",
-      "at": "2026-10-09T23:20:26-03:00",
+      "at": "2026-10-09T23:22:06-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:85cf69c9111c"
+      "evidence_id": "evidence:test:1068caf53a54"
     }
   ],
   "knowledge_sources": [
@@ -11492,7 +11507,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "45c2a169cb54fb4deabffa9d04f06d2a901da8d184a24d48b544bdbc0dadeb8a"
+      "sha256": "474355f7d5bc5a11de4234e5758ef4de6b3fd03342f6e3bb99f93e4a622ffc7c"
     },
     {
       "id": "source:session",
@@ -49845,12 +49860,96 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:fd1256d536f1",
-      "source": "event:repository-scan:fd1256d536f1",
-      "relation": "generated",
-      "target": "evidence:repository:fd1256d536f1",
+      "id": "rel:commit-precedes:843509d79af1:6494ed713a8c",
+      "source": "commit:843509d79af191ee28d7c64e5b0e11916d358e9b",
+      "relation": "precedes",
+      "target": "commit:6494ed713a8cef7632630d7a220f4475e6c7a001",
       "status": "asserted",
-      "at": "2026-10-09T23:20:26-03:00",
+      "at": "2026-10-10T02:20:46Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6494ed713a8c:032adc3624d7",
+      "source": "commit:6494ed713a8cef7632630d7a220f4475e6c7a001",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T02:20:46Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:6494ed713a8c:d64178c49886",
+      "source": "commit:6494ed713a8cef7632630d7a220f4475e6c7a001",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T02:20:46Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:6494ed713a8c:00c3956c3577",
+      "source": "commit:6494ed713a8cef7632630d7a220f4475e6c7a001",
+      "relation": "precedes",
+      "target": "commit:00c3956c35775369753061419fead57e4dbf1426",
+      "status": "asserted",
+      "at": "2026-10-09T23:22:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:00c3956c3577:0d2cf9218065",
+      "source": "commit:00c3956c35775369753061419fead57e4dbf1426",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-webapp.yml",
+      "status": "asserted",
+      "at": "2026-10-09T23:22:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:00c3956c3577:05dc5d4de3f3",
+      "source": "commit:00c3956c35775369753061419fead57e4dbf1426",
+      "relation": "changed",
+      "target": "file:abs_browser/mobile_webapp/server.js",
+      "status": "asserted",
+      "at": "2026-10-09T23:22:06-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:7d7b5f84746e",
+      "source": "event:repository-scan:7d7b5f84746e",
+      "relation": "generated",
+      "target": "evidence:repository:7d7b5f84746e",
+      "status": "asserted",
+      "at": "2026-10-09T23:22:06-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -49859,12 +49958,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:843509d79af1",
-      "source": "commit:843509d79af191ee28d7c64e5b0e11916d358e9b",
+      "id": "rel:scan-commit:00c3956c3577",
+      "source": "commit:00c3956c35775369753061419fead57e4dbf1426",
       "relation": "observed_by",
-      "target": "event:repository-scan:fd1256d536f1",
+      "target": "event:repository-scan:7d7b5f84746e",
       "status": "asserted",
-      "at": "2026-10-09T23:20:26-03:00",
+      "at": "2026-10-09T23:22:06-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
