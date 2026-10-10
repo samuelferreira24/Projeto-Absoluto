@@ -1098,6 +1098,13 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-configure-basics)
+              {
+                echo "[Applying requested Coolify-only preferences]"
+                sudo -n docker exec coolify php artisan tinker --execute='$s = App\Models\InstanceSettings::find(0); $s->update(["instance_name"=>"ABS VPS 01","instance_timezone"=>"America/Sao_Paulo","is_sponsorship_popup_enabled"=>false]); echo json_encode(["instance_name"=>$s->fresh()->instance_name,"instance_timezone"=>$s->fresh()->instance_timezone,"sponsorship_popup_enabled"=>$s->fresh()->is_sponsorship_popup_enabled], JSON_PRETTY_PRINT), PHP_EOL;' 2>&1
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             git)
               {
                 echo "git: $(git --version 2>&1)"
