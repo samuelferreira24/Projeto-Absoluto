@@ -112,6 +112,11 @@ jobs:
                 echo "[Proxy networks]"
                 sudo -n docker inspect coolify-proxy --format '{{json .NetworkSettings.Networks}}' 2>&1 || true
                 echo
+                echo "[Proxy startup arguments]"
+                sudo -n docker inspect coolify-proxy --format '{{json .Config.Cmd}}' 2>&1 || true
+                echo
+                echo "[Proxy compose routing configuration — selected directives only]"
+                sudo -n grep -E 'entryPoints:|entrypoints:|certificatesResolvers:|certificatesresolvers:|acme:|providers:|docker:|tls:|--entrypoints|--certificatesresolvers|--providers' /data/coolify/proxy/docker-compose.yml 2>/dev/null | head -n 80 || true
                 echo "[Proxy labels — no environment variables]"
                 sudo -n docker inspect coolify-proxy --format '{{json .Config.Labels}}' 2>&1 || true
                 echo
