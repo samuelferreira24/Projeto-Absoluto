@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T10:10:08-03:00",
-  "source_revision": "63ab28f06474d605a4b46b585bb87e971e4e37fa",
+  "generated_at": "2026-10-10T10:10:47-03:00",
+  "source_revision": "f6fc875220dfe09e58d28a817b86999a75fb4f26",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "63ab28f06474d605a4b46b585bb87e971e4e37fa",
-      "commit_subject": "Expose safe keyboard interaction counters in browser diagnostic test"
+      "revision": "f6fc875220dfe09e58d28a817b86999a75fb4f26",
+      "commit_subject": "Read keyboard event telemetry locally during diagnostics"
     }
   ],
   "tools": [
@@ -11372,6 +11372,20 @@
       "sha": "63ab28f06474d605a4b46b585bb87e971e4e37fa"
     },
     {
+      "id": "commit:ab4231a5d21caa4a8bed95f921efd3d110db68a8",
+      "kind": "commit",
+      "at": "2026-10-10T13:10:29Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "ab4231a5d21caa4a8bed95f921efd3d110db68a8"
+    },
+    {
+      "id": "commit:f6fc875220dfe09e58d28a817b86999a75fb4f26",
+      "kind": "commit",
+      "at": "2026-10-10T10:10:47-03:00",
+      "subject": "Read keyboard event telemetry locally during diagnostics",
+      "sha": "f6fc875220dfe09e58d28a817b86999a75fb4f26"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11484,23 +11498,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:d93de58bab95",
+      "id": "evidence:repository:c0f0b61faa72",
       "kind": "evidence",
-      "at": "2026-10-10T10:10:08-03:00",
+      "at": "2026-10-10T10:10:47-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:d93de58bab95",
+      "id": "event:repository-scan:c0f0b61faa72",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:10:08-03:00"
+      "at": "2026-10-10T10:10:47-03:00"
     },
     {
-      "id": "event:commit-observed:63ab28f06474",
+      "id": "event:commit-observed:f6fc875220df",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T10:10:08-03:00"
+      "at": "2026-10-10T10:10:47-03:00"
     }
   ],
   "paths": [
@@ -11535,11 +11549,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:4630a7f0c582"
+        "evidence:test:dbf26ff706a1"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T10:10:08-03:00"
+      "last_validated": "2026-10-10T10:10:47-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11562,20 +11576,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:d93de58bab95",
+      "id": "evidence:repository:c0f0b61faa72",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T10:10:08-03:00",
+      "observed_at": "2026-10-10T10:10:47-03:00",
       "status": "observed",
-      "detail": "430 files indexed at revision 63ab28f06474d605a4b46b585bb87e971e4e37fa"
+      "detail": "430 files indexed at revision f6fc875220dfe09e58d28a817b86999a75fb4f26"
     },
     {
-      "id": "evidence:test:4630a7f0c582",
+      "id": "evidence:test:dbf26ff706a1",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T10:10:08-03:00",
+      "observed_at": "2026-10-10T10:10:47-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.79s"
+      "detail": "225 passed in 7.72s"
     }
   ],
   "decisions": [
@@ -11678,30 +11692,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:d93de58bab95",
+      "id": "event:repository-scan:c0f0b61faa72",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:10:08-03:00",
-      "revision": "63ab28f06474d605a4b46b585bb87e971e4e37fa",
+      "at": "2026-10-10T10:10:47-03:00",
+      "revision": "f6fc875220dfe09e58d28a817b86999a75fb4f26",
       "file_count": 430,
-      "evidence_id": "evidence:repository:d93de58bab95"
+      "evidence_id": "evidence:repository:c0f0b61faa72"
     },
     {
-      "id": "event:commit-observed:63ab28f06474",
+      "id": "event:commit-observed:f6fc875220df",
       "type": "commit_observed",
-      "at": "2026-10-10T10:10:08-03:00",
-      "revision": "63ab28f06474d605a4b46b585bb87e971e4e37fa",
+      "at": "2026-10-10T10:10:47-03:00",
+      "revision": "f6fc875220dfe09e58d28a817b86999a75fb4f26",
       "branch": "main",
-      "subject": "Expose safe keyboard interaction counters in browser diagnostic test",
+      "subject": "Read keyboard event telemetry locally during diagnostics",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:4630a7f0c582",
+      "id": "event:test:dbf26ff706a1",
       "type": "tests_observed",
-      "at": "2026-10-10T10:10:08-03:00",
+      "at": "2026-10-10T10:10:47-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:4630a7f0c582"
+      "evidence_id": "evidence:test:dbf26ff706a1"
     }
   ],
   "knowledge_sources": [
@@ -11757,7 +11771,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "4c7856d94d49c231806940237c3e94218b4e26d9866855aba58b9c3c34f9e476"
+      "sha256": "353341b48b0d5d2686ffe4c10e3ef143d464a8d9e249ec37a86f88ec7ff9ceee"
     },
     {
       "id": "source:session",
@@ -51496,12 +51510,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:d93de58bab95",
-      "source": "event:repository-scan:d93de58bab95",
-      "relation": "generated",
-      "target": "evidence:repository:d93de58bab95",
+      "id": "rel:commit-precedes:63ab28f06474:ab4231a5d21c",
+      "source": "commit:63ab28f06474d605a4b46b585bb87e971e4e37fa",
+      "relation": "precedes",
+      "target": "commit:ab4231a5d21caa4a8bed95f921efd3d110db68a8",
       "status": "asserted",
-      "at": "2026-10-10T10:10:08-03:00",
+      "at": "2026-10-10T13:10:29Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ab4231a5d21c:032adc3624d7",
+      "source": "commit:ab4231a5d21caa4a8bed95f921efd3d110db68a8",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T13:10:29Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ab4231a5d21c:d64178c49886",
+      "source": "commit:ab4231a5d21caa4a8bed95f921efd3d110db68a8",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T13:10:29Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:ab4231a5d21c:f6fc875220df",
+      "source": "commit:ab4231a5d21caa4a8bed95f921efd3d110db68a8",
+      "relation": "precedes",
+      "target": "commit:f6fc875220dfe09e58d28a817b86999a75fb4f26",
+      "status": "asserted",
+      "at": "2026-10-10T10:10:47-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f6fc875220df:1734be446032",
+      "source": "commit:f6fc875220dfe09e58d28a817b86999a75fb4f26",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T10:10:47-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:c0f0b61faa72",
+      "source": "event:repository-scan:c0f0b61faa72",
+      "relation": "generated",
+      "target": "evidence:repository:c0f0b61faa72",
+      "status": "asserted",
+      "at": "2026-10-10T10:10:47-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -51510,12 +51594,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:63ab28f06474",
-      "source": "commit:63ab28f06474d605a4b46b585bb87e971e4e37fa",
+      "id": "rel:scan-commit:f6fc875220df",
+      "source": "commit:f6fc875220dfe09e58d28a817b86999a75fb4f26",
       "relation": "observed_by",
-      "target": "event:repository-scan:d93de58bab95",
+      "target": "event:repository-scan:c0f0b61faa72",
       "status": "asserted",
-      "at": "2026-10-10T10:10:08-03:00",
+      "at": "2026-10-10T10:10:47-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
