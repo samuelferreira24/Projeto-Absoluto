@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:48:54-03:00",
-  "source_revision": "9bf320dc6959ab16404a15ba884f9fc9df61f018",
+  "generated_at": "2026-10-10T16:49:27-03:00",
+  "source_revision": "ddd675a0a9ac8eb9bb1b71295eb9cdade4adaa70",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 159
+      "file_count": 160
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "9bf320dc6959ab16404a15ba884f9fc9df61f018",
-      "commit_subject": "Adicionar chave pública para entrega criptografada do token MCP"
+      "revision": "ddd675a0a9ac8eb9bb1b71295eb9cdade4adaa70",
+      "commit_subject": "Corrigir escapes no workflow de deploy MCP"
     }
   ],
   "tools": [
@@ -1128,6 +1128,11 @@
       "id": "file:.github/workflows/vps-admin-command.yml",
       "kind": "file",
       "path": ".github/workflows/vps-admin-command.yml"
+    },
+    {
+      "id": "file:.github/workflows/vps-mcp-deploy.yml",
+      "kind": "file",
+      "path": ".github/workflows/vps-mcp-deploy.yml"
     },
     {
       "id": "file:.gitignore",
@@ -12892,6 +12897,27 @@
       "sha": "9bf320dc6959ab16404a15ba884f9fc9df61f018"
     },
     {
+      "id": "commit:acdaf352113de360cc9636caad4b732006c870c9",
+      "kind": "commit",
+      "at": "2026-10-10T19:49:12Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "acdaf352113de360cc9636caad4b732006c870c9"
+    },
+    {
+      "id": "commit:06e27f03aca6c325f82abc2264ebf614d9ecd35a",
+      "kind": "commit",
+      "at": "2026-10-10T16:49:16-03:00",
+      "subject": "Adicionar deploy autenticado do conector MCP independente da VPS",
+      "sha": "06e27f03aca6c325f82abc2264ebf614d9ecd35a"
+    },
+    {
+      "id": "commit:ddd675a0a9ac8eb9bb1b71295eb9cdade4adaa70",
+      "kind": "commit",
+      "at": "2026-10-10T16:49:27-03:00",
+      "subject": "Corrigir escapes no workflow de deploy MCP",
+      "sha": "ddd675a0a9ac8eb9bb1b71295eb9cdade4adaa70"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -13004,23 +13030,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:44eb0f79a750",
+      "id": "evidence:repository:34d35defcfe1",
       "kind": "evidence",
-      "at": "2026-10-10T16:48:54-03:00",
+      "at": "2026-10-10T16:49:27-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:44eb0f79a750",
+      "id": "event:repository-scan:34d35defcfe1",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:48:54-03:00"
+      "at": "2026-10-10T16:49:27-03:00"
     },
     {
-      "id": "event:commit-observed:9bf320dc6959",
+      "id": "event:commit-observed:ddd675a0a9ac",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:48:54-03:00"
+      "at": "2026-10-10T16:49:27-03:00"
     }
   ],
   "paths": [
@@ -13055,11 +13081,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:965bd418e5de"
+        "evidence:test:e7e9b32301c3"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:48:54-03:00"
+      "last_validated": "2026-10-10T16:49:27-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13082,20 +13108,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:44eb0f79a750",
+      "id": "evidence:repository:34d35defcfe1",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:48:54-03:00",
+      "observed_at": "2026-10-10T16:49:27-03:00",
       "status": "observed",
-      "detail": "446 files indexed at revision 9bf320dc6959ab16404a15ba884f9fc9df61f018"
+      "detail": "447 files indexed at revision ddd675a0a9ac8eb9bb1b71295eb9cdade4adaa70"
     },
     {
-      "id": "evidence:test:965bd418e5de",
+      "id": "evidence:test:e7e9b32301c3",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:48:54-03:00",
+      "observed_at": "2026-10-10T16:49:27-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.28s"
+      "detail": "225 passed in 7.79s"
     }
   ],
   "decisions": [
@@ -13198,30 +13224,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:44eb0f79a750",
+      "id": "event:repository-scan:34d35defcfe1",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:48:54-03:00",
-      "revision": "9bf320dc6959ab16404a15ba884f9fc9df61f018",
-      "file_count": 446,
-      "evidence_id": "evidence:repository:44eb0f79a750"
+      "at": "2026-10-10T16:49:27-03:00",
+      "revision": "ddd675a0a9ac8eb9bb1b71295eb9cdade4adaa70",
+      "file_count": 447,
+      "evidence_id": "evidence:repository:34d35defcfe1"
     },
     {
-      "id": "event:commit-observed:9bf320dc6959",
+      "id": "event:commit-observed:ddd675a0a9ac",
       "type": "commit_observed",
-      "at": "2026-10-10T16:48:54-03:00",
-      "revision": "9bf320dc6959ab16404a15ba884f9fc9df61f018",
+      "at": "2026-10-10T16:49:27-03:00",
+      "revision": "ddd675a0a9ac8eb9bb1b71295eb9cdade4adaa70",
       "branch": "main",
-      "subject": "Adicionar chave pública para entrega criptografada do token MCP",
+      "subject": "Corrigir escapes no workflow de deploy MCP",
       "changed_files": [
-        "services/vps-mcp/token-encryption-public.pem"
+        ".github/workflows/vps-mcp-deploy.yml"
       ]
     },
     {
-      "id": "event:test:965bd418e5de",
+      "id": "event:test:e7e9b32301c3",
       "type": "tests_observed",
-      "at": "2026-10-10T16:48:54-03:00",
+      "at": "2026-10-10T16:49:27-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:965bd418e5de"
+      "evidence_id": "evidence:test:e7e9b32301c3"
     }
   ],
   "knowledge_sources": [
@@ -13277,7 +13303,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "ade7915792aeca6fc9a1e39f6d2d01fa77a6044786b9fb273e64d51ce61dddd4"
+      "sha256": "d21327eed9a00d245defebd13c13180a724f0eac253f50696a161c3512291019"
     },
     {
       "id": "source:session",
@@ -60058,12 +60084,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:44eb0f79a750",
-      "source": "event:repository-scan:44eb0f79a750",
-      "relation": "generated",
-      "target": "evidence:repository:44eb0f79a750",
+      "id": "rel:commit-precedes:9bf320dc6959:acdaf352113d",
+      "source": "commit:9bf320dc6959ab16404a15ba884f9fc9df61f018",
+      "relation": "precedes",
+      "target": "commit:acdaf352113de360cc9636caad4b732006c870c9",
       "status": "asserted",
-      "at": "2026-10-10T16:48:54-03:00",
+      "at": "2026-10-10T19:49:12Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:acdaf352113d:032adc3624d7",
+      "source": "commit:acdaf352113de360cc9636caad4b732006c870c9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:49:12Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:acdaf352113d:d64178c49886",
+      "source": "commit:acdaf352113de360cc9636caad4b732006c870c9",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:49:12Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:acdaf352113d:06e27f03aca6",
+      "source": "commit:acdaf352113de360cc9636caad4b732006c870c9",
+      "relation": "precedes",
+      "target": "commit:06e27f03aca6c325f82abc2264ebf614d9ecd35a",
+      "status": "asserted",
+      "at": "2026-10-10T16:49:16-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:06e27f03aca6:d67eb89a8f39",
+      "source": "commit:06e27f03aca6c325f82abc2264ebf614d9ecd35a",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-mcp-deploy.yml",
+      "status": "asserted",
+      "at": "2026-10-10T16:49:16-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:06e27f03aca6:ddd675a0a9ac",
+      "source": "commit:06e27f03aca6c325f82abc2264ebf614d9ecd35a",
+      "relation": "precedes",
+      "target": "commit:ddd675a0a9ac8eb9bb1b71295eb9cdade4adaa70",
+      "status": "asserted",
+      "at": "2026-10-10T16:49:27-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:ddd675a0a9ac:d67eb89a8f39",
+      "source": "commit:ddd675a0a9ac8eb9bb1b71295eb9cdade4adaa70",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-mcp-deploy.yml",
+      "status": "asserted",
+      "at": "2026-10-10T16:49:27-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:34d35defcfe1",
+      "source": "event:repository-scan:34d35defcfe1",
+      "relation": "generated",
+      "target": "evidence:repository:34d35defcfe1",
+      "status": "asserted",
+      "at": "2026-10-10T16:49:27-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -60072,12 +60196,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:9bf320dc6959",
-      "source": "commit:9bf320dc6959ab16404a15ba884f9fc9df61f018",
+      "id": "rel:scan-commit:ddd675a0a9ac",
+      "source": "commit:ddd675a0a9ac8eb9bb1b71295eb9cdade4adaa70",
       "relation": "observed_by",
-      "target": "event:repository-scan:44eb0f79a750",
+      "target": "event:repository-scan:34d35defcfe1",
       "status": "asserted",
-      "at": "2026-10-10T16:48:54-03:00",
+      "at": "2026-10-10T16:49:27-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
