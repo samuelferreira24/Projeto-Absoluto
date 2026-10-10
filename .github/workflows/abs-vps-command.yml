@@ -700,6 +700,14 @@ jobs:
                 done
                 cat /tmp/abs-browser-keyboard-health.json 2>&1
                 echo
+                echo "[Local keyboard event telemetry]"
+                local_state="$(curl -fsS --max-time 3 http://127.0.0.1:9223/abs-keyboard-focus 2>/dev/null || true)"
+                if [ -n "$local_state" ]; then
+                  printf '%s' "$local_state" | python3 -c 'import json,sys; d=json.load(sys.stdin); x=d.get("diagnostics"); print("PASS | Local focus endpoint responds; focused="+str(d.get("focused",False)).lower()); print("KEYBOARD_DIAGNOSTICS="+json.dumps(x,separators=(",",":")) if isinstance(x,dict) else "KEYBOARD_DIAGNOSTICS=none-yet")' 2>&1 || echo "WARN | Could not parse local keyboard diagnostics."
+                else
+                  echo "WARN | Local focus endpoint did not respond."
+                fi
+                echo
                 echo "[Tailscale Serve route]"
                 timeout 6s sudo -n tailscale serve status 2>&1 | grep -E '(/abs-keyboard-focus|/ proxy)' | head -n 4
                 echo
