@@ -17,7 +17,7 @@ jobs:
     concurrency:
       group: abs-vps-shared-tree
       cancel-in-progress: false
-    runs-on: [self-hosted, abs-vps-01]
+    runs-on: [self-hosted]
     timeout-minutes: 10
 
     steps:
