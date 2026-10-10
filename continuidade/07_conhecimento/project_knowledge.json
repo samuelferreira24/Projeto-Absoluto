@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:51:33-03:00",
-  "source_revision": "8729c967b909545be0a9a63535f998de3c86c0b6",
+  "generated_at": "2026-10-10T16:53:40-03:00",
+  "source_revision": "304e448c6a6b0a0eac667c706245f19a5adb2af5",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 160
+      "file_count": 161
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "8729c967b909545be0a9a63535f998de3c86c0b6",
-      "commit_subject": "Permitir somente o hostname público esperado no transporte MCP"
+      "revision": "304e448c6a6b0a0eac667c706245f19a5adb2af5",
+      "commit_subject": "Guardar temporariamente ciphertext criptografado para recuperação segura do token MCP"
     }
   ],
   "tools": [
@@ -3833,6 +3833,11 @@
       "id": "file:tests/test_vertical_slice.py",
       "kind": "file",
       "path": "tests/test_vertical_slice.py"
+    },
+    {
+      "id": "file:tmp/vps-mcp-token-ciphertext.txt",
+      "kind": "file",
+      "path": "tmp/vps-mcp-token-ciphertext.txt"
     },
     {
       "id": "file:tools/00_README.md",
@@ -12932,6 +12937,20 @@
       "sha": "8729c967b909545be0a9a63535f998de3c86c0b6"
     },
     {
+      "id": "commit:493afeb6da7fad4d8bad9888a2c79bebc9f653d6",
+      "kind": "commit",
+      "at": "2026-10-10T19:51:54Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "493afeb6da7fad4d8bad9888a2c79bebc9f653d6"
+    },
+    {
+      "id": "commit:304e448c6a6b0a0eac667c706245f19a5adb2af5",
+      "kind": "commit",
+      "at": "2026-10-10T16:53:40-03:00",
+      "subject": "Guardar temporariamente ciphertext criptografado para recuperação segura do token MCP",
+      "sha": "304e448c6a6b0a0eac667c706245f19a5adb2af5"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -13044,23 +13063,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:7b0f3ffc27d0",
+      "id": "evidence:repository:36ee8b4585db",
       "kind": "evidence",
-      "at": "2026-10-10T16:51:33-03:00",
+      "at": "2026-10-10T16:53:40-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:7b0f3ffc27d0",
+      "id": "event:repository-scan:36ee8b4585db",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:51:33-03:00"
+      "at": "2026-10-10T16:53:40-03:00"
     },
     {
-      "id": "event:commit-observed:8729c967b909",
+      "id": "event:commit-observed:304e448c6a6b",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:51:33-03:00"
+      "at": "2026-10-10T16:53:40-03:00"
     }
   ],
   "paths": [
@@ -13095,11 +13114,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:2d8544c21727"
+        "evidence:test:445067b2700b"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:51:33-03:00"
+      "last_validated": "2026-10-10T16:53:40-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13122,20 +13141,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:7b0f3ffc27d0",
+      "id": "evidence:repository:36ee8b4585db",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:51:33-03:00",
+      "observed_at": "2026-10-10T16:53:40-03:00",
       "status": "observed",
-      "detail": "447 files indexed at revision 8729c967b909545be0a9a63535f998de3c86c0b6"
+      "detail": "448 files indexed at revision 304e448c6a6b0a0eac667c706245f19a5adb2af5"
     },
     {
-      "id": "evidence:test:2d8544c21727",
+      "id": "evidence:test:445067b2700b",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:51:33-03:00",
+      "observed_at": "2026-10-10T16:53:40-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.87s"
+      "detail": "225 passed in 7.77s"
     }
   ],
   "decisions": [
@@ -13238,30 +13257,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:7b0f3ffc27d0",
+      "id": "event:repository-scan:36ee8b4585db",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:51:33-03:00",
-      "revision": "8729c967b909545be0a9a63535f998de3c86c0b6",
-      "file_count": 447,
-      "evidence_id": "evidence:repository:7b0f3ffc27d0"
+      "at": "2026-10-10T16:53:40-03:00",
+      "revision": "304e448c6a6b0a0eac667c706245f19a5adb2af5",
+      "file_count": 448,
+      "evidence_id": "evidence:repository:36ee8b4585db"
     },
     {
-      "id": "event:commit-observed:8729c967b909",
+      "id": "event:commit-observed:304e448c6a6b",
       "type": "commit_observed",
-      "at": "2026-10-10T16:51:33-03:00",
-      "revision": "8729c967b909545be0a9a63535f998de3c86c0b6",
+      "at": "2026-10-10T16:53:40-03:00",
+      "revision": "304e448c6a6b0a0eac667c706245f19a5adb2af5",
       "branch": "main",
-      "subject": "Permitir somente o hostname público esperado no transporte MCP",
+      "subject": "Guardar temporariamente ciphertext criptografado para recuperação segura do token MCP",
       "changed_files": [
-        "services/vps-mcp/main.py"
+        "tmp/vps-mcp-token-ciphertext.txt"
       ]
     },
     {
-      "id": "event:test:2d8544c21727",
+      "id": "event:test:445067b2700b",
       "type": "tests_observed",
-      "at": "2026-10-10T16:51:33-03:00",
+      "at": "2026-10-10T16:53:40-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:2d8544c21727"
+      "evidence_id": "evidence:test:445067b2700b"
     }
   ],
   "knowledge_sources": [
@@ -13317,7 +13336,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "33a88f36ff7b00835281b431eb48bf5bccd2078325990c1292b632236cacc1fa"
+      "sha256": "117272bbb6ddba63bc3708a0dfc176fde904b4c2cdc99e620e203d5f01c790cc"
     },
     {
       "id": "source:session",
@@ -60266,12 +60285,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:7b0f3ffc27d0",
-      "source": "event:repository-scan:7b0f3ffc27d0",
-      "relation": "generated",
-      "target": "evidence:repository:7b0f3ffc27d0",
+      "id": "rel:commit-precedes:8729c967b909:493afeb6da7f",
+      "source": "commit:8729c967b909545be0a9a63535f998de3c86c0b6",
+      "relation": "precedes",
+      "target": "commit:493afeb6da7fad4d8bad9888a2c79bebc9f653d6",
       "status": "asserted",
-      "at": "2026-10-10T16:51:33-03:00",
+      "at": "2026-10-10T19:51:54Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:493afeb6da7f:032adc3624d7",
+      "source": "commit:493afeb6da7fad4d8bad9888a2c79bebc9f653d6",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:51:54Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:493afeb6da7f:d64178c49886",
+      "source": "commit:493afeb6da7fad4d8bad9888a2c79bebc9f653d6",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:51:54Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:493afeb6da7f:304e448c6a6b",
+      "source": "commit:493afeb6da7fad4d8bad9888a2c79bebc9f653d6",
+      "relation": "precedes",
+      "target": "commit:304e448c6a6b0a0eac667c706245f19a5adb2af5",
+      "status": "asserted",
+      "at": "2026-10-10T16:53:40-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:304e448c6a6b:5a570aa644af",
+      "source": "commit:304e448c6a6b0a0eac667c706245f19a5adb2af5",
+      "relation": "changed",
+      "target": "file:tmp/vps-mcp-token-ciphertext.txt",
+      "status": "asserted",
+      "at": "2026-10-10T16:53:40-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:36ee8b4585db",
+      "source": "event:repository-scan:36ee8b4585db",
+      "relation": "generated",
+      "target": "evidence:repository:36ee8b4585db",
+      "status": "asserted",
+      "at": "2026-10-10T16:53:40-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -60280,12 +60369,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:8729c967b909",
-      "source": "commit:8729c967b909545be0a9a63535f998de3c86c0b6",
+      "id": "rel:scan-commit:304e448c6a6b",
+      "source": "commit:304e448c6a6b0a0eac667c706245f19a5adb2af5",
       "relation": "observed_by",
-      "target": "event:repository-scan:7b0f3ffc27d0",
+      "target": "event:repository-scan:36ee8b4585db",
       "status": "asserted",
-      "at": "2026-10-10T16:51:33-03:00",
+      "at": "2026-10-10T16:53:40-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
