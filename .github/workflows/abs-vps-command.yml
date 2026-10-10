@@ -1302,6 +1302,22 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-cleanup-stale)
+              set -e
+              {
+                echo "[Safety preflight: refuse cleanup if stale containers or volumes exist]"
+                if sudo -n docker ps -a --format '{{.Names}}' | grep -Eq 'nx4a3xzy|lrm5h5ui|ahm46nsi|u30wfx4g'; then echo "CLEANUP_ABORT: stale Code Server container still exists"; exit 1; fi
+                if sudo -n docker volume ls --format '{{.Name}}' | grep -Eq 'nx4a3xzy|lrm5h5ui|ahm46nsi|u30wfx4g'; then echo "CLEANUP_ABORT: stale Code Server volume still exists"; exit 1; fi
+                echo "preflight=PASS"
+                echo
+                echo "[Soft-delete only failed duplicate Coolify records; keep service ID 5 running]"
+                sudo -n docker exec coolify php artisan tinker --execute='$apps=app("App\\Models\\ServiceApplication")->newQuery()->whereIn("service_id",[1,2])->get(); foreach ($apps as $a) { $a->delete(); echo "soft_deleted_service_application=".$a->id.PHP_EOL; } $services=app("App\\Models\\Service")->newQuery()->whereIn("id",[1,2,3,4])->get(); foreach ($services as $s) { $s->delete(); echo "soft_deleted_service=".$s->id.PHP_EOL; } echo "active_code_server_service_count=".app("App\\Models\\Service")->newQuery()->where("name","like","%code-server%")->count().PHP_EOL;' 2>&1
+                echo
+                echo "[Code Server running container preserved]"
+                sudo -n docker inspect code-server-bb55qbolrf4pqfl45gomnzyl --format 'state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} restarts={{.RestartCount}}' 2>&1
+              } > /tmp/abs-vps-result.txt 2>&1
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-cleanup-audit)
               {
                 echo "[Old Code Server containers — should be absent before cleanup]"
