@@ -1301,6 +1301,25 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-cleanup-audit)
+              {
+                echo "[Code Server service records: IDs and route metadata only]"
+                sudo -n docker exec coolify php artisan tinker --execute='$rows=app("db")->table("services")->where("name","like","%code-server%")->orderBy("id")->get(); foreach($rows as $r){$apps=app("db")->table("service_applications")->where("service_id",$r->id)->get(); echo json_encode(["service_id"=>$r->id,"name"=>$r->name,"uuid"=>$r->uuid,"deleted_at"=>$r->deleted_at,"application_count"=>$apps->count(),"applications"=>$apps->map(fn($a)=>["uuid"=>$a->uuid,"fqdn"=>$a->fqdn,"image"=>$a->image])->values()],JSON_UNESCAPED_SLASHES).PHP_EOL;}' 2>&1 || true
+                echo
+                echo "[Code Server volumes and mounts]"
+                sudo -n docker volume ls --format '{{.Name}}' | grep -Ei 'code.?server|nx4a3xzy|lrm5h5ui|ahm46nsi|u30wfx4g|bb55qbol' | while read v; do sudo -n docker volume inspect "$v" --format '{{.Name}}|{{.Mountpoint}}' 2>/dev/null; done
+                echo
+                echo "[Running containers matching Code Server]"
+                sudo -n docker ps -a --filter name=code-server --format 'name={{.Names}} state={{.Status}} image={{.Image}} ports={{.Ports}}'
+                echo
+                echo "[Public Code Server page, following redirects with TLS verification]"
+                curl -sS --max-time 20 -L -o /dev/null -w 'final_http_status=%{http_code} redirects=%{num_redirects} final_url=%{url_effective} tls_verify=%{ssl_verify_result} content_type=%{content_type}\\n' 'https://codeserver-bb55qbolrf4pqfl45gomnzyl.207.180.3.245.sslip.io/' 2>&1 || true
+                echo
+                echo "[Public dashboard page, following redirects with TLS verification]"
+                curl -sS --max-time 20 -L -o /dev/null -w 'final_http_status=%{http_code} redirects=%{num_redirects} final_url=%{url_effective} tls_verify=%{ssl_verify_result} content_type=%{content_type}\\n' 'https://coolify.207.180.3.245.sslip.io/' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-verify)
               {
                 echo "[Code Server container health and runtime settings — secrets omitted]"
