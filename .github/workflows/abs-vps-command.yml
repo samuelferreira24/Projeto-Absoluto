@@ -910,6 +910,55 @@ jobs:
               } > /tmp/abs-browser-app-diagnose.txt 2>&1
               result="$(cat /tmp/abs-browser-app-diagnose.txt)"
               ;;
+            inventory-report)
+              set +e
+              {
+                echo "=== VPS ID / uptime ==="
+                hostname
+                date -Is
+                uptime
+                echo
+                echo "=== CPU / RAM / disk ==="
+                nproc
+                free -h
+                df -h /
+                echo
+                echo "=== Docker containers ==="
+                sudo -n docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}'
+                echo
+                echo "=== Live container CPU / memory ==="
+                sudo -n docker stats --no-stream --format 'table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.PIDs}}'
+                echo
+                echo "=== Browser limits and OOM counters ==="
+                for c in abs-browser-ui abs-remotebrowser; do
+                  sudo -n docker inspect "$c" --format '{{.Name}} state={{.State.Status}} oom={{.State.OOMKilled}} restarts={{.RestartCount}} memory={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}} nanoCPU={{.HostConfig.NanoCpus}}' 2>&1
+                done
+                sudo -n docker exec abs-browser-ui sh -lc 'cat /sys/fs/cgroup/memory.events 2>/dev/null; echo "--- cpu"; cat /sys/fs/cgroup/cpu.stat 2>/dev/null' 2>&1
+                echo
+                echo "=== Active systemd services (filtered) ==="
+                systemctl list-units --type=service --state=running --no-pager --no-legend | grep -Ei 'abs|ollama|coolify|docker|containerd|ssh|ufw|tailscale|runner|nginx|caddy|postgres|redis|uptime|code-server|n8n' | head -n 70
+                echo
+                echo "=== Listening TCP ports ==="
+                sudo -n ss -ltnp 2>/dev/null | head -n 45
+                echo
+                echo "=== ABS health and V3 summary ==="
+                curl -fsS --max-time 5 http://127.0.0.1:8787/health 2>&1
+                echo
+                curl -fsS --max-time 5 http://127.0.0.1:8787/v3/status 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); c=d.get("capacity",{}); print("version=",d.get("version"),"capacity_state=",c.get("state"),"load_ratio=",c.get("load_ratio"),"available_GiB=",round(c.get("available_bytes",0)/1024**3,2),"queue=",d.get("queue_depth"),"active_executions=",d.get("active_executions")); print("intelligence=",", ".join(x.get("id","?")+":"+x.get("status","?") for x in d.get("intelligence",[])))' 2>&1
+                echo
+                echo "=== Ollama service / model inventory (names only) ==="
+                sudo -n systemctl show ollama.service -p ActiveState -p SubState -p MainPID -p MemoryCurrent 2>&1
+                curl -fsS --max-time 4 http://127.0.0.1:11434/api/tags 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); print("\n".join(str(m.get("name"))+" size_GiB="+str(round(m.get("size",0)/1024**3,2)) for m in d.get("models",[])) or "No local models listed")' 2>&1
+                curl -fsS --max-time 3 http://127.0.0.1:11434/api/ps 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); print("active_models=", [x.get("name") for x in d.get("models",[])])' 2>&1
+                echo
+                echo "=== Coolify HTTP status (no response headers/cookies) ==="
+                curl -sS -o /dev/null --max-time 5 -w 'http=%{http_code} seconds=%{time_total} redirect=%{redirect_url}\n' http://127.0.0.1:8000/
+                echo
+                echo "=== Runner service states ==="
+                sudo -n systemctl show actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01.service actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01-reserve.service -p Id -p ActiveState -p SubState -p MemoryCurrent -p MemoryPeak 2>&1
+              } > /tmp/abs-vps-inventory-report.txt 2>&1
+              result="$(cat /tmp/abs-vps-inventory-report.txt)"
+              ;;
             browser-deep-diagnose)
               set +e
               {
