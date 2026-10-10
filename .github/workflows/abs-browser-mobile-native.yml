@@ -85,7 +85,7 @@ jobs:
             -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC \
             -e SELKIES_SCALING_DPI=120 \
             -e SELKIES_ENABLE_CURSORS=false \
-            -e SELKIES_USE_BROWSER_CURSORS=false \
+            -e SELKIES_USE_BROWSER_CURSORS=true \
             -e SELKIES_UI_SIDEBAR_SHOW_TRACKPAD=true \
             -e SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN=true \
             -e SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON=true \
@@ -111,7 +111,7 @@ jobs:
             fail "The custom zoom overlay is still loaded."; exit 1
           fi
           pass "Chromium touch events enabled; injected zoom overlay is not loaded."
-          pass "Remote cursor and browser CSS cursor rendering are both disabled by Selkies configuration."
+          pass "Remote cursor rendering is disabled; native browser cursor handling is retained so touch devices do not force the synthetic cursorDiv on touchstart."
           curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || { fail "ABS health regression; rollback will restore previous container."; exit 1; }
           pass "ABS health regression passed."
           curl -fsS --max-time 8 http://127.0.0.1:11434/api/tags >/dev/null && pass "Ollama regression passed." || echo "INFO | Ollama probe unavailable; browser remains isolated."
