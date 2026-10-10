@@ -1,0 +1,155 @@
+name: ABS Install Remote Browser Open Source
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: abs-remote-browser-install
+  cancel-in-progress: false
+
+jobs:
+  install:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser install-remotebrowser'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 30
+    steps:
+      - name: Install and validate Remote Browser before replacing port 3010
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          REPORT="$RUNNER_TEMP/abs-remotebrowser-install.txt"
+          exec > >(tee "$REPORT") 2>&1
+          pass(){ echo "PASS | $*"; }
+          fail(){ echo "FAIL | $*"; exit 1; }
+          HOST_IP="100.119.8.119"
+          [ "$(hostname)" = "abs-vps-01" ] || fail "Unexpected host; no changes made."
+          sudo -n docker info >/dev/null
+          ip -4 -o addr show tailscale0 | awk '{print $4}' | cut -d/ -f1 | grep -Fxq "$HOST_IP" || fail "Expected Tailscale IP $HOST_IP is not assigned; no changes made."
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || fail "ABS health check failed; no changes made."
+          WORK="$HOME/abs-remotebrowser-upstream"
+          sudo -n install -d -o "$(id -u)" -g "$(id -g)" "$WORK"
+          if [ -d "$WORK/.git" ]; then
+            git -C "$WORK" fetch --depth 1 origin main
+            git -C "$WORK" reset --hard FETCH_HEAD
+          else
+            rm -rf "$WORK"
+            git clone --depth 1 https://github.com/yvonuk/remotebrowser.git "$WORK"
+          fi
+          echo "[source]"
+          git -C "$WORK" log -1 --format='%H %s'
+          cat > "$WORK/Dockerfile.abs" <<'DOCKER'
+          FROM mcr.microsoft.com/playwright:v1.62.1-noble
+          WORKDIR /app
+          COPY package*.json ./
+          RUN npm ci
+          COPY . .
+          RUN npm run build && mkdir -p logs && chown -R pwuser:pwuser /app
+          USER pwuser
+          EXPOSE 3000
+          CMD ["npm","start"]
+          DOCKER
+          sudo -n docker build --pull -f "$WORK/Dockerfile.abs" -t abs-remotebrowser:yvonuk-main "$WORK"
+          # Candidate is first tested on a temporary tailnet-only port; existing port 3010 remains untouched.
+          sudo -n docker rm -f abs-remotebrowser-candidate >/dev/null 2>&1 || true
+          sudo -n docker run -d --name abs-remotebrowser-candidate --restart no --memory=2g --cpus=2 --pids-limit=512 --shm-size=1g -p "$HOST_IP:3011:3000" abs-remotebrowser:yvonuk-main
+          candidate_ok=0
+          for i in $(seq 1 40); do
+            if curl -fsS --max-time 3 "http://$HOST_IP:3011/" >/dev/null; then candidate_ok=1; break; fi
+            sleep 2
+          done
+          [ "$candidate_ok" = 1 ] || { sudo -n docker logs --tail 100 abs-remotebrowser-candidate; fail "Candidate did not serve the UI on port 3011. Port 3010 remains untouched."; }
+          curl -fsS --max-time 20 "http://$HOST_IP:3011/api/session?sessionId=abs-install-smoke-test" > "$RUNNER_TEMP/abs-remotebrowser-session.json" || { sudo -n docker logs --tail 100 abs-remotebrowser-candidate; fail "Candidate UI started but Chromium session smoke test failed. Port 3010 remains untouched."; }
+          python3 - "$RUNNER_TEMP/abs-remotebrowser-session.json" <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1]))
+          assert d.get("sessionId") == "abs-install-smoke-test", d
+          assert isinstance(d.get("tabs"), list), d
+          print("PASS | Remote Browser UI and Chromium session API respond.")
+          PY
+          pass "Remote Browser candidate built and smoke-tested on tailnet-only port 3011."
+          # Locate the exact current service on 3010. If it is not a Docker container, do not kill an unknown process.
+          mapfile -t OLD_IDS < <(sudo -n docker ps -q --filter "publish=3010")
+          if [ "${#OLD_IDS[@]}" -gt 1 ]; then fail "More than one running Docker container publishes 3010; refusing ambiguous replacement."; fi
+          OLD_ID="${OLD_IDS[0]:-}"
+          OLD_NAME=""
+          if [ -n "$OLD_ID" ]; then
+            OLD_NAME="$(sudo -n docker inspect "$OLD_ID" --format '{{.Name}}' | sed 's#^/##')"
+            [ "$OLD_NAME" != "abs-remotebrowser" ] || fail "Target container name already belongs to Remote Browser."
+            if sudo -n docker ps -a --format '{{.Names}}' | grep -Fxq "abs-interface-3010-rollback"; then fail "Rollback container name already exists; refusing to overwrite it."; fi
+            echo "Replacing container $OLD_NAME on port 3010; preserving stopped rollback container."
+            sudo -n docker stop "$OLD_ID"
+            sudo -n docker rename "$OLD_ID" abs-interface-3010-rollback
+          else
+            if sudo -n ss -ltnp 2>/dev/null | grep -E '(^|[[:space:]])[^[:space:]]*:3010[[:space:]]' >/dev/null; then
+              sudo -n docker rm -f abs-remotebrowser-candidate >/dev/null 2>&1 || true
+              fail "Port 3010 is owned by a non-Docker process. Candidate was removed and existing interface was left untouched; manual service identification is required."
+            fi
+            echo "No existing listener/container found on port 3010."
+          fi
+          # Swap the tested candidate to the requested address/port.
+          sudo -n docker rm -f abs-remotebrowser-candidate >/dev/null
+          if ! sudo -n docker run -d --name abs-remotebrowser --restart unless-stopped --memory=2g --cpus=2 --pids-limit=512 --shm-size=1g -p "$HOST_IP:3010:3000" abs-remotebrowser:yvonuk-main; then
+            if [ -n "$OLD_ID" ]; then sudo -n docker rename abs-interface-3010-rollback "$OLD_NAME"; sudo -n docker start "$OLD_NAME"; fi
+            fail "New service failed to start; attempted rollback."
+          fi
+          ok=0
+          for i in $(seq 1 30); do
+            if curl -fsS --max-time 3 "http://$HOST_IP:3010/" >/dev/null; then ok=1; break; fi
+            sleep 2
+          done
+          if [ "$ok" != 1 ]; then
+            sudo -n docker logs --tail 100 abs-remotebrowser || true
+            sudo -n docker rm -f abs-remotebrowser || true
+            if [ -n "$OLD_ID" ]; then sudo -n docker rename abs-interface-3010-rollback "$OLD_NAME"; sudo -n docker start "$OLD_NAME"; fi
+            fail "Port 3010 health check failed; rollback attempted."
+          fi
+          curl -fsS --max-time 20 "http://$HOST_IP:3010/api/session?sessionId=abs-final-smoke-test" > "$RUNNER_TEMP/abs-remotebrowser-final.json"
+          python3 - "$RUNNER_TEMP/abs-remotebrowser-final.json" <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1]))
+          assert d.get("sessionId") == "abs-final-smoke-test", d
+          assert isinstance(d.get("tabs"), list), d
+          print("PASS | Final Remote Browser UI and Chromium session API respond on port 3010.")
+          PY
+          {
+            echo
+            echo "### REMOTE BROWSER INSTALLATION"
+            echo "PASS | Open source project: https://github.com/yvonuk/remotebrowser"
+            echo "PASS | Private Tailscale URL: http://$HOST_IP:3010/"
+            echo "PASS | New browser session API creates a Chromium session."
+            echo "PASS | Resource limits: 2 GiB RAM, 2 CPU, 512 PIDs."
+            if [ -n "$OLD_ID" ]; then
+              echo "OLD_INTERFACE=stopped and preserved as Docker container abs-interface-3010-rollback"
+              echo "NOTE | The old interface is no longer reachable on port 3010; rollback container is retained until you verify the replacement."
+            else
+              echo "OLD_INTERFACE=no running Docker container was found on port 3010"
+            fi
+            echo "NOTE | Existing Selkies browser service and ABS health were not changed."
+            echo "NOTE | This validates installation and Chromium session startup, not physical Android gestures; user should test touch, keyboard, scroll and pinch."
+          } >> "$REPORT"
+          cat "$REPORT" > "$RUNNER_TEMP/abs-remotebrowser-final-report.txt"
+      - name: Report result to issue
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          REPORT_FILE: ${{ runner.temp }}/abs-remotebrowser-install.txt
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync(process.env.REPORT_FILE) ? fs.readFileSync(process.env.REPORT_FILE, 'utf8') : 'No install report was produced.';
+            const body = '### ABS REMOTE BROWSER INSTALL\n\n' + report.slice(-12000);
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
