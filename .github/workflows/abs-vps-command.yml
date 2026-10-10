@@ -789,6 +789,51 @@ jobs:
               } > /tmp/abs-browser-client-inspect.txt 2>&1
               result="$(cat /tmp/abs-browser-client-inspect.txt)"
               ;;
+            browser-deep-diagnose)
+              set +e
+              {
+                echo "[timestamp / load]"
+                date -Is
+                uptime
+                echo
+                echo "[host memory / disk / pressure]"
+                free -h
+                df -h /
+                cat /proc/pressure/cpu /proc/pressure/memory /proc/pressure/io 2>/dev/null || true
+                echo
+                echo "[container live usage]"
+                sudo -n docker stats --no-stream --format 'table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}\t{{.PIDs}}' 2>&1
+                echo
+                echo "[container limits / state]"
+                for c in abs-browser-ui abs-remotebrowser abs open-webui coolify coolify-db coolify-redis; do
+                  sudo -n docker inspect "$c" --format '{{.Name}} state={{.State.Status}} oom={{.State.OOMKilled}} restarts={{.RestartCount}} mem={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}} nanoCPU={{.HostConfig.NanoCpus}} cpuQuota={{.HostConfig.CpuQuota}} cpuPeriod={{.HostConfig.CpuPeriod}}' 2>/dev/null || true
+                done
+                echo
+                echo "[browser processes by CPU and RSS]"
+                ps -eo pid,ppid,stat,pcpu,pmem,rss,etime,args --sort=-pcpu | grep -E '[c]hromium|[s]elkies|[n]ovnc|[x]fce|[x]vfb|[n]ginx' | head -n 25
+                echo
+                echo "[browser container cgroup memory events]"
+                sudo -n docker exec abs-browser-ui sh -lc 'for f in /sys/fs/cgroup/memory.current /sys/fs/cgroup/memory.max /sys/fs/cgroup/memory.events /sys/fs/cgroup/memory.stat /sys/fs/cgroup/cpu.max /sys/fs/cgroup/cpu.stat; do if [ -r "$f" ]; then echo "--- $f"; cat "$f"; fi; done' 2>&1 || true
+                echo
+                echo "[kernel OOM records]"
+                sudo -n journalctl -k --since "24 hours ago" --no-pager 2>&1 | grep -Ei 'oom|out of memory|killed process|memory cgroup' | tail -n 35 || true
+                echo
+                echo "[browser recent logs]"
+                sudo -n docker logs --since 45m --tail 180 abs-browser-ui 2>&1 | grep -Ei 'error|fatal|warn|oom|killed|crash|failed|timeout|encoder|webrtc|fps|bitrate|listen|ready' | sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[=: ][^ ]*/\1=[REDACTED]/Ig' | tail -n 60 || true
+                echo
+                echo "[ABS service / health]"
+                sudo -n systemctl show abs.service -p ActiveState -p SubState -p Result -p MainPID -p MemoryCurrent -p CPUUsageNSec 2>&1 || true
+                curl -fsS --max-time 8 http://127.0.0.1:8787/health 2>&1 || true
+                echo
+                echo "[ABS recent service errors]"
+                sudo -n journalctl -u abs.service --since "45 minutes ago" -n 80 --no-pager 2>&1 | grep -Ei 'error|exception|traceback|failed|timeout|memory|oom|warning|started|stopped' | tail -n 35 || true
+                echo
+                echo "[local AI status without loading a model]"
+                curl -fsS --max-time 3 http://127.0.0.1:11434/api/ps 2>&1 | head -c 1200 || true
+                echo
+              } > /tmp/abs-browser-deep-diagnose.txt 2>&1
+              result="$(cat /tmp/abs-browser-deep-diagnose.txt)"
+              ;;
             browser-diagnose)
               set +e
               {
