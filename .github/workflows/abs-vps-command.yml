@@ -689,6 +689,32 @@ jobs:
               } > /tmp/abs-browser-client-snippets.txt 2>&1
               result="$(cat /tmp/abs-browser-client-snippets.txt)"
               ;;
+            browser-keyboard-test)
+              set +e
+              {
+                echo "[Private keyboard focus bridge]"
+                sudo -n systemctl is-active abs-browser-keyboard-bridge.service 2>&1
+                curl -fsS --max-time 3 http://127.0.0.1:9223/health 2>&1
+                echo
+                echo "[Tailscale Serve route]"
+                timeout 6s sudo -n tailscale serve status 2>&1 | grep -E '(/abs-keyboard-focus|/ proxy)' | head -n 4
+                echo
+                echo "[End-to-end focus endpoint]"
+                response="$(curl -fsS --max-time 6 https://abs-vps-01.tailc75f22.ts.net/abs-keyboard-focus 2>&1)"
+                rc=$?
+                if [ "$rc" -eq 0 ]; then
+                  printf '%s' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert type(d.get("focused")) is bool, d; print("PASS | Tailnet focus endpoint responds; focused="+str(d["focused"]).lower())' 2>&1 || echo "FAIL | Focus endpoint response did not match the safe boolean schema."
+                else
+                  echo "WARN | HTTPS self-probe did not complete from the VPS; local health and Serve route are reported separately."
+                fi
+                echo
+                echo "[Browser and core regression]"
+                sudo -n docker inspect abs-browser-ui --format 'browser={{.State.Status}} restarts={{.RestartCount}}' 2>&1
+                curl -fsS --max-time 5 http://127.0.0.1:8787/health >/dev/null && echo "ABS health PASS" || echo "ABS health FAIL"
+                curl -fsS --max-time 5 http://127.0.0.1:11434/api/tags >/dev/null && echo "Ollama PASS" || echo "Ollama WARN"
+              } > /tmp/abs-browser-keyboard-test.txt 2>&1
+              result="$(tail -c 4000 /tmp/abs-browser-keyboard-test.txt)"
+              ;;
             browser-keyboard-inspect)
               set +e
               {
