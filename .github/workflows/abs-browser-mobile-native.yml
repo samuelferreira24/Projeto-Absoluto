@@ -86,6 +86,7 @@ jobs:
           pass "Fetched pinned Selkies 2.0.0 source into the dedicated ABS browser workspace."
           python3 - <<'PY'
           from pathlib import Path
+          import re
           p = Path.home() / "abs-browser/selkies-source/addons/selkies-web-core/lib/input.js"
           s = p.read_text()
           def replace_once(old, new, label):
@@ -94,6 +95,12 @@ jobs:
               if count != 1:
                   raise SystemExit(f"FAIL | Selkies patch anchor {label!r} expected once, found {count}; browser was not stopped.")
               s = s.replace(old, new, 1)
+          def replace_regex_once(pattern, replacement, label):
+              global s
+              s2, count = re.subn(pattern, replacement, s, count=1, flags=re.M)
+              if count != 1:
+                  raise SystemExit(f"FAIL | Selkies regex patch anchor {label!r} expected once, found {count}; browser was not stopped.")
+              s = s2
 
           replace_once(
               """this._trackpadLastScrollCentroid = null;
@@ -109,30 +116,13 @@ jobs:
                   this._isSingleFingerScroll = false;
                   this.inputAttached = false;""",
               "constructor-state")
-          replace_once(
-              """currentX: touch.clientX, currentY: touch.clientY,
-                          startTime: now, identifier: touch.identifier,""",
-              """currentX: touch.clientX, currentY: touch.clientY,
-                          lastScrollX: touch.clientX, lastScrollY: touch.clientY,
-                          startTime: now, identifier: touch.identifier,""",
-              "touch-origin")
-          replace_once(
-              """this._touchScrollLastCentroid = {
-                              x: (touches[0].currentX + touches[1].currentX) / 2,
-                              y: (touches[0].currentY + touches[1].currentY) / 2
-                          };""",
-              """this._touchScrollLastCentroid = {
-                              x: (touches[0].currentX + touches[1].currentX) / 2,
-                              y: (touches[0].currentY + touches[1].currentY) / 2
-                          };
-                          this._touchScrollLastDistance = Math.hypot(
-                              touches[0].currentX - touches[1].currentX,
-                              touches[0].currentY - touches[1].currentY
-                          );
-                          this._touchGestureMode = null;
-                          this._touchPinchAccum = 0;""",
-              "two-finger-origin")
-          replace_once(
+          replace_regex_once(
+              r"(currentX: touch\.clientX, currentY: touch\.clientY,\n)([ \t]*)startTime: now, identifier: touch\.identifier,",
+              lambda m: m.group(1) + m.group(2) + "lastScrollX: touch.clientX, lastScrollY: touch.clientY,\n" + m.group(2) + "startTime: now, identifier: touch.identifier,",
+              "touch-origin")          replace_regex_once(
+              r"(?m)^([ \t]*)this\._touchScrollLastCentroid = \{\n([ \t]*)x: \(touches\[0\]\.currentX \+ touches\[1\]\.currentX\) / 2,\n\2y: \(touches\[0\]\.currentY \+ touches\[1\]\.currentY\) / 2\n\1\};",
+              lambda m: m.group(0) + "\n" + m.group(1) + "this._touchScrollLastDistance = Math.hypot(\n" + m.group(1) + "    touches[0].currentX - touches[1].currentX,\n" + m.group(1) + "    touches[0].currentY - touches[1].currentY\n" + m.group(1) + ");\n" + m.group(1) + "this._touchGestureMode = null;\n" + m.group(1) + "this._touchPinchAccum = 0;",
+              "two-finger-origin")          replace_once(
               """if (this._touchScrollLastCentroid) {
                           const deltaX = curr_avg_x - this._touchScrollLastCentroid.x;
                           const deltaY = curr_avg_y - this._touchScrollLastCentroid.y;
@@ -218,38 +208,13 @@ jobs:
                           } else { preventDefault = true; }
                       }""",
               "single-finger-scroll")
-          replace_once(
-              """this._isTwoFingerGesture = false;
-                          this._touchScrollLastCentroid = null;
-                      }""",
-              """this._isTwoFingerGesture = false;
-                          this._touchScrollLastCentroid = null;
-                          this._touchScrollLastDistance = null;
-                          this._touchGestureMode = null;
-                          this._touchPinchAccum = 0;
-                      }""",
-              "two-finger-reset")
-          replace_once(
-              """if (remainingTouchCount === 0) {
-                          this._activeTouchIdentifier = null; this._isTwoFingerGesture = false;
-                          this._touchScrollLastCentroid = null;
-                          if (this._longPressTimer) { clearTimeout(this._longPressTimer); this._longPressTimer = null; }
-                          this._longPressTouchIdentifier = null;
-                      }""",
-              """if (remainingTouchCount === 0) {
-                          this._activeTouchIdentifier = null; this._isTwoFingerGesture = false;
-                          this._touchScrollLastCentroid = null;
-                          this._touchScrollLastDistance = null;
-                          this._touchGestureMode = null;
-                          this._touchPinchAccum = 0;
-                          this._singleTouchScrollAccumY = 0;
-                          this._singleTouchScrollAccumX = 0;
-                          this._isSingleFingerScroll = false;
-                          if (this._longPressTimer) { clearTimeout(this._longPressTimer); this._longPressTimer = null; }
-                          this._longPressTouchIdentifier = null;
-                      }""",
-              "all-touch-reset")
-          s = "console.info('ABS_MOBILE_TOUCH_GESTURES_V1');\n" + s
+          replace_regex_once(
+              r"(?m)^([ \t]*)this\._isTwoFingerGesture = false;\n\1this\._touchScrollLastCentroid = null;\n(?=\n[ \t]*\})",
+              lambda m: m.group(0) + m.group(1) + "this._touchScrollLastDistance = null;\n" + m.group(1) + "this._touchGestureMode = null;\n" + m.group(1) + "this._touchPinchAccum = 0;\n",
+              "two-finger-reset")          replace_regex_once(
+              r"(?m)^([ \t]*)if \(remainingTouchCount === 0\) \{\n([ \t]*)this\._activeTouchIdentifier = null; this\._isTwoFingerGesture = false;\n([ \t]*)this\._touchScrollLastCentroid = null;\n",
+              lambda m: m.group(0) + m.group(3) + "this._touchScrollLastDistance = null;\n" + m.group(3) + "this._touchGestureMode = null;\n" + m.group(3) + "this._touchPinchAccum = 0;\n" + m.group(3) + "this._singleTouchScrollAccumY = 0;\n" + m.group(3) + "this._singleTouchScrollAccumX = 0;\n" + m.group(3) + "this._isSingleFingerScroll = false;\n",
+              "all-touch-reset")          s = "console.info('ABS_MOBILE_TOUCH_GESTURES_V1');\n" + s
           p.write_text(s)
           print("PASS | Patched direct touch: one-finger swipe scrolls, two-finger pinch sends Ctrl+wheel zoom, two-finger translation scrolls, taps and long-press remain.")
           PY
