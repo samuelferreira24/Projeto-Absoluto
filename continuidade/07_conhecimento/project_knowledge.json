@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T23:34:02-03:00",
-  "source_revision": "898de0d95c69c24167d29ff1a2a079be70658d85",
+  "generated_at": "2026-10-09T23:51:28-03:00",
+  "source_revision": "93fff8792bc9ceb0e499a22a603a741d93d4f01c",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 142
+      "file_count": 143
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "898de0d95c69c24167d29ff1a2a079be70658d85",
-      "commit_subject": "Add safe rollback for mobile browser web app"
+      "revision": "93fff8792bc9ceb0e499a22a603a741d93d4f01c",
+      "commit_subject": "Fix ABS mobile mirror touch and keyboard"
     }
   ],
   "tools": [
@@ -1918,6 +1918,11 @@
       "id": "file:abs_browser/mobile_webapp/server.js",
       "kind": "file",
       "path": "abs_browser/mobile_webapp/server.js"
+    },
+    {
+      "id": "file:abs_browser/mobile_webapp/smoke-test.js",
+      "kind": "file",
+      "path": "abs_browser/mobile_webapp/smoke-test.js"
     },
     {
       "id": "file:abs_core/README.md",
@@ -11140,6 +11145,20 @@
       "sha": "898de0d95c69c24167d29ff1a2a079be70658d85"
     },
     {
+      "id": "commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145",
+      "kind": "commit",
+      "at": "2026-10-10T02:34:22Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "a5858e2be79d9f17a06df8b4034939bd4e1c6145"
+    },
+    {
+      "id": "commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c",
+      "kind": "commit",
+      "at": "2026-10-09T23:51:28-03:00",
+      "subject": "Fix ABS mobile mirror touch and keyboard",
+      "sha": "93fff8792bc9ceb0e499a22a603a741d93d4f01c"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11252,23 +11271,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:be890dd8e99e",
+      "id": "evidence:repository:aea86312b0fe",
       "kind": "evidence",
-      "at": "2026-10-09T23:34:02-03:00",
+      "at": "2026-10-09T23:51:28-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:be890dd8e99e",
+      "id": "event:repository-scan:aea86312b0fe",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T23:34:02-03:00"
+      "at": "2026-10-09T23:51:28-03:00"
     },
     {
-      "id": "event:commit-observed:898de0d95c69",
+      "id": "event:commit-observed:93fff8792bc9",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T23:34:02-03:00"
+      "at": "2026-10-09T23:51:28-03:00"
     }
   ],
   "paths": [
@@ -11303,11 +11322,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:fce9e06917f5"
+        "evidence:test:50a2e2716cad"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T23:34:02-03:00"
+      "last_validated": "2026-10-09T23:51:28-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11330,20 +11349,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:be890dd8e99e",
+      "id": "evidence:repository:aea86312b0fe",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T23:34:02-03:00",
+      "observed_at": "2026-10-09T23:51:28-03:00",
       "status": "observed",
-      "detail": "428 files indexed at revision 898de0d95c69c24167d29ff1a2a079be70658d85"
+      "detail": "429 files indexed at revision 93fff8792bc9ceb0e499a22a603a741d93d4f01c"
     },
     {
-      "id": "evidence:test:fce9e06917f5",
+      "id": "evidence:test:50a2e2716cad",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T23:34:02-03:00",
+      "observed_at": "2026-10-09T23:51:28-03:00",
       "status": "tested",
-      "detail": "225 passed in 8.57s"
+      "detail": "225 passed in 7.67s"
     }
   ],
   "decisions": [
@@ -11446,30 +11465,33 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:be890dd8e99e",
+      "id": "event:repository-scan:aea86312b0fe",
       "type": "repository_scanned",
-      "at": "2026-10-09T23:34:02-03:00",
-      "revision": "898de0d95c69c24167d29ff1a2a079be70658d85",
-      "file_count": 428,
-      "evidence_id": "evidence:repository:be890dd8e99e"
+      "at": "2026-10-09T23:51:28-03:00",
+      "revision": "93fff8792bc9ceb0e499a22a603a741d93d4f01c",
+      "file_count": 429,
+      "evidence_id": "evidence:repository:aea86312b0fe"
     },
     {
-      "id": "event:commit-observed:898de0d95c69",
+      "id": "event:commit-observed:93fff8792bc9",
       "type": "commit_observed",
-      "at": "2026-10-09T23:34:02-03:00",
-      "revision": "898de0d95c69c24167d29ff1a2a079be70658d85",
+      "at": "2026-10-09T23:51:28-03:00",
+      "revision": "93fff8792bc9ceb0e499a22a603a741d93d4f01c",
       "branch": "main",
-      "subject": "Add safe rollback for mobile browser web app",
+      "subject": "Fix ABS mobile mirror touch and keyboard",
       "changed_files": [
-        ".github/workflows/abs-browser-mobile-webapp-rollback.yml"
+        ".github/workflows/abs-browser-mobile-webapp.yml",
+        "abs_browser/mobile_webapp/public/index.html",
+        "abs_browser/mobile_webapp/server.js",
+        "abs_browser/mobile_webapp/smoke-test.js"
       ]
     },
     {
-      "id": "event:test:fce9e06917f5",
+      "id": "event:test:50a2e2716cad",
       "type": "tests_observed",
-      "at": "2026-10-09T23:34:02-03:00",
+      "at": "2026-10-09T23:51:28-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:fce9e06917f5"
+      "evidence_id": "evidence:test:50a2e2716cad"
     }
   ],
   "knowledge_sources": [
@@ -11525,7 +11547,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "64cf0350b209da48d60f4020812940050a604f92f450016e331631fc5b3bdd33"
+      "sha256": "ce325ebe5fd943996a4864301cc96aa1d04c7be271c6c00f61c7f2f3a3c2cc2d"
     },
     {
       "id": "source:session",
@@ -50032,12 +50054,124 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:be890dd8e99e",
-      "source": "event:repository-scan:be890dd8e99e",
-      "relation": "generated",
-      "target": "evidence:repository:be890dd8e99e",
+      "id": "rel:commit-precedes:898de0d95c69:a5858e2be79d",
+      "source": "commit:898de0d95c69c24167d29ff1a2a079be70658d85",
+      "relation": "precedes",
+      "target": "commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145",
       "status": "asserted",
-      "at": "2026-10-09T23:34:02-03:00",
+      "at": "2026-10-10T02:34:22Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a5858e2be79d:032adc3624d7",
+      "source": "commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T02:34:22Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a5858e2be79d:d64178c49886",
+      "source": "commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T02:34:22Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a5858e2be79d:93fff8792bc9",
+      "source": "commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145",
+      "relation": "precedes",
+      "target": "commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c",
+      "status": "asserted",
+      "at": "2026-10-09T23:51:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:93fff8792bc9:0d2cf9218065",
+      "source": "commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-webapp.yml",
+      "status": "asserted",
+      "at": "2026-10-09T23:51:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:93fff8792bc9:7eee040de4a5",
+      "source": "commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c",
+      "relation": "changed",
+      "target": "file:abs_browser/mobile_webapp/public/index.html",
+      "status": "asserted",
+      "at": "2026-10-09T23:51:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:93fff8792bc9:05dc5d4de3f3",
+      "source": "commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c",
+      "relation": "changed",
+      "target": "file:abs_browser/mobile_webapp/server.js",
+      "status": "asserted",
+      "at": "2026-10-09T23:51:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:93fff8792bc9:20438c0f7438",
+      "source": "commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c",
+      "relation": "changed",
+      "target": "file:abs_browser/mobile_webapp/smoke-test.js",
+      "status": "asserted",
+      "at": "2026-10-09T23:51:28-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:aea86312b0fe",
+      "source": "event:repository-scan:aea86312b0fe",
+      "relation": "generated",
+      "target": "evidence:repository:aea86312b0fe",
+      "status": "asserted",
+      "at": "2026-10-09T23:51:28-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -50046,12 +50180,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:898de0d95c69",
-      "source": "commit:898de0d95c69c24167d29ff1a2a079be70658d85",
+      "id": "rel:scan-commit:93fff8792bc9",
+      "source": "commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c",
       "relation": "observed_by",
-      "target": "event:repository-scan:be890dd8e99e",
+      "target": "event:repository-scan:aea86312b0fe",
       "status": "asserted",
-      "at": "2026-10-09T23:34:02-03:00",
+      "at": "2026-10-09T23:51:28-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",

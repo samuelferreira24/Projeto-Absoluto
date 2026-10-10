@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 898de0d95c69c24167d29ff1a2a079be70658d85
-Momento da revisão: 2026-10-09T23:34:02-03:00
+Revisão observada: 93fff8792bc9ceb0e499a22a603a741d93d4f01c
+Momento da revisão: 2026-10-09T23:51:28-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -27,7 +27,7 @@ Momento da revisão: 2026-10-09T23:34:02-03:00
 - component:continuity — continuity (25 arquivos)
 - component:docs — docs (78 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
-- component:project — project (142 arquivos)
+- component:project — project (143 arquivos)
 - component:tests — tests (66 arquivos)
 
 ## Capacidades
@@ -316,6 +316,7 @@ Momento da revisão: 2026-10-09T23:34:02-03:00
 - file:abs_browser/mobile_webapp/package.json — None — estado: unknown
 - file:abs_browser/mobile_webapp/public/index.html — None — estado: unknown
 - file:abs_browser/mobile_webapp/server.js — None — estado: unknown
+- file:abs_browser/mobile_webapp/smoke-test.js — None — estado: unknown
 - file:abs_core/README.md — None — estado: unknown
 - file:abs_core/__init__.py — None — estado: unknown
 - file:abs_core/accounts.py — None — estado: unknown
@@ -1742,6 +1743,8 @@ Momento da revisão: 2026-10-09T23:34:02-03:00
 - commit:00c3956c35775369753061419fead57e4dbf1426 — None — estado: unknown
 - commit:0c0dca5e5ff421a8ae1719aa6eaf1dd9f2525a42 — None — estado: unknown
 - commit:898de0d95c69c24167d29ff1a2a079be70658d85 — None — estado: unknown
+- commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145 — None — estado: unknown
+- commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1756,19 +1759,19 @@ Momento da revisão: 2026-10-09T23:34:02-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:be890dd8e99e — None — estado: unknown
-- event:repository-scan:be890dd8e99e — None — estado: unknown
-- event:commit-observed:898de0d95c69 — None — estado: unknown
+- evidence:repository:aea86312b0fe — None — estado: unknown
+- event:repository-scan:aea86312b0fe — None — estado: unknown
+- event:commit-observed:93fff8792bc9 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:fce9e06917f5
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:50a2e2716cad
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:be890dd8e99e — repository_scanned — revisão: 898de0d95c69c24167d29ff1a2a079be70658d85
-- event:commit-observed:898de0d95c69 — commit_observed — revisão: 898de0d95c69c24167d29ff1a2a079be70658d85
-- event:test:fce9e06917f5 — tests_observed — revisão: n/a
+- event:repository-scan:aea86312b0fe — repository_scanned — revisão: 93fff8792bc9ceb0e499a22a603a741d93d4f01c
+- event:commit-observed:93fff8792bc9 — commit_observed — revisão: 93fff8792bc9ceb0e499a22a603a741d93d4f01c
+- event:test:50a2e2716cad — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -4516,15 +4519,23 @@ Momento da revisão: 2026-10-09T23:34:02-03:00
 - commit:0c0dca5e5ff421a8ae1719aa6eaf1dd9f2525a42 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
 - commit:0c0dca5e5ff421a8ae1719aa6eaf1dd9f2525a42 — precedes → commit:898de0d95c69c24167d29ff1a2a079be70658d85 — asserted
 - commit:898de0d95c69c24167d29ff1a2a079be70658d85 — changed → file:.github/workflows/abs-browser-mobile-webapp-rollback.yml — asserted
-- event:repository-scan:be890dd8e99e — generated → evidence:repository:be890dd8e99e — asserted
-- commit:898de0d95c69c24167d29ff1a2a079be70658d85 — observed_by → event:repository-scan:be890dd8e99e — asserted
+- commit:898de0d95c69c24167d29ff1a2a079be70658d85 — precedes → commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145 — asserted
+- commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145 — precedes → commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — asserted
+- commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — changed → file:.github/workflows/abs-browser-mobile-webapp.yml — asserted
+- commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — changed → file:abs_browser/mobile_webapp/public/index.html — asserted
+- commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — changed → file:abs_browser/mobile_webapp/server.js — asserted
+- commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — changed → file:abs_browser/mobile_webapp/smoke-test.js — asserted
+- event:repository-scan:aea86312b0fe — generated → evidence:repository:aea86312b0fe — asserted
+- commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — observed_by → event:repository-scan:aea86312b0fe — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:be890dd8e99e — repository_scan — observed — 428 files indexed at revision 898de0d95c69c24167d29ff1a2a079be70658d85
-- evidence:test:fce9e06917f5 — test — tested — 225 passed in 8.57s
+- evidence:repository:aea86312b0fe — repository_scan — observed — 429 files indexed at revision 93fff8792bc9ceb0e499a22a603a741d93d4f01c
+- evidence:test:50a2e2716cad — test — tested — 225 passed in 7.67s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
