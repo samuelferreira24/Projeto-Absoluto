@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:53:40-03:00",
-  "source_revision": "304e448c6a6b0a0eac667c706245f19a5adb2af5",
+  "generated_at": "2026-10-10T16:54:58-03:00",
+  "source_revision": "1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "304e448c6a6b0a0eac667c706245f19a5adb2af5",
-      "commit_subject": "Guardar temporariamente ciphertext criptografado para recuperação segura do token MCP"
+      "revision": "1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
+      "commit_subject": "Adicionar teste autenticado de descoberta das ferramentas MCP"
     }
   ],
   "tools": [
@@ -12951,6 +12951,20 @@
       "sha": "304e448c6a6b0a0eac667c706245f19a5adb2af5"
     },
     {
+      "id": "commit:3b89a240ae0f34f0c6aeda581d9198890a66fea6",
+      "kind": "commit",
+      "at": "2026-10-10T19:54:00Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "3b89a240ae0f34f0c6aeda581d9198890a66fea6"
+    },
+    {
+      "id": "commit:1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
+      "kind": "commit",
+      "at": "2026-10-10T16:54:58-03:00",
+      "subject": "Adicionar teste autenticado de descoberta das ferramentas MCP",
+      "sha": "1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -13063,23 +13077,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:36ee8b4585db",
+      "id": "evidence:repository:397843421181",
       "kind": "evidence",
-      "at": "2026-10-10T16:53:40-03:00",
+      "at": "2026-10-10T16:54:58-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:36ee8b4585db",
+      "id": "event:repository-scan:397843421181",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:53:40-03:00"
+      "at": "2026-10-10T16:54:58-03:00"
     },
     {
-      "id": "event:commit-observed:304e448c6a6b",
+      "id": "event:commit-observed:1f6064a1a9ed",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:53:40-03:00"
+      "at": "2026-10-10T16:54:58-03:00"
     }
   ],
   "paths": [
@@ -13114,11 +13128,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:445067b2700b"
+        "evidence:test:77c460a558a8"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:53:40-03:00"
+      "last_validated": "2026-10-10T16:54:58-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13141,20 +13155,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:36ee8b4585db",
+      "id": "evidence:repository:397843421181",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:53:40-03:00",
+      "observed_at": "2026-10-10T16:54:58-03:00",
       "status": "observed",
-      "detail": "448 files indexed at revision 304e448c6a6b0a0eac667c706245f19a5adb2af5"
+      "detail": "448 files indexed at revision 1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e"
     },
     {
-      "id": "evidence:test:445067b2700b",
+      "id": "evidence:test:77c460a558a8",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:53:40-03:00",
+      "observed_at": "2026-10-10T16:54:58-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.77s"
+      "detail": "225 passed in 7.42s"
     }
   ],
   "decisions": [
@@ -13257,30 +13271,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:36ee8b4585db",
+      "id": "event:repository-scan:397843421181",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:53:40-03:00",
-      "revision": "304e448c6a6b0a0eac667c706245f19a5adb2af5",
+      "at": "2026-10-10T16:54:58-03:00",
+      "revision": "1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
       "file_count": 448,
-      "evidence_id": "evidence:repository:36ee8b4585db"
+      "evidence_id": "evidence:repository:397843421181"
     },
     {
-      "id": "event:commit-observed:304e448c6a6b",
+      "id": "event:commit-observed:1f6064a1a9ed",
       "type": "commit_observed",
-      "at": "2026-10-10T16:53:40-03:00",
-      "revision": "304e448c6a6b0a0eac667c706245f19a5adb2af5",
+      "at": "2026-10-10T16:54:58-03:00",
+      "revision": "1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
       "branch": "main",
-      "subject": "Guardar temporariamente ciphertext criptografado para recuperação segura do token MCP",
+      "subject": "Adicionar teste autenticado de descoberta das ferramentas MCP",
       "changed_files": [
-        "tmp/vps-mcp-token-ciphertext.txt"
+        ".github/workflows/vps-admin-command.yml"
       ]
     },
     {
-      "id": "event:test:445067b2700b",
+      "id": "event:test:77c460a558a8",
       "type": "tests_observed",
-      "at": "2026-10-10T16:53:40-03:00",
+      "at": "2026-10-10T16:54:58-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:445067b2700b"
+      "evidence_id": "evidence:test:77c460a558a8"
     }
   ],
   "knowledge_sources": [
@@ -13336,7 +13350,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "117272bbb6ddba63bc3708a0dfc176fde904b4c2cdc99e620e203d5f01c790cc"
+      "sha256": "0521c4133661120caee412f833dadc47babc3710bd651efccad1dd9b3ad0e942"
     },
     {
       "id": "source:session",
@@ -60355,12 +60369,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:36ee8b4585db",
-      "source": "event:repository-scan:36ee8b4585db",
-      "relation": "generated",
-      "target": "evidence:repository:36ee8b4585db",
+      "id": "rel:commit-precedes:304e448c6a6b:3b89a240ae0f",
+      "source": "commit:304e448c6a6b0a0eac667c706245f19a5adb2af5",
+      "relation": "precedes",
+      "target": "commit:3b89a240ae0f34f0c6aeda581d9198890a66fea6",
       "status": "asserted",
-      "at": "2026-10-10T16:53:40-03:00",
+      "at": "2026-10-10T19:54:00Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3b89a240ae0f:032adc3624d7",
+      "source": "commit:3b89a240ae0f34f0c6aeda581d9198890a66fea6",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:54:00Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3b89a240ae0f:d64178c49886",
+      "source": "commit:3b89a240ae0f34f0c6aeda581d9198890a66fea6",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:54:00Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:3b89a240ae0f:1f6064a1a9ed",
+      "source": "commit:3b89a240ae0f34f0c6aeda581d9198890a66fea6",
+      "relation": "precedes",
+      "target": "commit:1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
+      "status": "asserted",
+      "at": "2026-10-10T16:54:58-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1f6064a1a9ed:d2156db4a874",
+      "source": "commit:1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-admin-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T16:54:58-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:397843421181",
+      "source": "event:repository-scan:397843421181",
+      "relation": "generated",
+      "target": "evidence:repository:397843421181",
+      "status": "asserted",
+      "at": "2026-10-10T16:54:58-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -60369,12 +60453,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:304e448c6a6b",
-      "source": "commit:304e448c6a6b0a0eac667c706245f19a5adb2af5",
+      "id": "rel:scan-commit:1f6064a1a9ed",
+      "source": "commit:1f6064a1a9ed54c42d4aa7951f0f3c5b3030ac3e",
       "relation": "observed_by",
-      "target": "event:repository-scan:36ee8b4585db",
+      "target": "event:repository-scan:397843421181",
       "status": "asserted",
-      "at": "2026-10-10T16:53:40-03:00",
+      "at": "2026-10-10T16:54:58-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
