@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T12:10:28-03:00",
-  "source_revision": "b81707f2da24e9ca428bf0d60571fffe77e42936",
+  "generated_at": "2026-10-10T12:13:27-03:00",
+  "source_revision": "0f9d658be1b903c770d304202ae9312b41285a1d",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "b81707f2da24e9ca428bf0d60571fffe77e42936",
-      "commit_subject": "Add read-only inspection of remote browser session lifecycle"
+      "revision": "0f9d658be1b903c770d304202ae9312b41285a1d",
+      "commit_subject": "Add guarded live resource increase for principal browser"
     }
   ],
   "tools": [
@@ -11786,6 +11786,20 @@
       "sha": "b81707f2da24e9ca428bf0d60571fffe77e42936"
     },
     {
+      "id": "commit:13eb77b5f24031f36ff12e00f8fecf36b3cfc0c8",
+      "kind": "commit",
+      "at": "2026-10-10T15:10:48Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "13eb77b5f24031f36ff12e00f8fecf36b3cfc0c8"
+    },
+    {
+      "id": "commit:0f9d658be1b903c770d304202ae9312b41285a1d",
+      "kind": "commit",
+      "at": "2026-10-10T12:13:27-03:00",
+      "subject": "Add guarded live resource increase for principal browser",
+      "sha": "0f9d658be1b903c770d304202ae9312b41285a1d"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11898,23 +11912,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:47b819c4257f",
+      "id": "evidence:repository:cdfc2cb2d4a9",
       "kind": "evidence",
-      "at": "2026-10-10T12:10:28-03:00",
+      "at": "2026-10-10T12:13:27-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:47b819c4257f",
+      "id": "event:repository-scan:cdfc2cb2d4a9",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:10:28-03:00"
+      "at": "2026-10-10T12:13:27-03:00"
     },
     {
-      "id": "event:commit-observed:b81707f2da24",
+      "id": "event:commit-observed:0f9d658be1b9",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T12:10:28-03:00"
+      "at": "2026-10-10T12:13:27-03:00"
     }
   ],
   "paths": [
@@ -11949,11 +11963,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:ac1bc83940f8"
+        "evidence:test:648aaf4d0031"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T12:10:28-03:00"
+      "last_validated": "2026-10-10T12:13:27-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11976,20 +11990,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:47b819c4257f",
+      "id": "evidence:repository:cdfc2cb2d4a9",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T12:10:28-03:00",
+      "observed_at": "2026-10-10T12:13:27-03:00",
       "status": "observed",
-      "detail": "440 files indexed at revision b81707f2da24e9ca428bf0d60571fffe77e42936"
+      "detail": "440 files indexed at revision 0f9d658be1b903c770d304202ae9312b41285a1d"
     },
     {
-      "id": "evidence:test:ac1bc83940f8",
+      "id": "evidence:test:648aaf4d0031",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T12:10:28-03:00",
+      "observed_at": "2026-10-10T12:13:27-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.74s"
+      "detail": "225 passed in 7.18s"
     }
   ],
   "decisions": [
@@ -12092,30 +12106,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:47b819c4257f",
+      "id": "event:repository-scan:cdfc2cb2d4a9",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:10:28-03:00",
-      "revision": "b81707f2da24e9ca428bf0d60571fffe77e42936",
+      "at": "2026-10-10T12:13:27-03:00",
+      "revision": "0f9d658be1b903c770d304202ae9312b41285a1d",
       "file_count": 440,
-      "evidence_id": "evidence:repository:47b819c4257f"
+      "evidence_id": "evidence:repository:cdfc2cb2d4a9"
     },
     {
-      "id": "event:commit-observed:b81707f2da24",
+      "id": "event:commit-observed:0f9d658be1b9",
       "type": "commit_observed",
-      "at": "2026-10-10T12:10:28-03:00",
-      "revision": "b81707f2da24e9ca428bf0d60571fffe77e42936",
+      "at": "2026-10-10T12:13:27-03:00",
+      "revision": "0f9d658be1b903c770d304202ae9312b41285a1d",
       "branch": "main",
-      "subject": "Add read-only inspection of remote browser session lifecycle",
+      "subject": "Add guarded live resource increase for principal browser",
       "changed_files": [
-        ".github/workflows/abs-vps-browser-verify.yml"
+        ".github/workflows/abs-vps-browser-emergency.yml"
       ]
     },
     {
-      "id": "event:test:ac1bc83940f8",
+      "id": "event:test:648aaf4d0031",
       "type": "tests_observed",
-      "at": "2026-10-10T12:10:28-03:00",
+      "at": "2026-10-10T12:13:27-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:ac1bc83940f8"
+      "evidence_id": "evidence:test:648aaf4d0031"
     }
   ],
   "knowledge_sources": [
@@ -12171,7 +12185,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "9531cada88678ac31339656a0411ebb8ffcbfb2e9dd96b46e087b0efb7c45314"
+      "sha256": "a7de0b55513d70c24ee4e5196b4003bcc5151b20a3957209015d2558dbb4cc87"
     },
     {
       "id": "source:session",
@@ -53716,12 +53730,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:47b819c4257f",
-      "source": "event:repository-scan:47b819c4257f",
-      "relation": "generated",
-      "target": "evidence:repository:47b819c4257f",
+      "id": "rel:commit-precedes:b81707f2da24:13eb77b5f240",
+      "source": "commit:b81707f2da24e9ca428bf0d60571fffe77e42936",
+      "relation": "precedes",
+      "target": "commit:13eb77b5f24031f36ff12e00f8fecf36b3cfc0c8",
       "status": "asserted",
-      "at": "2026-10-10T12:10:28-03:00",
+      "at": "2026-10-10T15:10:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:13eb77b5f240:032adc3624d7",
+      "source": "commit:13eb77b5f24031f36ff12e00f8fecf36b3cfc0c8",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:10:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:13eb77b5f240:d64178c49886",
+      "source": "commit:13eb77b5f24031f36ff12e00f8fecf36b3cfc0c8",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T15:10:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:13eb77b5f240:0f9d658be1b9",
+      "source": "commit:13eb77b5f24031f36ff12e00f8fecf36b3cfc0c8",
+      "relation": "precedes",
+      "target": "commit:0f9d658be1b903c770d304202ae9312b41285a1d",
+      "status": "asserted",
+      "at": "2026-10-10T12:13:27-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:0f9d658be1b9:db3fa2beb22e",
+      "source": "commit:0f9d658be1b903c770d304202ae9312b41285a1d",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-browser-emergency.yml",
+      "status": "asserted",
+      "at": "2026-10-10T12:13:27-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:cdfc2cb2d4a9",
+      "source": "event:repository-scan:cdfc2cb2d4a9",
+      "relation": "generated",
+      "target": "evidence:repository:cdfc2cb2d4a9",
+      "status": "asserted",
+      "at": "2026-10-10T12:13:27-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -53730,12 +53814,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:b81707f2da24",
-      "source": "commit:b81707f2da24e9ca428bf0d60571fffe77e42936",
+      "id": "rel:scan-commit:0f9d658be1b9",
+      "source": "commit:0f9d658be1b903c770d304202ae9312b41285a1d",
       "relation": "observed_by",
-      "target": "event:repository-scan:47b819c4257f",
+      "target": "event:repository-scan:cdfc2cb2d4a9",
       "status": "asserted",
-      "at": "2026-10-10T12:10:28-03:00",
+      "at": "2026-10-10T12:13:27-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
