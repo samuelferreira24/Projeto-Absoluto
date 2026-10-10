@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T10:26:35-03:00",
-  "source_revision": "6bf097c074267151bab9b64636dff1f4344770c0",
+  "generated_at": "2026-10-10T10:29:05-03:00",
+  "source_revision": "efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "6bf097c074267151bab9b64636dff1f4344770c0",
-      "commit_subject": "Fix workflow indentation for real mobile address overlay"
+      "revision": "efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
+      "commit_subject": "Keep local address field focused during remote touch handling"
     }
   ],
   "tools": [
@@ -11435,6 +11435,20 @@
       "sha": "6bf097c074267151bab9b64636dff1f4344770c0"
     },
     {
+      "id": "commit:88758ed6d3d000772f93680941997a6bc28bf996",
+      "kind": "commit",
+      "at": "2026-10-10T13:26:55Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "88758ed6d3d000772f93680941997a6bc28bf996"
+    },
+    {
+      "id": "commit:efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
+      "kind": "commit",
+      "at": "2026-10-10T10:29:05-03:00",
+      "subject": "Keep local address field focused during remote touch handling",
+      "sha": "efcbc2df2d4f3dfa41cf0910db3936a6e7ade402"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11547,23 +11561,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:b63a7051a98c",
+      "id": "evidence:repository:25b6d7f7f04a",
       "kind": "evidence",
-      "at": "2026-10-10T10:26:35-03:00",
+      "at": "2026-10-10T10:29:05-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:b63a7051a98c",
+      "id": "event:repository-scan:25b6d7f7f04a",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:26:35-03:00"
+      "at": "2026-10-10T10:29:05-03:00"
     },
     {
-      "id": "event:commit-observed:6bf097c07426",
+      "id": "event:commit-observed:efcbc2df2d4f",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T10:26:35-03:00"
+      "at": "2026-10-10T10:29:05-03:00"
     }
   ],
   "paths": [
@@ -11598,11 +11612,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:e23518d5314c"
+        "evidence:test:362d9dc93abf"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T10:26:35-03:00"
+      "last_validated": "2026-10-10T10:29:05-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11625,20 +11639,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:b63a7051a98c",
+      "id": "evidence:repository:25b6d7f7f04a",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T10:26:35-03:00",
+      "observed_at": "2026-10-10T10:29:05-03:00",
       "status": "observed",
-      "detail": "430 files indexed at revision 6bf097c074267151bab9b64636dff1f4344770c0"
+      "detail": "430 files indexed at revision efcbc2df2d4f3dfa41cf0910db3936a6e7ade402"
     },
     {
-      "id": "evidence:test:e23518d5314c",
+      "id": "evidence:test:362d9dc93abf",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T10:26:35-03:00",
+      "observed_at": "2026-10-10T10:29:05-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.70s"
+      "detail": "225 passed in 7.65s"
     }
   ],
   "decisions": [
@@ -11741,30 +11755,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:b63a7051a98c",
+      "id": "event:repository-scan:25b6d7f7f04a",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:26:35-03:00",
-      "revision": "6bf097c074267151bab9b64636dff1f4344770c0",
+      "at": "2026-10-10T10:29:05-03:00",
+      "revision": "efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
       "file_count": 430,
-      "evidence_id": "evidence:repository:b63a7051a98c"
+      "evidence_id": "evidence:repository:25b6d7f7f04a"
     },
     {
-      "id": "event:commit-observed:6bf097c07426",
+      "id": "event:commit-observed:efcbc2df2d4f",
       "type": "commit_observed",
-      "at": "2026-10-10T10:26:35-03:00",
-      "revision": "6bf097c074267151bab9b64636dff1f4344770c0",
+      "at": "2026-10-10T10:29:05-03:00",
+      "revision": "efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
       "branch": "main",
-      "subject": "Fix workflow indentation for real mobile address overlay",
+      "subject": "Keep local address field focused during remote touch handling",
       "changed_files": [
         ".github/workflows/abs-browser-mobile-native.yml"
       ]
     },
     {
-      "id": "event:test:e23518d5314c",
+      "id": "event:test:362d9dc93abf",
       "type": "tests_observed",
-      "at": "2026-10-10T10:26:35-03:00",
+      "at": "2026-10-10T10:29:05-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:e23518d5314c"
+      "evidence_id": "evidence:test:362d9dc93abf"
     }
   ],
   "knowledge_sources": [
@@ -11820,7 +11834,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "0280dc6195dc3082f75b520f5dc51ea5a70d65acac5a03acaf5200875d9ebbec"
+      "sha256": "bb68cfd25fc32df5177cccf8ef5ee2429a39990e02f6c50dc42f64b14b28c9aa"
     },
     {
       "id": "source:session",
@@ -51867,12 +51881,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:b63a7051a98c",
-      "source": "event:repository-scan:b63a7051a98c",
-      "relation": "generated",
-      "target": "evidence:repository:b63a7051a98c",
+      "id": "rel:commit-precedes:6bf097c07426:88758ed6d3d0",
+      "source": "commit:6bf097c074267151bab9b64636dff1f4344770c0",
+      "relation": "precedes",
+      "target": "commit:88758ed6d3d000772f93680941997a6bc28bf996",
       "status": "asserted",
-      "at": "2026-10-10T10:26:35-03:00",
+      "at": "2026-10-10T13:26:55Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:88758ed6d3d0:032adc3624d7",
+      "source": "commit:88758ed6d3d000772f93680941997a6bc28bf996",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T13:26:55Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:88758ed6d3d0:d64178c49886",
+      "source": "commit:88758ed6d3d000772f93680941997a6bc28bf996",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T13:26:55Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:88758ed6d3d0:efcbc2df2d4f",
+      "source": "commit:88758ed6d3d000772f93680941997a6bc28bf996",
+      "relation": "precedes",
+      "target": "commit:efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
+      "status": "asserted",
+      "at": "2026-10-10T10:29:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:efcbc2df2d4f:97a2cc349a21",
+      "source": "commit:efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-native.yml",
+      "status": "asserted",
+      "at": "2026-10-10T10:29:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:25b6d7f7f04a",
+      "source": "event:repository-scan:25b6d7f7f04a",
+      "relation": "generated",
+      "target": "evidence:repository:25b6d7f7f04a",
+      "status": "asserted",
+      "at": "2026-10-10T10:29:05-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -51881,12 +51965,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:6bf097c07426",
-      "source": "commit:6bf097c074267151bab9b64636dff1f4344770c0",
+      "id": "rel:scan-commit:efcbc2df2d4f",
+      "source": "commit:efcbc2df2d4f3dfa41cf0910db3936a6e7ade402",
       "relation": "observed_by",
-      "target": "event:repository-scan:b63a7051a98c",
+      "target": "event:repository-scan:25b6d7f7f04a",
       "status": "asserted",
-      "at": "2026-10-10T10:26:35-03:00",
+      "at": "2026-10-10T10:29:05-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
