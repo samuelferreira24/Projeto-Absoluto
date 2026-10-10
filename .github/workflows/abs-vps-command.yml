@@ -1150,6 +1150,23 @@ jobs:
                 echo "[Backup artifact — path, size and file type]"
                 sudo -n docker exec coolify sh -lc 'find /var/www/html/storage/app/backups -type f -printf "%p|%s bytes\n" 2>/dev/null | head -n 10 | while IFS="|" read -r p s; do echo "$p|$s"; file "$p" 2>/dev/null; done' 2>&1 || true
                 echo
+                echo "[Host-side backup artifact and PostgreSQL archive validation]"
+                artifact="$(sudo -n find /data/coolify/backups -type f -name '*.dmp' -print -quit 2>/dev/null)"
+                if [ -n "$artifact" ]; then
+                  echo "artifact=$(basename "$artifact")"
+                  stat -c 'bytes=%s modified=%y' "$artifact" 2>&1 || true
+                  file "$artifact" 2>&1 || true
+                  if sudo -n docker exec -i coolify-db pg_restore --list < "$artifact" > /tmp/abs-coolify-pg-restore-list.txt 2>&1; then
+                    echo "pg_restore_archive_validation=PASS"
+                    head -n 22 /tmp/abs-coolify-pg-restore-list.txt
+                  else
+                    echo "pg_restore_archive_validation=FAIL"
+                    head -n 25 /tmp/abs-coolify-pg-restore-list.txt
+                  fi
+                else
+                  echo "backup_artifact_not_found_on_host"
+                fi
+                echo
                 echo "[Current backup schedule — safe fields only]"
                 sudo -n docker exec coolify php artisan tinker --execute='$b = App\Models\ScheduledDatabaseBackup::where("database_id",0)->where("team_id",0)->first(); echo json_encode(["schedule_exists"=>(bool)$b,"enabled"=>$b ? (bool)$b->enabled : null,"frequency"=>$b ? $b->frequency : null,"retention_count"=>$b ? $b->database_backup_retention_amount_locally : null,"retention_days"=>$b ? $b->database_backup_retention_days_locally : null,"retention_max_gb"=>$b ? $b->database_backup_retention_max_storage_locally : null,"local_enabled"=>$b ? !(bool)$b->disable_local_backup : null,"s3_enabled"=>$b ? (bool)$b->save_s3 : null], JSON_PRETTY_PRINT), PHP_EOL;' 2>&1 || true
               } > /tmp/abs-vps-result.txt
