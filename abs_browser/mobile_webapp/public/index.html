@@ -75,7 +75,7 @@ body{display:flex;flex-direction:column;padding-top:env(safe-area-inset-top);pad
   canvas.addEventListener('contextmenu',e=>e.preventDefault());
   canvas.addEventListener('pointerdown',e=>{e.preventDefault();lastPointerAt=Date.now();try{canvas.setPointerCapture(e.pointerId);}catch{}if(!touchIds.has(e.pointerId))touchIds.set(e.pointerId,nextTouchId++%5);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});sendTouch('start');},{passive:false});
   canvas.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;e.preventDefault();pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});sendTouch('move');},{passive:false});
-  function endPointer(e,cancel){if(!pointers.has(e.pointerId))return;e.preventDefault();pointers.delete(e.pointerId);sendTouch(cancel?'cancel':'end');touchIds.delete(e.pointerId);if(!cancel)setTimeout(()=>refreshState(),120);}
+  function endPointer(e,cancel){if(!pointers.has(e.pointerId))return;e.preventDefault();if(cancel){pointers.clear();touchIds.clear();sendTouch('cancel');}else{pointers.delete(e.pointerId);touchIds.delete(e.pointerId);if(pointers.size>0)sendTouch('move');else sendTouch('end');setTimeout(()=>refreshState(),120);}}
   canvas.addEventListener('pointerup',e=>endPointer(e,false),{passive:false});
   canvas.addEventListener('pointercancel',e=>endPointer(e,true),{passive:false});
   canvas.addEventListener('wheel',e=>{e.preventDefault();const p=normalizedPoint(e.clientX,e.clientY);api('/wheel',{x:p.x,y:p.y,deltaX:e.deltaX,deltaY:e.deltaY}).catch(()=>{});},{passive:false});
