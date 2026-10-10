@@ -43,7 +43,10 @@ jobs:
           echo "PASS | Existing browser container and ABS are healthy before rollback."
           # Remove only the route created for the new mobile web app; do not reset other Serve routes.
           if command -v tailscale >/dev/null 2>&1 && sudo -n tailscale serve status 2>&1 | grep -q '/abs-mobile'; then
-            sudo -n tailscale serve --set-path=/abs-mobile off
+            sudo -n tailscale serve --set-path=/abs-mobile off || true
+            sudo -n tailscale serve --set-path=/abs-mobile/ off || true
+            sudo -n tailscale serve --http=80 --set-path=/abs-mobile off || true
+            sudo -n tailscale serve --http=80 --set-path=/abs-mobile/ off
             echo "PASS | Removed only the /abs-mobile route."
           else
             echo "INFO | /abs-mobile route was not present; other Tailscale routes left untouched."
