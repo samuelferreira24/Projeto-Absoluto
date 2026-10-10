@@ -225,6 +225,43 @@ jobs:
           print("PASS | Patched direct touch: one-finger swipe scrolls, two-finger pinch sends Ctrl+wheel zoom, two-finger translation scrolls, taps and long-press remain.")
 
           PY
+          # Auto-open Android's native keyboard when the user taps Chromium's remote address/search bar.
+          # Selkies already has a hidden IME assist field; focus it only for taps in the remote toolbar band.
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path.home() / "abs-browser/selkies-source/addons/selkies-dashboard/src/components/Sidebar.jsx"
+          s = p.read_text()
+          anchor = """  }, []);
+
+          /**
+           * Lists the audio devices"""
+          if s.count(anchor) != 1:
+              raise SystemExit(f"FAIL | Sidebar keyboard insertion anchor expected once, found {s.count(anchor)}")
+          insert = """  }, []);
+
+          // ABS_MOBILE_AUTO_KEYBOARD_V1: tap the streamed Chromium omnibox to raise the phone's real keyboard.
+          // The stream tap is sent to Chromium first; this focuses Selkies' existing IME bridge afterwards.
+          useEffect(() => {
+            const overlay = document.getElementById('overlayInput');
+            if (!overlay) return;
+            const maybeOpenNativeKeyboard = (event) => {
+              const rect = overlay.getBoundingClientRect();
+              if (!rect.height) return;
+              const y = (event.clientY - rect.top) / rect.height;
+              // The remote Chromium tab/omnibox strip occupies the upper ~13% on this mobile-sized session.
+              if (y < 0.035 || y > 0.135) return;
+              window.setTimeout(() => handleShowVirtualKeyboard(), 0);
+            };
+            overlay.addEventListener('pointerup', maybeOpenNativeKeyboard, { passive: true });
+            return () => overlay.removeEventListener('pointerup', maybeOpenNativeKeyboard);
+          }, [handleShowVirtualKeyboard]);
+
+          /**
+           * Lists the audio devices"""
+          s = s.replace(anchor, insert, 1)
+          p.write_text(s)
+          print("PASS | Added automatic native keyboard focus for taps in the remote Chromium address/search bar.")
+          PY
           export NODE_OPTIONS=--max-old-space-size=1024
           (cd "$CORE_DIR" && npm ci --no-audit --no-fund && npm run build)
           (cd "$DASH_DIR" && npm ci --no-audit --no-fund && npm run build)
@@ -235,13 +272,25 @@ jobs:
           BUILT_BUNDLE="$(find "$DASH_DIR/dist" -type f -name 'selkies-core-*.js' | head -n 1)"
           [ -s "$BUILT_BUNDLE" ] || { fail "Patched Selkies core bundle was not produced; existing browser remains running."; exit 1; }
           grep -q 'ABS_MOBILE_TOUCH_GESTURES_V1' "$BUILT_BUNDLE" || { fail "Build output does not contain the mobile gesture patch marker; existing browser remains running."; exit 1; }
+          CURRENT_DASHBOARD_BUNDLE="$(sudo -n docker exec abs-browser-ui sh -lc 'find /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/assets -maxdepth 1 -type f -name "index-*.js" | head -n 1' | tr -d '\r')"
+          [ -n "$CURRENT_DASHBOARD_BUNDLE" ] || { fail "Could not identify the active Selkies dashboard asset; existing browser remains running."; exit 1; }
+          DASHBOARD_BUNDLE_NAME="$(basename "$CURRENT_DASHBOARD_BUNDLE")"
+          BUILT_DASHBOARD_BUNDLE="$(find "$DASH_DIR/dist/assets" -maxdepth 1 -type f -name 'index-*.js' | head -n 1)"
+          [ -s "$BUILT_DASHBOARD_BUNDLE" ] || { fail "Patched dashboard bundle was not produced; existing browser remains running."; exit 1; }
+          grep -q 'ABS_MOBILE_AUTO_KEYBOARD_V1' "$BUILT_DASHBOARD_BUNDLE" || { fail "Dashboard build does not contain the auto-keyboard patch marker; existing browser remains running."; exit 1; }
           OVERLAY_DIR="$HOME/abs-browser/selkies-mobile-overlay-$(date -u +%Y%m%d%H%M%S)"
           install -d -m 755 "$OVERLAY_DIR"
           cp "$BUILT_BUNDLE" "$OVERLAY_DIR/$BUNDLE_NAME"
           chmod 644 "$OVERLAY_DIR/$BUNDLE_NAME"
           CUSTOM_BUNDLE_HOST="$OVERLAY_DIR/$BUNDLE_NAME"
-          pass "Built and staged persistent custom Selkies core asset as $BUNDLE_NAME."
+          cp "$BUILT_DASHBOARD_BUNDLE" "$OVERLAY_DIR/$DASHBOARD_BUNDLE_NAME"
+          chmod 644 "$OVERLAY_DIR/$DASHBOARD_BUNDLE_NAME"
+          CUSTOM_DASHBOARD_BUNDLE_HOST="$OVERLAY_DIR/$DASHBOARD_BUNDLE_NAME"
+          BUILT_CORE_BASENAME="$(basename "$BUILT_BUNDLE")"
+          pass "Built and staged custom Selkies core asset as $BUNDLE_NAME."
+          pass "Built and staged custom Selkies dashboard asset as $DASHBOARD_BUNDLE_NAME."
           echo "CustomBundleSHA256=$(sha256sum "$CUSTOM_BUNDLE_HOST" | awk '{print $1}')"
+          echo "CustomDashboardSHA256=$(sha256sum "$CUSTOM_DASHBOARD_BUNDLE_HOST" | awk '{print $1}')"
           echo
           # Remove only the custom overlay this project installed; leave the Chromium profile and all site data untouched.
           if [ -d "$PROFILE_MOUNT/abs-mobile-zoom" ]; then
@@ -275,6 +324,8 @@ jobs:
             -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222 --enable-touch-events --touch-events=enabled --window-size=412,915 --force-device-scale-factor=1 --lang=pt-BR --accept-lang=pt-BR,pt,en-US,en" \
             -v "$PROFILE_MOUNT:/config" \
             -v "$CUSTOM_BUNDLE_HOST:$CURRENT_ASSET_DIR/$BUNDLE_NAME:ro" \
+            -v "$CUSTOM_BUNDLE_HOST:$CURRENT_ASSET_DIR/$BUILT_CORE_BASENAME:ro" \
+            -v "$CUSTOM_DASHBOARD_BUNDLE_HOST:$CURRENT_ASSET_DIR/$DASHBOARD_BUNDLE_NAME:ro" \
             "$IMAGE" >/dev/null
 
           READY=0
@@ -297,7 +348,12 @@ jobs:
           PATCHED_BUNDLE_SHA="$(sudo -n docker exec abs-browser-ui sha256sum "$CURRENT_ASSET_DIR/$BUNDLE_NAME" | awk '{print $1}')"
           HOST_BUNDLE_SHA="$(sha256sum "$CUSTOM_BUNDLE_HOST" | awk '{print $1}')"
           [ "$PATCHED_BUNDLE_SHA" = "$HOST_BUNDLE_SHA" ] || { fail "Mounted mobile gesture bundle SHA256 mismatch; rollback will restore prior browser."; exit 1; }
-          pass "Runtime is serving the persistent custom Selkies bundle (SHA256 verified): one-finger scroll and pinch-to-zoom patch loaded."
+          pass "Runtime is serving the persistent custom Selkies core bundle (SHA256 verified): one-finger scroll and pinch-to-zoom patch loaded."
+          DASH_BUNDLE_SHA="$(sudo -n docker exec abs-browser-ui sha256sum "$CURRENT_ASSET_DIR/$DASHBOARD_BUNDLE_NAME" | awk '{print $1}')"
+          HOST_DASH_BUNDLE_SHA="$(sha256sum "$CUSTOM_DASHBOARD_BUNDLE_HOST" | awk '{print $1}')"
+          [ "$DASH_BUNDLE_SHA" = "$HOST_DASH_BUNDLE_SHA" ] || { fail "Mounted dashboard bundle SHA256 mismatch; rollback will restore prior browser."; exit 1; }
+          grep -q 'ABS_MOBILE_AUTO_KEYBOARD_V1' "$CUSTOM_DASHBOARD_BUNDLE_HOST" || { fail "Auto-keyboard marker missing from staged dashboard bundle."; exit 1; }
+          pass "Runtime dashboard bundle includes the automatic mobile address/search-bar keyboard trigger (SHA256 verified)."
           printf "%s\\n" "$ARGS" | grep -F -- "--lang=pt-BR" >/dev/null || { fail "Portuguese (Brazil) browser locale flag is missing."; exit 1; }
           pass "Chromium configured for Portuguese (Brazil), including Accept-Language."
           pass "Synthetic remote cursor rendering is disabled; CSS cursor handling is enabled to avoid Selkies drawing a desktop cursor over direct touch."
