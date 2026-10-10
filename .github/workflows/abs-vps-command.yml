@@ -1256,6 +1256,25 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-fix-services-permissions)
+              set -e
+              {
+                echo "[Pre-change: Coolify service storage ownership]"
+                sudo -n stat -c '%A %a %u:%g %n' /data/coolify/services
+                sudo -n find /data/coolify/services -mindepth 1 -maxdepth 2 -printf '%M %u:%g %p\\n' | head -n 80
+                echo
+                echo "[Applying ownership expected by Coolify runtime UID/GID 9999:9999]"
+                sudo -n chown -R 9999:9999 /data/coolify/services
+                echo
+                echo "[Post-change ownership]"
+                sudo -n stat -c '%A %a %u:%g %n' /data/coolify/services
+                sudo -n find /data/coolify/services -mindepth 1 -maxdepth 2 -printf '%M %u:%g %p\\n' | head -n 80
+                echo
+                echo "[Runtime access validation from inside Coolify]"
+                sudo -n docker exec coolify sh -lc 'id; test -x /var/www/html/storage/app/services && echo services_traverse=PASS || echo services_traverse=FAIL; test -r /var/www/html/storage/app/services && echo services_read=PASS || echo services_read=FAIL; test -w /var/www/html/storage/app/services && echo services_write=PASS || echo services_write=FAIL; for p in /var/www/html/storage/app/services/nx4a3xzydx3nm3cobd6w0haa /var/www/html/storage/app/services/lrm5h5uiuehewjs46ewzrqrs /var/www/html/storage/app/services/ahm46nsif4uhkjituqtadnm2 /var/www/html/storage/app/services/u30wfx4gmdt3faj7ntucaeeb /var/www/html/storage/app/services/bb55qbolrf4pqfl45gomnzyl; do if [ -e "$p" ]; then test -x "$p" && echo "traverse=PASS $p" || echo "traverse=FAIL $p"; test -w "$p" && echo "write=PASS $p" || echo "write=FAIL $p"; fi; done'
+              } > /tmp/abs-vps-result.txt 2>&1
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-records)
               {
                 echo "[Code Server service records — safe metadata only]"
