@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T14:29:54-03:00",
-  "source_revision": "9b7f111957b9be6dcddd33f7713b024d1516b2a1",
+  "generated_at": "2026-10-10T15:19:05-03:00",
+  "source_revision": "caa7017823377f66d004e14b9c7bf98a25929bf1",
   "components": [
     {
       "id": "component:abs_core",
@@ -22,7 +22,7 @@
     {
       "id": "component:docs",
       "kind": "docs",
-      "file_count": 78
+      "file_count": 79
     },
     {
       "id": "component:historical_mini_cerebro",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "9b7f111957b9be6dcddd33f7713b024d1516b2a1",
-      "commit_subject": "Remove temporary Coolify diagnostic commands after audit"
+      "revision": "caa7017823377f66d004e14b9c7bf98a25929bf1",
+      "commit_subject": "docs: vincular plano de ambiente remoto ao próximo estágio do ABS"
     }
   ],
   "tools": [
@@ -3093,6 +3093,11 @@
       "id": "file:docs/03_planejamento/PLANO_ABS_V1_CURTO_MEDIO_LONGO_PRAZO.md",
       "kind": "file",
       "path": "docs/03_planejamento/PLANO_ABS_V1_CURTO_MEDIO_LONGO_PRAZO.md"
+    },
+    {
+      "id": "file:docs/03_planejamento/PLANO_AMBIENTE_TRABALHO_VPS_ANDROID.md",
+      "kind": "file",
+      "path": "docs/03_planejamento/PLANO_AMBIENTE_TRABALHO_VPS_ANDROID.md"
     },
     {
       "id": "file:docs/03_planejamento/Plano_Projeto.md",
@@ -12687,6 +12692,34 @@
       "sha": "9b7f111957b9be6dcddd33f7713b024d1516b2a1"
     },
     {
+      "id": "commit:72b1a824c53d165967bd5d848470977b6abfc90e",
+      "kind": "commit",
+      "at": "2026-10-10T17:30:14Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "72b1a824c53d165967bd5d848470977b6abfc90e"
+    },
+    {
+      "id": "commit:2d9f9c327d952181cf8b64f442dc34934ba89b7a",
+      "kind": "commit",
+      "at": "2026-10-10T15:18:50-03:00",
+      "subject": "docs: registrar plano do ambiente de trabalho VPS pelo Android",
+      "sha": "2d9f9c327d952181cf8b64f442dc34934ba89b7a"
+    },
+    {
+      "id": "commit:b32c63f79848d9fd71d020fb767ab94c37db5689",
+      "kind": "commit",
+      "at": "2026-10-10T15:18:59-03:00",
+      "subject": "continuity: registrar plano do ambiente de trabalho VPS Android",
+      "sha": "b32c63f79848d9fd71d020fb767ab94c37db5689"
+    },
+    {
+      "id": "commit:caa7017823377f66d004e14b9c7bf98a25929bf1",
+      "kind": "commit",
+      "at": "2026-10-10T15:19:05-03:00",
+      "subject": "docs: vincular plano de ambiente remoto ao próximo estágio do ABS",
+      "sha": "caa7017823377f66d004e14b9c7bf98a25929bf1"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -12799,23 +12832,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:3c744d36cb38",
+      "id": "evidence:repository:0a834db19d07",
       "kind": "evidence",
-      "at": "2026-10-10T14:29:54-03:00",
+      "at": "2026-10-10T15:19:05-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:3c744d36cb38",
+      "id": "event:repository-scan:0a834db19d07",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T14:29:54-03:00"
+      "at": "2026-10-10T15:19:05-03:00"
     },
     {
-      "id": "event:commit-observed:9b7f111957b9",
+      "id": "event:commit-observed:caa701782337",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T14:29:54-03:00"
+      "at": "2026-10-10T15:19:05-03:00"
     }
   ],
   "paths": [
@@ -12850,11 +12883,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:f32ddd9805f6"
+        "evidence:test:59b470aaba7e"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T14:29:54-03:00"
+      "last_validated": "2026-10-10T15:19:05-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -12877,20 +12910,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:3c744d36cb38",
+      "id": "evidence:repository:0a834db19d07",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T14:29:54-03:00",
+      "observed_at": "2026-10-10T15:19:05-03:00",
       "status": "observed",
-      "detail": "440 files indexed at revision 9b7f111957b9be6dcddd33f7713b024d1516b2a1"
+      "detail": "441 files indexed at revision caa7017823377f66d004e14b9c7bf98a25929bf1"
     },
     {
-      "id": "evidence:test:f32ddd9805f6",
+      "id": "evidence:test:59b470aaba7e",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T14:29:54-03:00",
+      "observed_at": "2026-10-10T15:19:05-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.48s"
+      "detail": "225 passed in 7.81s"
     }
   ],
   "decisions": [
@@ -12993,30 +13026,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:3c744d36cb38",
+      "id": "event:repository-scan:0a834db19d07",
       "type": "repository_scanned",
-      "at": "2026-10-10T14:29:54-03:00",
-      "revision": "9b7f111957b9be6dcddd33f7713b024d1516b2a1",
-      "file_count": 440,
-      "evidence_id": "evidence:repository:3c744d36cb38"
+      "at": "2026-10-10T15:19:05-03:00",
+      "revision": "caa7017823377f66d004e14b9c7bf98a25929bf1",
+      "file_count": 441,
+      "evidence_id": "evidence:repository:0a834db19d07"
     },
     {
-      "id": "event:commit-observed:9b7f111957b9",
+      "id": "event:commit-observed:caa701782337",
       "type": "commit_observed",
-      "at": "2026-10-10T14:29:54-03:00",
-      "revision": "9b7f111957b9be6dcddd33f7713b024d1516b2a1",
+      "at": "2026-10-10T15:19:05-03:00",
+      "revision": "caa7017823377f66d004e14b9c7bf98a25929bf1",
       "branch": "main",
-      "subject": "Remove temporary Coolify diagnostic commands after audit",
+      "subject": "docs: vincular plano de ambiente remoto ao próximo estágio do ABS",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        "docs/03_planejamento/FECHAMENTO_ABS_V1_CORE.md"
       ]
     },
     {
-      "id": "event:test:f32ddd9805f6",
+      "id": "event:test:59b470aaba7e",
       "type": "tests_observed",
-      "at": "2026-10-10T14:29:54-03:00",
+      "at": "2026-10-10T15:19:05-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:f32ddd9805f6"
+      "evidence_id": "evidence:test:59b470aaba7e"
     }
   ],
   "knowledge_sources": [
@@ -13072,7 +13105,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "49c48cd25243a967dbc5d3136373d7c430008c1373d65d877df189aa7a7c7dbd"
+      "sha256": "7b3637415fa6544e41cacee5057bfcd318733e1f2cc9d5f7b73d2e3f67dbd133"
     },
     {
       "id": "source:session",
@@ -13081,7 +13114,7 @@
       "authority": "continuity",
       "temporal": "current",
       "status": "present",
-      "sha256": "a9f0fee9afe130bf40907124b7557c993a40ea1dcc6bc142e0aaef7679f2b6d8"
+      "sha256": "49dbaa01cde9e7a76f7714d1419d668b62ff0a370429e222d402d570fa68a819"
     },
     {
       "id": "source:handoff",
@@ -59027,12 +59060,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:3c744d36cb38",
-      "source": "event:repository-scan:3c744d36cb38",
-      "relation": "generated",
-      "target": "evidence:repository:3c744d36cb38",
+      "id": "rel:commit-precedes:9b7f111957b9:72b1a824c53d",
+      "source": "commit:9b7f111957b9be6dcddd33f7713b024d1516b2a1",
+      "relation": "precedes",
+      "target": "commit:72b1a824c53d165967bd5d848470977b6abfc90e",
       "status": "asserted",
-      "at": "2026-10-10T14:29:54-03:00",
+      "at": "2026-10-10T17:30:14Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:72b1a824c53d:032adc3624d7",
+      "source": "commit:72b1a824c53d165967bd5d848470977b6abfc90e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T17:30:14Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:72b1a824c53d:d64178c49886",
+      "source": "commit:72b1a824c53d165967bd5d848470977b6abfc90e",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T17:30:14Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:72b1a824c53d:2d9f9c327d95",
+      "source": "commit:72b1a824c53d165967bd5d848470977b6abfc90e",
+      "relation": "precedes",
+      "target": "commit:2d9f9c327d952181cf8b64f442dc34934ba89b7a",
+      "status": "asserted",
+      "at": "2026-10-10T15:18:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2d9f9c327d95:bd7df056e6d4",
+      "source": "commit:2d9f9c327d952181cf8b64f442dc34934ba89b7a",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/PLANO_AMBIENTE_TRABALHO_VPS_ANDROID.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:18:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:2d9f9c327d95:b32c63f79848",
+      "source": "commit:2d9f9c327d952181cf8b64f442dc34934ba89b7a",
+      "relation": "precedes",
+      "target": "commit:b32c63f79848d9fd71d020fb767ab94c37db5689",
+      "status": "asserted",
+      "at": "2026-10-10T15:18:59-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b32c63f79848:6476fcc25321",
+      "source": "commit:b32c63f79848d9fd71d020fb767ab94c37db5689",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/SESSAO_ATUAL.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:18:59-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b32c63f79848:caa701782337",
+      "source": "commit:b32c63f79848d9fd71d020fb767ab94c37db5689",
+      "relation": "precedes",
+      "target": "commit:caa7017823377f66d004e14b9c7bf98a25929bf1",
+      "status": "asserted",
+      "at": "2026-10-10T15:19:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:caa701782337:2dd07f8134ed",
+      "source": "commit:caa7017823377f66d004e14b9c7bf98a25929bf1",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/FECHAMENTO_ABS_V1_CORE.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:19:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:0a834db19d07",
+      "source": "event:repository-scan:0a834db19d07",
+      "relation": "generated",
+      "target": "evidence:repository:0a834db19d07",
+      "status": "asserted",
+      "at": "2026-10-10T15:19:05-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -59041,12 +59200,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:9b7f111957b9",
-      "source": "commit:9b7f111957b9be6dcddd33f7713b024d1516b2a1",
+      "id": "rel:scan-commit:caa701782337",
+      "source": "commit:caa7017823377f66d004e14b9c7bf98a25929bf1",
       "relation": "observed_by",
-      "target": "event:repository-scan:3c744d36cb38",
+      "target": "event:repository-scan:0a834db19d07",
       "status": "asserted",
-      "at": "2026-10-10T14:29:54-03:00",
+      "at": "2026-10-10T15:19:05-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
