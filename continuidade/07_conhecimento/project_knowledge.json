@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T10:57:18-03:00",
-  "source_revision": "bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
+  "generated_at": "2026-10-10T11:22:52-03:00",
+  "source_revision": "04606048716910efef5e39b48fbab929997978da",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 145
+      "file_count": 146
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
-      "commit_subject": "Add rollback to upstream Selkies browser client"
+      "revision": "04606048716910efef5e39b48fbab929997978da",
+      "commit_subject": "Add isolated Remote Browser installation workflow"
     }
   ],
   "tools": [
@@ -968,6 +968,11 @@
       "id": "file:.github/workflows/abs-browser-complete-all.yml",
       "kind": "file",
       "path": ".github/workflows/abs-browser-complete-all.yml"
+    },
+    {
+      "id": "file:.github/workflows/abs-browser-install-remotebrowser.yml",
+      "kind": "file",
+      "path": ".github/workflows/abs-browser-install-remotebrowser.yml"
     },
     {
       "id": "file:.github/workflows/abs-browser-mobile-fix.yml",
@@ -11503,6 +11508,20 @@
       "sha": "bb29d70147d7b5f84f5f4ff28d8fce966f8056cd"
     },
     {
+      "id": "commit:542d7e4b2857744341d63c15b942125fa80edf84",
+      "kind": "commit",
+      "at": "2026-10-10T13:57:42Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "542d7e4b2857744341d63c15b942125fa80edf84"
+    },
+    {
+      "id": "commit:04606048716910efef5e39b48fbab929997978da",
+      "kind": "commit",
+      "at": "2026-10-10T11:22:52-03:00",
+      "subject": "Add isolated Remote Browser installation workflow",
+      "sha": "04606048716910efef5e39b48fbab929997978da"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11615,23 +11634,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:f5ed79db335d",
+      "id": "evidence:repository:989a33e88718",
       "kind": "evidence",
-      "at": "2026-10-10T10:57:18-03:00",
+      "at": "2026-10-10T11:22:52-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:f5ed79db335d",
+      "id": "event:repository-scan:989a33e88718",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:57:18-03:00"
+      "at": "2026-10-10T11:22:52-03:00"
     },
     {
-      "id": "event:commit-observed:bb29d70147d7",
+      "id": "event:commit-observed:046060487169",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T10:57:18-03:00"
+      "at": "2026-10-10T11:22:52-03:00"
     }
   ],
   "paths": [
@@ -11666,11 +11685,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:7d8f1079f065"
+        "evidence:test:da11596b0492"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T10:57:18-03:00"
+      "last_validated": "2026-10-10T11:22:52-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11693,20 +11712,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:f5ed79db335d",
+      "id": "evidence:repository:989a33e88718",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T10:57:18-03:00",
+      "observed_at": "2026-10-10T11:22:52-03:00",
       "status": "observed",
-      "detail": "431 files indexed at revision bb29d70147d7b5f84f5f4ff28d8fce966f8056cd"
+      "detail": "432 files indexed at revision 04606048716910efef5e39b48fbab929997978da"
     },
     {
-      "id": "evidence:test:7d8f1079f065",
+      "id": "evidence:test:da11596b0492",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T10:57:18-03:00",
+      "observed_at": "2026-10-10T11:22:52-03:00",
       "status": "tested",
-      "detail": "225 passed in 11.34s"
+      "detail": "225 passed in 8.80s"
     }
   ],
   "decisions": [
@@ -11809,30 +11828,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:f5ed79db335d",
+      "id": "event:repository-scan:989a33e88718",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:57:18-03:00",
-      "revision": "bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
-      "file_count": 431,
-      "evidence_id": "evidence:repository:f5ed79db335d"
+      "at": "2026-10-10T11:22:52-03:00",
+      "revision": "04606048716910efef5e39b48fbab929997978da",
+      "file_count": 432,
+      "evidence_id": "evidence:repository:989a33e88718"
     },
     {
-      "id": "event:commit-observed:bb29d70147d7",
+      "id": "event:commit-observed:046060487169",
       "type": "commit_observed",
-      "at": "2026-10-10T10:57:18-03:00",
-      "revision": "bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
+      "at": "2026-10-10T11:22:52-03:00",
+      "revision": "04606048716910efef5e39b48fbab929997978da",
       "branch": "main",
-      "subject": "Add rollback to upstream Selkies browser client",
+      "subject": "Add isolated Remote Browser installation workflow",
       "changed_files": [
-        ".github/workflows/abs-browser-stock-selkies.yml"
+        ".github/workflows/abs-browser-install-remotebrowser.yml"
       ]
     },
     {
-      "id": "event:test:7d8f1079f065",
+      "id": "event:test:da11596b0492",
       "type": "tests_observed",
-      "at": "2026-10-10T10:57:18-03:00",
+      "at": "2026-10-10T11:22:52-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:7d8f1079f065"
+      "evidence_id": "evidence:test:da11596b0492"
     }
   ],
   "knowledge_sources": [
@@ -11888,7 +11907,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "3fb8fc02cdf2b5592fcb54c209bee767dc6819fcce66ce3a446de821c45712fa"
+      "sha256": "39c49fe87e49799b041b3e74390b07f3631b367c672418a8706905c1d57f08b3"
     },
     {
       "id": "source:session",
@@ -52243,12 +52262,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:f5ed79db335d",
-      "source": "event:repository-scan:f5ed79db335d",
-      "relation": "generated",
-      "target": "evidence:repository:f5ed79db335d",
+      "id": "rel:commit-precedes:bb29d70147d7:542d7e4b2857",
+      "source": "commit:bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
+      "relation": "precedes",
+      "target": "commit:542d7e4b2857744341d63c15b942125fa80edf84",
       "status": "asserted",
-      "at": "2026-10-10T10:57:18-03:00",
+      "at": "2026-10-10T13:57:42Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:542d7e4b2857:032adc3624d7",
+      "source": "commit:542d7e4b2857744341d63c15b942125fa80edf84",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T13:57:42Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:542d7e4b2857:d64178c49886",
+      "source": "commit:542d7e4b2857744341d63c15b942125fa80edf84",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T13:57:42Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:542d7e4b2857:046060487169",
+      "source": "commit:542d7e4b2857744341d63c15b942125fa80edf84",
+      "relation": "precedes",
+      "target": "commit:04606048716910efef5e39b48fbab929997978da",
+      "status": "asserted",
+      "at": "2026-10-10T11:22:52-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:046060487169:f6a406f88fc3",
+      "source": "commit:04606048716910efef5e39b48fbab929997978da",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-install-remotebrowser.yml",
+      "status": "asserted",
+      "at": "2026-10-10T11:22:52-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:989a33e88718",
+      "source": "event:repository-scan:989a33e88718",
+      "relation": "generated",
+      "target": "evidence:repository:989a33e88718",
+      "status": "asserted",
+      "at": "2026-10-10T11:22:52-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -52257,12 +52346,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:bb29d70147d7",
-      "source": "commit:bb29d70147d7b5f84f5f4ff28d8fce966f8056cd",
+      "id": "rel:scan-commit:046060487169",
+      "source": "commit:04606048716910efef5e39b48fbab929997978da",
       "relation": "observed_by",
-      "target": "event:repository-scan:f5ed79db335d",
+      "target": "event:repository-scan:989a33e88718",
       "status": "asserted",
-      "at": "2026-10-10T10:57:18-03:00",
+      "at": "2026-10-10T11:22:52-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
