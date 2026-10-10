@@ -712,7 +712,7 @@ jobs:
                   rc=$?
                 fi
                 if [ "$rc" -eq 0 ]; then
-                  printf '%s' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert type(d.get("focused")) is bool, d; print("PASS | Tailnet focus endpoint responds; focused="+str(d["focused"]).lower())' 2>&1 || echo "FAIL | Focus endpoint response did not match the safe boolean schema."
+                  printf '%s' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert type(d.get("focused")) is bool, d; print("PASS | Tailnet focus endpoint responds; focused="+str(d["focused"]).lower()); x=d.get("diagnostics"); print("KEYBOARD_DIAGNOSTICS="+json.dumps(x, separators=(",",":")) if isinstance(x,dict) else "KEYBOARD_DIAGNOSTICS=none-yet")' 2>&1 || echo "FAIL | Focus endpoint response did not match the safe boolean schema."
                 else
                   echo "WARN | HTTPS self-probe via Tailscale IP did not complete; local health and Serve route are reported separately."
                 fi
