@@ -1142,6 +1142,46 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-backup-restore-test)
+              {
+                echo "[Disposable Coolify restore test — production database is not modified]"
+                artifact="$(sudo -n find /data/coolify/backups -type f -name '*.dmp' -print -quit 2>/dev/null)"
+                if [ -z "$artifact" ]; then
+                  echo "RESTORE_TEST_FAIL: no .dmp artifact found"
+                else
+                  exists="$(sudo -n docker exec coolify-db sh -lc 'psql -At -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d postgres -c "SELECT 1 FROM pg_database WHERE datname='''abs_coolify_restore_test''';"' 2>&1)"
+                  if [ "$exists" = "1" ]; then
+                    echo "RESTORE_TEST_SKIPPED: disposable database name already exists; nothing changed"
+                  else
+                    created=0
+                    if sudo -n docker exec coolify-db sh -lc 'createdb -U "$POSTGRES_USER" abs_coolify_restore_test' 2>&1; then
+                      created=1
+                      if sudo -n docker exec -i coolify-db sh -lc 'pg_restore --exit-on-error --no-owner --no-acl -U "$POSTGRES_USER" -d abs_coolify_restore_test' < "$artifact" 2>&1; then
+                        metrics="$(sudo -n docker exec coolify-db sh -lc 'psql -At -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d abs_coolify_restore_test -c "SELECT (SELECT count(*) FROM information_schema.tables WHERE table_schema='''public''' AND table_type='''BASE TABLE''') || '''|''' || (SELECT count(*) FROM migrations);" ' 2>&1)"
+                        table_count="${metrics%%|*}"
+                        migration_count="${metrics##*|}"
+                        if [[ "$table_count" =~ ^[0-9]+$ && "$migration_count" =~ ^[0-9]+$ ]] && [ "$table_count" -gt 20 ] && [ "$migration_count" -gt 0 ]; then
+                          echo "RESTORE_TEST_PASS | tables=$table_count | migrations=$migration_count | artifact_bytes=$(stat -c %s "$artifact")"
+                        else
+                          echo "RESTORE_TEST_FAIL: restored schema validation failed; metadata=$metrics"
+                        fi
+                      else
+                        echo "RESTORE_TEST_FAIL: pg_restore returned an error"
+                      fi
+                      if sudo -n docker exec coolify-db sh -lc 'dropdb --if-exists -U "$POSTGRES_USER" abs_coolify_restore_test' 2>&1; then
+                        created=0
+                        echo "temporary_database_cleanup=PASS"
+                      else
+                        echo "WARNING: temporary restore database cleanup failed; inspect Coolify DB before proceeding"
+                      fi
+                    else
+                      echo "RESTORE_TEST_FAIL: could not create disposable database"
+                    fi
+                  fi
+                fi
+              } > /tmp/abs-vps-result.txt 2>&1
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-backup-verify)
               {
                 echo "[Latest Coolify instance backup execution — non-secret metadata]"
