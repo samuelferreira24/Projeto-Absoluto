@@ -240,10 +240,12 @@ jobs:
           anchor = "  const populateAudioDevices = useCallback(async () => {"
           if s.count(anchor) != 1:
               raise SystemExit(f"FAIL | Sidebar keyboard insertion anchor expected once, found {s.count(anchor)}")
-          insert = """  // ABS_MOBILE_AUTO_KEYBOARD_CAPTURE_V3: detect taps before Selkies can consume them.
-          // This observes only touch geometry and focus outcomes; it never reads entered text.
+          insert = """  // ABS_MOBILE_AUTO_KEYBOARD_V1 and ABS_MOBILE_AUTO_KEYBOARD_CAPTURE_V3: detect taps before Selkies can consume them.
+          // ABS_MOBILE_FOCUS_BRIDGE_V1 remains a status-only bridge; no entered text is read.
           useEffect(() => {
+            console.info('ABS_MOBILE_AUTO_KEYBOARD_V1');
             console.info('ABS_MOBILE_AUTO_KEYBOARD_CAPTURE_V3');
+            console.info('ABS_MOBILE_FOCUS_BRIDGE_V1');
             let start = null;
             const state = { touches: 0, toolbarTaps: 0, focusAttempts: 0, focusSuccess: 0, last: 'idle' };
             window.__ABS_MOBILE_KEYBOARD_DIAGNOSTICS__ = state;
