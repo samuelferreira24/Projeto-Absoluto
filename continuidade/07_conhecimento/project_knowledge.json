@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T12:13:27-03:00",
-  "source_revision": "0f9d658be1b903c770d304202ae9312b41285a1d",
+  "generated_at": "2026-10-10T12:18:19-03:00",
+  "source_revision": "3b249039ba89e7dbf23703f214405faf6d143659",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "0f9d658be1b903c770d304202ae9312b41285a1d",
-      "commit_subject": "Add guarded live resource increase for principal browser"
+      "revision": "3b249039ba89e7dbf23703f214405faf6d143659",
+      "commit_subject": "Add concise live VPS inventory report covering ABS, browsers, Docker, and services"
     }
   ],
   "tools": [
@@ -11800,6 +11800,20 @@
       "sha": "0f9d658be1b903c770d304202ae9312b41285a1d"
     },
     {
+      "id": "commit:8257f9908ab2cf5f1ea9365defc5acb6e4a53715",
+      "kind": "commit",
+      "at": "2026-10-10T15:13:47Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "8257f9908ab2cf5f1ea9365defc5acb6e4a53715"
+    },
+    {
+      "id": "commit:3b249039ba89e7dbf23703f214405faf6d143659",
+      "kind": "commit",
+      "at": "2026-10-10T12:18:19-03:00",
+      "subject": "Add concise live VPS inventory report covering ABS, browsers, Docker, and services",
+      "sha": "3b249039ba89e7dbf23703f214405faf6d143659"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11912,23 +11926,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:cdfc2cb2d4a9",
+      "id": "evidence:repository:66dc47770438",
       "kind": "evidence",
-      "at": "2026-10-10T12:13:27-03:00",
+      "at": "2026-10-10T12:18:19-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:cdfc2cb2d4a9",
+      "id": "event:repository-scan:66dc47770438",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:13:27-03:00"
+      "at": "2026-10-10T12:18:19-03:00"
     },
     {
-      "id": "event:commit-observed:0f9d658be1b9",
+      "id": "event:commit-observed:3b249039ba89",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T12:13:27-03:00"
+      "at": "2026-10-10T12:18:19-03:00"
     }
   ],
   "paths": [
@@ -11963,11 +11977,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:648aaf4d0031"
+        "evidence:test:07f09da235af"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T12:13:27-03:00"
+      "last_validated": "2026-10-10T12:18:19-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11990,20 +12004,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:cdfc2cb2d4a9",
+      "id": "evidence:repository:66dc47770438",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T12:13:27-03:00",
+      "observed_at": "2026-10-10T12:18:19-03:00",
       "status": "observed",
-      "detail": "440 files indexed at revision 0f9d658be1b903c770d304202ae9312b41285a1d"
+      "detail": "440 files indexed at revision 3b249039ba89e7dbf23703f214405faf6d143659"
     },
     {
-      "id": "evidence:test:648aaf4d0031",
+      "id": "evidence:test:07f09da235af",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T12:13:27-03:00",
+      "observed_at": "2026-10-10T12:18:19-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.18s"
+      "detail": "225 passed in 7.58s"
     }
   ],
   "decisions": [
@@ -12106,30 +12120,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:cdfc2cb2d4a9",
+      "id": "event:repository-scan:66dc47770438",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:13:27-03:00",
-      "revision": "0f9d658be1b903c770d304202ae9312b41285a1d",
+      "at": "2026-10-10T12:18:19-03:00",
+      "revision": "3b249039ba89e7dbf23703f214405faf6d143659",
       "file_count": 440,
-      "evidence_id": "evidence:repository:cdfc2cb2d4a9"
+      "evidence_id": "evidence:repository:66dc47770438"
     },
     {
-      "id": "event:commit-observed:0f9d658be1b9",
+      "id": "event:commit-observed:3b249039ba89",
       "type": "commit_observed",
-      "at": "2026-10-10T12:13:27-03:00",
-      "revision": "0f9d658be1b903c770d304202ae9312b41285a1d",
+      "at": "2026-10-10T12:18:19-03:00",
+      "revision": "3b249039ba89e7dbf23703f214405faf6d143659",
       "branch": "main",
-      "subject": "Add guarded live resource increase for principal browser",
+      "subject": "Add concise live VPS inventory report covering ABS, browsers, Docker, and services",
       "changed_files": [
-        ".github/workflows/abs-vps-browser-emergency.yml"
+        ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:648aaf4d0031",
+      "id": "event:test:07f09da235af",
       "type": "tests_observed",
-      "at": "2026-10-10T12:13:27-03:00",
+      "at": "2026-10-10T12:18:19-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:648aaf4d0031"
+      "evidence_id": "evidence:test:07f09da235af"
     }
   ],
   "knowledge_sources": [
@@ -12185,7 +12199,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "a7de0b55513d70c24ee4e5196b4003bcc5151b20a3957209015d2558dbb4cc87"
+      "sha256": "0cc4c9f633f989af49bd803544039f81c0fdaafd2c3da59c291b8c3784adaa98"
     },
     {
       "id": "source:session",
@@ -53800,12 +53814,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:cdfc2cb2d4a9",
-      "source": "event:repository-scan:cdfc2cb2d4a9",
-      "relation": "generated",
-      "target": "evidence:repository:cdfc2cb2d4a9",
+      "id": "rel:commit-precedes:0f9d658be1b9:8257f9908ab2",
+      "source": "commit:0f9d658be1b903c770d304202ae9312b41285a1d",
+      "relation": "precedes",
+      "target": "commit:8257f9908ab2cf5f1ea9365defc5acb6e4a53715",
       "status": "asserted",
-      "at": "2026-10-10T12:13:27-03:00",
+      "at": "2026-10-10T15:13:47Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:8257f9908ab2:032adc3624d7",
+      "source": "commit:8257f9908ab2cf5f1ea9365defc5acb6e4a53715",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:13:47Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:8257f9908ab2:d64178c49886",
+      "source": "commit:8257f9908ab2cf5f1ea9365defc5acb6e4a53715",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T15:13:47Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:8257f9908ab2:3b249039ba89",
+      "source": "commit:8257f9908ab2cf5f1ea9365defc5acb6e4a53715",
+      "relation": "precedes",
+      "target": "commit:3b249039ba89e7dbf23703f214405faf6d143659",
+      "status": "asserted",
+      "at": "2026-10-10T12:18:19-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3b249039ba89:1734be446032",
+      "source": "commit:3b249039ba89e7dbf23703f214405faf6d143659",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T12:18:19-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:66dc47770438",
+      "source": "event:repository-scan:66dc47770438",
+      "relation": "generated",
+      "target": "evidence:repository:66dc47770438",
+      "status": "asserted",
+      "at": "2026-10-10T12:18:19-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -53814,12 +53898,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:0f9d658be1b9",
-      "source": "commit:0f9d658be1b903c770d304202ae9312b41285a1d",
+      "id": "rel:scan-commit:3b249039ba89",
+      "source": "commit:3b249039ba89e7dbf23703f214405faf6d143659",
       "relation": "observed_by",
-      "target": "event:repository-scan:cdfc2cb2d4a9",
+      "target": "event:repository-scan:66dc47770438",
       "status": "asserted",
-      "at": "2026-10-10T12:13:27-03:00",
+      "at": "2026-10-10T12:18:19-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
