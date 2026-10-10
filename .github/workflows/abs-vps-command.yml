@@ -789,6 +789,25 @@ jobs:
               } > /tmp/abs-browser-client-inspect.txt 2>&1
               result="$(cat /tmp/abs-browser-client-inspect.txt)"
               ;;
+            browser-deploy-origin)
+              set +e
+              {
+                echo "[container origin labels and limits]"
+                for c in abs-browser-ui abs-remotebrowser; do
+                  sudo -n docker inspect "$c" --format '{{.Name}} image={{.Config.Image}} created={{.Created}} labels={{json .Config.Labels}} mounts={{json .Mounts}} memory={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}} nanoCPU={{.HostConfig.NanoCpus}}' 2>&1
+                done
+                echo
+                echo "[deployment scripts / compose references]"
+                sudo -n grep -RIlE 'abs-browser-ui|abs-remotebrowser|selkies-theme-v1' /home/absadmin/abs-browser /home/absadmin  /etc/systemd/system 2>/dev/null | head -n 50 | while read f; do echo "--- $f"; grep -nE 'abs-browser-ui|abs-remotebrowser|selkies-theme-v1|docker (run|update|compose)|mem_limit|cpus:|memory:' "$f" 2>/dev/null | head -n 30; done
+                echo
+                echo "[browser app session management]"
+                sudo -n docker exec abs-remotebrowser sh -lc 'grep -nE "setInterval|cleanupTimers|sessionWsMap|wsSessionMap|sessionPromises|destroy\(|disconnect|close|clientCount|startCaptureFallbackLoop|fps" /app/dist/ws/server.js /app/dist/browser/session.js /app/dist/stream/mjpeg.js /app/dist/index.js 2>/dev/null | head -n 110' 2>&1
+                echo
+                echo "[memory limit current counters]"
+                sudo -n docker exec abs-browser-ui sh -lc 'cat /sys/fs/cgroup/memory.current /sys/fs/cgroup/memory.max /sys/fs/cgroup/memory.events /sys/fs/cgroup/memory.swap.max 2>/dev/null' 2>&1 || true
+              } > /tmp/abs-browser-deploy-origin.txt 2>&1
+              result="$(cat /tmp/abs-browser-deploy-origin.txt)"
+              ;;
             browser-source-inspect)
               set +e
               {
