@@ -255,13 +255,16 @@ jobs:
               const rect = overlay.getBoundingClientRect();
               if (!rect.height) return;
               const y = (event.clientY - rect.top) / rect.height;
+              // IMPORTANT: invoke the native IME while pointerup is still a trusted user gesture.
+              // Android browsers may reject keyboard display if focus is deferred through a timer or fetch.
+              // The remote Chromium toolbar is in the top band of the streamed desktop.
+              if (y >= 0.035 && y <= 0.135) {
+                handleShowVirtualKeyboard();
+                return;
+              }
+              // Web-page fields need remote focus detection; the persistent sidebar keyboard button remains
+              // the explicit fallback because native IME activation may be denied after asynchronous work.
               window.setTimeout(async () => {
-                // Browser omnibox/tab strip: Chrome's browser chrome is remote pixels, so use Selkies' native IME bridge.
-                if (y >= 0.035 && y <= 0.135) {
-                  handleShowVirtualKeyboard();
-                  return;
-                }
-                // Web-page input fields: ask the private host bridge if Chromium has focused a text-entry element.
                 try {
                   const response = await fetch('/abs-keyboard-focus', {
                     credentials: 'same-origin',
