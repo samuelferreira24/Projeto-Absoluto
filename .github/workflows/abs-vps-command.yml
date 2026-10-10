@@ -853,6 +853,39 @@ jobs:
               } > /tmp/abs-browser-source-inspect.txt 2>&1
               result="$(cat /tmp/abs-browser-source-inspect.txt)"
               ;;
+            pause-workloads)
+              set -u
+              {
+                echo "=== PAUSING NON-ESSENTIAL WORKLOADS (preserve data/configuration) ==="
+                echo "[ABS application]"
+                sudo -n systemctl stop abs.service 2>&1 || true
+                echo "[OpenClaw gateway]"
+                sudo -n systemctl stop openclaw-gateway.service 2>&1 || true
+                echo "[Local AI model server]"
+                sudo -n systemctl stop ollama.service 2>&1 || true
+                echo "[Browser keyboard bridge]"
+                sudo -n systemctl stop abs-browser-keyboard-bridge.service 2>&1 || true
+                echo "[Browser tailnet serve helper]"
+                sudo -n systemctl stop abs-browser-tailnet-serve.service 2>&1 || true
+                echo "[Browser containers — stop only, do not remove]"
+                for c in abs-remotebrowser abs-browser-ui; do
+                  if sudo -n docker inspect "$c" >/dev/null 2>&1; then
+                    sudo -n docker stop --time 15 "$c" 2>&1 || true
+                    sudo -n docker inspect "$c" --format '{{.Name}} state={{.State.Status}} restart_policy={{.HostConfig.RestartPolicy.Name}}' 2>&1 || true
+                  else
+                    echo "$c: not present"
+                  fi
+                done
+                echo
+                echo "=== PRESERVED ACCESS / WORK ENVIRONMENT ==="
+                sudo -n systemctl show ssh.service tailscaled.service docker.service actions.runner.samuelferreira24-Projeto-Absoluto.abs-vps-01.service -p Id -p ActiveState -p SubState 2>&1 || true
+                sudo -n docker ps --format '{{.Names}}|{{.Status}}|{{.Ports}}' | grep -E '^(coolify|coolify-db|coolify-redis|coolify-proxy|coolify-sentinel|code-server-)' || true
+                echo
+                echo "=== ABS HEALTH AFTER STOP (expected unreachable) ==="
+                curl -sS --max-time 3 http://127.0.0.1:8787/health 2>&1 || true
+              } > /tmp/abs-pause-workloads.txt 2>&1
+              result="$(cat /tmp/abs-pause-workloads.txt)"
+              ;;
             browser-stop-alternative)
               set -e
               echo "[before]"
