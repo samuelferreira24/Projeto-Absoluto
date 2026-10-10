@@ -1259,7 +1259,7 @@ jobs:
             coolify-locale-inspect)
               {
                 echo "[Current locale config and translation coverage]"
-                sudo -n docker exec coolify php artisan tinker --execute='echo "app_locale=".config("app.locale").PHP_EOL; echo "env_APP_LOCALE=".(getenv("APP_LOCALE") ?: "(unset)").PHP_EOL; echo "pt_br_login=".Illuminate\\Support\\Facades\\App::setLocale("pt-br")." ".__("auth.login").PHP_EOL; echo "pt_br_auth_login=".__("auth.login").PHP_EOL; echo "pt_br_example=".__("auth.login.authentik").PHP_EOL; echo "pt_br_translation_file=".(is_file(base_path("lang/pt-br.json"))?"exists":"missing").PHP_EOL;' 2>&1 || true
+                sudo -n docker exec coolify php artisan tinker --execute='echo "configured_locale=".config("app.locale").PHP_EOL; echo "env_APP_LOCALE=".(getenv("APP_LOCALE") ?: "(unset)").PHP_EOL; app()->setLocale("pt-br"); echo "runtime_locale=".app()->getLocale().PHP_EOL; echo "pt_br_auth_login=".__("auth.login").PHP_EOL; echo "pt_br_example=".__("auth.login.authentik").PHP_EOL; echo "pt_br_translation_file=".(is_file(base_path("lang/pt-br.json"))?"exists":"missing").PHP_EOL;' 2>&1 || true
                 echo
                 sudo -n docker exec coolify php -r '$f="/var/www/html/lang/pt-br.json"; if (is_file($f)) { $d=json_decode(file_get_contents($f), true); echo "translation_keys=".count($d).PHP_EOL; foreach (array_slice($d,0,12,true) as $k=>$v) echo $k." => ".$v.PHP_EOL; } else echo "translation_file_missing".PHP_EOL;' 2>&1 || true
                 echo
