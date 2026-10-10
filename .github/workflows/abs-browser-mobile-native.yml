@@ -249,6 +249,10 @@ jobs:
             let start = null;
             const state = { touches: 0, toolbarTaps: 0, focusAttempts: 0, focusSuccess: 0, last: 'idle' };
             window.__ABS_MOBILE_KEYBOARD_DIAGNOSTICS__ = state;
+            const report = () => {
+              const safe = { touches: state.touches, toolbarTaps: state.toolbarTaps, focusAttempts: state.focusAttempts, focusSuccess: state.focusSuccess, last: String(state.last).slice(0, 100), at: Date.now() };
+              try { fetch('/abs-keyboard-focus', { method: 'POST', credentials: 'same-origin', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(safe) }).catch(() => {}); } catch (_) {}
+            };
             const findRemoteRect = (eventTarget) => {
               // Selkies switches between stream/videoWorkerCanvas/videoCanvas; the first canvas may be hidden.
               const candidates = [eventTarget, ...['stream', 'videoStream', 'videoWorkerCanvas', 'videoCanvas', 'overlayInput'].map(id => document.getElementById(id))];
@@ -273,6 +277,7 @@ jobs:
               state.touches++;
               state.last = 'touchstart:' + (remote ? remote.id : 'no-remote-rect');
               start = { x: touch.clientX, y: touch.clientY, at: Date.now(), remoteId: remote && remote.id };
+              report();
             };
             const onTouchEnd = (event) => {
               const origin = start;
@@ -283,25 +288,30 @@ jobs:
               const dy = touch.clientY - origin.y;
               if ((dx * dx + dy * dy) > 196 || Date.now() - origin.at > 800) {
                 state.last = 'ignored-movement-or-long-touch';
+                report();
                 return;
               }
               const remote = findRemoteRect();
               if (!remote) {
                 state.last = 'no-remote-rect-at-end';
+                report();
                 return;
               }
               const r = remote.r;
               if (touch.clientX < r.left || touch.clientX > r.right || touch.clientY < r.top || touch.clientY > r.bottom) {
                 state.last = 'touch-outside-remote-view:' + remote.id;
+                report();
                 return;
               }
               const y = (touch.clientY - r.top) / r.height;
               state.last = 'tap:' + remote.id + ':y=' + y.toFixed(3);
+              report();
               // Chromium's address/search toolbar occupies the upper band of its streamed viewport.
               if (y >= 0.025 && y <= 0.16) {
                 state.toolbarTaps++;
                 state.focusAttempts++;
                 console.info('ABS_MOBILE_KEYBOARD_FOCUS_ATTEMPT', JSON.stringify({ target: remote.id, y: Number(y.toFixed(3)), trusted: true, inputPresent: !!document.getElementById('keyboard-input-assist') }));
+                report();
                 // Run in the trusted touch handler so Android can associate focus with user activation.
                 handleShowVirtualKeyboard();
                 window.requestAnimationFrame(() => {
@@ -309,6 +319,7 @@ jobs:
                   state.focusSuccess = input && document.activeElement === input ? state.focusSuccess + 1 : state.focusSuccess;
                   state.last = input && document.activeElement === input ? 'focus-element-active' : 'focus-element-not-active';
                   console.info('ABS_MOBILE_KEYBOARD_FOCUS_RESULT', JSON.stringify({ inputPresent: !!input, active: !!input && document.activeElement === input, activeTag: document.activeElement && document.activeElement.tagName }));
+                  report();
                 });
                 return;
               }
@@ -365,25 +376,44 @@ jobs:
               ws.addEventListener('close', () => finish(false), {once:true});
             });
           }
+          let lastDiagnostics = null;
           const server = http.createServer(async (req, res) => {
             const path = new URL(req.url, 'http://127.0.0.1').pathname;
             res.setHeader('Content-Type','application/json; charset=utf-8');
             res.setHeader('Cache-Control','no-store');
             res.setHeader('X-Content-Type-Options','nosniff');
-            if (req.method !== 'GET' || !['/health','/focus','/abs-keyboard-focus'].includes(path)) {
-              res.writeHead(404); res.end(JSON.stringify({error:'not_found'})); return;
-            }
-            if (path === '/health') {
+            if (path === '/health' && req.method === 'GET') {
               res.writeHead(200); res.end(JSON.stringify({ok:true,service:'abs-browser-keyboard-focus'})); return;
+            }
+            if (path === '/abs-keyboard-focus' && req.method === 'POST') {
+              const origin = req.headers.origin || '';
+              if (origin && !/^https:\/\/abs-vps-01\.tailc75f22\.ts\.net$/.test(origin)) {
+                res.writeHead(403); res.end(JSON.stringify({error:'origin_denied'})); return;
+              }
+              let body = '';
+              req.on('data', chunk => { body += chunk; if (body.length > 2048) req.destroy(); });
+              req.on('end', () => {
+                try {
+                  const d = JSON.parse(body);
+                  const int = v => Number.isInteger(v) && v >= 0 && v <= 100000;
+                  if (!int(d.touches) || !int(d.toolbarTaps) || !int(d.focusAttempts) || !int(d.focusSuccess) || typeof d.last !== 'string' || !/^[a-zA-Z0-9:_=.-]{1,100}$/.test(d.last) || !Number.isFinite(d.at)) throw new Error('invalid_schema');
+                  lastDiagnostics = { touches:d.touches, toolbarTaps:d.toolbarTaps, focusAttempts:d.focusAttempts, focusSuccess:d.focusSuccess, last:d.last, at:d.at };
+                  res.writeHead(200); res.end(JSON.stringify({ok:true}));
+                } catch (_) { res.writeHead(400); res.end(JSON.stringify({error:'invalid_diagnostics'})); }
+              });
+              return;
+            }
+            if (req.method !== 'GET' || !['/focus','/abs-keyboard-focus'].includes(path)) {
+              res.writeHead(404); res.end(JSON.stringify({error:'not_found'})); return;
             }
             try {
               const response = await fetch('http://127.0.0.1:9222/json/list', {signal:AbortSignal.timeout(700)});
               if (!response.ok) throw new Error('cdp_unavailable');
               const targets = (await response.json()).filter(t => t.type === 'page' && /^https?:/.test(t.url || '') && t.webSocketDebuggerUrl).slice(0,8);
               const states = await Promise.all(targets.map(focusedTarget));
-              res.writeHead(200); res.end(JSON.stringify({focused:states.some(Boolean)}));
+              res.writeHead(200); res.end(JSON.stringify({focused:states.some(Boolean), diagnostics:lastDiagnostics}));
             } catch (_) {
-              res.writeHead(200); res.end(JSON.stringify({focused:false}));
+              res.writeHead(200); res.end(JSON.stringify({focused:false, diagnostics:lastDiagnostics}));
             }
           });
           server.listen(9223, '127.0.0.1');
