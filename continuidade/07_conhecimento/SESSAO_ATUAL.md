@@ -213,3 +213,22 @@ A localização segue a governança documental: o plano temático fica em `docs/
 ### Próxima ação
 
 Auditar o estado real da VPS e dos acessos pelo Android; comparar com o plano; priorizar correções comprovadas. Não começar por uma instalação geral, não reinstalar componentes funcionais sem evidência e não realizar alterações destrutivas sem avaliação e validação.
+
+
+## Correção crítica de continuidade — 2026-10-10 — versão atual do ABS
+
+A atualização sobre o ambiente de trabalho na VPS não deve ser interpretada como retorno à V1 nem como recomeço do ABS.
+
+A continuidade recuperada indica:
+- **ABS V3 ativo** como estado de referência documentado.
+- **V4 Completa planejada**, com plano mestre, pesquisa de capacidades e matrizes de fechamento em PR #127, aberto/em rascunho no momento da consulta.
+- PR #128 contém uma correção de segurança para rejeitar planos operacionais com etapas sem `capability_id`; estava aberto/em rascunho e não deve ser considerado incorporado à `main` sem nova verificação.
+
+A meta imediata é melhorar o ambiente e as ferramentas que estavam limitando o trabalho, preservando o que já foi construído e retomando do estado real. Não reiniciar o desenvolvimento na V1, não recriar componentes já existentes e não tratar planejamento da V4 como implementação concluída.
+
+Referências:
+- `docs/03_planejamento/PLANO_AMBIENTE_TRABALHO_VPS_ANDROID.md`
+- PR #127: https://github.com/samuelferreira24/Projeto-Absoluto/pull/127
+- PR #128: https://github.com/samuelferreira24/Projeto-Absoluto/pull/128
+
+Próximo passo: auditar o ambiente de trabalho e, em paralelo ao planeamento de infraestrutura, reconciliar os PRs e o estado de código/testes para que a continuação da construção preserve a trajetória existente.
