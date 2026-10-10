@@ -270,6 +270,7 @@ jobs:
               return null;
             };
             const onTouchStart = (event) => {
+              if (event.target && event.target.closest && event.target.closest('#abs-real-address-input-v1')) return;
               if (!event.isTrusted || !event.changedTouches || !event.changedTouches.length) return;
               const touch = event.changedTouches[0];
               const target = event.target && event.target.closest ? event.target.closest('#stream, #videoStream, #videoWorkerCanvas, #videoCanvas, #overlayInput') : event.target;
@@ -280,6 +281,7 @@ jobs:
               report();
             };
             const onTouchEnd = (event) => {
+              if (event.target && event.target.closest && event.target.closest('#abs-real-address-input-v1')) { start = null; return; }
               const origin = start;
               start = null;
               const touch = event.changedTouches && event.changedTouches[0];
@@ -343,16 +345,6 @@ jobs:
           }, [handleShowVirtualKeyboard]);
 
           const populateAudioDevices = useCallback(async () => {"""
-          insert = insert.replace(
-              "const onTouchStart = (event) => {\n              if (!event.isTrusted",
-              "const onTouchStart = (event) => {\n              if (event.target && event.target.closest && event.target.closest('#abs-real-address-input-v1')) return;\n              if (!event.isTrusted",
-              1
-          )
-          insert = insert.replace(
-              "const onTouchEnd = (event) => {\n              const origin = start;",
-              "const onTouchEnd = (event) => {\n              if (event.target && event.target.closest && event.target.closest('#abs-real-address-input-v1')) { start = null; return; }\n              const origin = start;",
-              1
-          )
           s = s.replace(anchor, insert, 1)
           overlay = r'''  // ABS_REAL_ADDRESS_OVERLAY_V1: real local input aligned over the streamed Chromium address bar.
           useEffect(() => {
