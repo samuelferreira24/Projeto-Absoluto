@@ -69,3 +69,70 @@ jobs:
               issue_number: context.issue.number || 121,
               body
             });
+
+  increase-principal-browser:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      startsWith(github.event.comment.body, '/abs-emergency principal-browser-boost')
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 5
+    steps:
+      - name: Check and adjust limits without restart
+        id: boost
+        shell: bash
+        run: |
+          set +e
+          {
+            echo "[precheck]"
+            free -h
+            cat /proc/pressure/cpu /proc/pressure/memory 2>/dev/null || true
+            sudo -n docker inspect abs-browser-ui abs-remotebrowser --format '{{.Name}} state={{.State.Status}} mem={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}} nanoCPU={{.HostConfig.NanoCpus}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}' 2>&1
+            sudo -n docker stats --no-stream --format '{{.Name}} cpu={{.CPUPerc}} mem={{.MemUsage}} pids={{.PIDs}}' abs-browser-ui abs-remotebrowser 2>&1
+            available_kb=$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)
+            echo "MemAvailable_kB=$available_kb"
+            if [ -z "$available_kb" ] || [ "$available_kb" -lt 1800000 ]; then
+              echo "ABORTED: less than ~1.8 GiB available RAM; current limits unchanged."
+            else
+              sudo -n docker update --memory=3g --memory-swap=4g --cpus=2.5 abs-browser-ui 2>&1
+              main_rc=$?
+              sudo -n docker update --cpus=0.25 abs-remotebrowser 2>&1
+              alt_rc=$?
+              echo "principal_update_rc=$main_rc alternate_cpu_cap_rc=$alt_rc"
+              echo "[postcheck]"
+              sudo -n docker inspect abs-browser-ui abs-remotebrowser --format '{{.Name}} state={{.State.Status}} mem={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}} nanoCPU={{.HostConfig.NanoCpus}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}' 2>&1
+              sudo -n docker stats --no-stream --format '{{.Name}} cpu={{.CPUPerc}} mem={{.MemUsage}} pids={{.PIDs}}' abs-browser-ui abs-remotebrowser 2>&1
+              free -h
+              cat /proc/pressure/cpu /proc/pressure/memory 2>/dev/null || true
+              echo "[ABS health]"
+              curl -fsS --max-time 8 http://127.0.0.1:8787/health 2>&1 || true
+            fi
+          } > /tmp/abs-principal-browser-boost.txt 2>&1
+          result="$(cat /tmp/abs-principal-browser-boost.txt)"
+          {
+            echo 'result<<ABS_RESULT_EOF'
+            printf '%s\n' "${result:0:9000}"
+            echo 'ABS_RESULT_EOF'
+          } >> "$GITHUB_OUTPUT"
+      - name: Report
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.boost.outputs.result }}
+        with:
+          script: |
+            const body = [
+              '### ABS VPS — principal browser resource adjustment',
+              '',
+              'Live Docker limit update only if at least ~1.8 GiB host memory was available; no restart, deletion, or ABS configuration changes.',
+              '',
+              'OUTPUT_START',
+              (process.env.RESULT || '(no result)').slice(0, 9000),
+              'OUTPUT_END'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number || 121,
+              body
+            });
