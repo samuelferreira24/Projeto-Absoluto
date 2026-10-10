@@ -89,12 +89,14 @@ jobs:
           import re
           p = Path.home() / "abs-browser/selkies-source/addons/selkies-web-core/lib/input.js"
           s = p.read_text()
+
           def replace_once(old, new, label):
               global s
               count = s.count(old)
               if count != 1:
                   raise SystemExit(f"FAIL | Selkies patch anchor {label!r} expected once, found {count}; browser was not stopped.")
               s = s.replace(old, new, 1)
+
           def replace_regex_once(pattern, replacement, label):
               global s
               s2, count = re.subn(pattern, replacement, s, count=1, flags=re.M)
@@ -119,10 +121,12 @@ jobs:
           replace_regex_once(
               r"(currentX: touch\.clientX, currentY: touch\.clientY,\n)([ \t]*)startTime: now, identifier: touch\.identifier,",
               lambda m: m.group(1) + m.group(2) + "lastScrollX: touch.clientX, lastScrollY: touch.clientY,\n" + m.group(2) + "startTime: now, identifier: touch.identifier,",
-              "touch-origin")          replace_regex_once(
+              "touch-origin")
+          replace_regex_once(
               r"(?m)^([ \t]*)this\._touchScrollLastCentroid = \{\n([ \t]*)x: \(touches\[0\]\.currentX \+ touches\[1\]\.currentX\) / 2,\n\2y: \(touches\[0\]\.currentY \+ touches\[1\]\.currentY\) / 2\n\1\};",
               lambda m: m.group(0) + "\n" + m.group(1) + "this._touchScrollLastDistance = Math.hypot(\n" + m.group(1) + "    touches[0].currentX - touches[1].currentX,\n" + m.group(1) + "    touches[0].currentY - touches[1].currentY\n" + m.group(1) + ");\n" + m.group(1) + "this._touchGestureMode = null;\n" + m.group(1) + "this._touchPinchAccum = 0;",
-              "two-finger-origin")          replace_once(
+              "two-finger-origin")
+          replace_once(
               """if (this._touchScrollLastCentroid) {
                           const deltaX = curr_avg_x - this._touchScrollLastCentroid.x;
                           const deltaY = curr_avg_y - this._touchScrollLastCentroid.y;
@@ -209,14 +213,17 @@ jobs:
                       }""",
               "single-finger-scroll")
           replace_regex_once(
-              r"(?m)^([ \t]*)this\._isTwoFingerGesture = false;\n\1this\._touchScrollLastCentroid = null;\n(?=\n[ \t]*\})",
+              r"(?m)^([ \t]*)this\._isTwoFingerGesture = false;\n\1this\._touchScrollLastCentroid = null;\n(?=[ \t]*\})",
               lambda m: m.group(0) + m.group(1) + "this._touchScrollLastDistance = null;\n" + m.group(1) + "this._touchGestureMode = null;\n" + m.group(1) + "this._touchPinchAccum = 0;\n",
-              "two-finger-reset")          replace_regex_once(
+              "two-finger-reset")
+          replace_regex_once(
               r"(?m)^([ \t]*)if \(remainingTouchCount === 0\) \{\n([ \t]*)this\._activeTouchIdentifier = null; this\._isTwoFingerGesture = false;\n([ \t]*)this\._touchScrollLastCentroid = null;\n",
               lambda m: m.group(0) + m.group(3) + "this._touchScrollLastDistance = null;\n" + m.group(3) + "this._touchGestureMode = null;\n" + m.group(3) + "this._touchPinchAccum = 0;\n" + m.group(3) + "this._singleTouchScrollAccumY = 0;\n" + m.group(3) + "this._singleTouchScrollAccumX = 0;\n" + m.group(3) + "this._isSingleFingerScroll = false;\n",
-              "all-touch-reset")          s = "console.info('ABS_MOBILE_TOUCH_GESTURES_V1');\n" + s
+              "all-touch-reset")
+          s = "console.info('ABS_MOBILE_TOUCH_GESTURES_V1');\n" + s
           p.write_text(s)
           print("PASS | Patched direct touch: one-finger swipe scrolls, two-finger pinch sends Ctrl+wheel zoom, two-finger translation scrolls, taps and long-press remain.")
+
           PY
           export NODE_OPTIONS=--max-old-space-size=1024
           (cd "$CORE_DIR" && npm ci --no-audit --no-fund && npm run build)
