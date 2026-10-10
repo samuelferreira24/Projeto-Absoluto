@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T12:21:16-03:00",
-  "source_revision": "f88cb782018a92ec0fb7ddfe241ad485fe79ea5e",
+  "generated_at": "2026-10-10T12:32:33-03:00",
+  "source_revision": "76b4d76fa02e2fdea9e46eb0d5fe6babbff17534",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 154
+      "file_count": 155
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "f88cb782018a92ec0fb7ddfe241ad485fe79ea5e",
-      "commit_subject": "Add safe command to stop alternate browser without deleting data"
+      "revision": "76b4d76fa02e2fdea9e46eb0d5fe6babbff17534",
+      "commit_subject": "Add read-only browser sync verification workflow"
     }
   ],
   "tools": [
@@ -1043,6 +1043,11 @@
       "id": "file:.github/workflows/abs-browser-stock-selkies.yml",
       "kind": "file",
       "path": ".github/workflows/abs-browser-stock-selkies.yml"
+    },
+    {
+      "id": "file:.github/workflows/abs-browser-sync-verify.yml",
+      "kind": "file",
+      "path": ".github/workflows/abs-browser-sync-verify.yml"
     },
     {
       "id": "file:.github/workflows/abs-browser-yaml-diagnostic.yml",
@@ -11828,6 +11833,20 @@
       "sha": "f88cb782018a92ec0fb7ddfe241ad485fe79ea5e"
     },
     {
+      "id": "commit:692939548b4ff6bd6e01c89412938b30381215f3",
+      "kind": "commit",
+      "at": "2026-10-10T15:21:36Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "692939548b4ff6bd6e01c89412938b30381215f3"
+    },
+    {
+      "id": "commit:76b4d76fa02e2fdea9e46eb0d5fe6babbff17534",
+      "kind": "commit",
+      "at": "2026-10-10T12:32:33-03:00",
+      "subject": "Add read-only browser sync verification workflow",
+      "sha": "76b4d76fa02e2fdea9e46eb0d5fe6babbff17534"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11940,23 +11959,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:502abe27db4d",
+      "id": "evidence:repository:e27e8cf50b04",
       "kind": "evidence",
-      "at": "2026-10-10T12:21:16-03:00",
+      "at": "2026-10-10T12:32:33-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:502abe27db4d",
+      "id": "event:repository-scan:e27e8cf50b04",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:21:16-03:00"
+      "at": "2026-10-10T12:32:33-03:00"
     },
     {
-      "id": "event:commit-observed:f88cb782018a",
+      "id": "event:commit-observed:76b4d76fa02e",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T12:21:16-03:00"
+      "at": "2026-10-10T12:32:33-03:00"
     }
   ],
   "paths": [
@@ -11991,11 +12010,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:d671e75dc52e"
+        "evidence:test:255766998a96"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T12:21:16-03:00"
+      "last_validated": "2026-10-10T12:32:33-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -12018,20 +12037,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:502abe27db4d",
+      "id": "evidence:repository:e27e8cf50b04",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T12:21:16-03:00",
+      "observed_at": "2026-10-10T12:32:33-03:00",
       "status": "observed",
-      "detail": "440 files indexed at revision f88cb782018a92ec0fb7ddfe241ad485fe79ea5e"
+      "detail": "441 files indexed at revision 76b4d76fa02e2fdea9e46eb0d5fe6babbff17534"
     },
     {
-      "id": "evidence:test:d671e75dc52e",
+      "id": "evidence:test:255766998a96",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T12:21:16-03:00",
+      "observed_at": "2026-10-10T12:32:33-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.15s"
+      "detail": "225 passed in 7.72s"
     }
   ],
   "decisions": [
@@ -12134,30 +12153,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:502abe27db4d",
+      "id": "event:repository-scan:e27e8cf50b04",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:21:16-03:00",
-      "revision": "f88cb782018a92ec0fb7ddfe241ad485fe79ea5e",
-      "file_count": 440,
-      "evidence_id": "evidence:repository:502abe27db4d"
+      "at": "2026-10-10T12:32:33-03:00",
+      "revision": "76b4d76fa02e2fdea9e46eb0d5fe6babbff17534",
+      "file_count": 441,
+      "evidence_id": "evidence:repository:e27e8cf50b04"
     },
     {
-      "id": "event:commit-observed:f88cb782018a",
+      "id": "event:commit-observed:76b4d76fa02e",
       "type": "commit_observed",
-      "at": "2026-10-10T12:21:16-03:00",
-      "revision": "f88cb782018a92ec0fb7ddfe241ad485fe79ea5e",
+      "at": "2026-10-10T12:32:33-03:00",
+      "revision": "76b4d76fa02e2fdea9e46eb0d5fe6babbff17534",
       "branch": "main",
-      "subject": "Add safe command to stop alternate browser without deleting data",
+      "subject": "Add read-only browser sync verification workflow",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        ".github/workflows/abs-browser-sync-verify.yml"
       ]
     },
     {
-      "id": "event:test:d671e75dc52e",
+      "id": "event:test:255766998a96",
       "type": "tests_observed",
-      "at": "2026-10-10T12:21:16-03:00",
+      "at": "2026-10-10T12:32:33-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:d671e75dc52e"
+      "evidence_id": "evidence:test:255766998a96"
     }
   ],
   "knowledge_sources": [
@@ -12213,7 +12232,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "fa337b69cc057298b8ef90db4968384a7210d8bf3b00ec20ab5da194631d96b0"
+      "sha256": "88cdca54ddbb7db2ec824fe475592a5dbdcc0fe881dbba6efcb6f014ad61c364"
     },
     {
       "id": "source:session",
@@ -53968,12 +53987,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:502abe27db4d",
-      "source": "event:repository-scan:502abe27db4d",
-      "relation": "generated",
-      "target": "evidence:repository:502abe27db4d",
+      "id": "rel:commit-precedes:f88cb782018a:692939548b4f",
+      "source": "commit:f88cb782018a92ec0fb7ddfe241ad485fe79ea5e",
+      "relation": "precedes",
+      "target": "commit:692939548b4ff6bd6e01c89412938b30381215f3",
       "status": "asserted",
-      "at": "2026-10-10T12:21:16-03:00",
+      "at": "2026-10-10T15:21:36Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:692939548b4f:032adc3624d7",
+      "source": "commit:692939548b4ff6bd6e01c89412938b30381215f3",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:21:36Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:692939548b4f:d64178c49886",
+      "source": "commit:692939548b4ff6bd6e01c89412938b30381215f3",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T15:21:36Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:692939548b4f:76b4d76fa02e",
+      "source": "commit:692939548b4ff6bd6e01c89412938b30381215f3",
+      "relation": "precedes",
+      "target": "commit:76b4d76fa02e2fdea9e46eb0d5fe6babbff17534",
+      "status": "asserted",
+      "at": "2026-10-10T12:32:33-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:76b4d76fa02e:1f5e087e04a6",
+      "source": "commit:76b4d76fa02e2fdea9e46eb0d5fe6babbff17534",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-sync-verify.yml",
+      "status": "asserted",
+      "at": "2026-10-10T12:32:33-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:e27e8cf50b04",
+      "source": "event:repository-scan:e27e8cf50b04",
+      "relation": "generated",
+      "target": "evidence:repository:e27e8cf50b04",
+      "status": "asserted",
+      "at": "2026-10-10T12:32:33-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -53982,12 +54071,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:f88cb782018a",
-      "source": "commit:f88cb782018a92ec0fb7ddfe241ad485fe79ea5e",
+      "id": "rel:scan-commit:76b4d76fa02e",
+      "source": "commit:76b4d76fa02e2fdea9e46eb0d5fe6babbff17534",
       "relation": "observed_by",
-      "target": "event:repository-scan:502abe27db4d",
+      "target": "event:repository-scan:e27e8cf50b04",
       "status": "asserted",
-      "at": "2026-10-10T12:21:16-03:00",
+      "at": "2026-10-10T12:32:33-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
