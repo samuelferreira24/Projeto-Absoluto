@@ -59,7 +59,7 @@ jobs:
               fi
               if [ "${DEPLOY_STARTED:-0}" -eq 1 ] && [ -n "${PROFILE_MOUNT:-}" ] && [ -n "${ENVFILE:-}" ] && [ -n "${CONTAINER_IMAGE:-}" ]; then
                 sudo -n docker rm -f abs-browser-ui >/dev/null 2>&1 || true
-                sudo -n docker run -d --name abs-browser-ui --restart unless-stopped --security-opt no-new-privileges:true --cap-drop NET_RAW --memory 1280m --memory-swap 1792m --cpus 1.50 --pids-limit 512 --shm-size 512m --env-file "$ENVFILE" -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC -e SELKIES_ENABLE_CURSORS=false -e SELKIES_USE_BROWSER_CURSORS=false -e SELKIES_UI_SIDEBAR_SHOW_TRACKPAD=true -e SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN=true -e SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON=true -p 127.0.0.1:3000:3000 -v "$PROFILE_MOUNT:/config" "$CONTAINER_IMAGE" >/dev/null 2>&1 || true
+                sudo -n docker run -d --name abs-browser-ui --restart unless-stopped --security-opt no-new-privileges:true --cap-drop NET_RAW --memory 1280m --memory-swap 1792m --cpus 1.50 --pids-limit 512 --shm-size 512m --env-file "$ENVFILE" -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC -e SELKIES_ENABLE_CURSORS=false -e SELKIES_USE_BROWSER_CURSORS=false -e SELKIES_UI_SIDEBAR_SHOW_TRACKPAD=false -e SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN=true -e SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON=true -p 127.0.0.1:3000:3000 -v "$PROFILE_MOUNT:/config" "$CONTAINER_IMAGE" >/dev/null 2>&1 || true
                 for i in $(seq 1 12); do
                   code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 4 http://127.0.0.1:3000/ 2>/dev/null || true)"
                   if printf '%s' "$code" | grep -Eq '^(200|301|302|401|403)$'; then echo "ROLLBACK | visual-only browser HTTP=$code"; break; fi
@@ -193,7 +193,7 @@ jobs:
             -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC \
             -e SELKIES_ENABLE_CURSORS=false \
             -e SELKIES_USE_BROWSER_CURSORS=false \
-            -e SELKIES_UI_SIDEBAR_SHOW_TRACKPAD=true \
+            -e SELKIES_UI_SIDEBAR_SHOW_TRACKPAD=false \
             -e SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN=true \
             -e SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON=true \
             -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222 --enable-touch-events --touch-events=enabled --window-size=412,915 --force-device-scale-factor=1" \
