@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T13:58:31-03:00",
-  "source_revision": "ee9d51567779946d05c8dc476282e259b18e7c49",
+  "generated_at": "2026-10-10T13:59:50-03:00",
+  "source_revision": "4ed9ec5ad24b6c3ae5eeda25d584b086e6890a74",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "ee9d51567779946d05c8dc476282e259b18e7c49",
-      "commit_subject": "Add read-only Code Server diagnosis to VPS runner"
+      "revision": "4ed9ec5ad24b6c3ae5eeda25d584b086e6890a74",
+      "commit_subject": "Fix shell syntax in Code Server diagnostic command"
     }
   ],
   "tools": [
@@ -12204,6 +12204,20 @@
       "sha": "ee9d51567779946d05c8dc476282e259b18e7c49"
     },
     {
+      "id": "commit:95c8baa966e23b4b7b46145e62cfcfce90798a50",
+      "kind": "commit",
+      "at": "2026-10-10T16:58:53Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "95c8baa966e23b4b7b46145e62cfcfce90798a50"
+    },
+    {
+      "id": "commit:4ed9ec5ad24b6c3ae5eeda25d584b086e6890a74",
+      "kind": "commit",
+      "at": "2026-10-10T13:59:50-03:00",
+      "subject": "Fix shell syntax in Code Server diagnostic command",
+      "sha": "4ed9ec5ad24b6c3ae5eeda25d584b086e6890a74"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -12316,23 +12330,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:0d94bc9c4b47",
+      "id": "evidence:repository:478d1dfda085",
       "kind": "evidence",
-      "at": "2026-10-10T13:58:31-03:00",
+      "at": "2026-10-10T13:59:50-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:0d94bc9c4b47",
+      "id": "event:repository-scan:478d1dfda085",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T13:58:31-03:00"
+      "at": "2026-10-10T13:59:50-03:00"
     },
     {
-      "id": "event:commit-observed:ee9d51567779",
+      "id": "event:commit-observed:4ed9ec5ad24b",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T13:58:31-03:00"
+      "at": "2026-10-10T13:59:50-03:00"
     }
   ],
   "paths": [
@@ -12367,11 +12381,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:5c97ef6e3cf2"
+        "evidence:test:0f7dc18beb9f"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T13:58:31-03:00"
+      "last_validated": "2026-10-10T13:59:50-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -12394,20 +12408,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:0d94bc9c4b47",
+      "id": "evidence:repository:478d1dfda085",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T13:58:31-03:00",
+      "observed_at": "2026-10-10T13:59:50-03:00",
       "status": "observed",
-      "detail": "440 files indexed at revision ee9d51567779946d05c8dc476282e259b18e7c49"
+      "detail": "440 files indexed at revision 4ed9ec5ad24b6c3ae5eeda25d584b086e6890a74"
     },
     {
-      "id": "evidence:test:5c97ef6e3cf2",
+      "id": "evidence:test:0f7dc18beb9f",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T13:58:31-03:00",
+      "observed_at": "2026-10-10T13:59:50-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.52s"
+      "detail": "225 passed in 8.33s"
     }
   ],
   "decisions": [
@@ -12510,30 +12524,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:0d94bc9c4b47",
+      "id": "event:repository-scan:478d1dfda085",
       "type": "repository_scanned",
-      "at": "2026-10-10T13:58:31-03:00",
-      "revision": "ee9d51567779946d05c8dc476282e259b18e7c49",
+      "at": "2026-10-10T13:59:50-03:00",
+      "revision": "4ed9ec5ad24b6c3ae5eeda25d584b086e6890a74",
       "file_count": 440,
-      "evidence_id": "evidence:repository:0d94bc9c4b47"
+      "evidence_id": "evidence:repository:478d1dfda085"
     },
     {
-      "id": "event:commit-observed:ee9d51567779",
+      "id": "event:commit-observed:4ed9ec5ad24b",
       "type": "commit_observed",
-      "at": "2026-10-10T13:58:31-03:00",
-      "revision": "ee9d51567779946d05c8dc476282e259b18e7c49",
+      "at": "2026-10-10T13:59:50-03:00",
+      "revision": "4ed9ec5ad24b6c3ae5eeda25d584b086e6890a74",
       "branch": "main",
-      "subject": "Add read-only Code Server diagnosis to VPS runner",
+      "subject": "Fix shell syntax in Code Server diagnostic command",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:5c97ef6e3cf2",
+      "id": "event:test:0f7dc18beb9f",
       "type": "tests_observed",
-      "at": "2026-10-10T13:58:31-03:00",
+      "at": "2026-10-10T13:59:50-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:5c97ef6e3cf2"
+      "evidence_id": "evidence:test:0f7dc18beb9f"
     }
   ],
   "knowledge_sources": [
@@ -12589,7 +12603,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "cb78ab4a8ee08bd4f08e526907f387cc90bd1dd7e25183c1f175b44e3af42d55"
+      "sha256": "9984ed974a012c1489a399c40d7f68bdf31508851da4e35d98eff0444dbbfb1c"
     },
     {
       "id": "source:session",
@@ -56178,12 +56192,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:0d94bc9c4b47",
-      "source": "event:repository-scan:0d94bc9c4b47",
-      "relation": "generated",
-      "target": "evidence:repository:0d94bc9c4b47",
+      "id": "rel:commit-precedes:ee9d51567779:95c8baa966e2",
+      "source": "commit:ee9d51567779946d05c8dc476282e259b18e7c49",
+      "relation": "precedes",
+      "target": "commit:95c8baa966e23b4b7b46145e62cfcfce90798a50",
       "status": "asserted",
-      "at": "2026-10-10T13:58:31-03:00",
+      "at": "2026-10-10T16:58:53Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:95c8baa966e2:032adc3624d7",
+      "source": "commit:95c8baa966e23b4b7b46145e62cfcfce90798a50",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T16:58:53Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:95c8baa966e2:d64178c49886",
+      "source": "commit:95c8baa966e23b4b7b46145e62cfcfce90798a50",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T16:58:53Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:95c8baa966e2:4ed9ec5ad24b",
+      "source": "commit:95c8baa966e23b4b7b46145e62cfcfce90798a50",
+      "relation": "precedes",
+      "target": "commit:4ed9ec5ad24b6c3ae5eeda25d584b086e6890a74",
+      "status": "asserted",
+      "at": "2026-10-10T13:59:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:4ed9ec5ad24b:1734be446032",
+      "source": "commit:4ed9ec5ad24b6c3ae5eeda25d584b086e6890a74",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T13:59:50-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:478d1dfda085",
+      "source": "event:repository-scan:478d1dfda085",
+      "relation": "generated",
+      "target": "evidence:repository:478d1dfda085",
+      "status": "asserted",
+      "at": "2026-10-10T13:59:50-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -56192,12 +56276,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:ee9d51567779",
-      "source": "commit:ee9d51567779946d05c8dc476282e259b18e7c49",
+      "id": "rel:scan-commit:4ed9ec5ad24b",
+      "source": "commit:4ed9ec5ad24b6c3ae5eeda25d584b086e6890a74",
       "relation": "observed_by",
-      "target": "event:repository-scan:0d94bc9c4b47",
+      "target": "event:repository-scan:478d1dfda085",
       "status": "asserted",
-      "at": "2026-10-10T13:58:31-03:00",
+      "at": "2026-10-10T13:59:50-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
