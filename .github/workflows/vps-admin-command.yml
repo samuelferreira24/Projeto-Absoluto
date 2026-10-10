@@ -115,6 +115,9 @@ jobs:
                 echo "[Proxy labels — no environment variables]"
                 sudo -n docker inspect coolify-proxy --format '{{json .Config.Labels}}' 2>&1 || true
                 echo
+                echo "[Existing Code Server routing labels — no environment variables]"
+                sudo -n docker inspect code-server-bb55qbolrf4pqfl45gomnzyl --format '{{json .Config.Labels}}' 2>&1 || true
+                echo
                 echo "[DNS resolution for candidate HTTPS hostname]"
                 getent ahostsv4 mcp.207.180.3.245.sslip.io 2>&1 | head -n 5 || true
                 echo
