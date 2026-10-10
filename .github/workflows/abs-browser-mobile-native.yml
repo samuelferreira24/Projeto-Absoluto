@@ -242,6 +242,7 @@ jobs:
           // ABS_MOBILE_AUTO_KEYBOARD_V1: tap the streamed Chromium omnibox to raise the phone's real keyboard.
           // The stream tap is sent to Chromium first; this focuses Selkies' existing IME bridge afterwards.
           useEffect(() => {
+            console.info('ABS_MOBILE_AUTO_KEYBOARD_V1');
             const overlay = document.getElementById('overlayInput');
             if (!overlay) return;
             const maybeOpenNativeKeyboard = (event) => {
