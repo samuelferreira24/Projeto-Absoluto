@@ -39,6 +39,8 @@ jobs:
           /vps services
           /vps docker
           /vps coolify
+          /vps proxy-info
+          /vps mcp-verify
           /vps workspace'
               ;;
             status)
@@ -128,6 +130,76 @@ jobs:
                 echo
                 echo "[Existing HTTPS route baseline]"
                 curl -sS --max-time 10 -o /dev/null -w 'http_status=%{http_code} remote_ip=%{remote_ip} tls_verify=%{ssl_verify_result}\\n' https://coolify.207.180.3.245.sslip.io/ 2>&1 || true
+              } > /tmp/vps-admin-result.txt 2>&1
+              result="$(cat /tmp/vps-admin-result.txt)"
+              ;;
+            mcp-verify)
+              {
+                endpoint="https://mcp.207.180.3.245.sslip.io"
+                token="$(sudo cat /opt/vps-mcp/api_token 2>/dev/null || true)"
+                if [ -z "$token" ]; then
+                  echo "MCP token not installed on host"
+                else
+                  echo "[health endpoint]"
+                  curl -sS -o /dev/null -w 'health_http=%{http_code} tls_verify=%{ssl_verify_result}\n' --max-time 10 "$endpoint/healthz" 2>&1 || true
+                  echo
+                  echo "[unauthenticated request]"
+                  code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 10 "$endpoint/mcp" 2>&1 || true)"
+                  echo "unauthenticated_http=$code (expected 401)"
+                  echo
+                  echo "[authenticated initialize]"
+                  curl -sS -D /tmp/vps-mcp-init-headers.txt -o /tmp/vps-mcp-init-body.txt -w 'initialize_http=%{http_code}\n' \
+                    --max-time 12 -X POST "$endpoint/mcp" \
+                    -H "Authorization: Bearer $token" \
+                    -H 'Content-Type: application/json' \
+                    -H 'Accept: application/json, text/event-stream' \
+                    --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"vps-mcp-verify","version":"0.1.0"}}}' 2>&1 || true
+                  session_id="$(awk 'BEGIN{IGNORECASE=1} /^mcp-session-id:/ {sub(/\r$/, "", $2); print $2}' /tmp/vps-mcp-init-headers.txt 2>/dev/null | tail -n 1)"
+                  if [ -z "$session_id" ]; then
+                    echo "session_id=missing"
+                    sed -E 's/(token|secret|password|api[_-]?key)[^,}]*/\1=[REDACTED]/Ig' /tmp/vps-mcp-init-body.txt 2>/dev/null | head -c 1000 || true
+                    echo
+                  else
+                    echo "session_id=received"
+                    echo
+                    echo "[authenticated tools/list]"
+                    curl -sS -D /tmp/vps-mcp-tools-headers.txt -o /tmp/vps-mcp-tools-body.txt -w 'tools_list_http=%{http_code}\n' \
+                      --max-time 12 -X POST "$endpoint/mcp" \
+                      -H "Authorization: Bearer $token" \
+                      -H "Mcp-Session-Id: $session_id" \
+                      -H 'MCP-Protocol-Version: 2025-03-26' \
+                      -H 'Content-Type: application/json' \
+                      -H 'Accept: application/json, text/event-stream' \
+                      --data '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}' 2>&1 || true
+                    python3 - <<'PYTOOLS'
+import json
+from pathlib import Path
+raw = Path("/tmp/vps-mcp-tools-body.txt").read_text(errors="replace")
+payloads = []
+for line in raw.splitlines():
+    line = line.strip()
+    if line.startswith("data:"):
+        line = line[5:].strip()
+    if line.startswith("{"):
+        try:
+            payloads.append(json.loads(line))
+        except Exception:
+            pass
+for payload in payloads:
+    result = payload.get("result", {})
+    tools = result.get("tools", [])
+    if tools:
+        print("tool_count=" + str(len(tools)))
+        print("tools=" + ", ".join(sorted(t.get("name", "?") for t in tools)))
+        break
+else:
+    print("tools_list_parse=FAIL")
+    print(raw[:1000])
+PYTOOLS
+                  fi
+                  unset token
+                  rm -f /tmp/vps-mcp-init-headers.txt /tmp/vps-mcp-init-body.txt /tmp/vps-mcp-tools-headers.txt /tmp/vps-mcp-tools-body.txt
+                fi
               } > /tmp/vps-admin-result.txt 2>&1
               result="$(cat /tmp/vps-admin-result.txt)"
               ;;
