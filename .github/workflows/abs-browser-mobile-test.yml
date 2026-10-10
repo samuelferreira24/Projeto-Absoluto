@@ -69,7 +69,7 @@ jobs:
               (process.env.RESULT || 'No final report produced; inspect the private Actions logs.').slice(0, 7000),
               '',
               'No browser credentials are included.'
-            ].join('\\n');
+            ].join('\n');
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
