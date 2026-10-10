@@ -226,7 +226,7 @@ jobs:
               r"(?m)^([ \t]*)if \(remainingTouchCount === 0\) \{\n([ \t]*)this\._activeTouchIdentifier = null; this\._isTwoFingerGesture = false;\n([ \t]*)this\._touchScrollLastCentroid = null;\n",
               lambda m: m.group(0) + m.group(3) + "this._touchScrollLastDistance = null;\n" + m.group(3) + "this._touchGestureMode = null;\n" + m.group(3) + "this._touchPinchAccum = 0;\n" + m.group(3) + "this._singleTouchScrollAccumY = 0;\n" + m.group(3) + "this._singleTouchScrollAccumX = 0;\n" + m.group(3) + "this._isSingleFingerScroll = false;\n",
               "all-touch-reset")
-          s = "console.info('ABS_MOBILE_TOUCH_GESTURES_V1');\\nconsole.info('ABS_MOBILE_GESTURE_CLASSIFICATION_V2');\\n" + s
+          s = "console.info('ABS_MOBILE_TOUCH_GESTURES_V1');" + chr(10) + "console.info('ABS_MOBILE_GESTURE_CLASSIFICATION_V2');" + chr(10) + s
           p.write_text(s)
           print("PASS | Patched direct touch: one-finger swipe scrolls, two-finger pinch sends Ctrl+wheel zoom, two-finger translation scrolls, taps and long-press remain.")
 
