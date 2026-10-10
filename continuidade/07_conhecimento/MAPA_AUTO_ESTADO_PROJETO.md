@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 1f2d6b04ca446137b42b704b5a4cc26cf995a0e4
-Momento da revisão: 2026-10-10T15:21:36-03:00
+Revisão observada: 861ceceefaa4f79e20938084a54d2bb337803d40
+Momento da revisão: 2026-10-10T15:32:45-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -1976,6 +1976,8 @@ Momento da revisão: 2026-10-10T15:21:36-03:00
 - commit:97b3707c0714cc3f668a152a36248aa59064fa6d — None — estado: unknown
 - commit:56ac120113ff514ef826c0db3b7a53cadd043f88 — None — estado: unknown
 - commit:1f2d6b04ca446137b42b704b5a4cc26cf995a0e4 — None — estado: unknown
+- commit:8a43a9a4dc15724c76286d52a1249539a5b46817 — None — estado: unknown
+- commit:861ceceefaa4f79e20938084a54d2bb337803d40 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1990,19 +1992,19 @@ Momento da revisão: 2026-10-10T15:21:36-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:e71220dc80c6 — None — estado: unknown
-- event:repository-scan:e71220dc80c6 — None — estado: unknown
-- event:commit-observed:1f2d6b04ca44 — None — estado: unknown
+- evidence:repository:9632f106f9f7 — None — estado: unknown
+- event:repository-scan:9632f106f9f7 — None — estado: unknown
+- event:commit-observed:861ceceefaa4 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:7a9cdd084ab4
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:90167c2ed729
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:e71220dc80c6 — repository_scanned — revisão: 1f2d6b04ca446137b42b704b5a4cc26cf995a0e4
-- event:commit-observed:1f2d6b04ca44 — commit_observed — revisão: 1f2d6b04ca446137b42b704b5a4cc26cf995a0e4
-- event:test:7a9cdd084ab4 — tests_observed — revisão: n/a
+- event:repository-scan:9632f106f9f7 — repository_scanned — revisão: 861ceceefaa4f79e20938084a54d2bb337803d40
+- event:commit-observed:861ceceefaa4 — commit_observed — revisão: 861ceceefaa4f79e20938084a54d2bb337803d40
+- event:test:90167c2ed729 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -5300,15 +5302,20 @@ Momento da revisão: 2026-10-10T15:21:36-03:00
 - commit:56ac120113ff514ef826c0db3b7a53cadd043f88 — changed → file:continuidade/07_conhecimento/SESSAO_ATUAL.md — asserted
 - commit:56ac120113ff514ef826c0db3b7a53cadd043f88 — precedes → commit:1f2d6b04ca446137b42b704b5a4cc26cf995a0e4 — asserted
 - commit:1f2d6b04ca446137b42b704b5a4cc26cf995a0e4 — changed → file:docs/03_planejamento/FECHAMENTO_ABS_V1_CORE.md — asserted
-- event:repository-scan:e71220dc80c6 — generated → evidence:repository:e71220dc80c6 — asserted
-- commit:1f2d6b04ca446137b42b704b5a4cc26cf995a0e4 — observed_by → event:repository-scan:e71220dc80c6 — asserted
+- commit:1f2d6b04ca446137b42b704b5a4cc26cf995a0e4 — precedes → commit:8a43a9a4dc15724c76286d52a1249539a5b46817 — asserted
+- commit:8a43a9a4dc15724c76286d52a1249539a5b46817 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:8a43a9a4dc15724c76286d52a1249539a5b46817 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:8a43a9a4dc15724c76286d52a1249539a5b46817 — precedes → commit:861ceceefaa4f79e20938084a54d2bb337803d40 — asserted
+- commit:861ceceefaa4f79e20938084a54d2bb337803d40 — changed → file:.github/workflows/abs-vps-command.yml — asserted
+- event:repository-scan:9632f106f9f7 — generated → evidence:repository:9632f106f9f7 — asserted
+- commit:861ceceefaa4f79e20938084a54d2bb337803d40 — observed_by → event:repository-scan:9632f106f9f7 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:e71220dc80c6 — repository_scan — observed — 441 files indexed at revision 1f2d6b04ca446137b42b704b5a4cc26cf995a0e4
-- evidence:test:7a9cdd084ab4 — test — tested — 225 passed in 7.75s
+- evidence:repository:9632f106f9f7 — repository_scan — observed — 441 files indexed at revision 861ceceefaa4f79e20938084a54d2bb337803d40
+- evidence:test:90167c2ed729 — test — tested — 225 passed in 7.85s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
