@@ -789,6 +789,31 @@ jobs:
               } > /tmp/abs-browser-client-inspect.txt 2>&1
               result="$(cat /tmp/abs-browser-client-inspect.txt)"
               ;;
+            browser-runtime-summary)
+              set +e
+              {
+                echo "[container states and current resource use]"
+                sudo -n docker stats --no-stream --format '{{.Name}} cpu={{.CPUPerc}} mem={{.MemUsage}} pids={{.PIDs}}' abs-browser-ui abs-remotebrowser 2>&1
+                echo
+                echo "[remote app package and source inventory]"
+                sudo -n docker exec abs-remotebrowser sh -lc 'cat /app/package.json; echo "--- source files"; find /app/dist -type f -maxdepth 4 2>/dev/null | sort | head -n 70; echo "--- cpu loop / browser lifecycle patterns"; grep -RInE "setInterval|setTimeout|requestAnimationFrame|screenshot|newPage|\.launch\(|launchPersistent|newContext|browser\.close|page\.close|context\.close|Target page|session\.send" /app/dist 2>/dev/null | head -n 100' 2>&1 | head -n 120
+                echo
+                echo "[browser cgroup pressure counters]"
+                sudo -n docker exec abs-browser-ui sh -lc 'for f in /sys/fs/cgroup/memory.current /sys/fs/cgroup/memory.max /sys/fs/cgroup/memory.events /sys/fs/cgroup/cpu.max /sys/fs/cgroup/cpu.stat; do if [ -r "$f" ]; then echo "--- $f"; cat "$f"; fi; done' 2>&1 || true
+                echo
+                echo "[recent remote app error frequency]"
+                sudo -n docker logs --since 20m abs-remotebrowser 2>&1 | grep -E 'Error handling message|Target page, context or browser has been closed|Error:|Unhandled|WebSocket:' | sed -E 's/\[WebSocket:[^]]+\]/[WebSocket:session]/g' | sort | uniq -c | sort -nr | head -n 20
+                echo
+                echo "[ABS status and health latency]"
+                sudo -n systemctl show abs.service -p ActiveState -p SubState -p MainPID -p MemoryCurrent -p CPUUsageNSec 2>&1
+                for n in 1 2 3; do curl -sS -o /dev/null --max-time 8 -w 'health_http=%{http_code} seconds=%{time_total}\n' http://127.0.0.1:8787/health; done
+                echo
+                echo "[local AI model processes]"
+                curl -fsS --max-time 3 http://127.0.0.1:11434/api/ps 2>&1 | head -c 900 || true
+                echo
+              } > /tmp/abs-browser-runtime-summary.txt 2>&1
+              result="$(cat /tmp/abs-browser-runtime-summary.txt)"
+              ;;
             browser-app-diagnose)
               set +e
               {
