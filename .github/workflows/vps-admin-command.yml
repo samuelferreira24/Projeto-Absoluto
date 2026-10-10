@@ -171,7 +171,14 @@ jobs:
                       -H 'Content-Type: application/json' \
                       -H 'Accept: application/json, text/event-stream' \
                       --data '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}' 2>&1 || true
-                    python3 - <<'PYTOOLS'
+                    tools_payload="$(sed -n 's/^data: //p' /tmp/vps-mcp-tools-body.txt | head -n 1)"
+                    if [ -n "$tools_payload" ]; then
+                      printf '%s' "$tools_payload" | python3 -c 'import sys,json; d=json.load(sys.stdin); t=d.get("result",{}).get("tools",[]); print("tool_count="+str(len(t))); print("tools="+", ".join(sorted(x.get("name","?") for x in t)))'
+                    else
+                      echo "tools_list_parse=FAIL"
+                      head -c 1000 /tmp/vps-mcp-tools-body.txt || true
+                      echo
+                    fi'
 import json
 from pathlib import Path
 raw = Path("/tmp/vps-mcp-tools-body.txt").read_text(errors="replace")
