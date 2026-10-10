@@ -692,25 +692,13 @@ jobs:
             browser-keyboard-test)
               set +e
               {
-                echo "[Ensure Tailscale Serve prefix-stripping compatibility]"
-                python3 - <<'PY'
-          from pathlib import Path
-          p = Path.home() / "abs-browser/mobile-keyboard-bridge.js"
-          s = p.read_text()
-          old = "!['/health','/focus','/abs-keyboard-focus'].includes(path)"
-          new = "!['/','/health','/focus','/abs-keyboard-focus'].includes(path)"
-          if old in s:
-              p.write_text(s.replace(old, new, 1))
-              print("Updated bridge to accept the path Tailscale Serve forwards.")
-          elif new in s:
-              print("Bridge already accepts root path.")
-          else:
-              raise SystemExit("FAIL | Unexpected bridge route allowlist; no change made.")
-          PY
-                sudo -n systemctl restart abs-browser-keyboard-bridge.service
                 echo "[Private keyboard focus bridge]"
                 sudo -n systemctl is-active abs-browser-keyboard-bridge.service 2>&1
-                curl -fsS --max-time 3 http://127.0.0.1:9223/health 2>&1
+                for i in $(seq 1 8); do
+                  if curl -fsS --max-time 2 http://127.0.0.1:9223/health >/tmp/abs-browser-keyboard-health.json 2>/dev/null; then break; fi
+                  sleep 1
+                done
+                cat /tmp/abs-browser-keyboard-health.json 2>&1
                 echo
                 echo "[Tailscale Serve route]"
                 timeout 6s sudo -n tailscale serve status 2>&1 | grep -E '(/abs-keyboard-focus|/ proxy)' | head -n 4
