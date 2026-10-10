@@ -1302,6 +1302,22 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-cleanup-audit)
+              {
+                echo "[Old Code Server containers — should be absent before cleanup]"
+                sudo -n docker ps -a --format '{{.Names}}|{{.Image}}|{{.Status}}' | grep -E 'nx4a3xzy|lrm5h5ui|ahm46nsi|u30wfx4g|bb55qbol' || true
+                echo
+                echo "[Code Server volumes — names only]"
+                sudo -n docker volume ls --format '{{.Name}}' | grep -E 'nx4a3xzy|lrm5h5ui|ahm46nsi|u30wfx4g|bb55qbol|code-server-config' || true
+                echo
+                echo "[Coolify service records — counts only]"
+                sudo -n docker exec coolify php artisan tinker --execute='foreach ([1,2,3,4,5] as $id) { $s=app("db")->table("services")->where("id",$id)->first(); $apps=app("db")->table("service_applications")->where("service_id",$id)->count(); echo "service_id=".$id." exists=".($s?"true":"false")." name=".($s?$s->name:"-")." app_count=".$apps." deleted_at=".($s?($s->deleted_at??"-"):"-").PHP_EOL; }' 2>&1 || true
+                echo
+                echo "[Existing persistent data under service folders — filenames only]"
+                sudo -n find /data/coolify/services -mindepth 2 -maxdepth 3 -type f -printf '%h/%f\\n' 2>/dev/null | head -n 50 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-finalize)
               set -e
               {
