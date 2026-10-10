@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-09T23:06:59-03:00",
-  "source_revision": "b336f1a9427c158e3d8d7e4c9b68245fc093fe63",
+  "generated_at": "2026-10-09T23:07:57-03:00",
+  "source_revision": "a800e8876e8a61647c8bc60b39bb946ec58f09b2",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "b336f1a9427c158e3d8d7e4c9b68245fc093fe63",
-      "commit_subject": "Corrige classificação de gestos no navegador móvel ABS"
+      "revision": "a800e8876e8a61647c8bc60b39bb946ec58f09b2",
+      "commit_subject": "Corrige build do bundle de gestos móveis ABS"
     }
   ],
   "tools": [
@@ -11045,6 +11045,20 @@
       "sha": "b336f1a9427c158e3d8d7e4c9b68245fc093fe63"
     },
     {
+      "id": "commit:4dec09828588fb6c7fc4e5e0335af1dbe893ba2b",
+      "kind": "commit",
+      "at": "2026-10-10T02:07:19Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "4dec09828588fb6c7fc4e5e0335af1dbe893ba2b"
+    },
+    {
+      "id": "commit:a800e8876e8a61647c8bc60b39bb946ec58f09b2",
+      "kind": "commit",
+      "at": "2026-10-09T23:07:57-03:00",
+      "subject": "Corrige build do bundle de gestos móveis ABS",
+      "sha": "a800e8876e8a61647c8bc60b39bb946ec58f09b2"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11157,23 +11171,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:c67f8373e826",
+      "id": "evidence:repository:c6691f0fd71d",
       "kind": "evidence",
-      "at": "2026-10-09T23:06:59-03:00",
+      "at": "2026-10-09T23:07:57-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:c67f8373e826",
+      "id": "event:repository-scan:c6691f0fd71d",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-09T23:06:59-03:00"
+      "at": "2026-10-09T23:07:57-03:00"
     },
     {
-      "id": "event:commit-observed:b336f1a9427c",
+      "id": "event:commit-observed:a800e8876e8a",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-09T23:06:59-03:00"
+      "at": "2026-10-09T23:07:57-03:00"
     }
   ],
   "paths": [
@@ -11208,11 +11222,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:0623d644835c"
+        "evidence:test:410431a87ec4"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-09T23:06:59-03:00"
+      "last_validated": "2026-10-09T23:07:57-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11235,20 +11249,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:c67f8373e826",
+      "id": "evidence:repository:c6691f0fd71d",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-09T23:06:59-03:00",
+      "observed_at": "2026-10-09T23:07:57-03:00",
       "status": "observed",
-      "detail": "423 files indexed at revision b336f1a9427c158e3d8d7e4c9b68245fc093fe63"
+      "detail": "423 files indexed at revision a800e8876e8a61647c8bc60b39bb946ec58f09b2"
     },
     {
-      "id": "evidence:test:0623d644835c",
+      "id": "evidence:test:410431a87ec4",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-09T23:06:59-03:00",
+      "observed_at": "2026-10-09T23:07:57-03:00",
       "status": "tested",
-      "detail": "225 passed in 6.99s"
+      "detail": "225 passed in 7.52s"
     }
   ],
   "decisions": [
@@ -11351,30 +11365,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:c67f8373e826",
+      "id": "event:repository-scan:c6691f0fd71d",
       "type": "repository_scanned",
-      "at": "2026-10-09T23:06:59-03:00",
-      "revision": "b336f1a9427c158e3d8d7e4c9b68245fc093fe63",
+      "at": "2026-10-09T23:07:57-03:00",
+      "revision": "a800e8876e8a61647c8bc60b39bb946ec58f09b2",
       "file_count": 423,
-      "evidence_id": "evidence:repository:c67f8373e826"
+      "evidence_id": "evidence:repository:c6691f0fd71d"
     },
     {
-      "id": "event:commit-observed:b336f1a9427c",
+      "id": "event:commit-observed:a800e8876e8a",
       "type": "commit_observed",
-      "at": "2026-10-09T23:06:59-03:00",
-      "revision": "b336f1a9427c158e3d8d7e4c9b68245fc093fe63",
+      "at": "2026-10-09T23:07:57-03:00",
+      "revision": "a800e8876e8a61647c8bc60b39bb946ec58f09b2",
       "branch": "main",
-      "subject": "Corrige classificação de gestos no navegador móvel ABS",
+      "subject": "Corrige build do bundle de gestos móveis ABS",
       "changed_files": [
         ".github/workflows/abs-browser-mobile-native.yml"
       ]
     },
     {
-      "id": "event:test:0623d644835c",
+      "id": "event:test:410431a87ec4",
       "type": "tests_observed",
-      "at": "2026-10-09T23:06:59-03:00",
+      "at": "2026-10-09T23:07:57-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:0623d644835c"
+      "evidence_id": "evidence:test:410431a87ec4"
     }
   ],
   "knowledge_sources": [
@@ -11430,7 +11444,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "a530a9b8fe5be60fcb4ebc9137f6465e444f121697c70b01b231f0e1c7faa457"
+      "sha256": "39a6ad73e289b9108139c396d8fe745559af28cbc896f23e7b542eba8de50e45"
     },
     {
       "id": "source:session",
@@ -49531,12 +49545,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:c67f8373e826",
-      "source": "event:repository-scan:c67f8373e826",
-      "relation": "generated",
-      "target": "evidence:repository:c67f8373e826",
+      "id": "rel:commit-precedes:b336f1a9427c:4dec09828588",
+      "source": "commit:b336f1a9427c158e3d8d7e4c9b68245fc093fe63",
+      "relation": "precedes",
+      "target": "commit:4dec09828588fb6c7fc4e5e0335af1dbe893ba2b",
       "status": "asserted",
-      "at": "2026-10-09T23:06:59-03:00",
+      "at": "2026-10-10T02:07:19Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:4dec09828588:032adc3624d7",
+      "source": "commit:4dec09828588fb6c7fc4e5e0335af1dbe893ba2b",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T02:07:19Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:4dec09828588:d64178c49886",
+      "source": "commit:4dec09828588fb6c7fc4e5e0335af1dbe893ba2b",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T02:07:19Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:4dec09828588:a800e8876e8a",
+      "source": "commit:4dec09828588fb6c7fc4e5e0335af1dbe893ba2b",
+      "relation": "precedes",
+      "target": "commit:a800e8876e8a61647c8bc60b39bb946ec58f09b2",
+      "status": "asserted",
+      "at": "2026-10-09T23:07:57-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a800e8876e8a:97a2cc349a21",
+      "source": "commit:a800e8876e8a61647c8bc60b39bb946ec58f09b2",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-native.yml",
+      "status": "asserted",
+      "at": "2026-10-09T23:07:57-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:c6691f0fd71d",
+      "source": "event:repository-scan:c6691f0fd71d",
+      "relation": "generated",
+      "target": "evidence:repository:c6691f0fd71d",
+      "status": "asserted",
+      "at": "2026-10-09T23:07:57-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -49545,12 +49629,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:b336f1a9427c",
-      "source": "commit:b336f1a9427c158e3d8d7e4c9b68245fc093fe63",
+      "id": "rel:scan-commit:a800e8876e8a",
+      "source": "commit:a800e8876e8a61647c8bc60b39bb946ec58f09b2",
       "relation": "observed_by",
-      "target": "event:repository-scan:c67f8373e826",
+      "target": "event:repository-scan:c6691f0fd71d",
       "status": "asserted",
-      "at": "2026-10-09T23:06:59-03:00",
+      "at": "2026-10-09T23:07:57-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
