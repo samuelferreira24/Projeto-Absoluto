@@ -1120,6 +1120,9 @@ jobs:
                   sudo -n docker inspect "$c" --format 'name={{.Name}} image={{.Config.Image}} state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} restarts={{.RestartCount}} mounts={{range .Mounts}}{{.Destination}} <- {{.Source}}; {{end}}' 2>&1 || true
                 done
                 echo
+                echo "[Coolify native instance backup implementation — source code, no runtime secrets]"
+                sudo -n docker exec coolify sh -lc 'sed -n "1,240p" /var/www/html/app/Livewire/SettingsBackup.php' 2>&1 | head -n 240 || true
+                echo
                 echo "[Coolify container backup-related files — paths only]"
                 sudo -n docker exec coolify sh -lc 'find app database config -type f 2>/dev/null | grep -Ei "backup|restore|schedule" | head -n 50' 2>&1 || true
               } > /tmp/abs-vps-result.txt
