@@ -119,6 +119,28 @@ jobs:
           [ "$READY" -eq 1 ] || { sudo -n journalctl -u abs-browser-mobile-webapp.service -n 35 --no-pager; fail "Mobile mirror service failed health check."; exit 1; }
           curl -fsS --max-time 8 http://127.0.0.1:3010/api/state | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("ok") is True and d.get("connected") is True; assert d.get("viewport",{}).get("width",0)>0; print("PASS | CDP state query and page viewport verified.")'
           pass "Web app is serving on loopback only at 127.0.0.1:3010; Chromium was not restarted."
+          APP="$APP" node <<'NODE'
+          const WebSocket = require(process.env.APP + '/node_modules/ws');
+          const ws = new WebSocket('ws://127.0.0.1:3010/stream');
+          let finished = false;
+          const timer = setTimeout(() => finish(new Error('No screencast frame received within 12 seconds.')), 12000);
+          function finish(err) {
+            if (finished) return;
+            finished = true;
+            clearTimeout(timer);
+            try { ws.close(); } catch {}
+            if (err) { console.error('FAIL | Live screencast stream: ' + err.message); process.exitCode = 1; }
+            else console.log('PASS | Live Chromium screencast frame received over the mobile app WebSocket.');
+          }
+          ws.on('message', raw => {
+            let m;
+            try { m = JSON.parse(raw.toString()); } catch { return; }
+            if (m.type === 'frame' && typeof m.data === 'string' && m.data.length > 100) finish();
+            if (m.type === 'error') finish(new Error(m.message || 'CDP stream error.'));
+          });
+          ws.on('error', e => finish(e));
+          NODE
+          pass "The private mirror is returning actual Chromium page frames, not just a healthy HTTP endpoint."
 
           if command -v tailscale >/dev/null 2>&1 && timeout 8s sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
             sudo -n tailscale serve --bg --yes --set-path=/abs-mobile http://127.0.0.1:3010 >/dev/null
