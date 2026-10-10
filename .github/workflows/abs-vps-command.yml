@@ -1120,6 +1120,9 @@ jobs:
                   sudo -n docker inspect "$c" --format 'name={{.Name}} image={{.Config.Image}} state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} restarts={{.RestartCount}} mounts={{range .Mounts}}{{.Destination}} <- {{.Source}}; {{end}}' 2>&1 || true
                 done
                 echo
+                echo "[Coolify manual backup action — source references only]"
+                sudo -n docker exec coolify sh -lc 'grep -RniE "back up now|backup now|runBackup|dispatch.*Backup|Backup.*dispatch|ScheduledDatabaseBackup" app/Livewire/Project/Database app/Livewire/SettingsBackup.php app/Jobs app/Actions 2>/dev/null | head -n 100' 2>&1 || true
+                echo
                 echo "[Coolify native instance backup implementation — source code, no runtime secrets]"
                 sudo -n docker exec coolify sh -lc 'sed -n "1,240p" /var/www/html/app/Livewire/SettingsBackup.php' 2>&1 | head -n 240 || true
                 echo
