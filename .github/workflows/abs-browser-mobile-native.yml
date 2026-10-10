@@ -82,15 +82,16 @@ jobs:
             --memory 1280m --memory-swap 1792m --cpus 1.50 --pids-limit 512 \
             --shm-size 512m \
             --env-file "$ENVFILE" \
-            -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC \
+            -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=America/Sao_Paulo \
+            -e LANG=pt_BR.UTF-8 -e LANGUAGE=pt_BR:pt -e LC_ALL=pt_BR.UTF-8 \
             -e SELKIES_SCALING_DPI=120 \
             -e SELKIES_ENABLE_CURSORS=false \
-            -e SELKIES_USE_BROWSER_CURSORS=false \
+            -e SELKIES_USE_BROWSER_CURSORS=true \
             -e SELKIES_UI_SIDEBAR_SHOW_TRACKPAD=true \
             -e SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN=true \
             -e SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON=true \
             -e SELKIES_UI_SIDEBAR_SHOW_SOFT_BUTTONS=true \
-            -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222 --enable-touch-events --touch-events=enabled --window-size=412,915 --force-device-scale-factor=1" \
+            -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222 --enable-touch-events --touch-events=enabled --window-size=412,915 --force-device-scale-factor=1 --lang=pt-BR --accept-lang=pt-BR,pt,en-US,en" \
             -v "$PROFILE_MOUNT:/config" \
             "$IMAGE" >/dev/null
 
@@ -111,7 +112,9 @@ jobs:
             fail "The custom zoom overlay is still loaded."; exit 1
           fi
           pass "Chromium touch events enabled; injected zoom overlay is not loaded."
-          pass "Remote cursor rendering is disabled; native browser cursor handling is retained so touch devices do not force the synthetic cursorDiv on touchstart."
+          printf "%s\\n" "$ARGS" | grep -F -- "--lang=pt-BR" >/dev/null || { fail "Portuguese (Brazil) browser locale flag is missing."; exit 1; }
+          pass "Chromium configured for Portuguese (Brazil), including Accept-Language."
+          pass "Synthetic remote cursor rendering is disabled; CSS cursor handling is enabled to avoid Selkies drawing a desktop cursor over direct touch."
           curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || { fail "ABS health regression; rollback will restore previous container."; exit 1; }
           pass "ABS health regression passed."
           curl -fsS --max-time 8 http://127.0.0.1:11434/api/tags >/dev/null && pass "Ollama regression passed." || echo "INFO | Ollama probe unavailable; browser remains isolated."
