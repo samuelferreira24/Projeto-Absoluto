@@ -1056,7 +1056,7 @@ jobs:
                 {
                   echo "docker: $(docker --version 2>&1)"
                   echo
-                  docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' 2>&1
+                  sudo -n docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' 2>&1
                 } > /tmp/abs-vps-result.txt
               else
                 echo "docker: not installed or not in PATH" > /tmp/abs-vps-result.txt
@@ -1065,12 +1065,12 @@ jobs:
               ;;
             coolify)
               {
-                echo "[local port 8000]"
-                curl -I -sS --max-time 10 http://127.0.0.1:8000 2>&1 | head -n 20 || true
+                echo "[local port 8000 — cookies redacted]"
+                curl -sS -D - -o /dev/null --max-time 10 http://127.0.0.1:8000 2>&1 | grep -vi '^Set-Cookie:' | head -n 20 || true
                 echo
                 echo "[coolify containers]"
                 if command -v docker >/dev/null 2>&1; then
-                  docker ps --format '{{.Names}}\t{{.Status}}\t{{.Ports}}' 2>&1 | grep -i coolify || true
+                  sudo -n docker ps --format '{{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' 2>&1 | grep -i coolify || true
                 fi
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
