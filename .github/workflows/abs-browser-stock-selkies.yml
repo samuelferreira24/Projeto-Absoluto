@@ -1,0 +1,121 @@
+name: ABS Browser Restore Official Selkies Client
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: abs-browser-client-swap
+  cancel-in-progress: false
+
+jobs:
+  restore:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser stock-selkies'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 12
+    steps:
+      - name: Restore upstream Selkies assets without custom mobile patches
+        id: swap
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          REPORT="$RUNNER_TEMP/abs-browser-stock-selkies.txt"
+          install -m 600 /dev/null "$REPORT"
+          exec > >(tee -a "$REPORT") 2>&1
+          OLD="abs-browser-ui-custom-rollback"
+          NEW="abs-browser-ui"
+          fail(){ echo "FAIL | $*"; exit 1; }
+          pass(){ echo "PASS | $*"; }
+
+          [ "$(hostname)" = "abs-vps-01" ] || fail "Unexpected host; no changes made."
+          sudo -n docker info >/dev/null
+          [ "$(sudo -n docker inspect "$NEW" --format '{{.State.Status}}')" = "running" ] || fail "Current browser is not running."
+          [ ! "$(sudo -n docker ps -a --format '{{.Names}}' | grep -x "$OLD" || true)" ] || fail "Rollback container already exists; refusing to overwrite it."
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || fail "ABS health failed; no changes made."
+
+          IMAGE_ID="$(sudo -n docker inspect "$NEW" --format '{{.Image}}')"
+          PROFILE_MOUNT="$(sudo -n docker inspect "$NEW" --format '{{range .Mounts}}{{if eq .Destination "/config"}}{{.Source}}{{end}}{{end}}')"
+          [ -n "$PROFILE_MOUNT" ] && [ -d "$PROFILE_MOUNT/chromium-abs-profile" ] || fail "Persistent Chromium profile not found."
+          ENVFILE="$RUNNER_TEMP/abs-browser-runtime.env"
+          sudo -n docker inspect "$NEW" --format '{{range .Config.Env}}{{println .}}{{end}}' > "$ENVFILE"
+          chmod 600 "$ENVFILE"
+          MEMORY="$(sudo -n docker inspect "$NEW" --format '{{.HostConfig.Memory}}')"
+          MEMORY_SWAP="$(sudo -n docker inspect "$NEW" --format '{{.HostConfig.MemorySwap}}')"
+          NANO_CPUS="$(sudo -n docker inspect "$NEW" --format '{{.HostConfig.NanoCpus}}')"
+          PIDS_LIMIT="$(sudo -n docker inspect "$NEW" --format '{{.HostConfig.PidsLimit}}')"
+          SHM_SIZE="$(sudo -n docker inspect "$NEW" --format '{{.HostConfig.ShmSize}}')"
+
+          echo "Plan: remove custom mounted JavaScript bundles by recreating the container from its exact current image."
+          echo "Preserve: persistent /config volume, Chromium profile/cookies, environment, image digest, network mode, resource limits and Tailscale route."
+          echo "Image digest: $IMAGE_ID"
+          echo "Profile directory exists: yes"
+          echo "Secret environment values are not printed."
+
+          sudo -n docker stop "$NEW" >/dev/null
+          sudo -n docker rename "$NEW" "$OLD"
+          if ! sudo -n docker run -d             --name "$NEW"             --network host             --restart unless-stopped             --security-opt no-new-privileges:true             --cap-drop NET_RAW             --memory "$MEMORY" --memory-swap "$MEMORY_SWAP"             --cpus "$(python3 -c 'import sys; print(int(sys.argv[1])/1000000000 if int(sys.argv[1]) else 1.5)' "$NANO_CPUS")"             --pids-limit "$PIDS_LIMIT"             --shm-size "$SHM_SIZE"             --env-file "$ENVFILE"             -v "$PROFILE_MOUNT:/config"             "$IMAGE_ID" >/dev/null; then
+            sudo -n docker rm -f "$NEW" >/dev/null 2>&1 || true
+            sudo -n docker rename "$OLD" "$NEW" || true
+            sudo -n docker start "$NEW" >/dev/null || true
+            fail "New container failed to start; previous custom container restored."
+          fi
+
+          READY=0
+          for i in $(seq 1 24); do
+            STATE="$(sudo -n docker inspect "$NEW" --format '{{.State.Status}}' 2>/dev/null || true)"
+            HTTP="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 3 http://127.0.0.1:3000/ 2>/dev/null || true)"
+            CDP="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 3 http://127.0.0.1:9222/json/version 2>/dev/null || true)"
+            if [ "$STATE" = running ] && printf '%s' "$HTTP" | grep -Eq '^(200|301|302|401|403)$' && [ "$CDP" = "200" ]; then READY=1; break; fi
+            sleep 3
+          done
+          if [ "$READY" -ne 1 ]; then
+            sudo -n docker logs --tail 40 "$NEW" 2>&1 | sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[=: ][^ ]*/\1=[REDACTED]/Ig' | tail -n 40
+            sudo -n docker rm -f "$NEW" >/dev/null 2>&1 || true
+            sudo -n docker rename "$OLD" "$NEW" || true
+            sudo -n docker start "$NEW" >/dev/null || true
+            fail "Stock client health check failed; prior container restored."
+          fi
+
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || {
+            sudo -n docker rm -f "$NEW" >/dev/null 2>&1 || true
+            sudo -n docker rename "$OLD" "$NEW" || true
+            sudo -n docker start "$NEW" >/dev/null || true
+            fail "ABS health regression; prior container restored."
+          }
+          pass "Official image is running without custom JS overlay mounts."
+          pass "Persistent Chromium profile and cookies remain mounted at the original path."
+          pass "Browser UI HTTP=$HTTP and Chromium CDP loopback HTTP=$CDP."
+          pass "ABS health remains healthy."
+          echo "ROLLBACK_CONTAINER=$OLD (kept intact until the user verifies normal mobile use)."
+          echo "NOTE | The browser client is now the unmodified upstream client; this validates service health, not physical Android keyboard behavior."
+
+          { echo 'result<<ABS_STOCK_EOF'; tail -c 7000 "$REPORT"; echo; echo 'ABS_STOCK_EOF'; } >> "$GITHUB_OUTPUT"
+
+      - name: Publish report
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.swap.outputs.result }}
+        with:
+          script: |
+            const body = [
+              '### ABS BROWSER — OFFICIAL SELKIES RESTORE',
+              '',
+              (process.env.RESULT || 'No final report produced; inspect the private runner logs.').slice(0, 7000),
+              '',
+              'The persistent browser profile was not intentionally deleted. Secret environment values are omitted.'
+            ].join('\\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
