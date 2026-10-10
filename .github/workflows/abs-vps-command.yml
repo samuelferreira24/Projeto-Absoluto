@@ -679,10 +679,10 @@ jobs:
               set +e
               {
                 echo "[Selkies JavaScript assets]"
-                sudo -n docker exec abs-browser-ui sh -lc 'find /lsiopy /usr/lib/python3 /usr/local/lib/python3 /opt /defaults -type f \\( -name "*.js" -o -name "*.mjs" \\) 2>/dev/null | grep -Ei "selkies|input|dashboard|static|assets" | head -n 100' 2>&1
+                sudo -n docker exec abs-browser-ui sh -lc 'find /lsiopy /usr/lib/python3 /usr/local/lib/python3 /opt /defaults -type f -name "*.js" 2>/dev/null | grep -Ei "selkies|input|dashboard|static|assets" | head -n 100' 2>&1
                 echo
                 echo "[Touch and wheel handler locations]"
-                sudo -n docker exec abs-browser-ui sh -lc 'find /lsiopy /usr/lib/python3 /usr/local/lib/python3 /opt /defaults -type f \\( -name "*.js" -o -name "*.mjs" \\) 2>/dev/null | while IFS= read -r f; do grep -IlE "touchstart|touchmove|pointerdown|wheel" "$f" 2>/dev/null; done | head -n 30' 2>&1
+                sudo -n docker exec abs-browser-ui sh -lc 'find /lsiopy /usr/lib/python3 /usr/local/lib/python3 /opt /defaults -type f -name "*.js" 2>/dev/null | while IFS= read -r f; do grep -IlE "touchstart|touchmove|pointerdown|wheel" "$f" 2>/dev/null; done | head -n 30' 2>&1
                 echo
                 echo "[Runtime and locale]"
                 sudo -n docker inspect abs-browser-ui --format '{{range .Config.Env}}{{println .}}{{end}}' | grep -E '^(LANG|LANGUAGE|LC_ALL|SELKIES_ENABLE_CURSORS|SELKIES_USE_BROWSER_CURSORS|SELKIES_SCALING_DPI)=' || true
