@@ -789,6 +789,26 @@ jobs:
               } > /tmp/abs-browser-client-inspect.txt 2>&1
               result="$(cat /tmp/abs-browser-client-inspect.txt)"
               ;;
+            browser-source-inspect)
+              set +e
+              {
+                echo "[remote browser container image labels / creation]"
+                sudo -n docker inspect abs-remotebrowser --format 'image={{.Config.Image}} created={{.Created}} path={{.Path}} args={{json .Args}} labels={{json .Config.Labels}} mounts={{json .Mounts}}' 2>&1 | head -c 2200
+                echo
+                echo "[host app directories]"
+                for d in /home/absadmin/abs-browser /opt/abs-browser /srv/abs-browser; do if [ -d "$d" ]; then echo "--- $d"; find "$d" -maxdepth 3 -type f ! -path '*/node_modules/*' ! -path '*/.git/*' 2>/dev/null | head -n 35; fi; done
+                echo
+                echo "[Playwright session lifecycle and frame capture]"
+                sudo -n docker exec abs-remotebrowser sh -lc 'for f in /app/dist/browser/session.js /app/dist/ws/server.js /app/dist/browser/cdp.js /app/dist/index.js; do echo "=== $f"; grep -nE "setInterval|setTimeout|screenshot|captureIntervalTimer|fpsTrackerTimer|close\(|disconnect|newPage|newContext|chromium.launch|on\("close|on\("disconnected|handleMouseInput|handleClientMessage" "$f" 2>/dev/null | head -n 45; done' 2>&1
+                echo
+                echo "[session lifecycle source: frame capture]"
+                sudo -n docker exec abs-remotebrowser sh -lc 'sed -n "180,335p" /app/dist/browser/session.js; sed -n "580,725p" /app/dist/browser/session.js' 2>&1 | head -n 220
+                echo
+                echo "[websocket heartbeat and disconnect cleanup]"
+                sudo -n docker exec abs-remotebrowser sh -lc 'sed -n "1,175p" /app/dist/ws/server.js' 2>&1 | head -n 175
+              } > /tmp/abs-browser-source-inspect.txt 2>&1
+              result="$(cat /tmp/abs-browser-source-inspect.txt)"
+              ;;
             browser-runtime-summary)
               set +e
               {
