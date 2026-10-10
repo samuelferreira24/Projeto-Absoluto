@@ -1,0 +1,70 @@
+name: ABS Inspect Selkies and Remote Browser UI
+on:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: abs-browser-ui-inspection
+  cancel-in-progress: false
+jobs:
+  inspect:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser inspect-design'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 8
+    steps:
+      - name: Read-only inspect of both browser UIs
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          REPORT="$RUNNER_TEMP/abs-browser-ui-inspection.txt"
+          exec > >(tee "$REPORT") 2>&1
+          [ "$(hostname)" = "abs-vps-01" ] || { echo "FAIL | Unexpected host"; exit 1; }
+          echo "[containers]"
+          sudo -n docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}'
+          echo
+          echo "[Remote Browser container]"
+          sudo -n docker inspect abs-remotebrowser --format 'image={{.Config.Image}} workdir={{.Config.WorkingDir}} cmd={{json .Config.Cmd}} mounts={{json .Mounts}}' 2>&1 || true
+          echo
+          echo "[Selkies-related containers]"
+          for c in $(sudo -n docker ps --format '{{.Names}}' | grep -Ei 'selkies|chrom|browser|desktop' || true); do
+            echo "--- $c ---"
+            sudo -n docker inspect "$c" --format 'image={{.Config.Image}} ports={{json .NetworkSettings.Ports}} mounts={{json .Mounts}}' 2>&1 || true
+          done
+          echo
+          echo "[Remote Browser frontend files]"
+          WORK="$HOME/abs-remotebrowser-upstream"
+          if [ -d "$WORK" ]; then
+            find "$WORK" -maxdepth 3 -type f \( -name 'package.json' -o -name 'vite.config.*' -o -name 'next.config.*' -o -name 'index.html' -o -name '*.css' -o -name '*.tsx' -o -name '*.jsx' -o -name '*.vue' -o -name '*.svelte' \) -printf '%P\n' | head -n 160
+            echo
+            echo "[package scripts and dependencies]"
+            node -e 'const p=require(process.argv[1]); console.log(JSON.stringify({scripts:p.scripts,dependencies:Object.keys(p.dependencies||{}),devDependencies:Object.keys(p.devDependencies||{})},null,2))' "$WORK/package.json" 2>&1 || true
+          else
+            echo "Source checkout not found at $WORK"
+          fi
+          echo
+          echo "[Selkies service names]"
+          systemctl list-units --type=service --all --no-legend | grep -Ei 'selkies|kasm|desktop|chrom' | head -n 80 || true
+          echo
+          echo "[safety]"
+          echo "PASS | Read-only inspection only; no service, port, image, profile, or files changed."
+      - name: Report inspection
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          REPORT_FILE: ${{ runner.temp }}/abs-browser-ui-inspection.txt
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync(process.env.REPORT_FILE) ? fs.readFileSync(process.env.REPORT_FILE, 'utf8') : 'No inspection report was produced.';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '### BROWSER UI DESIGN INSPECTION (READ-ONLY)\n\n' + report.slice(-12000)
+            });
