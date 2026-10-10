@@ -85,7 +85,7 @@ jobs:
             -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC \
             -e SELKIES_SCALING_DPI=120 \
             -e SELKIES_ENABLE_CURSORS=false \
-            -e SELKIES_USE_BROWSER_CURSORS=true \
+            -e SELKIES_USE_BROWSER_CURSORS=false \
             -e SELKIES_UI_SIDEBAR_SHOW_TRACKPAD=true \
             -e SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN=true \
             -e SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON=true \
