@@ -55,8 +55,8 @@ body{display:flex;flex-direction:column;padding-top:env(safe-area-inset-top);pad
 <textarea id="typingPad" aria-label="Teclado para digitar na página" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
 <script>
 (() => {
-  const API='/abs-mobile/api';
-  const WS_PATH='/abs-mobile/stream';
+  const API='/api';
+  const WS_PATH='/stream';
   const canvas=document.getElementById('view'),ctx=canvas.getContext('2d',{alpha:false});
   const empty=document.getElementById('empty'),status=document.getElementById('status'),address=document.getElementById('address');
   const title=document.getElementById('pageTitle'),quality=document.getElementById('quality'),tabs=document.getElementById('tabs'),typingPad=document.getElementById('typingPad');
