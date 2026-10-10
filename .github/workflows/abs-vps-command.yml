@@ -1256,6 +1256,19 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-records)
+              {
+                echo "[Code Server service records — safe metadata only]"
+                sudo -n docker exec coolify php artisan tinker --execute='$t="services"; $schema=app("db")->getSchemaBuilder(); echo "columns=".implode(",",$schema->getColumnListing($t)).PHP_EOL; foreach (app("db")->table($t)->where("name","like","%code-server%")->orderBy("id")->get() as $r) { $a=(array)$r; $out=[]; foreach (["id","uuid","name","environment_id","server_id","status","fqdn","created_at","updated_at","deleted_at","destination_id"] as $k) if (array_key_exists($k,$a)) $out[$k]=$a[$k]; echo json_encode($out, JSON_UNESCAPED_SLASHES).PHP_EOL; }' 2>&1 || true
+                echo
+                echo "[Service deployment directories — names and permissions only]"
+                sudo -n find /data/coolify/services -mindepth 1 -maxdepth 3 -printf '%M %u:%g %p\\n' 2>&1 | grep -Ei 'code.?server|nx4a3xzy|lrm5h5ui|ahm46nsi|u30wfx4g|bb55qbol' | head -n 80 || true
+                echo
+                echo "[Deployment and failed-job table names]"
+                sudo -n docker exec coolify php artisan tinker --execute='$s=app("db")->getSchemaBuilder(); foreach ($s->getTableListing() as $t) { if (str_contains(strtolower($t),"deploy") || str_contains(strtolower($t),"service")) echo $t.PHP_EOL; }' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-locale-inspect)
               {
                 echo "[Current locale config and translation coverage]"
