@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:28:32-03:00",
-  "source_revision": "4645b44085eed541941864659a9c740d82c7af3e",
+  "generated_at": "2026-10-10T16:41:48-03:00",
+  "source_revision": "cbc0fe6423b373bd971930de258e62f6bd7822f9",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 154
+      "file_count": 155
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "4645b44085eed541941864659a9c740d82c7af3e",
-      "commit_subject": "Permitir failover automático entre runners VPS"
+      "revision": "cbc0fe6423b373bd971930de258e62f6bd7822f9",
+      "commit_subject": "Adicionar canal independente de administração da VPS"
     }
   ],
   "tools": [
@@ -1123,6 +1123,11 @@
       "id": "file:.github/workflows/project-knowledge.yml",
       "kind": "file",
       "path": ".github/workflows/project-knowledge.yml"
+    },
+    {
+      "id": "file:.github/workflows/vps-admin-command.yml",
+      "kind": "file",
+      "path": ".github/workflows/vps-admin-command.yml"
     },
     {
       "id": "file:.gitignore",
@@ -12776,6 +12781,20 @@
       "sha": "4645b44085eed541941864659a9c740d82c7af3e"
     },
     {
+      "id": "commit:f6070522f89e99297a6ed23b3109f58b9db88118",
+      "kind": "commit",
+      "at": "2026-10-10T19:28:51Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "f6070522f89e99297a6ed23b3109f58b9db88118"
+    },
+    {
+      "id": "commit:cbc0fe6423b373bd971930de258e62f6bd7822f9",
+      "kind": "commit",
+      "at": "2026-10-10T16:41:48-03:00",
+      "subject": "Adicionar canal independente de administração da VPS",
+      "sha": "cbc0fe6423b373bd971930de258e62f6bd7822f9"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -12888,23 +12907,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:497a71077392",
+      "id": "evidence:repository:9582000a99bf",
       "kind": "evidence",
-      "at": "2026-10-10T16:28:32-03:00",
+      "at": "2026-10-10T16:41:48-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:497a71077392",
+      "id": "event:repository-scan:9582000a99bf",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:28:32-03:00"
+      "at": "2026-10-10T16:41:48-03:00"
     },
     {
-      "id": "event:commit-observed:4645b44085ee",
+      "id": "event:commit-observed:cbc0fe6423b3",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:28:32-03:00"
+      "at": "2026-10-10T16:41:48-03:00"
     }
   ],
   "paths": [
@@ -12939,11 +12958,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:884a83a40b66"
+        "evidence:test:640fa07f3d09"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:28:32-03:00"
+      "last_validated": "2026-10-10T16:41:48-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -12966,20 +12985,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:497a71077392",
+      "id": "evidence:repository:9582000a99bf",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:28:32-03:00",
+      "observed_at": "2026-10-10T16:41:48-03:00",
       "status": "observed",
-      "detail": "441 files indexed at revision 4645b44085eed541941864659a9c740d82c7af3e"
+      "detail": "442 files indexed at revision cbc0fe6423b373bd971930de258e62f6bd7822f9"
     },
     {
-      "id": "evidence:test:884a83a40b66",
+      "id": "evidence:test:640fa07f3d09",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:28:32-03:00",
+      "observed_at": "2026-10-10T16:41:48-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.77s"
+      "detail": "225 passed in 7.44s"
     }
   ],
   "decisions": [
@@ -13082,30 +13101,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:497a71077392",
+      "id": "event:repository-scan:9582000a99bf",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:28:32-03:00",
-      "revision": "4645b44085eed541941864659a9c740d82c7af3e",
-      "file_count": 441,
-      "evidence_id": "evidence:repository:497a71077392"
+      "at": "2026-10-10T16:41:48-03:00",
+      "revision": "cbc0fe6423b373bd971930de258e62f6bd7822f9",
+      "file_count": 442,
+      "evidence_id": "evidence:repository:9582000a99bf"
     },
     {
-      "id": "event:commit-observed:4645b44085ee",
+      "id": "event:commit-observed:cbc0fe6423b3",
       "type": "commit_observed",
-      "at": "2026-10-10T16:28:32-03:00",
-      "revision": "4645b44085eed541941864659a9c740d82c7af3e",
+      "at": "2026-10-10T16:41:48-03:00",
+      "revision": "cbc0fe6423b373bd971930de258e62f6bd7822f9",
       "branch": "main",
-      "subject": "Permitir failover automático entre runners VPS",
+      "subject": "Adicionar canal independente de administração da VPS",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        ".github/workflows/vps-admin-command.yml"
       ]
     },
     {
-      "id": "event:test:884a83a40b66",
+      "id": "event:test:640fa07f3d09",
       "type": "tests_observed",
-      "at": "2026-10-10T16:28:32-03:00",
+      "at": "2026-10-10T16:41:48-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:884a83a40b66"
+      "evidence_id": "evidence:test:640fa07f3d09"
     }
   ],
   "knowledge_sources": [
@@ -13161,7 +13180,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "813d43cc2832a1007de030c3ef51c1a8539c1c16deeb2cde07074507977d1261"
+      "sha256": "a2b5947eae640538daed1c528c4b89109407b74faae3b8e5d44a68a27e21b200"
     },
     {
       "id": "source:session",
@@ -59508,12 +59527,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:497a71077392",
-      "source": "event:repository-scan:497a71077392",
-      "relation": "generated",
-      "target": "evidence:repository:497a71077392",
+      "id": "rel:commit-precedes:4645b44085ee:f6070522f89e",
+      "source": "commit:4645b44085eed541941864659a9c740d82c7af3e",
+      "relation": "precedes",
+      "target": "commit:f6070522f89e99297a6ed23b3109f58b9db88118",
       "status": "asserted",
-      "at": "2026-10-10T16:28:32-03:00",
+      "at": "2026-10-10T19:28:51Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f6070522f89e:032adc3624d7",
+      "source": "commit:f6070522f89e99297a6ed23b3109f58b9db88118",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:28:51Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f6070522f89e:d64178c49886",
+      "source": "commit:f6070522f89e99297a6ed23b3109f58b9db88118",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:28:51Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f6070522f89e:cbc0fe6423b3",
+      "source": "commit:f6070522f89e99297a6ed23b3109f58b9db88118",
+      "relation": "precedes",
+      "target": "commit:cbc0fe6423b373bd971930de258e62f6bd7822f9",
+      "status": "asserted",
+      "at": "2026-10-10T16:41:48-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:cbc0fe6423b3:d2156db4a874",
+      "source": "commit:cbc0fe6423b373bd971930de258e62f6bd7822f9",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-admin-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T16:41:48-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:9582000a99bf",
+      "source": "event:repository-scan:9582000a99bf",
+      "relation": "generated",
+      "target": "evidence:repository:9582000a99bf",
+      "status": "asserted",
+      "at": "2026-10-10T16:41:48-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -59522,12 +59611,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:4645b44085ee",
-      "source": "commit:4645b44085eed541941864659a9c740d82c7af3e",
+      "id": "rel:scan-commit:cbc0fe6423b3",
+      "source": "commit:cbc0fe6423b373bd971930de258e62f6bd7822f9",
       "relation": "observed_by",
-      "target": "event:repository-scan:497a71077392",
+      "target": "event:repository-scan:9582000a99bf",
       "status": "asserted",
-      "at": "2026-10-10T16:28:32-03:00",
+      "at": "2026-10-10T16:41:48-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
