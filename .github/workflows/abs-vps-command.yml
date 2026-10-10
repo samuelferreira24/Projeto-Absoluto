@@ -1256,6 +1256,31 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-diagnose)
+              {
+                echo "[Docker containers matching code-server]"
+                sudo -n docker ps -a --no-trunc --format '{{.Names}}|{{.Image}}|{{.Status}}|{{.Ports}}' | grep -Ei 'code.?server|vscode|coolify' | head -n 50 || true
+                echo
+                echo "[Coolify SSH mount permissions]"
+                sudo -n stat -c '%A %a %U:%G %n' /data/coolify/ssh /data/coolify/ssh/keys /data/coolify/source /data/coolify/services 2>&1 || true
+                echo
+                echo "[SSH tree — names and permissions only, no key contents]"
+                sudo -n find /data/coolify/ssh -maxdepth 3 -printf '%M %u:%g %p\\n' 2>&1 | head -n 100 || true
+                echo
+                echo "[Coolify service template names mentioning code-server]"
+                sudo -n find /data/coolify/services -maxdepth 4 -type f \\( -iname '*code*server*' -o -iname '*vscode*' \\) -printf '%p\\n' 2>/dev/null | head -n 50 || true
+                echo
+                echo "[Recent logs from code-server-like containers — last 80 lines each]"
+                for c in $(sudo -n docker ps -a --format '{{.Names}}' | grep -Ei 'code.?server|vscode' | head -n 5); do
+                  echo "--- $c ---"
+                  sudo -n docker logs --tail 80 "$c" 2>&1 | sed -E 's/(PASSWORD|TOKEN|SECRET|KEY)=([^ ]+)/\\1=[REDACTED]/Ig' | tail -n 80
+                done
+                echo
+                echo "[Recent Coolify errors — filtered]"
+                sudo -n docker logs --since 2h --tail 300 coolify 2>&1 | grep -Ei 'ssh/keys|code.?server|permission denied|unable to create a directory|error' | tail -n 100 | sed -E 's/(PASSWORD|TOKEN|SECRET|KEY)=([^ ]+)/\\1=[REDACTED]/Ig' || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             *)
               result="Comando não permitido: $command. Use /abs help."
               ;;
