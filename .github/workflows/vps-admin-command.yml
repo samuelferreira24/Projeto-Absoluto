@@ -185,6 +185,81 @@ jobs:
               } > /tmp/vps-admin-result.txt 2>&1
               result="$(cat /tmp/vps-admin-result.txt)"
               ;;
+            mcp-smoke)
+              {
+                set -u
+                endpoint="https://mcp.207.180.3.245.sslip.io"
+                token="$(sudo cat /opt/vps-mcp/api_token 2>/dev/null || true)"
+                if [ -z "$token" ]; then
+                  echo "MCP token missing; no tool calls made"
+                else
+                  curl -sS -D /tmp/vps-mcp-smoke-init-h.txt -o /tmp/vps-mcp-smoke-init-b.txt -w 'initialize_http=%{http_code}\n' --max-time 12 -X POST "$endpoint/mcp" \
+                    -H "Authorization: Bearer $token" -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
+                    --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"vps-direct-admin-smoke","version":"0.1.0"}}}' 2>&1 || true
+                  sid="$(awk 'BEGIN{IGNORECASE=1} /^mcp-session-id:/ {sub(/\r$/, "", $2); print $2}' /tmp/vps-mcp-smoke-init-h.txt 2>/dev/null | tail -n 1)"
+                  if [ -z "$sid" ]; then
+                    echo "session_id=missing"
+                    sed -E 's/(token|secret|password|api[_-]?key)[^,}]*/\1=[REDACTED]/Ig' /tmp/vps-mcp-smoke-init-b.txt | head -c 800
+                    echo
+                  else
+                    echo "session_id=received"
+                    for spec in 'vps_status|{}' 'list_containers|{"include_stopped":true}'; do
+                      tool="${spec%%|*}"
+                      args="${spec#*|}"
+                      python3 -c 'import json,sys; print(json.dumps({"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":sys.argv[1],"arguments":json.loads(sys.argv[2])}},separators=(",",":")))' "$tool" "$args" > /tmp/vps-mcp-smoke-request.json
+                      echo "[$tool]"
+                      curl -sS -D /tmp/vps-mcp-smoke-call-h.txt -o /tmp/vps-mcp-smoke-call-b.txt -w 'tool_call_http=%{http_code}\n' --max-time 20 -X POST "$endpoint/mcp" \
+                        -H "Authorization: Bearer $token" -H "Mcp-Session-Id: $sid" -H 'MCP-Protocol-Version: 2025-03-26' \
+                        -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
+                        --data-binary @/tmp/vps-mcp-smoke-request.json 2>&1 || true
+                      python3 - "$tool" /tmp/vps-mcp-smoke-call-b.txt <<'PY'
+import json,sys
+tool,path=sys.argv[1:]
+raw=open(path,encoding="utf-8",errors="replace").read()
+payload=next((line[6:] for line in raw.splitlines() if line.startswith("data: ")), "")
+if not payload:
+    print("result_parse=FAIL; response_body_omitted")
+    raise SystemExit(0)
+try:
+    data=json.loads(payload)
+except Exception:
+    print("result_parse=FAIL; invalid_json")
+    raise SystemExit(0)
+res=data.get("result",{})
+if data.get("error") or res.get("isError"):
+    print("tool_execution=FAIL")
+    print(json.dumps(data.get("error") or res.get("content",[])[:1])[:1200])
+    raise SystemExit(0)
+sc=res.get("structuredContent")
+if tool=="vps_status" and isinstance(sc,dict):
+    safe={k:sc.get(k) for k in ("host","load_average","uptime_seconds","memory","disk_root")}
+    print("tool_execution=PASS")
+    print(json.dumps(safe)[:3000])
+elif tool=="list_containers":
+    if isinstance(sc,list):
+        items=sc
+    else:
+        content=res.get("content",[])
+        txt=content[0].get("text","") if content else ""
+        try: items=json.loads(txt)
+        except Exception: items=[]
+    if isinstance(items,list):
+        safe=[{k:x.get(k) for k in ("name","image","status","health","restart_count")} for x in items if isinstance(x,dict)]
+        print("tool_execution=PASS")
+        print(json.dumps({"container_count":len(items),"containers":safe})[:6000])
+    else:
+        print("tool_execution=FAIL; unexpected result shape")
+else:
+    print("tool_execution=FAIL; structured result missing")
+PY
+                    done
+                  fi
+                fi
+                unset token
+                rm -f /tmp/vps-mcp-smoke-init-h.txt /tmp/vps-mcp-smoke-init-b.txt /tmp/vps-mcp-smoke-call-h.txt /tmp/vps-mcp-smoke-call-b.txt /tmp/vps-mcp-smoke-request.json
+              } > /tmp/vps-admin-result.txt 2>&1
+              result="$(cat /tmp/vps-admin-result.txt)"
+              ;;
             workspace)
               {
                 echo "[repository path]"
