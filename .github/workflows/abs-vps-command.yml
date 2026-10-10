@@ -1275,6 +1275,16 @@ jobs:
               } > /tmp/abs-vps-result.txt 2>&1
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-apps)
+              {
+                echo "[Code Server application rows — no environment secrets]"
+                sudo -n docker exec coolify php artisan tinker --execute='$schema=app("db")->getSchemaBuilder(); $t="service_applications"; echo "columns=".implode(",",$schema->getColumnListing($t)).PHP_EOL; foreach (app("db")->table($t)->whereIn("service_id",[1,2,3,4,5])->orderBy("service_id")->get() as $r) { $a=(array)$r; $out=[]; foreach (["id","uuid","service_id","name","image","fqdn","status","ports_exposes","ports_mappings","created_at","updated_at","deleted_at"] as $k) if (array_key_exists($k,$a)) $out[$k]=$a[$k]; echo json_encode($out, JSON_UNESCAPED_SLASHES).PHP_EOL; }' 2>&1 || true
+                echo
+                echo "[Service server/destination status]"
+                sudo -n docker exec coolify php artisan tinker --execute='$s=app("db")->table("services")->where("id",5)->first(); if ($s) { echo "service_id=".$s->id." uuid=".$s->uuid." server_id=".$s->server_id." destination_id=".$s->destination_id." destination_type=".$s->destination_type.PHP_EOL; }' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-records)
               {
                 echo "[Code Server service records — safe metadata only]"
