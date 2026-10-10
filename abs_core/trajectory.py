@@ -48,21 +48,30 @@ class TrajectoryGraph:
             if relation.get("relation") in STRICT_ORDER_RELATIONS:
                 adjacency[str(relation["source"])].append(str(relation["target"]))
 
+        # Use an iterative depth-first traversal: repositories can contain
+        # trajectories deeper than Python's recursion limit. A deep but valid
+        # graph must not crash knowledge synchronization.
         visiting: set[str] = set()
         visited: set[str] = set()
-        def visit(node: str) -> None:
-            if node in visiting:
-                issues.append(TrajectoryIssue("strict_cycle", node))
-                return
-            if node in visited:
-                return
-            visiting.add(node)
-            for target in adjacency.get(node, []):
-                visit(target)
-            visiting.remove(node)
-            visited.add(node)
-        for node in adjacency:
-            visit(node)
+        for root in adjacency:
+            if root in visited:
+                continue
+            visiting.add(root)
+            stack = [(root, iter(adjacency.get(root, [])))]
+            while stack:
+                node, targets = stack[-1]
+                try:
+                    target = next(targets)
+                except StopIteration:
+                    stack.pop()
+                    visiting.remove(node)
+                    visited.add(node)
+                    continue
+                if target in visiting:
+                    issues.append(TrajectoryIssue("strict_cycle", target))
+                elif target not in visited:
+                    visiting.add(target)
+                    stack.append((target, iter(adjacency.get(target, []))))
         return issues
 
     def trace(self, start: str, *, direction: str = "forward", max_depth: int = 8,
