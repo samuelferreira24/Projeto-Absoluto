@@ -231,15 +231,10 @@ jobs:
           from pathlib import Path
           p = Path.home() / "abs-browser/selkies-source/addons/selkies-dashboard/src/components/Sidebar.jsx"
           s = p.read_text()
-          anchor = """  }, []);
-
-          /**
-           * Lists the audio devices"""
+          anchor = "  const populateAudioDevices = useCallback(async () => {"
           if s.count(anchor) != 1:
               raise SystemExit(f"FAIL | Sidebar keyboard insertion anchor expected once, found {s.count(anchor)}")
-          insert = """  }, []);
-
-          // ABS_MOBILE_AUTO_KEYBOARD_V1: tap the streamed Chromium omnibox to raise the phone's real keyboard.
+          insert = """  // ABS_MOBILE_AUTO_KEYBOARD_V1: tap the streamed Chromium omnibox to raise the phone's real keyboard.
           // The stream tap is sent to Chromium first; this focuses Selkies' existing IME bridge afterwards.
           useEffect(() => {
             console.info('ABS_MOBILE_AUTO_KEYBOARD_V1');
@@ -257,8 +252,7 @@ jobs:
             return () => overlay.removeEventListener('pointerup', maybeOpenNativeKeyboard);
           }, [handleShowVirtualKeyboard]);
 
-          /**
-           * Lists the audio devices"""
+          const populateAudioDevices = useCallback(async () => {"""
           s = s.replace(anchor, insert, 1)
           p.write_text(s)
           print("PASS | Added automatic native keyboard focus for taps in the remote Chromium address/search bar.")
