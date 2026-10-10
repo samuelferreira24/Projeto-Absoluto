@@ -104,6 +104,25 @@ jobs:
               } > /tmp/vps-admin-result.txt 2>&1
               result="$(cat /tmp/vps-admin-result.txt)"
               ;;
+            proxy-info)
+              {
+                echo "[Docker networks]"
+                sudo -n docker network ls --format 'table {{.Name}}\\t{{.Driver}}' 2>&1 || true
+                echo
+                echo "[Proxy networks]"
+                sudo -n docker inspect coolify-proxy --format '{{json .NetworkSettings.Networks}}' 2>&1 || true
+                echo
+                echo "[Proxy labels — no environment variables]"
+                sudo -n docker inspect coolify-proxy --format '{{json .Config.Labels}}' 2>&1 || true
+                echo
+                echo "[DNS resolution for candidate HTTPS hostname]"
+                getent ahostsv4 mcp.207.180.3.245.sslip.io 2>&1 | head -n 5 || true
+                echo
+                echo "[Existing HTTPS route baseline]"
+                curl -sS --max-time 10 -o /dev/null -w 'http_status=%{http_code} remote_ip=%{remote_ip} tls_verify=%{ssl_verify_result}\\n' https://coolify.207.180.3.245.sslip.io/ 2>&1 || true
+              } > /tmp/vps-admin-result.txt 2>&1
+              result="$(cat /tmp/vps-admin-result.txt)"
+              ;;
             workspace)
               {
                 echo "[repository path]"
