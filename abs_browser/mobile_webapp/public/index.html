@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#10141b">
+<title>ABS Browser</title>
+<style>
+:root{color-scheme:dark;--bg:#10141b;--panel:#1a202a;--line:#303947;--text:#f4f6fa;--muted:#a7b0bf;--accent:#7dd3fc;--bad:#fb7185}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+body{display:flex;flex-direction:column;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+.toolbar{display:flex;gap:6px;align-items:center;padding:8px;background:var(--panel);border-bottom:1px solid var(--line);flex-shrink:0}
+.btn{border:1px solid var(--line);background:#252d39;color:var(--text);border-radius:12px;min-width:42px;height:42px;padding:0 10px;font-size:19px;font-weight:600;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+.btn:active{background:#374151}
+.address{min-width:0;flex:1;height:42px;border:1px solid var(--line);border-radius:12px;background:#0e1218;color:var(--text);padding:0 12px;font-size:15px;outline:none}
+.address:focus{border-color:var(--accent)}
+.second{display:flex;gap:8px;align-items:center;padding:5px 10px;background:#141922;border-bottom:1px solid var(--line);min-height:34px;flex-shrink:0}
+.status{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.dot{width:8px;height:8px;border-radius:50%;background:#f59e0b;display:inline-block;margin-right:6px}
+.dot.ok{background:#34d399}.dot.bad{background:var(--bad)}
+.tabs{max-width:42vw;border:1px solid var(--line);background:#202733;color:var(--text);border-radius:8px;padding:5px;font-size:12px}
+.screen{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#080a0e;overflow:hidden}
+#view{display:block;width:100%;height:100%;object-fit:contain;touch-action:none;user-select:none;-webkit-user-select:none}
+.empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;color:var(--muted);pointer-events:none}
+.footer{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--panel);border-top:1px solid var(--line);font-size:12px;color:var(--muted);flex-shrink:0}
+#toast{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);background:#263241;border:1px solid #475569;color:white;border-radius:12px;padding:10px 14px;font-size:13px;max-width:90%;text-align:center;display:none;z-index:5}
+#typingPad{position:fixed;left:2px;bottom:2px;width:2px;height:2px;opacity:.02;padding:0;border:0;z-index:-1;background:transparent;color:transparent;caret-color:transparent}
+#keyboardTip{display:none}
+@media(min-width:700px){.toolbar{padding:10px 14px}.screen{background:#0b0e13}.btn{min-width:46px}.address{font-size:16px}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button class="btn" id="back" aria-label="Voltar" title="Voltar">‹</button>
+  <button class="btn" id="forward" aria-label="Avançar" title="Avançar">›</button>
+  <button class="btn" id="reload" aria-label="Recarregar" title="Recarregar">↻</button>
+  <input class="address" id="address" type="url" autocomplete="url" autocapitalize="none" spellcheck="false" placeholder="Pesquisar ou digitar endereço">
+  <button class="btn" id="go" aria-label="Abrir endereço" title="Abrir">➜</button>
+</div>
+<div class="second">
+  <span class="status" id="status"><span class="dot"></span>Conectando ao navegador da VPS…</span>
+  <select class="tabs" id="tabs" aria-label="Abas abertas"><option value="">Aba atual</option></select>
+  <button class="btn" id="keyboard" aria-label="Abrir teclado" title="Teclado" style="height:30px;min-width:38px;font-size:16px">⌨</button>
+</div>
+<div class="screen" id="screen">
+  <canvas id="view" aria-label="Espelho interativo do navegador na VPS"></canvas>
+  <div class="empty" id="empty">Conectando à tela do navegador…</div>
+  <div id="toast"></div>
+</div>
+<div class="footer">
+  <span id="pageTitle" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">ABS Browser · VPS</span>
+  <span id="quality">Aguardando vídeo</span>
+</div>
+<textarea id="typingPad" aria-label="Teclado para digitar na página" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+<script>
+(() => {
+  const API='/abs-mobile/api';
+  const WS_PATH='/abs-mobile/stream';
+  const canvas=document.getElementById('view'),ctx=canvas.getContext('2d',{alpha:false});
+  const empty=document.getElementById('empty'),status=document.getElementById('status'),address=document.getElementById('address');
+  const title=document.getElementById('pageTitle'),quality=document.getElementById('quality'),tabs=document.getElementById('tabs'),typingPad=document.getElementById('typingPad');
+  let socket=null,targetId=null,frameAspect=412/800,connected=false,typing=false,composing=false,lastState=null,lastInputValue='',toastTimer=null,lastPointerAt=0;
+  const pointers=new Map();
+  function toast(message){const el=document.getElementById('toast');el.textContent=message;el.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.style.display='none',2800);}
+  function setStatus(ok,text){status.innerHTML='<span class="dot '+(ok?'ok':text==='Conectando…'?'':'bad')+'"></span>'+escapeHtml(text);connected=ok;empty.style.display=ok?'none':'flex';}
+  function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  async function api(path,data){const res=await fetch(API+path,{method:data?'POST':'GET',headers:data?{'Content-Type':'application/json'}:undefined,body:data?JSON.stringify({targetId:targetId||undefined,...data}):undefined,cache:'no-store'});let out={};try{out=await res.json();}catch{}if(!res.ok)throw new Error(out.error||'Falha ao falar com o navegador.');return out;}
+  function wsUrl(){return(location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+WS_PATH;}
+  function connect(){setStatus(false,'Conectando…');socket=new WebSocket(wsUrl());socket.onopen=()=>{setStatus(true,'Conectado à VPS');socket.send(JSON.stringify({type:'ping'}));};socket.onclose=()=>{setStatus(false,'Conexão perdida · tentando novamente');setTimeout(connect,1800);};socket.onerror=()=>setStatus(false,'Falha na conexão com a VPS');socket.onmessage=e=>{let m;try{m=JSON.parse(e.data);}catch{return;}if(m.type==='status'){if(m.connected){setStatus(true,'Espelhamento ao vivo');if(m.target){targetId=m.target.id;if(m.target.url)address.value=m.target.url;if(m.target.title)title.textContent=m.target.title;}}else setStatus(false,'Conectando à tela…');}else if(m.type==='frame'){drawFrame(m.data);}else if(m.type==='navigation'){if(m.url&&!address.matches(':focus'))address.value=m.url;}else if(m.type==='error'){setStatus(false,m.message||'Erro no navegador');}};}
+  function drawFrame(data){const img=new Image();img.onload=()=>{if(canvas.width!==img.naturalWidth||canvas.height!==img.naturalHeight){canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;frameAspect=canvas.width/canvas.height;}ctx.drawImage(img,0,0,canvas.width,canvas.height);empty.style.display='none';quality.textContent=canvas.width+'×'+canvas.height+' · ao vivo';};img.onerror=()=>{};img.src='data:image/jpeg;base64,'+data;}
+  function normalizedPoint(clientX,clientY){const r=canvas.getBoundingClientRect();const a=frameAspect||r.width/r.height;let w=r.width,h=r.height;if(w/h>a)w=h*a;else h=w/a;const left=r.left+(r.width-w)/2,top=r.top+(r.height-h)/2;return{x:Math.max(0,Math.min(1,(clientX-left)/w)),y:Math.max(0,Math.min(1,(clientY-top)/h))};}
+  function sendTouch(phase){if(!socket||socket.readyState!==WebSocket.OPEN)return;const points=[...pointers.entries()].map(([id,p])=>({...normalizedPoint(p.x,p.y),id:Number(id)%20}));socket.send(JSON.stringify({type:'touch',phase,points,targetId}));}
+  canvas.addEventListener('contextmenu',e=>e.preventDefault());
+  canvas.addEventListener('pointerdown',e=>{e.preventDefault();lastPointerAt=Date.now();try{canvas.setPointerCapture(e.pointerId);}catch{}pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});sendTouch('start');},{passive:false});
+  canvas.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;e.preventDefault();pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});sendTouch('move');},{passive:false});
+  function endPointer(e,cancel){if(!pointers.has(e.pointerId))return;e.preventDefault();pointers.delete(e.pointerId);sendTouch(cancel?'cancel':'end');}
+  canvas.addEventListener('pointerup',e=>endPointer(e,false),{passive:false});
+  canvas.addEventListener('pointercancel',e=>endPointer(e,true),{passive:false});
+  canvas.addEventListener('wheel',e=>{e.preventDefault();const p=normalizedPoint(e.clientX,e.clientY);api('/wheel',{x:p.x,y:p.y,deltaX:e.deltaX,deltaY:e.deltaY}).catch(()=>{});},{passive:false});
+  async function navigate(){const value=address.value.trim();if(!value)return;try{const r=await api('/navigate',{url:value});address.value=r.url;typingPad.blur();toast('Abrindo página…');}catch(e){toast(e.message);}}
+  document.getElementById('go').addEventListener('click',navigate);
+  address.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();navigate();}});
+  document.getElementById('back').addEventListener('click',()=>api('/back',{}).catch(e=>toast(e.message)));
+  document.getElementById('forward').addEventListener('click',()=>api('/forward',{}).catch(e=>toast(e.message)));
+  document.getElementById('reload').addEventListener('click',()=>api('/reload',{}).catch(e=>toast(e.message)));
+  document.getElementById('keyboard').addEventListener('click',()=>{typing=true;typingPad.value='';typingPad.focus({preventScroll:true});toast('Teclado ativo: toque em um campo da página e digite.');});
+  typingPad.addEventListener('compositionstart',()=>composing=true);
+  typingPad.addEventListener('compositionend',()=>{composing=false;sendTypedText();});
+  typingPad.addEventListener('input',()=>{if(!composing)sendTypedText();});
+  function sendTypedText(){const value=typingPad.value;if(!value)return;typingPad.value='';api('/text',{text:value}).catch(e=>toast(e.message));}
+  typingPad.addEventListener('keydown',e=>{if(e.key==='Backspace'&&typingPad.value===''){e.preventDefault();api('/key',{key:'backspace'}).catch(()=>{});}if(e.key==='Enter'){e.preventDefault();api('/key',{key:'enter'}).catch(()=>{});}});
+  tabs.addEventListener('change',async()=>{if(!tabs.value)return;try{const r=await api('/select-tab',{targetId:tabs.value});targetId=r.id;socket?.send(JSON.stringify({type:'select-tab',targetId}));await refreshState();}catch(e){toast(e.message);}});
+  async function refreshState(){try{const s=await api('/state');lastState=s;if(!targetId)targetId=s.tabs?.[0]?.id||null;if(s.url&&!address.matches(':focus'))address.value=s.url;if(s.title)title.textContent=s.title;const old=tabs.value;tabs.innerHTML='';for(const t of(s.tabs||[])){const o=document.createElement('option');o.value=t.id;o.textContent=(t.title||t.url||'Aba').slice(0,48);tabs.appendChild(o);}if(targetId&&s.tabs?.some(t=>t.id===targetId))tabs.value=targetId;else if(old&&s.tabs?.some(t=>t.id===old))tabs.value=old;setStatus(s.connected,'Espelhamento ao vivo');if(s.focusedEditable&&!typing){document.getElementById('keyboard').style.background='#075985';}else{document.getElementById('keyboard').style.background='';}}catch(e){setStatus(false,e.message||'Navegador indisponível');}}
+  setInterval(refreshState,1200);
+  connect();refreshState();
+})();
+</script>
+</body>
+</html>
