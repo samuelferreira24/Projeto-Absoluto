@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T12:02:05-03:00",
-  "source_revision": "d17f4d8cedd77073205020b0676969f8687fb8c9",
+  "generated_at": "2026-10-10T12:02:51-03:00",
+  "source_revision": "9ca6b5402fc5ad15a80fc2b4482a53bed46cad35",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "d17f4d8cedd77073205020b0676969f8687fb8c9",
-      "commit_subject": "Add focused browser app and ABS performance diagnostics"
+      "revision": "9ca6b5402fc5ad15a80fc2b4482a53bed46cad35",
+      "commit_subject": "Add browser runtime source and error-frequency diagnostics"
     }
   ],
   "tools": [
@@ -11678,6 +11678,20 @@
       "sha": "d17f4d8cedd77073205020b0676969f8687fb8c9"
     },
     {
+      "id": "commit:4f5b1fd105fd39cb1fbc577c17461f3858953518",
+      "kind": "commit",
+      "at": "2026-10-10T15:02:27Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "4f5b1fd105fd39cb1fbc577c17461f3858953518"
+    },
+    {
+      "id": "commit:9ca6b5402fc5ad15a80fc2b4482a53bed46cad35",
+      "kind": "commit",
+      "at": "2026-10-10T12:02:51-03:00",
+      "subject": "Add browser runtime source and error-frequency diagnostics",
+      "sha": "9ca6b5402fc5ad15a80fc2b4482a53bed46cad35"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11790,23 +11804,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:b76494657113",
+      "id": "evidence:repository:3d5e27f8bea4",
       "kind": "evidence",
-      "at": "2026-10-10T12:02:05-03:00",
+      "at": "2026-10-10T12:02:51-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:b76494657113",
+      "id": "event:repository-scan:3d5e27f8bea4",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:02:05-03:00"
+      "at": "2026-10-10T12:02:51-03:00"
     },
     {
-      "id": "event:commit-observed:d17f4d8cedd7",
+      "id": "event:commit-observed:9ca6b5402fc5",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T12:02:05-03:00"
+      "at": "2026-10-10T12:02:51-03:00"
     }
   ],
   "paths": [
@@ -11841,11 +11855,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:cd637a026230"
+        "evidence:test:58f30c4ebe6e"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T12:02:05-03:00"
+      "last_validated": "2026-10-10T12:02:51-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11868,20 +11882,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:b76494657113",
+      "id": "evidence:repository:3d5e27f8bea4",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T12:02:05-03:00",
+      "observed_at": "2026-10-10T12:02:51-03:00",
       "status": "observed",
-      "detail": "438 files indexed at revision d17f4d8cedd77073205020b0676969f8687fb8c9"
+      "detail": "438 files indexed at revision 9ca6b5402fc5ad15a80fc2b4482a53bed46cad35"
     },
     {
-      "id": "evidence:test:cd637a026230",
+      "id": "evidence:test:58f30c4ebe6e",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T12:02:05-03:00",
+      "observed_at": "2026-10-10T12:02:51-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.74s"
+      "detail": "225 passed in 7.73s"
     }
   ],
   "decisions": [
@@ -11984,30 +11998,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:b76494657113",
+      "id": "event:repository-scan:3d5e27f8bea4",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:02:05-03:00",
-      "revision": "d17f4d8cedd77073205020b0676969f8687fb8c9",
+      "at": "2026-10-10T12:02:51-03:00",
+      "revision": "9ca6b5402fc5ad15a80fc2b4482a53bed46cad35",
       "file_count": 438,
-      "evidence_id": "evidence:repository:b76494657113"
+      "evidence_id": "evidence:repository:3d5e27f8bea4"
     },
     {
-      "id": "event:commit-observed:d17f4d8cedd7",
+      "id": "event:commit-observed:9ca6b5402fc5",
       "type": "commit_observed",
-      "at": "2026-10-10T12:02:05-03:00",
-      "revision": "d17f4d8cedd77073205020b0676969f8687fb8c9",
+      "at": "2026-10-10T12:02:51-03:00",
+      "revision": "9ca6b5402fc5ad15a80fc2b4482a53bed46cad35",
       "branch": "main",
-      "subject": "Add focused browser app and ABS performance diagnostics",
+      "subject": "Add browser runtime source and error-frequency diagnostics",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:cd637a026230",
+      "id": "event:test:58f30c4ebe6e",
       "type": "tests_observed",
-      "at": "2026-10-10T12:02:05-03:00",
+      "at": "2026-10-10T12:02:51-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:cd637a026230"
+      "evidence_id": "evidence:test:58f30c4ebe6e"
     }
   ],
   "knowledge_sources": [
@@ -12063,7 +12077,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "f0f7daa19886df068395e49ecf73c82139fb8adfcddb39ac39a300021356d911"
+      "sha256": "cc3d34f5305d54611f1403400fc45802e90e70b7522f6173804ef268efcac874"
     },
     {
       "id": "source:session",
@@ -53118,12 +53132,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:b76494657113",
-      "source": "event:repository-scan:b76494657113",
-      "relation": "generated",
-      "target": "evidence:repository:b76494657113",
+      "id": "rel:commit-precedes:d17f4d8cedd7:4f5b1fd105fd",
+      "source": "commit:d17f4d8cedd77073205020b0676969f8687fb8c9",
+      "relation": "precedes",
+      "target": "commit:4f5b1fd105fd39cb1fbc577c17461f3858953518",
       "status": "asserted",
-      "at": "2026-10-10T12:02:05-03:00",
+      "at": "2026-10-10T15:02:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:4f5b1fd105fd:032adc3624d7",
+      "source": "commit:4f5b1fd105fd39cb1fbc577c17461f3858953518",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:02:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:4f5b1fd105fd:d64178c49886",
+      "source": "commit:4f5b1fd105fd39cb1fbc577c17461f3858953518",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T15:02:27Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:4f5b1fd105fd:9ca6b5402fc5",
+      "source": "commit:4f5b1fd105fd39cb1fbc577c17461f3858953518",
+      "relation": "precedes",
+      "target": "commit:9ca6b5402fc5ad15a80fc2b4482a53bed46cad35",
+      "status": "asserted",
+      "at": "2026-10-10T12:02:51-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:9ca6b5402fc5:1734be446032",
+      "source": "commit:9ca6b5402fc5ad15a80fc2b4482a53bed46cad35",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T12:02:51-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:3d5e27f8bea4",
+      "source": "event:repository-scan:3d5e27f8bea4",
+      "relation": "generated",
+      "target": "evidence:repository:3d5e27f8bea4",
+      "status": "asserted",
+      "at": "2026-10-10T12:02:51-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -53132,12 +53216,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:d17f4d8cedd7",
-      "source": "commit:d17f4d8cedd77073205020b0676969f8687fb8c9",
+      "id": "rel:scan-commit:9ca6b5402fc5",
+      "source": "commit:9ca6b5402fc5ad15a80fc2b4482a53bed46cad35",
       "relation": "observed_by",
-      "target": "event:repository-scan:b76494657113",
+      "target": "event:repository-scan:3d5e27f8bea4",
       "status": "asserted",
-      "at": "2026-10-10T12:02:05-03:00",
+      "at": "2026-10-10T12:02:51-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
