@@ -1,0 +1,223 @@
+name: ABS Browser Mobile Touch and Zoom
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: abs-browser-mobile-tuning
+  cancel-in-progress: false
+
+jobs:
+  tune:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser mobile-fix'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 15
+    steps:
+      - name: Apply touch-friendly zoom controls with rollback
+        id: tune
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          REPORT="$RUNNER_TEMP/abs-browser-mobile-fix.txt"
+          install -m 600 /dev/null "$REPORT"
+          exec > >(tee -a "$REPORT") 2>&1
+          pass(){ printf 'PASS | %s\n' "$*"; }
+          fail(){ printf 'FAIL | %s\n' "$*"; }
+          note(){ printf 'INFO | %s\n' "$*"; }
+
+          ROLLBACK_NAME="abs-browser-ui-mobile-rollback"
+          NEW_CONTAINER=0
+          OLD_RENAMED=0
+          finish() {
+            rc=$?
+            if [ "$rc" -ne 0 ] && [ "$OLD_RENAMED" -eq 1 ]; then
+              sudo -n docker rm -f abs-browser-ui >/dev/null 2>&1 || true
+              sudo -n docker rename "$ROLLBACK_NAME" abs-browser-ui >/dev/null 2>&1 || true
+              sudo -n docker start abs-browser-ui >/dev/null 2>&1 || true
+              echo "ROLLBACK | Prior browser container restored; persistent profile retained."
+            fi
+            {
+              echo 'result<<ABS_MOBILE_EOF'
+              sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION)[=: ][^ ]*/\1=[REDACTED]/Ig' "$REPORT" | tail -c 11000
+              echo
+              echo 'ABS_MOBILE_EOF'
+            } >> "$GITHUB_OUTPUT"
+            exit "$rc"
+          }
+          trap finish EXIT
+
+          echo "ABS BROWSER MOBILE TOUCH/ZOOM TUNING"
+          echo "UTC=$(date -u +%FT%TZ)"
+          [ "$(hostname)" = "abs-vps-01" ] || { fail "Unexpected host; refusing changes."; exit 1; }
+          sudo -n docker info >/dev/null
+          sudo -n docker inspect abs-browser-ui >/dev/null
+          [ "$(sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}')" = "running" ] || { fail "Browser container is not running; no changes made."; exit 1; }
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || { fail "ABS health check failed; no changes made."; exit 1; }
+
+          PROFILE_MOUNT="$(sudo -n docker inspect abs-browser-ui --format '{{range .Mounts}}{{if eq .Destination "/config"}}{{.Source}}{{end}}{{end}}')"
+          IMAGE="$(sudo -n docker inspect abs-browser-ui --format '{{.Config.Image}}')"
+          ENVFILE="$HOME/.config/abs-browser/browser.env"
+          [ -d "$PROFILE_MOUNT/chromium-abs-profile" ] || { fail "Persistent Chromium profile not found; no changes made."; exit 1; }
+          [ -s "$ENVFILE" ] || { fail "Protected browser credential file missing; no changes made."; exit 1; }
+          [ ! -e "$ROLLBACK_NAME" ] || { fail "A previous rollback container exists; refusing to overwrite it."; exit 1; }
+          pass "Preflight passed; existing profile and credential file will be preserved."
+          echo "Image=$IMAGE"
+          echo "Profile mount verified; credential values withheld."
+          free -h
+          df -h /
+
+          EXT="$PROFILE_MOUNT/abs-mobile-zoom"
+          install -d -m 700 "$EXT"
+          cat > "$EXT/manifest.json" <<'MANIFEST'
+          {
+            "manifest_version": 3,
+            "name": "ABS Mobile Zoom Controls",
+            "version": "1.0.0",
+            "description": "Touch-friendly page zoom controls for the ABS remote Chromium browser.",
+            "permissions": ["tabs"],
+            "host_permissions": ["http://*/*", "https://*/*"],
+            "background": { "service_worker": "service-worker.js" },
+            "content_scripts": [{
+              "matches": ["http://*/*", "https://*/*"],
+              "js": ["content.js"],
+              "run_at": "document_idle"
+            }]
+          }
+          MANIFEST
+          cat > "$EXT/service-worker.js" <<'WORKER'
+          chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+            if (!message || message.type !== "abs-mobile-zoom" || !sender.tab || typeof sender.tab.id !== "number") return;
+            const tabId = sender.tab.id;
+            chrome.tabs.getZoom(tabId, current => {
+              if (chrome.runtime.lastError) { sendResponse({ok:false}); return; }
+              let next = message.action === "reset" ? 1 : current + (message.action === "in" ? 0.1 : -0.1);
+              next = Math.max(0.5, Math.min(3, Math.round(next * 10) / 10));
+              chrome.tabs.setZoom(tabId, next, () => sendResponse({ok:!chrome.runtime.lastError, zoom:next}));
+            });
+            return true;
+          });
+          WORKER
+          cat > "$EXT/content.js" <<'CONTENT'
+          (() => {
+            if (window.top !== window || document.getElementById("__abs_mobile_zoom_host")) return;
+            const host = document.createElement("div");
+            host.id = "__abs_mobile_zoom_host";
+            host.style.cssText = "position:fixed!important;right:10px!important;bottom:calc(14px + env(safe-area-inset-bottom,0px))!important;z-index:2147483647!important;width:auto!important;height:auto!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;pointer-events:auto!important;";
+            const root = host.attachShadow({mode:"open"});
+            root.innerHTML = `
+              <style>
+                *{box-sizing:border-box}
+                #panel{display:flex;gap:6px;align-items:center;padding:6px;border-radius:18px;background:rgba(25,28,33,.94);box-shadow:0 2px 12px #0006;font:600 16px system-ui,sans-serif;color:white;touch-action:manipulation;user-select:none}
+                button{min-width:42px;min-height:42px;border:0;border-radius:13px;background:#3b414b;color:#fff;font:700 21px system-ui,sans-serif;line-height:1;touch-action:manipulation}
+                button:active{background:#596575}
+                #toggle{min-width:46px;background:#1b6e8a}
+                #panel[hidden]{display:none}
+                #reset{font-size:13px;min-width:50px}
+              </style>
+              <button id="toggle" aria-label="Abrir controles de zoom" title="Zoom da página">Aa</button>
+              <div id="panel" hidden>
+                <button data-action="out" aria-label="Diminuir zoom" title="Diminuir">−</button>
+                <button id="reset" data-action="reset" aria-label="Restaurar zoom a 100%" title="Zoom 100%">100%</button>
+                <button data-action="in" aria-label="Aumentar zoom" title="Aumentar">+</button>
+              </div>`;
+            const toggle = root.getElementById("toggle");
+            const panel = root.getElementById("panel");
+            toggle.addEventListener("click", () => { panel.hidden = !panel.hidden; toggle.textContent = panel.hidden ? "Aa" : "×"; }, {passive:true});
+            root.querySelectorAll("[data-action]").forEach(button => button.addEventListener("click", () => {
+              chrome.runtime.sendMessage({type:"abs-mobile-zoom", action:button.dataset.action});
+            }, {passive:true}));
+            (document.documentElement || document.body).appendChild(host);
+          })();
+          CONTENT
+          chmod 700 "$EXT"
+          chmod 600 "$EXT/manifest.json" "$EXT/service-worker.js" "$EXT/content.js"
+          python3 -m json.tool "$EXT/manifest.json" >/dev/null
+          pass "Touch-sized floating zoom controls installed in persistent config (−, 100%, +); page zoom changes through Chromium's tab zoom API."
+          note "Direct-touch mode remains the default; trackpad mode remains available in the Selkies side panel. Multi-finger pinch is not provided by this remote desktop transport, so accessible on-page zoom controls are added instead."
+
+          sudo -n docker stop abs-browser-ui >/dev/null
+          sudo -n docker rename abs-browser-ui "$ROLLBACK_NAME"
+          OLD_RENAMED=1
+          sudo -n docker run -d \
+            --name abs-browser-ui \
+            --network host \
+            --restart unless-stopped \
+            --security-opt no-new-privileges:true \
+            --cap-drop NET_RAW \
+            --memory 1280m --memory-swap 1792m --cpus 1.50 --pids-limit 512 \
+            --shm-size 512m \
+            --env-file "$ENVFILE" \
+            -e PUID="$(id -u)" -e PGID="$(id -g)" -e TZ=Etc/UTC \
+            -e SELKIES_SCALING_DPI=120 \
+            -e SELKIES_ENABLE_CURSORS=false \
+            -e SELKIES_USE_BROWSER_CURSORS=true \
+            -e SELKIES_UI_SIDEBAR_SHOW_TRACKPAD=true \
+            -e SELKIES_UI_SIDEBAR_SHOW_FULLSCREEN=true \
+            -e SELKIES_UI_SIDEBAR_SHOW_KEYBOARD_BUTTON=true \
+            -e SELKIES_UI_SIDEBAR_SHOW_SOFT_BUTTONS=true \
+            -e CHROME_CLI="--user-data-dir=/config/chromium-abs-profile --remote-debugging-port=9222 --enable-touch-events --touch-events=enabled --window-size=412,915 --force-device-scale-factor=1 --load-extension=/config/abs-mobile-zoom" \
+            -v "$PROFILE_MOUNT:/config" \
+            "$IMAGE" >/dev/null
+          NEW_CONTAINER=1
+
+          READY=0
+          for i in $(seq 1 24); do
+            STATE="$(sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}' 2>/dev/null || true)"
+            HTTP_CODE="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 4 http://127.0.0.1:3000/ 2>/dev/null || true)"
+            CDP_CODE="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 3 http://127.0.0.1:9222/json/version 2>/dev/null || true)"
+            if [ "$STATE" = running ] && printf '%s' "$HTTP_CODE" | grep -Eq '^(200|301|302|401|403)$' && [ "$CDP_CODE" = "200" ]; then READY=1; break; fi
+            sleep 5
+          done
+          [ "$READY" -eq 1 ] || { fail "New browser failed readiness checks; rollback will restore the previous container."; exit 1; }
+          pass "Browser UI and loopback DevTools recovered; HTTP=$HTTP_CODE CDP=$CDP_CODE."
+          CHROME_ARGS="$(sudo -n docker exec abs-browser-ui sh -lc 'ps -eo args | grep -E "[c]hromium" | head -n 3' 2>/dev/null || true)"
+          printf '%s\n' "$CHROME_ARGS" | grep -F -- '--load-extension=/config/abs-mobile-zoom' >/dev/null || { fail "Chromium extension flag not present; rollback will restore the prior container."; exit 1; }
+          pass "Chromium started with the persistent mobile zoom extension."
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null || { fail "ABS health regression; rollback will restore the prior container."; exit 1; }
+          pass "ABS health regression passed."
+          curl -fsS --max-time 8 http://127.0.0.1:11434/api/tags >/dev/null && pass "Ollama regression passed." || note "Ollama endpoint did not respond; browser deployment remains isolated."
+
+          sudo -n docker rm "$ROLLBACK_NAME" >/dev/null
+          OLD_RENAMED=0
+          pass "Prior stopped container removed only after new UI/CDP and ABS health checks passed; profile data remains on the host volume."
+          echo
+          echo "=== Tailscale access ==="
+          if command -v tailscale >/dev/null 2>&1 && timeout 8s sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
+            sudo -n tailscale serve --bg --yes http://127.0.0.1:3000 >/dev/null 2>&1 || true
+            sudo -n tailscale serve status 2>&1 | head -n 10 || true
+            pass "Tailscale Serve checked; no public browser port opened."
+          else
+            note "Tailscale is not currently connected from the VPS; existing firewall protections were left unchanged."
+          fi
+          echo "INFO | Browser credentials were not read into the report or printed."
+          echo "ABS BROWSER MOBILE FIX FINISHED"
+
+      - name: Publish sanitized result
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.tune.outputs.result }}
+        with:
+          script: |
+            const body = [
+              '### ABS BROWSER MOBILE FIX — REPORT',
+              '',
+              (process.env.RESULT || 'No final report produced; inspect the private Actions logs.').slice(0, 11000),
+              '',
+              'No browser credential values are included.'
+            ].join('\\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
