@@ -789,6 +789,38 @@ jobs:
               } > /tmp/abs-browser-client-inspect.txt 2>&1
               result="$(cat /tmp/abs-browser-client-inspect.txt)"
               ;;
+            browser-app-diagnose)
+              set +e
+              {
+                echo "[host load and memory]"
+                uptime
+                free -h
+                echo
+                echo "[remote browser process tree]"
+                sudo -n docker top abs-remotebrowser -eo pid,ppid,stat,pcpu,pmem,rss,etime,args 2>&1 | head -n 28
+                echo
+                echo "[remote browser recent logs]"
+                sudo -n docker logs --since 45m --tail 100 abs-remotebrowser 2>&1 | sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION|API_KEY)[=: ][^ ]*/\1=[REDACTED]/Ig' | tail -n 75
+                echo
+                echo "[remote browser app files and scripts]"
+                sudo -n docker exec abs-remotebrowser sh -lc 'pwd; node -v; cat package.json 2>/dev/null; echo "--- files"; find /app -maxdepth 3 -type f ! -path "*/node_modules/*" 2>/dev/null | head -n 45; echo "--- node processes"; ps -eo pid,ppid,stat,pcpu,pmem,rss,etime,args | grep -E "[n]ode|[c]hromium|[c]hrome-headless" | head -n 24' 2>&1 | sed -E 's/(PASSWORD|TOKEN|COOKIE|AUTHORIZATION|API_KEY)[=: ][^ ]*/\1=[REDACTED]/Ig' | head -n 100
+                echo
+                echo "[browser UI cgroup events and top]"
+                sudo -n docker exec abs-browser-ui sh -lc 'for f in /sys/fs/cgroup/memory.current /sys/fs/cgroup/memory.max /sys/fs/cgroup/memory.events /sys/fs/cgroup/cpu.max /sys/fs/cgroup/cpu.stat; do if [ -r "$f" ]; then echo "--- $f"; cat "$f"; fi; done' 2>&1 || true
+                sudo -n docker top abs-browser-ui -eo pid,ppid,stat,pcpu,pmem,rss,etime,args 2>&1 | head -n 24 || true
+                echo
+                echo "[ABS service and local AI process activity]"
+                sudo -n systemctl show abs.service -p ActiveState -p SubState -p MainPID -p MemoryCurrent -p CPUUsageNSec 2>&1
+                ps -eo pid,ppid,stat,pcpu,pmem,rss,etime,args --sort=-pcpu | grep -E '[a]bs.service|[o]llama|[l]lama-server|[a]bs_core' | head -n 18
+                echo
+                echo "[ABS health latency]"
+                for n in 1 2 3; do curl -sS -o /dev/null --max-time 8 -w 'health_http=%{http_code} total_seconds=%{time_total}\n' http://127.0.0.1:8787/health; done
+                echo
+                echo "[kernel OOM records]"
+                sudo -n journalctl -k --since "24 hours ago" --no-pager 2>&1 | grep -Ei 'oom|out of memory|killed process|memory cgroup' | tail -n 15 || true
+              } > /tmp/abs-browser-app-diagnose.txt 2>&1
+              result="$(cat /tmp/abs-browser-app-diagnose.txt)"
+              ;;
             browser-deep-diagnose)
               set +e
               {
