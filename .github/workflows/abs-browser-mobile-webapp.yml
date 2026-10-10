@@ -155,6 +155,8 @@ jobs:
             if [ "$ROUTE_WAS_PRESENT" -eq 0 ]; then ROUTE_ADDED=1; fi
             timeout 8s sudo -n tailscale serve status 2>&1 | grep -q '3010' || { fail "Private Tailscale route did not confirm port 3010."; exit 1; }
             pass "Private Tailscale Serve route /abs-mobile configured; no public port opened."
+            TAILNET_DNS="$(timeout 8s sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); print(((d.get("Self") or {}).get("DNSName") or "").rstrip("."))' 2>/dev/null || true)"
+            if [ -n "$TAILNET_DNS" ]; then echo "PRIVATE_MOBILE_URL=https://${TAILNET_DNS}/abs-mobile"; else echo "INFO | Tailscale DNS name unavailable; route remains private."; fi
           else
             blocked "Tailscale is not authenticated/running. App is installed locally but remote phone access remains blocked until private Tailscale access is active."
           fi
@@ -173,7 +175,7 @@ jobs:
               '',
               (process.env.RESULT || 'No final report produced; inspect private runner logs.').slice(0, 9000),
               '',
-              'No browser credentials or private URLs are included.'
+              'No browser credentials or tokens are included. The private access URL is included for the owner.'
             ].join('\n');
             await github.rest.issues.createComment({
               owner: context.repo.owner,
