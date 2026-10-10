@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:56:08-03:00",
-  "source_revision": "7f520aee3d35f195eba95a3e530122a7ef5817c5",
+  "generated_at": "2026-10-10T16:57:00-03:00",
+  "source_revision": "28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "7f520aee3d35f195eba95a3e530122a7ef5817c5",
-      "commit_subject": "Corrigir sintaxe YAML do diagnóstico MCP"
+      "revision": "28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
+      "commit_subject": "Remover bloco heredoc residual que invalidava workflow"
     }
   ],
   "tools": [
@@ -12979,6 +12979,20 @@
       "sha": "7f520aee3d35f195eba95a3e530122a7ef5817c5"
     },
     {
+      "id": "commit:30404dd8a498cba6b310d4ca7f59eac745dcd028",
+      "kind": "commit",
+      "at": "2026-10-10T19:56:28Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "30404dd8a498cba6b310d4ca7f59eac745dcd028"
+    },
+    {
+      "id": "commit:28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
+      "kind": "commit",
+      "at": "2026-10-10T16:57:00-03:00",
+      "subject": "Remover bloco heredoc residual que invalidava workflow",
+      "sha": "28aa0ae0d1a07180a23d1176f8148c31ab8bea5a"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -13091,23 +13105,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:39cd4f9f1470",
+      "id": "evidence:repository:b058f87cb119",
       "kind": "evidence",
-      "at": "2026-10-10T16:56:08-03:00",
+      "at": "2026-10-10T16:57:00-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:39cd4f9f1470",
+      "id": "event:repository-scan:b058f87cb119",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:56:08-03:00"
+      "at": "2026-10-10T16:57:00-03:00"
     },
     {
-      "id": "event:commit-observed:7f520aee3d35",
+      "id": "event:commit-observed:28aa0ae0d1a0",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:56:08-03:00"
+      "at": "2026-10-10T16:57:00-03:00"
     }
   ],
   "paths": [
@@ -13142,11 +13156,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:7a3aac4d2daf"
+        "evidence:test:b6c82dd11792"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:56:08-03:00"
+      "last_validated": "2026-10-10T16:57:00-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13169,20 +13183,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:39cd4f9f1470",
+      "id": "evidence:repository:b058f87cb119",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:56:08-03:00",
+      "observed_at": "2026-10-10T16:57:00-03:00",
       "status": "observed",
-      "detail": "448 files indexed at revision 7f520aee3d35f195eba95a3e530122a7ef5817c5"
+      "detail": "448 files indexed at revision 28aa0ae0d1a07180a23d1176f8148c31ab8bea5a"
     },
     {
-      "id": "evidence:test:7a3aac4d2daf",
+      "id": "evidence:test:b6c82dd11792",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:56:08-03:00",
+      "observed_at": "2026-10-10T16:57:00-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.37s"
+      "detail": "225 passed in 7.43s"
     }
   ],
   "decisions": [
@@ -13285,30 +13299,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:39cd4f9f1470",
+      "id": "event:repository-scan:b058f87cb119",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:56:08-03:00",
-      "revision": "7f520aee3d35f195eba95a3e530122a7ef5817c5",
+      "at": "2026-10-10T16:57:00-03:00",
+      "revision": "28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
       "file_count": 448,
-      "evidence_id": "evidence:repository:39cd4f9f1470"
+      "evidence_id": "evidence:repository:b058f87cb119"
     },
     {
-      "id": "event:commit-observed:7f520aee3d35",
+      "id": "event:commit-observed:28aa0ae0d1a0",
       "type": "commit_observed",
-      "at": "2026-10-10T16:56:08-03:00",
-      "revision": "7f520aee3d35f195eba95a3e530122a7ef5817c5",
+      "at": "2026-10-10T16:57:00-03:00",
+      "revision": "28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
       "branch": "main",
-      "subject": "Corrigir sintaxe YAML do diagnóstico MCP",
+      "subject": "Remover bloco heredoc residual que invalidava workflow",
       "changed_files": [
         ".github/workflows/vps-admin-command.yml"
       ]
     },
     {
-      "id": "event:test:7a3aac4d2daf",
+      "id": "event:test:b6c82dd11792",
       "type": "tests_observed",
-      "at": "2026-10-10T16:56:08-03:00",
+      "at": "2026-10-10T16:57:00-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:7a3aac4d2daf"
+      "evidence_id": "evidence:test:b6c82dd11792"
     }
   ],
   "knowledge_sources": [
@@ -13364,7 +13378,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "7e3b4e0511bc2b8c6a4d1288fba0eee6ea6e4737949a0a0aa7df54a60b847cb3"
+      "sha256": "0e3b2abda54dc7f60282cde94d738af3e6a887800c1dc6ba055125da381b45ff"
     },
     {
       "id": "source:session",
@@ -60523,12 +60537,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:39cd4f9f1470",
-      "source": "event:repository-scan:39cd4f9f1470",
-      "relation": "generated",
-      "target": "evidence:repository:39cd4f9f1470",
+      "id": "rel:commit-precedes:7f520aee3d35:30404dd8a498",
+      "source": "commit:7f520aee3d35f195eba95a3e530122a7ef5817c5",
+      "relation": "precedes",
+      "target": "commit:30404dd8a498cba6b310d4ca7f59eac745dcd028",
       "status": "asserted",
-      "at": "2026-10-10T16:56:08-03:00",
+      "at": "2026-10-10T19:56:28Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:30404dd8a498:032adc3624d7",
+      "source": "commit:30404dd8a498cba6b310d4ca7f59eac745dcd028",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:56:28Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:30404dd8a498:d64178c49886",
+      "source": "commit:30404dd8a498cba6b310d4ca7f59eac745dcd028",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:56:28Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:30404dd8a498:28aa0ae0d1a0",
+      "source": "commit:30404dd8a498cba6b310d4ca7f59eac745dcd028",
+      "relation": "precedes",
+      "target": "commit:28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
+      "status": "asserted",
+      "at": "2026-10-10T16:57:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:28aa0ae0d1a0:d2156db4a874",
+      "source": "commit:28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-admin-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T16:57:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:b058f87cb119",
+      "source": "event:repository-scan:b058f87cb119",
+      "relation": "generated",
+      "target": "evidence:repository:b058f87cb119",
+      "status": "asserted",
+      "at": "2026-10-10T16:57:00-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -60537,12 +60621,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:7f520aee3d35",
-      "source": "commit:7f520aee3d35f195eba95a3e530122a7ef5817c5",
+      "id": "rel:scan-commit:28aa0ae0d1a0",
+      "source": "commit:28aa0ae0d1a07180a23d1176f8148c31ab8bea5a",
       "relation": "observed_by",
-      "target": "event:repository-scan:39cd4f9f1470",
+      "target": "event:repository-scan:b058f87cb119",
       "status": "asserted",
-      "at": "2026-10-10T16:56:08-03:00",
+      "at": "2026-10-10T16:57:00-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
