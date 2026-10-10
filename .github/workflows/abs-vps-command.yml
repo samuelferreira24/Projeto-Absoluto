@@ -700,12 +700,17 @@ jobs:
                 timeout 6s sudo -n tailscale serve status 2>&1 | grep -E '(/abs-keyboard-focus|/ proxy)' | head -n 4
                 echo
                 echo "[End-to-end focus endpoint]"
-                response="$(curl -fsS --max-time 6 https://abs-vps-01.tailc75f22.ts.net/abs-keyboard-focus 2>&1)"
-                rc=$?
+                TAIL_IP="$(timeout 5s sudo -n tailscale ip -4 2>/dev/null | head -n 1)"
+                response=""
+                rc=1
+                if [ -n "$TAIL_IP" ]; then
+                  response="$(curl --resolve "abs-vps-01.tailc75f22.ts.net:443:$TAIL_IP" -fsS --max-time 6 https://abs-vps-01.tailc75f22.ts.net/abs-keyboard-focus 2>&1)"
+                  rc=$?
+                fi
                 if [ "$rc" -eq 0 ]; then
                   printf '%s' "$response" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert type(d.get("focused")) is bool, d; print("PASS | Tailnet focus endpoint responds; focused="+str(d["focused"]).lower())' 2>&1 || echo "FAIL | Focus endpoint response did not match the safe boolean schema."
                 else
-                  echo "WARN | HTTPS self-probe did not complete from the VPS; local health and Serve route are reported separately."
+                  echo "WARN | HTTPS self-probe via Tailscale IP did not complete; local health and Serve route are reported separately."
                 fi
                 echo
                 echo "[Browser and core regression]"
