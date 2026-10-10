@@ -1275,6 +1275,39 @@ jobs:
               } > /tmp/abs-vps-result.txt 2>&1
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-verify)
+              {
+                echo "[Code Server container health and runtime settings — secrets omitted]"
+                sudo -n docker inspect code-server-bb55qbolrf4pqfl45gomnzyl --format 'state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} restarts={{.RestartCount}} started={{.State.StartedAt}} image={{.Config.Image}}' 2>&1 || true
+                sudo -n docker inspect code-server-bb55qbolrf4pqfl45gomnzyl --format '{{range .Config.Env}}{{println .}}{{end}}' 2>/dev/null | grep -E '^(TZ|PUID|PGID|DEFAULT_WORKSPACE)=' || true
+                echo
+                echo "[Public HTTP route probe]"
+                curl -sS --max-time 12 -o /dev/null -w 'http_status=%{http_code} remote_ip=%{remote_ip} content_type=%{content_type}\\n' 'http://codeserver-bb55qbolrf4pqfl45gomnzyl.207.180.3.245.sslip.io' 2>&1 || true
+                echo
+                echo "[Public HTTPS route probe]"
+                curl -sS --max-time 12 -o /dev/null -w 'https_status=%{http_code} remote_ip=%{remote_ip} content_type=%{content_type}\\n' 'https://codeserver-bb55qbolrf4pqfl45gomnzyl.207.180.3.245.sslip.io' 2>&1 || true
+                echo
+                echo "[Code Server application row — safe fields only]"
+                sudo -n docker exec coolify php artisan tinker --execute='$r=app("db")->table("service_applications")->where("service_id",5)->first(); if ($r) echo json_encode(["uuid"=>$r->uuid,"fqdn"=>$r->fqdn,"image"=>$r->image,"is_force_https_enabled"=>$r->is_force_https_enabled],JSON_PRETTY_PRINT),PHP_EOL;' 2>&1 || true
+                echo
+                echo "[Recent Code Server container logs — last 35 lines, secrets redacted]"
+                sudo -n docker logs --tail 35 code-server-bb55qbolrf4pqfl45gomnzyl 2>&1 | sed -E 's/(PASSWORD|TOKEN|SECRET|KEY)=([^ ]+)/\\1=[REDACTED]/Ig' | tail -n 35 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
+            coolify-locale-files)
+              {
+                echo "[Installed language files]"
+                sudo -n docker exec coolify sh -lc 'find /var/www/html/lang -maxdepth 2 -type f -printf "%P\\n" 2>/dev/null | sort'
+                echo
+                echo "[All keys in existing pt-br.json — no new translations]"
+                sudo -n docker exec coolify php -r '$f="/var/www/html/lang/pt-br.json"; $d=json_decode(file_get_contents($f),true); echo "translation_keys=".count($d).PHP_EOL; foreach ($d as $k=>$v) echo $k.PHP_EOL;' 2>&1 || true
+                echo
+                echo "[Any user-facing locale selector in installed UI source]"
+                sudo -n docker exec coolify sh -lc 'grep -RniE "language selector|select language|locale.*(select|dropdown)|available_locales|setLocale" /var/www/html/resources /var/www/html/app/Livewire /var/www/html/app/Http 2>/dev/null | head -n 40' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-deploy-status)
               {
                 echo "[Deployment activity metadata]"
