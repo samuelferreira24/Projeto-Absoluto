@@ -60,7 +60,7 @@ jobs:
               id: 1,
               method: 'Runtime.evaluate',
               params: {
-                expression: '({title:document.title, url:location.href, hasLatest:document.body.innerText.includes("Termine toda validação"), hasPrevious:document.body.innerText.includes("Verifique logo a sincronização")})',
+                expression: 'new Promise(resolve=>{const start=Date.now();const tick=()=>{const body=document.body.innerText;const found=body.includes("Termine toda validação");if(found||Date.now()-start>10000)resolve({title:document.title,url:location.href,hasLatest:found,hasPrevious:body.includes("Verifique logo a sincronização")});else setTimeout(tick,1000)};tick()})',
                 returnByValue: true,
                 awaitPromise: true
               }
