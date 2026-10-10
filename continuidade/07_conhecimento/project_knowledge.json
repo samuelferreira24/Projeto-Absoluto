@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T12:33:09-03:00",
-  "source_revision": "5268858da012469fe654bc7409afef8b8756e0f2",
+  "generated_at": "2026-10-10T12:33:36-03:00",
+  "source_revision": "4b84a7ad2c7128157cd309afd13c7fc87dfe6fe7",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "5268858da012469fe654bc7409afef8b8756e0f2",
-      "commit_subject": "Capture diagnostic details for browser sync verification"
+      "revision": "4b84a7ad2c7128157cd309afd13c7fc87dfe6fe7",
+      "commit_subject": "Wait briefly for ChatGPT conversation sync before reporting"
     }
   ],
   "tools": [
@@ -11861,6 +11861,20 @@
       "sha": "5268858da012469fe654bc7409afef8b8756e0f2"
     },
     {
+      "id": "commit:90f7649044deada4015d48a83df65a8620197ff0",
+      "kind": "commit",
+      "at": "2026-10-10T15:33:29Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "90f7649044deada4015d48a83df65a8620197ff0"
+    },
+    {
+      "id": "commit:4b84a7ad2c7128157cd309afd13c7fc87dfe6fe7",
+      "kind": "commit",
+      "at": "2026-10-10T12:33:36-03:00",
+      "subject": "Wait briefly for ChatGPT conversation sync before reporting",
+      "sha": "4b84a7ad2c7128157cd309afd13c7fc87dfe6fe7"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11973,23 +11987,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:af6d543e55af",
+      "id": "evidence:repository:e279db338cca",
       "kind": "evidence",
-      "at": "2026-10-10T12:33:09-03:00",
+      "at": "2026-10-10T12:33:36-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:af6d543e55af",
+      "id": "event:repository-scan:e279db338cca",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:33:09-03:00"
+      "at": "2026-10-10T12:33:36-03:00"
     },
     {
-      "id": "event:commit-observed:5268858da012",
+      "id": "event:commit-observed:4b84a7ad2c71",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T12:33:09-03:00"
+      "at": "2026-10-10T12:33:36-03:00"
     }
   ],
   "paths": [
@@ -12024,11 +12038,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:ab78f805f3ab"
+        "evidence:test:cfd1415f5739"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T12:33:09-03:00"
+      "last_validated": "2026-10-10T12:33:36-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -12051,20 +12065,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:af6d543e55af",
+      "id": "evidence:repository:e279db338cca",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T12:33:09-03:00",
+      "observed_at": "2026-10-10T12:33:36-03:00",
       "status": "observed",
-      "detail": "441 files indexed at revision 5268858da012469fe654bc7409afef8b8756e0f2"
+      "detail": "441 files indexed at revision 4b84a7ad2c7128157cd309afd13c7fc87dfe6fe7"
     },
     {
-      "id": "evidence:test:ab78f805f3ab",
+      "id": "evidence:test:cfd1415f5739",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T12:33:09-03:00",
+      "observed_at": "2026-10-10T12:33:36-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.66s"
+      "detail": "225 passed in 7.34s"
     }
   ],
   "decisions": [
@@ -12167,30 +12181,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:af6d543e55af",
+      "id": "event:repository-scan:e279db338cca",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:33:09-03:00",
-      "revision": "5268858da012469fe654bc7409afef8b8756e0f2",
+      "at": "2026-10-10T12:33:36-03:00",
+      "revision": "4b84a7ad2c7128157cd309afd13c7fc87dfe6fe7",
       "file_count": 441,
-      "evidence_id": "evidence:repository:af6d543e55af"
+      "evidence_id": "evidence:repository:e279db338cca"
     },
     {
-      "id": "event:commit-observed:5268858da012",
+      "id": "event:commit-observed:4b84a7ad2c71",
       "type": "commit_observed",
-      "at": "2026-10-10T12:33:09-03:00",
-      "revision": "5268858da012469fe654bc7409afef8b8756e0f2",
+      "at": "2026-10-10T12:33:36-03:00",
+      "revision": "4b84a7ad2c7128157cd309afd13c7fc87dfe6fe7",
       "branch": "main",
-      "subject": "Capture diagnostic details for browser sync verification",
+      "subject": "Wait briefly for ChatGPT conversation sync before reporting",
       "changed_files": [
         ".github/workflows/abs-browser-sync-verify.yml"
       ]
     },
     {
-      "id": "event:test:ab78f805f3ab",
+      "id": "event:test:cfd1415f5739",
       "type": "tests_observed",
-      "at": "2026-10-10T12:33:09-03:00",
+      "at": "2026-10-10T12:33:36-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:ab78f805f3ab"
+      "evidence_id": "evidence:test:cfd1415f5739"
     }
   ],
   "knowledge_sources": [
@@ -12246,7 +12260,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "b4c6a390cf9d73d4b7b3c99ccb20af52ef765f3c70eb566d75676ca9e325543d"
+      "sha256": "eddff9b50a8535100754cdd213b1e3bcb46929748057d69feabace920d4f7b5b"
     },
     {
       "id": "source:session",
@@ -54141,12 +54155,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:af6d543e55af",
-      "source": "event:repository-scan:af6d543e55af",
-      "relation": "generated",
-      "target": "evidence:repository:af6d543e55af",
+      "id": "rel:commit-precedes:5268858da012:90f7649044de",
+      "source": "commit:5268858da012469fe654bc7409afef8b8756e0f2",
+      "relation": "precedes",
+      "target": "commit:90f7649044deada4015d48a83df65a8620197ff0",
       "status": "asserted",
-      "at": "2026-10-10T12:33:09-03:00",
+      "at": "2026-10-10T15:33:29Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:90f7649044de:032adc3624d7",
+      "source": "commit:90f7649044deada4015d48a83df65a8620197ff0",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:33:29Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:90f7649044de:d64178c49886",
+      "source": "commit:90f7649044deada4015d48a83df65a8620197ff0",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T15:33:29Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:90f7649044de:4b84a7ad2c71",
+      "source": "commit:90f7649044deada4015d48a83df65a8620197ff0",
+      "relation": "precedes",
+      "target": "commit:4b84a7ad2c7128157cd309afd13c7fc87dfe6fe7",
+      "status": "asserted",
+      "at": "2026-10-10T12:33:36-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:4b84a7ad2c71:1f5e087e04a6",
+      "source": "commit:4b84a7ad2c7128157cd309afd13c7fc87dfe6fe7",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-sync-verify.yml",
+      "status": "asserted",
+      "at": "2026-10-10T12:33:36-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:e279db338cca",
+      "source": "event:repository-scan:e279db338cca",
+      "relation": "generated",
+      "target": "evidence:repository:e279db338cca",
+      "status": "asserted",
+      "at": "2026-10-10T12:33:36-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -54155,12 +54239,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:5268858da012",
-      "source": "commit:5268858da012469fe654bc7409afef8b8756e0f2",
+      "id": "rel:scan-commit:4b84a7ad2c71",
+      "source": "commit:4b84a7ad2c7128157cd309afd13c7fc87dfe6fe7",
       "relation": "observed_by",
-      "target": "event:repository-scan:af6d543e55af",
+      "target": "event:repository-scan:e279db338cca",
       "status": "asserted",
-      "at": "2026-10-10T12:33:09-03:00",
+      "at": "2026-10-10T12:33:36-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
