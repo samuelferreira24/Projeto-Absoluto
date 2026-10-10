@@ -32,8 +32,7 @@ jobs:
           set -Eeuo pipefail
           REPORT="$RUNNER_TEMP/abs-browser-mobile-webapp.txt"
           APP_SERVICE_STARTED=0
-          ROUTE_ADDED=0
-          ROUTE_WAS_PRESENT=0
+          FIREWALL_RULE_ADDED=0
           install -m 600 /dev/null "$REPORT"
           exec > >(tee -a "$REPORT") 2>&1
           publish_result() {
@@ -48,13 +47,13 @@ jobs:
             rc=$?
             trap - EXIT
             if [ "$rc" -ne 0 ]; then
-              if [ "$ROUTE_ADDED" -eq 1 ] && [ "$ROUTE_WAS_PRESENT" -eq 0 ]; then
-                sudo -n tailscale serve --set-path=/abs-mobile off >/dev/null 2>&1 || true
-                echo "ROLLBACK | Removed the route created by this failed deployment."
-              fi
               if [ "$APP_SERVICE_STARTED" -eq 1 ]; then
                 sudo -n systemctl disable --now abs-browser-mobile-webapp.service >/dev/null 2>&1 || true
                 echo "ROLLBACK | Failed mobile app stopped; existing browser and profile were not changed."
+              fi
+              if [ "$FIREWALL_RULE_ADDED" -eq 1 ]; then
+                sudo -n ufw delete allow in on tailscale0 to any port 3010 proto tcp >/dev/null 2>&1 || true
+                echo "ROLLBACK | Removed the firewall rule limited to tailscale0."
               fi
             fi
             publish_result
@@ -78,7 +77,10 @@ jobs:
           [ -d "$PROFILE_MOUNT/chromium-abs-profile" ] || { fail "Persistent Chromium profile not found; no changes made."; exit 1; }
           [ -s "$HOME/.config/abs-browser/browser.env" ] || { fail "Protected browser credentials file missing; no changes made."; exit 1; }
           pass "Preflight passed: ABS, Chromium DevTools, persistent profile and protected credentials exist."
-          echo "No browser container restart, profile rewrite, firewall opening or public port binding will be performed."
+          TAILNET_IP="$(timeout 8s sudo -n tailscale ip -4 2>/dev/null | head -n 1 || true)"
+          [ -n "$TAILNET_IP" ] || { fail "Tailscale private IPv4 unavailable; no browser changes made."; exit 1; }
+          sudo -n ufw status | grep -q "Status: active" || { fail "UFW is not active; refusing to expose the mirror."; exit 1; }
+          echo "Direct tailnet binding target is $TAILNET_IP; the browser container, profile and public firewall remain untouched."
 
           SOURCE="$GITHUB_WORKSPACE/abs_browser/mobile_webapp"
           APP="$HOME/abs-browser/mobile-webapp"
@@ -103,11 +105,28 @@ jobs:
           cd "$APP"
           npm install --omit=dev --no-audit --no-fund --package-lock=false
           NODE_BIN="$(command -v node)"
+          cat > "$APP/start.sh" <<'START'
+          #!/bin/sh
+          set -eu
+          HOST=""
+          for i in $(seq 1 30); do
+            HOST="$(ip -4 -o addr show dev tailscale0 2>/dev/null | awk '{split($4,a,"/"); print a[1]; exit}')"
+            [ -n "$HOST" ] && break
+            sleep 1
+          done
+          [ -n "$HOST" ] || { echo "Tailscale IPv4 unavailable; refusing to bind on public interfaces." >&2; exit 1; }
+          export HOST PORT=3010
+          exec __NODE_BIN__ __APP_DIR__/server.js
+          START
+          sed -i "s|__NODE_BIN__|$NODE_BIN|g; s|__APP_DIR__|$APP|g" "$APP/start.sh"
+          chmod 700 "$APP/start.sh"
+          sudo -n ufw allow in on tailscale0 to any port 3010 proto tcp comment "ABS mobile mirror tailnet only" >/dev/null
+          FIREWALL_RULE_ADDED=1
           sudo -n tee /etc/systemd/system/abs-browser-mobile-webapp.service >/dev/null <<UNIT
           [Unit]
           Description=ABS private mobile browser mirror and CDP touch bridge
-          After=network-online.target abs.service
-          Wants=network-online.target
+          After=network-online.target tailscaled.service abs.service
+          Wants=network-online.target tailscaled.service
 
           [Service]
           Type=simple
@@ -115,10 +134,9 @@ jobs:
           Group=absadmin
           WorkingDirectory=$APP
           Environment=NODE_ENV=production
-          Environment=HOST=127.0.0.1
           Environment=PORT=3010
           Environment=ABS_BROWSER_CDP_URL=http://127.0.0.1:9222
-          ExecStart=$NODE_BIN $APP/server.js
+          ExecStart=$APP/start.sh
           Restart=always
           RestartSec=2
           NoNewPrivileges=true
