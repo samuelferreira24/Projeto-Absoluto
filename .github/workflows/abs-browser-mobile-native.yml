@@ -246,6 +246,7 @@ jobs:
             console.info('ABS_MOBILE_AUTO_KEYBOARD_V1');
             console.info('ABS_MOBILE_AUTO_KEYBOARD_CAPTURE_V3');
             console.info('ABS_MOBILE_FOCUS_BRIDGE_V1');
+            console.info('ABS_REAL_ADDRESS_TOUCH_GUARD_V1');
             let start = null;
             const state = { touches: 0, toolbarTaps: 0, focusAttempts: 0, focusSuccess: 0, last: 'idle' };
             window.__ABS_MOBILE_KEYBOARD_DIAGNOSTICS__ = state;
@@ -643,7 +644,7 @@ jobs:
           [ -s "$BUILT_DASHBOARD_BUNDLE" ] || { fail "Patched dashboard bundle was not produced; existing browser remains running."; exit 1; }
           grep -q 'ABS_MOBILE_AUTO_KEYBOARD_V1' "$BUILT_DASHBOARD_BUNDLE" || { fail "Dashboard build does not contain the auto-keyboard patch marker; existing browser remains running."; exit 1; }
           grep -q 'ABS_REAL_ADDRESS_OVERLAY_V1' "$BUILT_DASHBOARD_BUNDLE" || { fail "Dashboard build does not contain the real address input overlay; existing browser remains running."; exit 1; }
-          grep -q "event.target.closest('#abs-real-address-input-v1')" "$BUILT_DASHBOARD_BUNDLE" || { fail "Dashboard build does not isolate real address input touch events; existing browser remains running."; exit 1; }
+          grep -q 'ABS_REAL_ADDRESS_TOUCH_GUARD_V1' "$BUILT_DASHBOARD_BUNDLE" || { fail "Dashboard build does not isolate real address input touch events; existing browser remains running."; exit 1; }
           grep -q 'ABS_MOBILE_FOCUS_BRIDGE_V1' "$BUILT_DASHBOARD_BUNDLE" || { fail "Dashboard build does not contain the webpage-focus bridge marker; existing browser remains running."; exit 1; }
           OVERLAY_DIR="$HOME/abs-browser/selkies-mobile-overlay-$(date -u +%Y%m%d%H%M%S)"
           install -d -m 755 "$OVERLAY_DIR"
