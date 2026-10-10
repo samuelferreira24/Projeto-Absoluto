@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T16:57:51-03:00",
-  "source_revision": "d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
+  "generated_at": "2026-10-10T17:12:05-03:00",
+  "source_revision": "eaed57ca7de3f1edc94a31a45656692804cef084",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
-      "commit_subject": "Remover ciphertext temporário após recuperação"
+      "revision": "eaed57ca7de3f1edc94a31a45656692804cef084",
+      "commit_subject": "Add read-only MCP tool smoke test for VPS Direct Admin"
     }
   ],
   "tools": [
@@ -13007,6 +13007,20 @@
       "sha": "d5ef8fcc6273c9280ffcb1868766e00fed6615c3"
     },
     {
+      "id": "commit:a0a890c780a3ff9fbbbb3c005105c4d0c36a1fcc",
+      "kind": "commit",
+      "at": "2026-10-10T19:58:10Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "a0a890c780a3ff9fbbbb3c005105c4d0c36a1fcc"
+    },
+    {
+      "id": "commit:eaed57ca7de3f1edc94a31a45656692804cef084",
+      "kind": "commit",
+      "at": "2026-10-10T17:12:05-03:00",
+      "subject": "Add read-only MCP tool smoke test for VPS Direct Admin",
+      "sha": "eaed57ca7de3f1edc94a31a45656692804cef084"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -13119,23 +13133,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:36729f864eb2",
+      "id": "evidence:repository:6133b8e0b3c3",
       "kind": "evidence",
-      "at": "2026-10-10T16:57:51-03:00",
+      "at": "2026-10-10T17:12:05-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:36729f864eb2",
+      "id": "event:repository-scan:6133b8e0b3c3",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:57:51-03:00"
+      "at": "2026-10-10T17:12:05-03:00"
     },
     {
-      "id": "event:commit-observed:d5ef8fcc6273",
+      "id": "event:commit-observed:eaed57ca7de3",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T16:57:51-03:00"
+      "at": "2026-10-10T17:12:05-03:00"
     }
   ],
   "paths": [
@@ -13170,11 +13184,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:9e91ae7f96dd"
+        "evidence:test:106349a3c30e"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T16:57:51-03:00"
+      "last_validated": "2026-10-10T17:12:05-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13197,20 +13211,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:36729f864eb2",
+      "id": "evidence:repository:6133b8e0b3c3",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T16:57:51-03:00",
+      "observed_at": "2026-10-10T17:12:05-03:00",
       "status": "observed",
-      "detail": "447 files indexed at revision d5ef8fcc6273c9280ffcb1868766e00fed6615c3"
+      "detail": "447 files indexed at revision eaed57ca7de3f1edc94a31a45656692804cef084"
     },
     {
-      "id": "evidence:test:9e91ae7f96dd",
+      "id": "evidence:test:106349a3c30e",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T16:57:51-03:00",
+      "observed_at": "2026-10-10T17:12:05-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.14s"
+      "detail": "225 passed in 7.53s"
     }
   ],
   "decisions": [
@@ -13313,30 +13327,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:36729f864eb2",
+      "id": "event:repository-scan:6133b8e0b3c3",
       "type": "repository_scanned",
-      "at": "2026-10-10T16:57:51-03:00",
-      "revision": "d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
+      "at": "2026-10-10T17:12:05-03:00",
+      "revision": "eaed57ca7de3f1edc94a31a45656692804cef084",
       "file_count": 447,
-      "evidence_id": "evidence:repository:36729f864eb2"
+      "evidence_id": "evidence:repository:6133b8e0b3c3"
     },
     {
-      "id": "event:commit-observed:d5ef8fcc6273",
+      "id": "event:commit-observed:eaed57ca7de3",
       "type": "commit_observed",
-      "at": "2026-10-10T16:57:51-03:00",
-      "revision": "d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
+      "at": "2026-10-10T17:12:05-03:00",
+      "revision": "eaed57ca7de3f1edc94a31a45656692804cef084",
       "branch": "main",
-      "subject": "Remover ciphertext temporário após recuperação",
+      "subject": "Add read-only MCP tool smoke test for VPS Direct Admin",
       "changed_files": [
-        "tmp/vps-mcp-token-ciphertext.txt"
+        ".github/workflows/vps-admin-command.yml"
       ]
     },
     {
-      "id": "event:test:9e91ae7f96dd",
+      "id": "event:test:106349a3c30e",
       "type": "tests_observed",
-      "at": "2026-10-10T16:57:51-03:00",
+      "at": "2026-10-10T17:12:05-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:9e91ae7f96dd"
+      "evidence_id": "evidence:test:106349a3c30e"
     }
   ],
   "knowledge_sources": [
@@ -13392,7 +13406,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "accd1e15fe89a0a1a9ef452e587b06b44d35921670d9b826dc02889e3b627de4"
+      "sha256": "31ebaadbdbb556b641bccc940aaa9dd127a443e6e411d4600ce4c68b165ec11b"
     },
     {
       "id": "source:session",
@@ -60691,12 +60705,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:36729f864eb2",
-      "source": "event:repository-scan:36729f864eb2",
-      "relation": "generated",
-      "target": "evidence:repository:36729f864eb2",
+      "id": "rel:commit-precedes:d5ef8fcc6273:a0a890c780a3",
+      "source": "commit:d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
+      "relation": "precedes",
+      "target": "commit:a0a890c780a3ff9fbbbb3c005105c4d0c36a1fcc",
       "status": "asserted",
-      "at": "2026-10-10T16:57:51-03:00",
+      "at": "2026-10-10T19:58:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a0a890c780a3:032adc3624d7",
+      "source": "commit:a0a890c780a3ff9fbbbb3c005105c4d0c36a1fcc",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T19:58:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:a0a890c780a3:d64178c49886",
+      "source": "commit:a0a890c780a3ff9fbbbb3c005105c4d0c36a1fcc",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T19:58:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:a0a890c780a3:eaed57ca7de3",
+      "source": "commit:a0a890c780a3ff9fbbbb3c005105c4d0c36a1fcc",
+      "relation": "precedes",
+      "target": "commit:eaed57ca7de3f1edc94a31a45656692804cef084",
+      "status": "asserted",
+      "at": "2026-10-10T17:12:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:eaed57ca7de3:d2156db4a874",
+      "source": "commit:eaed57ca7de3f1edc94a31a45656692804cef084",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-admin-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T17:12:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:6133b8e0b3c3",
+      "source": "event:repository-scan:6133b8e0b3c3",
+      "relation": "generated",
+      "target": "evidence:repository:6133b8e0b3c3",
+      "status": "asserted",
+      "at": "2026-10-10T17:12:05-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -60705,12 +60789,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:d5ef8fcc6273",
-      "source": "commit:d5ef8fcc6273c9280ffcb1868766e00fed6615c3",
+      "id": "rel:scan-commit:eaed57ca7de3",
+      "source": "commit:eaed57ca7de3f1edc94a31a45656692804cef084",
       "relation": "observed_by",
-      "target": "event:repository-scan:36729f864eb2",
+      "target": "event:repository-scan:6133b8e0b3c3",
       "status": "asserted",
-      "at": "2026-10-10T16:57:51-03:00",
+      "at": "2026-10-10T17:12:05-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
