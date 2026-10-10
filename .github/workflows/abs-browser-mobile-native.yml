@@ -249,19 +249,27 @@ jobs:
             let start = null;
             const state = { touches: 0, toolbarTaps: 0, focusAttempts: 0, focusSuccess: 0, last: 'idle' };
             window.__ABS_MOBILE_KEYBOARD_DIAGNOSTICS__ = state;
-            const findRemoteRect = () => {
-              for (const id of ['videoCanvas', 'stream', 'overlayInput']) {
-                const el = document.getElementById(id);
-                if (!el) continue;
+            const findRemoteRect = (eventTarget) => {
+              // Selkies switches between stream/videoWorkerCanvas/videoCanvas; the first canvas may be hidden.
+              const candidates = [eventTarget, ...['stream', 'videoStream', 'videoWorkerCanvas', 'videoCanvas', 'overlayInput'].map(id => document.getElementById(id))];
+              const seen = new Set();
+              for (const el of candidates) {
+                if (!el || seen.has(el)) continue;
+                seen.add(el);
+                const id = el.id || el.tagName.toLowerCase();
+                if (!['stream', 'videoStream', 'videoWorkerCanvas', 'videoCanvas', 'overlayInput'].includes(id)) continue;
                 const r = el.getBoundingClientRect();
-                if (r.width > 100 && r.height > 100) return { el, r, id };
+                const style = window.getComputedStyle(el);
+                if (r.width <= 100 || r.height <= 100 || style.display === 'none' || style.visibility === 'hidden' || Number(style.opacity) === 0) continue;
+                return { el, r, id };
               }
               return null;
             };
             const onTouchStart = (event) => {
               if (!event.isTrusted || !event.changedTouches || !event.changedTouches.length) return;
               const touch = event.changedTouches[0];
-              const remote = findRemoteRect();
+              const target = event.target && event.target.closest ? event.target.closest('#stream, #videoStream, #videoWorkerCanvas, #videoCanvas, #overlayInput') : event.target;
+              const remote = findRemoteRect(target);
               state.touches++;
               state.last = 'touchstart:' + (remote ? remote.id : 'no-remote-rect');
               start = { x: touch.clientX, y: touch.clientY, at: Date.now(), remoteId: remote && remote.id };
