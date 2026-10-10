@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T12:07:49-03:00",
-  "source_revision": "57fe1dabce794bc241e5893831396f8c5a4e752b",
+  "generated_at": "2026-10-10T12:08:56-03:00",
+  "source_revision": "e7f3a3a82ce9ff5054d5245aefa608281d0e7925",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 153
+      "file_count": 154
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "57fe1dabce794bc241e5893831396f8c5a4e752b",
-      "commit_subject": "Add isolated emergency runner for reversible browser resource relief"
+      "revision": "e7f3a3a82ce9ff5054d5245aefa608281d0e7925",
+      "commit_subject": "Add isolated post-tuning verification for browser and ABS"
     }
   ],
   "tools": [
@@ -1073,6 +1073,11 @@
       "id": "file:.github/workflows/abs-vps-browser-emergency.yml",
       "kind": "file",
       "path": ".github/workflows/abs-vps-browser-emergency.yml"
+    },
+    {
+      "id": "file:.github/workflows/abs-vps-browser-verify.yml",
+      "kind": "file",
+      "path": ".github/workflows/abs-vps-browser-verify.yml"
     },
     {
       "id": "file:.github/workflows/abs-vps-command.yml",
@@ -11753,6 +11758,20 @@
       "sha": "57fe1dabce794bc241e5893831396f8c5a4e752b"
     },
     {
+      "id": "commit:d6d35e8cd7c0ce27baf89c69e9bfeecaaa7a6e46",
+      "kind": "commit",
+      "at": "2026-10-10T15:08:10Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "d6d35e8cd7c0ce27baf89c69e9bfeecaaa7a6e46"
+    },
+    {
+      "id": "commit:e7f3a3a82ce9ff5054d5245aefa608281d0e7925",
+      "kind": "commit",
+      "at": "2026-10-10T12:08:56-03:00",
+      "subject": "Add isolated post-tuning verification for browser and ABS",
+      "sha": "e7f3a3a82ce9ff5054d5245aefa608281d0e7925"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11865,23 +11884,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:32fdccba4efa",
+      "id": "evidence:repository:68942e230175",
       "kind": "evidence",
-      "at": "2026-10-10T12:07:49-03:00",
+      "at": "2026-10-10T12:08:56-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:32fdccba4efa",
+      "id": "event:repository-scan:68942e230175",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:07:49-03:00"
+      "at": "2026-10-10T12:08:56-03:00"
     },
     {
-      "id": "event:commit-observed:57fe1dabce79",
+      "id": "event:commit-observed:e7f3a3a82ce9",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T12:07:49-03:00"
+      "at": "2026-10-10T12:08:56-03:00"
     }
   ],
   "paths": [
@@ -11916,11 +11935,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:37e6a53109a5"
+        "evidence:test:b4c7721e203c"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T12:07:49-03:00"
+      "last_validated": "2026-10-10T12:08:56-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11943,20 +11962,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:32fdccba4efa",
+      "id": "evidence:repository:68942e230175",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T12:07:49-03:00",
+      "observed_at": "2026-10-10T12:08:56-03:00",
       "status": "observed",
-      "detail": "439 files indexed at revision 57fe1dabce794bc241e5893831396f8c5a4e752b"
+      "detail": "440 files indexed at revision e7f3a3a82ce9ff5054d5245aefa608281d0e7925"
     },
     {
-      "id": "evidence:test:37e6a53109a5",
+      "id": "evidence:test:b4c7721e203c",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T12:07:49-03:00",
+      "observed_at": "2026-10-10T12:08:56-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.75s"
+      "detail": "225 passed in 7.71s"
     }
   ],
   "decisions": [
@@ -12059,30 +12078,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:32fdccba4efa",
+      "id": "event:repository-scan:68942e230175",
       "type": "repository_scanned",
-      "at": "2026-10-10T12:07:49-03:00",
-      "revision": "57fe1dabce794bc241e5893831396f8c5a4e752b",
-      "file_count": 439,
-      "evidence_id": "evidence:repository:32fdccba4efa"
+      "at": "2026-10-10T12:08:56-03:00",
+      "revision": "e7f3a3a82ce9ff5054d5245aefa608281d0e7925",
+      "file_count": 440,
+      "evidence_id": "evidence:repository:68942e230175"
     },
     {
-      "id": "event:commit-observed:57fe1dabce79",
+      "id": "event:commit-observed:e7f3a3a82ce9",
       "type": "commit_observed",
-      "at": "2026-10-10T12:07:49-03:00",
-      "revision": "57fe1dabce794bc241e5893831396f8c5a4e752b",
+      "at": "2026-10-10T12:08:56-03:00",
+      "revision": "e7f3a3a82ce9ff5054d5245aefa608281d0e7925",
       "branch": "main",
-      "subject": "Add isolated emergency runner for reversible browser resource relief",
+      "subject": "Add isolated post-tuning verification for browser and ABS",
       "changed_files": [
-        ".github/workflows/abs-vps-browser-emergency.yml"
+        ".github/workflows/abs-vps-browser-verify.yml"
       ]
     },
     {
-      "id": "event:test:37e6a53109a5",
+      "id": "event:test:b4c7721e203c",
       "type": "tests_observed",
-      "at": "2026-10-10T12:07:49-03:00",
+      "at": "2026-10-10T12:08:56-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:37e6a53109a5"
+      "evidence_id": "evidence:test:b4c7721e203c"
     }
   ],
   "knowledge_sources": [
@@ -12138,7 +12157,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "83be7c4b5244dfd60f4b358f10aa84707f313077f8695d159327dd3a04fef183"
+      "sha256": "57168a45dd1bc1cad3d047e1fc9ce8c3390e8ea46723a3201db4a065c7ae52ce"
     },
     {
       "id": "source:session",
@@ -53543,12 +53562,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:32fdccba4efa",
-      "source": "event:repository-scan:32fdccba4efa",
-      "relation": "generated",
-      "target": "evidence:repository:32fdccba4efa",
+      "id": "rel:commit-precedes:57fe1dabce79:d6d35e8cd7c0",
+      "source": "commit:57fe1dabce794bc241e5893831396f8c5a4e752b",
+      "relation": "precedes",
+      "target": "commit:d6d35e8cd7c0ce27baf89c69e9bfeecaaa7a6e46",
       "status": "asserted",
-      "at": "2026-10-10T12:07:49-03:00",
+      "at": "2026-10-10T15:08:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d6d35e8cd7c0:032adc3624d7",
+      "source": "commit:d6d35e8cd7c0ce27baf89c69e9bfeecaaa7a6e46",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:08:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:d6d35e8cd7c0:d64178c49886",
+      "source": "commit:d6d35e8cd7c0ce27baf89c69e9bfeecaaa7a6e46",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T15:08:10Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:d6d35e8cd7c0:e7f3a3a82ce9",
+      "source": "commit:d6d35e8cd7c0ce27baf89c69e9bfeecaaa7a6e46",
+      "relation": "precedes",
+      "target": "commit:e7f3a3a82ce9ff5054d5245aefa608281d0e7925",
+      "status": "asserted",
+      "at": "2026-10-10T12:08:56-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:e7f3a3a82ce9:eac2a1d912f9",
+      "source": "commit:e7f3a3a82ce9ff5054d5245aefa608281d0e7925",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-browser-verify.yml",
+      "status": "asserted",
+      "at": "2026-10-10T12:08:56-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:68942e230175",
+      "source": "event:repository-scan:68942e230175",
+      "relation": "generated",
+      "target": "evidence:repository:68942e230175",
+      "status": "asserted",
+      "at": "2026-10-10T12:08:56-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -53557,12 +53646,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:57fe1dabce79",
-      "source": "commit:57fe1dabce794bc241e5893831396f8c5a4e752b",
+      "id": "rel:scan-commit:e7f3a3a82ce9",
+      "source": "commit:e7f3a3a82ce9ff5054d5245aefa608281d0e7925",
       "relation": "observed_by",
-      "target": "event:repository-scan:32fdccba4efa",
+      "target": "event:repository-scan:68942e230175",
       "status": "asserted",
-      "at": "2026-10-10T12:07:49-03:00",
+      "at": "2026-10-10T12:08:56-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
