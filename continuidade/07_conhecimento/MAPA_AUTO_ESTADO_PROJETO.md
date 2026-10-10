@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb
-Momento da revisão: 2026-10-10T11:35:18-03:00
+Revisão observada: db7fb90fca756c4903950ca50f3692ad6ecfed4e
+Momento da revisão: 2026-10-10T11:36:00-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -1810,6 +1810,8 @@ Momento da revisão: 2026-10-10T11:35:18-03:00
 - commit:24f645a5ac6d5f5925db580255c562ec6e435ea4 — None — estado: unknown
 - commit:0f414fcd6afdf3377d78d08cc92d8112f8d4ec49 — None — estado: unknown
 - commit:fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb — None — estado: unknown
+- commit:177d509b59dc6b12f4b7dbf5b40279f3e7ff9009 — None — estado: unknown
+- commit:db7fb90fca756c4903950ca50f3692ad6ecfed4e — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1824,19 +1826,19 @@ Momento da revisão: 2026-10-10T11:35:18-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:f766f6dd251f — None — estado: unknown
-- event:repository-scan:f766f6dd251f — None — estado: unknown
-- event:commit-observed:fa1eb54af4f0 — None — estado: unknown
+- evidence:repository:a28d6c6dc32f — None — estado: unknown
+- event:repository-scan:a28d6c6dc32f — None — estado: unknown
+- event:commit-observed:db7fb90fca75 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:cca60c22accb
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:724d0d443fa8
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:f766f6dd251f — repository_scanned — revisão: fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb
-- event:commit-observed:fa1eb54af4f0 — commit_observed — revisão: fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb
-- event:test:cca60c22accb — tests_observed — revisão: n/a
+- event:repository-scan:a28d6c6dc32f — repository_scanned — revisão: db7fb90fca756c4903950ca50f3692ad6ecfed4e
+- event:commit-observed:db7fb90fca75 — commit_observed — revisão: db7fb90fca756c4903950ca50f3692ad6ecfed4e
+- event:test:724d0d443fa8 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -4741,15 +4743,20 @@ Momento da revisão: 2026-10-10T11:35:18-03:00
 - commit:0f414fcd6afdf3377d78d08cc92d8112f8d4ec49 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
 - commit:0f414fcd6afdf3377d78d08cc92d8112f8d4ec49 — precedes → commit:fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb — asserted
 - commit:fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb — changed → file:.github/workflows/abs-browser-inspect-selkies-ui.yml — asserted
-- event:repository-scan:f766f6dd251f — generated → evidence:repository:f766f6dd251f — asserted
-- commit:fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb — observed_by → event:repository-scan:f766f6dd251f — asserted
+- commit:fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb — precedes → commit:177d509b59dc6b12f4b7dbf5b40279f3e7ff9009 — asserted
+- commit:177d509b59dc6b12f4b7dbf5b40279f3e7ff9009 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:177d509b59dc6b12f4b7dbf5b40279f3e7ff9009 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:177d509b59dc6b12f4b7dbf5b40279f3e7ff9009 — precedes → commit:db7fb90fca756c4903950ca50f3692ad6ecfed4e — asserted
+- commit:db7fb90fca756c4903950ca50f3692ad6ecfed4e — changed → file:.github/workflows/abs-browser-inspect-selkies-ui.yml — asserted
+- event:repository-scan:a28d6c6dc32f — generated → evidence:repository:a28d6c6dc32f — asserted
+- commit:db7fb90fca756c4903950ca50f3692ad6ecfed4e — observed_by → event:repository-scan:a28d6c6dc32f — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:f766f6dd251f — repository_scan — observed — 436 files indexed at revision fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb
-- evidence:test:cca60c22accb — test — tested — 225 passed in 7.69s
+- evidence:repository:a28d6c6dc32f — repository_scan — observed — 436 files indexed at revision db7fb90fca756c4903950ca50f3692ad6ecfed4e
+- evidence:test:724d0d443fa8 — test — tested — 225 passed in 7.53s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.

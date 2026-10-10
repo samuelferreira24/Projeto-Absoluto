@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T11:35:18-03:00",
-  "source_revision": "fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb",
+  "generated_at": "2026-10-10T11:36:00-03:00",
+  "source_revision": "db7fb90fca756c4903950ca50f3692ad6ecfed4e",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb",
-      "commit_subject": "Add read-only inspection of Selkies UI assets for Remote Browser redesign"
+      "revision": "db7fb90fca756c4903950ca50f3692ad6ecfed4e",
+      "commit_subject": "Fix Selkies UI inspection pipeline to complete safely"
     }
   ],
   "tools": [
@@ -11598,6 +11598,20 @@
       "sha": "fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb"
     },
     {
+      "id": "commit:177d509b59dc6b12f4b7dbf5b40279f3e7ff9009",
+      "kind": "commit",
+      "at": "2026-10-10T14:35:38Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "177d509b59dc6b12f4b7dbf5b40279f3e7ff9009"
+    },
+    {
+      "id": "commit:db7fb90fca756c4903950ca50f3692ad6ecfed4e",
+      "kind": "commit",
+      "at": "2026-10-10T11:36:00-03:00",
+      "subject": "Fix Selkies UI inspection pipeline to complete safely",
+      "sha": "db7fb90fca756c4903950ca50f3692ad6ecfed4e"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11710,23 +11724,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:f766f6dd251f",
+      "id": "evidence:repository:a28d6c6dc32f",
       "kind": "evidence",
-      "at": "2026-10-10T11:35:18-03:00",
+      "at": "2026-10-10T11:36:00-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:f766f6dd251f",
+      "id": "event:repository-scan:a28d6c6dc32f",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T11:35:18-03:00"
+      "at": "2026-10-10T11:36:00-03:00"
     },
     {
-      "id": "event:commit-observed:fa1eb54af4f0",
+      "id": "event:commit-observed:db7fb90fca75",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T11:35:18-03:00"
+      "at": "2026-10-10T11:36:00-03:00"
     }
   ],
   "paths": [
@@ -11761,11 +11775,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:cca60c22accb"
+        "evidence:test:724d0d443fa8"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T11:35:18-03:00"
+      "last_validated": "2026-10-10T11:36:00-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11788,20 +11802,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:f766f6dd251f",
+      "id": "evidence:repository:a28d6c6dc32f",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T11:35:18-03:00",
+      "observed_at": "2026-10-10T11:36:00-03:00",
       "status": "observed",
-      "detail": "436 files indexed at revision fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb"
+      "detail": "436 files indexed at revision db7fb90fca756c4903950ca50f3692ad6ecfed4e"
     },
     {
-      "id": "evidence:test:cca60c22accb",
+      "id": "evidence:test:724d0d443fa8",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T11:35:18-03:00",
+      "observed_at": "2026-10-10T11:36:00-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.69s"
+      "detail": "225 passed in 7.53s"
     }
   ],
   "decisions": [
@@ -11904,30 +11918,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:f766f6dd251f",
+      "id": "event:repository-scan:a28d6c6dc32f",
       "type": "repository_scanned",
-      "at": "2026-10-10T11:35:18-03:00",
-      "revision": "fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb",
+      "at": "2026-10-10T11:36:00-03:00",
+      "revision": "db7fb90fca756c4903950ca50f3692ad6ecfed4e",
       "file_count": 436,
-      "evidence_id": "evidence:repository:f766f6dd251f"
+      "evidence_id": "evidence:repository:a28d6c6dc32f"
     },
     {
-      "id": "event:commit-observed:fa1eb54af4f0",
+      "id": "event:commit-observed:db7fb90fca75",
       "type": "commit_observed",
-      "at": "2026-10-10T11:35:18-03:00",
-      "revision": "fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb",
+      "at": "2026-10-10T11:36:00-03:00",
+      "revision": "db7fb90fca756c4903950ca50f3692ad6ecfed4e",
       "branch": "main",
-      "subject": "Add read-only inspection of Selkies UI assets for Remote Browser redesign",
+      "subject": "Fix Selkies UI inspection pipeline to complete safely",
       "changed_files": [
         ".github/workflows/abs-browser-inspect-selkies-ui.yml"
       ]
     },
     {
-      "id": "event:test:cca60c22accb",
+      "id": "event:test:724d0d443fa8",
       "type": "tests_observed",
-      "at": "2026-10-10T11:35:18-03:00",
+      "at": "2026-10-10T11:36:00-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:cca60c22accb"
+      "evidence_id": "evidence:test:724d0d443fa8"
     }
   ],
   "knowledge_sources": [
@@ -11983,7 +11997,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "6610b123ffb6ab1d80d1864c7f178b0269fa242f0e0f46e83967e1bdf698fd15"
+      "sha256": "25c66fccbae76c8a877b186508b319d2b1d0183852987ee89c8c86cacbeadf6c"
     },
     {
       "id": "source:session",
@@ -52688,12 +52702,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:f766f6dd251f",
-      "source": "event:repository-scan:f766f6dd251f",
-      "relation": "generated",
-      "target": "evidence:repository:f766f6dd251f",
+      "id": "rel:commit-precedes:fa1eb54af4f0:177d509b59dc",
+      "source": "commit:fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb",
+      "relation": "precedes",
+      "target": "commit:177d509b59dc6b12f4b7dbf5b40279f3e7ff9009",
       "status": "asserted",
-      "at": "2026-10-10T11:35:18-03:00",
+      "at": "2026-10-10T14:35:38Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:177d509b59dc:032adc3624d7",
+      "source": "commit:177d509b59dc6b12f4b7dbf5b40279f3e7ff9009",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T14:35:38Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:177d509b59dc:d64178c49886",
+      "source": "commit:177d509b59dc6b12f4b7dbf5b40279f3e7ff9009",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T14:35:38Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:177d509b59dc:db7fb90fca75",
+      "source": "commit:177d509b59dc6b12f4b7dbf5b40279f3e7ff9009",
+      "relation": "precedes",
+      "target": "commit:db7fb90fca756c4903950ca50f3692ad6ecfed4e",
+      "status": "asserted",
+      "at": "2026-10-10T11:36:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:db7fb90fca75:ad062e74f790",
+      "source": "commit:db7fb90fca756c4903950ca50f3692ad6ecfed4e",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-inspect-selkies-ui.yml",
+      "status": "asserted",
+      "at": "2026-10-10T11:36:00-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:a28d6c6dc32f",
+      "source": "event:repository-scan:a28d6c6dc32f",
+      "relation": "generated",
+      "target": "evidence:repository:a28d6c6dc32f",
+      "status": "asserted",
+      "at": "2026-10-10T11:36:00-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -52702,12 +52786,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:fa1eb54af4f0",
-      "source": "commit:fa1eb54af4f01f6ee7ef0d7283ab75c59abea7eb",
+      "id": "rel:scan-commit:db7fb90fca75",
+      "source": "commit:db7fb90fca756c4903950ca50f3692ad6ecfed4e",
       "relation": "observed_by",
-      "target": "event:repository-scan:f766f6dd251f",
+      "target": "event:repository-scan:a28d6c6dc32f",
       "status": "asserted",
-      "at": "2026-10-10T11:35:18-03:00",
+      "at": "2026-10-10T11:36:00-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
