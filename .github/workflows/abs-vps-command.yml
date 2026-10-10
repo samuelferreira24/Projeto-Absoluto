@@ -1131,7 +1131,7 @@ jobs:
             coolify-backup-preflight)
               {
                 echo "[Native Coolify instance-backup preflight — non-secret fields only]"
-                sudo -n docker exec coolify php artisan tinker --execute='$server = App\\Models\\Server::find(0); $db = App\\Models\\StandalonePostgresql::find(0); echo json_encode(["server_record_exists"=>(bool)$server,"server_functional"=>$server ? (bool)$server->isFunctional() : false,"instance_db_record_exists"=>(bool)$db,"instance_db_status"=>$db ? $db->status : "not-registered","instance_db_scheduled_backups"=>$db ? $db->scheduledBackups()->count() : 0,"instance_db_backup_executions"=>$db ? $db->scheduledBackups()->withCount("executions")->get()->sum("executions_count") : 0], JSON_PRETTY_PRINT), PHP_EOL;' 2>&1 || true
+                sudo -n docker exec coolify php artisan tinker --execute='$server = App\Models\Server::find(0); $db = App\Models\StandalonePostgresql::find(0); echo json_encode(["server_record_exists"=>(bool)$server,"server_functional"=>$server ? (bool)$server->isFunctional() : false,"instance_db_record_exists"=>(bool)$db,"instance_db_status"=>$db ? $db->status : "not-registered","instance_db_scheduled_backups"=>$db ? $db->scheduledBackups()->count() : 0,"instance_db_backup_executions"=>$db ? $db->scheduledBackups()->withCount("executions")->get()->sum("executions_count") : 0], JSON_PRETTY_PRINT), PHP_EOL;' 2>&1 || true
                 echo
                 echo "[Coolify DB container readiness]"
                 sudo -n docker inspect coolify-db --format 'state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} restarts={{.RestartCount}}' 2>&1 || true
