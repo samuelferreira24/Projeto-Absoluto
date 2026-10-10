@@ -175,3 +175,41 @@ Referência: `docs/00_governanca/PESQUISA_PRESERVACAO_CONTEXTO_CONTINUIDADE_V1.m
 Modelo adotado: **conhecimento + decisões + pesquisas + evidências + estado + memória/experiências + histórico + artefatos + checkpoints + handoff + mapas + proveniência**. A conversa permanece temporária. O handoff funciona como ponte para as fontes, não como fonte universal.
 
 Esta pesquisa passa a ser referência para futuras operações de continuidade e para a evolução do Cérebro/Project Knowledge.
+
+## Atualização de continuidade — 2026-10-10 — construção do local de trabalho na VPS
+
+### Decisão e ordem de construção
+
+O Imperador definiu a sequência de trabalho:
+
+1. Construir primeiro um ambiente de trabalho remoto, permanente, integrado, seguro e recuperável na VPS, operado pelo Android.
+2. Usar esse ambiente para continuar a construção do ABS em construção.
+3. Somente depois delegar gradualmente ao ABS responsabilidades para observar, diagnosticar, operar e recuperar a própria infraestrutura, mantendo limites e mecanismos de emergência independentes.
+
+O ABS não pode ser o único mecanismo capaz de recuperar a infraestrutura da qual depende.
+
+### Componentes previstos
+
+- Coolify: aplicações, serviços, contêineres e implantações.
+- Cockpit: administração do sistema operacional.
+- SSH pelo Android: acesso técnico direto e rota de emergência.
+- Tailscale: conectividade privada para administração.
+- Guacamole/desktop remoto: acesso a ambientes gráficos quando necessário.
+- Monitoramento e alertas, incluindo detecção externa da indisponibilidade total da VPS.
+- Backups externos, com restauração testada.
+- Ambiente de desenvolvimento remoto persistente, utilizável pelo celular.
+- GitHub como trilha versionada do código, da documentação e das mudanças.
+
+A lista não significa que todos os componentes precisem ser instalados novamente. Primeiro é necessário verificar o que já existe, o que está configurado e o que foi realmente testado.
+
+### Fonte canônica do plano
+
+Plano detalhado, fases, requisitos de aceitação, regras de segurança e próximo passo:
+
+- `docs/03_planejamento/PLANO_AMBIENTE_TRABALHO_VPS_ANDROID.md`
+
+A localização segue a governança documental: o plano temático fica em `docs/03_planejamento/`; este checkpoint de continuidade registra a decisão e aponta para a fonte canônica, evitando duplicar o plano inteiro em continuidade.
+
+### Próxima ação
+
+Auditar o estado real da VPS e dos acessos pelo Android; comparar com o plano; priorizar correções comprovadas. Não começar por uma instalação geral, não reinstalar componentes funcionais sem evidência e não realizar alterações destrutivas sem avaliação e validação.
