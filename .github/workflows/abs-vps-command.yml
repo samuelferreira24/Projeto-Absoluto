@@ -1075,6 +1075,22 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-audit)
+              {
+                echo "[Coolify container state]"
+                sudo -n docker inspect coolify --format 'image={{.Config.Image}} state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} restarts={{.RestartCount}} started={{.State.StartedAt}}' 2>&1 || true
+                echo
+                echo "[safe locale-related environment]"
+                sudo -n docker inspect coolify --format '{{range .Config.Env}}{{println .}}{{end}}' 2>/dev/null | grep -E '^(APP_ENV|APP_URL|APP_LOCALE|APP_DEBUG|TZ|LANG|LC_ALL|PHP_MEMORY_LIMIT)=' | sed -E 's#^(APP_URL=).*#\1[configured URL omitted]#' | sort || true
+                echo
+                echo "[Coolify Laravel environment]"
+                sudo -n docker exec coolify php artisan about --only=environment 2>&1 | head -n 45 || true
+                echo
+                echo "[Portuguese translation file]"
+                sudo -n docker exec coolify sh -lc 'if [ -f /var/www/html/lang/pt-br.json ]; then echo "pt-br.json exists"; php -r "\$d=json_decode(file_get_contents(\"/var/www/html/lang/pt-br.json\"),true); echo \"translation_keys=\".count(\$d).PHP_EOL;"; else find / -path "*/lang/pt-br.json" -type f 2>/dev/null | head -n 5; fi' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             git)
               {
                 echo "git: $(git --version 2>&1)"
