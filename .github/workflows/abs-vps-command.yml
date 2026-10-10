@@ -1098,6 +1098,27 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-backup-audit)
+              {
+                echo "[Coolify scheduler — scheduled task names/times]"
+                sudo -n docker exec coolify php artisan schedule:list 2>&1 | head -n 100 || true
+                echo
+                echo "[Coolify backup-related database table names]"
+                sudo -n docker exec coolify php artisan tinker --execute='$tables = Illuminate\\Support\\Facades\\Schema::getTableListing(); foreach ($tables as $t) { if (str_contains(strtolower($t), "backup") || str_contains(strtolower($t), "schedule") || str_contains(strtolower($t), "s3")) echo $t.PHP_EOL; }' 2>&1 || true
+                echo
+                echo "[Coolify backup-related setting names only — values intentionally omitted]"
+                sudo -n docker exec coolify php artisan tinker --execute='$s = App\\Models\\InstanceSettings::find(0); foreach (array_keys($s->getAttributes()) as $k) { if (str_contains(strtolower($k), "backup") || str_contains(strtolower($k), "s3") || str_contains(strtolower($k), "storage")) echo $k.PHP_EOL; }' 2>&1 || true
+                echo
+                echo "[Coolify stack containers — state, health, restart count, mounts]"
+                for c in $(sudo -n docker ps -a --format '{{.Names}}' | grep -E '^coolify($|-)' | head -n 20); do
+                  sudo -n docker inspect "$c" --format 'name={{.Name}} image={{.Config.Image}} state={{.State.Status}} health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} restarts={{.RestartCount}} mounts={{range .Mounts}}{{.Destination}} <- {{.Source}}; {{end}}' 2>&1 || true
+                done
+                echo
+                echo "[Coolify container backup-related files — paths only]"
+                sudo -n docker exec coolify sh -lc 'find app database config -type f 2>/dev/null | grep -Ei "backup|restore|schedule" | head -n 50' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-configure-basics)
               {
                 echo "[Applying requested Coolify-only preferences]"
