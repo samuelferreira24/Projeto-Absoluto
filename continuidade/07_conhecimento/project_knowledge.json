@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T10:14:36-03:00",
-  "source_revision": "bcf5a1fbe5ac1f04a91c7d076cf11d20c1514cd7",
+  "generated_at": "2026-10-10T10:25:43-03:00",
+  "source_revision": "983381cb755fdc098db0ddab477096196cc384e6",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "bcf5a1fbe5ac1f04a91c7d076cf11d20c1514cd7",
-      "commit_subject": "Diagnose Selkies sidebar mount and keyboard touch telemetry"
+      "revision": "983381cb755fdc098db0ddab477096196cc384e6",
+      "commit_subject": "Correct address validation in mobile browser controller"
     }
   ],
   "tools": [
@@ -11400,6 +11400,27 @@
       "sha": "bcf5a1fbe5ac1f04a91c7d076cf11d20c1514cd7"
     },
     {
+      "id": "commit:3164c42664a09911bed2fc5344d41a76239e110a",
+      "kind": "commit",
+      "at": "2026-10-10T13:14:52Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "3164c42664a09911bed2fc5344d41a76239e110a"
+    },
+    {
+      "id": "commit:18b73da3db306c127244f7389854b8e2f232b9ae",
+      "kind": "commit",
+      "at": "2026-10-10T10:25:20-03:00",
+      "subject": "Add real mobile address field controlling VPS Chromium",
+      "sha": "18b73da3db306c127244f7389854b8e2f232b9ae"
+    },
+    {
+      "id": "commit:983381cb755fdc098db0ddab477096196cc384e6",
+      "kind": "commit",
+      "at": "2026-10-10T10:25:43-03:00",
+      "subject": "Correct address validation in mobile browser controller",
+      "sha": "983381cb755fdc098db0ddab477096196cc384e6"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11512,23 +11533,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:da0ab8bc969e",
+      "id": "evidence:repository:3b9a3c9b57e1",
       "kind": "evidence",
-      "at": "2026-10-10T10:14:36-03:00",
+      "at": "2026-10-10T10:25:43-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:da0ab8bc969e",
+      "id": "event:repository-scan:3b9a3c9b57e1",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:14:36-03:00"
+      "at": "2026-10-10T10:25:43-03:00"
     },
     {
-      "id": "event:commit-observed:bcf5a1fbe5ac",
+      "id": "event:commit-observed:983381cb755f",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T10:14:36-03:00"
+      "at": "2026-10-10T10:25:43-03:00"
     }
   ],
   "paths": [
@@ -11563,11 +11584,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:912e7b8bac42"
+        "evidence:test:7b2b30da0be0"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T10:14:36-03:00"
+      "last_validated": "2026-10-10T10:25:43-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11590,20 +11611,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:da0ab8bc969e",
+      "id": "evidence:repository:3b9a3c9b57e1",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T10:14:36-03:00",
+      "observed_at": "2026-10-10T10:25:43-03:00",
       "status": "observed",
-      "detail": "430 files indexed at revision bcf5a1fbe5ac1f04a91c7d076cf11d20c1514cd7"
+      "detail": "430 files indexed at revision 983381cb755fdc098db0ddab477096196cc384e6"
     },
     {
-      "id": "evidence:test:912e7b8bac42",
+      "id": "evidence:test:7b2b30da0be0",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T10:14:36-03:00",
+      "observed_at": "2026-10-10T10:25:43-03:00",
       "status": "tested",
-      "detail": "225 passed in 6.47s"
+      "detail": "225 passed in 7.18s"
     }
   ],
   "decisions": [
@@ -11706,30 +11727,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:da0ab8bc969e",
+      "id": "event:repository-scan:3b9a3c9b57e1",
       "type": "repository_scanned",
-      "at": "2026-10-10T10:14:36-03:00",
-      "revision": "bcf5a1fbe5ac1f04a91c7d076cf11d20c1514cd7",
+      "at": "2026-10-10T10:25:43-03:00",
+      "revision": "983381cb755fdc098db0ddab477096196cc384e6",
       "file_count": 430,
-      "evidence_id": "evidence:repository:da0ab8bc969e"
+      "evidence_id": "evidence:repository:3b9a3c9b57e1"
     },
     {
-      "id": "event:commit-observed:bcf5a1fbe5ac",
+      "id": "event:commit-observed:983381cb755f",
       "type": "commit_observed",
-      "at": "2026-10-10T10:14:36-03:00",
-      "revision": "bcf5a1fbe5ac1f04a91c7d076cf11d20c1514cd7",
+      "at": "2026-10-10T10:25:43-03:00",
+      "revision": "983381cb755fdc098db0ddab477096196cc384e6",
       "branch": "main",
-      "subject": "Diagnose Selkies sidebar mount and keyboard touch telemetry",
+      "subject": "Correct address validation in mobile browser controller",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        ".github/workflows/abs-browser-mobile-native.yml"
       ]
     },
     {
-      "id": "event:test:912e7b8bac42",
+      "id": "event:test:7b2b30da0be0",
       "type": "tests_observed",
-      "at": "2026-10-10T10:14:36-03:00",
+      "at": "2026-10-10T10:25:43-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:912e7b8bac42"
+      "evidence_id": "evidence:test:7b2b30da0be0"
     }
   ],
   "knowledge_sources": [
@@ -11785,7 +11806,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "0c848d4903f1cbef09b0d7d143b59c20f7c3541bb035d76afaba21323cf73aca"
+      "sha256": "58fd82238c540fbfa07809c909e27bedb8d805ecd695c2c2664188f743c28499"
     },
     {
       "id": "source:session",
@@ -51664,12 +51685,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:da0ab8bc969e",
-      "source": "event:repository-scan:da0ab8bc969e",
-      "relation": "generated",
-      "target": "evidence:repository:da0ab8bc969e",
+      "id": "rel:commit-precedes:bcf5a1fbe5ac:3164c42664a0",
+      "source": "commit:bcf5a1fbe5ac1f04a91c7d076cf11d20c1514cd7",
+      "relation": "precedes",
+      "target": "commit:3164c42664a09911bed2fc5344d41a76239e110a",
       "status": "asserted",
-      "at": "2026-10-10T10:14:36-03:00",
+      "at": "2026-10-10T13:14:52Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3164c42664a0:032adc3624d7",
+      "source": "commit:3164c42664a09911bed2fc5344d41a76239e110a",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T13:14:52Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:3164c42664a0:d64178c49886",
+      "source": "commit:3164c42664a09911bed2fc5344d41a76239e110a",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T13:14:52Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:3164c42664a0:18b73da3db30",
+      "source": "commit:3164c42664a09911bed2fc5344d41a76239e110a",
+      "relation": "precedes",
+      "target": "commit:18b73da3db306c127244f7389854b8e2f232b9ae",
+      "status": "asserted",
+      "at": "2026-10-10T10:25:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:18b73da3db30:97a2cc349a21",
+      "source": "commit:18b73da3db306c127244f7389854b8e2f232b9ae",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-native.yml",
+      "status": "asserted",
+      "at": "2026-10-10T10:25:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:18b73da3db30:983381cb755f",
+      "source": "commit:18b73da3db306c127244f7389854b8e2f232b9ae",
+      "relation": "precedes",
+      "target": "commit:983381cb755fdc098db0ddab477096196cc384e6",
+      "status": "asserted",
+      "at": "2026-10-10T10:25:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:983381cb755f:97a2cc349a21",
+      "source": "commit:983381cb755fdc098db0ddab477096196cc384e6",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-native.yml",
+      "status": "asserted",
+      "at": "2026-10-10T10:25:43-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:3b9a3c9b57e1",
+      "source": "event:repository-scan:3b9a3c9b57e1",
+      "relation": "generated",
+      "target": "evidence:repository:3b9a3c9b57e1",
+      "status": "asserted",
+      "at": "2026-10-10T10:25:43-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -51678,12 +51797,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:bcf5a1fbe5ac",
-      "source": "commit:bcf5a1fbe5ac1f04a91c7d076cf11d20c1514cd7",
+      "id": "rel:scan-commit:983381cb755f",
+      "source": "commit:983381cb755fdc098db0ddab477096196cc384e6",
       "relation": "observed_by",
-      "target": "event:repository-scan:da0ab8bc969e",
+      "target": "event:repository-scan:3b9a3c9b57e1",
       "status": "asserted",
-      "at": "2026-10-10T10:14:36-03:00",
+      "at": "2026-10-10T10:25:43-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
