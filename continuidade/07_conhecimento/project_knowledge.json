@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T00:58:38-03:00",
-  "source_revision": "98f076a864ccab234ee3576484847b309642785a",
+  "generated_at": "2026-10-10T01:02:10-03:00",
+  "source_revision": "17e236da974ba97f48ea22d293bc69007cc50249",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "98f076a864ccab234ee3576484847b309642785a",
-      "commit_subject": "Expand source diagnostics for Selkies overlay DOM ownership"
+      "revision": "17e236da974ba97f48ea22d293bc69007cc50249",
+      "commit_subject": "Validate capture-phase remote-view keyboard trigger V3"
     }
   ],
   "tools": [
@@ -11281,6 +11281,27 @@
       "sha": "98f076a864ccab234ee3576484847b309642785a"
     },
     {
+      "id": "commit:763fd97448d07327ce9922fd7f3434487d3a84ce",
+      "kind": "commit",
+      "at": "2026-10-10T03:58:59Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "763fd97448d07327ce9922fd7f3434487d3a84ce"
+    },
+    {
+      "id": "commit:1e1fe076652ed0cc1b1bbf5264bd5f96763c1da0",
+      "kind": "commit",
+      "at": "2026-10-10T01:02:02-03:00",
+      "subject": "Detect remote toolbar taps in capture phase and record safe keyboard focus diagnostics",
+      "sha": "1e1fe076652ed0cc1b1bbf5264bd5f96763c1da0"
+    },
+    {
+      "id": "commit:17e236da974ba97f48ea22d293bc69007cc50249",
+      "kind": "commit",
+      "at": "2026-10-10T01:02:10-03:00",
+      "subject": "Validate capture-phase remote-view keyboard trigger V3",
+      "sha": "17e236da974ba97f48ea22d293bc69007cc50249"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11393,23 +11414,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:c11ae184969b",
+      "id": "evidence:repository:3313ca7bf40e",
       "kind": "evidence",
-      "at": "2026-10-10T00:58:38-03:00",
+      "at": "2026-10-10T01:02:10-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:c11ae184969b",
+      "id": "event:repository-scan:3313ca7bf40e",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T00:58:38-03:00"
+      "at": "2026-10-10T01:02:10-03:00"
     },
     {
-      "id": "event:commit-observed:98f076a864cc",
+      "id": "event:commit-observed:17e236da974b",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T00:58:38-03:00"
+      "at": "2026-10-10T01:02:10-03:00"
     }
   ],
   "paths": [
@@ -11444,11 +11465,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:7830e931a6f5"
+        "evidence:test:997b7377fa7a"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T00:58:38-03:00"
+      "last_validated": "2026-10-10T01:02:10-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11471,20 +11492,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:c11ae184969b",
+      "id": "evidence:repository:3313ca7bf40e",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T00:58:38-03:00",
+      "observed_at": "2026-10-10T01:02:10-03:00",
       "status": "observed",
-      "detail": "430 files indexed at revision 98f076a864ccab234ee3576484847b309642785a"
+      "detail": "430 files indexed at revision 17e236da974ba97f48ea22d293bc69007cc50249"
     },
     {
-      "id": "evidence:test:7830e931a6f5",
+      "id": "evidence:test:997b7377fa7a",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T00:58:38-03:00",
+      "observed_at": "2026-10-10T01:02:10-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.95s"
+      "detail": "225 passed in 7.64s"
     }
   ],
   "decisions": [
@@ -11587,30 +11608,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:c11ae184969b",
+      "id": "event:repository-scan:3313ca7bf40e",
       "type": "repository_scanned",
-      "at": "2026-10-10T00:58:38-03:00",
-      "revision": "98f076a864ccab234ee3576484847b309642785a",
+      "at": "2026-10-10T01:02:10-03:00",
+      "revision": "17e236da974ba97f48ea22d293bc69007cc50249",
       "file_count": 430,
-      "evidence_id": "evidence:repository:c11ae184969b"
+      "evidence_id": "evidence:repository:3313ca7bf40e"
     },
     {
-      "id": "event:commit-observed:98f076a864cc",
+      "id": "event:commit-observed:17e236da974b",
       "type": "commit_observed",
-      "at": "2026-10-10T00:58:38-03:00",
-      "revision": "98f076a864ccab234ee3576484847b309642785a",
+      "at": "2026-10-10T01:02:10-03:00",
+      "revision": "17e236da974ba97f48ea22d293bc69007cc50249",
       "branch": "main",
-      "subject": "Expand source diagnostics for Selkies overlay DOM ownership",
+      "subject": "Validate capture-phase remote-view keyboard trigger V3",
       "changed_files": [
-        ".github/workflows/abs-vps-command.yml"
+        ".github/workflows/abs-browser-mobile-test.yml"
       ]
     },
     {
-      "id": "event:test:7830e931a6f5",
+      "id": "event:test:997b7377fa7a",
       "type": "tests_observed",
-      "at": "2026-10-10T00:58:38-03:00",
+      "at": "2026-10-10T01:02:10-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:7830e931a6f5"
+      "evidence_id": "evidence:test:997b7377fa7a"
     }
   ],
   "knowledge_sources": [
@@ -11666,7 +11687,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "66307d4b3a136ea26248b52ac1ef057b8df85f5c55d0440eefead55a5bcb06c6"
+      "sha256": "247d5d3669b2177233ab6d752dcf50e239746c7f1108e1d7d0235082c5a03ed6"
     },
     {
       "id": "source:session",
@@ -50957,12 +50978,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:c11ae184969b",
-      "source": "event:repository-scan:c11ae184969b",
-      "relation": "generated",
-      "target": "evidence:repository:c11ae184969b",
+      "id": "rel:commit-precedes:98f076a864cc:763fd97448d0",
+      "source": "commit:98f076a864ccab234ee3576484847b309642785a",
+      "relation": "precedes",
+      "target": "commit:763fd97448d07327ce9922fd7f3434487d3a84ce",
       "status": "asserted",
-      "at": "2026-10-10T00:58:38-03:00",
+      "at": "2026-10-10T03:58:59Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:763fd97448d0:032adc3624d7",
+      "source": "commit:763fd97448d07327ce9922fd7f3434487d3a84ce",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T03:58:59Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:763fd97448d0:d64178c49886",
+      "source": "commit:763fd97448d07327ce9922fd7f3434487d3a84ce",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T03:58:59Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:763fd97448d0:1e1fe076652e",
+      "source": "commit:763fd97448d07327ce9922fd7f3434487d3a84ce",
+      "relation": "precedes",
+      "target": "commit:1e1fe076652ed0cc1b1bbf5264bd5f96763c1da0",
+      "status": "asserted",
+      "at": "2026-10-10T01:02:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1e1fe076652e:97a2cc349a21",
+      "source": "commit:1e1fe076652ed0cc1b1bbf5264bd5f96763c1da0",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-native.yml",
+      "status": "asserted",
+      "at": "2026-10-10T01:02:02-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:1e1fe076652e:17e236da974b",
+      "source": "commit:1e1fe076652ed0cc1b1bbf5264bd5f96763c1da0",
+      "relation": "precedes",
+      "target": "commit:17e236da974ba97f48ea22d293bc69007cc50249",
+      "status": "asserted",
+      "at": "2026-10-10T01:02:10-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:17e236da974b:d94f4337d983",
+      "source": "commit:17e236da974ba97f48ea22d293bc69007cc50249",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-mobile-test.yml",
+      "status": "asserted",
+      "at": "2026-10-10T01:02:10-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:3313ca7bf40e",
+      "source": "event:repository-scan:3313ca7bf40e",
+      "relation": "generated",
+      "target": "evidence:repository:3313ca7bf40e",
+      "status": "asserted",
+      "at": "2026-10-10T01:02:10-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -50971,12 +51090,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:98f076a864cc",
-      "source": "commit:98f076a864ccab234ee3576484847b309642785a",
+      "id": "rel:scan-commit:17e236da974b",
+      "source": "commit:17e236da974ba97f48ea22d293bc69007cc50249",
       "relation": "observed_by",
-      "target": "event:repository-scan:c11ae184969b",
+      "target": "event:repository-scan:3313ca7bf40e",
       "status": "asserted",
-      "at": "2026-10-10T00:58:38-03:00",
+      "at": "2026-10-10T01:02:10-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
