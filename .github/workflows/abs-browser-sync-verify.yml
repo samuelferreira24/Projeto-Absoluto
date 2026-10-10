@@ -1,0 +1,100 @@
+name: ABS Browser Sync Verification
+on:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: read
+  issues: write
+jobs:
+  verify:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser sync-verify'
+    runs-on: [self-hosted, abs-vps-01]
+    timeout-minutes: 3
+    steps:
+      - name: Read-only verify ChatGPT tab and latest message
+        id: check
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          echo "ABS BROWSER SYNC VERIFICATION"
+          echo "Host=$(hostname)"
+          curl -fsS --max-time 5 http://127.0.0.1:9222/json/list > /tmp/abs-sync-tabs.json
+          node <<'NODE'
+          const fs = require('node:fs');
+          const tabs = JSON.parse(fs.readFileSync('/tmp/abs-sync-tabs.json', 'utf8'));
+          const tab = tabs.find(t => /^https?:\/\/(chatgpt\.com|chat\.openai\.com)\//i.test(t.url || '') && t.type === 'page');
+          if (!tab) {
+            console.log('BLOCKED | No open ChatGPT page found in the primary Chromium profile.');
+            console.log('Open page count=' + tabs.filter(t => t.type === 'page').length);
+            process.exit(2);
+          }
+          console.log('PASS | ChatGPT page found in primary Chromium.');
+          console.log('Title=' + String(tab.title || '').slice(0, 180));
+          console.log('URL=' + (() => { const u = new URL(tab.url); return u.origin + u.pathname; })());
+          if (!tab.webSocketDebuggerUrl) {
+            console.log('BLOCKED | CDP page WebSocket endpoint missing.');
+            process.exit(3);
+          }
+          const ws = new WebSocket(tab.webSocketDebuggerUrl);
+          const timer = setTimeout(() => { console.log('FAIL | CDP evaluation timed out.'); try { ws.close(); } catch {} process.exit(4); }, 10000);
+          ws.addEventListener('open', () => {
+            ws.send(JSON.stringify({
+              id: 1,
+              method: 'Runtime.evaluate',
+              params: {
+                expression: '({title:document.title, url:location.href, hasLatest:document.body.innerText.includes("Termine toda validação"), hasPrevious:document.body.innerText.includes("Verifique logo a sincronização")})',
+                returnByValue: true,
+                awaitPromise: true
+              }
+            }));
+          });
+          ws.addEventListener('message', event => {
+            let msg;
+            try { msg = JSON.parse(String(event.data)); } catch { return; }
+            if (msg.id !== 1) return;
+            clearTimeout(timer);
+            const v = msg.result?.result?.value;
+            if (!v) {
+              console.log('FAIL | Chromium returned no readable DOM result.');
+              ws.close();
+              process.exit(5);
+            }
+            console.log('DOM title matches tab=' + (v.title === tab.title));
+            console.log('Latest cellphone message visible=' + v.hasLatest);
+            console.log('Previous sync-test message visible=' + v.hasPrevious);
+            if (v.hasLatest) console.log('PASS | The latest user message is present in the remote ChatGPT page.');
+            else console.log('FAIL | The latest user message is not present in the remote ChatGPT page.');
+            ws.close();
+            process.exit(v.hasLatest ? 0 : 6);
+          });
+          ws.addEventListener('error', () => {
+            clearTimeout(timer);
+            console.log('FAIL | CDP WebSocket connection failed.');
+            process.exit(7);
+          });
+          NODE
+        env:
+          NODE_OPTIONS: --no-warnings
+      - name: Publish result
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.check.outcome }}
+        with:
+          script: |
+            const body = [
+              '### ABS BROWSER SYNC VERIFICATION',
+              '',
+              'Workflow outcome: ' + (process.env.RESULT || 'unknown'),
+              'Read-only check. No tabs, browser settings, profile, services, or conversation content were modified.'
+            ].join('\\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
