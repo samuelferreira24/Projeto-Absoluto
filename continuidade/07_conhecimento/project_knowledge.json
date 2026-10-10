@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T15:19:05-03:00",
-  "source_revision": "caa7017823377f66d004e14b9c7bf98a25929bf1",
+  "generated_at": "2026-10-10T15:21:36-03:00",
+  "source_revision": "1f2d6b04ca446137b42b704b5a4cc26cf995a0e4",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "caa7017823377f66d004e14b9c7bf98a25929bf1",
-      "commit_subject": "docs: vincular plano de ambiente remoto ao próximo estágio do ABS"
+      "revision": "1f2d6b04ca446137b42b704b5a4cc26cf995a0e4",
+      "commit_subject": "docs: esclarecer marco histórico V1 e continuidade V3 V4"
     }
   ],
   "tools": [
@@ -12720,6 +12720,34 @@
       "sha": "caa7017823377f66d004e14b9c7bf98a25929bf1"
     },
     {
+      "id": "commit:0907d2693843a0499f1af6a6cc695c4f953ef507",
+      "kind": "commit",
+      "at": "2026-10-10T18:19:26Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "0907d2693843a0499f1af6a6cc695c4f953ef507"
+    },
+    {
+      "id": "commit:97b3707c0714cc3f668a152a36248aa59064fa6d",
+      "kind": "commit",
+      "at": "2026-10-10T15:21:20-03:00",
+      "subject": "docs: corrigir continuidade do ABS V3 para V4 no plano VPS",
+      "sha": "97b3707c0714cc3f668a152a36248aa59064fa6d"
+    },
+    {
+      "id": "commit:56ac120113ff514ef826c0db3b7a53cadd043f88",
+      "kind": "commit",
+      "at": "2026-10-10T15:21:29-03:00",
+      "subject": "continuity: corrigir estado ABS V3 e plano V4",
+      "sha": "56ac120113ff514ef826c0db3b7a53cadd043f88"
+    },
+    {
+      "id": "commit:1f2d6b04ca446137b42b704b5a4cc26cf995a0e4",
+      "kind": "commit",
+      "at": "2026-10-10T15:21:36-03:00",
+      "subject": "docs: esclarecer marco histórico V1 e continuidade V3 V4",
+      "sha": "1f2d6b04ca446137b42b704b5a4cc26cf995a0e4"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -12832,23 +12860,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:0a834db19d07",
+      "id": "evidence:repository:e71220dc80c6",
       "kind": "evidence",
-      "at": "2026-10-10T15:19:05-03:00",
+      "at": "2026-10-10T15:21:36-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:0a834db19d07",
+      "id": "event:repository-scan:e71220dc80c6",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T15:19:05-03:00"
+      "at": "2026-10-10T15:21:36-03:00"
     },
     {
-      "id": "event:commit-observed:caa701782337",
+      "id": "event:commit-observed:1f2d6b04ca44",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T15:19:05-03:00"
+      "at": "2026-10-10T15:21:36-03:00"
     }
   ],
   "paths": [
@@ -12883,11 +12911,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:59b470aaba7e"
+        "evidence:test:7a9cdd084ab4"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T15:19:05-03:00"
+      "last_validated": "2026-10-10T15:21:36-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -12910,20 +12938,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:0a834db19d07",
+      "id": "evidence:repository:e71220dc80c6",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T15:19:05-03:00",
+      "observed_at": "2026-10-10T15:21:36-03:00",
       "status": "observed",
-      "detail": "441 files indexed at revision caa7017823377f66d004e14b9c7bf98a25929bf1"
+      "detail": "441 files indexed at revision 1f2d6b04ca446137b42b704b5a4cc26cf995a0e4"
     },
     {
-      "id": "evidence:test:59b470aaba7e",
+      "id": "evidence:test:7a9cdd084ab4",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T15:19:05-03:00",
+      "observed_at": "2026-10-10T15:21:36-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.81s"
+      "detail": "225 passed in 7.75s"
     }
   ],
   "decisions": [
@@ -13026,30 +13054,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:0a834db19d07",
+      "id": "event:repository-scan:e71220dc80c6",
       "type": "repository_scanned",
-      "at": "2026-10-10T15:19:05-03:00",
-      "revision": "caa7017823377f66d004e14b9c7bf98a25929bf1",
+      "at": "2026-10-10T15:21:36-03:00",
+      "revision": "1f2d6b04ca446137b42b704b5a4cc26cf995a0e4",
       "file_count": 441,
-      "evidence_id": "evidence:repository:0a834db19d07"
+      "evidence_id": "evidence:repository:e71220dc80c6"
     },
     {
-      "id": "event:commit-observed:caa701782337",
+      "id": "event:commit-observed:1f2d6b04ca44",
       "type": "commit_observed",
-      "at": "2026-10-10T15:19:05-03:00",
-      "revision": "caa7017823377f66d004e14b9c7bf98a25929bf1",
+      "at": "2026-10-10T15:21:36-03:00",
+      "revision": "1f2d6b04ca446137b42b704b5a4cc26cf995a0e4",
       "branch": "main",
-      "subject": "docs: vincular plano de ambiente remoto ao próximo estágio do ABS",
+      "subject": "docs: esclarecer marco histórico V1 e continuidade V3 V4",
       "changed_files": [
         "docs/03_planejamento/FECHAMENTO_ABS_V1_CORE.md"
       ]
     },
     {
-      "id": "event:test:59b470aaba7e",
+      "id": "event:test:7a9cdd084ab4",
       "type": "tests_observed",
-      "at": "2026-10-10T15:19:05-03:00",
+      "at": "2026-10-10T15:21:36-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:59b470aaba7e"
+      "evidence_id": "evidence:test:7a9cdd084ab4"
     }
   ],
   "knowledge_sources": [
@@ -13105,7 +13133,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "7b3637415fa6544e41cacee5057bfcd318733e1f2cc9d5f7b73d2e3f67dbd133"
+      "sha256": "431c30ea86dc132e5be17d48174878659dc6cc0669a611cb066cb36d188bc598"
     },
     {
       "id": "source:session",
@@ -13114,7 +13142,7 @@
       "authority": "continuity",
       "temporal": "current",
       "status": "present",
-      "sha256": "49dbaa01cde9e7a76f7714d1419d668b62ff0a370429e222d402d570fa68a819"
+      "sha256": "c1b74fee80a31839c5bc01cf6ff98c18bf1fc8cd8019badbdd39aab5fc67904c"
     },
     {
       "id": "source:handoff",
@@ -59186,12 +59214,138 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:0a834db19d07",
-      "source": "event:repository-scan:0a834db19d07",
-      "relation": "generated",
-      "target": "evidence:repository:0a834db19d07",
+      "id": "rel:commit-precedes:caa701782337:0907d2693843",
+      "source": "commit:caa7017823377f66d004e14b9c7bf98a25929bf1",
+      "relation": "precedes",
+      "target": "commit:0907d2693843a0499f1af6a6cc695c4f953ef507",
       "status": "asserted",
-      "at": "2026-10-10T15:19:05-03:00",
+      "at": "2026-10-10T18:19:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:0907d2693843:032adc3624d7",
+      "source": "commit:0907d2693843a0499f1af6a6cc695c4f953ef507",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T18:19:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:0907d2693843:d64178c49886",
+      "source": "commit:0907d2693843a0499f1af6a6cc695c4f953ef507",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T18:19:26Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:0907d2693843:97b3707c0714",
+      "source": "commit:0907d2693843a0499f1af6a6cc695c4f953ef507",
+      "relation": "precedes",
+      "target": "commit:97b3707c0714cc3f668a152a36248aa59064fa6d",
+      "status": "asserted",
+      "at": "2026-10-10T15:21:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:97b3707c0714:bd7df056e6d4",
+      "source": "commit:97b3707c0714cc3f668a152a36248aa59064fa6d",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/PLANO_AMBIENTE_TRABALHO_VPS_ANDROID.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:21:20-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:97b3707c0714:56ac120113ff",
+      "source": "commit:97b3707c0714cc3f668a152a36248aa59064fa6d",
+      "relation": "precedes",
+      "target": "commit:56ac120113ff514ef826c0db3b7a53cadd043f88",
+      "status": "asserted",
+      "at": "2026-10-10T15:21:29-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:56ac120113ff:6476fcc25321",
+      "source": "commit:56ac120113ff514ef826c0db3b7a53cadd043f88",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/SESSAO_ATUAL.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:21:29-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:56ac120113ff:1f2d6b04ca44",
+      "source": "commit:56ac120113ff514ef826c0db3b7a53cadd043f88",
+      "relation": "precedes",
+      "target": "commit:1f2d6b04ca446137b42b704b5a4cc26cf995a0e4",
+      "status": "asserted",
+      "at": "2026-10-10T15:21:36-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:1f2d6b04ca44:2dd07f8134ed",
+      "source": "commit:1f2d6b04ca446137b42b704b5a4cc26cf995a0e4",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/FECHAMENTO_ABS_V1_CORE.md",
+      "status": "asserted",
+      "at": "2026-10-10T15:21:36-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:e71220dc80c6",
+      "source": "event:repository-scan:e71220dc80c6",
+      "relation": "generated",
+      "target": "evidence:repository:e71220dc80c6",
+      "status": "asserted",
+      "at": "2026-10-10T15:21:36-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -59200,12 +59354,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:caa701782337",
-      "source": "commit:caa7017823377f66d004e14b9c7bf98a25929bf1",
+      "id": "rel:scan-commit:1f2d6b04ca44",
+      "source": "commit:1f2d6b04ca446137b42b704b5a4cc26cf995a0e4",
       "relation": "observed_by",
-      "target": "event:repository-scan:0a834db19d07",
+      "target": "event:repository-scan:e71220dc80c6",
       "status": "asserted",
-      "at": "2026-10-10T15:19:05-03:00",
+      "at": "2026-10-10T15:21:36-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
