@@ -234,22 +234,53 @@ jobs:
           anchor = "  const populateAudioDevices = useCallback(async () => {"
           if s.count(anchor) != 1:
               raise SystemExit(f"FAIL | Sidebar keyboard insertion anchor expected once, found {s.count(anchor)}")
-          insert = """  // ABS_MOBILE_AUTO_KEYBOARD_V1: tap the streamed Chromium omnibox to raise the phone's real keyboard.
-          // The stream tap is sent to Chromium first; this focuses Selkies' existing IME bridge afterwards.
+          insert = """  // ABS_MOBILE_AUTO_KEYBOARD_V1: let the phone keyboard open when the remote browser or a webpage input gets focus.
+          // ABS_MOBILE_FOCUS_BRIDGE_V1 reports only whether a page text field is focused; it cannot execute browser commands.
           useEffect(() => {
             console.info('ABS_MOBILE_AUTO_KEYBOARD_V1');
+            console.info('ABS_MOBILE_FOCUS_BRIDGE_V1');
             const overlay = document.getElementById('overlayInput');
             if (!overlay) return;
-            const maybeOpenNativeKeyboard = (event) => {
+            let start = null;
+            const onDown = (event) => {
+              start = { x: event.clientX, y: event.clientY, at: Date.now() };
+            };
+            const onUp = (event) => {
+              const origin = start;
+              start = null;
+              if (!origin) return;
+              const dx = event.clientX - origin.x;
+              const dy = event.clientY - origin.y;
+              if ((dx * dx + dy * dy) > 144 || Date.now() - origin.at > 700) return;
               const rect = overlay.getBoundingClientRect();
               if (!rect.height) return;
               const y = (event.clientY - rect.top) / rect.height;
-              // The remote Chromium tab/omnibox strip occupies the upper ~13% on this mobile-sized session.
-              if (y < 0.035 || y > 0.135) return;
-              window.setTimeout(() => handleShowVirtualKeyboard(), 0);
+              window.setTimeout(async () => {
+                // Browser omnibox/tab strip: Chrome's browser chrome is remote pixels, so use Selkies' native IME bridge.
+                if (y >= 0.035 && y <= 0.135) {
+                  handleShowVirtualKeyboard();
+                  return;
+                }
+                // Web-page input fields: ask the private host bridge if Chromium has focused a text-entry element.
+                try {
+                  const response = await fetch('/abs-keyboard-focus', {
+                    credentials: 'same-origin',
+                    cache: 'no-store',
+                    signal: AbortSignal.timeout(900)
+                  });
+                  if (!response.ok) return;
+                  const state = await response.json();
+                  if (state && state.focused === true) handleShowVirtualKeyboard();
+                } catch (_) {}
+              }, 180);
             };
-            overlay.addEventListener('pointerup', maybeOpenNativeKeyboard, { passive: true });
-            return () => overlay.removeEventListener('pointerup', maybeOpenNativeKeyboard);
+            overlay.addEventListener('pointerdown', onDown, { passive: true });
+            overlay.addEventListener('pointerup', onUp, { passive: true });
+            overlay.addEventListener('pointercancel', () => { start = null; }, { passive: true });
+            return () => {
+              overlay.removeEventListener('pointerdown', onDown);
+              overlay.removeEventListener('pointerup', onUp);
+            };
           }, [handleShowVirtualKeyboard]);
 
           const populateAudioDevices = useCallback(async () => {"""
@@ -257,6 +288,92 @@ jobs:
           p.write_text(s)
           print("PASS | Added automatic native keyboard focus for taps in the remote Chromium address/search bar.")
           PY
+          # Read-only focus bridge: reports only whether a remote page has a focused text-entry element.
+          # It never exposes DevTools or accepts navigation/command requests.
+          NODE_BIN="$(command -v node)"
+          [ -x "$NODE_BIN" ] || { fail "Node.js unavailable for private keyboard focus bridge; browser left unchanged."; exit 1; }
+          cat > "$HOME/abs-browser/mobile-keyboard-bridge.js" <<'NODE'
+          const http = require('node:http');
+          const EXP = "(() => { const e=document.activeElement; if (!e || document.visibilityState !== 'visible') return false; const tag=(e.tagName||'').toUpperCase(); const type=(e.type||'text').toLowerCase(); const excluded=['button','checkbox','radio','submit','reset','file','image','color','range','hidden']; const textInput=tag==='TEXTAREA' || (tag==='INPUT' && !excluded.includes(type)) || e.isContentEditable===true; return !!(textInput && document.hasFocus()); })()";
+          async function focusedTarget(target) {
+            if (!target.webSocketDebuggerUrl) return false;
+            return await new Promise((resolve) => {
+              let done = false;
+              let ws;
+              const finish = (value) => { if (done) return; done = true; clearTimeout(timer); try { if (ws) ws.close(); } catch (_) {} resolve(value); };
+              const timer = setTimeout(() => finish(false), 650);
+              try { ws = new WebSocket(target.webSocketDebuggerUrl); } catch (_) { finish(false); return; }
+              ws.addEventListener('open', () => {
+                try { ws.send(JSON.stringify({id: 1, method: 'Runtime.evaluate', params: {expression: EXP, returnByValue: true, awaitPromise: false}})); }
+                catch (_) { finish(false); }
+              }, {once:true});
+              ws.addEventListener('message', (event) => {
+                try {
+                  const message = JSON.parse(String(event.data));
+                  if (message.id === 1) finish(message.result?.result?.value === true);
+                } catch (_) { finish(false); }
+              });
+              ws.addEventListener('error', () => finish(false), {once:true});
+              ws.addEventListener('close', () => finish(false), {once:true});
+            });
+          }
+          const server = http.createServer(async (req, res) => {
+            const path = new URL(req.url, 'http://127.0.0.1').pathname;
+            res.setHeader('Content-Type','application/json; charset=utf-8');
+            res.setHeader('Cache-Control','no-store');
+            res.setHeader('X-Content-Type-Options','nosniff');
+            if (req.method !== 'GET' || !['/health','/focus','/abs-keyboard-focus'].includes(path)) {
+              res.writeHead(404); res.end(JSON.stringify({error:'not_found'})); return;
+            }
+            if (path === '/health') {
+              res.writeHead(200); res.end(JSON.stringify({ok:true,service:'abs-browser-keyboard-focus'})); return;
+            }
+            try {
+              const response = await fetch('http://127.0.0.1:9222/json/list', {signal:AbortSignal.timeout(700)});
+              if (!response.ok) throw new Error('cdp_unavailable');
+              const targets = (await response.json()).filter(t => t.type === 'page' && /^https?:/.test(t.url || '') && t.webSocketDebuggerUrl).slice(0,8);
+              const states = await Promise.all(targets.map(focusedTarget));
+              res.writeHead(200); res.end(JSON.stringify({focused:states.some(Boolean)}));
+            } catch (_) {
+              res.writeHead(200); res.end(JSON.stringify({focused:false}));
+            }
+          });
+          server.listen(9223, '127.0.0.1');
+          NODE
+          chmod 600 "$HOME/abs-browser/mobile-keyboard-bridge.js"
+          sudo -n tee /etc/systemd/system/abs-browser-keyboard-bridge.service >/dev/null <<UNIT
+          [Unit]
+          Description=ABS Browser private mobile keyboard focus bridge
+          After=network-online.target
+          Wants=network-online.target
+
+          [Service]
+          Type=simple
+          User=absadmin
+          Group=absadmin
+          WorkingDirectory=/home/absadmin/abs-browser
+          ExecStart=$NODE_BIN /home/absadmin/abs-browser/mobile-keyboard-bridge.js
+          Restart=always
+          RestartSec=2
+          NoNewPrivileges=true
+          PrivateTmp=true
+
+          [Install]
+          WantedBy=multi-user.target
+          UNIT
+          sudo -n systemctl daemon-reload
+          sudo -n systemctl enable --now abs-browser-keyboard-bridge.service
+          for i in $(seq 1 10); do curl -fsS --max-time 2 http://127.0.0.1:9223/health >/dev/null && break; sleep 1; done
+          curl -fsS --max-time 3 http://127.0.0.1:9223/health | grep -q 'abs-browser-keyboard-focus' || { fail "Private keyboard focus bridge failed health check; browser left unchanged."; exit 1; }
+          pass "Private keyboard focus bridge is healthy on loopback only."
+          if command -v tailscale >/dev/null 2>&1 && timeout 8s sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get("BackendState")=="Running" else 1)'; then
+            sudo -n tailscale serve --bg --yes --set-path=/abs-keyboard-focus http://127.0.0.1:9223 >/dev/null 2>&1 || { fail "Could not add private Tailscale Serve route for keyboard focus; existing browser remains running."; exit 1; }
+            timeout 8s sudo -n tailscale serve status 2>&1 | grep -q '9223' || { fail "Tailscale Serve route did not confirm loopback focus bridge; existing browser remains running."; exit 1; }
+            pass "Private Tailscale path /abs-keyboard-focus routes only to the loopback focus-status endpoint."
+          else
+            fail "Tailscale is not connected; automatic keyboard for webpage fields cannot be activated safely."
+            exit 1
+          fi
           export NODE_OPTIONS=--max-old-space-size=1024
           (cd "$CORE_DIR" && npm ci --no-audit --no-fund && npm run build)
           (cd "$DASH_DIR" && npm ci --no-audit --no-fund && npm run build)
@@ -273,6 +390,7 @@ jobs:
           BUILT_DASHBOARD_BUNDLE="$(find "$DASH_DIR/dist/assets" -maxdepth 1 -type f -name 'index-*.js' | head -n 1)"
           [ -s "$BUILT_DASHBOARD_BUNDLE" ] || { fail "Patched dashboard bundle was not produced; existing browser remains running."; exit 1; }
           grep -q 'ABS_MOBILE_AUTO_KEYBOARD_V1' "$BUILT_DASHBOARD_BUNDLE" || { fail "Dashboard build does not contain the auto-keyboard patch marker; existing browser remains running."; exit 1; }
+          grep -q 'ABS_MOBILE_FOCUS_BRIDGE_V1' "$BUILT_DASHBOARD_BUNDLE" || { fail "Dashboard build does not contain the webpage-focus bridge marker; existing browser remains running."; exit 1; }
           OVERLAY_DIR="$HOME/abs-browser/selkies-mobile-overlay-$(date -u +%Y%m%d%H%M%S)"
           install -d -m 755 "$OVERLAY_DIR"
           cp "$BUILT_BUNDLE" "$OVERLAY_DIR/$BUNDLE_NAME"
