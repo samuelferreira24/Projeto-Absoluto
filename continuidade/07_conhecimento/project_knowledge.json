@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T01:03:08-03:00",
-  "source_revision": "a8fd9117de65fe945c5ca01500be2015a60f8223",
+  "generated_at": "2026-10-10T01:05:05-03:00",
+  "source_revision": "2949b0f8305db8aeb086acca594e307f5f51ead3",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "a8fd9117de65fe945c5ca01500be2015a60f8223",
-      "commit_subject": "Retain compatibility markers for capture-phase keyboard patch"
+      "revision": "2949b0f8305db8aeb086acca594e307f5f51ead3",
+      "commit_subject": "Bound source diagnostic output to avoid oversized runner payloads"
     }
   ],
   "tools": [
@@ -11316,6 +11316,20 @@
       "sha": "a8fd9117de65fe945c5ca01500be2015a60f8223"
     },
     {
+      "id": "commit:b76a63cf05626f670cca9d9a6c7583814f9c0645",
+      "kind": "commit",
+      "at": "2026-10-10T04:03:24Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "b76a63cf05626f670cca9d9a6c7583814f9c0645"
+    },
+    {
+      "id": "commit:2949b0f8305db8aeb086acca594e307f5f51ead3",
+      "kind": "commit",
+      "at": "2026-10-10T01:05:05-03:00",
+      "subject": "Bound source diagnostic output to avoid oversized runner payloads",
+      "sha": "2949b0f8305db8aeb086acca594e307f5f51ead3"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11428,23 +11442,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:73e3f134b56c",
+      "id": "evidence:repository:52d6017e264b",
       "kind": "evidence",
-      "at": "2026-10-10T01:03:08-03:00",
+      "at": "2026-10-10T01:05:05-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:73e3f134b56c",
+      "id": "event:repository-scan:52d6017e264b",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T01:03:08-03:00"
+      "at": "2026-10-10T01:05:05-03:00"
     },
     {
-      "id": "event:commit-observed:a8fd9117de65",
+      "id": "event:commit-observed:2949b0f8305d",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T01:03:08-03:00"
+      "at": "2026-10-10T01:05:05-03:00"
     }
   ],
   "paths": [
@@ -11479,11 +11493,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:bf28425ce638"
+        "evidence:test:0fe96fb13346"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T01:03:08-03:00"
+      "last_validated": "2026-10-10T01:05:05-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11506,20 +11520,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:73e3f134b56c",
+      "id": "evidence:repository:52d6017e264b",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T01:03:08-03:00",
+      "observed_at": "2026-10-10T01:05:05-03:00",
       "status": "observed",
-      "detail": "430 files indexed at revision a8fd9117de65fe945c5ca01500be2015a60f8223"
+      "detail": "430 files indexed at revision 2949b0f8305db8aeb086acca594e307f5f51ead3"
     },
     {
-      "id": "evidence:test:bf28425ce638",
+      "id": "evidence:test:0fe96fb13346",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T01:03:08-03:00",
+      "observed_at": "2026-10-10T01:05:05-03:00",
       "status": "tested",
-      "detail": "225 passed in 6.45s"
+      "detail": "225 passed in 8.77s"
     }
   ],
   "decisions": [
@@ -11622,30 +11636,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:73e3f134b56c",
+      "id": "event:repository-scan:52d6017e264b",
       "type": "repository_scanned",
-      "at": "2026-10-10T01:03:08-03:00",
-      "revision": "a8fd9117de65fe945c5ca01500be2015a60f8223",
+      "at": "2026-10-10T01:05:05-03:00",
+      "revision": "2949b0f8305db8aeb086acca594e307f5f51ead3",
       "file_count": 430,
-      "evidence_id": "evidence:repository:73e3f134b56c"
+      "evidence_id": "evidence:repository:52d6017e264b"
     },
     {
-      "id": "event:commit-observed:a8fd9117de65",
+      "id": "event:commit-observed:2949b0f8305d",
       "type": "commit_observed",
-      "at": "2026-10-10T01:03:08-03:00",
-      "revision": "a8fd9117de65fe945c5ca01500be2015a60f8223",
+      "at": "2026-10-10T01:05:05-03:00",
+      "revision": "2949b0f8305db8aeb086acca594e307f5f51ead3",
       "branch": "main",
-      "subject": "Retain compatibility markers for capture-phase keyboard patch",
+      "subject": "Bound source diagnostic output to avoid oversized runner payloads",
       "changed_files": [
-        ".github/workflows/abs-browser-mobile-native.yml"
+        ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:bf28425ce638",
+      "id": "event:test:0fe96fb13346",
       "type": "tests_observed",
-      "at": "2026-10-10T01:03:08-03:00",
+      "at": "2026-10-10T01:05:05-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:bf28425ce638"
+      "evidence_id": "evidence:test:0fe96fb13346"
     }
   ],
   "knowledge_sources": [
@@ -11701,7 +11715,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "b3bcae120ca41a182dc456c805aba1e54416af13f4143a9aa55193e4a277157e"
+      "sha256": "149c30a3fc7e4ffef05de15d6bbfedcce666b14cb6f64101eca6073373186352"
     },
     {
       "id": "source:session",
@@ -51160,12 +51174,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:73e3f134b56c",
-      "source": "event:repository-scan:73e3f134b56c",
-      "relation": "generated",
-      "target": "evidence:repository:73e3f134b56c",
+      "id": "rel:commit-precedes:a8fd9117de65:b76a63cf0562",
+      "source": "commit:a8fd9117de65fe945c5ca01500be2015a60f8223",
+      "relation": "precedes",
+      "target": "commit:b76a63cf05626f670cca9d9a6c7583814f9c0645",
       "status": "asserted",
-      "at": "2026-10-10T01:03:08-03:00",
+      "at": "2026-10-10T04:03:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b76a63cf0562:032adc3624d7",
+      "source": "commit:b76a63cf05626f670cca9d9a6c7583814f9c0645",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T04:03:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:b76a63cf0562:d64178c49886",
+      "source": "commit:b76a63cf05626f670cca9d9a6c7583814f9c0645",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T04:03:24Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:b76a63cf0562:2949b0f8305d",
+      "source": "commit:b76a63cf05626f670cca9d9a6c7583814f9c0645",
+      "relation": "precedes",
+      "target": "commit:2949b0f8305db8aeb086acca594e307f5f51ead3",
+      "status": "asserted",
+      "at": "2026-10-10T01:05:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:2949b0f8305d:1734be446032",
+      "source": "commit:2949b0f8305db8aeb086acca594e307f5f51ead3",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T01:05:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:52d6017e264b",
+      "source": "event:repository-scan:52d6017e264b",
+      "relation": "generated",
+      "target": "evidence:repository:52d6017e264b",
+      "status": "asserted",
+      "at": "2026-10-10T01:05:05-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -51174,12 +51258,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:a8fd9117de65",
-      "source": "commit:a8fd9117de65fe945c5ca01500be2015a60f8223",
+      "id": "rel:scan-commit:2949b0f8305d",
+      "source": "commit:2949b0f8305db8aeb086acca594e307f5f51ead3",
       "relation": "observed_by",
-      "target": "event:repository-scan:73e3f134b56c",
+      "target": "event:repository-scan:52d6017e264b",
       "status": "asserted",
-      "at": "2026-10-10T01:03:08-03:00",
+      "at": "2026-10-10T01:05:05-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
