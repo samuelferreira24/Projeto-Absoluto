@@ -1,0 +1,13 @@
+{
+  "name": "abs-mobile-browser-mirror",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Private phone-first mirror and native touch bridge for ABS Chromium",
+  "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}
