@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T13:37:25-03:00",
-  "source_revision": "985fecb69cad1cc52bdd69071a02d69afae04570",
+  "generated_at": "2026-10-10T13:38:33-03:00",
+  "source_revision": "bf08ea4f9f8c35f6508206700dd3a7cd7327d84a",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "985fecb69cad1cc52bdd69071a02d69afae04570",
-      "commit_subject": "Inspect native Coolify instance backup workflow read-only"
+      "revision": "bf08ea4f9f8c35f6508206700dd3a7cd7327d84a",
+      "commit_subject": "Fix namespaces in Coolify backup preflight"
     }
   ],
   "tools": [
@@ -12043,6 +12043,27 @@
       "sha": "985fecb69cad1cc52bdd69071a02d69afae04570"
     },
     {
+      "id": "commit:fade22d3dd844c48cf3600ea4f3df22fb4386f31",
+      "kind": "commit",
+      "at": "2026-10-10T16:37:48Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "fade22d3dd844c48cf3600ea4f3df22fb4386f31"
+    },
+    {
+      "id": "commit:17c8746bb8c479b3f06c41b4b7b1b9307e2b04b6",
+      "kind": "commit",
+      "at": "2026-10-10T13:38:07-03:00",
+      "subject": "Add native Coolify instance backup preflight",
+      "sha": "17c8746bb8c479b3f06c41b4b7b1b9307e2b04b6"
+    },
+    {
+      "id": "commit:bf08ea4f9f8c35f6508206700dd3a7cd7327d84a",
+      "kind": "commit",
+      "at": "2026-10-10T13:38:33-03:00",
+      "subject": "Fix namespaces in Coolify backup preflight",
+      "sha": "bf08ea4f9f8c35f6508206700dd3a7cd7327d84a"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -12155,23 +12176,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:4a0cb7ce0458",
+      "id": "evidence:repository:c63b046bc788",
       "kind": "evidence",
-      "at": "2026-10-10T13:37:25-03:00",
+      "at": "2026-10-10T13:38:33-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:4a0cb7ce0458",
+      "id": "event:repository-scan:c63b046bc788",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T13:37:25-03:00"
+      "at": "2026-10-10T13:38:33-03:00"
     },
     {
-      "id": "event:commit-observed:985fecb69cad",
+      "id": "event:commit-observed:bf08ea4f9f8c",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T13:37:25-03:00"
+      "at": "2026-10-10T13:38:33-03:00"
     }
   ],
   "paths": [
@@ -12206,11 +12227,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:296a67d84821"
+        "evidence:test:bbfa8f2ea1e3"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T13:37:25-03:00"
+      "last_validated": "2026-10-10T13:38:33-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -12233,20 +12254,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:4a0cb7ce0458",
+      "id": "evidence:repository:c63b046bc788",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T13:37:25-03:00",
+      "observed_at": "2026-10-10T13:38:33-03:00",
       "status": "observed",
-      "detail": "440 files indexed at revision 985fecb69cad1cc52bdd69071a02d69afae04570"
+      "detail": "440 files indexed at revision bf08ea4f9f8c35f6508206700dd3a7cd7327d84a"
     },
     {
-      "id": "evidence:test:296a67d84821",
+      "id": "evidence:test:bbfa8f2ea1e3",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T13:37:25-03:00",
+      "observed_at": "2026-10-10T13:38:33-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.74s"
+      "detail": "225 passed in 8.69s"
     }
   ],
   "decisions": [
@@ -12349,30 +12370,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:4a0cb7ce0458",
+      "id": "event:repository-scan:c63b046bc788",
       "type": "repository_scanned",
-      "at": "2026-10-10T13:37:25-03:00",
-      "revision": "985fecb69cad1cc52bdd69071a02d69afae04570",
+      "at": "2026-10-10T13:38:33-03:00",
+      "revision": "bf08ea4f9f8c35f6508206700dd3a7cd7327d84a",
       "file_count": 440,
-      "evidence_id": "evidence:repository:4a0cb7ce0458"
+      "evidence_id": "evidence:repository:c63b046bc788"
     },
     {
-      "id": "event:commit-observed:985fecb69cad",
+      "id": "event:commit-observed:bf08ea4f9f8c",
       "type": "commit_observed",
-      "at": "2026-10-10T13:37:25-03:00",
-      "revision": "985fecb69cad1cc52bdd69071a02d69afae04570",
+      "at": "2026-10-10T13:38:33-03:00",
+      "revision": "bf08ea4f9f8c35f6508206700dd3a7cd7327d84a",
       "branch": "main",
-      "subject": "Inspect native Coolify instance backup workflow read-only",
+      "subject": "Fix namespaces in Coolify backup preflight",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:296a67d84821",
+      "id": "event:test:bbfa8f2ea1e3",
       "type": "tests_observed",
-      "at": "2026-10-10T13:37:25-03:00",
+      "at": "2026-10-10T13:38:33-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:296a67d84821"
+      "evidence_id": "evidence:test:bbfa8f2ea1e3"
     }
   ],
   "knowledge_sources": [
@@ -12428,7 +12449,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "cb6ee7744bcbc7cd8179a02a191eeda54bb2755cadd1d80dfd2651d7a5c281e4"
+      "sha256": "c0486f0ea1648f9fea440896e442508e4fefa64eb30c4d554866dd45c0a0fb84"
     },
     {
       "id": "source:session",
@@ -55219,12 +55240,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:4a0cb7ce0458",
-      "source": "event:repository-scan:4a0cb7ce0458",
-      "relation": "generated",
-      "target": "evidence:repository:4a0cb7ce0458",
+      "id": "rel:commit-precedes:985fecb69cad:fade22d3dd84",
+      "source": "commit:985fecb69cad1cc52bdd69071a02d69afae04570",
+      "relation": "precedes",
+      "target": "commit:fade22d3dd844c48cf3600ea4f3df22fb4386f31",
       "status": "asserted",
-      "at": "2026-10-10T13:37:25-03:00",
+      "at": "2026-10-10T16:37:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:fade22d3dd84:032adc3624d7",
+      "source": "commit:fade22d3dd844c48cf3600ea4f3df22fb4386f31",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T16:37:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:fade22d3dd84:d64178c49886",
+      "source": "commit:fade22d3dd844c48cf3600ea4f3df22fb4386f31",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T16:37:48Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:fade22d3dd84:17c8746bb8c4",
+      "source": "commit:fade22d3dd844c48cf3600ea4f3df22fb4386f31",
+      "relation": "precedes",
+      "target": "commit:17c8746bb8c479b3f06c41b4b7b1b9307e2b04b6",
+      "status": "asserted",
+      "at": "2026-10-10T13:38:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:17c8746bb8c4:1734be446032",
+      "source": "commit:17c8746bb8c479b3f06c41b4b7b1b9307e2b04b6",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T13:38:07-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:17c8746bb8c4:bf08ea4f9f8c",
+      "source": "commit:17c8746bb8c479b3f06c41b4b7b1b9307e2b04b6",
+      "relation": "precedes",
+      "target": "commit:bf08ea4f9f8c35f6508206700dd3a7cd7327d84a",
+      "status": "asserted",
+      "at": "2026-10-10T13:38:33-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:bf08ea4f9f8c:1734be446032",
+      "source": "commit:bf08ea4f9f8c35f6508206700dd3a7cd7327d84a",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T13:38:33-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:c63b046bc788",
+      "source": "event:repository-scan:c63b046bc788",
+      "relation": "generated",
+      "target": "evidence:repository:c63b046bc788",
+      "status": "asserted",
+      "at": "2026-10-10T13:38:33-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -55233,12 +55352,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:985fecb69cad",
-      "source": "commit:985fecb69cad1cc52bdd69071a02d69afae04570",
+      "id": "rel:scan-commit:bf08ea4f9f8c",
+      "source": "commit:bf08ea4f9f8c35f6508206700dd3a7cd7327d84a",
       "relation": "observed_by",
-      "target": "event:repository-scan:4a0cb7ce0458",
+      "target": "event:repository-scan:c63b046bc788",
       "status": "asserted",
-      "at": "2026-10-10T13:37:25-03:00",
+      "at": "2026-10-10T13:38:33-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
