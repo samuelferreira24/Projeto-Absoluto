@@ -31,3 +31,12 @@ Prioridade imediata:
 3. serviços persistentes necessários.
 4. deploy do ABS.
 5. aceitação operacional no VPS.
+
+
+## Plano operacional detalhado — ambiente de trabalho na VPS
+
+A prioridade de construir um ambiente de desenvolvimento remoto pelo celular foi detalhada em:
+
+- `docs/03_planejamento/PLANO_AMBIENTE_TRABALHO_VPS_ANDROID.md`
+
+A ordem definida é: (1) construir e validar o ambiente de trabalho operável pelo Android; (2) continuar a construção do ABS nesse ambiente; (3) delegar ao ABS, gradualmente e sob limites verificáveis, a operação da infraestrutura. A auditoria do estado real precede instalações ou substituições.
