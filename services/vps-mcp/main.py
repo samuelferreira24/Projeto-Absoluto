@@ -6,6 +6,7 @@ from typing import Literal
 
 import docker
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 
 API_KEY = os.environ.get("VPS_MCP_API_KEY", "")
 REPO_ROOT = Path("/repo").resolve()
@@ -29,6 +30,13 @@ mcp = FastMCP(
         "Nunca tente executar comandos arbitrários. Antes de ações que parem "
         "serviços, confirme que o usuário pediu essa alteração. O ABS e os "
         "navegadores alternativos devem permanecer desligados até nova autorização."
+    ),
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=True,
+        allowed_hosts=[
+            "mcp.207.180.3.245.sslip.io",
+            "mcp.207.180.3.245.sslip.io:*",
+        ],
     ),
 )
 
