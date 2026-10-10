@@ -281,6 +281,23 @@ class OperationalIntelligence:
 
         for cycle in range(max_replans + 1):
             plan = self.plan(objective, working_context)
+
+            # Every executable step must bind to an explicitly registered
+            # capability. Passing None to the orchestrator can select its
+            # default capability, which is not a safe interpretation of an
+            # unbound or invalid model-proposed step.
+            if any(not step.capability_id for step in plan.steps):
+                unknowns = list(plan.unknowns)
+                unknowns.append("Every executable step must specify a validated capability_id.")
+                return {
+                    "type": "operational_unknown",
+                    "completed": False,
+                    "plan": plan.public(),
+                    "cycles": attempts,
+                    "reason": "plan_contains_unbound_capability",
+                    "unknowns": list(dict.fromkeys(unknowns)),
+                }
+
             if plan.unknowns and not any(s.capability_id for s in plan.steps):
                 return {
                     "type": "operational_unknown",
