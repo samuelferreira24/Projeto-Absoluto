@@ -48,8 +48,8 @@ jobs:
           TAILNET_IP="$(timeout 8s sudo -n tailscale ip -4 2>/dev/null | head -n 1 || true)"
           [ -n "$TAILNET_DNS" ] && [ -n "$TAILNET_IP" ] || { fail "Tailscale DNS name or private IPv4 address unavailable."; exit 1; }
           echo "Configuring HTTP access only on the private Tailscale network; no public port or firewall rule is opened."
-          sudo -n tailscale serve --bg --yes --http=80 --set-path=/abs-mobile http://127.0.0.1:3010
-          URL="http://$TAILNET_DNS/abs-mobile"
+          sudo -n tailscale serve --bg --yes --http=80 --set-path=/abs-mobile/ http://127.0.0.1:3010
+          URL="http://$TAILNET_DNS/abs-mobile/"
           curl -fsS --max-time 10 --resolve "$TAILNET_DNS:80:$TAILNET_IP" "$URL/health" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("ok") is True' || { fail "HTTP health through the Tailscale private address failed."; exit 1; }
           pass "Private HTTP path responds through the Tailscale IP."
           curl -fsS --max-time 10 --resolve "$TAILNET_DNS:80:$TAILNET_IP" "$URL/api/state" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("ok") is True and d.get("connected") is True and d.get("targetId")' || { fail "Private HTTP route cannot reach the active Chromium page."; exit 1; }

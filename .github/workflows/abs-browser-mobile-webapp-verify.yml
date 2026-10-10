@@ -47,7 +47,7 @@ jobs:
           pass "Original browser, ABS and loopback-only mobile mirror are healthy."
           TAILNET_DNS="$(timeout 8s sudo -n tailscale status --json 2>/dev/null | python3 -c 'import json,sys; d=json.load(sys.stdin); print(((d.get("Self") or {}).get("DNSName") or "").rstrip("."))' 2>/dev/null || true)"
           [ -n "$TAILNET_DNS" ] || { fail "Could not read this VPS's Tailscale DNS name."; exit 1; }
-          URL="https://${TAILNET_DNS}/abs-mobile"
+          URL="https://${TAILNET_DNS}/abs-mobile/"
           curl -fsS --max-time 10 "$URL/health" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("ok") is True' || { fail "Private Tailscale URL health check failed."; exit 1; }
           pass "Private HTTPS URL responds successfully through Tailscale Serve."
           curl -fsS --max-time 10 "$URL/api/state" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d.get("ok") is True and d.get("connected") is True and d.get("targetId") and d.get("viewport",{}).get("width",0)>0' || { fail "Private URL cannot retrieve the active Chromium page state."; exit 1; }
