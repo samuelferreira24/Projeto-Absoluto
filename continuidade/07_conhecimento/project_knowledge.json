@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T14:28:47-03:00",
-  "source_revision": "d6b77dbdb482b811bf63e26fdac5d29b8e23393b",
+  "generated_at": "2026-10-10T14:29:21-03:00",
+  "source_revision": "714787ac6435aeab70d68ab5ff546638c155f40a",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "d6b77dbdb482b811bf63e26fdac5d29b8e23393b",
-      "commit_subject": "Add isolated Code Server volume backup restore test"
+      "revision": "714787ac6435aeab70d68ab5ff546638c155f40a",
+      "commit_subject": "Correct isolated Code Server backup restore verification"
     }
   ],
   "tools": [
@@ -12659,6 +12659,20 @@
       "sha": "d6b77dbdb482b811bf63e26fdac5d29b8e23393b"
     },
     {
+      "id": "commit:35c6262a363cf02c1f6d120b7809ec7af0ee66a4",
+      "kind": "commit",
+      "at": "2026-10-10T17:29:11Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "35c6262a363cf02c1f6d120b7809ec7af0ee66a4"
+    },
+    {
+      "id": "commit:714787ac6435aeab70d68ab5ff546638c155f40a",
+      "kind": "commit",
+      "at": "2026-10-10T14:29:21-03:00",
+      "subject": "Correct isolated Code Server backup restore verification",
+      "sha": "714787ac6435aeab70d68ab5ff546638c155f40a"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -12771,23 +12785,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:df7e5191d8ce",
+      "id": "evidence:repository:4e80b4462422",
       "kind": "evidence",
-      "at": "2026-10-10T14:28:47-03:00",
+      "at": "2026-10-10T14:29:21-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:df7e5191d8ce",
+      "id": "event:repository-scan:4e80b4462422",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T14:28:47-03:00"
+      "at": "2026-10-10T14:29:21-03:00"
     },
     {
-      "id": "event:commit-observed:d6b77dbdb482",
+      "id": "event:commit-observed:714787ac6435",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T14:28:47-03:00"
+      "at": "2026-10-10T14:29:21-03:00"
     }
   ],
   "paths": [
@@ -12822,11 +12836,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:078ce39dd178"
+        "evidence:test:779b848a45b4"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T14:28:47-03:00"
+      "last_validated": "2026-10-10T14:29:21-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -12849,20 +12863,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:df7e5191d8ce",
+      "id": "evidence:repository:4e80b4462422",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T14:28:47-03:00",
+      "observed_at": "2026-10-10T14:29:21-03:00",
       "status": "observed",
-      "detail": "440 files indexed at revision d6b77dbdb482b811bf63e26fdac5d29b8e23393b"
+      "detail": "440 files indexed at revision 714787ac6435aeab70d68ab5ff546638c155f40a"
     },
     {
-      "id": "evidence:test:078ce39dd178",
+      "id": "evidence:test:779b848a45b4",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T14:28:47-03:00",
+      "observed_at": "2026-10-10T14:29:21-03:00",
       "status": "tested",
-      "detail": "225 passed in 8.23s"
+      "detail": "225 passed in 7.21s"
     }
   ],
   "decisions": [
@@ -12965,30 +12979,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:df7e5191d8ce",
+      "id": "event:repository-scan:4e80b4462422",
       "type": "repository_scanned",
-      "at": "2026-10-10T14:28:47-03:00",
-      "revision": "d6b77dbdb482b811bf63e26fdac5d29b8e23393b",
+      "at": "2026-10-10T14:29:21-03:00",
+      "revision": "714787ac6435aeab70d68ab5ff546638c155f40a",
       "file_count": 440,
-      "evidence_id": "evidence:repository:df7e5191d8ce"
+      "evidence_id": "evidence:repository:4e80b4462422"
     },
     {
-      "id": "event:commit-observed:d6b77dbdb482",
+      "id": "event:commit-observed:714787ac6435",
       "type": "commit_observed",
-      "at": "2026-10-10T14:28:47-03:00",
-      "revision": "d6b77dbdb482b811bf63e26fdac5d29b8e23393b",
+      "at": "2026-10-10T14:29:21-03:00",
+      "revision": "714787ac6435aeab70d68ab5ff546638c155f40a",
       "branch": "main",
-      "subject": "Add isolated Code Server volume backup restore test",
+      "subject": "Correct isolated Code Server backup restore verification",
       "changed_files": [
         ".github/workflows/abs-vps-command.yml"
       ]
     },
     {
-      "id": "event:test:078ce39dd178",
+      "id": "event:test:779b848a45b4",
       "type": "tests_observed",
-      "at": "2026-10-10T14:28:47-03:00",
+      "at": "2026-10-10T14:29:21-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:078ce39dd178"
+      "evidence_id": "evidence:test:779b848a45b4"
     }
   ],
   "knowledge_sources": [
@@ -13044,7 +13058,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "2556b1e8b979c848f32d5f987429a81120bea56f382c15034e887fede135eca7"
+      "sha256": "fcdb8beb0672b3c789682c76f3d7e9b5437490e5481a45ab9734182ec000d217"
     },
     {
       "id": "source:session",
@@ -58859,12 +58873,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:df7e5191d8ce",
-      "source": "event:repository-scan:df7e5191d8ce",
-      "relation": "generated",
-      "target": "evidence:repository:df7e5191d8ce",
+      "id": "rel:commit-precedes:d6b77dbdb482:35c6262a363c",
+      "source": "commit:d6b77dbdb482b811bf63e26fdac5d29b8e23393b",
+      "relation": "precedes",
+      "target": "commit:35c6262a363cf02c1f6d120b7809ec7af0ee66a4",
       "status": "asserted",
-      "at": "2026-10-10T14:28:47-03:00",
+      "at": "2026-10-10T17:29:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:35c6262a363c:032adc3624d7",
+      "source": "commit:35c6262a363cf02c1f6d120b7809ec7af0ee66a4",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T17:29:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:35c6262a363c:d64178c49886",
+      "source": "commit:35c6262a363cf02c1f6d120b7809ec7af0ee66a4",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T17:29:11Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:35c6262a363c:714787ac6435",
+      "source": "commit:35c6262a363cf02c1f6d120b7809ec7af0ee66a4",
+      "relation": "precedes",
+      "target": "commit:714787ac6435aeab70d68ab5ff546638c155f40a",
+      "status": "asserted",
+      "at": "2026-10-10T14:29:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:714787ac6435:1734be446032",
+      "source": "commit:714787ac6435aeab70d68ab5ff546638c155f40a",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-vps-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T14:29:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:4e80b4462422",
+      "source": "event:repository-scan:4e80b4462422",
+      "relation": "generated",
+      "target": "evidence:repository:4e80b4462422",
+      "status": "asserted",
+      "at": "2026-10-10T14:29:21-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -58873,12 +58957,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:d6b77dbdb482",
-      "source": "commit:d6b77dbdb482b811bf63e26fdac5d29b8e23393b",
+      "id": "rel:scan-commit:714787ac6435",
+      "source": "commit:714787ac6435aeab70d68ab5ff546638c155f40a",
       "relation": "observed_by",
-      "target": "event:repository-scan:df7e5191d8ce",
+      "target": "event:repository-scan:4e80b4462422",
       "status": "asserted",
-      "at": "2026-10-10T14:28:47-03:00",
+      "at": "2026-10-10T14:29:21-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
