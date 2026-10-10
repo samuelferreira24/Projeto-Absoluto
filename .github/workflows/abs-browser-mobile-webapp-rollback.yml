@@ -1,0 +1,73 @@
+name: ABS Browser Mobile Web App Rollback
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: abs-browser-mobile-webapp
+  cancel-in-progress: false
+
+jobs:
+  rollback:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser mobile-webapp-rollback'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 5
+    steps:
+      - name: Stop only the new mobile web app and restore previous access path
+        id: rollback
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          REPORT="$RUNNER_TEMP/abs-browser-mobile-webapp-rollback.txt"
+          install -m 600 /dev/null "$REPORT"
+          exec > >(tee -a "$REPORT") 2>&1
+          finish() {
+            rc=$?
+            trap - EXIT
+            { echo 'result<<ABS_MOBILE_ROLLBACK_EOF'; tail -c 7000 "$REPORT"; echo; echo 'ABS_MOBILE_ROLLBACK_EOF'; } >> "$GITHUB_OUTPUT"
+            exit "$rc"
+          }
+          trap finish EXIT
+          [ "$(hostname)" = "abs-vps-01" ] || { echo "FAIL | Unexpected host; no changes made."; exit 1; }
+          sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}' | grep -qx running
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null
+          echo "PASS | Existing browser container and ABS are healthy before rollback."
+          # Remove only the route created for the new mobile web app; do not reset other Serve routes.
+          if command -v tailscale >/dev/null 2>&1 && sudo -n tailscale serve status 2>&1 | grep -q '/abs-mobile'; then
+            sudo -n tailscale serve --set-path=/abs-mobile off
+            echo "PASS | Removed only the /abs-mobile route."
+          else
+            echo "INFO | /abs-mobile route was not present; other Tailscale routes left untouched."
+          fi
+          sudo -n systemctl disable --now abs-browser-mobile-webapp.service 2>/dev/null || true
+          if sudo -n systemctl is-active --quiet abs-browser-mobile-webapp.service; then
+            echo "FAIL | New mobile web app service is still active."
+            exit 1
+          fi
+          echo "PASS | New mobile web app stopped and disabled."
+          [ "$(sudo -n docker inspect abs-browser-ui --format '{{.State.Status}}')" = "running" ]
+          curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null
+          echo "PASS | Previous browser container, profile, credentials and ABS health remain intact."
+          echo "ROLLBACK COMPLETE | Open the same previous browser link you used before the mobile web app."
+      - name: Publish rollback report
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.rollback.outputs.result }}
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '### ABS MOBILE WEB APP ROLLBACK\n\n' + (process.env.RESULT || 'No report; inspect runner logs.')
+            });
