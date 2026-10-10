@@ -64,7 +64,8 @@ async function cdpTouchAudit(){
     await cmd('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:5},sessionId);
     const html='<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"><style>html,body{margin:0;padding:0}#field{position:fixed;left:10px;top:10px;width:220px;height:46px;z-index:5;font-size:18px}#space{height:7000px;background:linear-gradient(#fff,#9cf)}</style><input id="field" placeholder="touch test"><div id="space"></div>';
     await cmd('Page.navigate',{url:'data:text/html;charset=utf-8,'+encodeURIComponent(html)},sessionId);
-    for(let i=0;i<40;i++){if(await evaluate("document.readyState==='complete'"))break;await sleep(100);}
+    let loaded=false;for(let i=0;i<40;i++){try{if(await evaluate("document.readyState==='complete'")){loaded=true;break;}}catch{}await sleep(100);}
+    assert.equal(loaded,true,'Temporary touch-audit page did not finish loading.');
     await sleep(250);
     await touch('touchStart',[point(50,30,1)]);
     await touch('touchEnd',[]);
