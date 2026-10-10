@@ -675,6 +675,20 @@ jobs:
               } > /tmp/abs-tailnet-status.txt 2>&1
               result="$(cat /tmp/abs-tailnet-status.txt)"
               ;;
+            browser-client-snippets)
+              set +e
+              {
+                for asset in /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/assets/selkies-core-*.js /lsiopy/lib/python3.13/site-packages/selkies/selkies_web/src/selkies-core.js; do
+                  [ -f "$asset" ] || continue
+                  echo "=== $asset ==="
+                  sudo -n docker exec abs-browser-ui sh -lc "grep -oE '.{0,180}(touchstart|touchmove|pointerdown|pointermove|wheel|touches\\[[^]]+\\]).{0,260}' '$asset' 2>/dev/null | head -n 20" 2>&1 || true
+                done
+                echo
+                echo "[ABS health]"
+                curl -fsS --max-time 8 http://127.0.0.1:8787/health >/dev/null && echo PASS || echo FAIL
+              } > /tmp/abs-browser-client-snippets.txt 2>&1
+              result="$(cat /tmp/abs-browser-client-snippets.txt)"
+              ;;
             browser-client-inspect)
               set +e
               {
