@@ -1330,6 +1330,23 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-final-verify)
+              {
+                echo "[Coolify stack health]"
+                sudo -n docker ps --filter 'name=coolify' --format 'table {{.Names}}\\t{{.Status}}\\t{{.Image}}'
+                echo
+                echo "[Coolify and Code Server public HTTPS checks]"
+                curl -sS --max-time 15 -L -o /dev/null -w 'coolify_http=%{http_code} tls_verify=%{ssl_verify_result} redirects=%{num_redirects}\\n' 'https://coolify.207.180.3.245.sslip.io/' 2>&1 || true
+                curl -sS --max-time 15 -L -o /dev/null -w 'code_server_http=%{http_code} tls_verify=%{ssl_verify_result} redirects=%{num_redirects}\\n' 'https://codeserver-bb55qbolrf4pqfl45gomnzyl.207.180.3.245.sslip.io/' 2>&1 || true
+                echo
+                echo "[Coolify database backup status]"
+                sudo -n docker exec coolify php artisan tinker --execute='$b=App\\Models\\ScheduledDatabaseBackup::query()->where("database_name","coolify")->first(); if(!$b)$b=App\\Models\\ScheduledDatabaseBackup::query()->first(); $e=$b?->executions()->first(); echo json_encode(["enabled"=>(bool)($b?->enabled),"frequency"=>$b?->frequency,"local_retention"=>$b?->database_backup_retention_amount_locally,"latest_status"=>$e?->status,"latest_size"=>$e?->size,"s3_enabled"=>(bool)($b?->save_s3)],JSON_PRETTY_PRINT),PHP_EOL;' 2>&1 || true
+                echo
+                echo "[Code Server volume backup status]"
+                sudo -n docker exec coolify php artisan tinker --execute='$b=App\\Models\\ScheduledVolumeBackup::where("backupable_id",5)->first(); $e=$b?->executions()->first(); echo json_encode(["enabled"=>(bool)($b?->enabled),"frequency"=>$b?->frequency,"local_retention"=>$b?->retention_amount_locally,"latest_status"=>$e?->status,"latest_size"=>$e?->size,"s3_enabled"=>(bool)($b?->save_s3)],JSON_PRETTY_PRINT),PHP_EOL;' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-backup-verify)
               {
                 echo "[Latest Code Server volume backup execution]"
