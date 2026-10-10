@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T11:22:52-03:00",
-  "source_revision": "04606048716910efef5e39b48fbab929997978da",
+  "generated_at": "2026-10-10T11:25:37-03:00",
+  "source_revision": "aa308e44a79133324188f86a6aae54057f1dd6d5",
   "components": [
     {
       "id": "component:abs_core",
@@ -32,7 +32,7 @@
     {
       "id": "component:project",
       "kind": "project",
-      "file_count": 146
+      "file_count": 147
     },
     {
       "id": "component:tests",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "04606048716910efef5e39b48fbab929997978da",
-      "commit_subject": "Add isolated Remote Browser installation workflow"
+      "revision": "aa308e44a79133324188f86a6aae54057f1dd6d5",
+      "commit_subject": "Add read-only inspection for legacy browser interface port"
     }
   ],
   "tools": [
@@ -968,6 +968,11 @@
       "id": "file:.github/workflows/abs-browser-complete-all.yml",
       "kind": "file",
       "path": ".github/workflows/abs-browser-complete-all.yml"
+    },
+    {
+      "id": "file:.github/workflows/abs-browser-inspect-3010.yml",
+      "kind": "file",
+      "path": ".github/workflows/abs-browser-inspect-3010.yml"
     },
     {
       "id": "file:.github/workflows/abs-browser-install-remotebrowser.yml",
@@ -11522,6 +11527,20 @@
       "sha": "04606048716910efef5e39b48fbab929997978da"
     },
     {
+      "id": "commit:09e51b394c27f33768958665b7e0c8b067d3e07f",
+      "kind": "commit",
+      "at": "2026-10-10T14:23:12Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "09e51b394c27f33768958665b7e0c8b067d3e07f"
+    },
+    {
+      "id": "commit:aa308e44a79133324188f86a6aae54057f1dd6d5",
+      "kind": "commit",
+      "at": "2026-10-10T11:25:37-03:00",
+      "subject": "Add read-only inspection for legacy browser interface port",
+      "sha": "aa308e44a79133324188f86a6aae54057f1dd6d5"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -11634,23 +11653,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:989a33e88718",
+      "id": "evidence:repository:e81609e50e59",
       "kind": "evidence",
-      "at": "2026-10-10T11:22:52-03:00",
+      "at": "2026-10-10T11:25:37-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:989a33e88718",
+      "id": "event:repository-scan:e81609e50e59",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T11:22:52-03:00"
+      "at": "2026-10-10T11:25:37-03:00"
     },
     {
-      "id": "event:commit-observed:046060487169",
+      "id": "event:commit-observed:aa308e44a791",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T11:22:52-03:00"
+      "at": "2026-10-10T11:25:37-03:00"
     }
   ],
   "paths": [
@@ -11685,11 +11704,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:da11596b0492"
+        "evidence:test:7f1f473139a4"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T11:22:52-03:00"
+      "last_validated": "2026-10-10T11:25:37-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -11712,20 +11731,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:989a33e88718",
+      "id": "evidence:repository:e81609e50e59",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T11:22:52-03:00",
+      "observed_at": "2026-10-10T11:25:37-03:00",
       "status": "observed",
-      "detail": "432 files indexed at revision 04606048716910efef5e39b48fbab929997978da"
+      "detail": "433 files indexed at revision aa308e44a79133324188f86a6aae54057f1dd6d5"
     },
     {
-      "id": "evidence:test:da11596b0492",
+      "id": "evidence:test:7f1f473139a4",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T11:22:52-03:00",
+      "observed_at": "2026-10-10T11:25:37-03:00",
       "status": "tested",
-      "detail": "225 passed in 8.80s"
+      "detail": "225 passed in 7.69s"
     }
   ],
   "decisions": [
@@ -11828,30 +11847,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:989a33e88718",
+      "id": "event:repository-scan:e81609e50e59",
       "type": "repository_scanned",
-      "at": "2026-10-10T11:22:52-03:00",
-      "revision": "04606048716910efef5e39b48fbab929997978da",
-      "file_count": 432,
-      "evidence_id": "evidence:repository:989a33e88718"
+      "at": "2026-10-10T11:25:37-03:00",
+      "revision": "aa308e44a79133324188f86a6aae54057f1dd6d5",
+      "file_count": 433,
+      "evidence_id": "evidence:repository:e81609e50e59"
     },
     {
-      "id": "event:commit-observed:046060487169",
+      "id": "event:commit-observed:aa308e44a791",
       "type": "commit_observed",
-      "at": "2026-10-10T11:22:52-03:00",
-      "revision": "04606048716910efef5e39b48fbab929997978da",
+      "at": "2026-10-10T11:25:37-03:00",
+      "revision": "aa308e44a79133324188f86a6aae54057f1dd6d5",
       "branch": "main",
-      "subject": "Add isolated Remote Browser installation workflow",
+      "subject": "Add read-only inspection for legacy browser interface port",
       "changed_files": [
-        ".github/workflows/abs-browser-install-remotebrowser.yml"
+        ".github/workflows/abs-browser-inspect-3010.yml"
       ]
     },
     {
-      "id": "event:test:da11596b0492",
+      "id": "event:test:7f1f473139a4",
       "type": "tests_observed",
-      "at": "2026-10-10T11:22:52-03:00",
+      "at": "2026-10-10T11:25:37-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:da11596b0492"
+      "evidence_id": "evidence:test:7f1f473139a4"
     }
   ],
   "knowledge_sources": [
@@ -11907,7 +11926,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "39c49fe87e49799b041b3e74390b07f3631b367c672418a8706905c1d57f08b3"
+      "sha256": "665a419f3594abc7446984a15b4eed30be0f85b3cc861ae12b13aa69fb7981f3"
     },
     {
       "id": "source:session",
@@ -52332,12 +52351,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:989a33e88718",
-      "source": "event:repository-scan:989a33e88718",
-      "relation": "generated",
-      "target": "evidence:repository:989a33e88718",
+      "id": "rel:commit-precedes:046060487169:09e51b394c27",
+      "source": "commit:04606048716910efef5e39b48fbab929997978da",
+      "relation": "precedes",
+      "target": "commit:09e51b394c27f33768958665b7e0c8b067d3e07f",
       "status": "asserted",
-      "at": "2026-10-10T11:22:52-03:00",
+      "at": "2026-10-10T14:23:12Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:09e51b394c27:032adc3624d7",
+      "source": "commit:09e51b394c27f33768958665b7e0c8b067d3e07f",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T14:23:12Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:09e51b394c27:d64178c49886",
+      "source": "commit:09e51b394c27f33768958665b7e0c8b067d3e07f",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T14:23:12Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:09e51b394c27:aa308e44a791",
+      "source": "commit:09e51b394c27f33768958665b7e0c8b067d3e07f",
+      "relation": "precedes",
+      "target": "commit:aa308e44a79133324188f86a6aae54057f1dd6d5",
+      "status": "asserted",
+      "at": "2026-10-10T11:25:37-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:aa308e44a791:a01b5c1fb48c",
+      "source": "commit:aa308e44a79133324188f86a6aae54057f1dd6d5",
+      "relation": "changed",
+      "target": "file:.github/workflows/abs-browser-inspect-3010.yml",
+      "status": "asserted",
+      "at": "2026-10-10T11:25:37-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:e81609e50e59",
+      "source": "event:repository-scan:e81609e50e59",
+      "relation": "generated",
+      "target": "evidence:repository:e81609e50e59",
+      "status": "asserted",
+      "at": "2026-10-10T11:25:37-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -52346,12 +52435,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:046060487169",
-      "source": "commit:04606048716910efef5e39b48fbab929997978da",
+      "id": "rel:scan-commit:aa308e44a791",
+      "source": "commit:aa308e44a79133324188f86a6aae54057f1dd6d5",
       "relation": "observed_by",
-      "target": "event:repository-scan:989a33e88718",
+      "target": "event:repository-scan:e81609e50e59",
       "status": "asserted",
-      "at": "2026-10-10T11:22:52-03:00",
+      "at": "2026-10-10T11:25:37-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",

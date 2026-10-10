@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 04606048716910efef5e39b48fbab929997978da
-Momento da revisão: 2026-10-10T11:22:52-03:00
+Revisão observada: aa308e44a79133324188f86a6aae54057f1dd6d5
+Momento da revisão: 2026-10-10T11:25:37-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -27,7 +27,7 @@ Momento da revisão: 2026-10-10T11:22:52-03:00
 - component:continuity — continuity (25 arquivos)
 - component:docs — docs (78 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
-- component:project — project (146 arquivos)
+- component:project — project (147 arquivos)
 - component:tests — tests (66 arquivos)
 
 ## Capacidades
@@ -126,6 +126,7 @@ Momento da revisão: 2026-10-10T11:22:52-03:00
 - file:"docs/90_fontes/\360\237\221\224 Consultoria_ Projeto Comercial & Automa\303\247\303\243o _ OpenHands Cloud (1).mht" — None — estado: unknown
 - file:.github/workflows/abs-auto-integration.yml — None — estado: unknown
 - file:.github/workflows/abs-browser-complete-all.yml — None — estado: unknown
+- file:.github/workflows/abs-browser-inspect-3010.yml — None — estado: unknown
 - file:.github/workflows/abs-browser-install-remotebrowser.yml — None — estado: unknown
 - file:.github/workflows/abs-browser-mobile-fix.yml — None — estado: unknown
 - file:.github/workflows/abs-browser-mobile-http.yml — None — estado: unknown
@@ -1798,6 +1799,8 @@ Momento da revisão: 2026-10-10T11:22:52-03:00
 - commit:bb29d70147d7b5f84f5f4ff28d8fce966f8056cd — None — estado: unknown
 - commit:542d7e4b2857744341d63c15b942125fa80edf84 — None — estado: unknown
 - commit:04606048716910efef5e39b48fbab929997978da — None — estado: unknown
+- commit:09e51b394c27f33768958665b7e0c8b067d3e07f — None — estado: unknown
+- commit:aa308e44a79133324188f86a6aae54057f1dd6d5 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1812,19 +1815,19 @@ Momento da revisão: 2026-10-10T11:22:52-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:989a33e88718 — None — estado: unknown
-- event:repository-scan:989a33e88718 — None — estado: unknown
-- event:commit-observed:046060487169 — None — estado: unknown
+- evidence:repository:e81609e50e59 — None — estado: unknown
+- event:repository-scan:e81609e50e59 — None — estado: unknown
+- event:commit-observed:aa308e44a791 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:da11596b0492
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:7f1f473139a4
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:989a33e88718 — repository_scanned — revisão: 04606048716910efef5e39b48fbab929997978da
-- event:commit-observed:046060487169 — commit_observed — revisão: 04606048716910efef5e39b48fbab929997978da
-- event:test:da11596b0492 — tests_observed — revisão: n/a
+- event:repository-scan:e81609e50e59 — repository_scanned — revisão: aa308e44a79133324188f86a6aae54057f1dd6d5
+- event:commit-observed:aa308e44a791 — commit_observed — revisão: aa308e44a79133324188f86a6aae54057f1dd6d5
+- event:test:7f1f473139a4 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -4709,15 +4712,20 @@ Momento da revisão: 2026-10-10T11:22:52-03:00
 - commit:542d7e4b2857744341d63c15b942125fa80edf84 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
 - commit:542d7e4b2857744341d63c15b942125fa80edf84 — precedes → commit:04606048716910efef5e39b48fbab929997978da — asserted
 - commit:04606048716910efef5e39b48fbab929997978da — changed → file:.github/workflows/abs-browser-install-remotebrowser.yml — asserted
-- event:repository-scan:989a33e88718 — generated → evidence:repository:989a33e88718 — asserted
-- commit:04606048716910efef5e39b48fbab929997978da — observed_by → event:repository-scan:989a33e88718 — asserted
+- commit:04606048716910efef5e39b48fbab929997978da — precedes → commit:09e51b394c27f33768958665b7e0c8b067d3e07f — asserted
+- commit:09e51b394c27f33768958665b7e0c8b067d3e07f — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:09e51b394c27f33768958665b7e0c8b067d3e07f — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:09e51b394c27f33768958665b7e0c8b067d3e07f — precedes → commit:aa308e44a79133324188f86a6aae54057f1dd6d5 — asserted
+- commit:aa308e44a79133324188f86a6aae54057f1dd6d5 — changed → file:.github/workflows/abs-browser-inspect-3010.yml — asserted
+- event:repository-scan:e81609e50e59 — generated → evidence:repository:e81609e50e59 — asserted
+- commit:aa308e44a79133324188f86a6aae54057f1dd6d5 — observed_by → event:repository-scan:e81609e50e59 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:989a33e88718 — repository_scan — observed — 432 files indexed at revision 04606048716910efef5e39b48fbab929997978da
-- evidence:test:da11596b0492 — test — tested — 225 passed in 8.80s
+- evidence:repository:e81609e50e59 — repository_scan — observed — 433 files indexed at revision aa308e44a79133324188f86a6aae54057f1dd6d5
+- evidence:test:7f1f473139a4 — test — tested — 225 passed in 7.69s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
