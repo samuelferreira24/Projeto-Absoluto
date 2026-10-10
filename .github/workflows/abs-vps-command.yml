@@ -1281,7 +1281,7 @@ jobs:
                 sudo -n docker exec coolify php artisan tinker --execute='$a=app("db")->table("activity_log")->where("id",12)->first(); if ($a) { $x=(array)$a; $o=[]; foreach (["id","log_name","description","subject_type","subject_id","event","created_at","updated_at"] as $k) if (array_key_exists($k,$x)) $o[$k]=$x[$k]; echo json_encode($o,JSON_PRETTY_PRINT),PHP_EOL; } else echo "activity_id_12_not_found".PHP_EOL;' 2>&1 || true
                 echo
                 echo "[Service config timezone only]"
-                sudo -n docker exec coolify php artisan tinker --execute='$s=app("App\\\\Models\\\\Service")->newQuery()->find(5); foreach (["docker_compose_raw","docker_compose"] as $k) { $v=$s->$k ?? ""; preg_match("/tz=[^\\\\r\\\\n]+/i",$v,$m); echo $k."_timezone=".($m[0] ?? "(not found)").PHP_EOL; }' 2>&1 || true
+                sudo -n docker exec coolify php artisan tinker --execute='$s=app("db")->table("services")->where("id",5)->first(); foreach (["docker_compose_raw","docker_compose"] as $k) { $v=$s->$k ?? ""; echo $k."_has_madrid=".(str_contains($v,"tz=europe/madrid")||str_contains($v,"tz=Europe/Madrid")?"true":"false")." ".$k."_has_sao_paulo=".(str_contains($v,"tz=America/Sao_Paulo")?"true":"false").PHP_EOL; }' 2>&1 || true
                 echo
                 echo "[Service directory files and container states]"
                 sudo -n find /data/coolify/services/bb55qbolrf4pqfl45gomnzyl -maxdepth 2 -type f -printf '%M %u:%g %f\\n' 2>&1 | head -n 40 || true
