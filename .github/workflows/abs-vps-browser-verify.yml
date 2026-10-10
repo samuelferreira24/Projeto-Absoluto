@@ -1,0 +1,85 @@
+name: ABS VPS Browser Post-Tuning Verification
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  verify:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      startsWith(github.event.comment.body, '/abs-emergency browser-verify')
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 5
+    steps:
+      - name: Read-only verification
+        id: verify
+        shell: bash
+        run: |
+          set +e
+          {
+            echo "[timestamp / load]"
+            date -Is
+            uptime
+            echo
+            echo "[host resources and pressure]"
+            free -h
+            df -h /
+            cat /proc/pressure/cpu /proc/pressure/memory 2>/dev/null || true
+            echo
+            echo "[browser containers]"
+            sudo -n docker inspect abs-browser-ui abs-remotebrowser --format '{{.Name}} state={{.State.Status}} mem={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}} nanoCPU={{.HostConfig.NanoCpus}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}' 2>&1
+            sudo -n docker stats --no-stream --format '{{.Name}} cpu={{.CPUPerc}} mem={{.MemUsage}} pids={{.PIDs}}' abs-browser-ui abs-remotebrowser 2>&1
+            echo
+            echo "[Selkies cgroup events]"
+            sudo -n docker exec abs-browser-ui sh -lc 'for f in /sys/fs/cgroup/memory.current /sys/fs/cgroup/memory.max /sys/fs/cgroup/memory.events /sys/fs/cgroup/memory.swap.max /sys/fs/cgroup/cpu.max /sys/fs/cgroup/cpu.stat; do if [ -r "$f" ]; then echo "--- $f"; cat "$f"; fi; done' 2>&1
+            echo
+            echo "[browser processes by CPU]"
+            ps -eo pid,ppid,stat,pcpu,pmem,rss,etime,args --sort=-pcpu | grep -E '[c]hromium|[s]elkies|[c]hrome-headless|[n]ode dist/index' | head -n 12
+            echo
+            echo "[remote app errors last 5 minutes]"
+            sudo -n docker logs --since 5m abs-remotebrowser 2>&1 | grep -E 'Error handling message|Target page, context or browser has been closed|Unhandled|Error:' | sed -E 's/\[WebSocket:[^]]+\]/[WebSocket:session]/g' | sort | uniq -c | sort -nr | head -n 10
+            echo
+            echo "[persistent browser deployment scripts, scoped search]"
+            sudo -n find /home/absadmin/abs-browser /etc/systemd/system -maxdepth 4 -type f \( -name '*.sh' -o -name '*.yml' -o -name '*.yaml' -o -name '*.service' -o -name 'Dockerfile' -o -name 'docker-compose*' \) -not -path '*/.git/*' -not -path '*/node_modules/*' 2>/dev/null | while read f; do grep -nE 'abs-browser-ui|abs-remotebrowser|selkies-theme-v1|docker (run|update|compose)|mem_limit|cpus:|memory:' "$f" 2>/dev/null && echo "FILE=$f"; done | head -n 55
+            echo
+            echo "[ABS service health]"
+            sudo -n systemctl show abs.service -p ActiveState -p SubState -p MainPID -p MemoryCurrent -p CPUUsageNSec 2>&1
+            curl -fsS --max-time 8 http://127.0.0.1:8787/health 2>&1 || true
+            echo
+            echo "[local AI loaded models]"
+            curl -fsS --max-time 3 http://127.0.0.1:11434/api/ps 2>&1 | head -c 600 || true
+          } > /tmp/abs-browser-verify-after-tuning.txt 2>&1
+          result="$(cat /tmp/abs-browser-verify-after-tuning.txt)"
+          {
+            echo 'result<<ABS_RESULT_EOF'
+            printf '%s\n' "${result:0:9000}"
+            echo 'ABS_RESULT_EOF'
+          } >> "$GITHUB_OUTPUT"
+      - name: Report
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.verify.outputs.result }}
+        with:
+          script: |
+            const body = [
+              '### ABS VPS — browser post-tuning verification',
+              '',
+              'Read-only measurements; this job does not change services or resource limits.',
+              '',
+              'OUTPUT_START',
+              (process.env.RESULT || '(no result)').slice(0, 9000),
+              'OUTPUT_END'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number || 121,
+              body
+            });
