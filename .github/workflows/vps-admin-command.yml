@@ -251,7 +251,7 @@ jobs:
                   print("tool_execution=FAIL; unexpected result shape")
           else:
               print("tool_execution=FAIL; structured result missing")
-PY
+          PY
                     done
                   fi
                 fi
