@@ -343,6 +343,16 @@ jobs:
           }, [handleShowVirtualKeyboard]);
 
           const populateAudioDevices = useCallback(async () => {"""
+          insert = insert.replace(
+              "const onTouchStart = (event) => {\n              if (!event.isTrusted",
+              "const onTouchStart = (event) => {\n              if (event.target && event.target.closest && event.target.closest('#abs-real-address-input-v1')) return;\n              if (!event.isTrusted",
+              1
+          )
+          insert = insert.replace(
+              "const onTouchEnd = (event) => {\n              const origin = start;",
+              "const onTouchEnd = (event) => {\n              if (event.target && event.target.closest && event.target.closest('#abs-real-address-input-v1')) { start = null; return; }\n              const origin = start;",
+              1
+          )
           s = s.replace(anchor, insert, 1)
           overlay = r'''  // ABS_REAL_ADDRESS_OVERLAY_V1: real local input aligned over the streamed Chromium address bar.
           useEffect(() => {
@@ -458,18 +468,6 @@ jobs:
           '''
           if 'ABS_REAL_ADDRESS_OVERLAY_V1' not in s:
               s = s.replace("  // ABS_MOBILE_AUTO_KEYBOARD_V1", overlay + "  // ABS_MOBILE_AUTO_KEYBOARD_V1", 1)
-          # The real address field owns its touch events; don't let the old remote-toolbar
-          # heuristic steal focus from it and return focus to Selkies' hidden IME field.
-          s = s.replace(
-              "const onTouchStart = (event) => {\n              if (!event.isTrusted",
-              "const onTouchStart = (event) => {\n              if (event.target && event.target.closest && event.target.closest('#abs-real-address-input-v1')) return;\n              if (!event.isTrusted",
-              1
-          )
-          s = s.replace(
-              "const onTouchEnd = (event) => {\n              const origin = start;",
-              "const onTouchEnd = (event) => {\n              if (event.target && event.target.closest && event.target.closest('#abs-real-address-input-v1')) { start = null; return; }\n              const origin = start;",
-              1
-          )
           p.write_text(s)
           print("PASS | Added real local address input overlay, native Android keyboard focus, and isolated its touch events.")
           PY
