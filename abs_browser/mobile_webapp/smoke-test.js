@@ -1,7 +1,7 @@
 'use strict';
 const assert = require('node:assert/strict');
 const WebSocket = require(process.env.ABS_BROWSER_APP_DIR + '/node_modules/ws');
-const BASE = 'http://127.0.0.1:3010';
+const BASE = process.env.ABS_MOBILE_BASE || 'http://127.0.0.1:3010';
 const CDP = 'http://127.0.0.1:9222';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 function pass(s){ console.log('PASS | '+s); }
@@ -13,7 +13,7 @@ async function getJson(url, timeout=5000){
 }
 async function streamTest(){
   return new Promise((resolve,reject)=>{
-    const ws=new WebSocket('ws://127.0.0.1:3010/abs-mobile/stream',{perMessageDeflate:false});
+    const ws=new WebSocket(BASE.replace(/^http:/,'ws:')+'/stream',{perMessageDeflate:false});
     let done=false;
     const timer=setTimeout(()=>finish(new Error('No real Chromium screencast frame received in 10 seconds.')),10000);
     function finish(err){if(done)return;done=true;clearTimeout(timer);try{ws.close();}catch{}err?reject(err):resolve();}
@@ -107,7 +107,7 @@ async function cdpTouchAudit(){
   assert.equal(state.ok,true);assert.equal(state.connected,true);
   assert.ok(state.targetId&&state.viewport?.width>0&&state.viewport?.height>0);
   pass('Live page target and mobile viewport are available.');
-  const html=await (await fetch(BASE+'/abs-mobile')).text();
+  const html=await (await fetch(BASE+'/')).text();
   assert.ok(html.includes('ABS Browser')&&html.includes('typing-active'),'Phone-first UI or keyboard proxy missing.');
   await streamTest();
   pass('Actual Chromium screencast frame reaches the mirror WebSocket.');

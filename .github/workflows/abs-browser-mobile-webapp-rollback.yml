@@ -46,12 +46,13 @@ jobs:
             sudo -n tailscale serve --set-path=/abs-mobile off || true
             sudo -n tailscale serve --set-path=/abs-mobile/ off || true
             sudo -n tailscale serve --http=80 --set-path=/abs-mobile off || true
-            sudo -n tailscale serve --http=80 --set-path=/abs-mobile/ off
+            sudo -n tailscale serve --http=80 --set-path=/abs-mobile/ off || true
             echo "PASS | Removed only the /abs-mobile route."
           else
             echo "INFO | /abs-mobile route was not present; other Tailscale routes left untouched."
           fi
           sudo -n systemctl disable --now abs-browser-mobile-webapp.service 2>/dev/null || true
+          sudo -n ufw delete allow in on tailscale0 to any port 3010 proto tcp >/dev/null 2>&1 || true
           if sudo -n systemctl is-active --quiet abs-browser-mobile-webapp.service; then
             echo "FAIL | New mobile web app service is still active."
             exit 1
