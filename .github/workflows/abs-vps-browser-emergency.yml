@@ -1,0 +1,71 @@
+name: ABS VPS Browser Emergency Resource Relief
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  relieve-browser-pressure:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      startsWith(github.event.comment.body, '/abs-emergency browser-safe-relief')
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 5
+    steps:
+      - name: Apply reversible live browser resource tuning
+        id: relief
+        shell: bash
+        run: |
+          set +e
+          {
+            echo "[before]"
+            sudo -n docker inspect abs-browser-ui abs-remotebrowser --format '{{.Name}} state={{.State.Status}} mem={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}} nanoCPU={{.HostConfig.NanoCpus}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}' 2>&1
+            sudo -n docker stats --no-stream --format '{{.Name}} cpu={{.CPUPerc}} mem={{.MemUsage}} pids={{.PIDs}}' abs-browser-ui abs-remotebrowser 2>&1
+            echo "[apply without restart]"
+            sudo -n docker update --memory=1792m --memory-swap=2048m --cpus=2.0 abs-browser-ui 2>&1
+            ui_rc=$?
+            sudo -n docker update --cpus=0.75 abs-remotebrowser 2>&1
+            remote_rc=$?
+            echo "selkies_update_rc=$ui_rc remote_browser_cpu_update_rc=$remote_rc"
+            echo "[after]"
+            sudo -n docker inspect abs-browser-ui abs-remotebrowser --format '{{.Name}} state={{.State.Status}} mem={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}} nanoCPU={{.HostConfig.NanoCpus}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}' 2>&1
+            sudo -n docker stats --no-stream --format '{{.Name}} cpu={{.CPUPerc}} mem={{.MemUsage}} pids={{.PIDs}}' abs-browser-ui abs-remotebrowser 2>&1
+            echo "[host resources]"
+            free -h
+            cat /proc/pressure/cpu /proc/pressure/memory 2>/dev/null || true
+            echo "[ABS health]"
+            curl -fsS --max-time 8 http://127.0.0.1:8787/health 2>&1 || true
+          } > /tmp/abs-browser-safe-relief-emergency.txt 2>&1
+          result="$(cat /tmp/abs-browser-safe-relief-emergency.txt)"
+          {
+            echo 'result<<ABS_RESULT_EOF'
+            printf '%s\n' "${result:0:9000}"
+            echo 'ABS_RESULT_EOF'
+          } >> "$GITHUB_OUTPUT"
+      - name: Report result
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RESULT: ${{ steps.relief.outputs.result }}
+        with:
+          script: |
+            const body = [
+              '### ABS VPS — browser resource relief',
+              '',
+              'Read-only precheck followed by reversible live Docker limit changes; no container restart and no profile/file deletion.',
+              '',
+              'OUTPUT_START',
+              (process.env.RESULT || '(no result)').slice(0, 9000),
+              'OUTPUT_END'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number || 121,
+              body
+            });
