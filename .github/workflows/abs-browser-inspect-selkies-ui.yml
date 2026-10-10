@@ -1,0 +1,62 @@
+name: ABS Inspect Selkies UI Assets
+on:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: abs-selkies-ui-assets-inspection
+  cancel-in-progress: false
+jobs:
+  inspect:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.issue.number == 121 &&
+      github.event.comment.user.login == 'samuelferreira24' &&
+      github.event.comment.body == '/abs-browser inspect-selkies-ui'
+    runs-on: [self-hosted, abs-vps-01-reserve]
+    timeout-minutes: 8
+    steps:
+      - name: Inspect Selkies UI implementation read-only
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          REPORT="$RUNNER_TEMP/abs-selkies-ui-assets.txt"
+          exec > >(tee "$REPORT") 2>&1
+          [ "$(hostname)" = "abs-vps-01" ] || { echo "FAIL | Unexpected host"; exit 1; }
+          echo "[container metadata]"
+          sudo -n docker inspect abs-browser-ui --format 'image={{.Config.Image}} image_id={{.Image}} entrypoint={{json .Config.Entrypoint}} cmd={{json .Config.Cmd}} labels={{json .Config.Labels}} mounts={{json .Mounts}} networks={{json .NetworkSettings.Networks}}' 2>&1 || true
+          echo
+          echo "[image repo tags and history]"
+          IMG="$(sudo -n docker inspect abs-browser-ui --format '{{.Image}}' 2>/dev/null || true)"
+          if [ -n "$IMG" ]; then
+            sudo -n docker image inspect "$IMG" --format 'repo_tags={{json .RepoTags}} repo_digests={{json .RepoDigests}} labels={{json .Config.Labels}}'
+            sudo -n docker history --no-trunc "$IMG" | head -n 20
+          fi
+          echo
+          echo "[running process names]"
+          sudo -n docker exec abs-browser-ui sh -lc 'ps -eo comm,args 2>/dev/null | head -n 35' 2>&1 || true
+          echo
+          echo "[likely frontend files inside Selkies container]"
+          sudo -n docker exec abs-browser-ui sh -lc 'find / -xdev -type f \( -name "index.html" -o -name "*.css" -o -iname "*selkies*.js" \) 2>/dev/null | grep -Ei "selkies|web|html|static|dist|assets" | head -n 100' 2>&1 || true
+          echo
+          echo "[mounted config tree]"
+          find /home/absadmin/abs-browser/config -maxdepth 3 -type f -printf '%P\n' 2>/dev/null | head -n 100 || true
+          echo
+          echo "PASS | Read-only; no browser services or files changed."
+      - name: Report inspection
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          REPORT_FILE: ${{ runner.temp }}/abs-selkies-ui-assets.txt
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync(process.env.REPORT_FILE) ? fs.readFileSync(process.env.REPORT_FILE, 'utf8') : 'No inspection report was produced.';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '### SELKIES UI ASSET INSPECTION (READ-ONLY)\n\n' + report.slice(-12000)
+            });
