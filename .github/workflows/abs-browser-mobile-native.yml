@@ -240,36 +240,38 @@ jobs:
           anchor = "  const populateAudioDevices = useCallback(async () => {"
           if s.count(anchor) != 1:
               raise SystemExit(f"FAIL | Sidebar keyboard insertion anchor expected once, found {s.count(anchor)}")
-          insert = """  // ABS_MOBILE_AUTO_KEYBOARD_V1: let the phone keyboard open when the remote browser or a webpage input gets focus.
+          insert = """  // ABS_MOBILE_AUTO_KEYBOARD_V1: let the phone keyboard open on a tap in Chromium's remote toolbar.
+          // Touch V2 is required because Selkies prevents the touch default, suppressing synthesized pointer events.
           // ABS_MOBILE_FOCUS_BRIDGE_V1 reports only whether a page text field is focused; it cannot execute browser commands.
           useEffect(() => {
             console.info('ABS_MOBILE_AUTO_KEYBOARD_V1');
+            console.info('ABS_MOBILE_AUTO_KEYBOARD_TOUCH_V2');
             console.info('ABS_MOBILE_FOCUS_BRIDGE_V1');
-            const overlay = document.getElementById('overlayInput');
-            if (!overlay) return;
+            let overlay = null;
             let start = null;
-            const onDown = (event) => {
-              start = { x: event.clientX, y: event.clientY, at: Date.now() };
+            let observer = null;
+            const onTouchStart = (event) => {
+              const touch = event.changedTouches && event.changedTouches[0];
+              if (!touch || !event.isTrusted) return;
+              start = { x: touch.clientX, y: touch.clientY, at: Date.now() };
             };
-            const onUp = (event) => {
+            const onTouchEnd = (event) => {
               const origin = start;
               start = null;
-              if (!origin) return;
-              const dx = event.clientX - origin.x;
-              const dy = event.clientY - origin.y;
+              const touch = event.changedTouches && event.changedTouches[0];
+              if (!origin || !touch || !event.isTrusted) return;
+              const dx = touch.clientX - origin.x;
+              const dy = touch.clientY - origin.y;
               if ((dx * dx + dy * dy) > 144 || Date.now() - origin.at > 700) return;
-              const rect = overlay.getBoundingClientRect();
-              if (!rect.height) return;
-              const y = (event.clientY - rect.top) / rect.height;
-              // IMPORTANT: invoke the native IME while pointerup is still a trusted user gesture.
-              // Android browsers may reject keyboard display if focus is deferred through a timer or fetch.
-              // The remote Chromium toolbar is in the top band of the streamed desktop.
+              const rect = overlay && overlay.getBoundingClientRect();
+              if (!rect || !rect.height) return;
+              const y = (touch.clientY - rect.top) / rect.height;
+              // Focus the IME assist field synchronously during the trusted touch gesture.
               if (y >= 0.035 && y <= 0.135) {
                 handleShowVirtualKeyboard();
                 return;
               }
-              // Web-page fields need remote focus detection; the persistent sidebar keyboard button remains
-              // the explicit fallback because native IME activation may be denied after asynchronous work.
+              // Preserve the existing optional page-field focus bridge for non-toolbar taps.
               window.setTimeout(async () => {
                 try {
                   const response = await fetch('/abs-keyboard-focus', {
@@ -283,12 +285,27 @@ jobs:
                 } catch (_) {}
               }, 180);
             };
-            overlay.addEventListener('pointerdown', onDown, { passive: true });
-            overlay.addEventListener('pointerup', onUp, { passive: true });
-            overlay.addEventListener('pointercancel', () => { start = null; }, { passive: true });
+            const attach = () => {
+              const candidate = document.getElementById('overlayInput');
+              if (!candidate || candidate === overlay) return;
+              if (overlay) {
+                overlay.removeEventListener('touchstart', onTouchStart);
+                overlay.removeEventListener('touchend', onTouchEnd);
+              }
+              overlay = candidate;
+              overlay.addEventListener('touchstart', onTouchStart, { passive: true });
+              overlay.addEventListener('touchend', onTouchEnd, { passive: true });
+            };
+            // The core may create the overlay after the dashboard mounts; do not silently skip attachment.
+            attach();
+            observer = new MutationObserver(attach);
+            observer.observe(document.documentElement, { childList: true, subtree: true });
             return () => {
-              overlay.removeEventListener('pointerdown', onDown);
-              overlay.removeEventListener('pointerup', onUp);
+              if (observer) observer.disconnect();
+              if (overlay) {
+                overlay.removeEventListener('touchstart', onTouchStart);
+                overlay.removeEventListener('touchend', onTouchEnd);
+              }
             };
           }, [handleShowVirtualKeyboard]);
 
