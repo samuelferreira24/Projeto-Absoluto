@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-10T17:12:05-03:00",
-  "source_revision": "eaed57ca7de3f1edc94a31a45656692804cef084",
+  "generated_at": "2026-10-10T17:13:25-03:00",
+  "source_revision": "c73742c1ba14f384c3742c5c7494c8da482ad130",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "eaed57ca7de3f1edc94a31a45656692804cef084",
-      "commit_subject": "Add read-only MCP tool smoke test for VPS Direct Admin"
+      "revision": "c73742c1ba14f384c3742c5c7494c8da482ad130",
+      "commit_subject": "Fix shell heredoc delimiter in VPS Direct Admin smoke test"
     }
   ],
   "tools": [
@@ -13021,6 +13021,27 @@
       "sha": "eaed57ca7de3f1edc94a31a45656692804cef084"
     },
     {
+      "id": "commit:487ed140868686a0279903c766164b3ce4761556",
+      "kind": "commit",
+      "at": "2026-10-10T20:12:33Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "487ed140868686a0279903c766164b3ce4761556"
+    },
+    {
+      "id": "commit:f68c3aa64b81b09c5c70499459d086fe1776eaae",
+      "kind": "commit",
+      "at": "2026-10-10T17:13:05-03:00",
+      "subject": "Fix YAML indentation in VPS Direct Admin MCP smoke test",
+      "sha": "f68c3aa64b81b09c5c70499459d086fe1776eaae"
+    },
+    {
+      "id": "commit:c73742c1ba14f384c3742c5c7494c8da482ad130",
+      "kind": "commit",
+      "at": "2026-10-10T17:13:25-03:00",
+      "subject": "Fix shell heredoc delimiter in VPS Direct Admin smoke test",
+      "sha": "c73742c1ba14f384c3742c5c7494c8da482ad130"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -13133,23 +13154,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:6133b8e0b3c3",
+      "id": "evidence:repository:7551b49bc072",
       "kind": "evidence",
-      "at": "2026-10-10T17:12:05-03:00",
+      "at": "2026-10-10T17:13:25-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:6133b8e0b3c3",
+      "id": "event:repository-scan:7551b49bc072",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-10T17:12:05-03:00"
+      "at": "2026-10-10T17:13:25-03:00"
     },
     {
-      "id": "event:commit-observed:eaed57ca7de3",
+      "id": "event:commit-observed:c73742c1ba14",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-10T17:12:05-03:00"
+      "at": "2026-10-10T17:13:25-03:00"
     }
   ],
   "paths": [
@@ -13184,11 +13205,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:106349a3c30e"
+        "evidence:test:00a1e8e27cb7"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-10T17:12:05-03:00"
+      "last_validated": "2026-10-10T17:13:25-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13211,20 +13232,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:6133b8e0b3c3",
+      "id": "evidence:repository:7551b49bc072",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-10T17:12:05-03:00",
+      "observed_at": "2026-10-10T17:13:25-03:00",
       "status": "observed",
-      "detail": "447 files indexed at revision eaed57ca7de3f1edc94a31a45656692804cef084"
+      "detail": "447 files indexed at revision c73742c1ba14f384c3742c5c7494c8da482ad130"
     },
     {
-      "id": "evidence:test:106349a3c30e",
+      "id": "evidence:test:00a1e8e27cb7",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-10T17:12:05-03:00",
+      "observed_at": "2026-10-10T17:13:25-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.53s"
+      "detail": "225 passed in 8.81s"
     }
   ],
   "decisions": [
@@ -13327,30 +13348,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:6133b8e0b3c3",
+      "id": "event:repository-scan:7551b49bc072",
       "type": "repository_scanned",
-      "at": "2026-10-10T17:12:05-03:00",
-      "revision": "eaed57ca7de3f1edc94a31a45656692804cef084",
+      "at": "2026-10-10T17:13:25-03:00",
+      "revision": "c73742c1ba14f384c3742c5c7494c8da482ad130",
       "file_count": 447,
-      "evidence_id": "evidence:repository:6133b8e0b3c3"
+      "evidence_id": "evidence:repository:7551b49bc072"
     },
     {
-      "id": "event:commit-observed:eaed57ca7de3",
+      "id": "event:commit-observed:c73742c1ba14",
       "type": "commit_observed",
-      "at": "2026-10-10T17:12:05-03:00",
-      "revision": "eaed57ca7de3f1edc94a31a45656692804cef084",
+      "at": "2026-10-10T17:13:25-03:00",
+      "revision": "c73742c1ba14f384c3742c5c7494c8da482ad130",
       "branch": "main",
-      "subject": "Add read-only MCP tool smoke test for VPS Direct Admin",
+      "subject": "Fix shell heredoc delimiter in VPS Direct Admin smoke test",
       "changed_files": [
         ".github/workflows/vps-admin-command.yml"
       ]
     },
     {
-      "id": "event:test:106349a3c30e",
+      "id": "event:test:00a1e8e27cb7",
       "type": "tests_observed",
-      "at": "2026-10-10T17:12:05-03:00",
+      "at": "2026-10-10T17:13:25-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:106349a3c30e"
+      "evidence_id": "evidence:test:00a1e8e27cb7"
     }
   ],
   "knowledge_sources": [
@@ -13406,7 +13427,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "31ebaadbdbb556b641bccc940aaa9dd127a443e6e411d4600ce4c68b165ec11b"
+      "sha256": "3f99773715660cbb0e19627c44db185e84719a65fa437089806be2f7630c7161"
     },
     {
       "id": "source:session",
@@ -60775,12 +60796,110 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:6133b8e0b3c3",
-      "source": "event:repository-scan:6133b8e0b3c3",
-      "relation": "generated",
-      "target": "evidence:repository:6133b8e0b3c3",
+      "id": "rel:commit-precedes:eaed57ca7de3:487ed1408686",
+      "source": "commit:eaed57ca7de3f1edc94a31a45656692804cef084",
+      "relation": "precedes",
+      "target": "commit:487ed140868686a0279903c766164b3ce4761556",
       "status": "asserted",
-      "at": "2026-10-10T17:12:05-03:00",
+      "at": "2026-10-10T20:12:33Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:487ed1408686:032adc3624d7",
+      "source": "commit:487ed140868686a0279903c766164b3ce4761556",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-10T20:12:33Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:487ed1408686:d64178c49886",
+      "source": "commit:487ed140868686a0279903c766164b3ce4761556",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-10T20:12:33Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:487ed1408686:f68c3aa64b81",
+      "source": "commit:487ed140868686a0279903c766164b3ce4761556",
+      "relation": "precedes",
+      "target": "commit:f68c3aa64b81b09c5c70499459d086fe1776eaae",
+      "status": "asserted",
+      "at": "2026-10-10T17:13:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f68c3aa64b81:d2156db4a874",
+      "source": "commit:f68c3aa64b81b09c5c70499459d086fe1776eaae",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-admin-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T17:13:05-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f68c3aa64b81:c73742c1ba14",
+      "source": "commit:f68c3aa64b81b09c5c70499459d086fe1776eaae",
+      "relation": "precedes",
+      "target": "commit:c73742c1ba14f384c3742c5c7494c8da482ad130",
+      "status": "asserted",
+      "at": "2026-10-10T17:13:25-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c73742c1ba14:d2156db4a874",
+      "source": "commit:c73742c1ba14f384c3742c5c7494c8da482ad130",
+      "relation": "changed",
+      "target": "file:.github/workflows/vps-admin-command.yml",
+      "status": "asserted",
+      "at": "2026-10-10T17:13:25-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:7551b49bc072",
+      "source": "event:repository-scan:7551b49bc072",
+      "relation": "generated",
+      "target": "evidence:repository:7551b49bc072",
+      "status": "asserted",
+      "at": "2026-10-10T17:13:25-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -60789,12 +60908,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:eaed57ca7de3",
-      "source": "commit:eaed57ca7de3f1edc94a31a45656692804cef084",
+      "id": "rel:scan-commit:c73742c1ba14",
+      "source": "commit:c73742c1ba14f384c3742c5c7494c8da482ad130",
       "relation": "observed_by",
-      "target": "event:repository-scan:6133b8e0b3c3",
+      "target": "event:repository-scan:7551b49bc072",
       "status": "asserted",
-      "at": "2026-10-10T17:12:05-03:00",
+      "at": "2026-10-10T17:13:25-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
