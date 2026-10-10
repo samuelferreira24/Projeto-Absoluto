@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: 93fff8792bc9ceb0e499a22a603a741d93d4f01c
-Momento da revisão: 2026-10-09T23:51:28-03:00
+Revisão observada: 428caa90d4764aefbc52bcd4060af2aedff9fe7d
+Momento da revisão: 2026-10-09T23:53:19-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -27,7 +27,7 @@ Momento da revisão: 2026-10-09T23:51:28-03:00
 - component:continuity — continuity (25 arquivos)
 - component:docs — docs (78 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
-- component:project — project (143 arquivos)
+- component:project — project (144 arquivos)
 - component:tests — tests (66 arquivos)
 
 ## Capacidades
@@ -130,6 +130,7 @@ Momento da revisão: 2026-10-09T23:51:28-03:00
 - file:.github/workflows/abs-browser-mobile-native.yml — None — estado: unknown
 - file:.github/workflows/abs-browser-mobile-test.yml — None — estado: unknown
 - file:.github/workflows/abs-browser-mobile-webapp-rollback.yml — None — estado: unknown
+- file:.github/workflows/abs-browser-mobile-webapp-verify.yml — None — estado: unknown
 - file:.github/workflows/abs-browser-mobile-webapp.yml — None — estado: unknown
 - file:.github/workflows/abs-browser-yaml-diagnostic.yml — None — estado: unknown
 - file:.github/workflows/abs-core.yml — None — estado: unknown
@@ -1745,6 +1746,8 @@ Momento da revisão: 2026-10-09T23:51:28-03:00
 - commit:898de0d95c69c24167d29ff1a2a079be70658d85 — None — estado: unknown
 - commit:a5858e2be79d9f17a06df8b4034939bd4e1c6145 — None — estado: unknown
 - commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — None — estado: unknown
+- commit:05f270f92e79f42481c1dc27ddbf7acd4ff56864 — None — estado: unknown
+- commit:428caa90d4764aefbc52bcd4060af2aedff9fe7d — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -1759,19 +1762,19 @@ Momento da revisão: 2026-10-09T23:51:28-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:aea86312b0fe — None — estado: unknown
-- event:repository-scan:aea86312b0fe — None — estado: unknown
-- event:commit-observed:93fff8792bc9 — None — estado: unknown
+- evidence:repository:76c9b6644a22 — None — estado: unknown
+- event:repository-scan:76c9b6644a22 — None — estado: unknown
+- event:commit-observed:428caa90d476 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:50a2e2716cad
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:19080ac8adb3
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:aea86312b0fe — repository_scanned — revisão: 93fff8792bc9ceb0e499a22a603a741d93d4f01c
-- event:commit-observed:93fff8792bc9 — commit_observed — revisão: 93fff8792bc9ceb0e499a22a603a741d93d4f01c
-- event:test:50a2e2716cad — tests_observed — revisão: n/a
+- event:repository-scan:76c9b6644a22 — repository_scanned — revisão: 428caa90d4764aefbc52bcd4060af2aedff9fe7d
+- event:commit-observed:428caa90d476 — commit_observed — revisão: 428caa90d4764aefbc52bcd4060af2aedff9fe7d
+- event:test:19080ac8adb3 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -4527,15 +4530,20 @@ Momento da revisão: 2026-10-09T23:51:28-03:00
 - commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — changed → file:abs_browser/mobile_webapp/public/index.html — asserted
 - commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — changed → file:abs_browser/mobile_webapp/server.js — asserted
 - commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — changed → file:abs_browser/mobile_webapp/smoke-test.js — asserted
-- event:repository-scan:aea86312b0fe — generated → evidence:repository:aea86312b0fe — asserted
-- commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — observed_by → event:repository-scan:aea86312b0fe — asserted
+- commit:93fff8792bc9ceb0e499a22a603a741d93d4f01c — precedes → commit:05f270f92e79f42481c1dc27ddbf7acd4ff56864 — asserted
+- commit:05f270f92e79f42481c1dc27ddbf7acd4ff56864 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:05f270f92e79f42481c1dc27ddbf7acd4ff56864 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:05f270f92e79f42481c1dc27ddbf7acd4ff56864 — precedes → commit:428caa90d4764aefbc52bcd4060af2aedff9fe7d — asserted
+- commit:428caa90d4764aefbc52bcd4060af2aedff9fe7d — changed → file:.github/workflows/abs-browser-mobile-webapp-verify.yml — asserted
+- event:repository-scan:76c9b6644a22 — generated → evidence:repository:76c9b6644a22 — asserted
+- commit:428caa90d4764aefbc52bcd4060af2aedff9fe7d — observed_by → event:repository-scan:76c9b6644a22 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:aea86312b0fe — repository_scan — observed — 429 files indexed at revision 93fff8792bc9ceb0e499a22a603a741d93d4f01c
-- evidence:test:50a2e2716cad — test — tested — 225 passed in 7.67s
+- evidence:repository:76c9b6644a22 — repository_scan — observed — 430 files indexed at revision 428caa90d4764aefbc52bcd4060af2aedff9fe7d
+- evidence:test:19080ac8adb3 — test — tested — 225 passed in 7.06s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
