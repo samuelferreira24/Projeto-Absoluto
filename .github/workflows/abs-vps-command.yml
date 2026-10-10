@@ -1301,6 +1301,12 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-volume-backup-records)
+              {
+                sudo -n docker exec coolify php artisan tinker --execute='$s=app("db")->getSchemaBuilder(); foreach(["local_persistent_volumes","local_file_volumes","service_applications","services","scheduled_volume_backups"] as $t){if(!$s->hasTable($t)){echo "missing=".$t.PHP_EOL;continue;} echo $t." columns=".implode(",",$s->getColumnListing($t)).PHP_EOL;} foreach(["local_persistent_volumes","local_file_volumes"] as $t){if(!$s->hasTable($t))continue; foreach(app("db")->table($t)->get() as $r){$a=(array)$r; $j=strtolower(json_encode($a)); if(str_contains($j,"code-server")||str_contains($j,"bb55qbol")||str_contains($j,"26sw5juk")) echo $t." ".json_encode($a,JSON_UNESCAPED_SLASHES).PHP_EOL;}}' 2>&1 || true
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-volume-backup-source)
               {
                 echo "[ScheduledVolumeBackup model]"
