@@ -1330,6 +1330,16 @@ jobs:
               } > /tmp/abs-vps-result.txt
               result="$(cat /tmp/abs-vps-result.txt)"
               ;;
+            coolify-code-server-backup-verify)
+              {
+                echo "[Latest Code Server volume backup execution]"
+                sudo -n docker exec coolify php artisan tinker --execute='$b=App\Models\ScheduledVolumeBackup::where("backupable_type","App\\Models\\LocalPersistentVolume")->where("backupable_id",5)->firstOrFail(); $e=$b->executions()->first(); echo json_encode(["schedule_id"=>$b->id,"enabled"=>(bool)$b->enabled,"frequency"=>$b->frequency,"execution_exists"=>(bool)$e,"status"=>$e?->status,"message"=>$e?->message,"size"=>$e?->size,"filename"=>$e?->filename,"finished_at"=>$e?->finished_at,"s3_uploaded"=>$e?->s3_uploaded],JSON_PRETTY_PRINT),PHP_EOL;' 2>&1 || true
+                echo
+                echo "[Recent backup artifacts — metadata only]"
+                sudo -n find /data/coolify/backups -type f -printf '%TY-%Tm-%Td %TH:%TM %s bytes %f\\n' 2>/dev/null | sort | tail -n 10
+              } > /tmp/abs-vps-result.txt
+              result="$(cat /tmp/abs-vps-result.txt)"
+              ;;
             coolify-code-server-backup-test)
               {
                 echo "[Queue one immediate Code Server volume backup]"
