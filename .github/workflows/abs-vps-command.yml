@@ -1210,6 +1210,10 @@ jobs:
                 sudo -n stat -c 'backup_dir_mode=%a owner=%U:%G' /data/coolify/backups 2>&1 || true
                 if [ -n "$artifact" ]; then sudo -n stat -c 'backup_file_mode=%a owner=%U:%G' "$artifact" 2>&1 || true; fi
                 echo
+                echo "[Coolify runtime user and source-directory permissions]"
+                sudo -n docker exec coolify sh -lc 'id; ps -eo user,uid,gid,comm | grep -E "php|artisan|supervisord" | head -n 12' 2>&1 || true
+                sudo -n stat -c 'source_dir_mode=%a owner=%U:%G' /data/coolify/source 2>&1 || true
+                echo
                 echo "[Temporary restore database cleanup check]"
                 temp_db="$(sudo -n docker exec coolify-db sh -lc 'psql -At -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d postgres -c "SELECT 1 FROM pg_database WHERE datname = \$\$abs_coolify_restore_test\$\$;"' 2>&1)"
                 if [ "$temp_db" = "1" ]; then echo "temporary_restore_database_remaining=true"; else echo "temporary_restore_database_remaining=false"; fi
