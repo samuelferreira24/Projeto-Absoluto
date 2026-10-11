@@ -29,18 +29,36 @@ Registar:
 
 ## 3. Passagem 1 — Leitor da obra inteira
 
-**Papel:** leitor atento, não avaliador de engenharia.
+A Passagem 1 é prioritária e será executada por quatro subfases complementares, cumulativas e não redundantes. Elas organizam o trabalho; não exigem quatro releituras completas separadas.
 
+### 1A — Leitura narrativa sequencial
+
+**Papel:** leitor atento, não avaliador de engenharia.  
 **Pergunta principal:** “O que acontece nesta história, como o universo funciona e por que os acontecimentos importam?”
 
-Durante esta passagem:
-- ler a narrativa em ordem, em blocos manejáveis;
-- registrar acontecimentos, arcos, protagonistas, personagens relevantes, organizações, facções, objetivos, conflitos e consequências;
-- registrar como o universo é apresentado e quais regras são explicitamente estabelecidas;
-- acompanhar a evolução de Han Xiao, a classe Mecânico e a relação entre conhecimento, recursos, produção, poder e sociedade;
-- anotar termos ou tecnologias que mereçam voltar a ser examinados, sem tentar fazer um catálogo técnico completo;
-- preservar perguntas abertas, ambiguidades, revelações posteriores e possíveis contradições;
-- atualizar resumos cumulativos de cada bloco para permitir continuidade entre sessões.
+Ler em ordem, capítulo por capítulo, e manter uma nota individual para cada capítulo consultado. Registar acontecimentos e cenas na ordem em que ocorrem, objetivos imediatos, decisões, motivações observáveis, consequências, informação nova, ponto de vista, diferenças entre o que cada personagem sabe e o que o leitor sabe, ambiguidades e perguntas. Sinalizar elementos que mereçam voltar a ser examinados, sem iniciar o catálogo técnico sistemático.
+
+**Saída:** notas individuais por capítulo, com edição, título, URL, estado real de acesso e distinção entre texto, paráfrase, inferência e hipótese.
+
+### 1B — Integração narrativa contínua
+
+Após cada lote, integrar as notas — sem as substituir — na cronologia, mapa de arcos, fichas de personagens e relações, facções, conflitos, regras do universo, glossário contextual e questões abertas. Ligar causas, decisões e consequências ao longo de capítulos e escalas narrativas. Rastrear prenúncios, retornos, revelações e efeitos tardios quando houver evidência; rever os mapas com maior profundidade ao fim de cada arco.
+
+**Saída:** visão cumulativa conectada, com referências de capítulo e estados de evidência.
+
+### 1C — Auditoria progressiva de compreensão
+
+Antes de avançar para o lote seguinte, comparar as notas do lote atual com o conteúdo efetivamente acessível. Verificar omissões, sequência dos acontecimentos, motivações, consequências, ponto de vista, conhecimento de cada personagem, conexões e consistência com a síntese cumulativa. Corrigir erros e preservar incertezas; não resolver lacunas por memória ou especulação. A extensão da verificação deve ser proporcional à densidade, ao risco e às omissões encontradas, com auditorias mais amplas nos finais de arco.
+
+**Saída:** notas corrigidas e estado de cobertura atualizado de acordo com a evidência realmente verificada.
+
+### 1D — Síntese global após a cobertura narrativa
+
+Somente depois de percorrer os capítulos acessíveis da edição de trabalho, consolidar a cronologia, os arcos, as transformações dos personagens, as relações e facções, as regras e exceções do universo, os prenúncios e resoluções, as mudanças de escala e as perguntas ainda abertas. Reexaminar interpretações antigas à luz de revelações posteriores, preservando o histórico das revisões. Declarar expressamente lacunas de acesso ou cobertura.
+
+**Saída:** síntese integrada da narrativa e relatório de cobertura/limitações, preparando a Passagem 2.
+
+As quatro subfases funcionam em ciclo: 1A produz notas; 1B integra; 1C verifica e corrige antes de avançar; 1D sintetiza globalmente após cobertura suficiente. Não se inicia a Passagem 2 apenas porque existe uma síntese ou um catálogo preliminar.
 
 **Evitar nesta passagem:**
 - decidir se uma tecnologia é realizável;
@@ -49,7 +67,9 @@ Durante esta passagem:
 - tratar a explicação de uma wiki como substituto da narrativa;
 - preencher lacunas com memória, inferência ou resumos não verificados.
 
-**Saídas:** mapa de arcos, cronologia de acontecimentos, fichas de personagens/facções, regras do universo, glossário contextual, diário de leitura e resumo cumulativo sem reproduzir o texto da obra.
+**Cadência de execução:** usar lotes adaptativos de 3–5 capítulos durante a calibração, reduzindo para 1–3 quando houver densidade, revelação importante, mudança de arco ou dificuldade de acesso. Cada capítulo mantém nota e estado próprios. Só aumentar o lote após dois lotes consecutivos passarem pelo controle de qualidade sem perda relevante de detalhe ou rastreabilidade. O tamanho do lote é uma decisão operacional baseada em evidência, não uma meta de produtividade.
+
+**Saídas:** notas individuais por capítulo, mapa de arcos, cronologia de acontecimentos, fichas de personagens/facções, regras do universo, glossário contextual, diário de leitura, registo de conexões narrativas e resumo cumulativo sem reproduzir o texto da obra.
 
 **Critério de saída:** todos os capítulos da edição de trabalho que forem legalmente acessíveis têm estado de cobertura explícito; o enredo principal, os arcos e as regras do universo estão sintetizados com referências. Conteúdo inacessível permanece marcado como lacuna — nunca como lido.
 
@@ -228,9 +248,10 @@ Regras obrigatórias:
 - Trabalhar na branch designada e respeitar governança do repositório; não mesclar na `main` nem alterar o ABS fora do escopo autorizado.
 
 ### 10.8 Tamanho de lote e controle de continuidade
-Usar **10 capítulos por lote como hipótese operacional inicial**, não como limite fixo nem promessa de cobertura. Após o primeiro lote realmente consultado, avaliar extensão, densidade, qualidade dos registros e acesso ao texto; reduzir para 5–10 ou ampliar para 10–20 quando justificado. Capítulos curtos ou revisão podem permitir blocos maiores, mas não se deve sacrificar rastreabilidade para aumentar velocidade.
 
-Cada lote deve terminar com: intervalo planejado e efetivamente lido; capítulos e estados reais; resumo do lote; mudanças no estado narrativo; conexões novas ou revistas; dúvidas e lacunas; ponto exato de retomada. Antes de começar outro lote ou uma nova conversa, recuperar o último estado persistido. O repositório é a fonte de continuidade, não a memória implícita da sessão.
+Durante a calibração, usar lotes adaptativos de **3–5 capítulos**, reduzindo para 1–3 quando a densidade, a importância narrativa, a mudança de arco ou as limitações de acesso justificarem. Não ampliar o lote antes de dois lotes consecutivos passarem pelo controle de qualidade. Depois disso, qualquer ampliação deve ser justificada por evidência de que não reduz a rastreabilidade nem aumenta omissões. O tamanho do lote não é uma meta de produtividade.
+
+Cada lote deve terminar com: intervalo planejado e efetivamente consultado; capítulos e estados reais; notas individuais; resumo cumulativo; mudanças no estado narrativo; conexões novas ou revistas; dúvidas e lacunas; resultado do controle de qualidade; ponto exato de retomada. Antes de começar outro lote ou uma nova conversa, recuperar o último estado persistido. O repositório é a fonte de continuidade, não a memória implícita da sessão.
 
 ## 11. Estado real e aplicação imediata
 
