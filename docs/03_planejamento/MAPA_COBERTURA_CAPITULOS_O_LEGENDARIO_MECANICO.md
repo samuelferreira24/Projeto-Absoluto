@@ -118,3 +118,8 @@ A [auditoria cruzada dos capítulos 1–4](../06_auditoria/AUDITORIA_CRUZADA_CON
 ## Atualização — capítulo 5 (2026-10-11)
 
 A página oficial do capítulo 5 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes dos controles auxiliares. A nota individual está em [PASSAGEM_1_CAPITULO_05_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_05_NOTA_INDIVIDUAL.md). A auditoria cruzada do sublote 1–5 ainda está pendente; capítulos 6–10 continuam a aguardar reabertura/auditoria individual.
+
+
+## Resultado de auditoria cruzada 1–5 — 2026-10-11
+
+A [auditoria cruzada dos capítulos 1–5](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_05.md) concluiu o controle de qualidade sem contradição central. Foram preservadas ressalvas sobre a terminologia “Mechanic”/“Engineer (Novice)” e sobre a previsão de Han Xiao acerca de Hila/Aurora. Próxima etapa: capítulo 6; não avançar ao capítulo 7 antes do QC cruzado 1–6.
