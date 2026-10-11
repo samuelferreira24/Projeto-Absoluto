@@ -291,3 +291,9 @@ A página oficial do capítulo 25, “New Talent!”, foi aberta pelo link do ca
 Foi criada a [síntese integrada dos capítulos 23–25](../docs/06_auditoria/PASSAGEM_1_LOTE_06_CAPITULOS_23_25.md) e a [auditoria cruzada 23–25](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_23_25.md). Não foi encontrada contradição central. Han Xiao concluiu a prótese e foi contratado; Tall Old Man reportou a sua presença à inteligência de Stardragon, que decidiu monitorizá-lo; o acordo com Big Raccoon dá rendimento e acesso a sucata. A contratação formal na Division 13 ainda não ocorreu.
 
 **Próximo passo exato:** abrir o capítulo 26, criar notas individuais para 26–28 e concluir o QC cruzado 26–28 antes de avançar ao capítulo 29. A Passagem 2 permanece bloqueada.
+
+## Sub-lote 26–28: capítulo 26 lido (2026-10-11)
+
+A página oficial do capítulo 26, “Blueprint: Robot (Type: Rover)”, foi aberta pelo link do capítulo 25 e a [nota individual do capítulo 26](../docs/06_auditoria/PASSAGEM_1_CAPITULO_26_NOTA_INDIVIDUAL.md) foi criada. Han Xiao desbloqueia [Novice Refining], [Overload] e a planta [Robot - Rover]. Feng Jun, agente da Division 13 disfarçado de cliente, testa Han Xiao através de uma reparação de carro e recomenda mais observação, sem confronto direto.
+
+**Próximo passo exato:** abrir os capítulos 27 e 28, criar notas individuais e concluir o QC cruzado 26–28 antes de avançar ao capítulo 29.
