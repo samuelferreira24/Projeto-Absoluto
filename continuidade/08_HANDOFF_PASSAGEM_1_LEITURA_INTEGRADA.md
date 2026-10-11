@@ -189,3 +189,9 @@ A página oficial do capítulo 10, “Night Owl”, foi aberta através do link 
 A [auditoria cruzada final dos capítulos 1–10](../docs/06_auditoria/AUDITORIA_CRUZADA_FINAL_CAPITULOS_01_10.md) foi concluída. Não foi encontrada contradição central na sequência narrativa. Foram corrigidas formulações sobre a transmigração/ponto de vista e sobre a destruição dos registos Valkyrie: o incêndio é mostrado, mas a destruição total dos dados é apenas relatada pelo líder da Equipa A e não foi verificada independentemente. As variantes terminológicas da edição inglesa e o balanço exato das baixas permanecem em aberto.
 
 **Estado:** capítulos 1–10 — corpo narrativo visível reaberto e verificado, notas individuais criadas e QC cruzado concluído; lote auditado, sem alegar que toda a obra foi lida. A Passagem 1 continua em execução. **Próximo passo, após verificar os arquivos atualizados:** reabrir o capítulo 11, “Crunch Time”, e continuar em ordem com lote adaptativo; não iniciar a Passagem 2 ainda.
+
+## Início do sublote 11–13 — capítulo 11 lido (2026-10-11)
+
+Depois da verificação final do lote 1–10, a página oficial do capítulo 11, “Crunch Time”, foi aberta pelo link do capítulo 10 e a [nota individual do capítulo 11](../docs/06_auditoria/PASSAGEM_1_CAPITULO_11_NOTA_INDIVIDUAL.md) foi criada. A perseguição continua na floresta; Han Xiao combate os seis agentes Night Owl, fica gravemente pressionado e o capítulo termina em suspense após uma explosão, sem confirmar se sobreviveu.
+
+**Próximo passo exato:** abrir o capítulo 12 e depois o 13, criar notas individuais e fazer integração narrativa + QC do sublote 11–13 antes de avançar ao capítulo 14. Manter a cadência de três capítulos nesta unidade; não iniciar a Passagem 2.
