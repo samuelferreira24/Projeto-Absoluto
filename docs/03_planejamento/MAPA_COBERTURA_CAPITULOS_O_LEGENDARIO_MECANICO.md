@@ -105,6 +105,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-018 | 18 — Bigger Than You Imagined | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 17–19 aprovado | [Nota do capítulo 18](../06_auditoria/PASSAGEM_1_CAPITULO_18_NOTA_INDIVIDUAL.md) |
 | CH-EN-019 | 19 — $1,000,000 Bounty! Class A Mission! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 17–19 aprovado | [Nota do capítulo 19](../06_auditoria/PASSAGEM_1_CAPITULO_19_NOTA_INDIVIDUAL.md) |
 | CH-EN-020 | 20 — Illegal Entry | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 20–22 pendente | [Nota do capítulo 20](../06_auditoria/PASSAGEM_1_CAPITULO_20_NOTA_INDIVIDUAL.md) |
+| CH-EN-021 | 21 — The Old Man Who Plays Chess | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 20–22 pendente | [Nota do capítulo 21](../06_auditoria/PASSAGEM_1_CAPITULO_21_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -238,3 +239,8 @@ A [auditoria cruzada 17–19](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAP
 ## Atualização — capítulo 20 (2026-10-11)
 
 A página oficial do capítulo 20, “Illegal Entry”, foi aberta pelo link do capítulo 19. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_20_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_20_NOTA_INDIVIDUAL.md). Han Xiao entra clandestinamente na Western Capital pagando ao contrabandista com as armas saqueadas, recusa a oferta de Ma Jie e desbloqueia [Steal]. O sublote 20–22 está em execução.
+
+
+## Atualização — capítulo 21 (2026-10-11)
+
+A página oficial do capítulo 21, “The Old Man Who Plays Chess”, foi aberta pelo link do capítulo 20. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_21_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_21_NOTA_INDIVIDUAL.md). Han Xiao localiza uma oficina secreta associada ao jogo e candidata-se como aprendiz, mas Old Man Lu exige um teste antes de o deixar ficar. O sublote 20–22 continua em execução.
