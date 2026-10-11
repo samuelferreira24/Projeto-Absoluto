@@ -81,35 +81,23 @@ Não armazenar capítulos completos, traduções integrais ou trechos extensos. 
 
 ## Atualização de execução — Passagem 1, lote inicial (2026-10-11)
 
-Foram abertas e consultadas sequencialmente as páginas da Webnovel para os capítulos 1–10. O nível de consulta foi substancial e permitiu reconstruir o arco inicial da captura, progressão, fabricação do braço mecânico e fuga. Como nem toda a extensão de cada página foi verificada linha a linha, registrar como **consulta analítica substancial / integralidade ainda não certificada**, não como leitura integral definitiva.
+A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, mas a cobertura dos capítulos 4–10 ainda precisa de auditoria individual. Uma nova verificação direta das páginas 1–3 esclareceu que a mensagem “Load failed, please RETRY” aparece **depois do corpo narrativo e do link de navegação para o capítulo seguinte**, na área auxiliar da página. Portanto, essa mensagem não é evidência de que o texto narrativo do capítulo esteja truncado.
 
-| ID | Capítulo | URL | Estado desta sessão |
+| ID | Capítulo | Estado atual | Nota individual |
 |---|---|---|---|
-| CH-EN-001 | 1 — Rebirth | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673 | Consulta analítica substancial |
-| CH-EN-002 | 2 — Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Consulta analítica substancial |
-| CH-EN-003 | 3 — Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Consulta analítica substancial |
-| CH-EN-004 | 4 — 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Consulta analítica substancial |
-| CH-EN-005 | 5 — Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Consulta analítica substancial |
-| CH-EN-006 | 6 — Taking Action! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/taking-action!_23353885024384961 | Consulta analítica substancial |
-| CH-EN-007 | 7 — Panic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/panic_23358465070135260 | Consulta analítica substancial |
-| CH-EN-008 | 8 — I Have the Trashtalk to Back Me Up | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/i-have-the-trashtalk-to-back-me-up_23419907530095406 | Consulta analítica substancial |
-| CH-EN-009 | 9 — Fierce Battle | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/fierce-battle_23422594300574533 | Consulta analítica substancial |
-| CH-EN-010 | 10 — Night Owl | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/night_owl_23426188668095388 | Consulta analítica substancial |
+| CH-EN-001 | 1 — Rebirth | Leitura completa do corpo narrativo visível verificada; módulo auxiliar pós-capítulo falha | [Nota do capítulo 1](../06_auditoria/PASSAGEM_1_CAPITULO_01_NOTA_INDIVIDUAL.md) |
+| CH-EN-002 | 2 — Mechanic | Leitura completa do corpo narrativo visível verificada; módulo auxiliar pós-capítulo falha | [Nota do capítulo 2](../06_auditoria/PASSAGEM_1_CAPITULO_02_NOTA_INDIVIDUAL.md) |
+| CH-EN-003 | 3 — Life Is All About Acting | Leitura completa do corpo narrativo visível verificada; módulo auxiliar pós-capítulo falha | [Nota do capítulo 3](../06_auditoria/PASSAGEM_1_CAPITULO_03_NOTA_INDIVIDUAL.md) |
+| CH-EN-004 | 4 — 600,000 experience points! | Consulta analítica anterior; reabertura/auditoria pendente | — |
+| CH-EN-005 | 5 — Lightweight Mechanical Arm | Consulta analítica anterior; reabertura/auditoria pendente | — |
+| CH-EN-006 | 6 — Taking Action! | Consulta analítica anterior; reabertura/auditoria pendente | — |
+| CH-EN-007 | 7 — Panic | Consulta analítica anterior; reabertura/auditoria pendente | — |
+| CH-EN-008 | 8 — I Have the Trashtalk to Back Me Up | Consulta analítica anterior; reabertura/auditoria pendente | — |
+| CH-EN-009 | 9 — Fierce Battle | Consulta analítica anterior; reabertura/auditoria pendente | — |
+| CH-EN-010 | 10 — Night Owl | Consulta analítica anterior; reabertura/auditoria pendente | — |
 
-O lote narrativo, cronologia, fichas, regras provisórias, conexões e lacunas estão no arquivo [Passagem 1 — Lote inicial, capítulos 1–10](../06_auditoria/PASSAGEM_1_LOTE_01_CAPITULOS_01_10.md). O próximo capítulo a consultar em sequência é o 11, “Crunch Time”.
+A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
-
-## Revisão de cobertura capítulo a capítulo — 2026-10-11
-
-A recuperação da Passagem 1 foi iniciada com nova consulta direta às páginas oficiais da Webnovel. Para esta revisão, os capítulos 1–3 têm notas individuais persistidas; o texto retornado pelas páginas indicou falha de carregamento após o conteúdo consultado. Por isso, os estados não foram promovidos a “leitura completa verificada”.
-
-| ID | Capítulo | Estado após nova consulta | Nota individual |
-|---|---|---|---|
-| CH-EN-0001 | 1 — Rebirth | Consulta analítica substancial; integralidade não certificada | [Nota do capítulo 1](../06_auditoria/PASSAGEM_1_CAPITULO_01_NOTA_INDIVIDUAL.md) |
-| CH-EN-0002 | 2 — Mechanic | Consulta analítica substancial; integralidade não certificada | [Nota do capítulo 2](../06_auditoria/PASSAGEM_1_CAPITULO_02_NOTA_INDIVIDUAL.md) |
-| CH-EN-0003 | 3 — Life Is All About Acting | Consulta analítica substancial; integralidade não certificada | [Nota do capítulo 3](../06_auditoria/PASSAGEM_1_CAPITULO_03_NOTA_INDIVIDUAL.md) |
-
-Os capítulos 4–10 mantêm o estado de consulta anterior até serem reabertos e auditados individualmente. As notas 1–3 são a primeira unidade de calibração da cadência adaptativa; antes de prosseguir para o capítulo 4, verificar consistência das notas, integrar conexões e atualizar a síntese cumulativa e o handoff.
 
 
 ## Revisão de cobertura capítulo a capítulo — 2026-10-11
