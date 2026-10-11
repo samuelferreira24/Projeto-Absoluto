@@ -225,3 +225,9 @@ A página oficial do capítulo 15, “Burglary”, foi aberta pelo link do capí
 A página oficial do capítulo 16, “Misfortune”, foi aberta pelo link do capítulo 15 e a [nota individual do capítulo 16](../docs/06_auditoria/PASSAGEM_1_CAPITULO_16_NOTA_INDIVIDUAL.md) foi criada. No. 1 encontra uma pistola roubada por Hu Fei e, após Hu Xuan Jun mentir para proteger Han Xiao, executa Hu Xuan Jun e An; o superior da Germinal ordena que a matança seja concluída e abafada. Han Xiao regressa e encontra o acampamento massacrado.
 
 **Próximo passo exato:** concluir a integração e o QC cruzado do sublote 14–16, incluindo a ambiguidade sobre os gatilhos das duas pistolas e a responsabilidade direta pelo massacre. Não avançar ao capítulo 17 até fechar este QC.
+
+## QC do sublote 14–16 concluído — 2026-10-11
+
+Foi criada a [síntese integrada dos capítulos 14–16](../docs/06_auditoria/PASSAGEM_1_LOTE_03_CAPITULOS_14_16.md) e a [auditoria cruzada 14–16](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_14_16.md). Não foi encontrada contradição central. A possível inconsistência sobre os gatilhos das duas pistolas foi preservada; a responsabilidade pelo massacre é atribuída diretamente a No. 1 e à Germinal, enquanto o furto de Hu Fei apenas expôs a pista.
+
+**Próximo passo exato:** abrir o capítulo 17, criar nota individual e seguir até ao capítulo 19; concluir o QC cruzado 17–19 antes de avançar ao capítulo 20. A Passagem 2 permanece bloqueada.
