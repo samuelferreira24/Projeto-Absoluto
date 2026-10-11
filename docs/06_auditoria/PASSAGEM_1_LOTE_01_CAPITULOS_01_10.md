@@ -24,11 +24,23 @@
 
 A Webnovel identificou a obra como concluída e listou 1.463 capítulos. Isso confirma a listagem consultada, não a cobertura integral da obra. Os registros de leitura anteriores (capítulos 1–4 e consultas pontuais posteriores) foram mantidos como material exploratório; esta sequência é uma nova passada narrativa, não uma afirmação de que nunca houve consultas anteriores.
 
+## Resultado da auditoria cruzada do sublote 1–3 — 2026-10-11
+
+**Escopo:** comparar as notas individuais dos capítulos 1–3 com a síntese deste lote e com o mapa de cobertura. Esta auditoria não reabre nem valida os capítulos 4–10.
+
+**Resultado:** não foi encontrada contradição central entre as notas 1–3 na sequência cativeiro → ameaça de lavagem cerebral → aprendizagem/progressão → resistência → dissimulação → treino coercivo. Foram identificados, contudo, dois problemas de rastreabilidade e uma cautela de ponto de vista:
+
+- A síntese cumulativa contém acontecimentos e conexões dos capítulos 4–10 (por exemplo, fotografia de Hila/Aurora, planta do braço mecânico, fuga e perseguição) que ainda não passaram pela auditoria individual atual. Permanecem **provisórios**, apoiados na consulta exploratória anterior, e não devem ser tratados como cobertura recém-verificada.
+- Algumas frases da síntese descreviam como factos objetivos a transmigração e o estado do corpo. A nota do capítulo 1 sustenta formulação atribuída ao protagonista: Han Xiao **conclui/acredita** que foi transportado para o mundo de Galaxy; a identidade e a natureza da transferência continuam sem explicação independente.
+- A tabela histórica do mapa de cobertura tinha estados antigos para os capítulos 1–3. Foi atualizada para refletir a verificação recente do corpo narrativo visível, sem promover os capítulos 4–10 a estado de auditados.
+
+**Limite:** “corpo narrativo visível completo verificado” descreve o texto visível da edição inglesa consultada e o seu encerramento antes dos módulos auxiliares; não prova equivalência com o original chinês, outras traduções ou divisões editoriais.
+
 ## Síntese narrativa cumulativa
 
-Han Xiao desperta em um laboratório da Organização Germinal depois de ter sido transportado para o mundo que conhecia como o jogo *Galaxy*. Ele retém conhecimento de jogador, mas passa a enfrentar consequências físicas e risco de morte sem respawn. A interface de personagem continua acessível e informa que ele é classificado como NPC, antes do lançamento da versão 1.0, com cerca de um ano para se preparar. O calendário e a memória que possui indicam que está num período anterior a grandes eventos que, em sua vida anterior, só conhecia como conteúdo futuro do jogo.
+Han Xiao desperta em um laboratório da Organização Germinal e, a partir das memórias e circunstâncias, conclui que foi transportado para o mundo que conhecia como o jogo *Galaxy*; a natureza dessa transferência ainda não está explicada de forma independente. Ele retém conhecimento de jogador, mas passa a enfrentar consequências físicas e risco de morte sem respawn. A interface de personagem continua acessível e informa que ele é classificado como NPC, antes do lançamento da versão 1.0, com cerca de um ano para se preparar. O calendário e a memória que possui indicam que está num período anterior a grandes eventos que, em sua vida anterior, só conhecia como conteúdo futuro do jogo.
 
-O corpo em que desperta sobreviveu ao experimento Valkyrie, associado a alteração genética e melhoria cerebral, mas há perda de memória da identidade anterior do corpo. Hila comanda a instalação e Lin Weixian conduz os experimentos. O plano da organização é submetê-lo a condicionamento mental e torná-lo um soldado obediente. Han Xiao identifica que o sistema transforma conhecimento, treino, ações e produção em progresso mensurável; usa livros técnicos para avançar no conhecimento mecânico e desbloquear a classe Mecânico. A aprendizagem acelerada não elimina o trabalho: para ganhar experiência ele precisa executar tarefas, montar e aprimorar máquinas, treinar combate e tiro, e gerir recursos e risco.
+O corpo em que desperta é tratado pelos pesquisadores como o de um sujeito que sobreviveu ao experimento Valkyrie, associado a alterações genéticas e cerebrais; a relação entre esse corpo, as memórias fragmentadas e a identidade anterior não está esclarecida. Hila comanda a instalação e Lin Weixian conduz os experimentos. O plano da organização é submetê-lo a condicionamento mental e torná-lo um soldado obediente. Han Xiao identifica que o sistema transforma conhecimento, treino, ações e produção em progresso mensurável; usa livros técnicos para avançar no conhecimento mecânico e desbloquear a classe Mecânico. A aprendizagem acelerada não elimina o trabalho: para ganhar experiência ele precisa executar tarefas, montar e aprimorar máquinas, treinar combate e tiro, e gerir recursos e risco.
 
 Han Xiao finge ter sido condicionado, assume o nome imposto de “Zero” e passa meses ocultando a sua inteligência. A instituição explora-o, reduz seus recursos quando considera os resultados decepcionantes e tolera a violência de Baltar, enquanto Lin Weixian continua a querer dissecá-lo. Hila, embora seja uma agente da organização e participe da coerção, mostra sinais de conflito emocional e tem uma irmã, Aurora, que a Germinal mantém sob controle. O retrato de Hila no presente contrasta com o futuro que Han Xiao conhece: uma figura temida, moldada por perda e violência. A fotografia das irmãs inicia uma missão e insere um conflito que não se reduz à fuga imediata.
 
@@ -78,6 +90,8 @@ No capítulo 10, ele usa disfarce e confusão organizacional para atravessar o p
 Essas regras são afirmações do texto ficcional, não fatos científicos do mundo real.
 
 ## Registro de conexões narrativas
+
+**Estado de revisão:** as conexões que citam os capítulos 4–10 continuam provisórias até a reabertura e auditoria individual desses capítulos. As referências abaixo preservam o histórico exploratório, não certificam a cobertura nesta revisão.
 
 | ID | Conexão | Classe | Confiança | Evidência / limite |
 |---|---|---|---|---|
