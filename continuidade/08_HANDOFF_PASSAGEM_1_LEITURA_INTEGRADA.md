@@ -279,3 +279,9 @@ A página oficial do capítulo 23, “You Set Me Up!”, foi aberta pelo link do
 A página oficial do capítulo 24, “What Is Weak?”, foi aberta pelo link do capítulo 23 e a [nota individual do capítulo 24](../docs/06_auditoria/PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md) foi criada. Han Xiao começa a trabalhar na oficina e aguarda a Division 13; Old Man Lu exige saber a sua identidade, e Lu Qian interrompe o confronto. A Division 13 localiza Han Xiao e decide protegê-lo e verificar as suas intenções discretamente, sem contacto direto por enquanto.
 
 **Próximo passo exato:** abrir o capítulo 25 e concluir o QC cruzado 23–25 antes de avançar ao capítulo 26.
+
+## Sub-lote 23–25: capítulo 25 lido (2026-10-11)
+
+A página oficial do capítulo 25, “New Talent!”, foi aberta pelo link do capítulo 24 e a [nota individual do capítulo 25](../docs/06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md) foi criada. Han Xiao fecha um acordo com Big Raccoon para fabricar armas em troca de 1.500 dólares por arma, duas horas de trabalho por manhã e acesso à sucata. Também investe Potencial em [Basic Weaponry] e [Basic Material Composition]. Lu Qian rouba livros mecânicos básicos para o ajudar, irritando Old Man Lu.
+
+**Próximo passo exato:** integrar as notas 23–25, auditar a continuidade e concluir o QC cruzado 23–25 antes de avançar ao capítulo 26.
