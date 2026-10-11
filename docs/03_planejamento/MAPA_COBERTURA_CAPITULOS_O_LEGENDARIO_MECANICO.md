@@ -99,7 +99,8 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-012 | 12 — Original Identity | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 11–13 pendente | [Nota do capítulo 12](../06_auditoria/PASSAGEM_1_CAPITULO_12_NOTA_INDIVIDUAL.md) |
 | CH-EN-013 | 13 — Wanderers | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 11–13 aprovado | [Nota do capítulo 13](../06_auditoria/PASSAGEM_1_CAPITULO_13_NOTA_INDIVIDUAL.md) |
 | CH-EN-014 | 14 — The Old Era and the New | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 pendente | [Nota do capítulo 14](../06_auditoria/PASSAGEM_1_CAPITULO_14_NOTA_INDIVIDUAL.md) |
-| CH-EN-015 | 15 — Burglary | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 pendente | [Nota do capítulo 15](../06_auditoria/PASSAGEM_1_CAPITULO_15_NOTA_INDIVIDUAL.md) |
+| CH-EN-015 | 15 — Burglary | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 aprovado | [Nota do capítulo 15](../06_auditoria/PASSAGEM_1_CAPITULO_15_NOTA_INDIVIDUAL.md) |
+| CH-EN-016 | 16 — Misfortune | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 aprovado | [Nota do capítulo 16](../06_auditoria/PASSAGEM_1_CAPITULO_16_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -203,3 +204,8 @@ A página oficial do capítulo 14, “The Old Era and the New”, foi aberta pel
 ## Atualização — capítulo 15 (2026-10-11)
 
 A página oficial do capítulo 15, “Burglary”, foi aberta pelo link do capítulo 14. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_15_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_15_NOTA_INDIVIDUAL.md). O capítulo detalha a Batalha de Andrea, o passado de Hu Xuan Jun e An, e o furto de duas pistolas por Hu Fei. O sublote 14–16 continua em execução.
+
+
+## Atualização — capítulo 16 (2026-10-11)
+
+A página oficial do capítulo 16, “Misfortune”, foi aberta pelo link do capítulo 15. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_16_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_16_NOTA_INDIVIDUAL.md). O capítulo revela o furto de Hu Fei, a busca de No. 1, o assassinato de Hu Xuan Jun e An e o massacre do acampamento pela Germinal. O sublote 14–16 está pronto para QC cruzado.
