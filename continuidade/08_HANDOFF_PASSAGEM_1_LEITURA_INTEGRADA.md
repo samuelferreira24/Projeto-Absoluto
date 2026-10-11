@@ -75,6 +75,7 @@ As subfases **1A leitura narrativa sequencial; 1B integração narrativa contín
 ## Estado de execução após a atualização
 
 - Método canônico atualizado: subfases 1A–1D e lotes adaptativos de 3–5 capítulos (ou 1–3 quando necessário).
-- Criada [nota individual do capítulo 1](../docs/06_auditoria/PASSAGEM_1_CAPITULO_01_NOTA_INDIVIDUAL.md). O conteúdo retornado pela página oficial da Webnovel terminou com indicação de falha de carregamento; estado honesto: **consulta analítica substancial**, não leitura completa verificada.
-- Auditoria metodológica atualizada para registrar que a decomposição foi formalizada e que a recuperação capítulo a capítulo começou.
-- A recuperação dos capítulos 1–10 permanece incompleta. Não avançar para o capítulo 11 até rever as notas e a cobertura desse lote; não iniciar a Passagem 2.
+- Criadas notas individuais para [capítulo 1](../docs/06_auditoria/PASSAGEM_1_CAPITULO_01_NOTA_INDIVIDUAL.md), [capítulo 2](../docs/06_auditoria/PASSAGEM_1_CAPITULO_02_NOTA_INDIVIDUAL.md) e [capítulo 3](../docs/06_auditoria/PASSAGEM_1_CAPITULO_03_NOTA_INDIVIDUAL.md). As páginas oficiais retornaram conteúdo narrativo e aviso de falha de carregamento; estado honesto dos três: **consulta analítica substancial**, não leitura completa verificada.
+- Atualizados o [mapa de cobertura](../docs/03_planejamento/MAPA_COBERTURA_CAPITULOS_O_LEGENDARIO_MECANICO.md) e o [registo do lote 1–10](../docs/06_auditoria/PASSAGEM_1_LOTE_01_CAPITULOS_01_10.md) com os resultados da revisão progressiva e as conexões do sublote 1–3.
+- Auditoria metodológica atualizada para registrar a formalização das subfases e o início da recuperação capítulo a capítulo.
+- A recuperação dos capítulos 1–10 permanece incompleta. O sublote 1–3 é uma calibração inicial; antes de continuar para o capítulo 4, verificar a consistência entre notas individuais, mapa e síntese cumulativa. Não avançar para o capítulo 11 até rever a cobertura do lote 1–10; não iniciar a Passagem 2.
