@@ -74,4 +74,4 @@
 
 ## Próxima ação
 
-Consultar novamente o conteúdo acessível do capítulo 1 se necessário e prosseguir com os capítulos 2–3 em ordem, criando notas individuais separadas. Depois, comparar notas e síntese cumulativa para identificar correções ao lote exploratório 1–10. Não marcar o capítulo como “leitura completa verificada” até confirmar que todo o texto acessível foi percorrido e a nota foi comparada com ele.
+Verificar a consistência conjunta das notas 1–3 com a síntese cumulativa e o mapa de cobertura. Depois de concluir esse controle de qualidade, continuar pelo capítulo 4. Não marcar o capítulo como “leitura completa verificada” até confirmar que todo o texto acessível foi percorrido e a nota foi comparada com ele.
