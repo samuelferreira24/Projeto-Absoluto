@@ -74,4 +74,4 @@
 
 ## Próxima ação
 
-A nota individual do capítulo 4 já foi criada. Próxima ação: concluir a auditoria cruzada do sublote 1–4 com a síntese cumulativa e o mapa antes de avançar ao capítulo 5. O corpo narrativo visível do capítulo 1 está verificado; a consistência cruzada 1–4 está em revisão.
+As notas individuais dos capítulos 1–5 já foram comparadas com a síntese e o mapa; o QC cruzado 1–5 foi aprovado com ressalvas. Próxima ação: reabrir o capítulo 6 e, antes de avançar ao capítulo 7, concluir o QC cruzado 1–6. O corpo narrativo visível deste capítulo está verificado.
