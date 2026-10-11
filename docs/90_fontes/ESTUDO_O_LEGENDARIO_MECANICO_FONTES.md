@@ -23,6 +23,22 @@
 - Limitação: o catálogo confirma a estrutura listada, mas não prova que o texto integral de todos os capítulos esteja acessível nesta sessão.
 - Estado: catálogo acessível e parcialmente inspecionado.
 
+### S2a — Webnovel, capítulos individuais verificados por acesso
+- Capítulo 1, “Rebirth”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673
+- Capítulo 2, “Mechanic”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010
+- Capítulo 5, “Lightweight Mechanical Arm”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420
+- Capítulo 22, “Prosthetic Limb”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/prosthetic-limb_23983084059815310
+- Capítulo 26, “Blueprint: Robot (Type: Rover)”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/blueprint-robot-%28type-rover%29_24056767965096782
+- Capítulo 30, “The Mighty Rover”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/the-mighty-rover_24140411379445674
+- Estado: páginas individuais acessíveis nesta consulta; capítulos 1 e 2 foram consultados em maior extensão, e os capítulos 5, 22, 26 e 30 foram consultados parcialmente para localizar fatos técnicos. Não declarar leitura integral desses seis capítulos.
+
+### S2b — Catálogo chinês em m.readnovel.com (intermediário; não confirmado como página canônica direta)
+- URL: https://m.readnovel.com/bookquery/clxaurxanj
+- Identificação apresentada: 超神机械师; autor 齐佩甲; 1.486 entradas no catálogo; a página também mostra material extra/colaborativo no fim da listagem.
+- Utilidade: indício para investigar a organização da edição chinesa e a discrepância de contagem.
+- Limitação: acesso direto ao abrir a página retornou 403; o resultado de busca expõe metadados e um trecho do início, mas não comprova que o texto integral ou a contagem sejam diretamente comparáveis à edição inglesa.
+- Estado: metadados localizados por resultado de busca; corpus não acessado integralmente. Não tratar como prova definitiva de edição canônica ou equivalência capítulo a capítulo.
+
 ### S3 — Illusia, tradução portuguesa
 - URL: https://illusia.com.br/story/tlm-o-lendario-mecanico/
 - Obra: O Lendário Mecânico
