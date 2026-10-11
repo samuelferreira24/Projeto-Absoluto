@@ -3,7 +3,7 @@
 **Data:** 2026-10-11  
 **Projeto-pai:** Projeto Absoluto  
 **Branch de trabalho:** `pesquisa/lendario-mecanico-base`  
-**Estado:** metodologia registrada; Passagem 1 ainda não executada integralmente.
+**Estado:** Passagem 1 iniciada; consulta analítica substancial dos capítulos 1–10 registrada, sem certificar ainda a integralidade linha a linha.
 
 ## Decisões confirmadas
 
@@ -39,18 +39,18 @@
 
 ## Estado conhecido — não confundir preparação com execução
 
-- Há preparação documental e notas exploratórias iniciais.
+- Há preparação documental, notas exploratórias iniciais e um primeiro lote sequencial (capítulos 1–10) com consulta analítica substancial registrada.
 - Os capítulos 1–4 foram consultados analiticamente em maior extensão nas notas anteriores; capítulos 5, 22, 26 e 30 foram consultados parcialmente. Isso não representa leitura integral nem cobertura sequencial.
 - A divergência entre os catálogos consultados (Webnovel 1.463 entradas e Illusia 1.465) ainda não está explicada.
-- Não há alegação de que a obra inteira já foi lida, que todas as conexões foram identificadas, que o catálogo técnico está completo ou que experimentos foram executados.
+- Não há alegação de que a obra inteira já foi lida, que todos os capítulos do lote foram verificados linha a linha, que todas as conexões foram identificadas, que o catálogo técnico está completo ou que experimentos foram executados.
 
 ## Próxima ação concreta
 
-1. Reabrir o registro de fontes e verificar as condições de acesso à edição de trabalho e os títulos/URLs dos capítulos iniciais.
-2. Iniciar novamente no capítulo 1 e avançar sequencialmente, registrando o estado real de cada capítulo.
-3. Fazer o primeiro lote de até 10 capítulos, ajustando o intervalo se o texto disponível ou a densidade exigirem.
-4. Ao fim do lote, produzir notas narrativas originais e atualizar o resumo cumulativo, cronologia, personagens/facções, regras do universo e conexões rastreáveis.
-5. Auditar o método depois do primeiro lote real antes de acelerar.
+1. O lote inicial dos capítulos 1–10 foi consultado analiticamente em sequência; os resultados estão em [Passagem 1 — Lote inicial, capítulos 1–10](../docs/06_auditoria/PASSAGEM_1_LOTE_01_CAPITULOS_01_10.md).
+2. A integralidade de cada página não foi certificada linha a linha; manter essa limitação visível e fazer revisão complementar quando necessária, sem inflar o estado de cobertura.
+3. Atualizar/consultar mapa de cobertura e registro de fontes antes de avançar.
+4. Continuar a Passagem 1 pelo capítulo 11, “Crunch Time”, e seguir em ordem em lotes manejáveis.
+5. A cada lote, registrar resumo cumulativo, cronologia, fichas, regras, conexões, incertezas e ponto exato de retomada; rever o método depois de experiência suficiente.
 
 ## Regra para a próxima IA
 
