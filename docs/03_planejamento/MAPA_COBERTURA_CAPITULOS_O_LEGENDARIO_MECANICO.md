@@ -114,6 +114,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-027 | 27 — The Final Test | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 26–28 aprovado | [Nota do capítulo 27](../06_auditoria/PASSAGEM_1_CAPITULO_27_NOTA_INDIVIDUAL.md) |
 | CH-EN-028 | 28 — Jealousy | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 26–28 aprovado | [Nota do capítulo 28](../06_auditoria/PASSAGEM_1_CAPITULO_28_NOTA_INDIVIDUAL.md) |
 | CH-EN-029 | 29 — Fall Out | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 29–31 pendente | [Nota do capítulo 29](../06_auditoria/PASSAGEM_1_CAPITULO_29_NOTA_INDIVIDUAL.md) |
+| CH-EN-030 | 30 — The Mighty Rover | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 29–31 pendente | [Nota do capítulo 30](../06_auditoria/PASSAGEM_1_CAPITULO_30_NOTA_INDIVIDUAL.md) |
 | CH-EN-025 | 25 — New Talent! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 aprovado | [Nota do capítulo 25](../06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
@@ -298,3 +299,8 @@ A [auditoria cruzada 26–28](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAP
 ## Atualização — capítulo 29 (2026-10-11)
 
 A página oficial do capítulo 29, “Fall Out”, foi aberta pelo link do capítulo 28. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_29_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_29_NOTA_INDIVIDUAL.md). Ma Jie revela a origem de Han Xiao a Big Raccoon; Raccoon tenta extorquir as plantas das armas e Han Xiao inicia um combate, que ainda não está resolvido no fim do capítulo.
+
+
+## Atualização — capítulo 30 (2026-10-11)
+
+A página oficial do capítulo 30, “The Mighty Rover”, foi aberta pelo link do capítulo 29. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_30_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_30_NOTA_INDIVIDUAL.md). Han Xiao escapa da sala, enfrenta dezenas de capangas, ativa Rover 1 e elimina a Bee Sting Squad numa emboscada; o destino de Big Raccoon e a recompensa final da missão ainda não são confirmados.
