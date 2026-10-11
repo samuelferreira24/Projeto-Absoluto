@@ -39,4 +39,5 @@ O planejamento deve responder **qual capacidade/frente precisa avançar**, e nã
 ## Frente de pesquisa: O Lendário Mecânico
 - `ESTUDO_O_LEGENDARIO_MECANICO.md` — objetivo, método, critérios de evidência/viabilidade, governança e continuidade da pesquisa.
 - Fontes iniciais e limites de acesso: `docs/90_fontes/ESTUDO_O_LEGENDARIO_MECANICO_FONTES.md`.
+- Relatório-piloto inicial e avaliação exploratória de dois candidatos: `docs/06_auditoria/PILOTO_PESQUISA_O_LEGENDARIO_MECANICO.md`.
 - Esta frente pertence ao Projeto Absoluto e não altera automaticamente o ABS. Os documentos descrevem protocolo e estado inicial, não resultados de pesquisa já concluídos.
