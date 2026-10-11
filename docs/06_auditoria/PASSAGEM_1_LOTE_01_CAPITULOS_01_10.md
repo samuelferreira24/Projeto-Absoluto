@@ -226,4 +226,9 @@ A [auditoria cruzada dos capítulos 1–8](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITU
 
 A página oficial do capítulo 9 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 9](PASSAGEM_1_CAPITULO_09_NOTA_INDIVIDUAL.md). O capítulo mostra as equipas A–D a reagirem às mortes dos comandantes, Han Xiao a incendiar o laboratório Valkyrie, a combater a Equipa C e a usar o intercomunicador para enganar as equipas B e A. Han Xiao fica ferido e o braço perde durabilidade; a fuga pelo portão ainda não se conclui.
 
-**Estado atualizado:** capítulos 1–8 — corpo narrativo verificado e QC cruzado 1–8 aprovado com ressalvas; capítulo 9 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–9 pendente; capítulo 10 — aguarda reabertura/auditoria individual. Não avançar ao capítulo 10 até concluir o controle de qualidade cruzado 1–9.
+**Estado atualizado:** capítulos 1–8 — corpo narrativo verificado e QC cruzado 1–8 aprovado com ressalvas; capítulo 9 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–9 aprovado; capítulo 10 — aguarda reabertura/auditoria individual. Próxima etapa: reabrir o capítulo 10 e auditar a consistência do sublote 1–10 antes de encerrar o lote.
+
+
+## Resultado do QC cruzado 1–9 — 2026-10-11
+
+A [auditoria cruzada dos capítulos 1–9](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_09.md) foi concluída sem contradição central. A destruição dos monitores não é confundida com interrupção das comunicações; Han Xiao usa o intercomunicador para desinformar e muda a estratégia sob pressão. O braço sofre desgaste e Han Xiao fica ferido. O capítulo 10 ainda precisa ser reaberto antes da auditoria final do lote 1–10.
