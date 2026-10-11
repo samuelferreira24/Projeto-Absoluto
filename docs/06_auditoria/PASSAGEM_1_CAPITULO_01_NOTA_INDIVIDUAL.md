@@ -5,8 +5,8 @@
 **Capítulo:** 1 — “Rebirth”  
 **URL:** https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673  
 **Data da consulta:** 2026-10-11  
-**Estado:** **consulta analítica substancial; integralidade não certificada**  
-**Trecho efetivamente acessível nesta consulta:** conteúdo narrativo apresentado na página oficial, linhas 19–205 da captura textual. A página indica falha de carregamento após esse trecho; por isso, não afirmo que o capítulo inteiro esteja disponível ou tenha sido percorrido integralmente.  
+**Estado:** **leitura completa do corpo narrativo visível verificada** (edição inglesa da Webnovel).  
+**Verificação de limite:** o corpo narrativo vai das linhas 19–205 e termina antes dos controles de navegação do capítulo seguinte. A mensagem “Load failed, please RETRY” aparece depois do link “next chapter”, na área auxiliar pós-capítulo; não interrompe o corpo narrativo deste capítulo. O erro parece afetar um módulo complementar da página, não o texto do capítulo.  
 **Função desta nota:** leitura narrativa (Passagem 1A), não avaliação técnica. Paráfrase original.
 
 ## Acontecimentos em ordem narrativa
