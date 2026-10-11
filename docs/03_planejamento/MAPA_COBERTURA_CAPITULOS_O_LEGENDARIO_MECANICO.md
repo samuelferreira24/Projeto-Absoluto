@@ -102,6 +102,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-015 | 15 — Burglary | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 aprovado | [Nota do capítulo 15](../06_auditoria/PASSAGEM_1_CAPITULO_15_NOTA_INDIVIDUAL.md) |
 | CH-EN-016 | 16 — Misfortune | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 aprovado | [Nota do capítulo 16](../06_auditoria/PASSAGEM_1_CAPITULO_16_NOTA_INDIVIDUAL.md) |
 | CH-EN-017 | 17 — Kill | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 17–19 pendente | [Nota do capítulo 17](../06_auditoria/PASSAGEM_1_CAPITULO_17_NOTA_INDIVIDUAL.md) |
+| CH-EN-018 | 18 — Bigger Than You Imagined | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 17–19 pendente | [Nota do capítulo 18](../06_auditoria/PASSAGEM_1_CAPITULO_18_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -220,3 +221,8 @@ A [auditoria cruzada 14–16](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAP
 ## Atualização — capítulo 17 (2026-10-11)
 
 A página oficial do capítulo 17, “Kill”, foi aberta pelo link do capítulo 16. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_17_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_17_NOTA_INDIVIDUAL.md). Han Xiao encontra Hu Fei moribundo, mata Kai Luo após a acusação de traição, confirma que Hu Xuan Jun o protegeu e inicia a missão [Revenge] contra o Esquadrão de Sujeitos. O capítulo termina com o veículo dos perseguidores a avançar contra a sua posição.
+
+
+## Atualização — capítulo 18 (2026-10-11)
+
+A página oficial do capítulo 18, “Bigger Than You Imagined”, foi aberta pelo link do capítulo 17. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_18_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_18_NOTA_INDIVIDUAL.md). Han Xiao neutraliza o veículo, mata No. 1, conclui a missão [Revenge], rejeita a oferta do líder da Germinal e escolhe Stardragon como próximo destino. O sublote 17–19 continua em execução.
