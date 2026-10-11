@@ -249,3 +249,9 @@ A página oficial do capítulo 18, “Bigger Than You Imagined”, foi aberta pe
 Foi criada a [síntese integrada dos capítulos 17–19](../docs/06_auditoria/PASSAGEM_1_LOTE_04_CAPITULOS_17_19.md) e a [auditoria cruzada 17–19](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_17_19.md). Não foi encontrada contradição central. A nota do capítulo 18 foi corrigida para separar a espingarda de baioneta que se desfez do rifle SWP desmontado para reaproveitamento de peças. No. 1 morre no capítulo 18 e é regenerado no 19 por um processo cujo mecanismo continua em aberto. Han Xiao escolhe Stardragon e chega à Western Capital/Division 13.
 
 **Próximo passo exato:** abrir o capítulo 20, criar notas para 20–22 e concluir o QC cruzado 20–22 antes de avançar ao capítulo 23. A Passagem 2 permanece bloqueada.
+
+## Sub-lote 20–22: capítulo 20 lido (2026-10-11)
+
+A página oficial do capítulo 20, “Illegal Entry”, foi aberta pelo link do capítulo 19 e a [nota individual do capítulo 20](../docs/06_auditoria/PASSAGEM_1_CAPITULO_20_NOTA_INDIVIDUAL.md) foi criada. Han Xiao entra na Western Capital através de uma rede de contrabando, entrega as armas saqueadas como pagamento, recusa a oferta de Ma Jie e desbloqueia [Steal]. A Division 13 ainda não foi contactada.
+
+**Próximo passo exato:** abrir os capítulos 21 e 22, criar notas individuais e concluir o QC cruzado 20–22 antes de avançar ao capítulo 23.
