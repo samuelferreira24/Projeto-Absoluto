@@ -98,7 +98,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-011 | 11 — Crunch Time | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 11–13 aprovado | [Nota do capítulo 11](../06_auditoria/PASSAGEM_1_CAPITULO_11_NOTA_INDIVIDUAL.md) |
 | CH-EN-012 | 12 — Original Identity | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 11–13 pendente | [Nota do capítulo 12](../06_auditoria/PASSAGEM_1_CAPITULO_12_NOTA_INDIVIDUAL.md) |
 | CH-EN-013 | 13 — Wanderers | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 11–13 aprovado | [Nota do capítulo 13](../06_auditoria/PASSAGEM_1_CAPITULO_13_NOTA_INDIVIDUAL.md) |
-| CH-EN-014 | 14 — The Old Era and the New | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 pendente | [Nota do capítulo 14](../06_auditoria/PASSAGEM_1_CAPITULO_14_NOTA_INDIVIDUAL.md) |
+| CH-EN-014 | 14 — The Old Era and the New | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 aprovado com ressalvas | [Nota do capítulo 14](../06_auditoria/PASSAGEM_1_CAPITULO_14_NOTA_INDIVIDUAL.md) |
 | CH-EN-015 | 15 — Burglary | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 aprovado | [Nota do capítulo 15](../06_auditoria/PASSAGEM_1_CAPITULO_15_NOTA_INDIVIDUAL.md) |
 | CH-EN-016 | 16 — Misfortune | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 aprovado | [Nota do capítulo 16](../06_auditoria/PASSAGEM_1_CAPITULO_16_NOTA_INDIVIDUAL.md) |
 
@@ -209,3 +209,8 @@ A página oficial do capítulo 15, “Burglary”, foi aberta pelo link do capí
 ## Atualização — capítulo 16 (2026-10-11)
 
 A página oficial do capítulo 16, “Misfortune”, foi aberta pelo link do capítulo 15. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_16_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_16_NOTA_INDIVIDUAL.md). O capítulo revela o furto de Hu Fei, a busca de No. 1, o assassinato de Hu Xuan Jun e An e o massacre do acampamento pela Germinal. O sublote 14–16 está pronto para QC cruzado.
+
+
+## Resultado do QC cruzado 14–16 — 2026-10-11
+
+A [auditoria cruzada 14–16](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_14_16.md) e a [síntese integrada do lote 03](../06_auditoria/PASSAGEM_1_LOTE_03_CAPITULOS_14_16.md) foram concluídas. Não foi encontrada contradição central. A discrepância sobre os gatilhos das pistolas permanece em aberto; a responsabilidade pelo massacre é atribuída diretamente a No. 1 e à Germinal, não ao furto que revelou a pista. Próximo capítulo: 17; não avançar ao 20 antes do QC 17–19.
