@@ -94,7 +94,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-007 | 7 — Panic | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–7 aprovado | [Nota do capítulo 7](../06_auditoria/PASSAGEM_1_CAPITULO_07_NOTA_INDIVIDUAL.md) |
 | CH-EN-008 | 8 — I Have the Trashtalk to Back Me Up | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–8 aprovado com ressalvas | [Nota do capítulo 8](../06_auditoria/PASSAGEM_1_CAPITULO_08_NOTA_INDIVIDUAL.md) |
 | CH-EN-009 | 9 — Fierce Battle | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–9 aprovado | [Nota do capítulo 9](../06_auditoria/PASSAGEM_1_CAPITULO_09_NOTA_INDIVIDUAL.md) |
-| CH-EN-010 | 10 — Night Owl | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–10 pendente | [Nota do capítulo 10](../06_auditoria/PASSAGEM_1_CAPITULO_10_NOTA_INDIVIDUAL.md) |
+| CH-EN-010 | 10 — Night Owl | Corpo narrativo visível verificado; nota individual criada; QC cruzado 1–10 aprovado com questões abertas preservadas | [Nota do capítulo 10](../06_auditoria/PASSAGEM_1_CAPITULO_10_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -168,3 +168,8 @@ A [auditoria cruzada dos capítulos 1–9](../06_auditoria/AUDITORIA_CRUZADA_CON
 ## Atualização — capítulo 10 (2026-10-11)
 
 A página oficial do capítulo 10 foi aberta através da navegação do capítulo 9; o slug resolvido é `night-owl`, não `night_owl`. O corpo narrativo visível foi verificado até ao fim e a nota individual está em [PASSAGEM_1_CAPITULO_10_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_10_NOTA_INDIVIDUAL.md). A auditoria cruzada final do sublote 1–10 está pendente.
+
+
+## Resultado da auditoria cruzada final 1–10 — 2026-10-11
+
+A [auditoria cruzada final dos capítulos 1–10](../06_auditoria/AUDITORIA_CRUZADA_FINAL_CAPITULOS_01_10.md) foi concluída sem contradição central. O lote 1–10 está auditado com questões abertas preservadas; a Passagem 1 continua em execução. Próxima etapa: após verificação final dos documentos, continuar sequencialmente no capítulo 11.
