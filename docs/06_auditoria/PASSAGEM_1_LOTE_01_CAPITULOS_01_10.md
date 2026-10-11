@@ -4,16 +4,16 @@
 **Edição de trabalho:** Webnovel, tradução inglesa  
 **Data da consulta:** 2026-10-11  
 **Passagem:** 1 — leitor da narrativa, sem avaliação técnico-científica  
-**Estado:** primeira consulta analítica sequencial realizada; a integralidade de cada página/texto ainda não foi verificada linha a linha. Não classificar este lote como leitura integral definitiva.  
+**Estado:** capítulos 1–3 reabertos e corpo narrativo completo visível verificado; capítulos 4–10 ainda não reauditados individualmente. Não classificar o lote inteiro como leitura integral definitiva.  
 **Regra de uso:** paráfrases originais; este documento não reproduz o texto da obra.
 
 ## Fontes e cobertura observada
 
 | Capítulo | Título conforme Webnovel | URL | Estado desta sessão |
 |---:|---|---|---|
-| 1 | Rebirth | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673 | Página e conteúdo narrativo consultados; análise substancial |
-| 2 | Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Página e conteúdo narrativo consultados; análise substancial |
-| 3 | Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Página e conteúdo narrativo consultados; análise substancial |
+| 1 | Rebirth | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673 | Corpo narrativo visível completo verificado; nota individual atualizada |
+| 2 | Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Corpo narrativo visível completo verificado; nota individual atualizada |
+| 3 | Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Corpo narrativo visível completo verificado; nota individual atualizada |
 | 4 | 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Página e conteúdo narrativo consultados; análise substancial |
 | 5 | Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Página e conteúdo narrativo consultados; análise substancial |
 | 6 | Taking Action! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/taking-action!_23353885024384961 | Página e conteúdo narrativo consultados; análise substancial |
@@ -112,7 +112,7 @@ Essas regras são afirmações do texto ficcional, não fatos científicos do mu
 
 ## Revisão progressiva — sublote de calibração, capítulos 1–3 (2026-10-11)
 
-A metodologia foi atualizada para 1A–1D. Como primeira unidade de calibração, foram reabertas as páginas oficiais dos capítulos 1–3 e criadas notas individuais. As páginas exibiram aviso de falha de carregamento depois do conteúdo narrativo retornado, então o estado permanece **consulta analítica substancial**, sem certificar integralidade.
+A metodologia foi atualizada para 1A–1D. Como primeira unidade de calibração, foram reabertas as páginas oficiais dos capítulos 1–3 e criadas notas individuais. A verificação mostrou que a mensagem “Load failed, please RETRY” aparece depois do corpo narrativo e do link “next chapter”, na área auxiliar pós-capítulo. Ela não é evidência de truncamento do texto narrativo. Os três corpos narrativos visíveis foram confirmados até o final do capítulo.
 
 - [Capítulo 1 — Rebirth: nota individual](PASSAGEM_1_CAPITULO_01_NOTA_INDIVIDUAL.md)
 - [Capítulo 2 — Mechanic: nota individual](PASSAGEM_1_CAPITULO_02_NOTA_INDIVIDUAL.md)
@@ -132,8 +132,17 @@ Hila é apresentada simultaneamente como comandante coerciva e como pessoa subme
 - [x] Sequência de acontecimentos, objetivos, decisões e consequências registada.
 - [x] Ponto de vista e conhecimento do protagonista separados de factos independentes quando relevante.
 - [x] Conexões entre capítulos identificadas com tipo e estado.
-- [x] Falha de carregamento e incerteza de integralidade registadas.
-- [ ] Comparação independente de toda a extensão dos capítulos 1–3: pendente, porque a página não retornou confirmação de conteúdo completo.
+- [x] A mensagem de erro foi localizada na área auxiliar pós-capítulo e separada do estado do texto narrativo.
+- [x] Os corpos narrativos visíveis dos capítulos 1–3 foram verificados até ao fim e receberam estado atualizado.
 - [ ] Auditoria completa dos capítulos 4–10: pendente.
 
 **Decisão operacional:** o sublote 1–3 serve para calibrar a ficha e a rastreabilidade, mas ainda não basta para declarar aprovado o processo inteiro. Próxima ação: verificar a consistência entre as notas 1–3 e a síntese cumulativa existente, depois continuar a recuperação sequencial pelo capítulo 4.
+
+
+## Correção do diagnóstico de carregamento — 2026-10-11
+
+**Diagnóstico anterior incorreto:** a presença de “Load failed, please RETRY” foi interpretada como possível interrupção do capítulo. A nova inspeção das páginas mostra que o corpo narrativo já terminou antes da mensagem, que surge após o link “next chapter” e junto dos módulos auxiliares (comentários, presentes, avaliações e controlos da página). O problema observado afeta um módulo complementar da Webnovel; não bloqueou o acesso ao texto narrativo dos capítulos 1–3 nesta consulta.
+
+**Estado corrigido:** capítulos 1–3 — leitura completa do corpo narrativo visível verificada, com notas individuais; capítulos 4–10 — consulta analítica anterior, aguardando reabertura e auditoria individual. O lote 1–10 continua incompleto como auditoria, mas não devido ao erro auxiliar encontrado nas páginas 1–3.
+
+**Limite da conclusão:** esta verificação confirma o corpo narrativo da edição inglesa visível nas páginas consultadas; não equivale a uma auditoria de variantes entre traduções ou ao texto original chinês.
