@@ -119,3 +119,43 @@ Esta auditoria melhora a Passagem 1 e não autoriza antecipar a análise técnic
 ## 11. Próxima ação
 
 A tarefa ativa passa a ser **auditar e completar as notas dos capítulos 1–10**, e não iniciar imediatamente o capítulo 11. Depois de verificar os documentos e as páginas, atualizar este registo e o handoff com o ponto real de retomada.
+
+
+## 12. Proposta de decomposição interna da Passagem 1
+
+**Estado desta seção:** recomendação metodológica registrada para avaliação; não substitui automaticamente o método canônico até ser aprovada.
+
+A Passagem 1 é a base interpretativa das passagens posteriores. Recomenda-se organizá-la em quatro subfases complementares, evitando tanto a leitura superficial quanto quatro projetos redundantes:
+
+### 1A — Leitura narrativa sequencial
+Ler a edição de trabalho em ordem e criar notas individuais por capítulo. Priorizar cenas, acontecimentos, objetivos, decisões, consequências, informação nova, ponto de vista e dúvidas. Sinalizar elementos potencialmente relevantes sem iniciar ainda a extração técnica sistemática.
+
+**Saída:** notas de capítulo com estado de acesso honesto e referência à fonte.
+
+### 1B — Integração narrativa contínua
+Após cada lote, integrar as notas à cronologia e aos mapas de personagens, relações, facções, conflitos, regras do universo e questões abertas. Nos finais de arcos, fazer uma revisão de arco mais ampla. Rastrear prenúncios e consequências através de capítulos, distinguindo facto explícito, inferência fundamentada e hipótese.
+
+**Saída:** visão cumulativa conectada, sem substituir as notas individuais.
+
+### 1C — Auditoria progressiva de compreensão
+Verificar cada lote contra o texto acessível antes de avançar. Fazer revisões maiores nos finais de arcos e corrigir omissões ou interpretações frágeis. Não é necessário repetir uma auditoria total a cada lote; a verificação deve ser proporcional ao risco e à densidade. Manter lacunas explícitas quando a página ou o texto não puder ser consultado integralmente por meios autorizados.
+
+**Saída:** cobertura e interpretações verificadas na medida documentada, com incerteza preservada.
+
+### 1D — Síntese global após a cobertura narrativa
+Quando os capítulos acessíveis da edição tiverem sido percorridos, consolidar a cronologia, os arcos, as transformações dos personagens, as facções, as regras do universo, os principais prenúncios/resoluções e as questões sem resposta. Revisitar interpretações antigas à luz de revelações posteriores. Não afirmar cobertura total onde houver lacunas.
+
+**Saída:** síntese integrada da obra e relatório explícito de cobertura/limitações, preparando a Passagem 2.
+
+## 13. Cadência recomendada
+
+- Calibrar com lotes adaptativos de 3–5 capítulos; reduzir o lote quando houver densidade, mudança de arco ou dificuldade de acesso.
+- Depois de cada lote: notas individuais, integração narrativa, verificação proporcional e atualização do repositório.
+- Nos finais de arco: auditoria de continuidade mais ampla e revisão das hipóteses abertas.
+- Aumentar o tamanho dos lotes apenas após dois lotes consecutivos passarem pelo controle de qualidade.
+- Não transformar cada subfase numa releitura integral redundante. O processo é cumulativo; as revisões retornam ao texto quando houver risco, omissão, contradição ou contexto novo.
+- O tamanho de lote é um parâmetro de execução, não uma meta de produtividade. A qualidade da cobertura tem prioridade sobre o número de capítulos processados.
+
+## 14. Aplicação imediata
+
+Antes de continuar a partir do capítulo 11, aplicar a auditoria ao lote 1–10: criar notas individuais a partir do conteúdo realmente acessível, revisar a síntese e as conexões e corrigir os estados de cobertura conforme a evidência. Não certificar retroativamente uma leitura integral que não foi demonstrada.
