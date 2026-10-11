@@ -76,4 +76,4 @@
 - A nota não trata o uso de corpos como escudo ou a violência como recomendações reais; apenas regista a ação ficcional.
 - Não foi feita avaliação de viabilidade científica ou aplicação ao ABS.
 
-**Próxima ação:** O mapa e a síntese foram atualizados, e a [auditoria cruzada 1–9](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_09.md) foi aprovada. Próxima ação: reabrir o capítulo 10 e concluir o QC cruzado 1–10 antes de encerrar o lote.
+**Próxima ação:** O mapa e a síntese foram atualizados, e o [QC cruzado final 1–10](AUDITORIA_CRUZADA_FINAL_CAPITULOS_01_10.md) foi concluído. Próxima ação, após verificação final dos documentos: continuar no capítulo 11.
