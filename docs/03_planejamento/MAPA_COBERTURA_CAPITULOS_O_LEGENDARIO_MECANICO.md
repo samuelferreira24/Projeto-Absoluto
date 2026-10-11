@@ -113,9 +113,10 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-026 | 26 — Blueprint: Robot (Type: Rover) | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 26–28 aprovado | [Nota do capítulo 26](../06_auditoria/PASSAGEM_1_CAPITULO_26_NOTA_INDIVIDUAL.md) |
 | CH-EN-027 | 27 — The Final Test | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 26–28 aprovado | [Nota do capítulo 27](../06_auditoria/PASSAGEM_1_CAPITULO_27_NOTA_INDIVIDUAL.md) |
 | CH-EN-028 | 28 — Jealousy | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 26–28 aprovado | [Nota do capítulo 28](../06_auditoria/PASSAGEM_1_CAPITULO_28_NOTA_INDIVIDUAL.md) |
-| CH-EN-029 | 29 — Fall Out | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 29–31 pendente | [Nota do capítulo 29](../06_auditoria/PASSAGEM_1_CAPITULO_29_NOTA_INDIVIDUAL.md) |
-| CH-EN-030 | 30 — The Mighty Rover | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 29–31 pendente | [Nota do capítulo 30](../06_auditoria/PASSAGEM_1_CAPITULO_30_NOTA_INDIVIDUAL.md) |
-| CH-EN-031 | 31 — Silenced | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 29–31 pendente | [Nota do capítulo 31](../06_auditoria/PASSAGEM_1_CAPITULO_31_NOTA_INDIVIDUAL.md) |
+| CH-EN-029 | 29 — Fall Out | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 29–31 aprovado com discrepâncias documentadas | [Nota do capítulo 29](../06_auditoria/PASSAGEM_1_CAPITULO_29_NOTA_INDIVIDUAL.md) |
+| CH-EN-030 | 30 — The Mighty Rover | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 29–31 aprovado com discrepâncias documentadas | [Nota do capítulo 30](../06_auditoria/PASSAGEM_1_CAPITULO_30_NOTA_INDIVIDUAL.md) |
+| CH-EN-031 | 31 — Silenced | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 29–31 aprovado com discrepâncias documentadas | [Nota do capítulo 31](../06_auditoria/PASSAGEM_1_CAPITULO_31_NOTA_INDIVIDUAL.md) |
+| CH-EN-031 | 31 — Silenced | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 29–31 aprovado com discrepâncias documentadas | [Nota do capítulo 31](../06_auditoria/PASSAGEM_1_CAPITULO_31_NOTA_INDIVIDUAL.md) |
 | CH-EN-025 | 25 — New Talent! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 aprovado | [Nota do capítulo 25](../06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
@@ -310,3 +311,8 @@ A página oficial do capítulo 30, “The Mighty Rover”, foi aberta pelo link 
 ## Atualização — capítulo 31 (2026-10-11)
 
 A página oficial do capítulo 31, “Silenced”, foi aberta pelo link do capítulo 30. O corpo narrativo visível foi verificado até ao fim antes da área auxiliar, e a nota individual está em [PASSAGEM_1_CAPITULO_31_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_31_NOTA_INDIVIDUAL.md). O capítulo confirma que três mercenários sobreviveram à primeira rajada do Rover; dois morrem na autodestruição e Kelly é morto por Han Xiao, completando seis mortes. A missão é concluída e Han Xiao é levado pela Division 13; Big Raccoon é algemado por ordem da divisão.
+
+
+## Resultado do QC cruzado 29–31 — 2026-10-11
+
+A [auditoria cruzada 29–31](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_29_31.md) e a [síntese integrada do lote 08](../06_auditoria/PASSAGEM_1_LOTE_08_CAPITULOS_29_31.md) foram concluídas. A continuação esclarece a contagem de baixas da Bee Sting Squad, mas revela uma frase inconsistente no capítulo 30; a diferença entre [Assailants!] e [Hunted!] permanece aberta. Han Xiao conclui a missão e é levado pela Division 13; Raccoon é algemado por ordem da divisão. Próximo capítulo: 32; não avançar ao 35 antes do QC 32–34.
