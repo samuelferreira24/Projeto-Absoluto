@@ -108,3 +108,32 @@ Essas regras são afirmações do texto ficcional, não fatos científicos do mu
 - O lote contém violência e exploração institucional. O facto de práticas abusivas produzirem alguma adaptação não deve ser lido como validação moral delas.
 - A leitura técnica detalhada fica reservada à Passagem 2. Esta passada só registra elementos necessários para entender a narrativa.
 - Não foram realizadas experiências científicas nem verificação externa das tecnologias ficcionais.
+
+
+## Revisão progressiva — sublote de calibração, capítulos 1–3 (2026-10-11)
+
+A metodologia foi atualizada para 1A–1D. Como primeira unidade de calibração, foram reabertas as páginas oficiais dos capítulos 1–3 e criadas notas individuais. As páginas exibiram aviso de falha de carregamento depois do conteúdo narrativo retornado, então o estado permanece **consulta analítica substancial**, sem certificar integralidade.
+
+- [Capítulo 1 — Rebirth: nota individual](PASSAGEM_1_CAPITULO_01_NOTA_INDIVIDUAL.md)
+- [Capítulo 2 — Mechanic: nota individual](PASSAGEM_1_CAPITULO_02_NOTA_INDIVIDUAL.md)
+- [Capítulo 3 — Life Is All About Acting: nota individual](PASSAGEM_1_CAPITULO_03_NOTA_INDIVIDUAL.md)
+
+### Integração narrativa provisória do sublote
+
+A sequência dos três capítulos estabelece uma mudança importante na estratégia de Han Xiao. No capítulo 1, ele reconhece que o mundo é perigoso e que o conhecimento de jogador não elimina o risco físico. No capítulo 2, converte esse conhecimento em progressão prática: aprende maquinaria, desbloqueia a classe Mechanic e obtém experiência por montagem repetida. No capítulo 3, a ameaça deixa de ser apenas física ou de progressão: ele precisa ocultar a própria intenção e controlar o que os captores acreditam saber sobre ele.
+
+A cadeia causal central é: **cativeiro e ameaça de condicionamento → aprendizagem/progressão pela interface → resistência ao condicionamento → dissimulação para preservar autonomia → treino coercivo e nova exposição ao perigo**. A cadeia é explícita no conteúdo consultado, mas continua limitada à cobertura parcial das páginas; os capítulos posteriores podem alterar a interpretação.
+
+Hila é apresentada simultaneamente como comandante coerciva e como pessoa submetida a pressão do superior por causa da irmã. Lin Weixian trata Han Xiao como objeto experimental e insiste na investigação cerebral. O conhecimento de Han Xiao sobre a versão futura de Galaxy funciona como vantagem informacional, mas deve ser distinguido de factos confirmados por uma fonte narrativa independente.
+
+### Controle de qualidade inicial
+
+- [x] Cada capítulo do sublote tem nota individual e URL.
+- [x] Sequência de acontecimentos, objetivos, decisões e consequências registada.
+- [x] Ponto de vista e conhecimento do protagonista separados de factos independentes quando relevante.
+- [x] Conexões entre capítulos identificadas com tipo e estado.
+- [x] Falha de carregamento e incerteza de integralidade registadas.
+- [ ] Comparação independente de toda a extensão dos capítulos 1–3: pendente, porque a página não retornou confirmação de conteúdo completo.
+- [ ] Auditoria completa dos capítulos 4–10: pendente.
+
+**Decisão operacional:** o sublote 1–3 serve para calibrar a ficha e a rastreabilidade, mas ainda não basta para declarar aprovado o processo inteiro. Próxima ação: verificar a consistência entre as notas 1–3 e a síntese cumulativa existente, depois continuar a recuperação sequencial pelo capítulo 4.
