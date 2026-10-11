@@ -104,6 +104,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-017 | 17 — Kill | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 17–19 aprovado | [Nota do capítulo 17](../06_auditoria/PASSAGEM_1_CAPITULO_17_NOTA_INDIVIDUAL.md) |
 | CH-EN-018 | 18 — Bigger Than You Imagined | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 17–19 aprovado | [Nota do capítulo 18](../06_auditoria/PASSAGEM_1_CAPITULO_18_NOTA_INDIVIDUAL.md) |
 | CH-EN-019 | 19 — $1,000,000 Bounty! Class A Mission! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 17–19 aprovado | [Nota do capítulo 19](../06_auditoria/PASSAGEM_1_CAPITULO_19_NOTA_INDIVIDUAL.md) |
+| CH-EN-020 | 20 — Illegal Entry | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 20–22 pendente | [Nota do capítulo 20](../06_auditoria/PASSAGEM_1_CAPITULO_20_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -232,3 +233,8 @@ A página oficial do capítulo 18, “Bigger Than You Imagined”, foi aberta pe
 ## Resultado do QC cruzado 17–19 — 2026-10-11
 
 A [auditoria cruzada 17–19](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_17_19.md) e a [síntese integrada do lote 04](../06_auditoria/PASSAGEM_1_LOTE_04_CAPITULOS_17_19.md) foram concluídas. A missão [Revenge] é completada com a morte de No. 1; a regeneração subsequente é mostrada, mas o mecanismo continua em aberto. A nota do capítulo 18 foi corrigida para distinguir o rifle SWP desmontado da espingarda de baioneta que se desfez. Próximo capítulo: 20; não avançar ao 23 antes do QC 20–22.
+
+
+## Atualização — capítulo 20 (2026-10-11)
+
+A página oficial do capítulo 20, “Illegal Entry”, foi aberta pelo link do capítulo 19. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_20_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_20_NOTA_INDIVIDUAL.md). Han Xiao entra clandestinamente na Western Capital pagando ao contrabandista com as armas saqueadas, recusa a oferta de Ma Jie e desbloqueia [Steal]. O sublote 20–22 está em execução.
