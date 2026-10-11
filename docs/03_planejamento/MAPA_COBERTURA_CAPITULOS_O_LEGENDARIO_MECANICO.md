@@ -44,6 +44,8 @@ Manter uma linha por entrada e edição com: ID estável; edição; número e t�
 |---|---|---|---|---|
 | CH-EN-0001 | 1 — Rebirth | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673 | Página aberta; consultado analiticamente | Premissa, interface ficcional, cenário inicial |
 | CH-EN-0002 | 2 — Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Página aberta; trecho consultado | Aprendizagem ficcional, classe e habilidades |
+| CH-EN-0003 | 3 — Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Página aberta; consultado analiticamente | Condicionamento, treino, contexto ético |
+| CH-EN-0004 | 4 — 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Página aberta; consultado analiticamente | Oficina, montagem, manutenção e recursos |
 | CH-EN-0005 | 5 — Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Trechos consultados | Blueprint de braço mecânico |
 | CH-EN-0022 | 22 — Prosthetic Limb | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/prosthetic-limb_23983084059815310 | Trechos consultados | Prótese e fabricação |
 | CH-EN-0026 | 26 — Blueprint: Robot (Type: Rover) | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/blueprint-robot-%28type-rover%29_24056767965096782 | Trechos consultados | Blueprint do rover |
