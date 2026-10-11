@@ -59,7 +59,7 @@ No capítulo 10, ele usa disfarce e confusão organizacional para atravessar o p
 5. **Meses de dissimulação:** finge obediência, recebe treinamento coercivo, aprende a rotina da base e acumula experiência por montagem, aprimoramento, fabricação e treino.
 6. **Pista sobre Hila/Aurora:** uma fotografia revela a relação entre as irmãs e inicia a missão “Night Owl Plans”; a história futura conhecida por Han Xiao torna a pista estrategicamente importante.
 7. **Planta do braço mecânico:** combina talentos para obter a planta e fabrica um braço mecânico leve, além de melhorar armas.
-8. **Ruptura do plano de fuga:** o confronto com Baltar expõe Han Xiao; ele elimina obstáculos, neutraliza Lin Weixian e destrói/registra como alvo o laboratório e a infraestrutura de vigilância.
+8. **Ruptura do plano de fuga:** o confronto com Baltar expõe Han Xiao; ele neutraliza Lin Weixian, destrói os monitores da sala de vigilância e incendeia o laboratório Valkyrie. No capítulo 10, o líder da Equipa A relata que os registos Valkyrie foram destruídos; a extensão real da perda de dados não é verificada independentemente nesta passagem.
 9. **Fuga:** usa combate, improvisação, disfarce e manipulação da resposta dos guardas para passar pelo portão.
 10. **Nova fase de perseguição:** a Germinal mobiliza Hila, a equipe Night Owl e o sujeito No. 1; Han Xiao entra na floresta sem ter eliminado a ameaça organizacional.
 
@@ -67,7 +67,7 @@ No capítulo 10, ele usa disfarce e confusão organizacional para atravessar o p
 
 - **Han Xiao / “Zero”:** protagonista; conhecimento metanarrativo de jogador, capacidade de planejar e dissimular, mas vulnerável a ferimentos, escassez e superioridade numérica. A sua vantagem vem da combinação de informação prévia, interface, prática e adaptação, não de força ilimitada.
 - **Hila:** comandante da base e super-humana; executa ordens e o treinamento brutal, mas demonstra vínculo com a irmã e relutância em entregar Han Xiao à dissecação. A previsão que Han Xiao possui sobre o seu futuro condiciona a interpretação dele, mas não comprova que o futuro seja inevitável.
-- **Aurora:** irmã mais nova de Hila; descrita como possuidora de sangue com propriedades curativas extraordinárias e mantida sob controle da Germinal. Sua situação funciona como instrumento de coerção contra Hila.
+- **Aurora:** irmã mais nova de Hila; segundo a memória e a informação de Han Xiao no capítulo 5, o seu sangue possui propriedades curativas extraordinárias e a Germinal usa a sua situação para controlar Hila. A extensão atual dessas propriedades e o futuro após a intervenção de Han Xiao permanecem por verificar.
 - **Lin Weixian:** pesquisador da Valkyrie, obcecado por explicar a sobrevivência e capacidade de aprendizagem de Han Xiao; representa a lógica instrumental da pesquisa sem consentimento.
 - **Baltar:** treinador e vice-gerente que usa tortura e punição para treinar Han Xiao; a violência que impõe acaba dando ao protagonista resistência à dor e prática em condições extremas, sem que isso justifique moralmente os abusos.
 - **Sujeito No. 1:** outro sobrevivente/experimento considerado promissor; rivaliza com Han Xiao e fica abalado pela fuga. Sua função futura permanece em aberto.
@@ -102,7 +102,7 @@ Essas regras são afirmações do texto ficcional, não fatos científicos do mu
 | CN-005 | Acesso a materiais + experiência acumulada + combinação de talentos → planta do braço mecânico | Explícita | Alta | Cap. 4–6 |
 | CN-006 | Braço mecânico + arma melhorada + informação tática → capacidade de enfrentar adversários mais experientes | Explícita | Alta | Cap. 6–9; o equipamento perde durabilidade e Han Xiao é ferido |
 | CN-007 | Fotografia de Hila e Aurora → missão “Night Owl Plans” e antecipação de tragédia futura | Explícita | Alta quanto à missão; média quanto ao futuro alterar-se | Cap. 5; o destino futuro é conhecido por Han Xiao, mas ainda não testado pela intervenção |
-| CN-008 | A morte/neutralização de comandantes e destruição de dados → confusão e fragmentação da resposta defensiva | Explícita | Alta | Cap. 7–10 |
+| CN-008 | Morte/neutralização de comandantes + incêndio do laboratório → confusão e fragmentação da resposta defensiva; destruição total dos dados é relatada, não verificada independentemente | Mista: mortes e confusão explícitas; perda total de dados ainda não confirmada | Alta para a confusão; média para o estado dos dados | Cap. 7–10; o líder da Equipa A relata a destruição dos registos no cap. 10 |
 | CN-009 | A tentativa de escapar sem confronto falha por causa do encontro com Baltar → mudança para estratégia de distração e infiltração | Explícita | Alta | Cap. 6–10 |
 | CN-010 | O conhecimento futuro de Han Xiao pode permitir alterar a trajetória de Hila/Aurora | Hipótese aberta | Média-baixa | Cap. 5; intenção declarada, resultado ainda não observado |
 
@@ -239,3 +239,8 @@ A [auditoria cruzada dos capítulos 1–9](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITU
 A página oficial do capítulo 10 foi aberta através do link de navegação do capítulo 9, pois a URL com sublinhado não foi acessível diretamente. A página resolvida pela Webnovel usa o slug `night-owl`; o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 10](PASSAGEM_1_CAPITULO_10_NOTA_INDIVIDUAL.md). O capítulo confirma a fuga física da instalação por infiltração no grupo de guardas, a perseguição ordenada contra Han Xiao e o encontro com seis agentes Night Owl na floresta. O relatório de que mais de 30 guardas morreram e de que todos os registos Valkyrie foram destruídos é atribuído ao líder da Equipa A, não tratado como verificação independente.
 
 **Estado atualizado:** capítulos 1–9 — corpo narrativo verificado e QC cruzado 1–9 aprovado; capítulo 10 — corpo narrativo reaberto e nota individual criada, QC cruzado final 1–10 pendente. Concluir o controle de qualidade antes de declarar o lote fechado ou iniciar o capítulo 11.
+
+
+## Correção final de rastreabilidade — dados Valkyrie (2026-10-11)
+
+A síntese cumulativa foi ajustada para distinguir os acontecimentos observados dos relatos internos: o capítulo 9 mostra Han Xiao a incendiar o laboratório; no capítulo 10, o líder da Equipa A relata que todos os registos Valkyrie foram destruídos. O corpo narrativo consultado não confirma de forma independente a extensão total da perda de dados. A conclusão foi rebaixada de facto explícito para relato dentro da história, com estado em aberto.
