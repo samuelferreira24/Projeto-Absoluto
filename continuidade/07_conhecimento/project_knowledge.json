@@ -1,8 +1,8 @@
 {
   "schema_version": "1.4",
   "project": "Projeto Absoluto",
-  "generated_at": "2026-10-11T00:28:49-03:00",
-  "source_revision": "f4b8c43768b69f5aa706ece3d83ed648e6db1ce6",
+  "generated_at": "2026-10-11T00:30:21-03:00",
+  "source_revision": "c80b231fd22f0bfdb8c8f42cf971d0adde2541e8",
   "components": [
     {
       "id": "component:abs_core",
@@ -888,8 +888,8 @@
       "state": "observed",
       "branch": "main",
       "remote": "https://github.com/samuelferreira24/Projeto-Absoluto",
-      "revision": "f4b8c43768b69f5aa706ece3d83ed648e6db1ce6",
-      "commit_subject": "Audit and harden VPS runner command channel"
+      "revision": "c80b231fd22f0bfdb8c8f42cf971d0adde2541e8",
+      "commit_subject": "Record live VPS runner channel validation"
     }
   ],
   "tools": [
@@ -13061,6 +13061,20 @@
       "sha": "f4b8c43768b69f5aa706ece3d83ed648e6db1ce6"
     },
     {
+      "id": "commit:f2ae8bea74d09bd56bdc96c9ec54a898e63eaffd",
+      "kind": "commit",
+      "at": "2026-10-11T03:29:08Z",
+      "subject": "chore: refresh project knowledge [skip ci]",
+      "sha": "f2ae8bea74d09bd56bdc96c9ec54a898e63eaffd"
+    },
+    {
+      "id": "commit:c80b231fd22f0bfdb8c8f42cf971d0adde2541e8",
+      "kind": "commit",
+      "at": "2026-10-11T00:30:21-03:00",
+      "subject": "Record live VPS runner channel validation",
+      "sha": "c80b231fd22f0bfdb8c8f42cf971d0adde2541e8"
+    },
+    {
       "id": "source:vision",
       "kind": "knowledge_source",
       "path": "continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md",
@@ -13173,23 +13187,23 @@
       "status": "present"
     },
     {
-      "id": "evidence:repository:0cc898c62df5",
+      "id": "evidence:repository:286a48607eb0",
       "kind": "evidence",
-      "at": "2026-10-11T00:28:49-03:00",
+      "at": "2026-10-11T00:30:21-03:00",
       "status": "observed",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto"
     },
     {
-      "id": "event:repository-scan:0cc898c62df5",
+      "id": "event:repository-scan:286a48607eb0",
       "kind": "event",
       "type": "repository_scanned",
-      "at": "2026-10-11T00:28:49-03:00"
+      "at": "2026-10-11T00:30:21-03:00"
     },
     {
-      "id": "event:commit-observed:f4b8c43768b6",
+      "id": "event:commit-observed:c80b231fd22f",
       "kind": "event",
       "type": "commit_observed",
-      "at": "2026-10-11T00:28:49-03:00"
+      "at": "2026-10-11T00:30:21-03:00"
     }
   ],
   "paths": [
@@ -13224,11 +13238,11 @@
       ],
       "evidence": [
         null,
-        "evidence:test:e98b00381fa2"
+        "evidence:test:1ea3c17f6b05"
       ],
       "fallback": [],
       "approval": "required",
-      "last_validated": "2026-10-11T00:28:49-03:00"
+      "last_validated": "2026-10-11T00:30:21-03:00"
     },
     {
       "id": "PATH-ABS-INTERNET-HTTP",
@@ -13251,20 +13265,20 @@
   ],
   "evidence": [
     {
-      "id": "evidence:repository:0cc898c62df5",
+      "id": "evidence:repository:286a48607eb0",
       "kind": "repository_scan",
       "source": "/home/runner/work/Projeto-Absoluto/Projeto-Absoluto",
-      "observed_at": "2026-10-11T00:28:49-03:00",
+      "observed_at": "2026-10-11T00:30:21-03:00",
       "status": "observed",
-      "detail": "448 files indexed at revision f4b8c43768b69f5aa706ece3d83ed648e6db1ce6"
+      "detail": "448 files indexed at revision c80b231fd22f0bfdb8c8f42cf971d0adde2541e8"
     },
     {
-      "id": "evidence:test:e98b00381fa2",
+      "id": "evidence:test:1ea3c17f6b05",
       "kind": "test",
       "source": "pytest",
-      "observed_at": "2026-10-11T00:28:49-03:00",
+      "observed_at": "2026-10-11T00:30:21-03:00",
       "status": "tested",
-      "detail": "225 passed in 7.26s"
+      "detail": "225 passed in 7.91s"
     }
   ],
   "decisions": [
@@ -13367,31 +13381,30 @@
   ],
   "events": [
     {
-      "id": "event:repository-scan:0cc898c62df5",
+      "id": "event:repository-scan:286a48607eb0",
       "type": "repository_scanned",
-      "at": "2026-10-11T00:28:49-03:00",
-      "revision": "f4b8c43768b69f5aa706ece3d83ed648e6db1ce6",
+      "at": "2026-10-11T00:30:21-03:00",
+      "revision": "c80b231fd22f0bfdb8c8f42cf971d0adde2541e8",
       "file_count": 448,
-      "evidence_id": "evidence:repository:0cc898c62df5"
+      "evidence_id": "evidence:repository:286a48607eb0"
     },
     {
-      "id": "event:commit-observed:f4b8c43768b6",
+      "id": "event:commit-observed:c80b231fd22f",
       "type": "commit_observed",
-      "at": "2026-10-11T00:28:49-03:00",
-      "revision": "f4b8c43768b69f5aa706ece3d83ed648e6db1ce6",
+      "at": "2026-10-11T00:30:21-03:00",
+      "revision": "c80b231fd22f0bfdb8c8f42cf971d0adde2541e8",
       "branch": "main",
-      "subject": "Audit and harden VPS runner command channel",
+      "subject": "Record live VPS runner channel validation",
       "changed_files": [
-        ".github/workflows/vps-admin-command.yml",
         "docs/03_planejamento/AUDITORIA_CANAL_RUNNER_VPS_2026-10-11.md"
       ]
     },
     {
-      "id": "event:test:e98b00381fa2",
+      "id": "event:test:1ea3c17f6b05",
       "type": "tests_observed",
-      "at": "2026-10-11T00:28:49-03:00",
+      "at": "2026-10-11T00:30:21-03:00",
       "status": "tested",
-      "evidence_id": "evidence:test:e98b00381fa2"
+      "evidence_id": "evidence:test:1ea3c17f6b05"
     }
   ],
   "knowledge_sources": [
@@ -13447,7 +13460,7 @@
       "authority": "derived_observation",
       "temporal": "current",
       "status": "present",
-      "sha256": "b64b856b9ea26c1d81128e5dfeee633bd5bb6af8c787ccb0741ee7715c48e42d"
+      "sha256": "a59ab759c66162f0dc9d885b68646195bfc65f86f4ad9e1ea3d76c78bde8833d"
     },
     {
       "id": "source:session",
@@ -60998,12 +61011,82 @@
       "valid_until": null
     },
     {
-      "id": "rel:event-evidence:event:repository-scan:0cc898c62df5",
-      "source": "event:repository-scan:0cc898c62df5",
-      "relation": "generated",
-      "target": "evidence:repository:0cc898c62df5",
+      "id": "rel:commit-precedes:f4b8c43768b6:f2ae8bea74d0",
+      "source": "commit:f4b8c43768b69f5aa706ece3d83ed648e6db1ce6",
+      "relation": "precedes",
+      "target": "commit:f2ae8bea74d09bd56bdc96c9ec54a898e63eaffd",
       "status": "asserted",
-      "at": "2026-10-11T00:28:49-03:00",
+      "at": "2026-10-11T03:29:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f2ae8bea74d0:032adc3624d7",
+      "source": "commit:f2ae8bea74d09bd56bdc96c9ec54a898e63eaffd",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md",
+      "status": "asserted",
+      "at": "2026-10-11T03:29:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:f2ae8bea74d0:d64178c49886",
+      "source": "commit:f2ae8bea74d09bd56bdc96c9ec54a898e63eaffd",
+      "relation": "changed",
+      "target": "file:continuidade/07_conhecimento/project_knowledge.json",
+      "status": "asserted",
+      "at": "2026-10-11T03:29:08Z",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-precedes:f2ae8bea74d0:c80b231fd22f",
+      "source": "commit:f2ae8bea74d09bd56bdc96c9ec54a898e63eaffd",
+      "relation": "precedes",
+      "target": "commit:c80b231fd22f0bfdb8c8f42cf971d0adde2541e8",
+      "status": "asserted",
+      "at": "2026-10-11T00:30:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:commit-changed:c80b231fd22f:421c29056bb3",
+      "source": "commit:c80b231fd22f0bfdb8c8f42cf971d0adde2541e8",
+      "relation": "changed",
+      "target": "file:docs/03_planejamento/AUDITORIA_CANAL_RUNNER_VPS_2026-10-11.md",
+      "status": "asserted",
+      "at": "2026-10-11T00:30:21-03:00",
+      "source_ref": "git",
+      "note": "",
+      "authority": "derived_observation",
+      "temporal": "current",
+      "valid_from": null,
+      "valid_until": null
+    },
+    {
+      "id": "rel:event-evidence:event:repository-scan:286a48607eb0",
+      "source": "event:repository-scan:286a48607eb0",
+      "relation": "generated",
+      "target": "evidence:repository:286a48607eb0",
+      "status": "asserted",
+      "at": "2026-10-11T00:30:21-03:00",
       "source_ref": "repository-observation",
       "note": "",
       "authority": "derived_observation",
@@ -61012,12 +61095,12 @@
       "valid_until": null
     },
     {
-      "id": "rel:scan-commit:f4b8c43768b6",
-      "source": "commit:f4b8c43768b69f5aa706ece3d83ed648e6db1ce6",
+      "id": "rel:scan-commit:c80b231fd22f",
+      "source": "commit:c80b231fd22f0bfdb8c8f42cf971d0adde2541e8",
       "relation": "observed_by",
-      "target": "event:repository-scan:0cc898c62df5",
+      "target": "event:repository-scan:286a48607eb0",
       "status": "asserted",
-      "at": "2026-10-11T00:28:49-03:00",
+      "at": "2026-10-11T00:30:21-03:00",
       "source_ref": "git",
       "note": "",
       "authority": "derived_observation",
