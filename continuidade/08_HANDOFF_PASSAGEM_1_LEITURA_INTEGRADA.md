@@ -55,3 +55,14 @@
 ## Regra para a próxima IA
 
 Não responder como se o estudo estivesse pronto só porque os documentos existem. Primeiro ler este handoff e os documentos canônicos; depois confirmar o estado atual da branch/arquivos e continuar do próximo trabalho ainda não executado. Se o texto integral de algum capítulo não estiver acessível por meios autorizados, marcar a lacuna e continuar apenas onde houver acesso legítimo.
+
+
+## Auditoria metodológica — decisão antes de continuar
+
+Em 2026-10-11 foi criada a [Auditoria do método e da qualidade de leitura](../docs/06_auditoria/AUDITORIA_METODO_LEITURA_O_LEGENDARIO_MECANICO.md). O método de passagens sucessivas permanece válido, mas a execução inicial ainda não demonstrou leitura integral nem profundidade capítulo a capítulo.
+
+**A próxima tarefa não é abrir o capítulo 11.** Primeiro, revisar os capítulos 1–10: reabrir o conteúdo acessível, criar notas individuais com acontecimentos em ordem, objetivos/motivações, consequências, informação nova, ponto de vista, conexões rastreáveis e lacunas; verificar as notas contra o texto; atualizar o mapa de cobertura. Manter o estado atual como “consulta analítica substancial” até haver verificação suficiente.
+
+Para a calibração, usar lotes adaptativos de 3–5 capítulos (ou menos em trechos densos), e só aumentar após dois lotes consecutivos passarem pelo controle de qualidade. Dez capítulos foi um piloto operacional, não um tamanho ideal já validado.
+
+A auditoria é honesta: a síntese inicial do arco e a continuidade documental estão úteis, mas a integralidade, a deteção de omissões e a profundidade interpretativa ainda não foram demonstradas. Não alegar o contrário. Nenhuma alteração em código/runtime/arquitetura do ABS; PR #165 continua draft e não deve ser merged sem autorização.
