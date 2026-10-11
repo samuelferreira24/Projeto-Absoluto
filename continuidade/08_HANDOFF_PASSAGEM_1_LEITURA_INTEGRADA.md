@@ -177,3 +177,9 @@ A página oficial do capítulo 9, “Fierce Battle”, foi reaberta. O corpo nar
 A [auditoria cruzada de consistência 1–9](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_09.md) foi concluída e aprovada com questões abertas preservadas. A distinção entre destruição dos monitores e interrupção das comunicações foi mantida; Han Xiao usa o intercomunicador para desinformar, incendeia o laboratório, combate as equipas e fica ferido. A fuga pelo portão ainda não se conclui no capítulo 9.
 
 **Próximo passo exato:** reabrir o capítulo 10, “Night Owl”, produzir/atualizar nota individual e atualizar mapa/síntese. Depois, concluir o QC cruzado 1–10. Não iniciar capítulo 11 nem Passagem 2 antes de auditar o lote e confirmar o ponto de saída do capítulo 10.
+
+## Continuidade após reabertura do capítulo 10 — 2026-10-11
+
+A página oficial do capítulo 10, “Night Owl”, foi aberta através do link “next chapter” do capítulo 9. A URL com sublinhado não foi acessível diretamente; a Webnovel resolveu a página para o slug `night-owl`. O corpo narrativo visível foi confirmado até ao fim e a [nota individual do capítulo 10](../docs/06_auditoria/PASSAGEM_1_CAPITULO_10_NOTA_INDIVIDUAL.md) foi criada. Han Xiao sai da instalação ao misturar-se entre os guardas, mas a perseguição continua; o capítulo termina quando seis agentes Night Owl o localizam na floresta.
+
+**Próxima ação obrigatória:** concluir o QC cruzado das notas 1–10 contra a síntese e o mapa. O lote não deve ser declarado concluído nem se deve abrir o capítulo 11 antes dessa auditoria. A Passagem 2 continua bloqueada.
