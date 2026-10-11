@@ -35,3 +35,8 @@ Cada unidade mantém identidade, estado e evidências próprias. Integração n�
 
 ## Regra
 O planejamento deve responder **qual capacidade/frente precisa avançar**, e não apenas qual arquivo editar.
+
+## Frente de pesquisa: O Lendário Mecânico
+- `ESTUDO_O_LEGENDARIO_MECANICO.md` — objetivo, método, critérios de evidência/viabilidade, governança e continuidade da pesquisa.
+- Fontes iniciais e limites de acesso: `docs/90_fontes/ESTUDO_O_LEGENDARIO_MECANICO_FONTES.md`.
+- Esta frente pertence ao Projeto Absoluto e não altera automaticamente o ABS. Os documentos descrevem protocolo e estado inicial, não resultados de pesquisa já concluídos.
