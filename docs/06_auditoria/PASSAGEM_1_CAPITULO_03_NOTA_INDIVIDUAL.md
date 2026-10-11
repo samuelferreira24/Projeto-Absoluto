@@ -65,7 +65,7 @@
 ## Auditoria de omissões e limites
 
 - O registo cobre a lavagem cerebral, a atuação de Han Xiao, a conversa de Hila com o superior e o início do treino físico e de tiro.
-- A página apresenta aviso de falha de carregamento após o trecho consultado; a integralidade não está certificada.
+- O corpo narrativo visível foi verificado até ao encerramento do capítulo. “Load failed, please RETRY” aparece na área auxiliar depois do link para o capítulo seguinte e não indica truncamento narrativo.
 - A nota não transforma a representação de Han Xiao em obediência real e distingue as inferências sobre a irmã de Hila dos factos explícitos.
 - Nenhuma avaliação técnico-científica nem aplicação ao ABS foi feita nesta passagem.
 
