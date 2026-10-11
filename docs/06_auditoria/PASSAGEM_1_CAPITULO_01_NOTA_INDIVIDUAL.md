@@ -57,7 +57,7 @@
 
 ## Perguntas abertas
 
-1. Por que Han Xiao foi transportado para Galaxy e o que aconteceu ao corpo/identidade anterior?
+1. Como a consciência de Han Xiao chegou ao mundo de Galaxy? A informação do capítulo 12 identifica o hospedeiro anterior como Xiao Han, terceiro filho da família Alumera, mas o mecanismo da transmigração e a relação entre as duas identidades continuam em aberto.
 2. A interface é uma propriedade do mundo, uma capacidade pessoal ou outra coisa?
 3. Até que ponto a memória do jogo corresponde ao futuro real deste mundo?
 4. Qual é o propósito completo dos testes Valkyrie e o que aconteceu aos outros sujeitos?
@@ -75,3 +75,8 @@
 ## Próxima ação
 
 O lote 1–10 passou pelo QC cruzado final, registado em [AUDITORIA_CRUZADA_FINAL_CAPITULOS_01_10.md](AUDITORIA_CRUZADA_FINAL_CAPITULOS_01_10.md). Próxima ação, após verificação final dos documentos: continuar sequencialmente no capítulo 11. O corpo narrativo visível deste capítulo está verificado.
+
+
+## Atualização retrospetiva após o capítulo 12 — 2026-10-11
+
+O capítulo 12 (“Original Identity”) responde parcialmente à questão da identidade anterior do corpo: segundo o relatório da Germinal, o hospedeiro era Xiao Han, terceiro filho da família Alumera. Esta revelação posterior não estava disponível no capítulo 1. O mecanismo da transmigração, a origem da consciência de Han Xiao e a relação entre as memórias de Han Xiao e Xiao Han continuam em aberto. Ver [nota do capítulo 12](PASSAGEM_1_CAPITULO_12_NOTA_INDIVIDUAL.md).
