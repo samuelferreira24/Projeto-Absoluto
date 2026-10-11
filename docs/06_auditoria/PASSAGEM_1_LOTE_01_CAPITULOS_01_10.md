@@ -18,7 +18,7 @@
 | 5 | Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Corpo narrativo visível verificado; nota individual criada; QC cruzado 1–5 aprovado com ressalvas |
 | 6 | Taking Action! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/taking-action!_23353885024384961 | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–6 aprovado com ressalvas |
 | 7 | Panic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/panic_23358465070135260 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–7 pendente |
-| 8 | I Have the Trashtalk to Back Me Up | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/i-have-the-trashtalk-to-back-me-up_23419907530095406 | Página e conteúdo narrativo consultados; análise substancial |
+| 8 | I Have the Trashtalk to Back Me Up | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/i-have-the-trashtalk-to-back-me-up_23419907530095406 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–8 pendente |
 | 9 | Fierce Battle | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/fierce-battle_23422594300574533 | Página e conteúdo narrativo consultados; análise substancial |
 | 10 | Night Owl | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/night_owl_23426188668095388 | Página e conteúdo narrativo consultados; análise substancial |
 
@@ -208,3 +208,10 @@ A página oficial do capítulo 7 foi reaberta e o corpo narrativo visível foi v
 ## Resultado do QC cruzado 1–7 — 2026-10-11
 
 A [auditoria cruzada dos capítulos 1–7](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_07.md) foi concluída sem contradição central. A nota do capítulo 7 foi clarificada para distinguir os dois guardas mortos no corredor no capítulo 6 dos dois guardas dentro da sala de vigilância no capítulo 7. Lin Weixian é morto antes da dissecação; a saída pelo portão e a resposta da Germinal ainda não foram mostradas. Próximo capítulo: 8; não avançar ao 9 antes do QC 1–8.
+
+
+## Atualização de execução — capítulo 8 reaberto (2026-10-11)
+
+A página oficial do capítulo 8 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 8](PASSAGEM_1_CAPITULO_08_NOTA_INDIVIDUAL.md). O capítulo mostra Han Xiao a equipar o braço mecânico, lutar contra os guardas e matar Baltar; a saída pelo portão e a resposta completa da Germinal ainda não aparecem. A nota preserva a ambiguidade na contagem dos guardas e as variantes lexicais da tradução.
+
+**Estado atualizado:** capítulos 1–7 — corpo narrativo verificado e QC cruzado 1–7 aprovado; capítulo 8 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–8 pendente; capítulos 9–10 — aguardam reabertura/auditoria individual. Não avançar ao capítulo 9 até concluir o controle de qualidade cruzado 1–8.
