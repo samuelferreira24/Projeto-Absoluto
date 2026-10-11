@@ -2,8 +2,8 @@
 
 Gerado automaticamente; não substitui autoridade humana.
 
-Revisão observada: c73742c1ba14f384c3742c5c7494c8da482ad130
-Momento da revisão: 2026-10-10T17:13:25-03:00
+Revisão observada: f4b8c43768b69f5aa706ece3d83ed648e6db1ce6
+Momento da revisão: 2026-10-11T00:28:49-03:00
 
 ## Camadas de continuidade
 - source:vision — vision_principles — continuidade/01_contexto/01_MODELO_ABS_E_PRINCIPIOS.md — present — autoridade: human_authority — temporalidade: current
@@ -25,7 +25,7 @@ Momento da revisão: 2026-10-10T17:13:25-03:00
 - component:abs_core — abs_core (60 arquivos)
 - component:cerebro — cerebro (45 arquivos)
 - component:continuity — continuity (25 arquivos)
-- component:docs — docs (79 arquivos)
+- component:docs — docs (80 arquivos)
 - component:historical_mini_cerebro — historical_mini_cerebro (12 arquivos)
 - component:project — project (160 arquivos)
 - component:tests — tests (66 arquivos)
@@ -541,6 +541,7 @@ Momento da revisão: 2026-10-10T17:13:25-03:00
 - file:docs/03_planejamento/ABS_V2_IMPLEMENTACAO_INTEGRADA.md — None — estado: unknown
 - file:docs/03_planejamento/ABS_V2_MATRIZ_CONVERGENCIA.md — None — estado: unknown
 - file:docs/03_planejamento/ABS_V2_PRE_CONSTRUCAO.md — None — estado: unknown
+- file:docs/03_planejamento/AUDITORIA_CANAL_RUNNER_VPS_2026-10-11.md — None — estado: unknown
 - file:docs/03_planejamento/AUDITORIA_E_PLANO_FECHAMENTO_ABS_V1_OPERACIONAL_2026-09-25.md — None — estado: unknown
 - file:docs/03_planejamento/FECHAMENTO_ABS_V1_CORE.md — None — estado: unknown
 - file:docs/03_planejamento/FECHAMENTO_NAVEGACAO_CONHECIMENTO_VERIFICAVEL.md — None — estado: unknown
@@ -2020,6 +2021,8 @@ Momento da revisão: 2026-10-10T17:13:25-03:00
 - commit:487ed140868686a0279903c766164b3ce4761556 — None — estado: unknown
 - commit:f68c3aa64b81b09c5c70499459d086fe1776eaae — None — estado: unknown
 - commit:c73742c1ba14f384c3742c5c7494c8da482ad130 — None — estado: unknown
+- commit:70c73987fb64a674af6d7e7ee6c132d890544492 — None — estado: unknown
+- commit:f4b8c43768b69f5aa706ece3d83ed648e6db1ce6 — None — estado: unknown
 - source:vision — None — estado: unknown
 - source:decisions — None — estado: unknown
 - source:research — None — estado: unknown
@@ -2034,19 +2037,19 @@ Momento da revisão: 2026-10-10T17:13:25-03:00
 - source:capability-registry — None — estado: unknown
 - source:decision-registry — None — estado: unknown
 - source:project-registry — None — estado: unknown
-- evidence:repository:7551b49bc072 — None — estado: unknown
-- event:repository-scan:7551b49bc072 — None — estado: unknown
-- event:commit-observed:c73742c1ba14 — None — estado: unknown
+- evidence:repository:0cc898c62df5 — None — estado: unknown
+- event:repository-scan:0cc898c62df5 — None — estado: unknown
+- event:commit-observed:f4b8c43768b6 — None — estado: unknown
 
 ## Caminhos
 - PATH-ABS-ORCHESTRATOR — route an ABS work request through the operational core — estado: observed — evidências: nenhuma
-- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:00a1e8e27cb7
+- PATH-ABS-CODEX — execute code-engineering work through Codex adapter — estado: tested — evidências: evidence:test:e98b00381fa2
 - PATH-ABS-INTERNET-HTTP — execute an HTTP request through the Internet adapter — estado: observed — evidências: nenhuma
 
 ## Eventos
-- event:repository-scan:7551b49bc072 — repository_scanned — revisão: c73742c1ba14f384c3742c5c7494c8da482ad130
-- event:commit-observed:c73742c1ba14 — commit_observed — revisão: c73742c1ba14f384c3742c5c7494c8da482ad130
-- event:test:00a1e8e27cb7 — tests_observed — revisão: n/a
+- event:repository-scan:0cc898c62df5 — repository_scanned — revisão: f4b8c43768b69f5aa706ece3d83ed648e6db1ce6
+- event:commit-observed:f4b8c43768b6 — commit_observed — revisão: f4b8c43768b69f5aa706ece3d83ed648e6db1ce6
+- event:test:e98b00381fa2 — tests_observed — revisão: n/a
 
 ## Relações de trajetória
 - source:research — informs → source:trajectory-research — asserted
@@ -5434,15 +5437,21 @@ Momento da revisão: 2026-10-10T17:13:25-03:00
 - commit:f68c3aa64b81b09c5c70499459d086fe1776eaae — changed → file:.github/workflows/vps-admin-command.yml — asserted
 - commit:f68c3aa64b81b09c5c70499459d086fe1776eaae — precedes → commit:c73742c1ba14f384c3742c5c7494c8da482ad130 — asserted
 - commit:c73742c1ba14f384c3742c5c7494c8da482ad130 — changed → file:.github/workflows/vps-admin-command.yml — asserted
-- event:repository-scan:7551b49bc072 — generated → evidence:repository:7551b49bc072 — asserted
-- commit:c73742c1ba14f384c3742c5c7494c8da482ad130 — observed_by → event:repository-scan:7551b49bc072 — asserted
+- commit:c73742c1ba14f384c3742c5c7494c8da482ad130 — precedes → commit:70c73987fb64a674af6d7e7ee6c132d890544492 — asserted
+- commit:70c73987fb64a674af6d7e7ee6c132d890544492 — changed → file:continuidade/07_conhecimento/MAPA_AUTO_ESTADO_PROJETO.md — asserted
+- commit:70c73987fb64a674af6d7e7ee6c132d890544492 — changed → file:continuidade/07_conhecimento/project_knowledge.json — asserted
+- commit:70c73987fb64a674af6d7e7ee6c132d890544492 — precedes → commit:f4b8c43768b69f5aa706ece3d83ed648e6db1ce6 — asserted
+- commit:f4b8c43768b69f5aa706ece3d83ed648e6db1ce6 — changed → file:.github/workflows/vps-admin-command.yml — asserted
+- commit:f4b8c43768b69f5aa706ece3d83ed648e6db1ce6 — changed → file:docs/03_planejamento/AUDITORIA_CANAL_RUNNER_VPS_2026-10-11.md — asserted
+- event:repository-scan:0cc898c62df5 — generated → evidence:repository:0cc898c62df5 — asserted
+- commit:f4b8c43768b69f5aa706ece3d83ed648e6db1ce6 — observed_by → event:repository-scan:0cc898c62df5 — asserted
 
 ## Trajetória
 - validação: PASS
 
 ## Evidências
-- evidence:repository:7551b49bc072 — repository_scan — observed — 447 files indexed at revision c73742c1ba14f384c3742c5c7494c8da482ad130
-- evidence:test:00a1e8e27cb7 — test — tested — 225 passed in 8.81s
+- evidence:repository:0cc898c62df5 — repository_scan — observed — 448 files indexed at revision f4b8c43768b69f5aa706ece3d83ed648e6db1ce6
+- evidence:test:e98b00381fa2 — test — tested — 225 passed in 7.26s
 
 ## Regra
 Mudança observável → evento → conhecimento estruturado → evidência → reavaliação de caminhos → projeções.
