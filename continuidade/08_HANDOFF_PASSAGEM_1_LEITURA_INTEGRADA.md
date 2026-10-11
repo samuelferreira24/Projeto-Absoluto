@@ -261,3 +261,9 @@ A página oficial do capítulo 20, “Illegal Entry”, foi aberta pelo link do 
 A página oficial do capítulo 21, “The Old Man Who Plays Chess”, foi aberta pelo link do capítulo 20 e a [nota individual do capítulo 21](../docs/06_auditoria/PASSAGEM_1_CAPITULO_21_NOTA_INDIVIDUAL.md) foi criada. Han Xiao localiza uma oficina sem nome ligada a um encontro secreto de Galaxy e pede para ser aprendiz. Lu Qian acolhe-o inicialmente, mas Old Man Lu interrompe e exige um teste; a contratação ainda não está confirmada.
 
 **Próximo passo exato:** abrir o capítulo 22 e concluir o QC cruzado 20–22 antes de avançar ao capítulo 23.
+
+## QC do sublote 20–22 concluído — 2026-10-11
+
+Foi criada a [síntese integrada dos capítulos 20–22](../docs/06_auditoria/PASSAGEM_1_LOTE_05_CAPITULOS_20_22.md) e a [auditoria cruzada 20–22](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_20_22.md). Não foi encontrada contradição central. Han Xiao entra clandestinamente na Western Capital, procura a oficina secreta e inicia o teste de uma prótese para Tall Old Man; o teste e a contratação ainda não estão concluídos. A relação de propriedade entre Old Man Lu e Lu Qian permanece aberta.
+
+**Próximo passo exato:** abrir o capítulo 23, criar notas individuais para 23–25 e concluir o QC cruzado 23–25 antes de avançar ao capítulo 26. A Passagem 2 permanece bloqueada.
