@@ -243,3 +243,9 @@ A página oficial do capítulo 17, “Kill”, foi aberta pelo link do capítulo
 A página oficial do capítulo 18, “Bigger Than You Imagined”, foi aberta pelo link do capítulo 17 e a [nota individual do capítulo 18](../docs/06_auditoria/PASSAGEM_1_CAPITULO_18_NOTA_INDIVIDUAL.md) foi criada. Han Xiao detém o veículo com uma armadilha, elimina No. 1, conclui [Revenge] e rejeita a oferta de recrutamento do líder da Germinal. O líder revela ser o chefe da organização, mas não revela a identidade civil nem o objetivo final. Han Xiao decide procurar proteção em Stardragon.
 
 **Próximo passo exato:** abrir o capítulo 19 e depois concluir o QC cruzado 17–19 antes de avançar ao capítulo 20.
+
+## QC do sublote 17–19 concluído — 2026-10-11
+
+Foi criada a [síntese integrada dos capítulos 17–19](../docs/06_auditoria/PASSAGEM_1_LOTE_04_CAPITULOS_17_19.md) e a [auditoria cruzada 17–19](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_17_19.md). Não foi encontrada contradição central. A nota do capítulo 18 foi corrigida para separar a espingarda de baioneta que se desfez do rifle SWP desmontado para reaproveitamento de peças. No. 1 morre no capítulo 18 e é regenerado no 19 por um processo cujo mecanismo continua em aberto. Han Xiao escolhe Stardragon e chega à Western Capital/Division 13.
+
+**Próximo passo exato:** abrir o capítulo 20, criar notas para 20–22 e concluir o QC cruzado 20–22 antes de avançar ao capítulo 23. A Passagem 2 permanece bloqueada.
