@@ -109,6 +109,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-022 | 22 — Prosthetic Limb | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 20–22 aprovado | [Nota do capítulo 22](../06_auditoria/PASSAGEM_1_CAPITULO_22_NOTA_INDIVIDUAL.md) |
 | CH-EN-023 | 23 — You Set Me Up! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 pendente | [Nota do capítulo 23](../06_auditoria/PASSAGEM_1_CAPITULO_23_NOTA_INDIVIDUAL.md) |
 | CH-EN-024 | 24 — What Is Weak? | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 pendente | [Nota do capítulo 24](../06_auditoria/PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md) |
+| CH-EN-025 | 25 — New Talent! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 pendente | [Nota do capítulo 25](../06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -262,3 +263,8 @@ A página oficial do capítulo 23, “You Set Me Up!”, foi aberta pelo link do
 ## Atualização — capítulo 24 (2026-10-11)
 
 A página oficial do capítulo 24, “What Is Weak?”, foi aberta pelo link do capítulo 23. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md). Han Xiao trabalha na oficina e espera a Division 13; Old Man Lu exige saber quem ele é, enquanto a divisão decide protegê-lo e verificar discretamente as suas intenções.
+
+
+## Atualização — capítulo 25 (2026-10-11)
+
+A página oficial do capítulo 25, “New Talent!”, foi aberta pelo link do capítulo 24. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md). Han Xiao fecha um acordo com Big Raccoon para fabricar armas em troca de pagamento e acesso a sucata, e Lu Qian rouba livros mecânicos básicos para o ajudar a estudar. O sublote 23–25 está pronto para QC cruzado.
