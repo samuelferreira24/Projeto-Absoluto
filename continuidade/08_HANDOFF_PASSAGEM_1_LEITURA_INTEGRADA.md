@@ -147,3 +147,9 @@ A [auditoria cruzada de consistência 1–6](../docs/06_auditoria/AUDITORIA_CRUZ
 A página oficial do capítulo 7, “Panic”, foi reaberta. O corpo narrativo visível foi confirmado até ao encerramento antes do link para o capítulo seguinte e a [nota individual do capítulo 7](../docs/06_auditoria/PASSAGEM_1_CAPITULO_07_NOTA_INDIVIDUAL.md) foi criada. Han Xiao neutraliza a sala de vigilância, mata os guardas que encontra e mata Lin Weixian antes que a dissecação ocorra. A narrativa termina sem mostrar a reação da Germinal ou a saída do portão.
 
 **Próxima ação obrigatória:** concluir o QC cruzado das notas 1–7 contra a síntese e o mapa. Não iniciar o capítulo 8 antes desse controle. Capítulos 8–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
+
+## QC cruzado dos capítulos 1–7 — 2026-10-11
+
+A [auditoria cruzada de consistência 1–7](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_07.md) foi concluída e aprovada com questões abertas preservadas. A continuidade da sala de vigilância foi corrigida para distinguir os dois guardas mortos no corredor no capítulo 6 dos dois guardas encontrados na sala no capítulo 7. Han Xiao mata Lin Weixian antes da dissecação; a fuga pelo portão e a reação da Germinal ainda não foram mostradas.
+
+**Próximo passo exato:** reabrir o capítulo 8, “I Have the Trashtalk to Back Me Up”, produzir/atualizar nota individual e atualizar mapa/síntese. Não iniciar capítulo 9 antes do QC cruzado 1–8. Capítulos 8–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
