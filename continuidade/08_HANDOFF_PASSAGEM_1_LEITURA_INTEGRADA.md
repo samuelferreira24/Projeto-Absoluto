@@ -213,3 +213,9 @@ Foi criada a [síntese integrada dos capítulos 11–13](../docs/06_auditoria/PA
 A página oficial do capítulo 14, “The Old Era and the New”, foi aberta pelo link do capítulo 13 e a [nota individual do capítulo 14](../docs/06_auditoria/PASSAGEM_1_CAPITULO_14_NOTA_INDIVIDUAL.md) foi criada. Han Xiao conclui a troca de provisões, recusa uma carrinha por razões de segurança e é acolhido por Hu Xuan Jun e An. A conversa introduz a história de Aquamarine, a unificação nas Seis Nações e a Batalha de Andrea como ponto de viragem, sem detalhar ainda a batalha.
 
 **Próximo passo exato:** abrir os capítulos 15 e 16, criar notas individuais e auditar o sublote 14–16 antes de avançar ao capítulo 17.
+
+## Sub-lote 14–16: capítulo 15 lido (2026-10-11)
+
+A página oficial do capítulo 15, “Burglary”, foi aberta pelo link do capítulo 14 e a [nota individual do capítulo 15](../docs/06_auditoria/PASSAGEM_1_CAPITULO_15_NOTA_INDIVIDUAL.md) foi criada. O capítulo aprofunda a Batalha de Andrea, revela o passado de Hu Xuan Jun e An e mostra Hu Fei, o jovem do capítulo 13, a roubar duas pistolas 73-WASP do pacote de Han Xiao durante a noite. O resultado do furto ainda está em aberto.
+
+**Próximo passo exato:** abrir o capítulo 16, criar nota individual e auditar o sublote 14–16 antes de avançar ao capítulo 17.
