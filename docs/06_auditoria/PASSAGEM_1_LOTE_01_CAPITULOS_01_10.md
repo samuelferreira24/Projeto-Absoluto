@@ -202,7 +202,7 @@ A [auditoria cruzada dos capítulos 1–6](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITU
 
 A página oficial do capítulo 7 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 7](PASSAGEM_1_CAPITULO_07_NOTA_INDIVIDUAL.md). A nota regista a neutralização da sala de vigilância, a eliminação dos guardas, a ida ao laboratório privado de Lin Weixian, a morte de Lin e a revelação de que Han Xiao fingiu submissão durante meio ano. O resultado da fuga e a reação da Germinal permanecem para os capítulos seguintes.
 
-**Estado atualizado:** capítulos 1–6 — corpo narrativo verificado e QC cruzado 1–6 aprovado com ressalvas; capítulo 7 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–7 pendente; capítulos 8–10 — aguardam reabertura/auditoria individual. Não avançar ao capítulo 8 até concluir o controle de qualidade cruzado 1–7.
+**Estado atualizado:** capítulos 1–6 — corpo narrativo verificado e QC cruzado 1–6 aprovado com ressalvas; capítulo 7 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–7 aprovado; capítulo 8 — corpo narrativo reaberto, nota individual criada e QC cruzado 1–8 aprovado com ressalvas; capítulos 9–10 — aguardam reabertura/auditoria individual. Próxima etapa: reabrir o capítulo 9 e auditar o sublote 1–9 antes de avançar ao capítulo 10.
 
 
 ## Resultado do QC cruzado 1–7 — 2026-10-11
@@ -215,3 +215,8 @@ A [auditoria cruzada dos capítulos 1–7](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITU
 A página oficial do capítulo 8 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 8](PASSAGEM_1_CAPITULO_08_NOTA_INDIVIDUAL.md). O capítulo mostra Han Xiao a equipar o braço mecânico, lutar contra os guardas e matar Baltar; a saída pelo portão e a resposta completa da Germinal ainda não aparecem. A nota preserva a ambiguidade na contagem dos guardas e as variantes lexicais da tradução.
 
 **Estado atualizado:** capítulos 1–7 — corpo narrativo verificado e QC cruzado 1–7 aprovado; capítulo 8 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–8 pendente; capítulos 9–10 — aguardam reabertura/auditoria individual. Não avançar ao capítulo 9 até concluir o controle de qualidade cruzado 1–8.
+
+
+## Resultado do QC cruzado 1–8 — 2026-10-11
+
+A [auditoria cruzada dos capítulos 1–8](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_08.md) foi concluída sem contradição central. O braço fabricado no capítulo 6 é recuperado e equipado no capítulo 8; a morte de Lin no capítulo 7 explica o uso do passe, enquanto a destruição dos monitores não implica que as comunicações tenham sido interrompidas, pois Baltar ainda transmite uma ordem. A contagem de guardas do capítulo 8 permanece ambígua. Próximo capítulo: 9; não avançar ao 10 antes do QC 1–9.
