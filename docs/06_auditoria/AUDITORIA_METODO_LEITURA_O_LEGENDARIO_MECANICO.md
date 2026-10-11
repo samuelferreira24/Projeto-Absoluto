@@ -158,10 +158,16 @@ Quando os capítulos acessíveis da edição tiverem sido percorridos, consolida
 
 ## 14. Aplicação imediata
 
-Antes de continuar a partir do capítulo 11, aplicar a auditoria ao lote 1–10: criar notas individuais a partir do conteúdo realmente acessível, revisar a síntese e as conexões e corrigir os estados de cobertura conforme a evidência. Não certificar retroativamente uma leitura integral que não foi demonstrada.
+Antes de avançar, concluir a auditoria de consistência das notas 1–3 e da síntese cumulativa; depois continuar pelo capítulo 4. Os capítulos 4–10 precisam de reabertura e notas individuais antes de liberar o capítulo 11.
 
 ## 15. Estado de execução após formalização
 
-Em 2026-10-11, as subfases 1A–1D e a cadência adaptativa de 3–5 capítulos (com redução para 1–3 quando necessário) foram incorporadas ao método canônico. Foi criada a primeira nota individual da recuperação, para o capítulo 1, a partir do conteúdo narrativo efetivamente retornado pela página oficial da Webnovel. A página apresentou falha de carregamento após o trecho consultado; por isso, a nota está classificada como **consulta analítica substancial**, não como leitura completa verificada.
+Em 2026-10-11, as subfases 1A–1D e a cadência adaptativa foram incorporadas ao método canônico. As páginas oficiais dos capítulos 1–3 foram reabertas e as notas individuais atualizadas. A mensagem “Load failed, please RETRY” aparece depois do corpo narrativo e do link “next chapter”, na área auxiliar pós-capítulo; não interrompe o texto narrativo visível. Assim, os capítulos 1–3 passaram para o estado **leitura completa do corpo narrativo visível verificada**.
 
-A recuperação do lote 1–10 ainda está em andamento. Já existem notas individuais para os capítulos 1–3 e a cobertura foi atualizada, mas o lote não está auditado por completo. Próximo trabalho: executar o controle de qualidade do sublote 1–3, conferir consistência entre notas, mapa e síntese cumulativa, e só depois continuar pelo capítulo 4. O capítulo 11 permanece bloqueado até a recuperação dos capítulos 1–10.
+A auditoria dos capítulos 4–10 ainda está pendente. O capítulo 11 permanece bloqueado até que os capítulos 4–10 sejam reabertos, anotados e verificados.
+
+## 16. Correção de diagnóstico: erro auxiliar da página
+
+O diagnóstico inicial confundiu a falha de um módulo auxiliar da Webnovel com uma possível interrupção do corpo narrativo. A estrutura observada nas páginas 1–3 contradiz essa leitura: o corpo narrativo termina, depois surge o link para o capítulo seguinte e só então aparece “Load failed, please RETRY” junto de componentes auxiliares. A metodologia foi corrigida para exigir que se localize o erro na estrutura da página antes de rebaixar o estado de cobertura.
+
+O protocolo agora está no método canônico, Passagem 0. O erro auxiliar não exige intervenção técnica na página da Webnovel; a correção necessária era metodológica e documental: classificar corretamente o componente que falhou, corrigir as notas e impedir que esse falso positivo bloqueie a leitura.
