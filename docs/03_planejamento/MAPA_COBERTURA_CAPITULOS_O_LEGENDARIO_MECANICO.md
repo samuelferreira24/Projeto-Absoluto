@@ -45,7 +45,7 @@ Manter uma linha por entrada e edição com: ID estável; edição; número e t�
 | CH-EN-0001 | 1 — Rebirth | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673 | Corpo narrativo visível completo verificado em 2026-10-11; nota individual criada | Premissa, interface ficcional, cenário inicial |
 | CH-EN-0002 | 2 — Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Corpo narrativo visível completo verificado em 2026-10-11; nota individual criada | Aprendizagem ficcional, classe e habilidades |
 | CH-EN-0003 | 3 — Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Corpo narrativo visível completo verificado em 2026-10-11; nota individual criada | Condicionamento, treino, contexto ético |
-| CH-EN-0004 | 4 — 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Página aberta; consultado analiticamente | Oficina, montagem, manutenção e recursos |
+| CH-EN-0004 | 4 — 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–4 pendente | Oficina, montagem, manutenção e recursos |
 | CH-EN-0005 | 5 — Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Trechos consultados | Blueprint de braço mecânico |
 | CH-EN-0022 | 22 — Prosthetic Limb | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/prosthetic-limb_23983084059815310 | Trechos consultados | Prótese e fabricação |
 | CH-EN-0026 | 26 — Blueprint: Robot (Type: Rover) | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/blueprint-robot-%28type-rover%29_24056767965096782 | Trechos consultados | Blueprint do rover |
@@ -88,7 +88,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-001 | 1 — Rebirth | Leitura completa do corpo narrativo visível verificada; módulo auxiliar pós-capítulo falha | [Nota do capítulo 1](../06_auditoria/PASSAGEM_1_CAPITULO_01_NOTA_INDIVIDUAL.md) |
 | CH-EN-002 | 2 — Mechanic | Leitura completa do corpo narrativo visível verificada; módulo auxiliar pós-capítulo falha | [Nota do capítulo 2](../06_auditoria/PASSAGEM_1_CAPITULO_02_NOTA_INDIVIDUAL.md) |
 | CH-EN-003 | 3 — Life Is All About Acting | Leitura completa do corpo narrativo visível verificada; módulo auxiliar pós-capítulo falha | [Nota do capítulo 3](../06_auditoria/PASSAGEM_1_CAPITULO_03_NOTA_INDIVIDUAL.md) |
-| CH-EN-004 | 4 — 600,000 experience points! | Consulta analítica anterior; reabertura/auditoria pendente | — |
+| CH-EN-004 | 4 — 600,000 experience points! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–4 pendente | [Nota do capítulo 4](../06_auditoria/PASSAGEM_1_CAPITULO_04_NOTA_INDIVIDUAL.md) |
 | CH-EN-005 | 5 — Lightweight Mechanical Arm | Consulta analítica anterior; reabertura/auditoria pendente | — |
 | CH-EN-006 | 6 — Taking Action! | Consulta analítica anterior; reabertura/auditoria pendente | — |
 | CH-EN-007 | 7 — Panic | Consulta analítica anterior; reabertura/auditoria pendente | — |
@@ -103,3 +103,8 @@ A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, 
 ## Registro da correção metodológica — 2026-10-11
 
 A mensagem de erro foi reclassificada como falha de um módulo auxiliar pós-capítulo, não como falha de carregamento do corpo narrativo. O estado atualizado dos capítulos 1–3 e as respetivas notas individuais constam na tabela acima. A revisão dos capítulos 4–10 continua pendente.
+
+
+## Atualização — capítulo 4 (2026-10-11)
+
+A página oficial do capítulo 4 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes dos controles auxiliares. A nota individual está em [PASSAGEM_1_CAPITULO_04_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_04_NOTA_INDIVIDUAL.md). A auditoria cruzada entre as notas 1–4 ainda está pendente; capítulos 5–10 continuam a aguardar reabertura e auditoria individual.
