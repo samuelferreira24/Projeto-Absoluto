@@ -15,7 +15,7 @@
 | 2 | Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Corpo narrativo visível completo verificado; nota individual atualizada |
 | 3 | Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Corpo narrativo visível completo verificado; nota individual atualizada |
 | 4 | 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; auditoria cruzada 1–4 pendente |
-| 5 | Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Página e conteúdo narrativo consultados; análise substancial |
+| 5 | Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; auditoria cruzada 1–5 pendente |
 | 6 | Taking Action! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/taking-action!_23353885024384961 | Página e conteúdo narrativo consultados; análise substancial |
 | 7 | Panic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/panic_23358465070135260 | Página e conteúdo narrativo consultados; análise substancial |
 | 8 | I Have the Trashtalk to Back Me Up | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/i-have-the-trashtalk-to-back-me-up_23419907530095406 | Página e conteúdo narrativo consultados; análise substancial |
@@ -172,3 +172,10 @@ A página oficial do capítulo 4 foi reaberta. O corpo narrativo visível termin
 ## Resultado do QC cruzado 1–4 — 2026-10-11
 
 A [auditoria cruzada dos capítulos 1–4](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_04.md) foi concluída. Não foi encontrada contradição central na cronologia, progressão mecânica, dissimulação, ameaça de dissecação ou introdução do Sujeito No. 1. Permanecem abertas a natureza da transmigração, o contexto do acordo de Hila sobre a irmã e o valor atualizado do temporizador da versão 1.0. A síntese dos capítulos 5–10 continua provisória até auditoria individual. Próximo capítulo a reabrir: 5. Não iniciar o capítulo 6 antes do QC do sublote 1–5.
+
+
+## Atualização de execução — capítulo 5 reaberto (2026-10-11)
+
+A página oficial do capítulo 5 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 5](PASSAGEM_1_CAPITULO_05_NOTA_INDIVIDUAL.md). A nota registra a fotografia de Hila e Aurora, a missão “Night Owl Plans”, a progressão de Han Xiao até nível 20, as combinações de talentos que desbloqueiam a planta do braço mecânico leve e a divergência terminológica “Mechanic”/“Engineer (Novice)” observada na edição inglesa. A fabricação do braço ainda não ocorre neste capítulo.
+
+**Estado atualizado:** capítulos 1–4 — corpo narrativo verificado e QC cruzado 1–4 aprovado; capítulo 5 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–5 pendente; capítulos 6–10 — aguardam reabertura/auditoria individual. Não avançar ao capítulo 6 até concluir o controle de qualidade cruzado 1–5.
