@@ -123,7 +123,7 @@ A tarefa ativa passa a ser **auditar e completar as notas dos capítulos 1–10*
 
 ## 12. Proposta de decomposição interna da Passagem 1
 
-**Estado desta seção:** recomendação metodológica registrada para avaliação; não substitui automaticamente o método canônico até ser aprovada.
+**Estado desta seção:** decomposição agora formalizada no método canônico, versão 1.0, por orientação do usuário em 2026-10-11. Esta auditoria preserva a razão e o histórico da decisão.
 
 A Passagem 1 é a base interpretativa das passagens posteriores. Recomenda-se organizá-la em quatro subfases complementares, evitando tanto a leitura superficial quanto quatro projetos redundantes:
 
@@ -159,3 +159,9 @@ Quando os capítulos acessíveis da edição tiverem sido percorridos, consolida
 ## 14. Aplicação imediata
 
 Antes de continuar a partir do capítulo 11, aplicar a auditoria ao lote 1–10: criar notas individuais a partir do conteúdo realmente acessível, revisar a síntese e as conexões e corrigir os estados de cobertura conforme a evidência. Não certificar retroativamente uma leitura integral que não foi demonstrada.
+
+## 15. Estado de execução após formalização
+
+Em 2026-10-11, as subfases 1A–1D e a cadência adaptativa de 3–5 capítulos (com redução para 1–3 quando necessário) foram incorporadas ao método canônico. Foi criada a primeira nota individual da recuperação, para o capítulo 1, a partir do conteúdo narrativo efetivamente retornado pela página oficial da Webnovel. A página apresentou falha de carregamento após o trecho consultado; por isso, a nota está classificada como **consulta analítica substancial**, não como leitura completa verificada.
+
+A recuperação do lote 1–10 ainda está em andamento. A nota do capítulo 1 não basta para declarar o lote auditado nem autoriza avançar para o capítulo 11. Próximo trabalho: continuar em ordem pelos capítulos 2–3, registar estados reais e notas individuais, e depois atualizar a cobertura e a síntese cumulativa.
