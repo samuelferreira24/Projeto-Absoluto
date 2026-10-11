@@ -285,3 +285,9 @@ A página oficial do capítulo 24, “What Is Weak?”, foi aberta pelo link do 
 A página oficial do capítulo 25, “New Talent!”, foi aberta pelo link do capítulo 24 e a [nota individual do capítulo 25](../docs/06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md) foi criada. Han Xiao fecha um acordo com Big Raccoon para fabricar armas em troca de 1.500 dólares por arma, duas horas de trabalho por manhã e acesso à sucata. Também investe Potencial em [Basic Weaponry] e [Basic Material Composition]. Lu Qian rouba livros mecânicos básicos para o ajudar, irritando Old Man Lu.
 
 **Próximo passo exato:** integrar as notas 23–25, auditar a continuidade e concluir o QC cruzado 23–25 antes de avançar ao capítulo 26.
+
+## QC do sublote 23–25 concluído — 2026-10-11
+
+Foi criada a [síntese integrada dos capítulos 23–25](../docs/06_auditoria/PASSAGEM_1_LOTE_06_CAPITULOS_23_25.md) e a [auditoria cruzada 23–25](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_23_25.md). Não foi encontrada contradição central. Han Xiao concluiu a prótese e foi contratado; Tall Old Man reportou a sua presença à inteligência de Stardragon, que decidiu monitorizá-lo; o acordo com Big Raccoon dá rendimento e acesso a sucata. A contratação formal na Division 13 ainda não ocorreu.
+
+**Próximo passo exato:** abrir o capítulo 26, criar notas individuais para 26–28 e concluir o QC cruzado 26–28 antes de avançar ao capítulo 29. A Passagem 2 permanece bloqueada.
