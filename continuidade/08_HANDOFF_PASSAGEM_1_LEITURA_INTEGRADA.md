@@ -327,3 +327,9 @@ A página oficial do capítulo 30, “The Mighty Rover”, foi aberta pelo link 
 A página oficial do capítulo 31, “Silenced”, foi aberta pelo link do capítulo 30 e a [nota individual do capítulo 31](../docs/06_auditoria/PASSAGEM_1_CAPITULO_31_NOTA_INDIVIDUAL.md) foi criada. A continuação esclarece a contagem da Bee Sting Squad: três mercenários morreram na primeira rajada do Rover, dois na autodestruição e Kelly foi morto por Han Xiao. A frase do capítulo 30 de que a equipa inteira foi eliminada imediatamente é inconsistente com os três sobreviventes revelados no capítulo 31; a nota do capítulo 30 foi atualizada retrospetivamente. Han Xiao conclui a missão e é levado à Division 13; Big Raccoon é algemado por ordem da divisão.
 
 **Próximo passo exato:** concluir a integração e o QC cruzado do sublote 29–31 antes de avançar ao capítulo 32.
+
+## QC do sublote 29–31 concluído — 2026-10-11
+
+Foi criada a [síntese integrada dos capítulos 29–31](../docs/06_auditoria/PASSAGEM_1_LOTE_08_CAPITULOS_29_31.md) e a [auditoria cruzada 29–31](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_29_31.md). A continuação resolve a contagem de mortes da Bee Sting Squad: três na primeira rajada do Rover, dois na autodestruição e Kelly morto por Han Xiao. A frase do capítulo 30 de que toda a equipa foi eliminada imediatamente é inconsistente com os sobreviventes do capítulo 31; a nota do capítulo 30 foi corrigida retrospetivamente. O nome da missão também diverge ([Assailants!] no cap. 27, [Hunted!] no cap. 31), embora objetivo e recompensa coincidam. Han Xiao conclui a missão e é levado pela Division 13; Raccoon é algemado.
+
+**Próximo passo exato:** abrir o capítulo 32, criar notas individuais para 32–34 e concluir o QC cruzado 32–34 antes de avançar ao capítulo 35.
