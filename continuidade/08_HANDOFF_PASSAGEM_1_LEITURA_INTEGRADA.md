@@ -128,3 +128,10 @@ A página oficial do capítulo 5, “Lightweight Mechanical Arm”, foi reaberta
 A [auditoria cruzada de consistência 1–5](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_05.md) foi concluída e aprovada com ressalvas. A cronologia do temporizador é compatível; a progressão e a acumulação de experiência não apresentam contradição central. A discrepância de terminologia “Mechanic”/“Engineer (Novice)” fica aberta para comparação entre edições. A planta do braço mecânico foi obtida, mas a fabricação ainda não foi confirmada.
 
 **Próximo passo exato:** reabrir o capítulo 6, “Taking Action!”, produzir/atualizar nota individual e atualizar mapa/síntese. Não iniciar capítulo 7 antes do controle de qualidade cruzado 1–6. Capítulos 6–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
+
+
+## Continuidade após reabertura do capítulo 6 — 2026-10-11
+
+A página oficial do capítulo 6, “Taking Action!”, foi reaberta. O corpo narrativo visível foi confirmado até ao encerramento antes do link para o capítulo seguinte e a [nota individual do capítulo 6](../docs/06_auditoria/PASSAGEM_1_CAPITULO_06_NOTA_INDIVIDUAL.md) foi criada. O capítulo mostra a fabricação manual do braço mecânico, mas Han Xiao ainda não o equipa; também inicia a fuga com a morte de dois guardas e termina quando abre a porta da sala de vigilância.
+
+**Próxima ação obrigatória:** concluir o QC cruzado das notas 1–6 contra a síntese e o mapa. Não iniciar o capítulo 7 antes desse controle. Capítulos 7–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
