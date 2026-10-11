@@ -121,3 +121,10 @@ A [auditoria cruzada de consistência 1–4](../docs/06_auditoria/AUDITORIA_CRUZ
 A página oficial do capítulo 5, “Lightweight Mechanical Arm”, foi reaberta. O corpo narrativo visível foi confirmado até ao encerramento antes do link para o capítulo seguinte e a [nota individual do capítulo 5](../docs/06_auditoria/PASSAGEM_1_CAPITULO_05_NOTA_INDIVIDUAL.md) foi criada. A nota registra a missão “Night Owl Plans”, a identificação de Aurora pela memória de Han Xiao, a progressão até nível 20 e a descoberta da planta do braço mecânico leve. A fabricação efetiva do braço ainda não acontece neste capítulo. Também foi registada, sem resolver por suposição, a divergência da edição inglesa entre “Mechanic” e “Engineer (Novice)”.
 
 **Próxima ação obrigatória:** concluir o QC cruzado das notas 1–5 contra a síntese e o mapa. Não iniciar o capítulo 6 antes desse controle. Capítulos 6–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
+
+
+## QC cruzado dos capítulos 1–5 — 2026-10-11
+
+A [auditoria cruzada de consistência 1–5](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_05.md) foi concluída e aprovada com ressalvas. A cronologia do temporizador é compatível; a progressão e a acumulação de experiência não apresentam contradição central. A discrepância de terminologia “Mechanic”/“Engineer (Novice)” fica aberta para comparação entre edições. A planta do braço mecânico foi obtida, mas a fabricação ainda não foi confirmada.
+
+**Próximo passo exato:** reabrir o capítulo 6, “Taking Action!”, produzir/atualizar nota individual e atualizar mapa/síntese. Não iniciar capítulo 7 antes do controle de qualidade cruzado 1–6. Capítulos 6–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
