@@ -26,11 +26,13 @@
 ### S2a — Webnovel, capítulos individuais verificados por acesso
 - Capítulo 1, “Rebirth”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673
 - Capítulo 2, “Mechanic”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010
+- Capítulo 3, “Life Is All About Acting”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250
+- Capítulo 4, “600,000 experience points!”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163
 - Capítulo 5, “Lightweight Mechanical Arm”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420
 - Capítulo 22, “Prosthetic Limb”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/prosthetic-limb_23983084059815310
 - Capítulo 26, “Blueprint: Robot (Type: Rover)”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/blueprint-robot-%28type-rover%29_24056767965096782
 - Capítulo 30, “The Mighty Rover”: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/the-mighty-rover_24140411379445674
-- Estado: páginas individuais acessíveis nesta consulta; capítulos 1 e 2 foram consultados em maior extensão, e os capítulos 5, 22, 26 e 30 foram consultados parcialmente para localizar fatos técnicos. Não declarar leitura integral desses seis capítulos.
+- Estado: páginas individuais acessíveis nesta consulta; capítulos 1–4 foram consultados analiticamente em maior extensão, e os capítulos 5, 22, 26 e 30 foram consultados parcialmente para localizar fatos técnicos. Não declarar leitura integral desses seis capítulos.
 
 ### S2b — Catálogo chinês em m.readnovel.com (intermediário; não confirmado como página canônica direta)
 - URL: https://m.readnovel.com/bookquery/clxaurxanj
