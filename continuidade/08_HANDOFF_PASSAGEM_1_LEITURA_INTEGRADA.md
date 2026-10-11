@@ -297,3 +297,9 @@ Foi criada a [síntese integrada dos capítulos 23–25](../docs/06_auditoria/PA
 A página oficial do capítulo 26, “Blueprint: Robot (Type: Rover)”, foi aberta pelo link do capítulo 25 e a [nota individual do capítulo 26](../docs/06_auditoria/PASSAGEM_1_CAPITULO_26_NOTA_INDIVIDUAL.md) foi criada. Han Xiao desbloqueia [Novice Refining], [Overload] e a planta [Robot - Rover]. Feng Jun, agente da Division 13 disfarçado de cliente, testa Han Xiao através de uma reparação de carro e recomenda mais observação, sem confronto direto.
 
 **Próximo passo exato:** abrir os capítulos 27 e 28, criar notas individuais e concluir o QC cruzado 26–28 antes de avançar ao capítulo 29.
+
+## Sub-lote 26–28: capítulo 27 lido (2026-10-11)
+
+A página oficial do capítulo 27, “The Final Test”, foi aberta pelo link do capítulo 26 e a [nota individual do capítulo 27](../docs/06_auditoria/PASSAGEM_1_CAPITULO_27_NOTA_INDIVIDUAL.md) foi criada. Han Xiao fabrica Rover 1, obtém 24.000 XP, fabrica um novo braço mecânico e continua a ser observado pela Division 13. A missão [Assailants!] é ativada, mas o capítulo termina antes de os atacantes aparecerem.
+
+**Próximo passo exato:** abrir o capítulo 28 e concluir o QC cruzado 26–28 antes de avançar ao capítulo 29.
