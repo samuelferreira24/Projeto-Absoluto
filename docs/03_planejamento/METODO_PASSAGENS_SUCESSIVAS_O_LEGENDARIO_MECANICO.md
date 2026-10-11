@@ -215,6 +215,18 @@ Uma conexão plausível não deve ser apresentada como comprovada. Quando um cap
 
 **Saída integrada da Passagem 1:** além das notas por bloco, manter cronologia cumulativa, mapa de arcos, fichas de personagens/facções, regras do universo, questões em aberto e um registro/grafo de conexões narrativas com referências. Essas estruturas devem ser atualizadas ao longo da leitura e revistas ao fim de cada arco.
 
+### 10.9 Regra operacional: repositório como fonte oficial; chat como acompanhamento
+O trabalho é uma **pesquisa assistida**, não uma pesquisa cuja memória principal fica na conversa. O chat serve prioritariamente para o usuário acompanhar progresso, decisões, resultados, limitações e bloqueios. A fonte persistente e oficial do estado da pesquisa é o repositório GitHub na branch de trabalho.
+
+Regras obrigatórias:
+- Salvar no repositório toda decisão metodológica aprovada, avanço substantivo, nota de leitura, ligação narrativa relevante, fonte, revisão, resultado, limitação e próximo passo que seja necessário para continuar o trabalho.
+- Ao terminar cada lote ou etapa significativa, atualizar os documentos operacionais e o ponto de retomada **antes** de comunicar a etapa como concluída no chat.
+- Se o trabalho ainda não foi persistido, descrevê-lo como não salvo/rascunho e não sugerir que já está garantido para a próxima sessão.
+- Ao abrir uma nova sessão, consultar o handoff e os documentos canônicos, verificar o estado atual da branch e continuar do último ponto realmente salvo; não depender da transcrição do chat nem pedir ao usuário para reconstruir decisões já registradas.
+- Manter os documentos canônicos como fonte de verdade; handoffs resumem e apontam para eles, não devem criar versões contraditórias. Atualizar índices quando novos documentos operacionais forem criados.
+- Informar no chat links diretos para os registros alterados e um resumo legível do progresso, das lacunas e da próxima ação. O chat é a camada de acompanhamento; não substitui os registros.
+- Trabalhar na branch designada e respeitar governança do repositório; não mesclar na `main` nem alterar o ABS fora do escopo autorizado.
+
 ### 10.8 Tamanho de lote e controle de continuidade
 Usar **10 capítulos por lote como hipótese operacional inicial**, não como limite fixo nem promessa de cobertura. Após o primeiro lote realmente consultado, avaliar extensão, densidade, qualidade dos registros e acesso ao texto; reduzir para 5–10 ou ampliar para 10–20 quando justificado. Capítulos curtos ou revisão podem permitir blocos maiores, mas não se deve sacrificar rastreabilidade para aumentar velocidade.
 
