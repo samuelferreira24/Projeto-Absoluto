@@ -20,7 +20,7 @@
 | 7 | Panic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/panic_23358465070135260 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–7 pendente |
 | 8 | I Have the Trashtalk to Back Me Up | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/i-have-the-trashtalk-to-back-me-up_23419907530095406 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–8 pendente |
 | 9 | Fierce Battle | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/fierce-battle_23422594300574533 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–9 pendente |
-| 10 | Night Owl | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/night_owl_23426188668095388 | Página e conteúdo narrativo consultados; análise substancial |
+| 10 | Night Owl | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/night-owl_23426188668095388 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–10 pendente |
 
 A Webnovel identificou a obra como concluída e listou 1.463 capítulos. Isso confirma a listagem consultada, não a cobertura integral da obra. Os registros de leitura anteriores (capítulos 1–4 e consultas pontuais posteriores) foram mantidos como material exploratório; esta sequência é uma nova passada narrativa, não uma afirmação de que nunca houve consultas anteriores.
 
@@ -232,3 +232,10 @@ A página oficial do capítulo 9 foi reaberta e o corpo narrativo visível foi v
 ## Resultado do QC cruzado 1–9 — 2026-10-11
 
 A [auditoria cruzada dos capítulos 1–9](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_09.md) foi concluída sem contradição central. A destruição dos monitores não é confundida com interrupção das comunicações; Han Xiao usa o intercomunicador para desinformar e muda a estratégia sob pressão. O braço sofre desgaste e Han Xiao fica ferido. O capítulo 10 ainda precisa ser reaberto antes da auditoria final do lote 1–10.
+
+
+## Atualização de execução — capítulo 10 reaberto (2026-10-11)
+
+A página oficial do capítulo 10 foi aberta através do link de navegação do capítulo 9, pois a URL com sublinhado não foi acessível diretamente. A página resolvida pela Webnovel usa o slug `night-owl`; o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 10](PASSAGEM_1_CAPITULO_10_NOTA_INDIVIDUAL.md). O capítulo confirma a fuga física da instalação por infiltração no grupo de guardas, a perseguição ordenada contra Han Xiao e o encontro com seis agentes Night Owl na floresta. O relatório de que mais de 30 guardas morreram e de que todos os registos Valkyrie foram destruídos é atribuído ao líder da Equipa A, não tratado como verificação independente.
+
+**Estado atualizado:** capítulos 1–9 — corpo narrativo verificado e QC cruzado 1–9 aprovado; capítulo 10 — corpo narrativo reaberto e nota individual criada, QC cruzado final 1–10 pendente. Concluir o controle de qualidade antes de declarar o lote fechado ou iniciar o capítulo 11.
