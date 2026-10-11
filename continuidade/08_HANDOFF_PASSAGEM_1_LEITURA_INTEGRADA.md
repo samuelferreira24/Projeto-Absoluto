@@ -273,3 +273,9 @@ Foi criada a [síntese integrada dos capítulos 20–22](../docs/06_auditoria/PA
 A página oficial do capítulo 23, “You Set Me Up!”, foi aberta pelo link do capítulo 22 e a [nota individual do capítulo 23](../docs/06_auditoria/PASSAGEM_1_CAPITULO_23_NOTA_INDIVIDUAL.md) foi criada. Han Xiao conclui a prótese em 2h33m, recebe aprovação de Tall Old Man e é contratado por Lu Qian com salário, refeições e alojamento. Tall Old Man informa a inteligência de Stardragon sobre a presença de Han Xiao, mas manda apenas monitorizar por enquanto. A linha secreta do cofre digital é um evento futuro, não algo já concluído.
 
 **Próximo passo exato:** abrir os capítulos 24 e 25, criar notas individuais e concluir o QC cruzado 23–25 antes de avançar ao capítulo 26.
+
+## Sub-lote 23–25: capítulo 24 lido (2026-10-11)
+
+A página oficial do capítulo 24, “What Is Weak?”, foi aberta pelo link do capítulo 23 e a [nota individual do capítulo 24](../docs/06_auditoria/PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md) foi criada. Han Xiao começa a trabalhar na oficina e aguarda a Division 13; Old Man Lu exige saber a sua identidade, e Lu Qian interrompe o confronto. A Division 13 localiza Han Xiao e decide protegê-lo e verificar as suas intenções discretamente, sem contacto direto por enquanto.
+
+**Próximo passo exato:** abrir o capítulo 25 e concluir o QC cruzado 23–25 antes de avançar ao capítulo 26.
