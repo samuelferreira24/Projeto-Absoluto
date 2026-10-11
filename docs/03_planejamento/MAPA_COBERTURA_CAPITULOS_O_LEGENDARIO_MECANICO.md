@@ -107,9 +107,10 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-020 | 20 — Illegal Entry | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 20–22 aprovado | [Nota do capítulo 20](../06_auditoria/PASSAGEM_1_CAPITULO_20_NOTA_INDIVIDUAL.md) |
 | CH-EN-021 | 21 — The Old Man Who Plays Chess | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 20–22 aprovado | [Nota do capítulo 21](../06_auditoria/PASSAGEM_1_CAPITULO_21_NOTA_INDIVIDUAL.md) |
 | CH-EN-022 | 22 — Prosthetic Limb | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 20–22 aprovado | [Nota do capítulo 22](../06_auditoria/PASSAGEM_1_CAPITULO_22_NOTA_INDIVIDUAL.md) |
-| CH-EN-023 | 23 — You Set Me Up! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 pendente | [Nota do capítulo 23](../06_auditoria/PASSAGEM_1_CAPITULO_23_NOTA_INDIVIDUAL.md) |
-| CH-EN-024 | 24 — What Is Weak? | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 pendente | [Nota do capítulo 24](../06_auditoria/PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md) |
-| CH-EN-025 | 25 — New Talent! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 pendente | [Nota do capítulo 25](../06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md) |
+| CH-EN-023 | 23 — You Set Me Up! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 aprovado | [Nota do capítulo 23](../06_auditoria/PASSAGEM_1_CAPITULO_23_NOTA_INDIVIDUAL.md) |
+| CH-EN-024 | 24 — What Is Weak? | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 aprovado | [Nota do capítulo 24](../06_auditoria/PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md) |
+| CH-EN-025 | 25 — New Talent! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 aprovado | [Nota do capítulo 25](../06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md) |
+| CH-EN-025 | 25 — New Talent! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 aprovado | [Nota do capítulo 25](../06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -268,3 +269,8 @@ A página oficial do capítulo 24, “What Is Weak?”, foi aberta pelo link do 
 ## Atualização — capítulo 25 (2026-10-11)
 
 A página oficial do capítulo 25, “New Talent!”, foi aberta pelo link do capítulo 24. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md). Han Xiao fecha um acordo com Big Raccoon para fabricar armas em troca de pagamento e acesso a sucata, e Lu Qian rouba livros mecânicos básicos para o ajudar a estudar. O sublote 23–25 está pronto para QC cruzado.
+
+
+## Resultado do QC cruzado 23–25 — 2026-10-11
+
+A [auditoria cruzada 23–25](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_23_25.md) e a [síntese integrada do lote 06](../06_auditoria/PASSAGEM_1_LOTE_06_CAPITULOS_23_25.md) foram concluídas. Não foi encontrada contradição central. A prótese foi concluída e aprovada, Han Xiao foi contratado, a Division 13 decidiu monitorizá-lo e o acordo com Big Raccoon abre uma fonte de rendimento e sucata. Próximo capítulo: 26; não avançar ao 29 antes do QC 26–28.
