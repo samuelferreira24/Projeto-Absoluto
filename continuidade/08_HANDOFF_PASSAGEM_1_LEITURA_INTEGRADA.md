@@ -303,3 +303,9 @@ A página oficial do capítulo 26, “Blueprint: Robot (Type: Rover)”, foi abe
 A página oficial do capítulo 27, “The Final Test”, foi aberta pelo link do capítulo 26 e a [nota individual do capítulo 27](../docs/06_auditoria/PASSAGEM_1_CAPITULO_27_NOTA_INDIVIDUAL.md) foi criada. Han Xiao fabrica Rover 1, obtém 24.000 XP, fabrica um novo braço mecânico e continua a ser observado pela Division 13. A missão [Assailants!] é ativada, mas o capítulo termina antes de os atacantes aparecerem.
 
 **Próximo passo exato:** abrir o capítulo 28 e concluir o QC cruzado 26–28 antes de avançar ao capítulo 29.
+
+## QC do sublote 26–28 concluído — 2026-10-11
+
+Foi criada a [síntese integrada dos capítulos 26–28](../docs/06_auditoria/PASSAGEM_1_LOTE_07_CAPITULOS_26_28.md) e a [auditoria cruzada 26–28](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_26_28.md). Não foi encontrada contradição central. Han Xiao desbloqueia novos talentos, constrói Rover 1 e um novo braço mecânico, e a Division 13 organiza um teste indireto com a Bee Sting Squad. A missão [Assailants!] ainda não foi resolvida no fim do capítulo 28.
+
+**Próximo passo exato:** abrir o capítulo 29, criar notas individuais para 29–31 e concluir o QC cruzado 29–31 antes de avançar ao capítulo 32. A Passagem 2 permanece bloqueada.
