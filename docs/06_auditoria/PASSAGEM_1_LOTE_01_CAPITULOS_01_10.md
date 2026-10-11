@@ -184,3 +184,10 @@ A página oficial do capítulo 5 foi reaberta e o corpo narrativo visível foi v
 ## Resultado do QC cruzado 1–5 — 2026-10-11
 
 A [auditoria cruzada dos capítulos 1–5](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_05.md) foi concluída. A cronologia é coerente: cerca de 358 dias no cap. 1, meio ano decorrido no cap. 4 e 182 dias até à versão 1.0 no painel do cap. 5. A progressão de classe e experiência também é coerente, com ressalva da divergência de terminologia “Mechanic”/“Engineer (Novice)” na edição inglesa. A planta do braço é obtida no cap. 5, mas a fabricação ainda não ocorre. Próximo capítulo: 6; não avançar ao 7 antes do QC 1–6.
+
+
+## Atualização de execução — capítulo 6 reaberto (2026-10-11)
+
+A página oficial do capítulo 6 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 6](PASSAGEM_1_CAPITULO_06_NOTA_INDIVIDUAL.md). A nota regista a partida de Hila e do Sujeito No. 1 com a Night Owl, a fabricação manual do braço mecânico (que ainda não está equipado), a criação de armas, a obstrução da câmara e a morte de dois guardas no início da fuga. A narrativa termina quando Han Xiao abre a porta da sala de vigilância e vê dois guardas numa situação comprometedora.
+
+**Estado atualizado:** capítulos 1–5 — corpo narrativo verificado e QC cruzado 1–5 aprovado com ressalvas; capítulo 6 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–6 pendente; capítulos 7–10 — aguardam reabertura/auditoria individual. Não avançar ao capítulo 7 até concluir o controle de qualidade cruzado 1–6.
