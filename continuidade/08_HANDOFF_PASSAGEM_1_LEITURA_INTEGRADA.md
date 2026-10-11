@@ -309,3 +309,9 @@ A página oficial do capítulo 27, “The Final Test”, foi aberta pelo link do
 Foi criada a [síntese integrada dos capítulos 26–28](../docs/06_auditoria/PASSAGEM_1_LOTE_07_CAPITULOS_26_28.md) e a [auditoria cruzada 26–28](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_26_28.md). Não foi encontrada contradição central. Han Xiao desbloqueia novos talentos, constrói Rover 1 e um novo braço mecânico, e a Division 13 organiza um teste indireto com a Bee Sting Squad. A missão [Assailants!] ainda não foi resolvida no fim do capítulo 28.
 
 **Próximo passo exato:** abrir o capítulo 29, criar notas individuais para 29–31 e concluir o QC cruzado 29–31 antes de avançar ao capítulo 32. A Passagem 2 permanece bloqueada.
+
+## Sub-lote 29–31: capítulo 29 lido (2026-10-11)
+
+A página oficial do capítulo 29, “Fall Out”, foi aberta pelo link do capítulo 28 e a [nota individual do capítulo 29](../docs/06_auditoria/PASSAGEM_1_CAPITULO_29_NOTA_INDIVIDUAL.md) foi criada. Ma Jie revela a origem de Han Xiao a Big Raccoon; o chefe tenta forçá-lo a revelar as plantas de armas e silenciá-lo. Han Xiao equipa o novo braço mecânico e inicia o combate, mas o capítulo termina quando os dois guardas à porta abrem fogo.
+
+**Próximo passo exato:** abrir os capítulos 30 e 31, criar notas individuais e concluir o QC cruzado 29–31 antes de avançar ao capítulo 32.
