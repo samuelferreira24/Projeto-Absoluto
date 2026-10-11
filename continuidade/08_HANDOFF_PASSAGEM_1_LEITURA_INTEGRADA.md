@@ -107,3 +107,10 @@ Depois de concluir a auditoria cruzada 1–3 e verificar os arquivos corrigidos,
 - A grafia “600,00” no corpo da página foi preservada como observação da fonte, pois parece um erro tipográfico em relação ao título; não foi corrigida silenciosamente.
 
 **Próxima ação obrigatória:** auditar a consistência conjunta das notas 1–4 com a síntese cumulativa e o mapa. Não começar o capítulo 5 antes desse controle. Capítulos 5–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
+
+
+## QC cruzado dos capítulos 1–4 — 2026-10-11
+
+A [auditoria cruzada de consistência 1–4](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_04.md) foi concluída e aprovada com questões abertas preservadas. Não foi encontrada contradição central na cronologia, progressão, dissimulação, ameaça de dissecação ou introdução do Sujeito No. 1. O valor atualizado do temporizador da versão 1.0, o contexto completo do acordo de Hila sobre a irmã e a natureza da transmigração continuam sem resolução independente.
+
+**Próximo passo exato:** reabrir o capítulo 5, “Lightweight Mechanical Arm”, produzir/atualizar nota individual e atualizar mapa/síntese. Não iniciar capítulo 6 antes do controle de qualidade cruzado 1–5. Capítulos 6–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
