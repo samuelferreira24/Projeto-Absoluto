@@ -74,4 +74,4 @@
 
 ## Próxima ação
 
-As notas individuais dos capítulos 1–8 já foram comparadas com a síntese e o mapa; o QC cruzado 1–8 foi aprovado com ressalvas. Próxima ação: reabrir o capítulo 9 e concluir o QC cruzado 1–9 antes de avançar ao capítulo 10. O corpo narrativo visível deste capítulo está verificado.
+As notas individuais dos capítulos 1–9 já foram comparadas com a síntese e o mapa; o QC cruzado 1–9 foi aprovado. Próxima ação: reabrir o capítulo 10 e concluir o QC cruzado 1–10 antes de encerrar o lote. O corpo narrativo visível deste capítulo está verificado.
