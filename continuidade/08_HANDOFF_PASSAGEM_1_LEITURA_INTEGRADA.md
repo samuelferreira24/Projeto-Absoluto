@@ -153,3 +153,9 @@ A página oficial do capítulo 7, “Panic”, foi reaberta. O corpo narrativo v
 A [auditoria cruzada de consistência 1–7](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_07.md) foi concluída e aprovada com questões abertas preservadas. A continuidade da sala de vigilância foi corrigida para distinguir os dois guardas mortos no corredor no capítulo 6 dos dois guardas encontrados na sala no capítulo 7. Han Xiao mata Lin Weixian antes da dissecação; a fuga pelo portão e a reação da Germinal ainda não foram mostradas.
 
 **Próximo passo exato:** reabrir o capítulo 8, “I Have the Trashtalk to Back Me Up”, produzir/atualizar nota individual e atualizar mapa/síntese. Não iniciar capítulo 9 antes do QC cruzado 1–8. Capítulos 8–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
+
+## Continuidade após reabertura do capítulo 8 — 2026-10-11
+
+A página oficial do capítulo 8, “I Have the Trashtalk to Back Me Up”, foi reaberta. O corpo narrativo visível foi confirmado até ao encerramento antes do link para o capítulo seguinte e a [nota individual do capítulo 8](../docs/06_auditoria/PASSAGEM_1_CAPITULO_08_NOTA_INDIVIDUAL.md) foi criada. Han Xiao equipa o braço mecânico, enfrenta guardas e mata Baltar; ainda não sai pelo portão. A nota preserva a ambiguidade da contagem dos guardas e a variação lexical “Baltar”/“Baltor”.
+
+**Próxima ação obrigatória:** concluir o QC cruzado das notas 1–8 contra a síntese e o mapa. Não iniciar o capítulo 9 antes desse controle. Capítulos 9–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
