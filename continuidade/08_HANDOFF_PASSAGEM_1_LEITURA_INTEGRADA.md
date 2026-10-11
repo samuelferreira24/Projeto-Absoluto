@@ -171,3 +171,9 @@ A [auditoria cruzada de consistência 1–8](../docs/06_auditoria/AUDITORIA_CRUZ
 A página oficial do capítulo 9, “Fierce Battle”, foi reaberta. O corpo narrativo visível foi confirmado até ao encerramento antes do link para o capítulo seguinte e a [nota individual do capítulo 9](../docs/06_auditoria/PASSAGEM_1_CAPITULO_09_NOTA_INDIVIDUAL.md) foi criada. Han Xiao incendeia o laboratório Valkyrie, combate a Equipa C, usa comunicações falsas para atrair a Equipa B e fica ferido; a fuga pelo portão ainda não se conclui.
 
 **Próxima ação obrigatória:** concluir o QC cruzado das notas 1–9 contra a síntese e o mapa. Não iniciar o capítulo 10 antes desse controle. Capítulo 10 aguarda reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
+
+## QC cruzado dos capítulos 1–9 — 2026-10-11
+
+A [auditoria cruzada de consistência 1–9](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_09.md) foi concluída e aprovada com questões abertas preservadas. A distinção entre destruição dos monitores e interrupção das comunicações foi mantida; Han Xiao usa o intercomunicador para desinformar, incendeia o laboratório, combate as equipas e fica ferido. A fuga pelo portão ainda não se conclui no capítulo 9.
+
+**Próximo passo exato:** reabrir o capítulo 10, “Night Owl”, produzir/atualizar nota individual e atualizar mapa/síntese. Depois, concluir o QC cruzado 1–10. Não iniciar capítulo 11 nem Passagem 2 antes de auditar o lote e confirmar o ponto de saída do capítulo 10.
