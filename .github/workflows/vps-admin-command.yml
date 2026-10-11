@@ -12,7 +12,7 @@ jobs:
   execute:
     if: >-
       github.event.issue.pull_request == null &&
-      github.event.issue.number == 162 &&
+      (github.event.issue.number == 121 || github.event.issue.number == 162) &&
       github.event.comment.user.login == 'samuelferreira24' &&
       startsWith(github.event.comment.body, '/vps ')
     concurrency:
