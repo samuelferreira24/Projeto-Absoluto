@@ -69,4 +69,4 @@
 - A nota não transforma a representação de Han Xiao em obediência real e distingue as inferências sobre a irmã de Hila dos factos explícitos.
 - Nenhuma avaliação técnico-científica nem aplicação ao ABS foi feita nesta passagem.
 
-**Próxima ação:** A nota individual do capítulo 4 já foi criada. Próxima ação: auditar a consistência conjunta das notas 1–4 com a síntese cumulativa e o mapa de cobertura antes de avançar ao capítulo 5, mantendo os estados de cobertura honestos.
+**Próxima ação:** As notas individuais dos capítulos 1–5 já foram comparadas com a síntese cumulativa e o mapa; o QC cruzado 1–5 foi aprovado com ressalvas. Próxima ação: reabrir o capítulo 6 e concluir o QC cruzado 1–6 antes de avançar ao capítulo 7, mantendo os estados de cobertura honestos.
