@@ -190,7 +190,7 @@ A [auditoria cruzada dos capítulos 1–5](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITU
 
 A página oficial do capítulo 6 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 6](PASSAGEM_1_CAPITULO_06_NOTA_INDIVIDUAL.md). A nota regista a partida de Hila e do Sujeito No. 1 com a Night Owl, a fabricação manual do braço mecânico (que ainda não está equipado), a criação de armas, a obstrução da câmara e a morte de dois guardas no início da fuga. A narrativa termina quando Han Xiao abre a porta da sala de vigilância e vê dois guardas numa situação comprometedora.
 
-**Estado atualizado:** capítulos 1–5 — corpo narrativo verificado e QC cruzado 1–5 aprovado com ressalvas; capítulo 6 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–6 aprovado com ressalvas; capítulos 7–10 — aguardam reabertura/auditoria individual. Próxima etapa: reabrir o capítulo 7 e auditar o sublote 1–7 antes de avançar ao capítulo 8.
+**Estado atualizado:** capítulos 1–5 — corpo narrativo verificado e QC cruzado 1–5 aprovado com ressalvas; capítulo 6 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–6 aprovado com ressalvas; capítulo 7 — corpo narrativo reaberto, nota individual criada e QC cruzado 1–7 aprovado; capítulos 8–10 — aguardam reabertura/auditoria individual. Próxima etapa: reabrir o capítulo 8 e auditar o sublote 1–8 antes de avançar ao capítulo 9.
 
 
 ## Resultado do QC cruzado 1–6 — 2026-10-11
@@ -203,3 +203,8 @@ A [auditoria cruzada dos capítulos 1–6](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITU
 A página oficial do capítulo 7 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 7](PASSAGEM_1_CAPITULO_07_NOTA_INDIVIDUAL.md). A nota regista a neutralização da sala de vigilância, a eliminação dos guardas, a ida ao laboratório privado de Lin Weixian, a morte de Lin e a revelação de que Han Xiao fingiu submissão durante meio ano. O resultado da fuga e a reação da Germinal permanecem para os capítulos seguintes.
 
 **Estado atualizado:** capítulos 1–6 — corpo narrativo verificado e QC cruzado 1–6 aprovado com ressalvas; capítulo 7 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–7 pendente; capítulos 8–10 — aguardam reabertura/auditoria individual. Não avançar ao capítulo 8 até concluir o controle de qualidade cruzado 1–7.
+
+
+## Resultado do QC cruzado 1–7 — 2026-10-11
+
+A [auditoria cruzada dos capítulos 1–7](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_07.md) foi concluída sem contradição central. A nota do capítulo 7 foi clarificada para distinguir os dois guardas mortos no corredor no capítulo 6 dos dois guardas dentro da sala de vigilância no capítulo 7. Lin Weixian é morto antes da dissecação; a saída pelo portão e a resposta da Germinal ainda não foram mostradas. Próximo capítulo: 8; não avançar ao 9 antes do QC 1–8.
