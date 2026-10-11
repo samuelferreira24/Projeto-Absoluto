@@ -231,3 +231,9 @@ A página oficial do capítulo 16, “Misfortune”, foi aberta pelo link do cap
 Foi criada a [síntese integrada dos capítulos 14–16](../docs/06_auditoria/PASSAGEM_1_LOTE_03_CAPITULOS_14_16.md) e a [auditoria cruzada 14–16](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_14_16.md). Não foi encontrada contradição central. A possível inconsistência sobre os gatilhos das duas pistolas foi preservada; a responsabilidade pelo massacre é atribuída diretamente a No. 1 e à Germinal, enquanto o furto de Hu Fei apenas expôs a pista.
 
 **Próximo passo exato:** abrir o capítulo 17, criar nota individual e seguir até ao capítulo 19; concluir o QC cruzado 17–19 antes de avançar ao capítulo 20. A Passagem 2 permanece bloqueada.
+
+## Sub-lote 17–19: capítulo 17 lido (2026-10-11)
+
+A página oficial do capítulo 17, “Kill”, foi aberta pelo link do capítulo 16 e a [nota individual do capítulo 17](../docs/06_auditoria/PASSAGEM_1_CAPITULO_17_NOTA_INDIVIDUAL.md) foi criada. Han Xiao encontra Hu Fei moribundo, mata Kai Luo após a acusação de traição, confirma que Hu Xuan Jun o protegeu e transforma a perda do casal numa missão pessoal de vingança. Modifica a espingarda antiga de Hu Xuan Jun com peças das armas saqueadas e inicia uma emboscada contra a equipa de No. 1; o capítulo termina quando o veículo dos perseguidores avança contra a sua posição.
+
+**Próximo passo exato:** abrir os capítulos 18 e 19, criar notas individuais e concluir o QC cruzado 17–19 antes de avançar ao capítulo 20.
