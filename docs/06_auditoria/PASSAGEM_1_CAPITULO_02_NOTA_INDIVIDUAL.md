@@ -4,8 +4,8 @@
 **Edição:** Webnovel, tradução inglesa  
 **Capítulo:** 2 — “Mechanic”  
 **URL:** https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010  
-**Estado:** **consulta analítica substancial; integralidade não certificada**  
-**Trecho consultado:** conteúdo narrativo disponibilizado na página oficial, aproximadamente linhas 11–381 da captura textual. A página indica falha de carregamento após o trecho; não afirmo leitura integral verificada.
+**Estado:** **leitura completa do corpo narrativo visível verificada** (edição inglesa da Webnovel).  
+**Verificação de limite:** o texto narrativo termina nas linhas 379–381, seguido da nota de rodapé e dos controles de navegação. “Load failed, please RETRY” aparece depois do link “next chapter”, na área auxiliar pós-capítulo; não interrompe o corpo narrativo deste capítulo.
 
 ## Acontecimentos em ordem
 
