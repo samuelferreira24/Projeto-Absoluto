@@ -114,3 +114,10 @@ Depois de concluir a auditoria cruzada 1–3 e verificar os arquivos corrigidos,
 A [auditoria cruzada de consistência 1–4](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_04.md) foi concluída e aprovada com questões abertas preservadas. Não foi encontrada contradição central na cronologia, progressão, dissimulação, ameaça de dissecação ou introdução do Sujeito No. 1. O valor atualizado do temporizador da versão 1.0, o contexto completo do acordo de Hila sobre a irmã e a natureza da transmigração continuam sem resolução independente.
 
 **Próximo passo exato:** reabrir o capítulo 5, “Lightweight Mechanical Arm”, produzir/atualizar nota individual e atualizar mapa/síntese. Não iniciar capítulo 6 antes do controle de qualidade cruzado 1–5. Capítulos 6–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
+
+
+## Continuidade após reabertura do capítulo 5 — 2026-10-11
+
+A página oficial do capítulo 5, “Lightweight Mechanical Arm”, foi reaberta. O corpo narrativo visível foi confirmado até ao encerramento antes do link para o capítulo seguinte e a [nota individual do capítulo 5](../docs/06_auditoria/PASSAGEM_1_CAPITULO_05_NOTA_INDIVIDUAL.md) foi criada. A nota registra a missão “Night Owl Plans”, a identificação de Aurora pela memória de Han Xiao, a progressão até nível 20 e a descoberta da planta do braço mecânico leve. A fabricação efetiva do braço ainda não acontece neste capítulo. Também foi registada, sem resolver por suposição, a divergência da edição inglesa entre “Mechanic” e “Engineer (Novice)”.
+
+**Próxima ação obrigatória:** concluir o QC cruzado das notas 1–5 contra a síntese e o mapa. Não iniciar o capítulo 6 antes desse controle. Capítulos 6–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
