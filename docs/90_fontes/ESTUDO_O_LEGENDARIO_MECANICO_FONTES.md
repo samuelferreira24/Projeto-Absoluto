@@ -101,3 +101,8 @@
 - Utilidade: exemplo recente de teste de protótipo de rover em terreno difícil com intervenção mínima.
 - Limitação: um teste de campo não implica prontidão para qualquer ambiente ou tarefa.
 - Estado: consultada para o relatório-piloto.
+
+
+## Atualização de acesso — Passagem 1, capítulos 1–10 (2026-10-11)
+
+As páginas individuais dos capítulos 1–10 da Webnovel foram abertas nesta sessão e houve consulta narrativa substancial em ordem. Isso confirma acesso ao texto apresentado pela plataforma, não que cada página tenha sido lida integralmente linha a linha. Para títulos, URLs e estados capítulo a capítulo, consultar o mapa de cobertura e o registro do lote narrativo. A listagem geral continua indicando 1.463 capítulos; a discrepância com a listagem portuguesa permanece sem resolução. Próxima leitura sequencial: capítulo 11, “Crunch Time”.
