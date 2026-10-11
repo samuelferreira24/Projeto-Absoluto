@@ -7,6 +7,10 @@
 
 ## Decisões confirmadas
 
+## Regra de operação da pesquisa assistida
+
+**O chat serve para o usuário acompanhar o andamento; o repositório é a memória persistente e a fonte oficial do trabalho.** Toda decisão aprovada, avanço substantivo, nota de leitura, conexão narrativa, fonte, revisão, limitação e próximo passo necessário à continuidade deve ser salvo no GitHub. Ao fim de cada lote/etapa, atualizar os documentos e o ponto de retomada antes de anunciar a conclusão. Em nova conversa, a IA deve ler este handoff, consultar os documentos canônicos e verificar a branch; não deve depender da memória da conversa nem pedir ao usuário para repetir decisões já salvas. Se algo ainda não foi persistido, deve declarar isso claramente. Sempre fornecer no chat os links dos registros atualizados para acompanhamento.
+
 1. O estudo será conduzido por passagens sucessivas, nesta ordem:
    - Passagem 0: preparar e auditar o corpus;
    - Passagem 1: ler a história inteira como leitor;
