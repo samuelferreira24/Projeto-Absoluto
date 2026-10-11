@@ -178,4 +178,9 @@ A [auditoria cruzada dos capítulos 1–4](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITU
 
 A página oficial do capítulo 5 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 5](PASSAGEM_1_CAPITULO_05_NOTA_INDIVIDUAL.md). A nota registra a fotografia de Hila e Aurora, a missão “Night Owl Plans”, a progressão de Han Xiao até nível 20, as combinações de talentos que desbloqueiam a planta do braço mecânico leve e a divergência terminológica “Mechanic”/“Engineer (Novice)” observada na edição inglesa. A fabricação do braço ainda não ocorre neste capítulo.
 
-**Estado atualizado:** capítulos 1–4 — corpo narrativo verificado e QC cruzado 1–4 aprovado; capítulo 5 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–5 pendente; capítulos 6–10 — aguardam reabertura/auditoria individual. Não avançar ao capítulo 6 até concluir o controle de qualidade cruzado 1–5.
+**Estado atualizado:** capítulos 1–4 — corpo narrativo verificado e QC cruzado 1–4 aprovado; capítulo 5 — corpo narrativo reaberto, nota individual criada e QC cruzado 1–5 aprovado com ressalvas; capítulos 6–10 — aguardam reabertura/auditoria individual. Próxima etapa: reabrir o capítulo 6, criar nota individual e auditar o sublote 1–6 antes de avançar ao capítulo 7.
+
+
+## Resultado do QC cruzado 1–5 — 2026-10-11
+
+A [auditoria cruzada dos capítulos 1–5](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_05.md) foi concluída. A cronologia é coerente: cerca de 358 dias no cap. 1, meio ano decorrido no cap. 4 e 182 dias até à versão 1.0 no painel do cap. 5. A progressão de classe e experiência também é coerente, com ressalva da divergência de terminologia “Mechanic”/“Engineer (Novice)” na edição inglesa. A planta do braço é obtida no cap. 5, mas a fabricação ainda não ocorre. Próximo capítulo: 6; não avançar ao 7 antes do QC 1–6.
