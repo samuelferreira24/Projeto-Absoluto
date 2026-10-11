@@ -19,7 +19,7 @@
 | 6 | Taking Action! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/taking-action!_23353885024384961 | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–6 aprovado com ressalvas |
 | 7 | Panic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/panic_23358465070135260 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–7 pendente |
 | 8 | I Have the Trashtalk to Back Me Up | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/i-have-the-trashtalk-to-back-me-up_23419907530095406 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–8 pendente |
-| 9 | Fierce Battle | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/fierce-battle_23422594300574533 | Página e conteúdo narrativo consultados; análise substancial |
+| 9 | Fierce Battle | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/fierce-battle_23422594300574533 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–9 pendente |
 | 10 | Night Owl | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/night_owl_23426188668095388 | Página e conteúdo narrativo consultados; análise substancial |
 
 A Webnovel identificou a obra como concluída e listou 1.463 capítulos. Isso confirma a listagem consultada, não a cobertura integral da obra. Os registros de leitura anteriores (capítulos 1–4 e consultas pontuais posteriores) foram mantidos como material exploratório; esta sequência é uma nova passada narrativa, não uma afirmação de que nunca houve consultas anteriores.
@@ -220,3 +220,10 @@ A página oficial do capítulo 8 foi reaberta e o corpo narrativo visível foi v
 ## Resultado do QC cruzado 1–8 — 2026-10-11
 
 A [auditoria cruzada dos capítulos 1–8](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_08.md) foi concluída sem contradição central. O braço fabricado no capítulo 6 é recuperado e equipado no capítulo 8; a morte de Lin no capítulo 7 explica o uso do passe, enquanto a destruição dos monitores não implica que as comunicações tenham sido interrompidas, pois Baltar ainda transmite uma ordem. A contagem de guardas do capítulo 8 permanece ambígua. Próximo capítulo: 9; não avançar ao 10 antes do QC 1–9.
+
+
+## Atualização de execução — capítulo 9 reaberto (2026-10-11)
+
+A página oficial do capítulo 9 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 9](PASSAGEM_1_CAPITULO_09_NOTA_INDIVIDUAL.md). O capítulo mostra as equipas A–D a reagirem às mortes dos comandantes, Han Xiao a incendiar o laboratório Valkyrie, a combater a Equipa C e a usar o intercomunicador para enganar as equipas B e A. Han Xiao fica ferido e o braço perde durabilidade; a fuga pelo portão ainda não se conclui.
+
+**Estado atualizado:** capítulos 1–8 — corpo narrativo verificado e QC cruzado 1–8 aprovado com ressalvas; capítulo 9 — corpo narrativo reaberto e nota individual criada, QC cruzado 1–9 pendente; capítulo 10 — aguarda reabertura/auditoria individual. Não avançar ao capítulo 10 até concluir o controle de qualidade cruzado 1–9.
