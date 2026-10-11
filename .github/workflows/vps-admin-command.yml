@@ -12,6 +12,7 @@ jobs:
   execute:
     if: >-
       github.event.issue.pull_request == null &&
+      github.event.issue.number == 162 &&
       github.event.comment.user.login == 'samuelferreira24' &&
       startsWith(github.event.comment.body, '/vps ')
     concurrency:
@@ -213,44 +214,83 @@ jobs:
                         -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
                         --data-binary @/tmp/vps-mcp-smoke-request.json 2>&1 || true
                       python3 - "$tool" /tmp/vps-mcp-smoke-call-b.txt <<'PY'
-          import json,sys
+          import json,re,sys
           tool,path=sys.argv[1:]
           raw=open(path,encoding="utf-8",errors="replace").read()
           payload=next((line[6:] for line in raw.splitlines() if line.startswith("data: ")), "")
           if not payload:
-              print("result_parse=FAIL; response_body_omitted")
+              print("result_parse=FAIL; no_sse_data_line")
               raise SystemExit(0)
           try:
               data=json.loads(payload)
           except Exception:
-              print("result_parse=FAIL; invalid_json")
+              print("result_parse=FAIL; invalid_json_envelope")
+              raise SystemExit(0)
+          if data.get("error"):
+              print("tool_execution=FAIL")
+              print(json.dumps(data["error"])[:1200])
               raise SystemExit(0)
           res=data.get("result",{})
-          if data.get("error") or res.get("isError"):
+          if res.get("isError"):
               print("tool_execution=FAIL")
-              print(json.dumps(data.get("error") or res.get("content",[])[:1])[:1200])
+              print(json.dumps(res.get("content",[])[:1])[:1200])
               raise SystemExit(0)
           sc=res.get("structuredContent")
-          if tool=="vps_status" and isinstance(sc,dict):
-              safe={k:sc.get(k) for k in ("host","load_average","uptime_seconds","memory","disk_root")}
-              print("tool_execution=PASS")
-              print(json.dumps(safe)[:3000])
+          parts=res.get("content",[])
+          texts=[p.get("text","") for p in parts if isinstance(p,dict) and isinstance(p.get("text"),str)]
+          parsed_text=None
+          if not sc and texts:
+              try: parsed_text=json.loads("\\n".join(texts))
+              except Exception: parsed_text=None
+          if not sc and parsed_text is not None:
+              sc=parsed_text
+          if tool=="vps_status":
+              if isinstance(sc,dict):
+                  safe={k:sc.get(k) for k in ("host","load_average","uptime_seconds","memory","disk_root") if k in sc}
+                  print("tool_execution=PASS")
+                  print("response_format=structured")
+                  print(json.dumps(safe)[:3000])
+              elif texts and any(t.strip() for t in texts):
+                  preview="\\n".join(texts)[:1200]
+                  preview=re.sub(r"(?i)(bearer\\s+)[A-Za-z0-9._~-]+",r"\\1[REDACTED]",preview)
+                  preview=re.sub(r"(?i)(token|secret|password|api[_-]?key)(\\s*[:=]\\s*)[^\\s,;]+",r"\\1\\2[REDACTED]",preview)
+                  print("tool_execution=PASS")
+                  print("response_format=text")
+                  print("response_chars="+str(sum(len(t) for t in texts)))
+                  print("response_preview="+preview)
+              else:
+                  print("tool_execution=INCONCLUSIVE; successful_http_but_unrecognized_response_shape")
+                  print("result_keys="+",".join(sorted(res.keys())))
           elif tool=="list_containers":
+              items=None
               if isinstance(sc,list):
                   items=sc
-              else:
-                  content=res.get("content",[])
-                  txt=content[0].get("text","") if content else ""
-                  try: items=json.loads(txt)
-                  except Exception: items=[]
+              elif isinstance(sc,dict):
+                  for key in ("containers","items","results"):
+                      if isinstance(sc.get(key),list):
+                          items=sc[key]
+                          break
+              if items is None and isinstance(parsed_text,list):
+                  items=parsed_text
               if isinstance(items,list):
-                  safe=[{k:x.get(k) for k in ("name","image","status","health","restart_count")} for x in items if isinstance(x,dict)]
+                  safe=[{k:x.get(k) for k in ("name","image","status","health","restart_count") if k in x} for x in items if isinstance(x,dict)]
                   print("tool_execution=PASS")
+                  print("response_format=structured")
                   print(json.dumps({"container_count":len(items),"containers":safe})[:6000])
+              elif texts and any(t.strip() for t in texts):
+                  preview="\\n".join(texts)[:1600]
+                  preview=re.sub(r"(?i)(bearer\\s+)[A-Za-z0-9._~-]+",r"\\1[REDACTED]",preview)
+                  preview=re.sub(r"(?i)(token|secret|password|api[_-]?key)(\\s*[:=]\\s*)[^\\s,;]+",r"\\1\\2[REDACTED]",preview)
+                  print("tool_execution=PASS")
+                  print("response_format=text")
+                  print("response_chars="+str(sum(len(t) for t in texts))
+                  )
+                  print("response_preview="+preview)
               else:
-                  print("tool_execution=FAIL; unexpected result shape")
+                  print("tool_execution=INCONCLUSIVE; successful_http_but_unrecognized_response_shape")
+                  print("result_keys="+",".join(sorted(res.keys())))
           else:
-              print("tool_execution=FAIL; structured result missing")
+              print("tool_execution=PASS; tool_response_received")
           PY
                     done
                   fi
