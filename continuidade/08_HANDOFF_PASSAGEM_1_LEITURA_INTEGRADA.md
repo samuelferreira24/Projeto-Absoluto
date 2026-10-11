@@ -333,3 +333,9 @@ A página oficial do capítulo 31, “Silenced”, foi aberta pelo link do capí
 Foi criada a [síntese integrada dos capítulos 29–31](../docs/06_auditoria/PASSAGEM_1_LOTE_08_CAPITULOS_29_31.md) e a [auditoria cruzada 29–31](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_29_31.md). A continuação resolve a contagem de mortes da Bee Sting Squad: três na primeira rajada do Rover, dois na autodestruição e Kelly morto por Han Xiao. A frase do capítulo 30 de que toda a equipa foi eliminada imediatamente é inconsistente com os sobreviventes do capítulo 31; a nota do capítulo 30 foi corrigida retrospetivamente. O nome da missão também diverge ([Assailants!] no cap. 27, [Hunted!] no cap. 31), embora objetivo e recompensa coincidam. Han Xiao conclui a missão e é levado pela Division 13; Raccoon é algemado.
 
 **Próximo passo exato:** abrir o capítulo 32, criar notas individuais para 32–34 e concluir o QC cruzado 32–34 antes de avançar ao capítulo 35.
+
+## Sub-lote 32–34: capítulo 32 lido (2026-10-11)
+
+A página oficial do capítulo 32, “A Load of Crap”, foi aberta pelo link do capítulo 31 e a [nota individual do capítulo 32](../docs/06_auditoria/PASSAGEM_1_CAPITULO_32_NOTA_INDIVIDUAL.md) foi criada. No interrogatório, Han Xiao negocia diretamente com o diretor de inteligência, apresenta a cosmologia galáctica e marca três bases da Germinal em Stardragon. Importante: a alegação de que a Germinal contactou Blackstar é uma mentira deliberada de Han Xiao, explicitamente revelada pela narração; não a tratar como facto. A cooperação ainda não foi aprovada e ele continua detido.
+
+**Próximo passo exato:** continuar sequencialmente no capítulo 33, depois no 34, e concluir o QC cruzado 32–34 antes de avançar ao capítulo 35.
