@@ -63,15 +63,15 @@
 4. Qual é o propósito completo dos testes Valkyrie e o que aconteceu aos outros sujeitos?
 5. Qual é a relação entre Hila, Lin Weixian e a estrutura de comando da Germinal?
 6. O que ocorrerá quando o contador de lançamento chegar a zero?
-7. O capítulo acessível termina no reconhecimento de Hila, mas o encerramento narrativo completo não foi confirmado devido à falha de carregamento.
+7. O corpo narrativo termina no reconhecimento de Hila. O link para o capítulo seguinte aparece depois desse encerramento; a mensagem de erro surge apenas na área auxiliar pós-capítulo.
 
 ## Verificação de omissões e limites
 
-- A nota preserva a sequência observável do trecho consultado, desde o despertar até à identificação de Hila.
-- Não é possível garantir que nenhuma cena ou consequência foi omitida do capítulo completo, pois a página consultada assinala falha de carregamento após o conteúdo disponível.
+- A nota preserva a sequência observável do corpo narrativo, desde o despertar até à identificação de Hila.
+- O corpo narrativo visível foi verificado até ao encerramento do capítulo; a falha da área auxiliar não indica truncamento do texto.
 - Nenhuma inferência sobre viabilidade científica ou aplicação ao ABS foi feita nesta passagem.
 - Não foram copiados blocos extensos do texto original; os detalhes são paráfrases analíticas.
 
 ## Próxima ação
 
-Verificar a consistência conjunta das notas 1–3 com a síntese cumulativa e o mapa de cobertura. Depois de concluir esse controle de qualidade, continuar pelo capítulo 4. Não marcar o capítulo como “leitura completa verificada” até confirmar que todo o texto acessível foi percorrido e a nota foi comparada com ele.
+Verificar a consistência conjunta das notas 1–3 com a síntese cumulativa e o mapa de cobertura. Depois de concluir esse controle de qualidade, continuar pelo capítulo 4. O corpo narrativo visível deste capítulo está verificado; a auditoria cruzada da interpretação permanece pendente.
