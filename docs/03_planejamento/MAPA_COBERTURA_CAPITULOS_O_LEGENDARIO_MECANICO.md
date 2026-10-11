@@ -36,6 +36,21 @@ A discrepância permanece aberta. Não inventar capítulos ausentes nem explica�
 ## Registro por capítulo
 Manter uma linha por entrada e edição com: ID estável; edição; número e título exatamente como exibidos; URL; data de acesso; estado; resumo em paráfrase; eventos/personagens/facções; IDs de tecnologias; termos novos; divergências de tradução/divisão; evidência do que foi consultado; data da revisão. Prefixos como CH-EN identificam a edição, não sua canonicidade.
 
+## Primeiros registros observados — edição inglesa Webnovel
+
+**Nota:** registros abaixo refletem somente o nível de acesso/leitura indicado. “Trechos consultados” não significa capítulo integralmente lido.
+
+| ID | Capítulo/título da edição inglesa | URL | Estado verificado | Uso inicial |
+|---|---|---|---|---|
+| CH-EN-0001 | 1 — Rebirth | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673 | Página aberta; consultado analiticamente | Premissa, interface ficcional, cenário inicial |
+| CH-EN-0002 | 2 — Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Página aberta; trecho consultado | Aprendizagem ficcional, classe e habilidades |
+| CH-EN-0005 | 5 — Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Trechos consultados | Blueprint de braço mecânico |
+| CH-EN-0022 | 22 — Prosthetic Limb | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/prosthetic-limb_23983084059815310 | Trechos consultados | Prótese e fabricação |
+| CH-EN-0026 | 26 — Blueprint: Robot (Type: Rover) | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/blueprint-robot-%28type-rover%29_24056767965096782 | Trechos consultados | Blueprint do rover |
+| CH-EN-0030 | 30 — The Mighty Rover | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/the-mighty-rover_24140411379445674 | Trechos consultados | Operação remota do rover; uso armado na ficção |
+
+Notas analíticas do lote: docs/06_auditoria/NOTAS_LEITURA_LOTE_01_O_LEGENDARIO_MECANICO.md.
+
 ## Mapa de arcos e acontecimentos
 Para cada arco: ID e nome de trabalho; limites por edição e incerteza; situação inicial e mudanças; acontecimentos decisivos; personagens e facções; regras do universo; tecnologias apresentadas/evoluídas; consequências; referências de capítulo; nível de spoiler; estado de verificação. Enquanto não houver conferência textual, marcar limites como não mapeados.
 
