@@ -79,4 +79,4 @@
 - Os números e regras acima são dados do mundo ficcional e/ou conhecimento do protagonista, não afirmações científicas reais.
 - Não foram extraídas aplicações técnicas para o ABS; isso pertence às passagens posteriores.
 
-**Próxima ação:** atualizar o mapa de cobertura e a síntese cumulativa para marcar o capítulo 4 como reaberto e anotado, depois auditar a consistência do sublote 1–4 antes de avançar ao capítulo 5.
+**Próxima ação:** O mapa e a síntese foram atualizados, e a [auditoria cruzada 1–5](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_05.md) foi aprovada com ressalvas. Próxima ação: reabrir o capítulo 6 e concluir o QC cruzado 1–6 antes de avançar ao capítulo 7.
