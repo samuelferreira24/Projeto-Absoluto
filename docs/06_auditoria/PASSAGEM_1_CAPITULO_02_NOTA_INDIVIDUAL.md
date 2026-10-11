@@ -69,4 +69,4 @@
 - Não foi feita avaliação de viabilidade técnica da montagem de armas nem qualquer extração para o ABS.
 - A nota é paráfrase analítica original e não substitui a consulta futura se surgirem dúvidas.
 
-**Próxima ação:** comparar esta nota com as notas dos capítulos 1, 3, 4, 5, 6, 7, 8 e 9, com a síntese cumulativa e com o mapa de cobertura. O QC cruzado 1–9 foi aprovado. Próxima ação: reabrir o capítulo 10 e concluir o QC cruzado 1–10 antes de encerrar o lote. O corpo narrativo visível está verificado.
+**Próxima ação:** comparar esta nota com as notas dos capítulos 1, 3–10, com a síntese cumulativa e com o mapa de cobertura. O lote 1–10 passou pelo QC cruzado final; ver [AUDITORIA_CRUZADA_FINAL_CAPITULOS_01_10.md](AUDITORIA_CRUZADA_FINAL_CAPITULOS_01_10.md). Próxima ação, após verificação final dos documentos: continuar no capítulo 11.
