@@ -141,3 +141,9 @@ A página oficial do capítulo 6, “Taking Action!”, foi reaberta. O corpo na
 A [auditoria cruzada de consistência 1–6](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_06.md) foi concluída e aprovada com ressalvas. Não foi encontrada contradição central entre a planta obtida no capítulo 5 e a fabricação manual no capítulo 6, nem entre a janela de ausência de Hila e o início da fuga. Han Xiao ainda não equipa o braço no trecho consultado. As variantes terminológicas “Mechanic”/“Engineer (Novice)” e “Mechanical Arm”/“Mecha Arm” permanecem abertas.
 
 **Próximo passo exato:** reabrir o capítulo 7, “Panic”, produzir/atualizar nota individual e atualizar mapa/síntese. Não iniciar capítulo 8 antes do QC cruzado 1–7. Capítulos 7–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
+
+## Continuidade após reabertura do capítulo 7 — 2026-10-11
+
+A página oficial do capítulo 7, “Panic”, foi reaberta. O corpo narrativo visível foi confirmado até ao encerramento antes do link para o capítulo seguinte e a [nota individual do capítulo 7](../docs/06_auditoria/PASSAGEM_1_CAPITULO_07_NOTA_INDIVIDUAL.md) foi criada. Han Xiao neutraliza a sala de vigilância, mata os guardas que encontra e mata Lin Weixian antes que a dissecação ocorra. A narrativa termina sem mostrar a reação da Germinal ou a saída do portão.
+
+**Próxima ação obrigatória:** concluir o QC cruzado das notas 1–7 contra a síntese e o mapa. Não iniciar o capítulo 8 antes desse controle. Capítulos 8–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
