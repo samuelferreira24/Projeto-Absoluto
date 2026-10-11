@@ -76,4 +76,4 @@
 - A variação “Baltar”/“Baltor” é registada como possível erro tipográfico/tradutório.
 - Não foi feita avaliação de viabilidade científica ou aplicação ao ABS.
 
-**Próxima ação:** atualizar o mapa e a síntese para marcar o capítulo 8 como reaberto e anotado; depois auditar a consistência do sublote 1–8 antes de avançar ao capítulo 9.
+**Próxima ação:** O mapa e a síntese foram atualizados, e a [auditoria cruzada 1–8](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_08.md) foi aprovada com ressalvas. Próxima ação: reabrir o capítulo 9 e concluir o QC cruzado 1–9 antes de avançar ao capítulo 10.
