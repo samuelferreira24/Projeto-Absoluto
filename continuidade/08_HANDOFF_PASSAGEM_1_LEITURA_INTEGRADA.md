@@ -237,3 +237,9 @@ Foi criada a [síntese integrada dos capítulos 14–16](../docs/06_auditoria/PA
 A página oficial do capítulo 17, “Kill”, foi aberta pelo link do capítulo 16 e a [nota individual do capítulo 17](../docs/06_auditoria/PASSAGEM_1_CAPITULO_17_NOTA_INDIVIDUAL.md) foi criada. Han Xiao encontra Hu Fei moribundo, mata Kai Luo após a acusação de traição, confirma que Hu Xuan Jun o protegeu e transforma a perda do casal numa missão pessoal de vingança. Modifica a espingarda antiga de Hu Xuan Jun com peças das armas saqueadas e inicia uma emboscada contra a equipa de No. 1; o capítulo termina quando o veículo dos perseguidores avança contra a sua posição.
 
 **Próximo passo exato:** abrir os capítulos 18 e 19, criar notas individuais e concluir o QC cruzado 17–19 antes de avançar ao capítulo 20.
+
+## Sub-lote 17–19: capítulo 18 lido (2026-10-11)
+
+A página oficial do capítulo 18, “Bigger Than You Imagined”, foi aberta pelo link do capítulo 17 e a [nota individual do capítulo 18](../docs/06_auditoria/PASSAGEM_1_CAPITULO_18_NOTA_INDIVIDUAL.md) foi criada. Han Xiao detém o veículo com uma armadilha, elimina No. 1, conclui [Revenge] e rejeita a oferta de recrutamento do líder da Germinal. O líder revela ser o chefe da organização, mas não revela a identidade civil nem o objetivo final. Han Xiao decide procurar proteção em Stardragon.
+
+**Próximo passo exato:** abrir o capítulo 19 e depois concluir o QC cruzado 17–19 antes de avançar ao capítulo 20.
