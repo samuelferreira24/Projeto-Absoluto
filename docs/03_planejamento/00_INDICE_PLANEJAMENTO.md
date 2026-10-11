@@ -38,6 +38,7 @@ O planejamento deve responder **qual capacidade/frente precisa avançar**, e nã
 
 ## Frente de pesquisa: O Lendário Mecânico
 - Plano mestre e método: `ESTUDO_O_LEGENDARIO_MECANICO.md`.
+- Método canônico de passagens sucessivas: `METODO_PASSAGENS_SUCESSIVAS_O_LEGENDARIO_MECANICO.md`.
 - Contexto narrativo e tecnológico: `docs/04_referencia/CONTEXTO_HISTORIA_E_TECNOLOGIAS_O_LEGENDARIO_MECANICO.md`.
 - Mapa de cobertura narrativa e capítulos: `MAPA_COBERTURA_CAPITULOS_O_LEGENDARIO_MECANICO.md`.
 - Fila de oportunidades de realização: `FILA_OPORTUNIDADES_REALIZACAO_O_LEGENDARIO_MECANICO.md`.
