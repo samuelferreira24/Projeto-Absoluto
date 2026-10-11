@@ -96,6 +96,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-009 | 9 — Fierce Battle | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–9 aprovado | [Nota do capítulo 9](../06_auditoria/PASSAGEM_1_CAPITULO_09_NOTA_INDIVIDUAL.md) |
 | CH-EN-010 | 10 — Night Owl | Corpo narrativo visível verificado; nota individual criada; QC cruzado 1–10 aprovado com questões abertas preservadas | [Nota do capítulo 10](../06_auditoria/PASSAGEM_1_CAPITULO_10_NOTA_INDIVIDUAL.md) |
 | CH-EN-011 | 11 — Crunch Time | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 11–13 pendente | [Nota do capítulo 11](../06_auditoria/PASSAGEM_1_CAPITULO_11_NOTA_INDIVIDUAL.md) |
+| CH-EN-012 | 12 — Original Identity | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 11–13 pendente | [Nota do capítulo 12](../06_auditoria/PASSAGEM_1_CAPITULO_12_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -179,3 +180,8 @@ A [auditoria cruzada final dos capítulos 1–10](../06_auditoria/AUDITORIA_CRUZ
 ## Atualização — capítulo 11 (2026-10-11)
 
 A página oficial do capítulo 11 foi aberta pelo link de navegação do capítulo 10. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_11_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_11_NOTA_INDIVIDUAL.md). O capítulo continua diretamente a perseguição na floresta e termina em suspense após uma explosão, sem confirmar a sobrevivência de Han Xiao. O novo sublote 11–13 está em execução; o capítulo 12 é o próximo.
+
+
+## Atualização — capítulo 12 (2026-10-11)
+
+A página oficial do capítulo 12 foi aberta pelo link de navegação do capítulo 11. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_12_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_12_NOTA_INDIVIDUAL.md). O capítulo confirma a sobrevivência de Han Xiao após a explosão, revela a identidade anterior do corpo como Xiao Han e regista a hipótese dos pesquisadores sobre os efeitos da Valkyrie, mantendo a origem da transmigração em aberto. Próxima leitura: capítulo 13.
