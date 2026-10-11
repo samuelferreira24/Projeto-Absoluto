@@ -18,8 +18,8 @@
 6. Han Xiao identifica seis mercenários armados com submetralhadoras a cerca de 300 metros a oeste. Conclui que não pode enfrentá-los de frente e decide usar Rover 1, que trouxe escondido no carrinho coberto.
 7. O controlo remoto mostra “Out of Range”: Han Xiao precisa de se aproximar a menos de 50 metros do Rover. Corre pelo depósito, usando pilhas de sucata e carros para se proteger do fogo dos mercenários. Uma bala quase lhe atinge a cabeça, mas ele consegue chegar ao alcance do robô.
 8. Han Xiao estabelece a ligação e ativa Rover 1. O robô sai da área de descanso, com os olhos vermelhos e o motor a funcionar. Han Xiao encontra uma posição de emboscada entre dois carros de sucata, onde o Rover pode ficar escondido até a Bee Sting Squad entrar no alcance de tiro.
-9. Kelly sente que algo está errado, mas não identifica o que é. Quando os seis mercenários entram no alcance, Han Xiao dá a ordem de disparar. As duas metralhadoras instaladas nos dedos do Rover abrem fogo e a Bee Sting Squad é eliminada no local.
-10. A interface regista mensagens de 800 XP por mercenário morto pelo Rover, mas o texto visível mostra apenas três notificações, apesar de a narrativa dizer que toda a equipa foi eliminada. A diferença entre o número de mortes narradas e o número de mensagens de XP visíveis fica registada como possível limitação/omissão do registo exibido, sem alterar a conclusão narrativa de que os seis foram eliminados.
+9. Kelly sente que algo está errado, mas não identifica o que é. Quando os seis mercenários entram no alcance, Han Xiao dá a ordem de disparar. As duas metralhadoras instaladas nos dedos do Rover abrem fogo. O capítulo 30 diz que a equipa foi eliminada, mas o capítulo 31 esclarece que três mercenários sobreviveram à primeira rajada; portanto, a frase do capítulo 30 é excessiva ou inconsistente com a continuação.
+10. A interface regista três mensagens de 800 XP por mercenários mortos pelo Rover. O capítulo 31 confirma que três mercenários sobreviveram à primeira rajada; as três notificações correspondem, portanto, aos três que morreram nesse momento. Os outros três morrem depois: dois na autodestruição e Kelly pelas mãos de Han Xiao. A expressão do capítulo 30 de que toda a equipa foi eliminada imediatamente contradiz a continuação e fica registada como inconsistência textual.
 
 ## Objetivos, decisões e consequências
 
@@ -72,9 +72,14 @@
 
 - A nota cobre a fuga da sala, a luta contra os capangas, a chegada da Bee Sting Squad e a emboscada do Rover.
 - O corpo narrativo visível foi verificado até ao fim antes dos controles de navegação; o erro auxiliar pós-capítulo não indica truncamento.
-- A morte dos seis mercenários é explícita na narrativa; apenas três mensagens de XP estão visíveis, e essa discrepância é preservada.
+- O capítulo 31 esclarece o balanço: três mercenários morrem na primeira rajada do Rover, dois na autodestruição e Kelly é morto por Han Xiao. As três notificações de XP no capítulo 30 correspondem às três primeiras mortes; a frase de que toda a equipa caiu imediatamente é inconsistente com a continuação.
 - O destino de Big Raccoon e a intervenção da Division 13 permanecem em aberto.
 - As estatísticas e capacidades do Rover são regras ficcionais, não especificações de engenharia reais.
 - Não foi feita avaliação de viabilidade científica ou aplicação ao ABS.
 
 **Próxima ação:** continuar pelo capítulo 31 e concluir o QC cruzado 29–31 antes de avançar ao capítulo 32.
+
+
+## Atualização retrospetiva após o capítulo 31 — 2026-10-11
+
+A continuação no capítulo 31 esclarece a contagem: três mercenários morreram na primeira rajada do Rover (correspondendo às três notificações de 800 XP visíveis no capítulo 30); outros dois morreram na autodestruição e Kelly foi morto por Han Xiao. A frase do capítulo 30 de que a equipa inteira foi eliminada “no local” é inconsistente com os três sobreviventes revelados no capítulo 31. O total final de seis mortes permanece confirmado.
