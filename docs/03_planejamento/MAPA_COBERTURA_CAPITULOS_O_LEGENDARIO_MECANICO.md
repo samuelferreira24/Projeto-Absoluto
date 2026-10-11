@@ -91,7 +91,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-004 | 4 — 600,000 experience points! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–4 aprovado | [Nota do capítulo 4](../06_auditoria/PASSAGEM_1_CAPITULO_04_NOTA_INDIVIDUAL.md) |
 | CH-EN-005 | 5 — Lightweight Mechanical Arm | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–5 aprovado com ressalvas | [Nota do capítulo 5](../06_auditoria/PASSAGEM_1_CAPITULO_05_NOTA_INDIVIDUAL.md) |
 | CH-EN-006 | 6 — Taking Action! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–6 aprovado com ressalvas | [Nota do capítulo 6](../06_auditoria/PASSAGEM_1_CAPITULO_06_NOTA_INDIVIDUAL.md) |
-| CH-EN-007 | 7 — Panic | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–7 pendente | [Nota do capítulo 7](../06_auditoria/PASSAGEM_1_CAPITULO_07_NOTA_INDIVIDUAL.md) |
+| CH-EN-007 | 7 — Panic | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–7 aprovado | [Nota do capítulo 7](../06_auditoria/PASSAGEM_1_CAPITULO_07_NOTA_INDIVIDUAL.md) |
 | CH-EN-008 | 8 — I Have the Trashtalk to Back Me Up | Consulta analítica anterior; reabertura/auditoria pendente | — |
 | CH-EN-009 | 9 — Fierce Battle | Consulta analítica anterior; reabertura/auditoria pendente | — |
 | CH-EN-010 | 10 — Night Owl | Consulta analítica anterior; reabertura/auditoria pendente | — |
@@ -138,3 +138,8 @@ A [auditoria cruzada dos capítulos 1–6](../06_auditoria/AUDITORIA_CRUZADA_CON
 ## Atualização — capítulo 7 (2026-10-11)
 
 A página oficial do capítulo 7 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes dos controles auxiliares. A nota individual está em [PASSAGEM_1_CAPITULO_07_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_07_NOTA_INDIVIDUAL.md). A auditoria cruzada do sublote 1–7 está pendente; capítulos 8–10 continuam a aguardar reabertura/auditoria individual.
+
+
+## Resultado de auditoria cruzada 1–7 — 2026-10-11
+
+A [auditoria cruzada dos capítulos 1–7](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_07.md) concluiu o controle de qualidade sem contradição central. A nota do capítulo 7 foi clarificada para distinguir os guardas mortos no corredor dos guardas dentro da sala de vigilância. Próxima etapa: capítulo 8; não avançar ao capítulo 9 antes do QC cruzado 1–8.
