@@ -14,7 +14,7 @@
 | 1 | Rebirth | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673 | Corpo narrativo visível completo verificado; nota individual atualizada |
 | 2 | Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Corpo narrativo visível completo verificado; nota individual atualizada |
 | 3 | Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Corpo narrativo visível completo verificado; nota individual atualizada |
-| 4 | 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Página e conteúdo narrativo consultados; análise substancial |
+| 4 | 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; auditoria cruzada 1–4 pendente |
 | 5 | Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Página e conteúdo narrativo consultados; análise substancial |
 | 6 | Taking Action! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/taking-action!_23353885024384961 | Página e conteúdo narrativo consultados; análise substancial |
 | 7 | Panic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/panic_23358465070135260 | Página e conteúdo narrativo consultados; análise substancial |
@@ -160,3 +160,10 @@ Hila é apresentada simultaneamente como comandante coerciva e como pessoa subme
 **Estado corrigido:** capítulos 1–3 — leitura completa do corpo narrativo visível verificada, com notas individuais; capítulos 4–10 — consulta analítica anterior, aguardando reabertura e auditoria individual. O lote 1–10 continua incompleto como auditoria, mas não devido ao erro auxiliar encontrado nas páginas 1–3.
 
 **Limite da conclusão:** esta verificação confirma o corpo narrativo da edição inglesa visível nas páginas consultadas; não equivale a uma auditoria de variantes entre traduções ou ao texto original chinês.
+
+
+## Atualização de execução — capítulo 4 reaberto (2026-10-11)
+
+A página oficial do capítulo 4 foi reaberta. O corpo narrativo visível termina antes do link “next chapter”; a mensagem “Load failed, please RETRY” aparece depois da navegação, em área auxiliar. Foi criada a [nota individual do capítulo 4](PASSAGEM_1_CAPITULO_04_NOTA_INDIVIDUAL.md), registrando o meio ano de acumulação de experiência, a redução de vigilância, o corte de 80% dos recursos, a progressão de Han Xiao, a autorização da dissecação e a ordem de envio do Sujeito No. 1 à Night Owl.
+
+**Estado atualizado:** capítulos 1–3 — corpo narrativo visível verificado e consistência cruzada auditada; capítulo 4 — corpo narrativo visível reaberto e nota individual criada, com consistência cruzada 1–4 pendente; capítulos 5–10 — aguardam reabertura/auditoria individual. Não avançar ao capítulo 5 até concluir o controle de qualidade cruzado 1–4.
