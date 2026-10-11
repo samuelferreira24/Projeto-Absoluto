@@ -69,4 +69,4 @@
 - Não foi feita avaliação de viabilidade técnica da montagem de armas nem qualquer extração para o ABS.
 - A nota é paráfrase analítica original e não substitui a consulta futura se surgirem dúvidas.
 
-**Próxima ação:** comparar esta nota com a síntese exploratória anterior e continuar pelo capítulo 3; manter “consulta analítica substancial” até verificação integral.
+**Próxima ação:** comparar esta nota com as notas dos capítulos 1 e 3 e com a síntese cumulativa. Após o controle de qualidade do sublote 1–3, continuar pelo capítulo 4; manter “consulta analítica substancial” até verificação integral.
