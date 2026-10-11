@@ -46,7 +46,7 @@ Manter uma linha por entrada e edição com: ID estável; edição; número e t�
 | CH-EN-0002 | 2 — Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Corpo narrativo visível completo verificado em 2026-10-11; nota individual criada | Aprendizagem ficcional, classe e habilidades |
 | CH-EN-0003 | 3 — Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Corpo narrativo visível completo verificado em 2026-10-11; nota individual criada | Condicionamento, treino, contexto ético |
 | CH-EN-0004 | 4 — 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–4 pendente | Oficina, montagem, manutenção e recursos |
-| CH-EN-0005 | 5 — Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Trechos consultados | Blueprint de braço mecânico |
+| CH-EN-0005 | 5 — Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–5 pendente | Blueprint de braço mecânico |
 | CH-EN-0022 | 22 — Prosthetic Limb | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/prosthetic-limb_23983084059815310 | Trechos consultados | Prótese e fabricação |
 | CH-EN-0026 | 26 — Blueprint: Robot (Type: Rover) | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/blueprint-robot-%28type-rover%29_24056767965096782 | Trechos consultados | Blueprint do rover |
 | CH-EN-0030 | 30 — The Mighty Rover | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/the-mighty-rover_24140411379445674 | Trechos consultados | Operação remota do rover; uso armado na ficção |
@@ -89,7 +89,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-002 | 2 — Mechanic | Leitura completa do corpo narrativo visível verificada; módulo auxiliar pós-capítulo falha | [Nota do capítulo 2](../06_auditoria/PASSAGEM_1_CAPITULO_02_NOTA_INDIVIDUAL.md) |
 | CH-EN-003 | 3 — Life Is All About Acting | Leitura completa do corpo narrativo visível verificada; módulo auxiliar pós-capítulo falha | [Nota do capítulo 3](../06_auditoria/PASSAGEM_1_CAPITULO_03_NOTA_INDIVIDUAL.md) |
 | CH-EN-004 | 4 — 600,000 experience points! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–4 pendente | [Nota do capítulo 4](../06_auditoria/PASSAGEM_1_CAPITULO_04_NOTA_INDIVIDUAL.md) |
-| CH-EN-005 | 5 — Lightweight Mechanical Arm | Consulta analítica anterior; reabertura/auditoria pendente | — |
+| CH-EN-005 | 5 — Lightweight Mechanical Arm | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–5 pendente | [Nota do capítulo 5](../06_auditoria/PASSAGEM_1_CAPITULO_05_NOTA_INDIVIDUAL.md) |
 | CH-EN-006 | 6 — Taking Action! | Consulta analítica anterior; reabertura/auditoria pendente | — |
 | CH-EN-007 | 7 — Panic | Consulta analítica anterior; reabertura/auditoria pendente | — |
 | CH-EN-008 | 8 — I Have the Trashtalk to Back Me Up | Consulta analítica anterior; reabertura/auditoria pendente | — |
@@ -113,3 +113,8 @@ A página oficial do capítulo 4 foi reaberta e o corpo narrativo visível foi v
 ## Resultado de auditoria cruzada 1–4 — 2026-10-11
 
 A [auditoria cruzada dos capítulos 1–4](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_04.md) concluiu o controle de qualidade sem contradição central na sequência. Questões abertas foram preservadas, e os capítulos 5–10 continuam pendentes de reabertura/auditoria individual. Próxima etapa: capítulo 5; não avançar ao capítulo 6 antes do QC cruzado 1–5.
+
+
+## Atualização — capítulo 5 (2026-10-11)
+
+A página oficial do capítulo 5 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes dos controles auxiliares. A nota individual está em [PASSAGEM_1_CAPITULO_05_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_05_NOTA_INDIVIDUAL.md). A auditoria cruzada do sublote 1–5 ainda está pendente; capítulos 6–10 continuam a aguardar reabertura/auditoria individual.
