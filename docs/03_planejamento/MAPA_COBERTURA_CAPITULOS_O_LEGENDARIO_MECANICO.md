@@ -1,7 +1,7 @@
 # Mapa de cobertura narrativa e capítulos — O Lendário Mecânico
 
 **Projeto-pai:** Projeto Absoluto  
-**Estado:** Passagem 1 iniciada; capítulos 1–10 consultados analiticamente, integralidade ainda não certificada  
+**Estado:** Passagem 1 em execução; corpo narrativo visível dos capítulos 1–3 verificado e anotado; capítulos 4–10 aguardam reabertura/auditoria individual  
 **Versão:** 0.1 — 2026-10-11
 
 ## Finalidade
