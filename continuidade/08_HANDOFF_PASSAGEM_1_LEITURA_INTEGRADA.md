@@ -3,7 +3,7 @@
 **Data:** 2026-10-11  
 **Projeto-pai:** Projeto Absoluto  
 **Branch de trabalho:** `pesquisa/lendario-mecanico-base`  
-**Estado:** Passagem 1 em execução; subfases 1A–1D formalizadas no método canônico. O capítulo 1 foi reconsultado e recebeu nota individual com estado “consulta analítica substancial”; recuperação do lote 1–10 ainda não concluída.
+**Estado:** Passagem 1 em execução; subfases 1A–1D formalizadas. Capítulos 1–3 reabertos, com corpo narrativo visível completo verificado e notas individuais corrigidas; capítulos 4–10 aguardam auditoria individual.
 
 ## Decisões confirmadas
 
@@ -61,7 +61,7 @@ Não responder como se o estudo estivesse pronto só porque os documentos existe
 
 Em 2026-10-11 foi criada a [Auditoria do método e da qualidade de leitura](../docs/06_auditoria/AUDITORIA_METODO_LEITURA_O_LEGENDARIO_MECANICO.md). O método de passagens sucessivas permanece válido, mas a execução inicial ainda não demonstrou leitura integral nem profundidade capítulo a capítulo.
 
-**A próxima tarefa não é abrir o capítulo 11.** Primeiro, revisar os capítulos 1–10: reabrir o conteúdo acessível, criar notas individuais com acontecimentos em ordem, objetivos/motivações, consequências, informação nova, ponto de vista, conexões rastreáveis e lacunas; verificar as notas contra o texto; atualizar o mapa de cobertura. Manter o estado atual como “consulta analítica substancial” até haver verificação suficiente.
+**A próxima tarefa não é abrir o capítulo 11.** Primeiro, revisar os capítulos 1–10: reabrir o conteúdo acessível, criar notas individuais com acontecimentos em ordem, objetivos/motivações, consequências, informação nova, ponto de vista, conexões rastreáveis e lacunas; verificar as notas contra o texto; atualizar o mapa de cobertura. Classificar cada capítulo pela estrutura do texto narrativo efetivamente observada; não confundir erro de módulo auxiliar pós-capítulo com truncamento narrativo.
 
 Para a calibração, usar lotes adaptativos de 3–5 capítulos (ou menos em trechos densos), e só aumentar após dois lotes consecutivos passarem pelo controle de qualidade. Dez capítulos foi um piloto operacional, não um tamanho ideal já validado.
 
@@ -75,7 +75,12 @@ As subfases **1A leitura narrativa sequencial; 1B integração narrativa contín
 ## Estado de execução após a atualização
 
 - Método canônico atualizado: subfases 1A–1D e lotes adaptativos de 3–5 capítulos (ou 1–3 quando necessário).
-- Criadas notas individuais para [capítulo 1](../docs/06_auditoria/PASSAGEM_1_CAPITULO_01_NOTA_INDIVIDUAL.md), [capítulo 2](../docs/06_auditoria/PASSAGEM_1_CAPITULO_02_NOTA_INDIVIDUAL.md) e [capítulo 3](../docs/06_auditoria/PASSAGEM_1_CAPITULO_03_NOTA_INDIVIDUAL.md). As páginas oficiais retornaram conteúdo narrativo e aviso de falha de carregamento; estado honesto dos três: **consulta analítica substancial**, não leitura completa verificada.
+- Criadas notas individuais para [capítulo 1](../docs/06_auditoria/PASSAGEM_1_CAPITULO_01_NOTA_INDIVIDUAL.md), [capítulo 2](../docs/06_auditoria/PASSAGEM_1_CAPITULO_02_NOTA_INDIVIDUAL.md) e [capítulo 3](../docs/06_auditoria/PASSAGEM_1_CAPITULO_03_NOTA_INDIVIDUAL.md). As páginas oficiais retornaram o corpo narrativo visível completo. “Load failed, please RETRY” aparece apenas no módulo auxiliar depois do link do capítulo seguinte; os três capítulos estão classificados como **leitura completa do corpo narrativo visível verificada**.
 - Atualizados o [mapa de cobertura](../docs/03_planejamento/MAPA_COBERTURA_CAPITULOS_O_LEGENDARIO_MECANICO.md) e o [registo do lote 1–10](../docs/06_auditoria/PASSAGEM_1_LOTE_01_CAPITULOS_01_10.md) com os resultados da revisão progressiva e as conexões do sublote 1–3.
 - Auditoria metodológica atualizada para registrar a formalização das subfases e o início da recuperação capítulo a capítulo.
 - A recuperação dos capítulos 1–10 permanece incompleta. O sublote 1–3 é uma calibração inicial; antes de continuar para o capítulo 4, verificar a consistência entre notas individuais, mapa e síntese cumulativa. Não avançar para o capítulo 11 até rever a cobertura do lote 1–10; não iniciar a Passagem 2.
+
+
+## Correção de diagnóstico — 2026-10-11
+
+O “Load failed, please RETRY” da Webnovel foi localizado depois do corpo narrativo e do link “next chapter”, na área auxiliar pós-capítulo. Não é falha de carregamento do texto narrativo dos capítulos 1–3. As notas, o mapa e a auditoria foram corrigidos, e o método canônico agora exige distinguir erros auxiliares de truncamento narrativo. Próxima ação: auditar a consistência das notas 1–3 com a síntese cumulativa antes de abrir o capítulo 4.
