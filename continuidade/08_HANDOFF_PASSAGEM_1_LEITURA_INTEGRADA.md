@@ -84,3 +84,15 @@ As subfases **1A leitura narrativa sequencial; 1B integração narrativa contín
 ## Correção de diagnóstico — 2026-10-11
 
 O “Load failed, please RETRY” da Webnovel foi localizado depois do corpo narrativo e do link “next chapter”, na área auxiliar pós-capítulo. Não é falha de carregamento do texto narrativo dos capítulos 1–3. As notas, o mapa e a auditoria foram corrigidos, e o método canônico agora exige distinguir erros auxiliares de truncamento narrativo. Próxima ação: auditar a consistência das notas 1–3 com a síntese cumulativa antes de abrir o capítulo 4.
+
+## Auditoria cruzada de consistência — concluída em 2026-10-11
+
+Foi concluído o controle de consistência das notas individuais dos capítulos 1–3 contra a síntese cumulativa e o mapa de cobertura.
+
+- Relatório: [Auditoria cruzada de consistência dos capítulos 1–3](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_03.md).
+- A síntese cumulativa agora separa explicitamente o sublote 1–3, revalidado, dos acontecimentos dos capítulos 4–10 que continuam apoiados apenas na consulta exploratória anterior.
+- A formulação sobre a transmigração foi corrigida para atribuir a conclusão a Han Xiao, em vez de apresentá-la como explicação objetiva já demonstrada.
+- A tabela inicial do mapa de cobertura foi alinhada aos estados atualizados dos capítulos 1–3.
+- Não foi encontrada contradição central na sequência narrativa dos capítulos 1–3; foram corrigidos problemas de rastreabilidade e ponto de vista.
+
+**Estado exato:** capítulos 1–3 — corpo narrativo visível verificado e notas individuais presentes; consistência cruzada auditada. Capítulos 4–10 — continuam pendentes de reabertura e auditoria individual. A etapa seguinte é começar pelo capítulo 4, mas apenas após uma verificação final dos arquivos alterados; capítulo 11 e Passagem 2 continuam bloqueados.
