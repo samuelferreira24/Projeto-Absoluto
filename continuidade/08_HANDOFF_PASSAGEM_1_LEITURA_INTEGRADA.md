@@ -255,3 +255,9 @@ Foi criada a [síntese integrada dos capítulos 17–19](../docs/06_auditoria/PA
 A página oficial do capítulo 20, “Illegal Entry”, foi aberta pelo link do capítulo 19 e a [nota individual do capítulo 20](../docs/06_auditoria/PASSAGEM_1_CAPITULO_20_NOTA_INDIVIDUAL.md) foi criada. Han Xiao entra na Western Capital através de uma rede de contrabando, entrega as armas saqueadas como pagamento, recusa a oferta de Ma Jie e desbloqueia [Steal]. A Division 13 ainda não foi contactada.
 
 **Próximo passo exato:** abrir os capítulos 21 e 22, criar notas individuais e concluir o QC cruzado 20–22 antes de avançar ao capítulo 23.
+
+## Sub-lote 20–22: capítulo 21 lido (2026-10-11)
+
+A página oficial do capítulo 21, “The Old Man Who Plays Chess”, foi aberta pelo link do capítulo 20 e a [nota individual do capítulo 21](../docs/06_auditoria/PASSAGEM_1_CAPITULO_21_NOTA_INDIVIDUAL.md) foi criada. Han Xiao localiza uma oficina sem nome ligada a um encontro secreto de Galaxy e pede para ser aprendiz. Lu Qian acolhe-o inicialmente, mas Old Man Lu interrompe e exige um teste; a contratação ainda não está confirmada.
+
+**Próximo passo exato:** abrir o capítulo 22 e concluir o QC cruzado 20–22 antes de avançar ao capítulo 23.
