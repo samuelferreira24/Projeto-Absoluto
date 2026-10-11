@@ -108,6 +108,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-021 | 21 — The Old Man Who Plays Chess | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 20–22 aprovado | [Nota do capítulo 21](../06_auditoria/PASSAGEM_1_CAPITULO_21_NOTA_INDIVIDUAL.md) |
 | CH-EN-022 | 22 — Prosthetic Limb | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 20–22 aprovado | [Nota do capítulo 22](../06_auditoria/PASSAGEM_1_CAPITULO_22_NOTA_INDIVIDUAL.md) |
 | CH-EN-023 | 23 — You Set Me Up! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 pendente | [Nota do capítulo 23](../06_auditoria/PASSAGEM_1_CAPITULO_23_NOTA_INDIVIDUAL.md) |
+| CH-EN-024 | 24 — What Is Weak? | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 pendente | [Nota do capítulo 24](../06_auditoria/PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -256,3 +257,8 @@ A [auditoria cruzada 20–22](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAP
 ## Atualização — capítulo 23 (2026-10-11)
 
 A página oficial do capítulo 23, “You Set Me Up!”, foi aberta pelo link do capítulo 22. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_23_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_23_NOTA_INDIVIDUAL.md). Han Xiao conclui a prótese, recebe aprovação de Tall Old Man e é contratado pela oficina; Tall Old Man comunica a presença do fugitivo à inteligência de Stardragon, mas ordena monitorização sem intervenção imediata.
+
+
+## Atualização — capítulo 24 (2026-10-11)
+
+A página oficial do capítulo 24, “What Is Weak?”, foi aberta pelo link do capítulo 23. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md). Han Xiao trabalha na oficina e espera a Division 13; Old Man Lu exige saber quem ele é, enquanto a divisão decide protegê-lo e verificar discretamente as suas intenções.
