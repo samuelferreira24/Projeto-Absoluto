@@ -18,7 +18,7 @@
 6. O superior identifica-se explicitamente como líder da Organização Germinal e oferece a Han Xiao uma hipótese de sobreviver: regressar voluntariamente, manter as memórias e receber uma posição à altura das suas capacidades. Considera a morte dos guardas e agentes como perda de subordinados fracassados, não como motivo para abandonar a oferta.
 7. Han Xiao recusa a ideologia da organização e declara que a Germinal é sua inimiga por ter matado as pessoas que o ajudaram. Diz que a destruirá. O líder ameaça que não haverá lugar para ele no mundo, mas Han Xiao rejeita a ameaça.
 8. Han Xiao dispara três vezes contra o coração de No. 1 e mata-o. A interface confirma a morte do sujeito experimental e concede 900 XP; a missão [Revenge] é concluída e concede 15.000 XP. O Esquadrão de Sujeitos deixa de existir.
-9. A espingarda de baioneta modificada desfaz-se. Han Xiao explica que desmontara o rifle de sniper SWP para usar peças na modificação, mas o rifle exigia a habilidade [Sniper], que ele não tinha; a combinação não se sustentou. A narrativa demonstra que uma modificação pode falhar quando falta o requisito necessário.
+9. A espingarda de baioneta modificada desfaz-se. Han Xiao explica que o rifle de sniper SWP que saqueou exigia a habilidade [Sniper], que ele não tinha, por isso desmonta esse rifle para usar as peças e reparar a espingarda de baioneta. O texto não atribui explicitamente a falha da espingarda à ausência da habilidade; essa relação não deve ser inferida.
 10. Han Xiao conclui que precisa de um esconderijo e de uma força política capaz de o proteger da Germinal. Decide procurar uma das Seis Nações: Stardragon, Maple, Theseus, Raylen, Hesla ou Ordina. Como já está em Stardragon e a considera a mais pacífica, escolhe-a como destino. O capítulo termina com esta decisão estratégica.
 
 ## Objetivos, decisões e consequências
@@ -43,7 +43,7 @@
 - Uma armadilha de corda e granadas pode interromper um veículo e transformar a iluminação da explosão em vantagem temporária para o atirador.
 - Um inimigo pode usar um companheiro como escudo, expondo a hierarquia e o desespero em combate.
 - A interface confirma a conclusão de uma missão de vingança e atribui experiência ao eliminar o alvo designado.
-- A modificação de uma arma pode falhar se depender de um componente ou requisito de habilidade que o protagonista não possui; a espingarda de baioneta modificada desfaz-se.
+- O rifle de sniper SWP exige a habilidade [Sniper]; como Han Xiao não a possui, ele desmonta o rifle e reaproveita as peças para reparar a espingarda de baioneta, que se tinha desfeito.
 - As Seis Nações são identificadas como Stardragon, Maple, Theseus, Raylen, Hesla e Ordina; Han Xiao escolhe Stardragon pela sua perceção de ser a mais pacífica.
 - O líder da Germinal considera a morte dos subordinados uma perda pouco relevante em comparação com a possibilidade de recrutar Han Xiao, revelando a sua hierarquia de valores.
 - A ameaça de que não haverá lugar para Han Xiao no mundo é retórica do líder; a narrativa ainda não mostra a resposta das Seis Nações nem a escala real de poder da Germinal.
