@@ -96,3 +96,14 @@ Foi concluído o controle de consistência das notas individuais dos capítulos 
 - Não foi encontrada contradição central na sequência narrativa dos capítulos 1–3; foram corrigidos problemas de rastreabilidade e ponto de vista.
 
 **Estado exato:** capítulos 1–3 — corpo narrativo visível verificado e notas individuais presentes; consistência cruzada auditada. Capítulos 4–10 — continuam pendentes de reabertura e auditoria individual. A etapa seguinte é começar pelo capítulo 4, mas apenas após uma verificação final dos arquivos alterados; capítulo 11 e Passagem 2 continuam bloqueados.
+
+## Continuidade após reabertura do capítulo 4 — 2026-10-11
+
+Depois de concluir a auditoria cruzada 1–3 e verificar os arquivos corrigidos, foi reaberta a página oficial do capítulo 4, “600,000 experience points!”. O corpo narrativo visível foi confirmado até ao fim, antes dos controles auxiliares, e foi criada a [nota individual do capítulo 4](../docs/06_auditoria/PASSAGEM_1_CAPITULO_04_NOTA_INDIVIDUAL.md).
+
+- A nota regista a acumulação de experiência durante meio ano, a redução de vigilância, o corte de 80% dos recursos, o avanço das habilidades e da subclasse Agent, a autorização da dissecação e a ordem de enviar o Sujeito No. 1 e a equipa para Night Owl.
+- A mensagem “Load failed, please RETRY” surge após o link do capítulo seguinte, na área auxiliar; não é evidência de truncamento do corpo narrativo.
+- O [mapa de cobertura](../docs/03_planejamento/MAPA_COBERTURA_CAPITULOS_O_LEGENDARIO_MECANICO.md) e a [síntese do lote 1–10](../docs/06_auditoria/PASSAGEM_1_LOTE_01_CAPITULOS_01_10.md) foram atualizados para marcar o capítulo 4 como reaberto e anotado.
+- A grafia “600,00” no corpo da página foi preservada como observação da fonte, pois parece um erro tipográfico em relação ao título; não foi corrigida silenciosamente.
+
+**Próxima ação obrigatória:** auditar a consistência conjunta das notas 1–4 com a síntese cumulativa e o mapa. Não começar o capítulo 5 antes desse controle. Capítulos 5–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
