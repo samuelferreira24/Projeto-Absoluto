@@ -178,3 +178,30 @@ Próximas ações:
 3. Iniciar um piloto com os capítulos iniciais para testar o esquema de extração.
 4. Auditar o piloto quanto à precisão, cobertura e utilidade antes de ampliar o volume.
 5. Expandir progressivamente o catálogo e as pesquisas técnicas.
+
+
+## 11. Artefatos operacionais da pesquisa
+
+A preparação documental inicial está organizada em registros com funções distintas:
+
+- Mapa de cobertura narrativa e capítulos: `docs/03_planejamento/MAPA_COBERTURA_CAPITULOS_O_LEGENDARIO_MECANICO.md`.
+- Glossário e taxonomia: `docs/04_referencia/GLOSSARIO_E_TAXONOMIA_O_LEGENDARIO_MECANICO.md`.
+- Catálogo mestre de tecnologias: `docs/04_referencia/CATALOGO_MESTRE_TECNOLOGIAS_O_LEGENDARIO_MECANICO.md`.
+- Protocolo de evidências científicas: `docs/90_fontes/PROTOCOLO_EVIDENCIAS_CIENTIFICAS_O_LEGENDARIO_MECANICO.md`.
+- Matriz de viabilidade e dependências: `docs/03_planejamento/MATRIZ_VIABILIDADE_E_DEPENDENCIAS_O_LEGENDARIO_MECANICO.md`.
+- Protocolo de experimentos e validação: `docs/06_auditoria/PROTOCOLO_EXPERIMENTOS_E_VALIDACAO_O_LEGENDARIO_MECANICO.md`.
+- Fila de oportunidades de realização: `docs/03_planejamento/FILA_OPORTUNIDADES_REALIZACAO_O_LEGENDARIO_MECANICO.md`.
+
+Esses artefatos estabelecem esquemas, estados controlados e critérios de qualidade. Seus registros iniciais são sementes de trabalho, não resultados de uma pesquisa integral. A sequência correta é confirmar o corpus, mapear a cobertura, contextualizar a narrativa, extrair candidatos, verificar evidências reais, comparar viabilidade e só então propor testes ou implementação.
+
+## 12. Portões de qualidade antes de ampliar a pesquisa
+
+1. **Corpus:** edição e referências de capítulo identificadas; divergências de numeração não resolvidas por suposição.
+2. **Contexto:** cada candidato tem contexto narrativo e fonte efetivamente consultada.
+3. **Extração:** fatos textuais, inferências e perguntas abertas estão separados.
+4. **Evidência real:** afirmações técnicas têm fontes adequadas, limitações e busca por evidência contrária.
+5. **Viabilidade:** versão funcional, dependências, gargalos, riscos e alternativas estão explícitos.
+6. **Validação:** qualquer teste tem critério de sucesso e de interrupção definidos previamente, além de registro de resultados.
+7. **Governança:** alterações ficam na branch de pesquisa até revisão; nada altera automaticamente o ABS ou a main.
+
+A preparação documental desta etapa está concluída como estrutura inicial. A pesquisa factual sistemática é a etapa seguinte e ainda não deve ser descrita como concluída.
