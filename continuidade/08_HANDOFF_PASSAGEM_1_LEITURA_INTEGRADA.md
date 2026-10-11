@@ -3,7 +3,7 @@
 **Data:** 2026-10-11  
 **Projeto-pai:** Projeto Absoluto  
 **Branch de trabalho:** `pesquisa/lendario-mecanico-base`  
-**Estado:** Passagem 1 em execução; subfases 1A–1D formalizadas. Capítulos 1–3 reabertos, com corpo narrativo visível completo verificado e notas individuais corrigidas; capítulos 4–10 aguardam auditoria individual.
+**Estado atual:** Passagem 1 em execução; subfases 1A–1D formalizadas. Capítulos 1–10 reabertos, com corpo narrativo visível verificado, notas individuais e auditoria cruzada final concluída em 2026-10-11. O lote inicial está auditado; a obra inteira não foi lida e a Passagem 1 continua em andamento.
 
 ## Decisões confirmadas
 
