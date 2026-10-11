@@ -165,3 +165,9 @@ A página oficial do capítulo 8, “I Have the Trashtalk to Back Me Up”, foi 
 A [auditoria cruzada de consistência 1–8](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_08.md) foi concluída e aprovada com ressalvas. O braço fabricado no capítulo 6 é recuperado e equipado no capítulo 8; a morte de Lin no capítulo 7 explica o passe, enquanto a destruição dos monitores não implica que as comunicações tenham sido interrompidas, pois Baltar ainda transmite uma ordem. A contagem de guardas do capítulo 8 permanece ambígua.
 
 **Próximo passo exato:** reabrir o capítulo 9, “Fierce Battle”, produzir/atualizar nota individual e atualizar mapa/síntese. Não iniciar capítulo 10 antes do QC cruzado 1–9. Capítulos 9–10 continuam pendentes de reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
+
+## Continuidade após reabertura do capítulo 9 — 2026-10-11
+
+A página oficial do capítulo 9, “Fierce Battle”, foi reaberta. O corpo narrativo visível foi confirmado até ao encerramento antes do link para o capítulo seguinte e a [nota individual do capítulo 9](../docs/06_auditoria/PASSAGEM_1_CAPITULO_09_NOTA_INDIVIDUAL.md) foi criada. Han Xiao incendeia o laboratório Valkyrie, combate a Equipa C, usa comunicações falsas para atrair a Equipa B e fica ferido; a fuga pelo portão ainda não se conclui.
+
+**Próxima ação obrigatória:** concluir o QC cruzado das notas 1–9 contra a síntese e o mapa. Não iniciar o capítulo 10 antes desse controle. Capítulo 10 aguarda reabertura/auditoria individual; capítulo 11 e Passagem 2 permanecem bloqueados.
