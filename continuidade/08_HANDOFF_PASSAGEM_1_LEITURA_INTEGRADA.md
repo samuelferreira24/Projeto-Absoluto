@@ -321,3 +321,9 @@ A página oficial do capítulo 29, “Fall Out”, foi aberta pelo link do capí
 A página oficial do capítulo 30, “The Mighty Rover”, foi aberta pelo link do capítulo 29 e a [nota individual do capítulo 30](../docs/06_auditoria/PASSAGEM_1_CAPITULO_30_NOTA_INDIVIDUAL.md) foi criada. Han Xiao escapa da sala de Raccoon, enfrenta dezenas de capangas e ativa Rover 1 para eliminar a Bee Sting Squad numa emboscada. A narrativa confirma que a equipa mercenária foi eliminada, mas só três notificações de 800 XP aparecem no texto visível; a discrepância foi registada. O destino de Raccoon e a conclusão formal da missão ainda estão em aberto.
 
 **Próximo passo exato:** abrir o capítulo 31 e concluir o QC cruzado 29–31 antes de avançar ao capítulo 32.
+
+## Sub-lote 29–31: capítulo 31 lido (2026-10-11)
+
+A página oficial do capítulo 31, “Silenced”, foi aberta pelo link do capítulo 30 e a [nota individual do capítulo 31](../docs/06_auditoria/PASSAGEM_1_CAPITULO_31_NOTA_INDIVIDUAL.md) foi criada. A continuação esclarece a contagem da Bee Sting Squad: três mercenários morreram na primeira rajada do Rover, dois na autodestruição e Kelly foi morto por Han Xiao. A frase do capítulo 30 de que a equipa inteira foi eliminada imediatamente é inconsistente com os três sobreviventes revelados no capítulo 31; a nota do capítulo 30 foi atualizada retrospetivamente. Han Xiao conclui a missão e é levado à Division 13; Big Raccoon é algemado por ordem da divisão.
+
+**Próximo passo exato:** concluir a integração e o QC cruzado do sublote 29–31 antes de avançar ao capítulo 32.
