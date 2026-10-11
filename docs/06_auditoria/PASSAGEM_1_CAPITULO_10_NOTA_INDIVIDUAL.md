@@ -79,4 +79,4 @@
 - A fuga da instalação está concluída, mas a fuga global da perseguição não.
 - Não foi feita avaliação de viabilidade científica ou aplicação ao ABS.
 
-**Próxima ação:** atualizar o mapa e a síntese para marcar o capítulo 10 como reaberto e anotado; depois auditar a consistência do sublote 1–10 antes de declarar o lote concluído.
+**Próxima ação:** O mapa e a síntese foram atualizados, e o [QC cruzado final 1–10](AUDITORIA_CRUZADA_FINAL_CAPITULOS_01_10.md) foi concluído. Próxima ação, após verificação final dos documentos: continuar sequencialmente no capítulo 11.
