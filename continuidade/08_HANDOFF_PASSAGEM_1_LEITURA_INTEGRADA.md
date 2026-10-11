@@ -219,3 +219,9 @@ A página oficial do capítulo 14, “The Old Era and the New”, foi aberta pel
 A página oficial do capítulo 15, “Burglary”, foi aberta pelo link do capítulo 14 e a [nota individual do capítulo 15](../docs/06_auditoria/PASSAGEM_1_CAPITULO_15_NOTA_INDIVIDUAL.md) foi criada. O capítulo aprofunda a Batalha de Andrea, revela o passado de Hu Xuan Jun e An e mostra Hu Fei, o jovem do capítulo 13, a roubar duas pistolas 73-WASP do pacote de Han Xiao durante a noite. O resultado do furto ainda está em aberto.
 
 **Próximo passo exato:** abrir o capítulo 16, criar nota individual e auditar o sublote 14–16 antes de avançar ao capítulo 17.
+
+## Sub-lote 14–16: capítulo 16 lido (2026-10-11)
+
+A página oficial do capítulo 16, “Misfortune”, foi aberta pelo link do capítulo 15 e a [nota individual do capítulo 16](../docs/06_auditoria/PASSAGEM_1_CAPITULO_16_NOTA_INDIVIDUAL.md) foi criada. No. 1 encontra uma pistola roubada por Hu Fei e, após Hu Xuan Jun mentir para proteger Han Xiao, executa Hu Xuan Jun e An; o superior da Germinal ordena que a matança seja concluída e abafada. Han Xiao regressa e encontra o acampamento massacrado.
+
+**Próximo passo exato:** concluir a integração e o QC cruzado do sublote 14–16, incluindo a ambiguidade sobre os gatilhos das duas pistolas e a responsabilidade direta pelo massacre. Não avançar ao capítulo 17 até fechar este QC.
