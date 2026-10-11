@@ -38,13 +38,13 @@ Manter uma linha por entrada e edição com: ID estável; edição; número e t�
 
 ## Primeiros registros observados — edição inglesa Webnovel
 
-**Nota:** registros abaixo refletem somente o nível de acesso/leitura indicado. “Trechos consultados” não significa capítulo integralmente lido.
+**Nota de atualização:** os estados dos capítulos 1–3 nesta tabela foram atualizados após reabertura em 2026-10-11. Os registros 4–5 e os capítulos pontuais 22/26/30 mantêm apenas o nível exploratório anteriormente documentado; não são promovidos pela auditoria do sublote 1–3. “Trechos consultados” não significa capítulo integralmente lido.
 
 | ID | Capítulo/título da edição inglesa | URL | Estado verificado | Uso inicial |
 |---|---|---|---|---|
-| CH-EN-0001 | 1 — Rebirth | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673 | Página aberta; consultado analiticamente | Premissa, interface ficcional, cenário inicial |
-| CH-EN-0002 | 2 — Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Página aberta; trecho consultado | Aprendizagem ficcional, classe e habilidades |
-| CH-EN-0003 | 3 — Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Página aberta; consultado analiticamente | Condicionamento, treino, contexto ético |
+| CH-EN-0001 | 1 — Rebirth | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673 | Corpo narrativo visível completo verificado em 2026-10-11; nota individual criada | Premissa, interface ficcional, cenário inicial |
+| CH-EN-0002 | 2 — Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Corpo narrativo visível completo verificado em 2026-10-11; nota individual criada | Aprendizagem ficcional, classe e habilidades |
+| CH-EN-0003 | 3 — Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Corpo narrativo visível completo verificado em 2026-10-11; nota individual criada | Condicionamento, treino, contexto ético |
 | CH-EN-0004 | 4 — 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Página aberta; consultado analiticamente | Oficina, montagem, manutenção e recursos |
 | CH-EN-0005 | 5 — Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Trechos consultados | Blueprint de braço mecânico |
 | CH-EN-0022 | 22 — Prosthetic Limb | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/prosthetic-limb_23983084059815310 | Trechos consultados | Prótese e fabricação |
