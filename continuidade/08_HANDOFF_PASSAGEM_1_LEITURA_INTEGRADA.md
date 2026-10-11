@@ -3,7 +3,7 @@
 **Data:** 2026-10-11  
 **Projeto-pai:** Projeto Absoluto  
 **Branch de trabalho:** `pesquisa/lendario-mecanico-base`  
-**Estado:** Passagem 1 iniciada; consulta analítica substancial dos capítulos 1–10 registrada, sem certificar ainda a integralidade linha a linha.
+**Estado:** Passagem 1 em execução; subfases 1A–1D formalizadas no método canônico. O capítulo 1 foi reconsultado e recebeu nota individual com estado “consulta analítica substancial”; recuperação do lote 1–10 ainda não concluída.
 
 ## Decisões confirmadas
 
@@ -23,7 +23,7 @@
 2. A tarefa ativa é a **Passagem 1**, em ordem desde o início. O piloto técnico anterior continua preservado como material exploratório, mas não deve orientar prematuramente a leitura.
 3. Não basta resumir capítulos separadamente: é obrigatório conectar causas e consequências, arcos, personagens, facções, regras do universo, mudanças de escala, prenúncios, revelações e revisões de interpretação.
 4. Cada conexão importante deve ser rastreável à edição/capítulo e classificada como explícita, inferência ou hipótese, com confiança e estado. Conexões não confirmadas ficam abertas.
-5. **Lote inicial sugerido: 10 capítulos**, como hipótese a validar após o primeiro lote real. Ajustar tamanho conforme extensão, densidade, acesso e qualidade, sem sacrificar contexto.
+5. Usar lotes adaptativos de **3–5 capítulos** durante a calibração, reduzindo para 1–3 em trechos densos ou com acesso difícil; só ampliar após dois lotes consecutivos passarem pelo controle de qualidade.
 6. O repositório é a memória persistente do trabalho. Cada lote termina com estado de leitura, resumo cumulativo, conexões novas/revistas, lacunas e ponto exato de retomada.
 7. Usar a tradução inglesa da Webnovel como edição inicial de trabalho, sujeita à auditoria de acesso e diferenças entre edições. Não contornar bloqueios; não alegar leitura de capítulos que só foram listados ou resumidos por fontes secundárias.
 8. Não alterar código, runtime ou arquitetura do ABS nesta fase. Não fazer merge para `main` sem decisão apropriada; trabalho documental segue na branch e no PR em rascunho.
@@ -68,10 +68,13 @@ Para a calibração, usar lotes adaptativos de 3–5 capítulos (ou menos em tre
 A auditoria é honesta: a síntese inicial do arco e a continuidade documental estão úteis, mas a integralidade, a deteção de omissões e a profundidade interpretativa ainda não foram demonstradas. Não alegar o contrário. Nenhuma alteração em código/runtime/arquitetura do ABS; PR #165 continua draft e não deve ser merged sem autorização.
 
 
-## Proposta de organização interna da Passagem 1
+## Organização interna formalizada da Passagem 1
 
-A auditoria metodológica passou a incluir uma proposta de decomposição da Passagem 1 em quatro subfases: **1A leitura narrativa sequencial; 1B integração narrativa contínua; 1C auditoria progressiva de compreensão; 1D síntese global após a cobertura narrativa**. A proposta está em [Auditoria do método, seções 12–14](../docs/06_auditoria/AUDITORIA_METODO_LEITURA_O_LEGENDARIO_MECANICO.md).
+As subfases **1A leitura narrativa sequencial; 1B integração narrativa contínua; 1C auditoria progressiva de compreensão; 1D síntese global após a cobertura narrativa** foram formalizadas no [método canônico](../docs/03_planejamento/METODO_PASSAGENS_SUCESSIVAS_O_LEGENDARIO_MECANICO.md) em 2026-10-11. Elas formam um ciclo cumulativo, não quatro releituras completas redundantes.
 
-Esta decomposição está registada como recomendação, ainda não como substituição formal do método canônico. O princípio é executar leitura, integração e auditoria de forma cumulativa, sem exigir quatro releituras completas redundantes. A síntese global fica para quando houver contexto narrativo suficiente.
+## Estado de execução após a atualização
 
-**Próxima tarefa mantida:** revisar o lote 1–10 com notas individuais e controle de omissões antes de iniciar o capítulo 11. A conversa atual não autoriza marcar capítulos como integralmente lidos nem avançar para a Passagem 2.
+- Método canônico atualizado: subfases 1A–1D e lotes adaptativos de 3–5 capítulos (ou 1–3 quando necessário).
+- Criada [nota individual do capítulo 1](../docs/06_auditoria/PASSAGEM_1_CAPITULO_01_NOTA_INDIVIDUAL.md). O conteúdo retornado pela página oficial da Webnovel terminou com indicação de falha de carregamento; estado honesto: **consulta analítica substancial**, não leitura completa verificada.
+- Auditoria metodológica atualizada para registrar que a decomposição foi formalizada e que a recuperação capítulo a capítulo começou.
+- A recuperação dos capítulos 1–10 permanece incompleta. Não avançar para o capítulo 11 até rever as notas e a cobertura desse lote; não iniciar a Passagem 2.
