@@ -93,7 +93,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-006 | 6 — Taking Action! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–6 aprovado com ressalvas | [Nota do capítulo 6](../06_auditoria/PASSAGEM_1_CAPITULO_06_NOTA_INDIVIDUAL.md) |
 | CH-EN-007 | 7 — Panic | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–7 aprovado | [Nota do capítulo 7](../06_auditoria/PASSAGEM_1_CAPITULO_07_NOTA_INDIVIDUAL.md) |
 | CH-EN-008 | 8 — I Have the Trashtalk to Back Me Up | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–8 aprovado com ressalvas | [Nota do capítulo 8](../06_auditoria/PASSAGEM_1_CAPITULO_08_NOTA_INDIVIDUAL.md) |
-| CH-EN-009 | 9 — Fierce Battle | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–9 pendente | [Nota do capítulo 9](../06_auditoria/PASSAGEM_1_CAPITULO_09_NOTA_INDIVIDUAL.md) |
+| CH-EN-009 | 9 — Fierce Battle | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC cruzado 1–9 aprovado | [Nota do capítulo 9](../06_auditoria/PASSAGEM_1_CAPITULO_09_NOTA_INDIVIDUAL.md) |
 | CH-EN-010 | 10 — Night Owl | Consulta analítica anterior; reabertura/auditoria pendente | — |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
@@ -158,3 +158,8 @@ A [auditoria cruzada dos capítulos 1–8](../06_auditoria/AUDITORIA_CRUZADA_CON
 ## Atualização — capítulo 9 (2026-10-11)
 
 A página oficial do capítulo 9 foi reaberta e o corpo narrativo visível foi verificado até ao fim, antes dos controles auxiliares. A nota individual está em [PASSAGEM_1_CAPITULO_09_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_09_NOTA_INDIVIDUAL.md). A auditoria cruzada do sublote 1–9 está pendente; o capítulo 10 continua a aguardar reabertura/auditoria individual.
+
+
+## Resultado de auditoria cruzada 1–9 — 2026-10-11
+
+A [auditoria cruzada dos capítulos 1–9](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_09.md) concluiu o controle de qualidade sem contradição central. A distinção entre vigilância visual e comunicações foi preservada; o inventário de granadas e as baixas das equipas foram registados sem inventar totais não confirmados. Próxima etapa: reabrir o capítulo 10 e concluir o QC cruzado 1–10 antes de encerrar o lote.
