@@ -98,6 +98,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-011 | 11 — Crunch Time | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 11–13 aprovado | [Nota do capítulo 11](../06_auditoria/PASSAGEM_1_CAPITULO_11_NOTA_INDIVIDUAL.md) |
 | CH-EN-012 | 12 — Original Identity | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 11–13 pendente | [Nota do capítulo 12](../06_auditoria/PASSAGEM_1_CAPITULO_12_NOTA_INDIVIDUAL.md) |
 | CH-EN-013 | 13 — Wanderers | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 11–13 aprovado | [Nota do capítulo 13](../06_auditoria/PASSAGEM_1_CAPITULO_13_NOTA_INDIVIDUAL.md) |
+| CH-EN-014 | 14 — The Old Era and the New | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 pendente | [Nota do capítulo 14](../06_auditoria/PASSAGEM_1_CAPITULO_14_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -191,3 +192,8 @@ A página oficial do capítulo 12 foi aberta pelo link de navegação do capítu
 ## Resultado do QC cruzado 11–13 — 2026-10-11
 
 A [auditoria cruzada 11–13](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_11_13.md) e a [síntese integrada do lote 02](../06_auditoria/PASSAGEM_1_LOTE_02_CAPITULOS_11_13.md) foram concluídas. A identidade anterior do corpo foi identificada como Xiao Han segundo o relatório da Germinal; a origem da transmigração continua em aberto. A morte de Silver Blade é confirmada pela avaliação posterior de Hila, embora o golpe final não seja mostrado diretamente. Próxima etapa: capítulo 14; não avançar ao capítulo 17 antes do QC do sublote seguinte.
+
+
+## Atualização — capítulo 14 (2026-10-11)
+
+A página oficial do capítulo 14, “The Old Era and the New”, foi aberta pelo link do capítulo 13. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_14_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_14_NOTA_INDIVIDUAL.md). O capítulo conclui a troca de provisões e introduz Hu Xuan Jun, An e a história da unificação de Aquamarine. O sublote 14–16 está em execução.
