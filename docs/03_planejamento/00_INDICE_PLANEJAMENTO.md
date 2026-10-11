@@ -48,5 +48,6 @@ O planejamento deve responder **qual capacidade/frente precisa avançar**, e nã
 - Protocolo de evidências científicas: `docs/90_fontes/PROTOCOLO_EVIDENCIAS_CIENTIFICAS_O_LEGENDARIO_MECANICO.md`.
 - Relatório-piloto exploratório: `docs/06_auditoria/PILOTO_PESQUISA_O_LEGENDARIO_MECANICO.md`.
 - Protocolo de experimentos e validação: `docs/06_auditoria/PROTOCOLO_EXPERIMENTOS_E_VALIDACAO_O_LEGENDARIO_MECANICO.md`.
+- Auditoria de preparação e portões de qualidade: `docs/06_auditoria/AUDITORIA_PREPARACAO_PESQUISA_O_LEGENDARIO_MECANICO.md`.
 
 A frente pertence ao Projeto Absoluto e não altera automaticamente o ABS. O material preparado define processo, registros e critérios; não equivale a levantamento integral da obra, revisão sistemática da ciência nem experimento executado.
