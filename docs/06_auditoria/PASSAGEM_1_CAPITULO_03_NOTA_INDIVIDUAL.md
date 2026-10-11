@@ -4,8 +4,8 @@
 **Edição:** Webnovel, tradução inglesa  
 **Capítulo:** 3 — “Life Is All About Acting”  
 **URL:** https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250  
-**Estado:** **consulta analítica substancial; integralidade não certificada**  
-**Trecho consultado:** conteúdo narrativo disponibilizado na página oficial, aproximadamente linhas 11–226 da captura textual. A página indica falha de carregamento após o trecho; não afirmo leitura integral verificada.
+**Estado:** **leitura completa do corpo narrativo visível verificada** (edição inglesa da Webnovel).  
+**Verificação de limite:** o corpo narrativo termina nas linhas 215–226, seguido dos controles de navegação. “Load failed, please RETRY” aparece depois do link “next chapter”, na área auxiliar pós-capítulo; não interrompe o corpo narrativo deste capítulo.
 
 ## Acontecimentos em ordem
 
