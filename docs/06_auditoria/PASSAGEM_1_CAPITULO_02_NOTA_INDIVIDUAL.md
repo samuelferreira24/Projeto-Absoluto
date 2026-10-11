@@ -65,8 +65,8 @@
 ## Auditoria de omissões e limites
 
 - O registo mantém a sequência da decisão de Hila, descoberta do livro, desbloqueio da classe, obtenção da arma, repetição da montagem e subida de nível.
-- A página apresentou aviso de falha de carregamento; não se certifica integralidade do capítulo.
+- O corpo narrativo visível foi verificado até ao encerramento do capítulo. “Load failed, please RETRY” aparece na área auxiliar depois do link para o capítulo seguinte e não indica truncamento narrativo.
 - Não foi feita avaliação de viabilidade técnica da montagem de armas nem qualquer extração para o ABS.
 - A nota é paráfrase analítica original e não substitui a consulta futura se surgirem dúvidas.
 
-**Próxima ação:** comparar esta nota com as notas dos capítulos 1 e 3 e com a síntese cumulativa. Após o controle de qualidade do sublote 1–3, continuar pelo capítulo 4; manter “consulta analítica substancial” até verificação integral.
+**Próxima ação:** comparar esta nota com as notas dos capítulos 1 e 3 e com a síntese cumulativa. Após o controle de qualidade do sublote 1–3, continuar pelo capítulo 4. O corpo narrativo visível está verificado; a auditoria cruzada da interpretação permanece pendente.
