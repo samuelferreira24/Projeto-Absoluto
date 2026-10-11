@@ -315,3 +315,9 @@ Foi criada a [síntese integrada dos capítulos 26–28](../docs/06_auditoria/PA
 A página oficial do capítulo 29, “Fall Out”, foi aberta pelo link do capítulo 28 e a [nota individual do capítulo 29](../docs/06_auditoria/PASSAGEM_1_CAPITULO_29_NOTA_INDIVIDUAL.md) foi criada. Ma Jie revela a origem de Han Xiao a Big Raccoon; o chefe tenta forçá-lo a revelar as plantas de armas e silenciá-lo. Han Xiao equipa o novo braço mecânico e inicia o combate, mas o capítulo termina quando os dois guardas à porta abrem fogo.
 
 **Próximo passo exato:** abrir os capítulos 30 e 31, criar notas individuais e concluir o QC cruzado 29–31 antes de avançar ao capítulo 32.
+
+## Sub-lote 29–31: capítulo 30 lido (2026-10-11)
+
+A página oficial do capítulo 30, “The Mighty Rover”, foi aberta pelo link do capítulo 29 e a [nota individual do capítulo 30](../docs/06_auditoria/PASSAGEM_1_CAPITULO_30_NOTA_INDIVIDUAL.md) foi criada. Han Xiao escapa da sala de Raccoon, enfrenta dezenas de capangas e ativa Rover 1 para eliminar a Bee Sting Squad numa emboscada. A narrativa confirma que a equipa mercenária foi eliminada, mas só três notificações de 800 XP aparecem no texto visível; a discrepância foi registada. O destino de Raccoon e a conclusão formal da missão ainda estão em aberto.
+
+**Próximo passo exato:** abrir o capítulo 31 e concluir o QC cruzado 29–31 antes de avançar ao capítulo 32.
