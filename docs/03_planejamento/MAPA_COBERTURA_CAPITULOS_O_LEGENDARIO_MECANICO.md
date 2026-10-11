@@ -101,6 +101,7 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-014 | 14 — The Old Era and the New | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 aprovado com ressalvas | [Nota do capítulo 14](../06_auditoria/PASSAGEM_1_CAPITULO_14_NOTA_INDIVIDUAL.md) |
 | CH-EN-015 | 15 — Burglary | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 aprovado | [Nota do capítulo 15](../06_auditoria/PASSAGEM_1_CAPITULO_15_NOTA_INDIVIDUAL.md) |
 | CH-EN-016 | 16 — Misfortune | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 14–16 aprovado | [Nota do capítulo 16](../06_auditoria/PASSAGEM_1_CAPITULO_16_NOTA_INDIVIDUAL.md) |
+| CH-EN-017 | 17 — Kill | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 17–19 pendente | [Nota do capítulo 17](../06_auditoria/PASSAGEM_1_CAPITULO_17_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
 
@@ -214,3 +215,8 @@ A página oficial do capítulo 16, “Misfortune”, foi aberta pelo link do cap
 ## Resultado do QC cruzado 14–16 — 2026-10-11
 
 A [auditoria cruzada 14–16](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_14_16.md) e a [síntese integrada do lote 03](../06_auditoria/PASSAGEM_1_LOTE_03_CAPITULOS_14_16.md) foram concluídas. Não foi encontrada contradição central. A discrepância sobre os gatilhos das pistolas permanece em aberto; a responsabilidade pelo massacre é atribuída diretamente a No. 1 e à Germinal, não ao furto que revelou a pista. Próximo capítulo: 17; não avançar ao 20 antes do QC 17–19.
+
+
+## Atualização — capítulo 17 (2026-10-11)
+
+A página oficial do capítulo 17, “Kill”, foi aberta pelo link do capítulo 16. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_17_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_17_NOTA_INDIVIDUAL.md). Han Xiao encontra Hu Fei moribundo, mata Kai Luo após a acusação de traição, confirma que Hu Xuan Jun o protegeu e inicia a missão [Revenge] contra o Esquadrão de Sujeitos. O capítulo termina com o veículo dos perseguidores a avançar contra a sua posição.
