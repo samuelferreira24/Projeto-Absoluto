@@ -66,3 +66,12 @@ Em 2026-10-11 foi criada a [Auditoria do método e da qualidade de leitura](../d
 Para a calibração, usar lotes adaptativos de 3–5 capítulos (ou menos em trechos densos), e só aumentar após dois lotes consecutivos passarem pelo controle de qualidade. Dez capítulos foi um piloto operacional, não um tamanho ideal já validado.
 
 A auditoria é honesta: a síntese inicial do arco e a continuidade documental estão úteis, mas a integralidade, a deteção de omissões e a profundidade interpretativa ainda não foram demonstradas. Não alegar o contrário. Nenhuma alteração em código/runtime/arquitetura do ABS; PR #165 continua draft e não deve ser merged sem autorização.
+
+
+## Proposta de organização interna da Passagem 1
+
+A auditoria metodológica passou a incluir uma proposta de decomposição da Passagem 1 em quatro subfases: **1A leitura narrativa sequencial; 1B integração narrativa contínua; 1C auditoria progressiva de compreensão; 1D síntese global após a cobertura narrativa**. A proposta está em [Auditoria do método, seções 12–14](../docs/06_auditoria/AUDITORIA_METODO_LEITURA_O_LEGENDARIO_MECANICO.md).
+
+Esta decomposição está registada como recomendação, ainda não como substituição formal do método canônico. O princípio é executar leitura, integração e auditoria de forma cumulativa, sem exigir quatro releituras completas redundantes. A síntese global fica para quando houver contexto narrativo suficiente.
+
+**Próxima tarefa mantida:** revisar o lote 1–10 com notas individuais e controle de omissões antes de iniciar o capítulo 11. A conversa atual não autoriza marcar capítulos como integralmente lidos nem avançar para a Passagem 2.
