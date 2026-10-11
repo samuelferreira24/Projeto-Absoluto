@@ -110,8 +110,9 @@ A primeira consulta dos capítulos 1–10 permitiu reconstruir o arco inicial, m
 | CH-EN-023 | 23 — You Set Me Up! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 aprovado | [Nota do capítulo 23](../06_auditoria/PASSAGEM_1_CAPITULO_23_NOTA_INDIVIDUAL.md) |
 | CH-EN-024 | 24 — What Is Weak? | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 aprovado | [Nota do capítulo 24](../06_auditoria/PASSAGEM_1_CAPITULO_24_NOTA_INDIVIDUAL.md) |
 | CH-EN-025 | 25 — New Talent! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 aprovado | [Nota do capítulo 25](../06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md) |
-| CH-EN-026 | 26 — Blueprint: Robot (Type: Rover) | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 26–28 pendente | [Nota do capítulo 26](../06_auditoria/PASSAGEM_1_CAPITULO_26_NOTA_INDIVIDUAL.md) |
-| CH-EN-027 | 27 — The Final Test | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 26–28 pendente | [Nota do capítulo 27](../06_auditoria/PASSAGEM_1_CAPITULO_27_NOTA_INDIVIDUAL.md) |
+| CH-EN-026 | 26 — Blueprint: Robot (Type: Rover) | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 26–28 aprovado | [Nota do capítulo 26](../06_auditoria/PASSAGEM_1_CAPITULO_26_NOTA_INDIVIDUAL.md) |
+| CH-EN-027 | 27 — The Final Test | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 26–28 aprovado | [Nota do capítulo 27](../06_auditoria/PASSAGEM_1_CAPITULO_27_NOTA_INDIVIDUAL.md) |
+| CH-EN-028 | 28 — Jealousy | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 26–28 aprovado | [Nota do capítulo 28](../06_auditoria/PASSAGEM_1_CAPITULO_28_NOTA_INDIVIDUAL.md) |
 | CH-EN-025 | 25 — New Talent! | Corpo narrativo visível verificado em 2026-10-11; nota individual criada; QC do sublote 23–25 aprovado | [Nota do capítulo 25](../06_auditoria/PASSAGEM_1_CAPITULO_25_NOTA_INDIVIDUAL.md) |
 
 A sequência de leitura continua no capítulo 4, não no 11. Antes de avançar, concluir o controle de qualidade das notas 1–3, integrar as conexões narrativas e atualizar a síntese cumulativa. Os capítulos 4–10 continuam pendentes de recuperação e verificação individual.
@@ -286,3 +287,8 @@ A página oficial do capítulo 26, “Blueprint: Robot (Type: Rover)”, foi abe
 ## Atualização — capítulo 27 (2026-10-11)
 
 A página oficial do capítulo 27, “The Final Test”, foi aberta pelo link do capítulo 26. O corpo narrativo visível foi verificado até ao fim antes dos controles auxiliares, e a nota individual está em [PASSAGEM_1_CAPITULO_27_NOTA_INDIVIDUAL.md](../06_auditoria/PASSAGEM_1_CAPITULO_27_NOTA_INDIVIDUAL.md). Han Xiao constrói Rover 1, fabrica um novo braço mecânico, melhora afinidades e habilidades e recebe a missão [Assailants!], cujo ataque ainda não começou no fim do capítulo.
+
+
+## Resultado do QC cruzado 26–28 — 2026-10-11
+
+A [auditoria cruzada 26–28](../06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_26_28.md) e a [síntese integrada do lote 07](../06_auditoria/PASSAGEM_1_LOTE_07_CAPITULOS_26_28.md) foram concluídas. Não foi encontrada contradição central. Rover 1 e o novo braço foram fabricados; a Division 13 organiza um teste indireto com a Bee Sting Squad, mas a missão ainda não foi resolvida. Próximo capítulo: 29; não avançar ao 32 antes do QC 29–31.
