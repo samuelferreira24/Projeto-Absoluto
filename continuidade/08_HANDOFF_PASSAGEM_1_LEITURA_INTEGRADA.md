@@ -206,4 +206,10 @@ A página oficial do capítulo 12, “Original Identity”, foi aberta pelo link
 
 Foi criada a [síntese integrada dos capítulos 11–13](../docs/06_auditoria/PASSAGEM_1_LOTE_02_CAPITULOS_11_13.md) e a [auditoria cruzada 11–13](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_11_13.md). Não foi encontrada contradição central. O capítulo 12 revela que a identidade anterior do corpo era Xiao Han, segundo um relatório da Germinal; a origem da transmigração e a hipótese sobre os efeitos de Valkyrie continuam em aberto. A morte de Silver Blade é confirmada pela avaliação posterior de Hila, embora o golpe final não seja mostrado diretamente. O capítulo 13 passa para sete dias de sobrevivência na floresta e uma negociação ainda sem acordo com os andarilhos.
 
-**Próximo passo exato:** abrir o capítulo 14, “The Long Journey”, criar nota individual e seguir até ao capítulo 16; concluir o QC cruzado 14–16 antes de avançar ao capítulo 17. A Passagem 2 permanece bloqueada.
+**Próximo passo exato:** abrir o capítulo 14, “The Old Era and the New”, criar nota individual e seguir até ao capítulo 16; concluir o QC cruzado 14–16 antes de avançar ao capítulo 17. A Passagem 2 permanece bloqueada.
+
+## Sub-lote 14–16: capítulo 14 lido (2026-10-11)
+
+A página oficial do capítulo 14, “The Old Era and the New”, foi aberta pelo link do capítulo 13 e a [nota individual do capítulo 14](../docs/06_auditoria/PASSAGEM_1_CAPITULO_14_NOTA_INDIVIDUAL.md) foi criada. Han Xiao conclui a troca de provisões, recusa uma carrinha por razões de segurança e é acolhido por Hu Xuan Jun e An. A conversa introduz a história de Aquamarine, a unificação nas Seis Nações e a Batalha de Andrea como ponto de viragem, sem detalhar ainda a batalha.
+
+**Próximo passo exato:** abrir os capítulos 15 e 16, criar notas individuais e auditar o sublote 14–16 antes de avançar ao capítulo 17.
