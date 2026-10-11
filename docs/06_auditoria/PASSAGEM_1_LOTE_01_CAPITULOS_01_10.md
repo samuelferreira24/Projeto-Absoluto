@@ -20,7 +20,7 @@
 | 7 | Panic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/panic_23358465070135260 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–7 pendente |
 | 8 | I Have the Trashtalk to Back Me Up | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/i-have-the-trashtalk-to-back-me-up_23419907530095406 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–8 pendente |
 | 9 | Fierce Battle | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/fierce-battle_23422594300574533 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–9 pendente |
-| 10 | Night Owl | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/night-owl_23426188668095388 | Corpo narrativo visível reaberto e verificado em 2026-10-11; nota individual criada; QC cruzado 1–10 pendente |
+| 10 | Night Owl | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/night-owl_23426188668095388 | Corpo narrativo visível verificado; nota individual criada; QC cruzado 1–10 aprovado com questões abertas preservadas |
 
 A Webnovel identificou a obra como concluída e listou 1.463 capítulos. Isso confirma a listagem consultada, não a cobertura integral da obra. Os registros de leitura anteriores (capítulos 1–4 e consultas pontuais posteriores) foram mantidos como material exploratório; esta sequência é uma nova passada narrativa, não uma afirmação de que nunca houve consultas anteriores.
 
@@ -238,9 +238,14 @@ A [auditoria cruzada dos capítulos 1–9](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITU
 
 A página oficial do capítulo 10 foi aberta através do link de navegação do capítulo 9, pois a URL com sublinhado não foi acessível diretamente. A página resolvida pela Webnovel usa o slug `night-owl`; o corpo narrativo visível foi verificado até ao fim, antes do link “next chapter”. Foi criada a [nota individual do capítulo 10](PASSAGEM_1_CAPITULO_10_NOTA_INDIVIDUAL.md). O capítulo confirma a fuga física da instalação por infiltração no grupo de guardas, a perseguição ordenada contra Han Xiao e o encontro com seis agentes Night Owl na floresta. O relatório de que mais de 30 guardas morreram e de que todos os registos Valkyrie foram destruídos é atribuído ao líder da Equipa A, não tratado como verificação independente.
 
-**Estado atualizado:** capítulos 1–9 — corpo narrativo verificado e QC cruzado 1–9 aprovado; capítulo 10 — corpo narrativo reaberto e nota individual criada, QC cruzado final 1–10 pendente. Concluir o controle de qualidade antes de declarar o lote fechado ou iniciar o capítulo 11.
+**Estado atualizado:** capítulos 1–9 — corpo narrativo verificado e QC cruzado 1–9 aprovado; capítulo 10 — corpo narrativo reaberto, nota individual criada e QC cruzado final 1–10 aprovado com questões abertas preservadas. O lote 1–10 está auditado, mas a Passagem 1 continua em execução; só iniciar o capítulo 11 após verificar os arquivos atualizados.
 
 
 ## Correção final de rastreabilidade — dados Valkyrie (2026-10-11)
 
 A síntese cumulativa foi ajustada para distinguir os acontecimentos observados dos relatos internos: o capítulo 9 mostra Han Xiao a incendiar o laboratório; no capítulo 10, o líder da Equipa A relata que todos os registos Valkyrie foram destruídos. O corpo narrativo consultado não confirma de forma independente a extensão total da perda de dados. A conclusão foi rebaixada de facto explícito para relato dentro da história, com estado em aberto.
+
+
+## Resultado da auditoria cruzada final 1–10 — 2026-10-11
+
+A [auditoria cruzada final dos capítulos 1–10](AUDITORIA_CRUZADA_FINAL_CAPITULOS_01_10.md) foi concluída. Não foi encontrada contradição central na sequência narrativa. Foram corrigidas formulações sobre transmigração/ponto de vista e sobre a destruição dos registos Valkyrie: o incêndio é mostrado, mas a destruição total dos dados é relatada pelo líder da Equipa A e não foi verificada independentemente. Permanecem abertas as variantes terminológicas da tradução inglesa, o balanço exato das baixas e o destino dos dados. O lote 1–10 está auditado; a Passagem 1 não está concluída. Próxima etapa, após verificação final dos arquivos: capítulo 11.
