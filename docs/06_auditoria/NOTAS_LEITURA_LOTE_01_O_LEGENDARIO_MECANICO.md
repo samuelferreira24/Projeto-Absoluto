@@ -36,6 +36,20 @@ O capítulo 26 apresenta o blueprint de um robô móvel tipo rover como platafor
 - Candidatos: sistema de aprendizagem ficcional; taxonomia de competências mecânicas; manutenção e aprimoramento como famílias de capacidade.
 - Cuidado: não interpretar bônus percentuais ou desbloqueios como desempenho real mensurável.
 
+### CH-EN-0003 — Chapter 3: Life Is All About Acting
+- URL: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250
+- Estado: página aberta; conteúdo consultado analiticamente.
+- Notas: Han Xiao sobrevive à tentativa de condicionamento psicológico ao simular obediência. O capítulo também mostra treino físico e de tiro imposto pela organização. O condicionamento e os atributos do sistema são elementos ficcionais; não usar a cena como referência de procedimentos psicológicos reais.
+- Candidatos: condicionamento/controle comportamental (categoria de risco, sem objetivo de replicação); treino e progressão de habilidades; sistemas de monitorização e experimentação.
+- Cuidado: conteúdo coercitivo e violento; interessa ao contexto narrativo e à análise ética, não como plano técnico.
+
+### CH-EN-0004 — Chapter 4: 600,000 experience points!
+- URL: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163
+- Estado: página aberta; conteúdo consultado analiticamente.
+- Notas: Han Xiao recebe acesso a uma sala de ajuste de máquinas com materiais, ferramentas, bancada e livros, e usa montagem, aprimoramento e memorização de projetos para acumular progresso. A narrativa descreve ainda restrição de recursos e manutenção como trabalho atribuído a ele.
+- Candidatos: oficina e infraestrutura de fabricação; ciclo de aprendizagem prática; montagem, aprimoramento, manutenção, gestão de recursos e retenção de projetos.
+- Cuidado: experiência e progressão numéricas são mecânicas do jogo, não métricas de competência real.
+
 ### CH-EN-0005 — Chapter 5: Lightweight Mechanical Arm
 - URL: https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420
 - Estado: trechos consultados; leitura integral não confirmada.
