@@ -47,6 +47,7 @@ O planejamento deve responder **qual capacidade/frente precisa avançar**, e nã
 - Registro inicial de fontes e limites de acesso: `docs/90_fontes/ESTUDO_O_LEGENDARIO_MECANICO_FONTES.md`.
 - Protocolo de evidências científicas: `docs/90_fontes/PROTOCOLO_EVIDENCIAS_CIENTIFICAS_O_LEGENDARIO_MECANICO.md`.
 - Relatório-piloto exploratório: `docs/06_auditoria/PILOTO_PESQUISA_O_LEGENDARIO_MECANICO.md`.
+- Notas de leitura do lote exploratório 01: `docs/06_auditoria/NOTAS_LEITURA_LOTE_01_O_LEGENDARIO_MECANICO.md`.
 - Protocolo de experimentos e validação: `docs/06_auditoria/PROTOCOLO_EXPERIMENTOS_E_VALIDACAO_O_LEGENDARIO_MECANICO.md`.
 - Auditoria de preparação e portões de qualidade: `docs/06_auditoria/AUDITORIA_PREPARACAO_PESQUISA_O_LEGENDARIO_MECANICO.md`.
 
