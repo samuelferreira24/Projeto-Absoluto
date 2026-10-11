@@ -20,9 +20,11 @@ A obra será estudada por passagens com objetivos distintos. As passagens são c
 Registar:
 - plataforma, idioma, edição e URL;
 - identificador, título e URL de cada capítulo;
-- estado real de acesso: listado, aberto, parcialmente consultado, lido, revisado ou inacessível;
+- estado real de acesso: listado, página aberta, corpo narrativo parcialmente retornado, corpo narrativo completo visível verificado, análise individual concluída, revisado ou inacessível;
 - diferenças entre edições e traduções, sem alinhamento presumido;
 - limites de direitos autorais e de acesso.
+
+**Protocolo obrigatório para mensagens de erro em páginas:** identificar em que parte da página aparece o erro antes de classificar o capítulo como incompleto. Verificar se o corpo narrativo continua depois da mensagem, se existe nota de encerramento, nota de rodapé ou link para o capítulo seguinte. Mensagens que aparecem apenas em módulos auxiliares pós-capítulo (comentários, avaliações, presentes, recomendações ou controlos da interface) devem ser registadas como falha do módulo auxiliar, não como falha do texto narrativo. Só classificar o capítulo como truncado quando houver evidência de que o erro interrompe o próprio corpo narrativo ou quando não for possível verificar o seu encerramento.
 
 **Saída:** registro do corpus e mapa de cobertura.  
 **Critério de saída:** é possível dizer qual edição está a ser lida e exatamente o que foi ou não consultado.
