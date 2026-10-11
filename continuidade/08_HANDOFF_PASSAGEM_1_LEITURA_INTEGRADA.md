@@ -267,3 +267,9 @@ A página oficial do capítulo 21, “The Old Man Who Plays Chess”, foi aberta
 Foi criada a [síntese integrada dos capítulos 20–22](../docs/06_auditoria/PASSAGEM_1_LOTE_05_CAPITULOS_20_22.md) e a [auditoria cruzada 20–22](../docs/06_auditoria/AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_20_22.md). Não foi encontrada contradição central. Han Xiao entra clandestinamente na Western Capital, procura a oficina secreta e inicia o teste de uma prótese para Tall Old Man; o teste e a contratação ainda não estão concluídos. A relação de propriedade entre Old Man Lu e Lu Qian permanece aberta.
 
 **Próximo passo exato:** abrir o capítulo 23, criar notas individuais para 23–25 e concluir o QC cruzado 23–25 antes de avançar ao capítulo 26. A Passagem 2 permanece bloqueada.
+
+## Sub-lote 23–25: capítulo 23 lido (2026-10-11)
+
+A página oficial do capítulo 23, “You Set Me Up!”, foi aberta pelo link do capítulo 22 e a [nota individual do capítulo 23](../docs/06_auditoria/PASSAGEM_1_CAPITULO_23_NOTA_INDIVIDUAL.md) foi criada. Han Xiao conclui a prótese em 2h33m, recebe aprovação de Tall Old Man e é contratado por Lu Qian com salário, refeições e alojamento. Tall Old Man informa a inteligência de Stardragon sobre a presença de Han Xiao, mas manda apenas monitorizar por enquanto. A linha secreta do cofre digital é um evento futuro, não algo já concluído.
+
+**Próximo passo exato:** abrir os capítulos 24 e 25, criar notas individuais e concluir o QC cruzado 23–25 antes de avançar ao capítulo 26.
