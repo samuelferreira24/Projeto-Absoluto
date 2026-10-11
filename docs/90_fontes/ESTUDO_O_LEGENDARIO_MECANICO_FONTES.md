@@ -46,3 +46,40 @@
 4. Anotar data de consulta e limitações de acesso para conclusões importantes.
 5. Wikis, fóruns, resumos e mecanismos de busca podem revelar termos; verificar os termos nas fontes primárias antes de consolidá-los.
 6. Não afirmar que uma tecnologia existe ou funciona com base somente em sua descrição ficcional.
+
+### S5 — FDA, próteses de membro superior controladas por EMG
+- URL: https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpcd/classification.cfm?id=5743
+- Utilidade: referência regulatória e descrição técnica de próteses que usam múltiplas entradas eletromiográficas para controlar múltiplos graus de liberdade.
+- Limitação: uma página de classificação de dispositivo não demonstra que toda prótese tenha o mesmo desempenho.
+- Estado: consultada para o relatório-piloto.
+
+### S6 — FDA, avaliação de próteses de membro superior e DEKA Arm
+- URL: https://www.fda.gov/about-fda/division-patient-centered-development/clinical-outcome-assessments-composite-endpoint-upper-extremity-prosthetics
+- Utilidade: contexto clínico e descrição de um sistema com até dez graus de liberdade.
+- Limitação: não deve ser generalizada para todas as próteses ou interpretada como equivalência a um braço biológico.
+- Estado: consultada para o relatório-piloto.
+
+### S7 — PubMed, revisão sistemática sobre próteses de membro superior
+- URL: https://pubmed.ncbi.nlm.nih.gov/26230500/
+- Utilidade: referência de revisão da literatura comparando próteses mioelétricas e acionadas pelo corpo.
+- Limitação: a revisão aponta resultados mistos e não sustenta uma conclusão universal de superioridade de uma modalidade.
+- Estado: resumo consultado; aprofundamento da revisão pendente.
+
+### S8 — NASA/JPL, navegação de rovers Mars Exploration Rover
+- URL: https://robotics.jpl.nasa.gov/what-we-do/flight-projects/mars-exploration-rovers/surface-navigation/
+- Utilidade: descrição oficial de navegação autônoma, visão estéreo, detecção de riscos, planejamento de caminho e odometria visual.
+- Limitação: refere-se a sistemas e missões específicos; não demonstra autonomia geral em qualquer terreno.
+- Estado: consultada para o relatório-piloto.
+
+### S9 — NASA, Robotic Systems Technology Branch
+- URL: https://www.nasa.gov/software-robotics-and-simulation-division/robotic-systems-technology-branch/
+- Utilidade: panorama institucional de áreas reais de desenvolvimento em robótica.
+- Limitação: página de programa; para avaliações específicas, buscar publicações técnicas e dados do sistema correspondente.
+- Estado: consultada para o relatório-piloto.
+
+### S10 — NASA/JPL, testes avançados de rovers lunares e marcianos
+- URL: https://www.jpl.nasa.gov/news/nasa-testing-advanced-capabilities-for-moon-mars-rovers/
+- Data da publicação: 18 de junho de 2026.
+- Utilidade: exemplo recente de teste de protótipo de rover em terreno difícil com intervenção mínima.
+- Limitação: um teste de campo não implica prontidão para qualquer ambiente ou tarefa.
+- Estado: consultada para o relatório-piloto.
