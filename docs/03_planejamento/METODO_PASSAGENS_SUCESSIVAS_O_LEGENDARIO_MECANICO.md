@@ -197,6 +197,29 @@ Cada lote precisa registrar intervalo, edição, capítulos realmente consultado
 ### 10.6 Reutilização entre passagens
 As notas da primeira passagem podem guiar a segunda, mas não substituem a reconsulta ao capítulo. As fontes científicas da terceira passagem não podem alterar silenciosamente o que a obra diz; devem ficar em camada separada.
 
+### 10.7 Integração global da narrativa — requisito obrigatório
+Ler e resumir capítulos isoladamente não basta. A Passagem 1 deve construir progressivamente uma compreensão integrada da obra, ligando acontecimentos, personagens, facções, regras do universo e mudanças em diferentes escalas.
+
+Para cada conexão relevante, registar quando houver evidência suficiente:
+- **Origem:** capítulo(s) em que surge o fato, decisão, personagem, regra ou condição;
+- **Desenvolvimento:** acontecimentos intermediários e mudanças que estabelecem a ligação;
+- **Consequência:** o que muda por causa disso;
+- **Destino/retorno:** capítulo(s) em que o efeito, resolução ou nova interpretação aparece;
+- **Evidência textual:** edição, capítulo, título e URL quando disponível;
+- **Tipo e confiança:** explícito na obra, inferência fundamentada ou hipótese em aberto;
+- **Estado:** provisório, confirmado pelo texto consultado, contradito ou pendente.
+
+Manter conexões rastreáveis entre causas e consequências, arcos, evolução de personagens, objetivos e relações entre facções, regras e exceções do universo, recursos e capacidades, e acontecimentos locais e transformações de maior escala. Procurar também contradições aparentes, prenúncios, revelações tardias e fatos que mudem a interpretação de registros anteriores.
+
+Uma conexão plausível não deve ser apresentada como comprovada. Quando um capítulo posterior alterar uma interpretação, preservar o registro anterior e anotar a revisão, a nova evidência e o motivo. Não preencher ligações ausentes por memória ou especulação.
+
+**Saída integrada da Passagem 1:** além das notas por bloco, manter cronologia cumulativa, mapa de arcos, fichas de personagens/facções, regras do universo, questões em aberto e um registro/grafo de conexões narrativas com referências. Essas estruturas devem ser atualizadas ao longo da leitura e revistas ao fim de cada arco.
+
+### 10.8 Tamanho de lote e controle de continuidade
+Usar **10 capítulos por lote como hipótese operacional inicial**, não como limite fixo nem promessa de cobertura. Após o primeiro lote realmente consultado, avaliar extensão, densidade, qualidade dos registros e acesso ao texto; reduzir para 5–10 ou ampliar para 10–20 quando justificado. Capítulos curtos ou revisão podem permitir blocos maiores, mas não se deve sacrificar rastreabilidade para aumentar velocidade.
+
+Cada lote deve terminar com: intervalo planejado e efetivamente lido; capítulos e estados reais; resumo do lote; mudanças no estado narrativo; conexões novas ou revistas; dúvidas e lacunas; ponto exato de retomada. Antes de começar outro lote ou uma nova conversa, recuperar o último estado persistido. O repositório é a fonte de continuidade, não a memória implícita da sessão.
+
 ## 11. Estado real e aplicação imediata
 
 - A preparação documental e o teste exploratório inicial já existem.
