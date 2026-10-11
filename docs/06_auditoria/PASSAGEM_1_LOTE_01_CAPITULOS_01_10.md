@@ -166,4 +166,9 @@ Hila é apresentada simultaneamente como comandante coerciva e como pessoa subme
 
 A página oficial do capítulo 4 foi reaberta. O corpo narrativo visível termina antes do link “next chapter”; a mensagem “Load failed, please RETRY” aparece depois da navegação, em área auxiliar. Foi criada a [nota individual do capítulo 4](PASSAGEM_1_CAPITULO_04_NOTA_INDIVIDUAL.md), registrando o meio ano de acumulação de experiência, a redução de vigilância, o corte de 80% dos recursos, a progressão de Han Xiao, a autorização da dissecação e a ordem de envio do Sujeito No. 1 à Night Owl.
 
-**Estado atualizado:** capítulos 1–3 — corpo narrativo visível verificado e consistência cruzada auditada; capítulo 4 — corpo narrativo visível reaberto e nota individual criada, com consistência cruzada 1–4 pendente; capítulos 5–10 — aguardam reabertura/auditoria individual. Não avançar ao capítulo 5 até concluir o controle de qualidade cruzado 1–4.
+**Estado atualizado:** capítulos 1–3 — corpo narrativo visível verificado e consistência cruzada auditada; capítulo 4 — corpo narrativo visível reaberto, nota individual criada e QC cruzado 1–4 aprovado com questões abertas preservadas; capítulos 5–10 — aguardam reabertura/auditoria individual. Próxima etapa: reabrir o capítulo 5, criar nota individual e auditar o sublote 1–5 antes de avançar ao capítulo 6.
+
+
+## Resultado do QC cruzado 1–4 — 2026-10-11
+
+A [auditoria cruzada dos capítulos 1–4](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_04.md) foi concluída. Não foi encontrada contradição central na cronologia, progressão mecânica, dissimulação, ameaça de dissecação ou introdução do Sujeito No. 1. Permanecem abertas a natureza da transmigração, o contexto do acordo de Hila sobre a irmã e o valor atualizado do temporizador da versão 1.0. A síntese dos capítulos 5–10 continua provisória até auditoria individual. Próximo capítulo a reabrir: 5. Não iniciar o capítulo 6 antes do QC do sublote 1–5.
