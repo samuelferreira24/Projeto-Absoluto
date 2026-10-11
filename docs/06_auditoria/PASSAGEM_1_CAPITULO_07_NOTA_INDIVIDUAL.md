@@ -71,4 +71,4 @@
 - A alegação de Lin de ser o “criador” não é tratada como explicação confirmada da origem de Han Xiao.
 - Não foi feita avaliação de viabilidade científica ou aplicação ao ABS.
 
-**Próxima ação:** O mapa e a síntese foram atualizados, e a [auditoria cruzada 1–7](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_07.md) foi aprovada com questões abertas preservadas. Próxima ação: reabrir o capítulo 8 e concluir o QC cruzado 1–8 antes de avançar ao capítulo 9.
+**Próxima ação:** O mapa e a síntese foram atualizados, e a [auditoria cruzada 1–8](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_08.md) foi aprovada com ressalvas. Próxima ação: reabrir o capítulo 9 e concluir o QC cruzado 1–9 antes de avançar ao capítulo 10.
