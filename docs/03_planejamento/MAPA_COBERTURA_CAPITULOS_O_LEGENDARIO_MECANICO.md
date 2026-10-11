@@ -1,7 +1,7 @@
 # Mapa de cobertura narrativa e capítulos — O Lendário Mecânico
 
 **Projeto-pai:** Projeto Absoluto  
-**Estado:** estrutura preparada; cobertura sistemática ainda não iniciada  
+**Estado:** Passagem 1 iniciada; capítulos 1–10 consultados analiticamente, integralidade ainda não certificada  
 **Versão:** 0.1 — 2026-10-11
 
 ## Finalidade
@@ -78,3 +78,22 @@ Exige inventário de capítulos para a edição escolhida, estados preenchidos s
 
 ## Direitos autorais e integridade
 Não armazenar capítulos completos, traduções integrais ou trechos extensos. Guardar referências, notas próprias e citações breves apenas quando necessárias. Nunca declarar leitura ou revisão que não ocorreu.
+
+## Atualização de execução — Passagem 1, lote inicial (2026-10-11)
+
+Foram abertas e consultadas sequencialmente as páginas da Webnovel para os capítulos 1–10. O nível de consulta foi substancial e permitiu reconstruir o arco inicial da captura, progressão, fabricação do braço mecânico e fuga. Como nem toda a extensão de cada página foi verificada linha a linha, registrar como **consulta analítica substancial / integralidade ainda não certificada**, não como leitura integral definitiva.
+
+| ID | Capítulo | URL | Estado desta sessão |
+|---|---|---|---|
+| CH-EN-001 | 1 — Rebirth | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/rebirth_23253695248526673 | Consulta analítica substancial |
+| CH-EN-002 | 2 — Mechanic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/mechanic_23257999627830010 | Consulta analítica substancial |
+| CH-EN-003 | 3 — Life Is All About Acting | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/life-is-all-about-acting_23324718186678250 | Consulta analítica substancial |
+| CH-EN-004 | 4 — 600,000 experience points! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/600-000-experience-points!_23324785832413163 | Consulta analítica substancial |
+| CH-EN-005 | 5 — Lightweight Mechanical Arm | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/lightweight-mechanical-arm_23324799522621420 | Consulta analítica substancial |
+| CH-EN-006 | 6 — Taking Action! | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/taking-action!_23353885024384961 | Consulta analítica substancial |
+| CH-EN-007 | 7 — Panic | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/panic_23358465070135260 | Consulta analítica substancial |
+| CH-EN-008 | 8 — I Have the Trashtalk to Back Me Up | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/i-have-the-trashtalk-to-back-me-up_23419907530095406 | Consulta analítica substancial |
+| CH-EN-009 | 9 — Fierce Battle | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/fierce-battle_23422594300574533 | Consulta analítica substancial |
+| CH-EN-010 | 10 — Night Owl | https://www.webnovel.com/book/the-legendary-mechanic_8662546605001405/night_owl_23426188668095388 | Consulta analítica substancial |
+
+O lote narrativo, cronologia, fichas, regras provisórias, conexões e lacunas estão no arquivo [Passagem 1 — Lote inicial, capítulos 1–10](../06_auditoria/PASSAGEM_1_LOTE_01_CAPITULOS_01_10.md). O próximo capítulo a consultar em sequência é o 11, “Crunch Time”.
