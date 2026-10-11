@@ -77,4 +77,4 @@
 - O capítulo contém violência letal; a nota descreve acontecimentos sem tratar o sistema de experiência como validação moral da violência.
 - Não foi feita avaliação de viabilidade científica ou aplicação ao ABS.
 
-**Próxima ação:** O mapa e a síntese foram atualizados, e a [auditoria cruzada 1–6](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_06.md) foi aprovada com ressalvas. Próxima ação: reabrir o capítulo 7 e concluir o QC cruzado 1–7 antes de avançar ao capítulo 8.
+**Próxima ação:** O mapa e a síntese foram atualizados, e a [auditoria cruzada 1–7](AUDITORIA_CRUZADA_CONSISTENCIA_CAPITULOS_01_07.md) foi aprovada com questões abertas preservadas. Próxima ação: reabrir o capítulo 8 e concluir o QC cruzado 1–8 antes de avançar ao capítulo 9.
