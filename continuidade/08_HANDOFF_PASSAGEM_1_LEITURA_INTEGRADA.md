@@ -195,3 +195,9 @@ A [auditoria cruzada final dos capítulos 1–10](../docs/06_auditoria/AUDITORIA
 Depois da verificação final do lote 1–10, a página oficial do capítulo 11, “Crunch Time”, foi aberta pelo link do capítulo 10 e a [nota individual do capítulo 11](../docs/06_auditoria/PASSAGEM_1_CAPITULO_11_NOTA_INDIVIDUAL.md) foi criada. A perseguição continua na floresta; Han Xiao combate os seis agentes Night Owl, fica gravemente pressionado e o capítulo termina em suspense após uma explosão, sem confirmar se sobreviveu.
 
 **Próximo passo exato:** abrir o capítulo 12 e depois o 13, criar notas individuais e fazer integração narrativa + QC do sublote 11–13 antes de avançar ao capítulo 14. Manter a cadência de três capítulos nesta unidade; não iniciar a Passagem 2.
+
+## Sub-lote 11–13: capítulo 12 lido (2026-10-11)
+
+A página oficial do capítulo 12, “Original Identity”, foi aberta pelo link de navegação do capítulo 11 e a [nota individual do capítulo 12](../docs/06_auditoria/PASSAGEM_1_CAPITULO_12_NOTA_INDIVIDUAL.md) foi criada. Han Xiao sobrevive à explosão com 50 HP; Hila confirma a eliminação da Night Owl Squad 3; a Germinal revela que a identidade original do corpo era Xiao Han, terceiro filho da família Alumera. A explicação de que Valkyrie restaurou memórias e aumentou a inteligência é hipótese dos pesquisadores, não facto confirmado sobre a transmigração.
+
+**Próximo passo exato:** abrir o capítulo 13, criar nota individual e auditar o sublote 11–13 antes de avançar ao capítulo 14.
