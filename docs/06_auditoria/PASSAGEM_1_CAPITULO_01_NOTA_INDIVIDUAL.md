@@ -74,4 +74,4 @@
 
 ## Próxima ação
 
-Verificar a consistência conjunta das notas 1–3 com a síntese cumulativa e o mapa de cobertura. Depois de concluir esse controle de qualidade, continuar pelo capítulo 4. O corpo narrativo visível deste capítulo está verificado; a auditoria cruzada da interpretação permanece pendente.
+A nota individual do capítulo 4 já foi criada. Próxima ação: concluir a auditoria cruzada do sublote 1–4 com a síntese cumulativa e o mapa antes de avançar ao capítulo 5. O corpo narrativo visível do capítulo 1 está verificado; a consistência cruzada 1–4 está em revisão.
