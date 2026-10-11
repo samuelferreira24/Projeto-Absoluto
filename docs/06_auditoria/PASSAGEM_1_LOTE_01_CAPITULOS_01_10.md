@@ -4,7 +4,7 @@
 **Edição de trabalho:** Webnovel, tradução inglesa  
 **Data da consulta:** 2026-10-11  
 **Passagem:** 1 — leitor da narrativa, sem avaliação técnico-científica  
-**Estado:** capítulos 1–3 reabertos e corpo narrativo completo visível verificado; capítulos 4–10 ainda não reauditados individualmente. Não classificar o lote inteiro como leitura integral definitiva.  
+**Estado atual:** capítulos 1–10 reabertos, com corpo narrativo visível verificado e notas individuais; auditoria cruzada final do lote 1–10 concluída em 2026-10-11. O lote está auditado, mas isso não significa que toda a obra foi lida ou que a Passagem 1 terminou.  
 **Regra de uso:** paráfrases originais; este documento não reproduz o texto da obra.
 
 ## Fontes e cobertura observada
