@@ -205,3 +205,8 @@ Esses artefatos estabelecem esquemas, estados controlados e critérios de qualid
 7. **Governança:** alterações ficam na branch de pesquisa até revisão; nada altera automaticamente o ABS ou a main.
 
 A preparação documental desta etapa está concluída como estrutura inicial. A pesquisa factual sistemática é a etapa seguinte e ainda não deve ser descrita como concluída.
+
+
+## Método operacional obrigatório
+
+A pesquisa será executada em passagens sucessivas, não misturando leitura narrativa, extração técnica, crítica científica, engenharia, projeto e experimento. O protocolo canônico é `docs/03_planejamento/METODO_PASSAGENS_SUCESSIVAS_O_LEGENDARIO_MECANICO.md`. A tarefa ativa após a preparação é a Passagem 1 — leitor da obra inteira; as notas técnicas piloto anteriores permanecem preservadas, mas não determinam o foco da leitura narrativa.
